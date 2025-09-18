@@ -1,0 +1,74 @@
+---
+title: OncoPath Functions for Clinicopathological Research
+name: OncoPath
+version: 0.0.31.69
+jms: '1.0'
+authors:
+  - Serdar Balci
+maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
+date: '2025-09-18'
+type: R
+description: >-
+  OncoPath Functions for Clinicopathological Research. Specialized oncology and
+  pathology visualization tools from ClinicoPath jamovi module. OncoPath helps
+  researchers create comprehensive patient follow-up plots including waterfall
+  plots for treatment response analysis and swimmer plots for patient timeline
+  visualization.
+analyses:
+  - title: Treatment Response Analysis
+    name: waterfall
+    ns: OncoPath
+    menuGroup: OncoPath
+    menuTitle: Treatment Response Analysis
+    menuSubgroup: Patient Follow-Up Plots
+    description: >
+      Creates waterfall and spider plots to analyze tumor response data
+      following RECIST criteria. Supports both raw tumor measurements and
+      pre-calculated percentage changes. Provides comprehensive response
+      analysis including ORR, DCR, and person-time metrics.
+    ribbon: analyses
+    menuSubtitle: Waterfall Plot, Spider Plot
+    category: analyses
+  - title: Swimmer Plot
+    name: swimmerplot
+    ns: OncoPath
+    ribbon: analyses
+    menuGroup: OncoPath
+    menuSubgroup: Patient Follow-Up Plots
+    menuTitle: Swimmer Plot
+    description: >
+      Creates comprehensive swimmer plots using the ggswim package to visualize
+      patient timelines,  clinical events, milestones, and treatment responses.
+      Features enhanced data validation  and complete ggswim integration for
+      professional clinical visualization.
+    category: analyses
+datasets:
+  - name: Swimmer Plot Analysis
+    path: swimmerplot_sample.omv
+    description: Example analysis for swimmer plot.
+    tags:
+      - Swimmer Plot
+      - Oncology
+      - Pathology
+      - Follow-up
+  - name: Waterfall Plot
+    path: waterfall_percentage_basic.omv
+    description: Example analysis for Waterfall Plot.
+    tags:
+      - Waterfall Plot
+      - Oncology
+      - Pathology
+      - Follow-up
+  - name: Waterfall and Spider Plot
+    path: waterfall_raw_longitudinal.omv
+    description: Example analysis for Waterfall Plot.
+    tags:
+      - Waterfall Plot
+      - Spider Plot
+      - Oncology
+      - Pathology
+      - Follow-up
+usesNative: true
+minApp: 1.6.0
+
+...
