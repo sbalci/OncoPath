@@ -1,7 +1,7 @@
 Package: OncoPath
 Type: Package
 Title: OncoPath Functions for Clinicopathological Research
-Version: 0.0.31.69
+Version: 0.0.31.70
 Author: Serdar Balci
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
 Description: OncoPath Functions for Clinicopathological Research.
@@ -15,8 +15,9 @@ Description: OncoPath Functions for Clinicopathological Research.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
-Imports: dplyr, ggplot2, ggswim, gridExtra, jmvcore, lubridate,
-        magrittr, R6, RColorBrewer, rlang, scales, tibble
+Imports: boot, dcurves, dplyr, ggplot2, ggswim, gridExtra, Hmisc,
+        jmvcore, lubridate, magrittr, mgcv, pROC, R6, RColorBrewer,
+        rlang, rms, scales, survival, survminer, tibble, timeROC
 Remotes: CHOP-CGTInformatics/ggswim
 URL: <https://github.com/sbalci/OncoPath>,
         <https://www.serdarbalci.com/OncoPath/>
