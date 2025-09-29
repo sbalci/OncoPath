@@ -34,11 +34,15 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             showLegend = TRUE,
             referenceLines = "none",
             customReferenceTime = 12,
+            customReferenceDate = "",
             sortVariable = NULL,
             sortOrder = "duration_desc",
             showInterpretation = TRUE,
             personTimeAnalysis = TRUE,
             responseAnalysis = TRUE,
+            showGlossary = FALSE,
+            showCopyReady = FALSE,
+            showAbout = FALSE,
             exportTimeline = FALSE,
             exportSummary = FALSE, ...) {
 
@@ -250,6 +254,10 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                 "customReferenceTime",
                 customReferenceTime,
                 default=12)
+            private$..customReferenceDate <- jmvcore::OptionString$new(
+                "customReferenceDate",
+                customReferenceDate,
+                default="")
             private$..sortVariable <- jmvcore::OptionVariable$new(
                 "sortVariable",
                 sortVariable,
@@ -276,6 +284,18 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                 "responseAnalysis",
                 responseAnalysis,
                 default=TRUE)
+            private$..showGlossary <- jmvcore::OptionBool$new(
+                "showGlossary",
+                showGlossary,
+                default=FALSE)
+            private$..showCopyReady <- jmvcore::OptionBool$new(
+                "showCopyReady",
+                showCopyReady,
+                default=FALSE)
+            private$..showAbout <- jmvcore::OptionBool$new(
+                "showAbout",
+                showAbout,
+                default=FALSE)
             private$..exportTimeline <- jmvcore::OptionBool$new(
                 "exportTimeline",
                 exportTimeline,
@@ -313,11 +333,15 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$.addOption(private$..showLegend)
             self$.addOption(private$..referenceLines)
             self$.addOption(private$..customReferenceTime)
+            self$.addOption(private$..customReferenceDate)
             self$.addOption(private$..sortVariable)
             self$.addOption(private$..sortOrder)
             self$.addOption(private$..showInterpretation)
             self$.addOption(private$..personTimeAnalysis)
             self$.addOption(private$..responseAnalysis)
+            self$.addOption(private$..showGlossary)
+            self$.addOption(private$..showCopyReady)
+            self$.addOption(private$..showAbout)
             self$.addOption(private$..exportTimeline)
             self$.addOption(private$..exportSummary)
         }),
@@ -350,11 +374,15 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         showLegend = function() private$..showLegend$value,
         referenceLines = function() private$..referenceLines$value,
         customReferenceTime = function() private$..customReferenceTime$value,
+        customReferenceDate = function() private$..customReferenceDate$value,
         sortVariable = function() private$..sortVariable$value,
         sortOrder = function() private$..sortOrder$value,
         showInterpretation = function() private$..showInterpretation$value,
         personTimeAnalysis = function() private$..personTimeAnalysis$value,
         responseAnalysis = function() private$..responseAnalysis$value,
+        showGlossary = function() private$..showGlossary$value,
+        showCopyReady = function() private$..showCopyReady$value,
+        showAbout = function() private$..showAbout$value,
         exportTimeline = function() private$..exportTimeline$value,
         exportSummary = function() private$..exportSummary$value),
     private = list(
@@ -386,11 +414,15 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         ..showLegend = NA,
         ..referenceLines = NA,
         ..customReferenceTime = NA,
+        ..customReferenceDate = NA,
         ..sortVariable = NA,
         ..sortOrder = NA,
         ..showInterpretation = NA,
         ..personTimeAnalysis = NA,
         ..responseAnalysis = NA,
+        ..showGlossary = NA,
+        ..showCopyReady = NA,
+        ..showAbout = NA,
         ..exportTimeline = NA,
         ..exportSummary = NA)
 )
@@ -410,7 +442,10 @@ swimmerplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         summaryData = function() private$.items[["summaryData"]],
         exportInfo = function() private$.items[["exportInfo"]],
         validationReport = function() private$.items[["validationReport"]],
-        advancedMetrics = function() private$.items[["advancedMetrics"]]),
+        advancedMetrics = function() private$.items[["advancedMetrics"]],
+        clinicalGlossary = function() private$.items[["clinicalGlossary"]],
+        copyReadyReport = function() private$.items[["copyReadyReport"]],
+        aboutAnalysis = function() private$.items[["aboutAnalysis"]]),
     private = list(),
     public=list(
         initialize=function(options) {
@@ -419,6 +454,7 @@ swimmerplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                 name="",
                 title="Swimmer Plot",
                 refs=list(
+                    "ClinicoPathJamoviModule",
                     "ggswim",
                     "ggplot2",
                     "dplyr",
@@ -460,6 +496,7 @@ swimmerplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "showLegend",
                     "referenceLines",
                     "customReferenceTime",
+                    "customReferenceDate",
                     "sortVariable",
                     "sortOrder")))
             self$add(jmvcore::Table$new(
@@ -670,7 +707,31 @@ swimmerplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "endTime",
                     "responseVar",
                     "timeUnit",
-                    "personTimeAnalysis")))}))
+                    "personTimeAnalysis")))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="clinicalGlossary",
+                title="Clinical Glossary",
+                visible="(showGlossary)",
+                clearWith=list()))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="copyReadyReport",
+                title="Copy-Ready Manuscript Text",
+                visible="(showCopyReady)",
+                clearWith=list(
+                    "patientID",
+                    "startTime",
+                    "endTime",
+                    "responseVar",
+                    "timeUnit",
+                    "showCopyReady")))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="aboutAnalysis",
+                title="About This Analysis",
+                visible="(showAbout)",
+                clearWith=list()))}))
 
 swimmerplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "swimmerplotBase",
@@ -765,6 +826,10 @@ swimmerplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   context.
 #' @param customReferenceTime Custom time point to mark with a reference line
 #'   (only used when Reference Lines is set to Custom).
+#' @param customReferenceDate When using Date/Time with Absolute display,
+#'   provide a calendar date (e.g., 2023-06-01) to draw a custom reference line.
+#'   If left blank, the Custom Reference Time is used as an offset from the
+#'   earliest start date.
 #' @param sortVariable Optional variable to sort patient timelines (defaults
 #'   to duration-based sorting).
 #' @param sortOrder How to order patients in the visualization.
@@ -774,6 +839,12 @@ swimmerplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   metrics in the analysis.
 #' @param responseAnalysis Whether to analyze response patterns when response
 #'   variable is provided.
+#' @param showGlossary Display a glossary of clinical terms and statistical
+#'   concepts used in the analysis.
+#' @param showCopyReady Generate copy-ready text suitable for manuscripts and
+#'   clinical reports.
+#' @param showAbout Display information about when and how to use swimmer plot
+#'   analysis.
 #' @param exportTimeline Export processed timeline data for external analysis.
 #' @param exportSummary Export comprehensive summary statistics and clinical
 #'   metrics.
@@ -791,6 +862,9 @@ swimmerplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$exportInfo} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$validationReport} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$advancedMetrics} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$clinicalGlossary} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$copyReadyReport} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$aboutAnalysis} \tab \tab \tab \tab \tab a html \cr
 #' }
 #'
 #' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
@@ -830,11 +904,15 @@ swimmerplot <- function(
     showLegend = TRUE,
     referenceLines = "none",
     customReferenceTime = 12,
+    customReferenceDate = "",
     sortVariable = NULL,
     sortOrder = "duration_desc",
     showInterpretation = TRUE,
     personTimeAnalysis = TRUE,
     responseAnalysis = TRUE,
+    showGlossary = FALSE,
+    showCopyReady = FALSE,
+    showAbout = FALSE,
     exportTimeline = FALSE,
     exportSummary = FALSE) {
 
@@ -901,11 +979,15 @@ swimmerplot <- function(
         showLegend = showLegend,
         referenceLines = referenceLines,
         customReferenceTime = customReferenceTime,
+        customReferenceDate = customReferenceDate,
         sortVariable = sortVariable,
         sortOrder = sortOrder,
         showInterpretation = showInterpretation,
         personTimeAnalysis = personTimeAnalysis,
         responseAnalysis = responseAnalysis,
+        showGlossary = showGlossary,
+        showCopyReady = showCopyReady,
+        showAbout = showAbout,
         exportTimeline = exportTimeline,
         exportSummary = exportSummary)
 

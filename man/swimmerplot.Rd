@@ -34,11 +34,15 @@ swimmerplot(
   showLegend = TRUE,
   referenceLines = "none",
   customReferenceTime = 12,
+  customReferenceDate = "",
   sortVariable = NULL,
   sortOrder = "duration_desc",
   showInterpretation = TRUE,
   personTimeAnalysis = TRUE,
   responseAnalysis = TRUE,
+  showGlossary = FALSE,
+  showCopyReady = FALSE,
+  showAbout = FALSE,
   exportTimeline = FALSE,
   exportSummary = FALSE
 )
@@ -111,6 +115,11 @@ context.}
 \item{customReferenceTime}{Custom time point to mark with a reference line
 (only used when Reference Lines is set to Custom).}
 
+\item{customReferenceDate}{When using Date/Time with Absolute display,
+provide a calendar date (e.g., 2023-06-01) to draw a custom reference line.
+If left blank, the Custom Reference Time is used as an offset from the
+earliest start date.}
+
 \item{sortVariable}{Optional variable to sort patient timelines (defaults
 to duration-based sorting).}
 
@@ -124,6 +133,15 @@ metrics in the analysis.}
 
 \item{responseAnalysis}{Whether to analyze response patterns when response
 variable is provided.}
+
+\item{showGlossary}{Display a glossary of clinical terms and statistical
+concepts used in the analysis.}
+
+\item{showCopyReady}{Generate copy-ready text suitable for manuscripts and
+clinical reports.}
+
+\item{showAbout}{Display information about when and how to use swimmer plot
+analysis.}
 
 \item{exportTimeline}{Export processed timeline data for external analysis.}
 
@@ -145,6 +163,9 @@ A results object containing:
   \code{results$exportInfo} \tab \tab \tab \tab \tab a html \cr
   \code{results$validationReport} \tab \tab \tab \tab \tab a html \cr
   \code{results$advancedMetrics} \tab \tab \tab \tab \tab a table \cr
+  \code{results$clinicalGlossary} \tab \tab \tab \tab \tab a html \cr
+  \code{results$copyReadyReport} \tab \tab \tab \tab \tab a html \cr
+  \code{results$aboutAnalysis} \tab \tab \tab \tab \tab a html \cr
 }
 
 Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:

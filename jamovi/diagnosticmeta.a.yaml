@@ -1,0 +1,231 @@
+---
+name: diagnosticmeta
+title: Diagnostic Test Meta-Analysis for Pathology
+menuGroup: OncoPath
+version: '0.0.31'
+jas: '1.2'
+
+description:
+    main: |
+        Comprehensive meta-analysis of diagnostic test accuracy studies designed for 
+        pathology research. Performs bivariate random-effects modeling, HSROC analysis, 
+        meta-regression, and publication bias assessment for AI algorithm validation 
+        and biomarker diagnostic accuracy synthesis.
+    R:
+        dontrun: false
+        usage: |
+            data('diagnostic_studies')
+            
+            diagnosticmeta(data = diagnostic_studies,
+                          study = study_name,
+                          true_positives = tp,
+                          false_positives = fp,
+                          false_negatives = fn,
+                          true_negatives = tn)
+
+options:
+    - name: data
+      type: Data
+      description:
+          R: the data as a data frame
+
+    - name: study
+      title: Study Identifier
+      type: Variable
+      suggested:
+          - nominal
+      permitted:
+          - factor
+          - id
+      description:
+          R: Variable containing unique study identifiers
+
+    - name: true_positives
+      title: True Positives (TP)
+      type: Variable
+      suggested:
+          - continuous
+      permitted:
+          - numeric
+      description:
+          R: Number of true positive results in each study
+
+    - name: false_positives
+      title: False Positives (FP)
+      type: Variable
+      suggested:
+          - continuous
+      permitted:
+          - numeric
+      description:
+          R: Number of false positive results in each study
+
+    - name: false_negatives
+      title: False Negatives (FN)
+      type: Variable
+      suggested:
+          - continuous
+      permitted:
+          - numeric
+      description:
+          R: Number of false negative results in each study
+
+    - name: true_negatives
+      title: True Negatives (TN)
+      type: Variable
+      suggested:
+          - continuous
+      permitted:
+          - numeric
+      description:
+          R: Number of true negative results in each study
+
+    - name: covariate
+      title: Meta-Regression Covariate
+      type: Variable
+      suggested:
+          - continuous
+          - nominal
+      permitted:
+          - numeric
+          - factor
+      description:
+          R: Optional covariate for meta-regression analysis
+
+    - name: bivariate_analysis
+      title: Bivariate Random-Effects Model
+      type: Bool
+      default: true
+      description:
+          R: Perform bivariate random-effects meta-analysis
+
+    - name: hsroc_analysis
+      title: HSROC Analysis
+      type: Bool
+      default: false
+      description:
+          R: Perform hierarchical summary ROC (HSROC) analysis
+
+    - name: meta_regression
+      title: Meta-Regression
+      type: Bool
+      default: false
+      description:
+          R: Perform meta-regression with specified covariate
+
+    - name: heterogeneity_analysis
+      title: Heterogeneity Analysis
+      type: Bool
+      default: false
+      description:
+          R: Perform heterogeneity analysis including I-squared and Q statistics
+
+    - name: publication_bias
+      title: Publication Bias Assessment
+      type: Bool
+      default: false
+      description:
+          R: Assess publication bias using Deeks' funnel plot test
+
+    - name: confidence_level
+      title: Confidence Level
+      type: Integer
+      min: 50
+      max: 99
+      default: 95
+      description:
+          R: Confidence level for meta-analysis results
+
+    - name: method
+      title: Meta-Analysis Method
+      type: List
+      options:
+          - name: 'reml'
+            title: REML (Recommended)
+          - name: 'ml'
+            title: Maximum Likelihood
+          - name: 'fixed'
+            title: Fixed Effects
+          - name: 'mm'
+            title: Method of Moments
+          - name: 'vc'
+            title: Variance Components
+          - name: 'dersimonian_laird'
+            title: DerSimonian-Laird
+      default: reml
+      description:
+          R: Method for meta-analysis estimation
+
+    - name: forest_plot
+      title: Forest Plot
+      type: Bool
+      default: false
+      description:
+          R: Generate forest plot for sensitivity and specificity
+
+    - name: sroc_plot
+      title: Summary ROC Plot
+      type: Bool
+      default: false
+      description:
+          R: Generate summary receiver operating characteristic plot
+
+    - name: funnel_plot
+      title: Funnel Plot
+      type: Bool
+      default: false
+      description:
+          R: Generate funnel plot for publication bias assessment
+
+    - name: show_individual_studies
+      title: Show Individual Study Results
+      type: Bool
+      default: false
+      description:
+          R: Display results for individual studies in summary tables
+
+    - name: show_interpretation
+      title: Show Clinical Interpretation
+      type: Bool
+      default: false
+      description:
+          R: Display clinical interpretation guidelines and recommendations
+
+    - name: show_methodology
+      title: Show Methodology Information
+      type: Bool
+      default: false
+      description:
+          R: Display detailed methodology and statistical approach information
+
+    - name: show_analysis_summary
+      title: Show Analysis Summary
+      type: Bool
+      default: false
+      description:
+          R: Display natural language summary of analysis results
+
+    - name: color_palette
+      title: Plot Color Palette
+      type: List
+      options:
+          - name: 'standard'
+            title: Standard Colors
+          - name: 'colorblind_safe'
+            title: Color-Blind Safe
+          - name: 'high_contrast'
+            title: High Contrast
+          - name: 'viridis'
+            title: Viridis (Blue-Purple)
+          - name: 'plasma'
+            title: Plasma (Purple-Pink)
+      default: standard
+      description:
+          R: Color palette for all plots - choose color-blind safe options for accessibility
+
+    - name: show_plot_explanations
+      title: Show Plot Explanations
+      type: Bool
+      default: false
+      description:
+          R: Display detailed explanations for all plots including interpretation guidance

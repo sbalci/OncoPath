@@ -1,12 +1,12 @@
 ---
 title: OncoPath Functions for Clinicopathological Research
 name: OncoPath
-version: 0.0.31.72
+version: 0.0.31.80
 jms: '1.0'
 authors:
   - Serdar Balci
 maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
-date: '2025-09-21'
+date: '2025-09-29'
 type: R
 description: >-
   OncoPath Functions for Clinicopathological Research. Specialized oncology and
@@ -60,6 +60,30 @@ analyses:
       Integrated Discrimination  Improvement (IDI), time-dependent ROC analysis,
       decision curve analysis, bootstrap validation,  and comprehensive clinical
       interpretation guidance.
+  - title: IHC Heterogeneity Analysis
+    name: ihcheterogeneity
+    ns: OncoPath
+    category: analyses
+    menuGroup: OncoPath
+    menuSubgroup: IHC Analysis
+    menuTitle: IHC Heterogeneity Analysis
+  - title: Diagnostic Test Meta-Analysis for Pathology
+    name: diagnosticmeta
+    ns: OncoPath
+    category: analyses
+    menuGroup: OncoPath
+    menuTitle: Diagnostic Test Meta-Analysis for Pathology
+    description: >
+      Comprehensive meta-analysis of diagnostic test accuracy studies designed
+      for 
+
+      pathology research. Performs bivariate random-effects modeling, HSROC
+      analysis, 
+
+      meta-regression, and publication bias assessment for AI algorithm
+      validation 
+
+      and biomarker diagnostic accuracy synthesis.
 datasets:
   - name: Swimmer Plot Analysis
     path: swimmerplot_sample.omv

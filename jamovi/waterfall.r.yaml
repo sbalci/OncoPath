@@ -4,24 +4,63 @@ title: Treatment Response Analysis
 jrs:   '1.1'
 
 items:
+
+
+    - name: guidedAnalysis
+      title: Guided Analysis Steps
+      type: Html
+      visible: (enableGuidedMode)
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - enableGuidedMode
+
+
     - name: todo
-      title: To Do
+      title: Treatment Response Analysis Guide
       type: Html
       clearWith:
          - patientID
          - responseVar
          - timeVar
          - inputType
-
+         - enableGuidedMode
+      visible: (!enableGuidedMode)
 
     - name: todo2
-      title: To Do
+      title: Validation Messages
       type: Html
       clearWith:
          - patientID
          - responseVar
          - timeVar
          - inputType
+         - enableGuidedMode
+      visible: (!enableGuidedMode)
+
+    - name: clinicalSummary
+      title: Clinical Summary
+      type: Html
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - colorScheme
+         - groupVar
+
+    - name: aboutAnalysis
+      title: About This Analysis
+      type: Html
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - enableGuidedMode
+      visible: (!enableGuidedMode)
 
     - name: summaryTable
       title: Response Categories Based on RECIST v1.1 Criteria
@@ -82,7 +121,6 @@ items:
         - name: median_duration
           title: "Median Duration"
           type: text
-      visible: (!is.null(timeVar) && inputType == "raw")
 
 
     - name: clinicalMetrics
@@ -131,6 +169,7 @@ items:
       renderFun: .spiderplot
       requiresData: true
       visible: (showSpiderPlot)
+      # Note: Spider plot requires both showSpiderPlot=true AND a time variable for meaningful trajectories
       clearWith:
         - patientID
         - responseVar
@@ -144,8 +183,122 @@ items:
         - colorScheme
         - spiderColorBy
         - spiderColorScheme
+        - timeUnitLabel
         - showMedian
         - showCI
+
+    - name: copyReadyReport
+      title: Copy-Ready Report Sentences
+      type: Html
+      visible: (generateCopyReadyReport)
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - generateCopyReadyReport
+
+    - name: clinicalSignificance
+      title: Clinical Significance Assessment
+      type: Html
+      visible: (showClinicalSignificance)
+      clearWith:
+         - patientID
+         - responseVar
+         - showClinicalSignificance
+
+    - name: clinicalGlossary
+      title: Clinical Terms & Definitions
+      type: Html
+      visible: (showClinicalSignificance)
+      clearWith:
+         - patientID
+         - responseVar
+         - showClinicalSignificance
+
+
+
+    - name: enhancedClinicalMetrics
+      title: Enhanced Clinical Response Metrics
+      type: Table
+      rows: 0
+      columns:
+        - name: metric
+          title: "Metric"
+          type: text
+        - name: value
+          title: "Value"
+          type: text
+        - name: ci_lower
+          title: "95% CI Lower"
+          type: number
+        - name: ci_upper
+          title: "95% CI Upper"
+          type: number
+        - name: interpretation
+          title: "Clinical Interpretation"
+          type: text
+      visible: (showConfidenceIntervals)
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - showConfidenceIntervals
+
+    - name: groupComparisonTable
+      title: Group Comparison Analysis
+      type: Table
+      rows: 0
+      columns:
+        - name: group
+          title: "Group"
+          type: text
+        - name: n_patients
+          title: "N"
+          type: integer
+        - name: orr
+          title: "ORR (%)"
+          type: number
+        - name: orr_ci
+          title: "95% CI"
+          type: text
+        - name: dcr
+          title: "DCR (%)"
+          type: number
+        - name: dcr_ci
+          title: "95% CI"
+          type: text
+      visible: (groupVar)
+      clearWith:
+         - patientID
+         - responseVar
+         - groupVar
+         - inputType
+
+    - name: groupComparisonTest
+      title: Group Comparison Statistical Test
+      type: Table
+      rows: 0
+      columns:
+        - name: comparison
+          title: "Comparison"
+          type: text
+        - name: test_statistic
+          title: "Test Statistic"
+          type: text
+        - name: p_value
+          title: "p-value"
+          type: number
+        - name: interpretation
+          title: "Clinical Interpretation"
+          type: text
+      visible: (groupVar)
+      clearWith:
+         - patientID
+         - responseVar
+         - groupVar
+         - inputType
 
     - name: addResponseCategory
       title: Add Response Category to Data
@@ -168,5 +321,6 @@ items:
 refs:
     - recist
     - ClinicoPathJamoviModule
+
 
 ...
