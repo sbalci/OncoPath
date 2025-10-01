@@ -1,12 +1,12 @@
 ---
 title: OncoPath Functions for Clinicopathological Research
 name: OncoPath
-version: 0.0.31.80
+version: 0.0.31.82
 jms: '1.0'
 authors:
   - Serdar Balci
 maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
-date: '2025-09-29'
+date: '2025-10-01'
 type: R
 description: >-
   OncoPath Functions for Clinicopathological Research. Specialized oncology and
@@ -84,6 +84,7 @@ analyses:
       validation 
 
       and biomarker diagnostic accuracy synthesis.
+    menuSubgroup: IHC Analysis
 datasets:
   - name: Swimmer Plot Analysis
     path: swimmerplot_sample.omv
