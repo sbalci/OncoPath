@@ -42,24 +42,6 @@ analyses:
       Features enhanced data validation  and complete ggswim integration for
       professional clinical visualization.
     category: analyses
-  - title: Advanced TNM Stage Migration Analysis
-    name: stagemigration
-    ns: OncoPath
-    category: analyses
-    menuGroup: OncoPath
-    menuSubgroup: Stage Migration Analysis
-    menuTitle: Advanced TNM Stage Migration Analysis
-    menuSubtitle: State-of-the-Art Staging System Validation
-    description: >-
-      Comprehensive analysis for validating TNM staging system improvements
-      using state-of-the-art  statistical methods. This analysis provides
-      pathologists with robust tools to evaluate whether  a new staging system
-      provides superior prognostic discrimination compared to existing systems.
-
-      Includes advanced metrics: Net Reclassification Improvement (NRI),
-      Integrated Discrimination  Improvement (IDI), time-dependent ROC analysis,
-      decision curve analysis, bootstrap validation,  and comprehensive clinical
-      interpretation guidance.
   - title: IHC Heterogeneity Analysis
     name: ihcheterogeneity
     ns: OncoPath
