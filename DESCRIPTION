@@ -1,7 +1,7 @@
 Package: OncoPath
 Type: Package
 Title: OncoPath Functions for Clinicopathological Research
-Version: 0.0.31.82
+Version: 0.0.31.84
 Author: Serdar Balci
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
 Description: OncoPath Functions for Clinicopathological Research.
@@ -10,8 +10,10 @@ Description: OncoPath Functions for Clinicopathological Research.
         comprehensive patient follow-up plots including waterfall plots
         for treatment response analysis and swimmer plots for patient
         timeline visualization. Features RECIST criteria analysis,
-        ggswim integration, and comprehensive clinical event tracking
-        capabilities.
+        ggswim integration, comprehensive clinical event tracking,
+        diagnostic test meta-analysis with bivariate modeling and HSROC
+        methods, and IHC heterogeneity analysis for pathology biomarker
+        studies.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true

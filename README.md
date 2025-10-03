@@ -28,6 +28,21 @@ OncoPath is a specialized [jamovi](https://www.jamovi.org) module designed speci
 - **Clinical Metrics**: Automated calculation of ORR (Overall Response Rate), DCR (Disease Control Rate), and person-time metrics
 - **Publication Ready**: Professional visualization suitable for clinical publications and presentations
 
+### 🔬 **IHC Heterogeneity Analysis**
+- **Immunohistochemistry Analysis**: Statistical analysis of IHC marker heterogeneity
+- **Multi-marker Support**: Comprehensive evaluation of multiple biomarkers
+- **Statistical Validation**: Robust statistical methods for heterogeneity assessment
+- **Pathology Research**: Specialized tools for immunohistochemical studies
+
+### 📊 **Diagnostic Test Meta-Analysis**
+- **Bivariate Meta-Analysis**: Advanced bivariate random-effects modeling using the Reitsma method
+- **HSROC Analysis**: Hierarchical Summary ROC curve analysis for diagnostic accuracy
+- **Meta-Regression**: Covariate analysis to explore heterogeneity sources
+- **Publication Bias Assessment**: Comprehensive bias detection and visualization
+- **Forest and SROC Plots**: Publication-ready visualizations for diagnostic test accuracy
+- **AI Algorithm Validation**: Designed for validating AI/ML diagnostic algorithms in pathology
+- **Biomarker Studies**: Comprehensive synthesis of diagnostic biomarker accuracy studies
+
 ## Installation
 
 ### Prerequisites
@@ -101,10 +116,14 @@ OncoPath includes sample datasets to help you get started:
 
 ### Specialized Dependencies
 - **ggswim**: Enhanced swimmer plot functionality
-- **recist**: RECIST criteria implementation
+- **mada**: Meta-analysis of diagnostic accuracy studies
+- **metafor**: Meta-regression and advanced meta-analysis methods
+- **pROC**: ROC curve analysis for diagnostic tests
+- **survival** & **survminer**: Survival analysis and visualization
 - **lubridate**: Date/time handling
 - **RColorBrewer**: Professional color schemes
 - **gridExtra**: Advanced plot layouts
+- **boot**, **dcurves**, **Hmisc**, **rms**, **timeROC**: Advanced statistical methods
 
 ## Use Cases
 
@@ -112,11 +131,20 @@ OncoPath includes sample datasets to help you get started:
 - **Clinical Trial Reporting**: Patient timelines and treatment responses
 - **Longitudinal Studies**: Disease progression and treatment effects over time
 - **Oncology Research**: Tumor response evaluation following RECIST guidelines
+- **Diagnostic Accuracy Studies**: Meta-analysis of biomarker and diagnostic test performance
+- **AI Algorithm Validation**: Systematic review and meta-analysis of AI-based diagnostic tools
+
+### Pathology Research
+- **Biomarker Validation**: Comprehensive meta-analysis of diagnostic biomarkers
+- **IHC Studies**: Statistical analysis of immunohistochemistry heterogeneity
+- **Systematic Reviews**: Synthesis of diagnostic test accuracy across multiple studies
+- **Method Comparison**: Evaluation of different diagnostic methods and techniques
 
 ### Publication Support
 - **Manuscript Figures**: Publication-ready visualizations with professional styling
 - **Conference Presentations**: Clear, informative plots for academic presentations
 - **Regulatory Submissions**: Standardized reporting formats for regulatory agencies
+- **Meta-Analysis Reports**: Comprehensive forest plots, SROC curves, and funnel plots
 
 ## Contributing
 

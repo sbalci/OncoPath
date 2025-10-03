@@ -1,12 +1,12 @@
 ---
 title: OncoPath Functions for Clinicopathological Research
 name: OncoPath
-version: 0.0.31.82
+version: 0.0.31.84
 jms: '1.0'
 authors:
   - Serdar Balci
 maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
-date: '2025-10-01'
+date: '2025-10-03'
 type: R
 description: >-
   OncoPath Functions for Clinicopathological Research. Specialized oncology and
