@@ -1,3 +1,53 @@
+# OncoPath 0.0.32 (2025-10-09)
+
+## Documentation Improvements
+
+### README.Rmd
+- **NEW**: Created comprehensive README.Rmd with detailed module description
+- Enhanced feature descriptions with emojis for better readability
+- Added detailed installation instructions (3 methods)
+- Included quick start examples for both swimmer and waterfall plots
+- Added comprehensive use cases section (Clinical Research, Pathology Research, Publication Support)
+- Expanded acknowledgements section with gratitude to package developers
+- Integrated with ClinicoPath ecosystem documentation
+
+### Documentation Website
+- All documentation now available at: https://www.serdarbalci.com/OncoPath/
+- Direct links to swimmer plot and waterfall plot guides
+- Clear integration with main ClinicoPath documentation hub
+
+### Vignette Additions
+- **NEW**: Added 9 comprehensive vignettes for enhanced documentation
+- **Clinical Heatmap**: `clinicalheatmap_comprehensive.Rmd` - Clinical heatmap visualization
+- **Digital Pathology Suite** (4 files):
+  - `digital_pathology_chatgpt.md` - AI-generated pathology analysis guide
+  - `digital_pathology_claude.md` - Comprehensive digital pathology documentation
+  - `digital_pathology_gemini.md` - Alternative AI perspective on digital pathology
+  - `digital-pathology-analysis-suite.md` - Complete digital pathology analysis overview
+- **Texture Analysis**: `HARALICK_TESTING_GUIDE.md` - Haralick texture feature analysis testing
+- **Agreement Analysis** (3 files):
+  - `COMBINED_USUBUTUN_GUIDE.md` - Combined Usubutun plot guide
+  - `USUBUTUN_ENHANCED_TEST_GUIDE.md` - Enhanced testing procedures
+  - `USUBUTUN_TEST_GUIDE.md` - Standard testing guide for agreement visualization
+- **Oncoplot**: `ggoncoplot_documentation.md` - Genomic alteration visualization documentation
+
+### Function Documentation
+- Added waterfall plot legacy documentation: `09-waterfall-legacy.Rmd`
+- Function-specific vignette: `06-function-waterfall.Rmd` - Detailed waterfall function guide
+
+## Features Summary
+
+### Patient Follow-Up Plots
+- 🏊‍♂️ **Swimmer Plot Analysis**: Timeline visualization with ggswim integration
+- 🌊 **Waterfall Plot Analysis**: RECIST criteria treatment response analysis
+- Complete support for clinical trial reporting and oncological research
+
+### Pathology Analysis Tools
+- 🔬 **IHC Heterogeneity Analysis**: Immunohistochemistry marker analysis
+- 📊 **Diagnostic Test Meta-Analysis**: Bivariate meta-analysis with HSROC
+
+---
+
 # OncoPath 0.0.31.84 (2025-10-03)
 
 ## Major New Features

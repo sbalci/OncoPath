@@ -32,7 +32,7 @@ knitr::opts_chunk$set(
 
 ```{r setup 2, include = FALSE}
 # Load required packages
-library(ClinicoPathDescriptives)
+library(ClinicoPath)
 
 # Check if ggswim is available
 ggswim_available <- requireNamespace("ggswim", quietly = TRUE)

@@ -4,73 +4,66 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OncoPath Functions for Clinicopathological Research • OncoPath</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="OncoPath Functions for Clinicopathological Research">
-<meta property="og:description" content="OncoPath Functions for Clinicopathological Research. Specialized oncology and pathology visualization tools from ClinicoPath jamovi module. OncoPath helps researchers create comprehensive patient follow-up plots including waterfall plots for treatment response analysis and swimmer plots for patient timeline visualization. Features RECIST criteria analysis, ggswim integration, and comprehensive clinical event tracking capabilities.">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>OncoPath • Specialized Oncological and Pathological Research Tools • OncoPath</title>
+<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="OncoPath • Specialized Oncological and Pathological Research Tools">
+<meta name="description" content="OncoPath is a specialized jamovi module for oncological and pathological research. It provides comprehensive patient follow-up visualization tools including swimmer plots, waterfall plots, IHC heterogeneity analysis, and diagnostic test meta-analysis.
+">
+<meta property="og:description" content="OncoPath is a specialized jamovi module for oncological and pathological research. It provides comprehensive patient follow-up visualization tools including swimmer plots, waterfall plots, IHC heterogeneity analysis, and diagnostic test meta-analysis.
+">
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <div class="container template-home">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">OncoPath</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.31.69</span>
-      </span>
-    </div>
+    <nav class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark" aria-label="Site navigation"><div class="container">
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
+    <a class="navbar-brand me-2" href="index.html">OncoPath</a>
 
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="articles/swimmer-unified-datasets.html">Swimmer Plot Function: Example Datasets Guide</a>
-    </li>
-    <li>
-      <a href="articles/swimmerplot-unified-comprehensive.html">Swimmer Plot: Comprehensive Clinical Timeline Visualization</a>
-    </li>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.32.01</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><h6 class="dropdown-header" data-toc-skip>Getting Started</h6></li>
+    <li><a class="dropdown-item" href="articles/swimmerplot-unified-comprehensive.html">Swimmer Plot Guide</a></li>
+    <li><a class="dropdown-item" href="articles/06-function-waterfall.html">Waterfall Plot Guide</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Advanced Topics</h6></li>
+    <li><a class="dropdown-item" href="articles/diagnosticmeta-comprehensive.html">Diagnostic Meta-Analysis</a></li>
+    <li><a class="dropdown-item" href="articles/clinicalheatmap_comprehensive.html">Clinical Heatmap</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Legacy Documentation</h6></li>
+    <li><a class="dropdown-item" href="articles/09-waterfall-legacy.html">Waterfall Legacy</a></li>
   </ul>
 </li>
+<li class="nav-item"><a class="nav-link" href="news/index.html">News</a></li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/sbalci/OncoPath" aria-label="View source on GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+      </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
-
-
-
-      </header><div class="row">
-  <div class="contents col-md-9">
-<div class="section level1">
+</nav><div class="container template-home">
+<div class="row">
+  <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="oncopath">OncoPath<a class="anchor" aria-label="anchor" href="#oncopath"></a>
 </h1></div>
 <p><strong>Specialized Oncological and Pathological Research Tools for jamovi</strong></p>
@@ -80,6 +73,7 @@
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
 <p>OncoPath is a specialized <a href="https://www.jamovi.org" class="external-link">jamovi</a> module designed specifically for oncological and pathological research. It provides comprehensive patient follow-up visualization tools that are essential for clinical research, treatment response analysis, and patient timeline tracking.</p>
+<p>This module is part of the <a href="https://github.com/sbalci/ClinicoPathJamoviModule" class="external-link">ClinicoPath</a> ecosystem, offering specialized tools for oncology and pathology research that complement the broader statistical analysis capabilities of the main ClinicoPath module.</p>
 </div>
 <div class="section level2">
 <h2 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
@@ -88,11 +82,12 @@
 <h3 id="swimming_man-swimmer-plot-analysis">🏊‍♂️ <strong>Swimmer Plot Analysis</strong>
 <a class="anchor" aria-label="anchor" href="#swimming_man-swimmer-plot-analysis"></a>
 </h3>
+<p>Comprehensive swimmer plots for visualizing patient timelines, clinical events, milestones, and treatment responses.</p>
 <ul>
 <li>
-<strong>Patient Timeline Visualization</strong>: Comprehensive swimmer plots using enhanced ggswim package integration</li>
+<strong>Patient Timeline Visualization</strong>: Create professional swimmer plots using enhanced ggswim package integration</li>
 <li>
-<strong>Multi-dimensional Data Support</strong>: Clinical events, milestones, treatment responses, and adverse events</li>
+<strong>Multi-dimensional Data Support</strong>: Visualize clinical events, milestones, treatment responses, and adverse events</li>
 <li>
 <strong>Enhanced Data Validation</strong>: Robust input validation with comprehensive error handling</li>
 <li>
@@ -100,14 +95,16 @@
 <li>
 <strong>Clinical Research Integration</strong>: Designed specifically for oncological clinical trial reporting</li>
 </ul>
+<p><strong>Documentation</strong>: <a href="https://www.serdarbalci.com/OncoPath/articles/swimmerplot_documentation.html">Swimmer Plot Guide</a></p>
 </div>
 <div class="section level3">
 <h3 id="ocean-waterfall-plot-analysis">🌊 <strong>Waterfall Plot Analysis</strong>
 <a class="anchor" aria-label="anchor" href="#ocean-waterfall-plot-analysis"></a>
 </h3>
+<p>Treatment response analysis with RECIST criteria, creating waterfall and spider plots for tumor response visualization.</p>
 <ul>
 <li>
-<strong>Treatment Response Visualization</strong>: Comprehensive waterfall and spider plots for tumor response analysis</li>
+<strong>Treatment Response Visualization</strong>: Create comprehensive waterfall and spider plots for tumor response analysis</li>
 <li>
 <strong>RECIST Criteria Support</strong>: Built-in Response Evaluation Criteria In Solid Tumors (RECIST) guidelines</li>
 <li>
@@ -116,6 +113,47 @@
 <strong>Clinical Metrics</strong>: Automated calculation of ORR (Overall Response Rate), DCR (Disease Control Rate), and person-time metrics</li>
 <li>
 <strong>Publication Ready</strong>: Professional visualization suitable for clinical publications and presentations</li>
+<li>
+<strong>Longitudinal Analysis</strong>: Spider plots for tracking individual patient responses over time</li>
+</ul>
+<p><strong>Documentation</strong>: <a href="https://www.serdarbalci.com/OncoPath/articles/waterfall_documentation.html">Waterfall Plot Guide</a></p>
+</div>
+<div class="section level3">
+<h3 id="microscope-ihc-heterogeneity-analysis">🔬 <strong>IHC Heterogeneity Analysis</strong>
+<a class="anchor" aria-label="anchor" href="#microscope-ihc-heterogeneity-analysis"></a>
+</h3>
+<p>Statistical analysis of immunohistochemistry marker heterogeneity for pathology research.</p>
+<ul>
+<li>
+<strong>Immunohistochemistry Analysis</strong>: Statistical analysis of IHC marker heterogeneity</li>
+<li>
+<strong>Multi-marker Support</strong>: Comprehensive evaluation of multiple biomarkers</li>
+<li>
+<strong>Statistical Validation</strong>: Robust statistical methods for heterogeneity assessment</li>
+<li>
+<strong>Pathology Research</strong>: Specialized tools for immunohistochemical studies</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="bar_chart-diagnostic-test-meta-analysis">📊 <strong>Diagnostic Test Meta-Analysis</strong>
+<a class="anchor" aria-label="anchor" href="#bar_chart-diagnostic-test-meta-analysis"></a>
+</h3>
+<p>Comprehensive meta-analysis tools for diagnostic test accuracy studies, specifically designed for pathology and AI algorithm validation.</p>
+<ul>
+<li>
+<strong>Bivariate Meta-Analysis</strong>: Advanced bivariate random-effects modeling using the Reitsma method</li>
+<li>
+<strong>HSROC Analysis</strong>: Hierarchical Summary ROC curve analysis for diagnostic accuracy</li>
+<li>
+<strong>Meta-Regression</strong>: Covariate analysis to explore heterogeneity sources</li>
+<li>
+<strong>Publication Bias Assessment</strong>: Comprehensive bias detection and visualization</li>
+<li>
+<strong>Forest and SROC Plots</strong>: Publication-ready visualizations for diagnostic test accuracy</li>
+<li>
+<strong>AI Algorithm Validation</strong>: Designed for validating AI/ML diagnostic algorithms in pathology</li>
+<li>
+<strong>Biomarker Studies</strong>: Comprehensive synthesis of diagnostic biomarker accuracy studies</li>
 </ul>
 </div>
 </div>
@@ -203,13 +241,16 @@
 </h2>
 <ul>
 <li>
-<strong>Website</strong>: <a href="https://www.serdarbalci.com/OncoPath/" class="external-link uri">https://www.serdarbalci.com/OncoPath/</a>
+<strong>Website</strong>: <a href="https://www.serdarbalci.com/OncoPath/" class="uri">https://www.serdarbalci.com/OncoPath/</a>
 </li>
 <li>
-<strong>Swimmer Plot Guide</strong>: <a href="https://www.serdarbalci.com/OncoPath/articles/swimmerplot_documentation.html" class="external-link uri">https://www.serdarbalci.com/OncoPath/articles/swimmerplot_documentation.html</a>
+<strong>Swimmer Plot Guide</strong>: <a href="https://www.serdarbalci.com/OncoPath/articles/swimmerplot_documentation.html" class="uri">https://www.serdarbalci.com/OncoPath/articles/swimmerplot_documentation.html</a>
 </li>
 <li>
-<strong>Waterfall Plot Guide</strong>: <a href="https://www.serdarbalci.com/OncoPath/articles/waterfall_documentation.html" class="external-link uri">https://www.serdarbalci.com/OncoPath/articles/waterfall_documentation.html</a>
+<strong>Waterfall Plot Guide</strong>: <a href="https://www.serdarbalci.com/OncoPath/articles/waterfall_documentation.html" class="uri">https://www.serdarbalci.com/OncoPath/articles/waterfall_documentation.html</a>
+</li>
+<li>
+<strong>Main ClinicoPath Documentation</strong>: <a href="https://www.serdarbalci.com/ClinicoPathJamoviModule/" class="external-link uri">https://www.serdarbalci.com/ClinicoPathJamoviModule/</a>
 </li>
 </ul>
 </div>
@@ -228,6 +269,7 @@
 <strong>Waterfall and Spider Plot</strong>: <code>waterfall_raw_longitudinal.omv</code>
 </li>
 </ul>
+<p>Access these datasets through the jamovi interface: <strong>Open</strong> → <strong>Data Library</strong> → <strong>OncoPath</strong></p>
 </div>
 <div class="section level2">
 <h2 id="requirements">Requirements<a class="anchor" aria-label="anchor" href="#requirements"></a>
@@ -250,13 +292,21 @@
 <li>
 <strong>ggswim</strong>: Enhanced swimmer plot functionality</li>
 <li>
-<strong>recist</strong>: RECIST criteria implementation</li>
+<strong>mada</strong>: Meta-analysis of diagnostic accuracy studies</li>
+<li>
+<strong>metafor</strong>: Meta-regression and advanced meta-analysis methods</li>
+<li>
+<strong>pROC</strong>: ROC curve analysis for diagnostic tests</li>
+<li>
+<strong>survival</strong> &amp; <strong>survminer</strong>: Survival analysis and visualization</li>
 <li>
 <strong>lubridate</strong>: Date/time handling</li>
 <li>
 <strong>RColorBrewer</strong>: Professional color schemes</li>
 <li>
 <strong>gridExtra</strong>: Advanced plot layouts</li>
+<li>
+<strong>boot</strong>, <strong>dcurves</strong>, <strong>Hmisc</strong>, <strong>rms</strong>, <strong>timeROC</strong>: Advanced statistical methods</li>
 </ul>
 </div>
 </div>
@@ -273,6 +323,24 @@
 <strong>Longitudinal Studies</strong>: Disease progression and treatment effects over time</li>
 <li>
 <strong>Oncology Research</strong>: Tumor response evaluation following RECIST guidelines</li>
+<li>
+<strong>Diagnostic Accuracy Studies</strong>: Meta-analysis of biomarker and diagnostic test performance</li>
+<li>
+<strong>AI Algorithm Validation</strong>: Systematic review and meta-analysis of AI-based diagnostic tools</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="pathology-research">Pathology Research<a class="anchor" aria-label="anchor" href="#pathology-research"></a>
+</h3>
+<ul>
+<li>
+<strong>Biomarker Validation</strong>: Comprehensive meta-analysis of diagnostic biomarkers</li>
+<li>
+<strong>IHC Studies</strong>: Statistical analysis of immunohistochemistry heterogeneity</li>
+<li>
+<strong>Systematic Reviews</strong>: Synthesis of diagnostic test accuracy across multiple studies</li>
+<li>
+<strong>Method Comparison</strong>: Evaluation of different diagnostic methods and techniques</li>
 </ul>
 </div>
 <div class="section level3">
@@ -285,6 +353,8 @@
 <strong>Conference Presentations</strong>: Clear, informative plots for academic presentations</li>
 <li>
 <strong>Regulatory Submissions</strong>: Standardized reporting formats for regulatory agencies</li>
+<li>
+<strong>Meta-Analysis Reports</strong>: Comprehensive forest plots, SROC curves, and funnel plots</li>
 </ul>
 </div>
 </div>
@@ -315,7 +385,7 @@
 <strong>Discussions</strong>: Join the conversation in <a href="https://github.com/sbalci/OncoPath/discussions" class="external-link">GitHub Discussions</a>
 </li>
 <li>
-<strong>Email</strong>: Contact the maintainer at <a href="mailto:serdarbalci@serdarbalci.com">serdarbalci@serdarbalci.com</a>
+<strong>Email</strong>: Contact the maintainer at <a href="mailto:serdarbalci@serdarbalci.com" class="email">serdarbalci@serdarbalci.com</a>
 </li>
 </ul>
 </div>
@@ -323,8 +393,11 @@
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>If you use OncoPath in your research, please cite:</p>
-<pre><code>Balci, S. (2025). OncoPath: Specialized Oncological and Pathological Research Tools for jamovi.
-R package version 0.0.31.69. https://github.com/sbalci/OncoPath</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>Serdar <span class="fu">Balci</span> (<span class="dv">2025</span>). OncoPath<span class="sc">:</span> Specialized Oncological and Pathological Research Tools <span class="cf">for</span> jamovi.</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>R package version <span class="dv">0</span>.<span class="dv">0</span>.<span class="fl">32.</span> https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>sbalci<span class="sc">/</span>OncoPath</span></code></pre></div>
+<p>And the main ClinicoPath project:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>Serdar <span class="fu">Balci</span> (<span class="dv">2025</span>). ClinicoPath jamovi Module. doi<span class="sc">:</span><span class="fl">10.5281</span><span class="sc">/</span>zenodo<span class="fl">.3997188</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>[R package]. Retrieved from https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>sbalci<span class="sc">/</span>ClinicoPathJamoviModule</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
@@ -337,6 +410,8 @@ R package version 0.0.31.69. https://github.com/sbalci/OncoPath</code></pre>
 <p>OncoPath is part of the <a href="https://github.com/sbalci/ClinicoPathJamoviModule" class="external-link">ClinicoPath</a> ecosystem:</p>
 <ul>
 <li>
+<strong><a href="https://github.com/sbalci/ClinicoPathJamoviModule" class="external-link">ClinicoPath</a></strong>: Comprehensive clinicopathological research toolkit</li>
+<li>
 <strong><a href="https://github.com/sbalci/ClinicoPathDescriptives" class="external-link">ClinicoPathDescriptives</a></strong>: Descriptive statistics and data quality tools</li>
 <li>
 <strong><a href="https://github.com/sbalci/jsurvival" class="external-link">jsurvival</a></strong>: Comprehensive survival analysis</li>
@@ -348,14 +423,31 @@ R package version 0.0.31.69. https://github.com/sbalci/OncoPath</code></pre>
 <hr>
 <p><strong>Developed by <a href="https://github.com/sbalci" class="external-link">Serdar Balci</a></strong></p>
 <p><a href="https://twitter.com/serdarbalci" class="external-link"><img src="https://img.shields.io/twitter/follow/serdarbalci?style=social" alt="Twitter Follow"></a> <a href="https://github.com/sbalci" class="external-link"><img src="https://img.shields.io/github/followers/sbalci?style=social" alt="GitHub followers"></a></p>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
+</h2>
+<p>OncoPath builds upon the excellent work of many R package developers, including:</p>
+<ul>
+<li>
+<a href="https://github.com/CHOP-CGTInformatics/ggswim" class="external-link">ggswim</a> for swimmer plot functionality</li>
+<li>
+<a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot2</a> for graphics infrastructure</li>
+<li>
+<a href="https://github.com/kassambara/survminer" class="external-link">survminer</a> for survival visualizations</li>
+<li>
+<a href="https://cran.r-project.org/package=mada" class="external-link">mada</a> and <a href="https://www.metafor-project.org/" class="external-link">metafor</a> for meta-analysis tools</li>
+<li>The <a href="https://www.jamovi.org" class="external-link">jamovi</a> team for creating an accessible statistical platform</li>
+<li>The broader <a href="https://www.r-project.org/" class="external-link">R</a> community for continuous innovation</li>
+</ul>
+<p>Special thanks to the oncology and pathology research communities for feedback and feature requests that have shaped this module’s development.</p>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="links">
+  </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://github.com/sbalci/OncoPath/" class="external-link">Browse source code</a></li>
 <li><a href="&lt;https://github.com/sbalci/OncoPath/issues&gt;" class="external-link">Report a bug</a></li>
 </ul>
 </div>
@@ -378,29 +470,27 @@ R package version 0.0.31.69. https://github.com/sbalci/OncoPath</code></pre>
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Serdar Balci <br><small class="roles"> Maintainer </small>   </li>
+<li>
+<a href="https://www.serdarbalci.com/" class="external-link">Serdar Balci</a> <br><small class="roles"> Maintainer </small>   </li>
 </ul>
 </div>
 
 
 
-  </div>
+  </aside>
 </div>
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Serdar Balci.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by <a href="https://www.serdarbalci.com/" class="external-link">Serdar Balci</a></p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+<div class="pkgdown-footer-right">
+  <p>Built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> and <a href="https://getbootstrap.com/" class="external-link">Bootstrap 5</a></p>
 </div>
 
-      </footer>
+    </footer>
 </div>
-
 
 
 
