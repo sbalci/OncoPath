@@ -1,7 +1,7 @@
 Package: OncoPath
 Type: Package
 Title: OncoPath Functions for Clinicopathological Research
-Version: 0.0.32.15
+Version: 0.0.32.24
 Author: Serdar Balci
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
 Description: OncoPath Functions for Clinicopathological Research.
