@@ -3,7 +3,7 @@ name: swimmerplot
 title: "Swimmer Plot"
 menuGroup: OncoPath
 menuSubgroup: Patient Follow-Up Plots
-version: '0.0.31'
+version: '0.0.32'
 jas: '1.2'
 
 description:
@@ -112,9 +112,37 @@ options:
       suggested: [nominal, ordinal]
       permitted: [factor]
       required: false
+      default: NULL
       description:
           R: >
             Optional variable for response types (e.g., CR, PR, SD, PD) to color lanes.
+
+    - name: censorVar
+      title: "Censoring/Event Status Variable"
+      type: Variable
+      suggested: [nominal, ordinal]
+      permitted: [factor, numeric]
+      required: false
+      description:
+          R: >
+            Optional variable indicating censoring status for ongoing treatment arrows.
+            Use 0/FALSE/"censored"/"alive" for ongoing patients (shows arrow),
+            or 1/TRUE/"event"/"dead" for completed follow-up (no arrow).
+            If not provided, arrows are drawn for patients at the latest time point.
+      default: NULL
+
+    - name: groupVar
+      title: "Grouping Variable"
+      type: Variable
+      suggested: [nominal, ordinal]
+      permitted: [factor, numeric]
+      required: false
+      description:
+          R: >
+            Optional grouping variable for comparing response rates between patient groups
+            (e.g., treatment arms, disease subtypes). When specified, Fisher's exact tests
+            compare ORR and DCR between groups. Groups are also shown in separate colors.
+      default: NULL
 
     # === Time Processing Options ===
     - name: timeType
@@ -350,6 +378,23 @@ options:
       description:
           R: >
             Visual theme for the swimmer plot.
+
+    - name: colorPalette
+      title: "Color Palette"
+      type: List
+      options:
+        - title: "Default"
+          name: default
+        - title: "Colorblind Safe (Viridis)"
+          name: viridis
+        - title: "High Contrast"
+          name: contrast
+        - title: "Monochrome"
+          name: monochrome
+      default: default
+      description:
+          R: >
+            Select color palette for response categories and groups. Colorblind Safe uses perceptually uniform colors distinguishable by all color vision types. High Contrast is optimized for projectors and printing. Monochrome ensures clarity in grayscale publications.
 
     - name: showLegend
       title: "Show Legend"

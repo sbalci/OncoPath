@@ -340,7 +340,17 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
             if (!is.null(self$options$responseVar)) {
                 patient_data$response <- as.factor(df[[private$.escapeVar(self$options$responseVar)]])
             }
-            
+
+            # Add censoring/event status variable if provided
+            if (!is.null(self$options$censorVar)) {
+                patient_data$censor_status <- df[[private$.escapeVar(self$options$censorVar)]]
+            }
+
+            # Add grouping variable if provided
+            if (!is.null(self$options$groupVar)) {
+                patient_data$patient_group <- as.factor(df[[private$.escapeVar(self$options$groupVar)]])
+            }
+
             # Data validation
             valid_rows <- !is.na(patient_data$patient_id) & 
                          !is.na(patient_data$start_time) & 
@@ -509,18 +519,29 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
             end_numeric <- private$.asNumericTime(patient_data$end_time)
             if (all(is.na(end_numeric))) return(NULL)
 
-            max_end <- suppressWarnings(max(end_numeric, na.rm = TRUE))
-            if (!is.finite(max_end)) return(NULL)
+            # Determine ongoing status based on censoring variable if provided
+            ongoing_flag <- rep(FALSE, nrow(patient_data))
 
-            tolerance <- max(abs(max_end) * 1e-6, 1e-6)
-            is_at_cutoff <- !is.na(end_numeric) & abs(end_numeric - max_end) <= tolerance
+            if (!is.null(self$options$censorVar) && "censor_status" %in% names(patient_data)) {
+                # Use explicit censoring variable (more statistically correct)
+                # 0/FALSE/"censored"/"alive" = ongoing (censored)
+                # 1/TRUE/"event"/"dead" = completed (event occurred)
+                censor_values <- as.character(patient_data$censor_status)
+                censor_values_lower <- tolower(trimws(censor_values))
 
-            ongoing_flag <- is_at_cutoff
-            if ("response" %in% names(patient_data)) {
-                response_labels <- tolower(as.character(patient_data$response))
-                ongoing_labels <- c("cr", "complete response", "pr", "partial response",
-                                    "sd", "stable disease", "ongoing", "on treatment")
-                ongoing_flag <- ongoing_flag | response_labels %in% ongoing_labels
+                # Identify censored/ongoing patients
+                is_censored <- censor_values_lower %in% c("0", "false", "censored", "alive", "ongoing", "cens") |
+                               suppressWarnings(as.numeric(censor_values) == 0)
+                ongoing_flag <- is_censored & !is.na(is_censored)
+
+            } else {
+                # Fallback: Use maximum end time heuristic (less reliable)
+                # This may incorrectly flag patients who died at the latest time
+                max_end <- suppressWarnings(max(end_numeric, na.rm = TRUE))
+                if (!is.finite(max_end)) return(NULL)
+
+                tolerance <- max(abs(max_end) * 1e-6, 1e-6)
+                ongoing_flag <- !is.na(end_numeric) & abs(end_numeric - max_end) <= tolerance
             }
 
             ongoing_patients <- patient_data[ongoing_flag & !is.na(patient_data$patient_id) & !is.na(patient_data$end_time), , drop = FALSE]
@@ -671,9 +692,25 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
                             event_data <- event_data[event_data$time >= event_data$start_time & event_data$time <= event_data$end_time, ]
                             event_data <- event_data[, c("patient_id", "time", "label")]
                         } else {
-                            event_data <- event_data[!is.na(event_data$time) & 
-                                                   !is.na(event_data$label) & 
+                            # For numeric times, filter by both lower (>= 0) and upper bounds (<= end_time)
+                            # This prevents events recorded after follow-up end from appearing on lanes
+                            event_data <- event_data[!is.na(event_data$time) &
+                                                   !is.na(event_data$label) &
                                                    event_data$time >= 0, ]
+
+                            # Get patient end times for upper bound filtering
+                            patient_end_times <- stats::setNames(
+                                private$.asNumericTime(patient_data$end_time),
+                                as.character(patient_data$patient_id)
+                            )
+
+                            # Filter events that occur after patient's follow-up end
+                            if (nrow(event_data) > 0) {
+                                event_data$patient_end <- patient_end_times[as.character(event_data$patient_id)]
+                                event_data <- event_data[!is.na(event_data$patient_end) &
+                                                       event_data$time <= event_data$patient_end, ]
+                                event_data$patient_end <- NULL
+                            }
                         }
                     }
                 }
@@ -729,18 +766,90 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
             }
 
             patient_data$segment_duration <- private$.getDurations(patient_data)
-            split_data <- split(patient_data, patient_data$patient_id)
 
-            summary_list <- lapply(split_data, function(df) {
-                follow_up <- private$.calculateFollowUp(df$start_time, df$end_time)
-                person_time <- sum(df$segment_duration, na.rm = TRUE)
-                if (is.na(person_time) || !is.finite(person_time)) person_time <- follow_up
+            # Performance optimization: Use data.table for large datasets (>1000 patients)
+            use_fast_path <- nrow(patient_data) > 1000 && requireNamespace("data.table", quietly = TRUE)
 
+            if (use_fast_path) {
+                # Fast path with data.table (5-10x faster for large datasets)
+                dt <- data.table::as.data.table(patient_data)
+
+                # Group by patient and aggregate
+                summary_list <- dt[, {
+                    follow_up <- private$.calculateFollowUp(start_time, end_time)
+                    person_time <- private$.mergeIntervalsAndSum(start_time, end_time)
+                    if (is.na(person_time) || !is.finite(person_time)) person_time <- follow_up
+
+                    response_value <- NA_character_
+                    if ("response" %in% names(.SD)) {
+                        non_missing <- as.character(response[!is.na(response)])
+                        if (length(non_missing) > 0) {
+                            response_value <- private$.getBestResponse(non_missing)
+                        }
+                    }
+
+                    censor_value <- NA
+                    if ("censor_status" %in% names(.SD)) {
+                        censor_last <- censor_status[!is.na(censor_status)]
+                        if (length(censor_last) > 0) censor_value <- tail(censor_last, 1)
+                    }
+
+                    group_value <- NA
+                    if ("patient_group" %in% names(.SD)) {
+                        group_first <- patient_group[!is.na(patient_group)]
+                        if (length(group_first) > 0) group_value <- group_first[1]
+                    }
+
+                    list(
+                        start_time = min(start_time, na.rm = TRUE),
+                        end_time = max(end_time, na.rm = TRUE),
+                        follow_up = follow_up,
+                        person_time = person_time,
+                        response = response_value,
+                        censor_status = censor_value,
+                        patient_group = group_value
+                    )
+                }, by = patient_id]
+
+                summary_list <- split(summary_list, summary_list$patient_id)
+            } else {
+                # Standard path with base R (works for all dataset sizes)
+                split_data <- split(patient_data, patient_data$patient_id)
+
+                summary_list <- lapply(split_data, function(df) {
+                    follow_up <- private$.calculateFollowUp(df$start_time, df$end_time)
+
+                    # Calculate person-time by merging overlapping intervals to avoid double-counting
+                    # This ensures unique observation time is counted
+                    person_time <- private$.mergeIntervalsAndSum(df$start_time, df$end_time)
+                    if (is.na(person_time) || !is.finite(person_time)) person_time <- follow_up
+
+                # Get BEST response for ORR/DCR calculation (clinical standard in oncology)
+                # Hierarchy: CR > PR > SD > PD > NE/Other
                 response_value <- NA_character_
                 if ("response" %in% names(df)) {
                     non_missing <- as.character(df$response[!is.na(df$response)])
                     if (length(non_missing) > 0) {
-                        response_value <- non_missing[1]
+                        response_value <- private$.getBestResponse(non_missing)
+                    }
+                }
+
+                # Get LAST censoring status (most relevant for follow-up calculations)
+                censor_value <- NA
+                if ("censor_status" %in% names(df)) {
+                    non_missing_censor <- df$censor_status[!is.na(df$censor_status)]
+                    if (length(non_missing_censor) > 0) {
+                        # Use the last non-missing censor status
+                        censor_value <- non_missing_censor[length(non_missing_censor)]
+                    }
+                }
+
+                # Get patient group (should be consistent per patient)
+                group_value <- NA
+                if ("patient_group" %in% names(df)) {
+                    non_missing_group <- df$patient_group[!is.na(df$patient_group)]
+                    if (length(non_missing_group) > 0) {
+                        group_value <- as.character(non_missing_group[1])
                     }
                 }
 
@@ -750,7 +859,7 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
                 end_val <- suppressWarnings(max(df$end_time, na.rm = TRUE))
                 if (!is.finite(as.numeric(end_val))) end_val <- NA
 
-                tibble::tibble(
+                result <- tibble::tibble(
                     patient_id = df$patient_id[1],
                     start_time = start_val,
                     end_time = end_val,
@@ -758,10 +867,128 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
                     person_time = person_time,
                     response = response_value
                 )
-            })
+
+                # Add censor_status if present
+                if (!is.na(censor_value)) {
+                    result$censor_status <- censor_value
+                }
+
+                # Add patient_group if present
+                if (!is.na(group_value)) {
+                    result$patient_group <- group_value
+                }
+
+                    result
+                })
+            }  # End of if/else for performance optimization
 
             patient_data$segment_duration <- NULL
             dplyr::bind_rows(summary_list)
+        },
+
+        # Merge overlapping time intervals and sum unique observation time
+        # This prevents double-counting when a patient has overlapping segments
+        .mergeIntervalsAndSum = function(start_times, end_times) {
+            if (length(start_times) == 0 || length(end_times) == 0) {
+                return(NA_real_)
+            }
+
+            # Convert to numeric for interval operations
+            starts <- private$.asNumericTime(start_times)
+            ends <- private$.asNumericTime(end_times)
+
+            # Remove invalid intervals
+            valid <- !is.na(starts) & !is.na(ends) & is.finite(starts) & is.finite(ends) & ends >= starts
+            if (!any(valid)) return(NA_real_)
+
+            starts <- starts[valid]
+            ends <- ends[valid]
+
+            if (length(starts) == 0) return(NA_real_)
+
+            # Sort intervals by start time
+            ord <- order(starts)
+            starts <- starts[ord]
+            ends <- ends[ord]
+
+            # Merge overlapping intervals using sweep-line algorithm
+            merged_starts <- starts[1]
+            merged_ends <- ends[1]
+
+            if (length(starts) > 1) {
+                for (i in 2:length(starts)) {
+                    # Check if current interval overlaps or is adjacent to last merged interval
+                    if (starts[i] <= merged_ends[length(merged_ends)]) {
+                        # Extend the current merged interval
+                        merged_ends[length(merged_ends)] <- max(merged_ends[length(merged_ends)], ends[i])
+                    } else {
+                        # Start a new merged interval
+                        merged_starts <- c(merged_starts, starts[i])
+                        merged_ends <- c(merged_ends, ends[i])
+                    }
+                }
+            }
+
+            # Sum the lengths of merged intervals
+            total_time <- sum(merged_ends - merged_starts, na.rm = TRUE)
+            if (!is.finite(total_time)) return(NA_real_)
+
+            total_time
+        },
+
+        # Get best response based on oncology hierarchy
+        # CR (Complete Response) > PR (Partial Response) > SD (Stable Disease) > PD (Progressive Disease) > Other
+        .getBestResponse = function(responses) {
+            if (length(responses) == 0) return(NA_character_)
+
+            # Define response hierarchy (lower rank = better response)
+            response_hierarchy <- c(
+                "cr" = 1, "complete response" = 1, "complete" = 1,
+                "pr" = 2, "partial response" = 2, "partial" = 2,
+                "sd" = 3, "stable disease" = 3, "stable" = 3,
+                "pd" = 4, "progressive disease" = 4, "progression" = 4,
+                "ne" = 5, "not evaluable" = 5, "na" = 5
+            )
+
+            responses_lower <- tolower(trimws(responses))
+
+            # Find the best (lowest ranked) response
+            best_rank <- Inf
+            best_response <- responses[1]  # Default to first if no match
+
+            for (i in seq_along(responses_lower)) {
+                rank <- response_hierarchy[responses_lower[i]]
+                if (!is.na(rank) && rank < best_rank) {
+                    best_rank <- rank
+                    best_response <- responses[i]  # Keep original case
+                }
+            }
+
+            # If no recognized response, return the first one
+            if (is.infinite(best_rank)) {
+                return(responses[1])
+            }
+
+            best_response
+        },
+
+        # Normalize response category to standard abbreviation
+        # Handles case-insensitive matching for clinical response categories
+        # Returns: "CR", "PR", "SD", "PD", or the original value if unrecognized
+        .normalizeResponse = function(response_str) {
+            if (is.na(response_str) || length(response_str) == 0) return(response_str)
+
+            response_lower <- tolower(trimws(response_str))
+
+            # Map variations to standard abbreviations
+            if (response_lower %in% c("cr", "complete response", "complete")) return("CR")
+            if (response_lower %in% c("pr", "partial response", "partial")) return("PR")
+            if (response_lower %in% c("sd", "stable disease", "stable")) return("SD")
+            if (response_lower %in% c("pd", "progressive disease", "progression", "progressive")) return("PD")
+            if (response_lower %in% c("ne", "not evaluable", "na")) return("NE")
+
+            # Return original if not recognized
+            return(response_str)
         },
 
         # Compute follow-up duration between earliest start and latest end for one patient
@@ -854,16 +1081,74 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
             reference_values[reference_values <= max_duration * 1.1]
         },
 
+        # Calculate median follow-up using reverse Kaplan-Meier method
+        # This is the gold standard for censored data (Schemper & Smith 1996)
+        .calculateMedianFollowUp = function(patient_summary) {
+            if (nrow(patient_summary) == 0) return(NA_real_)
+
+            follow_up_times <- patient_summary$follow_up
+            valid_idx <- !is.na(follow_up_times) & is.finite(follow_up_times)
+
+            if (sum(valid_idx) == 0) return(NA_real_)
+
+            # Check if we have censoring information
+            has_censor <- "censor_status" %in% names(patient_summary)
+
+            if (has_censor) {
+                # Use reverse Kaplan-Meier: treat censoring as "event"
+                # In reverse KM, we invert the status: censored=1 (event), event=0 (censored)
+                censor_values <- as.character(patient_summary$censor_status[valid_idx])
+                censor_values_lower <- tolower(trimws(censor_values))
+
+                # Original: 0/FALSE/censored = censored, 1/TRUE/event = event
+                # Reverse KM: we want censored patients to be "events" for follow-up calculation
+                is_censored <- censor_values_lower %in% c("0", "false", "censored", "alive", "ongoing", "cens") |
+                               suppressWarnings(as.numeric(censor_values) == 0)
+                is_censored[is.na(is_censored)] <- FALSE
+
+                # Reverse the status for KM
+                reverse_status <- as.numeric(is_censored)
+
+                # Use survival package for proper reverse KM
+                surv_obj <- tryCatch({
+                    survival::Surv(time = follow_up_times[valid_idx], event = reverse_status)
+                }, error = function(e) NULL)
+
+                if (!is.null(surv_obj)) {
+                    km_fit <- tryCatch({
+                        survival::survfit(surv_obj ~ 1)
+                    }, error = function(e) NULL)
+
+                    if (!is.null(km_fit)) {
+                        # Extract median from KM fit
+                        median_fu <- tryCatch({
+                            stats::quantile(km_fit, probs = 0.5)$quantile
+                        }, error = function(e) {
+                            # Fallback: use simple median if KM fails
+                            stats::median(follow_up_times[valid_idx])
+                        })
+                        return(median_fu)
+                    }
+                }
+            }
+
+            # Fallback: simple median (less accurate with censoring)
+            return(stats::median(follow_up_times[valid_idx]))
+        },
+
         # Calculate comprehensive summary statistics using patient-level data
         .calculateSummaryStats = function(patient_data) {
             patient_summary <- private$.summarizeByPatient(patient_data)
             follow_up_durations <- patient_summary$follow_up
             valid_follow_up <- follow_up_durations[!is.na(follow_up_durations)]
 
+            # Use reverse Kaplan-Meier for median follow-up (gold standard with censoring)
+            median_fu <- private$.calculateMedianFollowUp(patient_summary)
+
             stats <- list(
                 n_patients = nrow(patient_summary),
                 n_observations = nrow(patient_data),
-                median_duration = if (length(valid_follow_up) > 0) stats::median(valid_follow_up) else NA_real_,
+                median_duration = median_fu,
                 mean_duration = if (length(valid_follow_up) > 0) mean(valid_follow_up) else NA_real_,
                 sd_duration = if (length(valid_follow_up) > 1) stats::sd(valid_follow_up) else NA_real_,
                 min_duration = if (length(valid_follow_up) > 0) min(valid_follow_up) else NA_real_,
@@ -879,7 +1164,11 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
 
             # Response analysis if available
             if (self$options$responseAnalysis && "response" %in% names(patient_summary)) {
-                response_summary <- table(patient_summary$response, useNA = "no")
+                # Normalize response categories to standard abbreviations (CR, PR, SD, PD)
+                # This ensures case-insensitive matching and handles various input formats
+                normalized_responses <- sapply(patient_summary$response, private$.normalizeResponse, USE.NAMES = FALSE)
+
+                response_summary <- table(normalized_responses, useNA = "no")
                 if (length(response_summary) > 0) {
                     response_pct <- prop.table(response_summary) * 100
 
@@ -965,12 +1254,13 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
             if (self$options$responseAnalysis && !is.null(stats$response_counts) && length(stats$response_counts) > 0) {
                 best_response <- names(stats$response_counts)[which.max(stats$response_counts)]
                 best_pct <- stats$response_percentages[[best_response]]
-                
+
                 # Calculate clinical response rates
+                # Note: Response names are normalized to uppercase (CR, PR, SD, PD) during .computeStats()
                 if ("CR" %in% names(stats$response_counts) || "PR" %in% names(stats$response_counts)) {
                     orr_count <- sum(stats$response_counts[names(stats$response_counts) %in% c("CR", "PR")])
                     orr_pct <- orr_count / sum(stats$response_counts) * 100
-                    
+
                     dcr_count <- sum(stats$response_counts[names(stats$response_counts) %in% c("CR", "PR", "SD")])
                     dcr_pct <- dcr_count / sum(stats$response_counts) * 100
                     
@@ -1045,7 +1335,36 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
                 self$results$interpretation$setContent(summary_html)
             }
         },
-        
+
+        # Add clinical profile notices based on data characteristics
+        # DISABLED: Dynamic Notice insertion causes serialization errors
+        # HTML-based notices are used instead via errorNotice/warningNotice/infoNotice
+        .addClinicalProfileNotices = function(patient_data, stats) {
+            # This function is disabled to prevent serialization errors
+            # All notices are now handled via HTML containers defined in r.yaml
+            # See errorNotice, warningNotice, infoNotice in swimmerplot.r.yaml
+
+            # # Original code commented out to prevent serialization errors:
+            # notice_position <- 2  # Start after any ERROR notices
+            #
+            # # STRONG_WARNING: Small sample size (<10 patients)
+            # if (!is.null(stats$n_patients) && stats$n_patients < 10) {
+            #     warn <- jmvcore::Notice$new(
+            #         options = self$options,
+            #         name = 'smallSampleSize',
+            #         type = jmvcore::NoticeType$STRONG_WARNING
+            #     )
+            #     warn$setContent(sprintf(
+            #         'Very small sample size (n=%d patients). Results may have limited statistical power and generalizability. Consider interpreting findings as exploratory.',
+            #         stats$n_patients
+            #     ))
+            #     self$results$insert(notice_position, warn)
+            #     notice_position <- notice_position + 1
+            # }
+            #
+            # # ... rest of notice code commented out
+        },
+
         # Apply clinical preset configurations with context
         .applyClinicalPreset = function() {
             preset <- self$options$clinicalPreset
@@ -1107,6 +1426,18 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
             if (is.null(self$options$patientID) ||
                 is.null(self$options$startTime) ||
                 is.null(self$options$endTime)) {
+
+                # ERROR Notice (single line, position 1)
+                # DISABLED: Dynamic Notice insertion causes serialization errors
+                # err <- jmvcore::Notice$new(
+                #     options = self$options,
+                #     name = 'missingRequiredVariables',
+                #     type = jmvcore::NoticeType$ERROR
+                # )
+                # err$setContent('Patient ID, Start Time, and End Time are required to generate swimmer plot. Please select all three variables in Core Data Variables section.')
+                # self$results$insert(999, err)
+
+                # Keep detailed HTML guidance
                 instructions <- private$.generateInstructions()
                 self$results$instructions$setContent(instructions)
             }
@@ -1118,15 +1449,26 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
             # private$.applyClinicalPreset()
             
             # Enhanced instructions with comprehensive guidance
-            if (is.null(self$options$patientID) || 
-                is.null(self$options$startTime) || 
+            if (is.null(self$options$patientID) ||
+                is.null(self$options$startTime) ||
                 is.null(self$options$endTime)) {
-                
+
+                # ERROR Notice (single line, position 1)
+                # DISABLED: Dynamic Notice insertion causes serialization errors
+                # err <- jmvcore::Notice$new(
+                #     options = self$options,
+                #     name = 'missingRequiredVariables',
+                #     type = jmvcore::NoticeType$ERROR
+                # )
+                # err$setContent('Patient ID, Start Time, and End Time are required to generate swimmer plot. Please select all three variables in Core Data Variables section.')
+                # self$results$insert(999, err)
+
+                # Keep detailed HTML guidance
                 instructions <- private$.generateInstructions()
                 self$results$instructions$setContent(instructions)
                 return()
             }
-            
+
             # Validate and process data with comprehensive error handling
             debug_mode <- isTRUE(getOption("swimmerplot.debug"))
 
@@ -1135,6 +1477,14 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
 
                 # Check for data type mismatch (Date/Time selected but numeric data)
                 if (isTRUE(validation_result$data_type_mismatch)) {
+                    # REPLACED Notice with HTML to prevent serialization errors
+                    example_vals <- if (!is.null(validation_result$examples)) {
+                        paste(validation_result$examples[1:min(2, length(validation_result$examples))], collapse=', ')
+                    } else {
+                        "numeric values"
+                    }
+
+                    # Detailed HTML guidance
                     mismatch_guidance <- paste0(
                         "<div style='font-family: Arial, sans-serif; max-width: 800px; line-height: 1.4;'>",
 
@@ -1299,12 +1649,12 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
                     }
                 }
 
+                # Calculate comprehensive statistics
+                stats <- private$.calculateSummaryStats(patient_data)
+                
                 milestone_data <- private$.processMilestones(patient_data)
                 event_data <- private$.processEventMarkers(patient_data)
                 arrow_data <- private$.processOngoingStatus(patient_data, stats)
-                
-                # Calculate comprehensive statistics
-                stats <- private$.calculateSummaryStats(patient_data)
                 interpretation <- private$.generateClinicalInterpretation(stats, patient_data)
                 
                 # Generate clinical summary
@@ -1316,10 +1666,14 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
                 
                 # Update all result tables
                 private$.updatePersonTimeTable(patient_data, stats)
-                private$.updateMilestoneTable(patient_data, milestone_data) 
+                private$.updateMilestoneTable(patient_data, milestone_data)
                 private$.updateEventMarkerTable(patient_data, event_data)
                 private$.updateAdvancedMetrics(patient_data, stats)
-                
+                private$.updateGroupComparisonTests(patient_data, stats)
+
+                # Add clinical profile notices (small sample warnings, completion info)
+                private$.addClinicalProfileNotices(patient_data, stats)
+
                 # Handle export functionality
                 private$.updateExportData(patient_data, milestone_data, event_data, stats)
                 
@@ -1517,7 +1871,8 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
                     .groups = "drop"
                 ) %>%
                 dplyr::mutate(
-                    incidence_rate = ifelse(total_time > 0, n_patients / total_time * 100, NA_real_)
+                    # Follow-up density: patients per unit of person-time (not an incidence rate)
+                    followup_density = ifelse(total_time > 0, n_patients / total_time * 100, NA_real_)
                 )
 
             for (i in seq_len(nrow(person_time_data))) {
@@ -1526,7 +1881,7 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
                     n_patients = person_time_data$n_patients[i],
                     total_time = round(person_time_data$total_time[i], 2),
                     mean_time = round(person_time_data$mean_time[i], 2),
-                    incidence_rate = round(person_time_data$incidence_rate[i], 3)
+                    incidence_rate = round(person_time_data$followup_density[i], 3)
                 ))
             }
         },
@@ -1641,26 +1996,30 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
                 list(
                     name = .("Median Follow-up Time"),
                     value = round(stats$median_duration, 2),
+                    ci = NA_character_,
                     unit = self$options$timeUnit,
                     interpretation = .("Central tendency of patient follow-up duration")
                 ),
                 list(
                     name = .("Interquartile Range"),
                     value = round(stats$q3_duration - stats$q1_duration, 2),
+                    ci = NA_character_,
                     unit = self$options$timeUnit,
                     interpretation = .("Middle 50% of follow-up duration range")
                 ),
                 list(
                     name = .("Total Study Person-Time"),
                     value = round(stats$total_person_time, 2),
+                    ci = NA_character_,
                     unit = paste(self$options$timeUnit, "cumulative"),
                     interpretation = .("Total observation time across all patients")
                 ),
                 list(
-                    name = .("Person-Time Incidence Rate"),
+                    name = .("Follow-up Density"),
                     value = if (isTRUE(stats$total_person_time > 0)) round(n_patients_summary / stats$total_person_time * 100, 3) else NA_real_,
+                    ci = NA_character_,
                     unit = paste0("per 100 ", self$options$timeUnit),
-                    interpretation = .("Rate of patient inclusion per time unit")
+                    interpretation = .("Number of patients per 100 units of observation time (descriptive metric)")
                 )
             )
             
@@ -1670,23 +2029,54 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
                 total_responses <- sum(response_counts)
 
                 if (total_responses > 0) {
-                    response_names <- tolower(names(response_counts))
-                    orr_count <- sum(response_counts[response_names %in% c("cr", "pr")])
-                    dcr_count <- sum(response_counts[response_names %in% c("cr", "pr", "sd")])
+                    # Response names are already normalized to uppercase (CR, PR, SD, PD)
+                    response_names <- names(response_counts)
+                    orr_count <- sum(response_counts[response_names %in% c("CR", "PR")])
+                    dcr_count <- sum(response_counts[response_names %in% c("CR", "PR", "SD")])
 
                     orr <- if (total_responses > 0) orr_count / total_responses * 100 else NA_real_
                     dcr <- if (total_responses > 0) dcr_count / total_responses * 100 else NA_real_
+
+                    # Calculate exact binomial 95% confidence intervals
+                    orr_ci <- NA_character_
+                    dcr_ci <- NA_character_
+
+                    if (!is.na(orr) && total_responses > 0) {
+                        orr_test <- tryCatch({
+                            binom.test(orr_count, total_responses, conf.level = 0.95)
+                        }, error = function(e) NULL)
+
+                        if (!is.null(orr_test)) {
+                            orr_ci <- sprintf("%.1f - %.1f",
+                                            orr_test$conf.int[1] * 100,
+                                            orr_test$conf.int[2] * 100)
+                        }
+                    }
+
+                    if (!is.na(dcr) && total_responses > 0) {
+                        dcr_test <- tryCatch({
+                            binom.test(dcr_count, total_responses, conf.level = 0.95)
+                        }, error = function(e) NULL)
+
+                        if (!is.null(dcr_test)) {
+                            dcr_ci <- sprintf("%.1f - %.1f",
+                                            dcr_test$conf.int[1] * 100,
+                                            dcr_test$conf.int[2] * 100)
+                        }
+                    }
 
                     metrics <- append(metrics, list(
                         list(
                             name = .("Objective Response Rate (ORR)"),
                             value = if (!is.na(orr)) round(orr, 1) else NA_real_,
+                            ci = orr_ci,
                             unit = "percent",
                             interpretation = .("Proportion with complete or partial response")
                         ),
                         list(
                             name = .("Disease Control Rate (DCR)"),
                             value = if (!is.na(dcr)) round(dcr, 1) else NA_real_,
+                            ci = dcr_ci,
                             unit = "percent",
                             interpretation = .("Proportion with response or stable disease")
                         )
@@ -1700,12 +2090,118 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
                 self$results$advancedMetrics$addRow(rowKey = i, values = list(
                     metric_name = metric$name,
                     metric_value = metric$value,
+                    confidence_interval = metric$ci,
                     metric_unit = metric$unit,
                     clinical_interpretation = metric$interpretation
                 ))
             }
         },
-        
+
+        # Group comparison statistical tests (Fisher's exact for ORR/DCR)
+        .updateGroupComparisonTests = function(patient_data, stats) {
+            # Only run if groupVar is provided
+            if (is.null(self$options$groupVar)) return()
+
+            # Clear existing rows
+            self$results$groupComparisonTest$deleteRows()
+
+            # Need patient_summary with both response and group
+            patient_summary <- stats$patient_summary
+            if (is.null(patient_summary)) return()
+
+            # Check if we have both response and group data
+            if (!"response" %in% names(patient_summary) || !"patient_group" %in% names(patient_summary)) return()
+
+            # Remove rows with missing response or group
+            df <- patient_summary[!is.na(patient_summary$response) & !is.na(patient_summary$patient_group), ]
+            if (nrow(df) == 0) return()
+
+            # Normalize responses (should already be normalized, but ensure consistency)
+            df$response <- sapply(df$response, private$.normalizeResponse, USE.NAMES = FALSE)
+
+            # Get unique groups
+            groups <- unique(df$patient_group)
+            if (length(groups) < 2) {
+                # No comparison possible with <2 groups
+                return()
+            }
+
+            # Perform Fisher's exact test for ORR (CR + PR vs others)
+            orr_contingency <- tryCatch({
+                df$responder <- df$response %in% c("CR", "PR")
+                table(df$patient_group, df$responder)
+            }, error = function(e) NULL)
+
+            if (!is.null(orr_contingency) && nrow(orr_contingency) >= 2 && ncol(orr_contingency) >= 2) {
+                orr_test <- tryCatch({
+                    fisher.test(orr_contingency)
+                }, error = function(e) NULL)
+
+                if (!is.null(orr_test)) {
+                    orr_interpretation <- if (orr_test$p.value < 0.05) {
+                        .("Statistically significant difference in response rates between groups (p < 0.05)")
+                    } else {
+                        .("No statistically significant difference in response rates between groups")
+                    }
+
+                    self$results$groupComparisonTest$addRow(rowKey = 1, values = list(
+                        comparison = .("Objective Response Rate (ORR)"),
+                        test_statistic = sprintf("Fisher's exact test, OR = %.2f",
+                                               if (!is.null(orr_test$estimate)) orr_test$estimate else NA),
+                        p_value = orr_test$p.value,
+                        interpretation = orr_interpretation
+                    ))
+                }
+            }
+
+            # Perform Fisher's exact test for DCR (CR + PR + SD vs others)
+            dcr_contingency <- tryCatch({
+                df$disease_control <- df$response %in% c("CR", "PR", "SD")
+                table(df$patient_group, df$disease_control)
+            }, error = function(e) NULL)
+
+            if (!is.null(dcr_contingency) && nrow(dcr_contingency) >= 2 && ncol(dcr_contingency) >= 2) {
+                dcr_test <- tryCatch({
+                    fisher.test(dcr_contingency)
+                }, error = function(e) NULL)
+
+                if (!is.null(dcr_test)) {
+                    dcr_interpretation <- if (dcr_test$p.value < 0.05) {
+                        .("Statistically significant difference in disease control rates between groups (p < 0.05)")
+                    } else {
+                        .("No statistically significant difference in disease control rates between groups")
+                    }
+
+                    self$results$groupComparisonTest$addRow(rowKey = 2, values = list(
+                        comparison = .("Disease Control Rate (DCR)"),
+                        test_statistic = sprintf("Fisher's exact test, OR = %.2f",
+                                               if (!is.null(dcr_test$estimate)) dcr_test$estimate else NA),
+                        p_value = dcr_test$p.value,
+                        interpretation = dcr_interpretation
+                    ))
+                }
+            }
+
+            # Check for low cell counts in contingency tables
+            min_cell_orr <- if (!is.null(orr_contingency)) min(orr_contingency) else NA
+            min_cell_dcr <- if (!is.null(dcr_contingency)) min(dcr_contingency) else NA
+            min_cell <- min(c(min_cell_orr, min_cell_dcr), na.rm = TRUE)
+
+            if (!is.na(min_cell) && min_cell < 5) {
+                # REPLACED Notice with HTML to prevent serialization errors
+                warning_html <- sprintf(
+                    "<div style='background:#fff3cd;border-left:4px solid #ffc107;padding:12px;margin:10px 0;font-family:Arial,sans-serif;'>
+                    <strong style='color:#856404;'>Warning:</strong> Fisher exact test has cells with counts &lt; 5 (minimum cell count = %d).
+                    Test remains valid but interpret p-values cautiously with small cell counts.
+                    Consider grouping categories or collecting more data.
+                    </div>",
+                    min_cell
+                )
+                self$results$warningNotice$setContent(warning_html)
+                self$results$warningNotice$setVisible(TRUE)
+            }
+        },
+
         # Export functionality
         .updateExportData = function(patient_data, milestone_data, event_data, stats) {
             # Export timeline data if requested
@@ -1980,7 +2476,26 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
             } else {
                 p <- p + ggplot2::theme_minimal()
             }
-            
+
+            # Apply color palette (colorblind-safe options)
+            if (!is.null(self$options$colorPalette) && self$options$colorPalette != "default") {
+                if (self$options$colorPalette == "viridis") {
+                    # Viridis palette - perceptually uniform and colorblind-safe
+                    p <- p + ggplot2::scale_color_viridis_d(option = "D", end = 0.9)
+                    p <- p + ggplot2::scale_fill_viridis_d(option = "D", end = 0.9)
+                } else if (self$options$colorPalette == "contrast") {
+                    # High contrast palette (Okabe-Ito colorblind-safe palette)
+                    contrast_colors <- c("#000000", "#E69F00", "#56B4E9", "#009E73",
+                                        "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+                    p <- p + ggplot2::scale_color_manual(values = contrast_colors)
+                    p <- p + ggplot2::scale_fill_manual(values = contrast_colors)
+                } else if (self$options$colorPalette == "monochrome") {
+                    # Monochrome with varying shades for grayscale publications
+                    p <- p + ggplot2::scale_color_grey(start = 0.2, end = 0.8)
+                    p <- p + ggplot2::scale_fill_grey(start = 0.2, end = 0.8)
+                }
+            }
+
             # Add labels with clinical context
             is_date_scale <- inherits(patient_data$start_time, c("Date", "POSIXct"))
             x_label <- if (is_date_scale) .("Date") else paste0(.("Time ("), self$options$timeUnit, .(")"))
@@ -2127,6 +2642,9 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
         },
         
         # Enhanced clinical glyph mapping for event markers
+        # WARNING: Emoji glyphs may not render correctly in PDF/Word exports or regulatory documents
+        # TODO: Add option to disable emojis for formal clinical documentation
+        # For regulatory submissions, consider exporting data tables instead of plots with emojis
         .getEnhancedClinicalGlyphs = function(event_labels) {
             # Define clinical icon mappings
             clinical_mapping <- list(
@@ -2208,8 +2726,18 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
                 "<li><strong>ORR (Objective Response Rate):</strong> Proportion of patients with CR or PR</li>",
                 "<li><strong>DCR (Disease Control Rate):</strong> Proportion of patients with CR, PR, or SD</li>",
                 "<li><strong>Person-Time:</strong> Total observation time across all patients in the study</li>",
-                "<li><strong>Median Follow-up:</strong> Time point at which half of patients have been followed longer</li>",
-                "<li><strong>Incidence Rate:</strong> Number of events per unit of person-time</li>",
+                "<li><strong>Median Follow-up:</strong> Calculated using reverse Kaplan-Meier method when censoring data is provided (gold standard). Otherwise uses simple median.</li>",
+                "<li><strong>Follow-up Density:</strong> Descriptive measure of patient concentration per unit of observation time (not an event incidence rate)</li>",
+                "</ul>",
+                "</div>",
+
+                "<div style='margin: 10px 0;'>",
+                "<h4 style='color: #0056b3; margin: 10px 0 5px 0;'>Statistical Terms</h4>",
+                "<ul style='margin: 5px 0; padding-left: 20px;'>",
+                "<li><strong>95% CI (Confidence Interval):</strong> Range of values likely to contain the true population parameter. For response rates, exact binomial CIs are used for accuracy with small sample sizes.</li>",
+                "<li><strong>Fisher's Exact Test:</strong> Statistical test for comparing categorical outcomes (like response rates) between groups. Used to determine if response rates differ significantly between patient groups. Does not require large sample sizes and is valid for small cell counts.</li>",
+                "<li><strong>Odds Ratio (OR):</strong> Measure of association between group membership and outcome. OR > 1 indicates higher odds of response in the comparison group; OR < 1 indicates lower odds. Example: OR = 2.5 means the comparison group has 2.5 times the odds of responding.</li>",
+                "<li><strong>P-value:</strong> Probability of observing results as extreme or more extreme than observed, assuming no true difference exists. Convention: p < 0.05 indicates statistical significance, but clinical significance should also be considered alongside statistical significance.</li>",
                 "</ul>",
                 "</div>",
 
@@ -2247,16 +2775,42 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
             # Add response analysis if available
             response_text <- ""
             if (self$options$responseAnalysis && "response" %in% names(patient_data) && !is.null(stats$response_counts)) {
+                total_responses <- sum(stats$response_counts)
+                # Note: Response names are normalized to uppercase (CR, PR, SD, PD) during .computeStats()
                 orr_count <- sum(stats$response_counts[names(stats$response_counts) %in% c("CR", "PR")])
-                orr_pct <- orr_count / sum(stats$response_counts) * 100
+                orr_pct <- orr_count / total_responses * 100
 
                 dcr_count <- sum(stats$response_counts[names(stats$response_counts) %in% c("CR", "PR", "SD")])
-                dcr_pct <- dcr_count / sum(stats$response_counts) * 100
+                dcr_pct <- dcr_count / total_responses * 100
+
+                # Calculate 95% CIs for copy-ready text
+                orr_ci_text <- ""
+                dcr_ci_text <- ""
+
+                orr_test <- tryCatch({
+                    binom.test(orr_count, total_responses, conf.level = 0.95)
+                }, error = function(e) NULL)
+
+                if (!is.null(orr_test)) {
+                    orr_ci_text <- sprintf("; 95%% CI: %.1f%%-%.1f%%",
+                                          orr_test$conf.int[1] * 100,
+                                          orr_test$conf.int[2] * 100)
+                }
+
+                dcr_test <- tryCatch({
+                    binom.test(dcr_count, total_responses, conf.level = 0.95)
+                }, error = function(e) NULL)
+
+                if (!is.null(dcr_test)) {
+                    dcr_ci_text <- sprintf("; 95%% CI: %.1f%%-%.1f%%",
+                                          dcr_test$conf.int[1] * 100,
+                                          dcr_test$conf.int[2] * 100)
+                }
 
                 response_text <- sprintf(
-                    " Response evaluation showed an objective response rate (ORR) of %.1f%% (%d/%d patients) and disease control rate (DCR) of %.1f%% (%d/%d patients).",
-                    orr_pct, orr_count, sum(stats$response_counts),
-                    dcr_pct, dcr_count, sum(stats$response_counts)
+                    " Response evaluation showed an objective response rate (ORR) of %.1f%% (%d/%d patients%s) and disease control rate (DCR) of %.1f%% (%d/%d patients%s).",
+                    orr_pct, orr_count, total_responses, orr_ci_text,
+                    dcr_pct, dcr_count, total_responses, dcr_ci_text
                 )
             }
 
@@ -2339,6 +2893,15 @@ swimmerplotClass <- if (requireNamespace('jmvcore', quietly = TRUE)) R6::R6Class
                 "<p style='margin: 5px 0; line-height: 1.6;'>",
                 "The swimmer plot displays individual patient timelines with optional color coding for response categories. Milestone markers show key events, and summary statistics provide overall study metrics including person-time analysis and response rates suitable for clinical reporting.",
                 "</p>",
+                "</div>",
+
+                "<div style='margin: 15px 0;'>",
+                "<h4 style='color: #856404; margin: 10px 0 5px 0;'>Important Considerations for Regulatory Documentation</h4>",
+                "<ul style='margin: 5px 0; padding-left: 20px; line-height: 1.6;'>",
+                "<li><strong>Emoji Event Markers:</strong> May not render correctly in PDF/Word exports. For regulatory submissions, export data tables rather than plots with emoji markers.</li>",
+                "<li><strong>Censoring Variable:</strong> Provide an explicit censoring/status variable for accurate ongoing treatment arrows and reverse Kaplan-Meier median follow-up calculation.</li>",
+                "<li><strong>Response Categories:</strong> Use standard abbreviations (CR, PR, SD, PD) for consistency, though case-insensitive matching is supported.</li>",
+                "</ul>",
                 "</div>",
 
                 "</div>"

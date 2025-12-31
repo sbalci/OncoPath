@@ -9,7 +9,9 @@ swimmerplot(
   patientID,
   startTime,
   endTime,
-  responseVar,
+  responseVar = NULL,
+  censorVar = NULL,
+  groupVar = NULL,
   timeType = "raw",
   dateFormat = "ymd",
   timeUnit = "months",
@@ -31,6 +33,7 @@ swimmerplot(
   laneWidth = 3,
   markerSize = 5,
   plotTheme = "ggswim",
+  colorPalette = "default",
   showLegend = TRUE,
   referenceLines = "none",
   customReferenceTime = 12,
@@ -59,6 +62,16 @@ information.}
 
 \item{responseVar}{Optional variable for response types (e.g., CR, PR, SD,
 PD) to color lanes.}
+
+\item{censorVar}{Optional variable indicating censoring status for ongoing
+treatment arrows. Use 0/FALSE/"censored"/"alive" for ongoing patients
+(shows arrow), or 1/TRUE/"event"/"dead" for completed follow-up (no arrow).
+If not provided, arrows are drawn for patients at the latest time point.}
+
+\item{groupVar}{Optional grouping variable for comparing response rates
+between patient groups (e.g., treatment arms, disease subtypes). When
+specified, Fisher's exact tests compare ORR and DCR between groups. Groups
+are also shown in separate colors.}
 
 \item{timeType}{Select whether time values are raw numbers or dates/times.}
 
@@ -107,6 +120,11 @@ if not specified).}
 
 \item{plotTheme}{Visual theme for the swimmer plot.}
 
+\item{colorPalette}{Select color palette for response categories and
+groups. Colorblind Safe uses perceptually uniform colors distinguishable by
+all color vision types. High Contrast is optimized for projectors and
+printing. Monochrome ensures clarity in grayscale publications.}
+
 \item{showLegend}{Whether to display the plot legend.}
 
 \item{referenceLines}{Add reference time lines to the plot for clinical
@@ -151,6 +169,9 @@ metrics.}
 \value{
 A results object containing:
 \tabular{llllll}{
+  \code{results$errorNotice} \tab \tab \tab \tab \tab a html \cr
+  \code{results$warningNotice} \tab \tab \tab \tab \tab a html \cr
+  \code{results$infoNotice} \tab \tab \tab \tab \tab a html \cr
   \code{results$instructions} \tab \tab \tab \tab \tab a html \cr
   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
   \code{results$summary} \tab \tab \tab \tab \tab a table \cr
@@ -163,6 +184,7 @@ A results object containing:
   \code{results$exportInfo} \tab \tab \tab \tab \tab a html \cr
   \code{results$validationReport} \tab \tab \tab \tab \tab a html \cr
   \code{results$advancedMetrics} \tab \tab \tab \tab \tab a table \cr
+  \code{results$groupComparisonTest} \tab \tab \tab \tab \tab a table \cr
   \code{results$clinicalGlossary} \tab \tab \tab \tab \tab a html \cr
   \code{results$copyReadyReport} \tab \tab \tab \tab \tab a html \cr
   \code{results$aboutAnalysis} \tab \tab \tab \tab \tab a html \cr

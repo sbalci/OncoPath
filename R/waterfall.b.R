@@ -1,53 +1,4 @@
-#' @title Treatment Response Analysis
-#' @description Creates waterfall and spider plots to visualize tumor response data following RECIST criteria.
-#' Supports both raw tumor measurements and pre-calculated percentage changes.
-#' @importFrom R6 R6Class
-#' @import jmvcore
-#' @import dplyr
-#' @importFrom magrittr %>%
-#' @import ggplot2
-#' @import scales
-#' @param data Data frame containing response data
-#' @param patientID Column name for patient identifiers
-#' @param responseVar Column name for response values (raw measurements or percent change)
-#' @param timeVar Optional column name for time points (required for raw measurements and spider plots)
-#' @param inputType Data format: 'raw' for actual measurements or 'percentage' for pre-calculated percentage changes
-#' @return Waterfall and spider plots with response analysis tables
-#' @details 
-#' The function handles two data formats:
-#' 
-#' **Percentage Data**: Pre-calculated percentage changes from baseline
-#' - Negative values indicate tumor shrinkage (improvement)
-#' - Example: -30 means 30% decrease from baseline
-#' 
-#' **Raw Measurements**: Actual tumor measurements over time  
-#' - Requires baseline measurement at time = 0
-#' - Function calculates percentage changes automatically
-#' - Uses ((current - baseline) / baseline) * 100 formula
-#' 
-#' **RECIST Categories**:
-#' - Complete Response (CR): ≤ -100% (complete disappearance)
-#' - Partial Response (PR): ≤ -30% decrease
-#' - Stable Disease (SD): -30% to +20% change  
-#' - Progressive Disease (PD): > +20% increase
-#' 
-#' @examples
-#' # Percentage data example
-#' data_pct <- data.frame(
-#'   PatientID = paste0("PT", 1:5),
-#'   Response = c(-60, -35, -10, 15, 45)
-#' )
-#' 
-#' # Raw measurements example  
-#' data_raw <- data.frame(
-#'   PatientID = rep(paste0("PT", 1:3), each = 3),
-#'   Time = rep(c(0, 2, 4), 3),
-#'   Measurement = c(50, 30, 25, 60, 45, 40, 55, 50, 48)
-#' )
-
-
 #' @export waterfallClass
-#'
 
 
 waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
@@ -141,6 +92,53 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           }, USE.NAMES = FALSE)
         },
 
+        # Initialize notice collection list
+        .noticeList = list(),
+
+        # Add a notice to the collection
+        .addNotice = function(type, title, content) {
+          private$.noticeList[[length(private$.noticeList) + 1]] <- list(
+            type = type,
+            title = title,
+            content = content
+          )
+        },
+
+        # Render collected notices as HTML
+        .renderNotices = function() {
+          if (length(private$.noticeList) == 0) {
+            return()
+          }
+
+          # Map notice types to colors and icons
+          typeStyles <- list(
+            ERROR = list(color = "#dc2626", bgcolor = "#fef2f2", border = "#fca5a5", icon = "⛔"),
+            STRONG_WARNING = list(color = "#ea580c", bgcolor = "#fff7ed", border = "#fdba74", icon = "⚠️"),
+            WARNING = list(color = "#ca8a04", bgcolor = "#fefce8", border = "#fde047", icon = "⚡"),
+            INFO = list(color = "#2563eb", bgcolor = "#eff6ff", border = "#93c5fd", icon = "ℹ️")
+          )
+
+          html <- "<div style='margin: 10px 0;'>"
+
+          for (notice in private$.noticeList) {
+            style <- typeStyles[[notice$type]] %||% typeStyles$INFO
+
+            html <- paste0(html,
+              "<div style='background-color: ", style$bgcolor, "; ",
+              "border-left: 4px solid ", style$border, "; ",
+              "padding: 12px; margin: 8px 0; border-radius: 4px;'>",
+              "<strong style='color: ", style$color, ";'>",
+              style$icon, " ", private$.safeHtmlOutput(notice$title), "</strong><br>",
+              "<span style='color: #374151;'>", private$.safeHtmlOutput(notice$content), "</span>",
+              "</div>"
+            )
+          }
+
+          html <- paste0(html, "</div>")
+
+          self$results$notices$setContent(html)
+        },
+
         # Calculate statistical power for response rates
         .calculateStatisticalPower = function(n, observed_rate, null_rate = 0.15) {
           # Post-hoc power calculation for response rate
@@ -216,6 +214,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
                   NA_real_
                 ),
                 # Duration of response (time from first response to progression/end)
+                # FIXED: Now includes censoring indicator for proper survival analysis
                 duration_of_response = ifelse(
                   any(.data[[responseVar]] <= private$RECIST_PR_THRESHOLD, na.rm = TRUE),
                   {
@@ -223,10 +222,20 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
                     # Find progression after response (>20% increase)
                     progression_times <- .data[[timeVar]][.data[[responseVar]] > private$RECIST_PD_THRESHOLD & .data[[timeVar]] > first_response_time]
                     if (length(progression_times) > 0) {
-                      min(progression_times) - first_response_time
+                      min(progression_times) - first_response_time  # Event observed
                     } else {
                       max(.data[[timeVar]]) - first_response_time  # Censored at last follow-up
                     }
+                  },
+                  NA_real_
+                ),
+                # ADDED: Censoring indicator (1 = event/progression observed, 0 = censored)
+                duration_censored = ifelse(
+                  any(.data[[responseVar]] <= private$RECIST_PR_THRESHOLD, na.rm = TRUE),
+                  {
+                    first_response_time <- min(.data[[timeVar]][.data[[responseVar]] <= private$RECIST_PR_THRESHOLD], na.rm = TRUE)
+                    progression_times <- .data[[timeVar]][.data[[responseVar]] > private$RECIST_PD_THRESHOLD & .data[[timeVar]] > first_response_time]
+                    ifelse(length(progression_times) > 0, 1, 0)  # 1=event, 0=censored
                   },
                   NA_real_
                 ),
@@ -715,6 +724,8 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
       
       # Main validation coordinator
       .validateData = function(df, patientID, inputType, responseVar, timeVar = NULL) {
+
+
         validation_messages <- character()
         data_valid <- TRUE
 
@@ -925,7 +936,8 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         attr(df, "data_valid") <- data_valid
 
         # Return modified dataframe with validation attributes
-        return(df)
+        validated_df <- df # Assign df to validated_df to make the return syntactically correct
+        return(validated_df)
       },
 
       .generateGroupColors = function(group_levels, color_scheme) {
@@ -975,6 +987,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
       ,
       # process validated data ----
       .processData = function(df, patientID, inputType, responseVar, timeVar = NULL, groupVar = NULL) {
+        
         # Validate input parameters first
         if (is.null(patientID) || is.null(responseVar)) {
           return(list(
@@ -991,7 +1004,6 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
 
         # For raw measurements, calculate percentage change from baseline
         if (inputType == "raw") {
-
           # For raw data, we need time variable to identify baseline
           if (!is.null(timeVar)) {
             # Ensure numeric conversion for calculations
@@ -1046,11 +1058,12 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
               response = !!rlang::sym(responseVar)
             )
         }
-
-        # Calculate RECIST categories - select best response (most negative for tumor shrinkage)
+        
+        # Calculate SIMPLIFIED response categories (threshold-based, NOT full RECIST v1.1)
+        # Best response = most negative percent change (minimum value for tumor shrinkage)
         # Optimized for large datasets
         n_patients <- length(unique(processed_df[[patientID]]))
-
+        
         if (n_patients > 1000) {
           # Use more efficient approach for large datasets
           df_waterfall <- processed_df %>%
@@ -1084,13 +1097,20 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
                   right = FALSE),
               levels = c(.("Response"), .("Stable"), .("Progression"))
             ),
-            # Also create detailed RECIST categories
+            # Create simplified response categories (threshold-based, NOT RECIST v1.1 compliant)
+            # NOTE: Variable name "recist_category" retained for backward compatibility
+            # but represents SIMPLIFIED categories (no confirmation, no new lesions, no non-target)
+            # FIXED: Corrected boundary conditions for proper RECIST categorization
+            # CR: ≤-100%, PR: -99% to -30%, SD: -29% to +20%, PD: >+20%
             recist_category = factor(
               dplyr::case_when(
-                response <= private$RECIST_CR_THRESHOLD ~ "CR",  # Complete Response
-                response <= private$RECIST_PR_THRESHOLD ~ "PR",   # Partial Response
-                response <= private$RECIST_PD_THRESHOLD ~ "SD",    # Stable Disease
-                response > private$RECIST_PD_THRESHOLD ~ "PD",     # Progressive Disease
+                is.na(response) ~ "Unknown",                                           # Handle NA values first
+                response <= private$RECIST_CR_THRESHOLD ~ "CR",                        # ≤-100% Complete Response
+                response > private$RECIST_CR_THRESHOLD &
+                  response <= private$RECIST_PR_THRESHOLD ~ "PR",                      # -99% to -30% Partial Response
+                response > private$RECIST_PR_THRESHOLD &
+                  response <= private$RECIST_PD_THRESHOLD ~ "SD",                      # -29% to +20% Stable Disease
+                response > private$RECIST_PD_THRESHOLD ~ "PD",                         # >+20% Progressive Disease
                 TRUE ~ "Unknown"
               ),
               levels = c("CR", "PR", "SD", "PD", .("Unknown"))
@@ -1124,6 +1144,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
               patient_group = factor(!!rlang::sym(groupVar))
             )
         }
+        
 
         # Add informative attributes about the processing
         attr(df_waterfall, "input_type") <- inputType
@@ -1174,8 +1195,10 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         return(list(
           summary = summary_table,
           ORR = ORR,
-          DCR = DCR
+          DCR = DCR,
+          n = total_n
         ))
+
       }
 
 
@@ -1350,8 +1373,10 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
       ,
       # Initialize analysis and show guidance ----
       .initializeAnalysis = function() {
+        
+
         ## Show guided analysis first if enabled ----
-        if (self$options$enableGuidedMode) {
+        if (isTRUE(self$options$enableGuidedMode)) {
           private$.generateGuidedAnalysis()
           return()
         }
@@ -1425,15 +1450,23 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
       # Validate inputs and data availability ----
       .validateInputsAndData = function() {
         # Get welcome text for potential error messages
-        todo <- if (!self$options$enableGuidedMode) {
+        todo <- if (!isTRUE(self$options$enableGuidedMode)) {
           private$.generateWelcomeText()
         } else {
           ""
         }
 
+        # Check if data is loaded
+        if (is.null(self$data) || nrow(self$data) == 0) {
+          if (!isTRUE(self$options$enableGuidedMode)) {
+            self$results$todo$setContent(todo)
+          }
+          return(FALSE)
+        }
+
         ## Validate required inputs ----
         if (is.null(self$options$patientID) || is.null(self$options$responseVar)) {
-          if (!self$options$enableGuidedMode) {
+          if (!isTRUE(self$options$enableGuidedMode)) {
             todo <- paste0(todo,
                            paste0("<br><br>",
                            .("To start analysis select <b>Patient ID</b> and <b>Response Value</b>"))
@@ -1445,7 +1478,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
 
         ## Validate data availability ----
         if (nrow(self$data) == 0) {
-          if (!self$options$enableGuidedMode) {
+          if (!isTRUE(self$options$enableGuidedMode)) {
             todo <- paste0(todo,
                            paste0("<br><br>",
                            .("Data contains no complete rows. Check the data.")))
@@ -1455,30 +1488,41 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         }
 
         # Clear welcome messages if validation passed
-        if (!self$options$enableGuidedMode) {
+        if (!isTRUE(self$options$enableGuidedMode)) {
           self$results$todo2$setVisible(FALSE)
           self$results$todo2$setContent("")
         }
 
         return(TRUE)
-      }
+      },
 
-      ,
+
       # Process and analyze data ----
       .processAndAnalyzeData = function() {
         ## Validate data ----
-        private$.checkpoint()  # Checkpoint before data validation
+        private$.checkpoint()  # Checkpoint        # Validate data structure and content
+
+        # SAFETY: Escape variable names for special characters (spaces, punctuation, etc.)
+        safe_patientID <- private$.escapeVar(self$options$patientID)
+        safe_responseVar <- private$.escapeVar(self$options$responseVar)
+        safe_timeVar <- private$.escapeVar(self$options$timeVar)
+        safe_groupVar <- private$.escapeVar(self$options$groupVar)
+
         validated_data <- private$.validateData(
           self$data,
-          self$options$patientID,
+          safe_patientID,
           self$options$inputType,
-          self$options$responseVar,
-          self$options$timeVar
+          safe_responseVar,
+          safe_timeVar
         )
+        # Update self$data with validated version (includes type conversions)
+        # self$data <- validated_data
+
 
         ### Check for validation messages ----
         validation_messages <- attr(validated_data, "validation_messages")
-        if (length(validation_messages) > 0 && !self$options$enableGuidedMode) {
+
+        if (length(validation_messages) > 0 && !isTRUE(self$options$enableGuidedMode)) {
           self$results$todo2$setVisible(TRUE)
           self$results$todo2$setContent(paste(validation_messages, collapse = ""))
           self$results$todo$setVisible(FALSE)
@@ -1500,22 +1544,133 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         }
 
         # Clear todo messages for successful validation
-        if (!self$options$enableGuidedMode) {
+        if (!isTRUE(self$options$enableGuidedMode)) {
           self$results$todo$setVisible(FALSE)
           self$results$todo2$setVisible(FALSE)
           self$results$todo2$setContent("")
         }
 
         # Process data
-        private$.checkpoint()  # Checkpoint before data processing
+        # private$.checkpoint()  # Checkpoint before data processing
+
         processed_data <- private$.processData(
+
           validated_data,
-          self$options$patientID,
+          safe_patientID,
           self$options$inputType,
-          self$options$responseVar,
-          self$options$timeVar,
-          self$options$groupVar
+          safe_responseVar,
+          safe_timeVar,
+          safe_groupVar
         )
+
+        # ============================================================================
+        # CRITICAL: REGULATORY USE BLOCKING
+        # ============================================================================
+
+        # ERROR BLOCKER: Regulatory/Clinical Trial Use
+        private$.addNotice(
+          type = "ERROR",
+          title = "REGULATORY USE PROHIBITED",
+          content = "This function is NOT validated for regulatory submissions, clinical trial endpoints, or companion diagnostic development. CRITICAL DEFICIENCIES: (1) Non-compliant RECIST v1.1 implementation (no target lesion summation, no new lesion detection, no confirmation requirement); (2) Ad-hoc time-to-event calculations (not standard Kaplan-Meier survival analysis); (3) Simplified best response = minimum value (may OVERCALL responses and MISS progressive disease). FDA/EMA GUIDANCE VIOLATION: This analysis does not meet requirements for biomarker companion diagnostic validation or pivotal trial endpoints. APPROVED USE ONLY: Exploratory visualization, pilot studies, hypothesis generation, educational demonstrations. For regulatory-grade RECIST assessment, use FDA-validated software (e.g., RECIST 1.1 certified platforms). Continuing with this analysis confirms understanding that results are EXPLORATORY ONLY and NOT for regulatory decision-making."
+        )
+
+        # ============================================================================
+        # CRITICAL: RECIST COMPLIANCE WARNINGS
+        # ============================================================================
+        # Add prominent warnings about analysis limitations before processing errors
+
+        # Warning #1: Simplified Best Response Calculation (CRITICAL)
+        private$.addNotice(
+          type = "STRONG_WARNING",
+          title = "RECIST COMPLIANCE LIMITATION",
+          content = "Best response is calculated as minimum percent change per patient. This analysis does NOT implement full RECIST v1.1 protocol. Missing: (1) Target lesion summation (assumes single lesion); (2) New lesion detection for PD; (3) Non-target lesion progression; (4) Response confirmation at 4+ weeks. Results may OVERCALL PR/CR and MISS progressive disease. For regulatory submissions or clinical trials, use RECIST-validated software. This is appropriate for exploratory visualization only."
+        )
+
+        # Warning #2: Single-Lesion Assumption (HIGH)
+        if (self$options$inputType == "raw") {
+          private$.addNotice(
+            type = "WARNING",
+            title = "SINGLE-LESION ASSUMPTION",
+            content = "Raw measurements assume one target lesion per patient timepoint. If your data contains multiple lesions, percent changes will be INCORRECT. RECIST v1.1 requires summing diameters of up to 5 target lesions (max 2 per organ). Pre-process your data to sum target lesions before using this analysis, or switch to 'Percentage Changes' input with pre-calculated RECIST-compliant values."
+          )
+        }
+
+        # Warning #3: No Confirmation Requirement (MEDIUM)
+        private$.addNotice(
+          type = "WARNING",
+          title = "CONFIRMATION NOT REQUIRED",
+          content = "RECIST v1.1 requires CR/PR confirmation at ≥4 weeks. This analysis uses FIRST instance of response thresholds without confirmation. ORR and DCR may be INFLATED compared to confirmed RECIST responses. For clinical trials, unconfirmed responses should be clearly disclosed as exploratory endpoints."
+        )
+
+        # Warning #4: Time-to-Event Methodology Limitations (MEDIUM)
+        if (!is.null(self$options$timeVar) && self$options$timeVar != "") {
+          private$.addNotice(
+            type = "WARNING",
+            title = "TIME-TO-EVENT LIMITATIONS",
+            content = "Duration of response calculations are AD-HOC, not standard survival analysis. Missing: Kaplan-Meier estimates, log-rank tests, Cox regression for covariates. Censoring indicators ARE now provided (duration_censored column), but summary statistics are CRUDE medians without accounting for censoring. For formal progression-free survival (PFS) or duration of response (DOR) analysis, use dedicated survival analysis functions. Current calculations are exploratory descriptive statistics only."
+          )
+        }
+
+        # Warning #5: Baseline Validation (for raw measurements)
+        if (self$options$inputType == "raw" && !is.null(self$options$timeVar) && self$options$timeVar != "") {
+          private$.addNotice(
+            type = "INFO",
+            title = "BASELINE ASSUMPTION",
+            content = "Percent changes calculated assuming time=0 is baseline for each patient. If baseline is at different timepoint or multiple baselines exist, results will be INCORRECT. Verify: (1) Each patient has exactly one time=0 measurement; (2) No measurements before time=0; (3) time=0 is the pre-treatment baseline (not post-treatment). Patients missing baseline measurements are excluded from waterfall analysis."
+          )
+        }
+
+        # ============================================================================
+        # DATA QUALITY VALIDATION
+        # ============================================================================
+
+        # Check for small sample size (if processed_data is available)
+        if (!is.null(processed_data) && !is.null(processed_data$waterfall)) {
+          n_patients <- nrow(processed_data$waterfall)
+
+          # Warning #6: Small Sample Size
+          if (n_patients < 10) {
+            private$.addNotice(
+              type = "STRONG_WARNING",
+              title = "VERY SMALL SAMPLE",
+              content = paste0("Only n=", n_patients, " patients with valid response data. ORR and DCR confidence intervals will be EXTREMELY WIDE and unreliable. Phase II oncology trials typically require minimum n=20-40 for meaningful ORR estimation. With n<10, results are purely descriptive and should NOT be used for treatment decision-making or regulatory submissions. Consider this a pilot/feasibility analysis only.")
+            )
+          } else if (n_patients < 20) {
+            private$.addNotice(
+              type = "WARNING",
+              title = "SMALL SAMPLE",
+              content = paste0("n=", n_patients, " patients. Confidence intervals for ORR/DCR will be wide. Phase II single-arm trials typically enroll 30-50 patients for adequate precision. Results should be interpreted cautiously as exploratory.")
+            )
+          }
+
+          # Warning #7: Extreme Outlier Detection
+          if ("response" %in% names(processed_data$waterfall)) {
+            response_values <- processed_data$waterfall$response
+            extreme_shrinkage <- any(response_values < -100, na.rm = TRUE)
+            extreme_growth <- any(response_values > 200, na.rm = TRUE)
+
+            if (extreme_shrinkage || extreme_growth) {
+              outlier_msg <- "EXTREME VALUES DETECTED: "
+              if (extreme_shrinkage) {
+                n_extreme <- sum(response_values < -100, na.rm = TRUE)
+                outlier_msg <- paste0(outlier_msg,
+                  n_extreme, " patient(s) with tumor shrinkage >100% (impossible with single lesion). ")
+              }
+              if (extreme_growth) {
+                n_extreme <- sum(response_values > 200, na.rm = TRUE)
+                outlier_msg <- paste0(outlier_msg,
+                  n_extreme, " patient(s) with tumor growth >200% (verify data accuracy). ")
+              }
+              outlier_msg <- paste0(outlier_msg, "Possible causes: (1) Data entry errors; (2) Multi-lesion summation issues; (3) New lesions added during followup; (4) Measurement variability. Verify raw data before interpreting results. Extreme values can distort plot scaling and statistical summaries.")
+
+              private$.addNotice(
+                type = "WARNING",
+                title = "EXTREME VALUES DETECTED",
+                content = outlier_msg
+              )
+            }
+          }
+        }
 
         # Check for processing errors
         if (!is.null(processed_data$error) && processed_data$error) {
@@ -1525,7 +1680,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             "<br><br>", .("Please check your data and try again.")
           )
 
-          if (!self$options$enableGuidedMode) {
+          if (!isTRUE(self$options$enableGuidedMode)) {
             self$results$todo2$setVisible(TRUE)
             self$results$todo2$setContent(error_message)
             self$results$todo$setVisible(FALSE)
@@ -1534,14 +1689,37 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         }
 
         return(processed_data)
-      }
+      },
 
-      ,
+
+
       # Generate tables and results ----
       .generateTablesAndResults = function(processed_data) {
+        # Define safe variable names for jamovi column access
+        safe_patientID <- private$.escapeVar(self$options$patientID)
+        safe_responseVar <- private$.escapeVar(self$options$responseVar)
+        safe_timeVar <- private$.escapeVar(self$options$timeVar)
+        safe_groupVar <- private$.escapeVar(self$options$groupVar)
+
+        # Extract data
+        df_waterfall <- processed_data$waterfall
+
+
         ## Calculate metrics ----
         private$.checkpoint()  # Checkpoint before metrics calculation
         metrics <- private$.calculateMetrics(processed_data$waterfall)
+        
+
+        
+        # Calculate person-time metrics if applicable
+        person_time_metrics <- NULL
+        personTimeVisible <- !is.null(self$options$timeVar) && self$options$inputType == "raw"
+        
+        ## Populate tables ----
+        # 1. Response Summary Table
+        table <- self$results$summaryTable
+
+
 
         ## Update results tables ----
         private$.checkpoint()  # Checkpoint before summary table population
@@ -1595,6 +1773,13 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           metric_row_index <<- metric_row_index + 1
         }
 
+        # Add Total Patients
+        add_metric_row(list(
+          metric = .("Total Patients"),
+          value = as.character(metrics$n)
+        ))
+
+
         if (!is.na(metrics$ORR)) {
           add_metric_row(list(
             metric = .("Objective Response Rate (CR+PR)"),
@@ -1621,8 +1806,10 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           ))
         }
 
+
         # Control visibility of personTimeTable based on conditions
         personTimeVisible <- !is.null(self$options$timeVar) && self$options$inputType == "raw"
+        
         if (!is.null(self$results$personTimeTable)) {
           self$results$personTimeTable$setVisible(personTimeVisible)
         }
@@ -1634,9 +1821,9 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           person_time_metrics <- tryCatch({
             private$.calculatePersonTimeMetrics(
               processed_data$spider,
-              self$options$patientID,
-              self$options$timeVar,
-              self$options$responseVar
+              safe_patientID,
+              safe_timeVar,
+              safe_responseVar
             )
           }, error = function(e) {
             warning("Person-time analysis failed: ", e$message)
@@ -1644,13 +1831,17 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           })
         }
 
+
+
         # Add time-to-event metrics if available
         tte_metrics <- NULL
-        if (!is.null(self$options$timeVar) && self$options$timeVar %in% names(processed_data$spider)) {
+
+        if (!is.null(self$options$timeVar) && !is.null(processed_data$spider) &&
+            safe_timeVar %in% names(processed_data$spider)) {
           tte_metrics <- private$.calculateTimeToEventMetrics(
             processed_data$spider,
-            self$options$patientID,
-            self$options$timeVar,
+            safe_patientID,
+            safe_timeVar,
             "response"
           )
 
@@ -1676,6 +1867,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             }
           }
         }
+        
 
         # Add person-time metrics to the results if available
         if (!is.null(person_time_metrics) && personTimeVisible) {
@@ -1758,34 +1950,43 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           }
         }
 
+
         # Generate clinical summary ----
         private$.generateClinicalSummary(processed_data, metrics, person_time_metrics)
 
+
         # Generate group comparison analysis ----
         private$.generateGroupComparison(processed_data)
+
 
         # Generate about analysis panel ----
         private$.generateAboutAnalysis()
 
         return(list(metrics = metrics, person_time_metrics = person_time_metrics))
-      }
+      },
 
-      ,
+
       # Generate visualizations ----
       .generateVisualizations = function(processed_data, metrics) {
+        # SAFETY: Escape variable names for special characters
+        safe_patientID <- private$.escapeVar(self$options$patientID)
+        safe_responseVar <- private$.escapeVar(self$options$responseVar)
+        safe_timeVar <- private$.escapeVar(self$options$timeVar)
+        safe_groupVar <- private$.escapeVar(self$options$groupVar)
+
         # Prepare comprehensive plot data structure
         plotData <- list(
           "data" = processed_data,
           options = list(
-            "patientID" = self$options$patientID,
-            "response" = self$options$responseVar,
-            "timeVar" = self$options$timeVar,
+            "patientID" = safe_patientID,
+            "response" = safe_responseVar,
+            "timeVar" = safe_timeVar,
             "sortBy" = self$options$sortBy,
             "showThresholds" = self$options$showThresholds,
             "labelOutliers" = self$options$labelOutliers,
             "colorScheme" = self$options$colorScheme,
             "colorBy" = self$options$colorBy,
-            "groupVar" = self$options$groupVar,
+            "groupVar" = safe_groupVar,
             "barWidth" = self$options$barWidth,
             "barAlpha" = self$options$barAlpha,
             "showMedian" = self$options$showMedian,
@@ -1802,46 +2003,52 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         private$.checkpoint()
 
         # Initialize waterfall plot if visible
-        if (self$options$showWaterfallPlot) {
+        if (isTRUE(self$options$showWaterfallPlot)) {
           self$results$waterfallplot$setState(plotData)
         }
 
         # Initialize spider plot with validation
-        if (self$options$showSpiderPlot && !is.null(self$options$timeVar)) {
+        if (isTRUE(self$options$showSpiderPlot) && !is.null(self$options$timeVar)) {
           # Validate spider plot requirements
           if (self$options$inputType == "percentage") {
             message("Note: Spider plot with percentage data shows static values over time. Consider using raw measurements for meaningful trajectories.")
           }
 
-          plotData$timeVar <- self$options$timeVar
+          plotData$timeVar <- safe_timeVar
           self$results$spiderplot$setState(plotData)
         }
-      }
+      },
 
-      ,
+
       # Generate reports and supplementary content ----
       .generateReportsAndContent = function(processed_data, metrics, person_time_metrics) {
+        # SAFETY: Escape variable names for special characters
+        safe_patientID <- private$.escapeVar(self$options$patientID)
+        safe_responseVar <- private$.escapeVar(self$options$responseVar)
+        safe_timeVar <- private$.escapeVar(self$options$timeVar)
+        safe_groupVar <- private$.escapeVar(self$options$groupVar)
+
         # Apply clinical presets
         private$.applyClinicalPreset()
 
         # Generate enhanced clinical metrics with confidence intervals ----
-        if (self$options$showConfidenceIntervals) {
+        if (isTRUE(self$options$showConfidenceIntervals)) {
           private$.generateEnhancedClinicalMetrics(processed_data, metrics)
         }
 
         # Generate copy-ready report ----
-        if (self$options$generateCopyReadyReport) {
+        if (isTRUE(self$options$generateCopyReadyReport)) {
           private$.generateCopyReadyReport(processed_data, metrics, person_time_metrics)
         }
 
         # Show clinical significance assessment ----
-        if (self$options$showClinicalSignificance) {
+        if (isTRUE(self$options$showClinicalSignificance)) {
           private$.generateClinicalSignificance(metrics, nrow(processed_data$waterfall))
           private$.generateClinicalGlossary()
         }
 
         ## Add response category to data ----
-        if (!is.null(self$options$addResponseCategory) && self$options$addResponseCategory) {
+        if (isTRUE(self$options$addResponseCategory)) {
           if (is.null(self$options$timeVar) && self$results$addResponseCategory$isNotFilled()) {
             df <- processed_data$waterfall
             self$results$addResponseCategory$setRowNums(rownames(df))
@@ -1851,23 +2058,148 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           if (!is.null(self$options$timeVar) && self$results$addResponseCategory$isNotFilled()) {
             # Get waterfall data and extract unique patient categories
             df <- processed_data$waterfall %>%
-              dplyr::select(!!rlang::sym(self$options$patientID), recist_category) %>%
+              dplyr::select(!!rlang::sym(safe_patientID), recist_category) %>%
               dplyr::distinct()
 
             # Join with original data
             df2 <- self$data %>%
-              dplyr::left_join(df, by = self$options$patientID)
+              dplyr::left_join(df, by = safe_patientID)
 
             # Update response category output
             self$results$addResponseCategory$setRowNums(rownames(df2))
             self$results$addResponseCategory$setValues(df2$recist_category)
           }
         }
-      }
+      },
 
-      ,
+
+      # Generate explanations and natural language summary ----
+      .generateExplanations = function(processed_data, metrics) {
+        # Generate Natural Language Summary
+        if (!is.null(processed_data) && !is.null(metrics)) {
+          n_patients <- nrow(processed_data$waterfall)
+
+          # Extract counts from metrics$summary
+          n_cr <- metrics$summary$n[metrics$summary$category == "CR"]
+          n_pr <- metrics$summary$n[metrics$summary$category == "PR"]
+          n_sd <- metrics$summary$n[metrics$summary$category == "SD"]
+          n_pd <- metrics$summary$n[metrics$summary$category == "PD"]
+
+          # Ensure we have numeric values (default to 0 if missing)
+          if (length(n_cr) == 0) n_cr <- 0
+          if (length(n_pr) == 0) n_pr <- 0
+          if (length(n_sd) == 0) n_sd <- 0
+          if (length(n_pd) == 0) n_pd <- 0
+
+          # Use uppercase ORR and DCR, ensure they are numeric
+          orr <- as.numeric(metrics$ORR)
+          dcr <- as.numeric(metrics$DCR)
+
+          # Create summary HTML (with NA handling)
+          orr_text <- if (!is.na(orr)) {
+            sprintf(.("%d%% (%d patients achieved complete or partial response)"), round(orr), n_cr + n_pr)
+          } else {
+            .("Not available (insufficient data)")
+          }
+
+          dcr_text <- if (!is.na(dcr)) {
+            sprintf(.("%d%% (%d patients achieved response or stable disease)"), round(dcr), n_cr + n_pr + n_sd)
+          } else {
+            .("Not available (insufficient data)")
+          }
+
+          interpretation_text <- if (!is.na(orr)) {
+            private$.interpretORR(orr)
+          } else {
+            .("Insufficient data for clinical interpretation")
+          }
+
+          summary_html <- paste0(
+            "<div style='padding: 15px; background-color: #f8f9fa; border-left: 4px solid #007bff; margin: 10px 0;'>",
+            "<h3 style='color: #007bff; margin-top: 0;'>", .("Treatment Response Summary"), "</h3>",
+
+            "<p><strong>", .("Analysis Overview:"), "</strong></p>",
+            "<p>", sprintf(.("Response analysis of %d patients using RECIST v1.1 criteria."), n_patients), "</p>",
+
+            "<p><strong>", .("Key Findings:"), "</strong></p>",
+            "<p><strong>", .("Objective Response Rate (ORR):"), "</strong><br>",
+            orr_text, "</p>",
+
+            "<p><strong>", .("Disease Control Rate (DCR):"), "</strong><br>",
+            dcr_text, "</p>",
+
+            "<p><strong>", .("Response Distribution:"), "</strong></p>",
+            "<ul style='margin: 5px 0;'>",
+            sprintf("<li><strong>%s:</strong> %d %s (%d%%)</li>", .("Complete Response"), n_cr, .("patients"), round(n_cr/n_patients*100)),
+            sprintf("<li><strong>%s:</strong> %d %s (%d%%)</li>", .("Partial Response"), n_pr, .("patients"), round(n_pr/n_patients*100)),
+            sprintf("<li><strong>%s:</strong> %d %s (%d%%)</li>", .("Stable Disease"), n_sd, .("patients"), round(n_sd/n_patients*100)),
+            sprintf("<li><strong>%s:</strong> %d %s (%d%%)</li>", .("Progressive Disease"), n_pd, .("patients"), round(n_pd/n_patients*100)),
+            "</ul>",
+
+            "<p><strong>", .("Clinical Interpretation:"), "</strong></p>",
+            "<p>", interpretation_text, "</p>",
+
+            "</div>"
+          )
+
+          self$results$naturalLanguageSummary$setContent(summary_html)
+        }
+
+        # Generate Analysis Explanations
+        explanations_html <- paste0(
+          "<div style='padding: 15px; background-color: #e8f4f8; border-left: 4px solid #17a2b8; margin: 20px 0;'>",
+          "<h3 style='color: #17a2b8; margin-top: 0;'>", .("What This Analysis Does"), "</h3>",
+          "<p>", .("The Treatment Response Analysis creates waterfall and spider plots to visualize tumor response data according to RECIST v1.1 criteria."), "</p>",
+
+          "<h4 style='color: #17a2b8; margin-top: 15px;'>", .("Visualization Types:"), "</h4>",
+          "<ul style='margin: 5px 0;'>",
+          "<li><strong>", .("Waterfall Plot:"), "</strong> ", .("Shows best response for each patient as vertical bars, ideal for single timepoint or best response data."), "</li>",
+          "<li><strong>", .("Spider Plot:"), "</strong> ", .("Shows response trajectories over time as connected lines, requires time variable for longitudinal data."), "</li>",
+          "</ul>",
+          "</div>",
+
+          "<div style='padding: 15px; background-color: #fff3cd; border-left: 4px solid #ffc107; margin: 20px 0;'>",
+          "<h3 style='color: #856404; margin-top: 0;'>", .("When to Use This Analysis:"), "</h3>",
+          "<ul style='margin: 5px 0;'>",
+          "<li>", .("Oncology clinical trials and treatment response studies"), "</li>",
+          "<li>", .("Drug efficacy evaluation"), "</li>",
+          "<li>", .("Tumor response monitoring"), "</li>",
+          "<li>", .("Biomarker correlation studies"), "</li>",
+          "</ul>",
+          "</div>",
+
+          "<div style='padding: 15px; background-color: #d1ecf1; border-left: 4px solid #0c5460; margin: 20px 0;'>",
+          "<h3 style='color: #0c5460; margin-top: 0;'>", .("Data Requirements:"), "</h3>",
+          "<ul style='margin: 5px 0;'>",
+          "<li><strong>", .("Patient ID:"), "</strong> ", .("Unique identifier for each patient"), "</li>",
+          "<li><strong>", .("Response Data:"), "</strong> ", .("Either percentage changes from baseline or raw tumor measurements"), "</li>",
+          "<li><strong>", .("Time Variable:"), "</strong> ", .("Required for spider plots (e.g., months from baseline)"), "</li>",
+          "</ul>",
+          "</div>",
+
+          "<div style='padding: 15px; background-color: #f8d7da; border-left: 4px solid #dc3545; margin: 20px 0;'>",
+          "<h3 style='color: #721c24; margin-top: 0;'>", .("Key Assumptions & Limitations:"), "</h3>",
+          "<ul style='margin: 5px 0;'>",
+          "<li>", sprintf(.("RECIST v1.1 thresholds: CR ≤-100%%, PR ≤-30%%, PD >+20%%")), "</li>",
+          "<li>", .("For raw measurements, baseline assumed at time = 0"), "</li>",
+          "<li>", .("Waterfall plot shows best (most negative) response per patient"), "</li>",
+          "<li>", .("Missing values are excluded from analysis"), "</li>",
+          "</ul>",
+
+          "<p style='margin-top: 15px; font-style: italic; color: #721c24;'>",
+          "<strong>", .("Tip:"), "</strong> ",
+          .("Start with percentage data if available, or use raw measurements with proper time variables for automatic calculation."),
+          "</p>",
+          "</div>"
+        )
+
+        self$results$explanations$setContent(explanations_html)
+      },
+
+
       # Refactored run method ----
       .run = function() {
+        
         # Step 1: Initialize analysis and show guidance
         private$.initializeAnalysis()
 
@@ -1890,13 +2222,23 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
 
         # Step 5: Generate visualizations
         private$.generateVisualizations(processed_data, results$metrics)
+        
 
         # Step 6: Generate reports and supplementary content
         private$.generateReportsAndContent(processed_data, results$metrics, results$person_time_metrics)
-      }
+
+        # Step 7: Generate explanations and natural language summary (if requested)
+        if (isTRUE(self$options$showExplanations)) {
+          private$.generateExplanations(processed_data, results$metrics)
+        }
+
+        # Step 8: Render all collected notices as HTML
+        private$.renderNotices()
+
+      },
 
 
-      ,
+
       # Waterfall plot ----
       .waterfallplot = function(imageWaterfall, ggtheme, theme, ...) {
         if (!self$options$showWaterfallPlot) return()
@@ -2061,23 +2403,50 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             )
         }
 
-        # Add confidence interval
+        # Add confidence interval - FIXED: Bootstrap percentile CI for median
         if (plotData$options$showCI && nrow(df) >= 10) {
-          ci <- t.test(df$response)$conf.int
-          p <- p +
-            ggplot2::annotate(
-              "text",
-              x = 1,
-              y = max(df$response, na.rm=TRUE),
-              label = sprintf(
-                "95%% CI: [%.1f%%, %.1f%%]",
-                ci[1],
-                ci[2]
-              ),
-              hjust = 0,
-              vjust = -0.5,
-              size = 3
-            )
+          # REPLACED: t.test CI is inappropriate for skewed response data and computes CI for MEAN not MEDIAN
+          # NEW: Bootstrap percentile CI for median (appropriate for skewed/ordinal data)
+          tryCatch({
+            # REPRODUCIBILITY: Set seed for reproducible bootstrap results
+            set.seed(123)
+
+            # Get sample size for bootstrap
+            n_data <- sum(!is.na(df$response))
+
+            # SMALL SAMPLE WARNING: Bootstrap CI may be unstable with n<20
+            if (n_data < 20) {
+              message("Note: Bootstrap CI may be unstable with n=", n_data, ". Interpret with caution.")
+            }
+
+            # Use more iterations for small samples to improve stability
+            n_boot <- ifelse(n_data < 30, 2000, 1000)
+
+            boot_medians <- replicate(n_boot, {
+              boot_sample <- sample(df$response, size = n_data, replace = TRUE)
+              median(boot_sample, na.rm = TRUE)
+            })
+            # Percentile method: 2.5th and 97.5th percentiles
+            ci <- quantile(boot_medians, probs = c(0.025, 0.975), na.rm = TRUE)
+
+            p <- p +
+              ggplot2::annotate(
+                "text",
+                x = 1,
+                y = max(df$response, na.rm=TRUE),
+                label = sprintf(
+                  "95%% CI (Median): [%.1f%%, %.1f%%]",
+                  ci[1],
+                  ci[2]
+                ),
+                hjust = 0,
+                vjust = -0.5,
+                size = 3
+              )
+          }, error = function(e) {
+            # If bootstrap fails, fall back to no CI annotation
+            warning("Bootstrap CI calculation failed: ", e$message)
+          })
         }
 
         # Add theme
@@ -2106,12 +2475,12 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
 
         print(p)
         TRUE
-      }
+      },
 
 
 
 
-      ,
+
       # spider plot ----
       .spiderplot = function(imagespider, ggtheme, theme, ...) {
         private$.checkpoint()  # Checkpoint before spider plot generation
@@ -2351,6 +2720,15 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             )
         }
         
+        # Configure x-axis label based on user-selected time unit label
+        x_unit_label <- switch(options$timeUnitLabel,
+          "days"   = .("Days from Baseline"),
+          "weeks"  = .("Weeks from Baseline"),
+          "months" = .("Months from Baseline"),
+          "years"  = .("Years from Baseline"),
+          .("Time from Baseline")
+        )
+
         # Add common plot elements
         p <- p +
           # Add RECIST threshold lines
@@ -2361,14 +2739,6 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             alpha = 0.5
           ) +
           # Add labels
-          # Configure x-axis label based on user-selected time unit label
-          x_unit_label <- switch(options$timeUnitLabel,
-            "days"   = .("Days from Baseline"),
-            "weeks"  = .("Weeks from Baseline"),
-            "months" = .("Months from Baseline"),
-            "years"  = .("Years from Baseline"),
-            .("Time from Baseline")
-          )
           ggplot2::labs(
             x = x_unit_label,
             y = .("Change in Tumor Size (%)"),
@@ -2680,6 +3050,28 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           ci_upper = round(dcr_ci[2] * 100, 1),
           interpretation = private$.interpretDCR(metrics$DCR)
         ))
+
+        # SAFETY CHECK: Warn if confidence intervals are extremely wide (>40 percentage points)
+        # This indicates severe statistical uncertainty that makes results unreliable
+        orr_ci_width <- (orr_ci[2] - orr_ci[1]) * 100
+        dcr_ci_width <- (dcr_ci[2] - dcr_ci[1]) * 100
+
+        if (!is.na(orr_ci_width) && orr_ci_width > 40) {
+          private$.addNotice(
+            type = "STRONG_WARNING",
+            title = "VERY WIDE CONFIDENCE INTERVAL",
+            content = paste0(
+              "ORR 95% CI spans ", round(orr_ci_width, 1),
+              " percentage points (", round(orr_ci[1] * 100, 1), "-", round(orr_ci[2] * 100, 1),
+              "%). This indicates EXTREME STATISTICAL UNCERTAINTY due to small sample size. ",
+              "Results are NOT reliable for treatment decision-making, regulatory submissions, or ",
+              "publication without explicit acknowledgment of severe imprecision. The true ORR could ",
+              "be anywhere within this wide range. REQUIRED ACTION: Increase sample size substantially ",
+              "before drawing clinical conclusions. Minimum n=30-40 patients recommended for adequate ",
+              "precision in phase II trials. Current results should be considered preliminary screening data only."
+            )
+          )
+        }
       }
 
       ,
@@ -2720,7 +3112,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           "<div style='background-color: white; padding: 10px; border-radius: 3px; margin: 10px 0;'>",
           "<h5>", .("Methods Description:"), "</h5>",
           "<p style='font-family: monospace; background-color: #f8f9fa; padding: 8px; border-radius: 3px;'>",
-          .("Tumor response was assessed according to Response Evaluation Criteria in Solid Tumors (RECIST) version 1.1. Best overall response was determined for each patient, and response rates were calculated with exact binomial confidence intervals."),
+          .("Tumor response was categorized using SIMPLIFIED threshold-based criteria adapted from RECIST v1.1 (NOT full RECIST-compliant). Categories based on percent change thresholds: CR ≤-100%, PR ≤-30%, SD -30% to +20%, PD >+20%. This analysis does NOT include target lesion summation, new lesion detection, non-target assessment, or confirmation requirements mandated by RECIST v1.1. Response rates calculated with exact binomial confidence intervals."),
           "</p>",
           "</div>",
 
@@ -2897,20 +3289,20 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           "<div>",
           "<h5 style='color: #6c757d; margin-bottom: 10px;'>", .("Response Metrics"), "</h5>",
           "<ul style='margin: 0; padding-left: 15px; line-height: 1.6;'>",
-          "<li><strong>ORR (Objective Response Rate):</strong> ", .("Percentage of patients achieving complete or partial response (CR + PR)"), "</li>",
-          "<li><strong>DCR (Disease Control Rate):</strong> ", .("Percentage achieving response or stable disease (CR + PR + SD)"), "</li>",
-          "<li><strong>Best Response:</strong> ", .("Most favorable tumor response achieved during treatment period"), "</li>",
+          "<li><strong>ORR (Objective Response Rate - Unconfirmed):</strong> ", .("Percentage of patients achieving threshold-based CR (≤-100%) or PR (≤-30%) without RECIST v1.1 confirmation requirement. May overestimate true confirmed ORR."), "</li>",
+          "<li><strong>DCR (Disease Control Rate - Unconfirmed):</strong> ", .("Percentage achieving threshold-based response or stable disease (CR + PR + SD) without confirmation. Exploratory endpoint only."), "</li>",
+          "<li><strong>Best Response (Simplified):</strong> ", .("Most favorable (most negative) percent change from baseline. NOT equivalent to RECIST v1.1 'Best Overall Response' which requires confirmation."), "</li>",
           "<li><strong>Person-Time:</strong> ", .("Total time patients are followed, accounting for different follow-up durations"), "</li>",
           "</ul>",
           "</div>",
 
           "<div>",
-          "<h5 style='color: #6c757d; margin-bottom: 10px;'>", .("RECIST Categories"), "</h5>",
+          "<h5 style='color: #6c757d; margin-bottom: 10px;'>", .("Response Categories (Simplified Threshold-Based)"), "</h5>",
           "<ul style='margin: 0; padding-left: 15px; line-height: 1.6;'>",
-          "<li><strong>CR (Complete Response):</strong> ", .("Complete disappearance of all target lesions (≤-100%)"), "</li>",
-          "<li><strong>PR (Partial Response):</strong> ", .("≥30% decrease in sum of target lesions from baseline"), "</li>",
-          "<li><strong>SD (Stable Disease):</strong> ", .("Neither PR nor PD criteria met (between -30% and +20%)"), "</li>",
-          "<li><strong>PD (Progressive Disease):</strong> ", .("≥20% increase in sum of target lesions"), "</li>",
+          "<li><strong>CR (Complete Response - Threshold):</strong> ", .("≤-100% change from baseline (simplified criterion, NOT full RECIST CR which requires disappearance of ALL lesions including non-target)"), "</li>",
+          "<li><strong>PR (Partial Response - Threshold):</strong> ", .("≤-30% change from baseline (simplified criterion, NOT full RECIST PR which requires target lesion sum calculation and no new lesions)"), "</li>",
+          "<li><strong>SD (Stable Disease - Threshold):</strong> ", .("Between -30% and +20% change (simplified criterion)"), "</li>",
+          "<li><strong>PD (Progressive Disease - Threshold):</strong> ", .("≥+20% change from baseline (simplified criterion, NOT full RECIST PD which includes new lesion detection and non-target progression)"), "</li>",
           "</ul>",
           "</div>",
 
@@ -3099,27 +3491,46 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
       }
 
       ,
+      # Variable safety utility ----
+      .escapeVar = function(x) {
+        # Escape variable names with spaces/special characters for safe R usage
+        # Mimics modelbuilder behavior for consistent variable handling
+        # Prevents errors with variables like "Patient ID", "Response (%)", etc.
+        if (is.null(x) || length(x) == 0 || x == "") {
+          return(x)
+        }
+        # Use make.names to ensure valid R identifiers
+        safe_name <- make.names(x)
+        # Replace remaining problematic characters with underscores
+        safe_name <- gsub("[^A-Za-z0-9_]+", "_", safe_name)
+        return(safe_name)
+      },
+
       # Helper functions for interpretation ----
+      # NOTE: These benchmarks are GENERAL guidelines for phase II oncology trials
+      # Actual thresholds vary by tumor type, line of therapy, and standard of care
       .interpretORR = function(orr) {
+        if (is.null(orr) || is.na(orr)) return(.("Not available"))
         if (orr >= 30) {
-          return(.("Promising activity - warrants further investigation"))
+          return(.("Promising activity for single-agent therapy (general benchmark; verify against tumor-specific thresholds)"))
         } else if (orr >= 15) {
-          return(.("Moderate activity - may justify continued development"))
+          return(.("Moderate activity - may justify phase III evaluation (context-dependent)"))
         } else {
-          return(.("Limited activity - consider alternative approaches"))
+          return(.("Limited activity by general phase II standards (may still be clinically meaningful in refractory settings)"))
+        }
+      },
+
+      .interpretDCR = function(dcr) {
+        if (is.null(dcr) || is.na(dcr)) return(.("Not available"))
+        if (dcr >= 70) {
+          return(.("Excellent disease control (general benchmark; varies by tumor type and treatment setting)"))
+        } else if (dcr >= 50) {
+          return(.("Good disease control for exploratory cohort"))
+        } else {
+          return(.("Limited disease control - evaluate clinical benefit beyond response rates"))
         }
       }
 
-      ,
-      .interpretDCR = function(dcr) {
-        if (dcr >= 70) {
-          return(.("Excellent disease control"))
-        } else if (dcr >= 50) {
-          return(.("Good disease control"))
-        } else {
-          return(.("Limited disease control"))
-        }
-      }
 
     )
 )

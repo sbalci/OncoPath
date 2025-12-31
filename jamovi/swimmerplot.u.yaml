@@ -4,24 +4,20 @@ jus: '3.0'
 stage: 0
 compilerMode: tame
 children:
-  # === QUICK SETUP & PRESETS ===
-  # DISABLED: Clinical presets only affect text interpretation, not calculations
-  # Will be re-enabled after enhanced implementation
+  # # === QUICK SETUP WIZARD ===
   # - type: CollapseBox
-  #   label: "🚀 Quick Setup & Clinical Presets"
+  #   label: "Quick Setup Wizard"
   #   collapsed: false
   #   children:
   #     - type: LayoutBox
   #       margin: large
   #       children:
-  #         - type: ComboBox
-  #           name: clinicalPreset
-  #         - type: CheckBox
-  #           name: guidedMode
+  #         - type: Label
+  #           label: "Getting Started: Required Variables - Patient ID, Start Time, End Time. Optional Enhancements - Response Variable (for ORR/DCR), Censoring Variable (for median follow-up), Grouping Variable (for comparisons), Milestones (key clinical events), Event Markers (additional timeline events)."
 
   # === CORE DATA VARIABLES ===
   - type: CollapseBox
-    label: "📊 Core Data Variables"
+    label: "Core Data Variables"
     collapsed: false
     children:
       - type: VariableSupplier
@@ -56,10 +52,24 @@ children:
                 name: responseVar
                 maxItemCount: 1
                 isTarget: true
+          - type: TargetLayoutBox
+            label: "Censoring/Event Status (Optional)"
+            children:
+              - type: VariablesListBox
+                name: censorVar
+                maxItemCount: 1
+                isTarget: true
+          - type: TargetLayoutBox
+            label: "Grouping Variable (Optional)"
+            children:
+              - type: VariablesListBox
+                name: groupVar
+                maxItemCount: 1
+                isTarget: true
 
   # === TIME & DATE SETTINGS ===
   - type: CollapseBox
-    label: "⏰ Time & Date Settings"
+    label: "Time & Date Settings"
     collapsed: true
     children:
       - type: LayoutBox
@@ -80,7 +90,7 @@ children:
 
   # === MILESTONES ===
   - type: CollapseBox
-    label: "🎯 Clinical Milestones"
+    label: "Clinical Milestones"
     collapsed: true
     children:
       - type: LayoutBox
@@ -93,8 +103,7 @@ children:
         margin: large
         children:
           - type: Label
-            label: "<b>Milestone Names</b>"
-            format: html
+            label: "Milestone Names"
             children:
               - type: TextBox
                 name: milestone1Name
@@ -120,8 +129,7 @@ children:
         margin: large
         children:
           - type: Label
-            label: "<b>Milestone Times/Dates</b>"
-            format: html
+            label: "Milestone Times/Dates"
             fitToGrid: true
             stretchFactor: 1
       - type: VariableSupplier
@@ -167,7 +175,7 @@ children:
 
   # === EVENT MARKERS ===
   - type: CollapseBox
-    label: "🔵 Event Markers"
+    label: "Event Markers"
     collapsed: true
     children:
       - type: LayoutBox
@@ -196,7 +204,7 @@ children:
 
   # === VISUALIZATION OPTIONS ===
   - type: CollapseBox
-    label: "🎨 Visualization Options"
+    label: "Visualization Options"
     collapsed: true
     children:
       - type: LayoutBox
@@ -207,6 +215,8 @@ children:
             children:
               - type: ComboBox
                 name: plotTheme
+              - type: ComboBox
+                name: colorPalette
               - type: CheckBox
                 name: showLegend
               - type: TextBox
@@ -234,7 +244,7 @@ children:
 
   # === SORTING & DISPLAY ===
   - type: CollapseBox
-    label: "📋 Sorting & Display Options"
+    label: "Sorting & Display Options"
     collapsed: true
     children:
       - type: LayoutBox
@@ -256,7 +266,7 @@ children:
 
   # === ANALYSIS OPTIONS ===
   - type: CollapseBox
-    label: "📈 Analysis & Interpretation"
+    label: "Analysis & Interpretation"
     collapsed: true
     children:
       - type: LayoutBox
@@ -283,7 +293,7 @@ children:
 
   # === EXPORT OPTIONS ===
   - type: CollapseBox
-    label: "💾 Export Options"
+    label: "Export Options"
     collapsed: true
     children:
       - type: LayoutBox

@@ -4,7 +4,7 @@ title: Treatment Response Analysis
 menuGroup: OncoPath
 menuSubgroup: 'Patient Follow-Up Plots'
 menuSubtitle: 'Waterfall Plot, Spider Plot'
-version: '0.0.31'
+version: '0.0.32'
 jas: '1.2'
 
 description:
@@ -12,34 +12,6 @@ description:
         Creates waterfall and spider plots to analyze tumor response data following RECIST criteria.
         Supports both raw tumor measurements and pre-calculated percentage changes.
         Provides comprehensive response analysis including ORR, DCR, and person-time metrics.
-    R:
-        dontrun: true
-        usage: |
-            # Example 1: Percentage data
-            data_pct <- data.frame(
-                PatientID = paste0("PT", 1:5),
-                Response = c(-60, -35, -10, 15, 45)
-            )
-            waterfall(
-                data = data_pct,
-                patientID = "PatientID",
-                responseVar = "Response",
-                inputType = "percentage"
-            )
-            
-            # Example 2: Raw measurements
-            data_raw <- data.frame(
-                PatientID = rep(paste0("PT", 1:3), each = 3),
-                Time = rep(c(0, 2, 4), 3),
-                Measurement = c(50, 30, 25, 60, 45, 40, 55, 50, 48)
-            )
-            waterfall(
-                data = data_raw,
-                patientID = "PatientID",
-                responseVar = "Measurement",
-                timeVar = "Time",
-                inputType = "raw"
-            )
 
 options:
     - name: data
@@ -308,7 +280,7 @@ options:
     - name: showSpiderPlot
       title: Show Spider Plot
       type: Bool
-      default: true
+      default: false
       description:
           R: >
             Display spider plot showing response trajectories over time (requires time variable).
@@ -428,6 +400,22 @@ options:
             • Provides contextual help and best practice recommendations
             • Includes misuse detection and warnings
             Recommended for new users or complex analyses
+
+    - name: showExplanations
+      title: Show Analysis Explanations
+      type: Bool
+      default: false
+      description:
+          R: >
+            Display comprehensive explanation of what this analysis does, when to use it,
+            data requirements, and key assumptions/limitations
+          jamovi: >
+            Show detailed explanations at the bottom of results:
+            • What this analysis does (waterfall and spider plots)
+            • When to use this analysis (clinical trials, response monitoring)
+            • Data requirements (patient ID, response data, time variable)
+            • Key assumptions and limitations (RECIST thresholds, baseline handling)
+            Recommended for new users or when documenting analysis methods
 
     - name: addResponseCategory
       title: Add Response Category to Data

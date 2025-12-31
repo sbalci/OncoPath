@@ -10,6 +10,8 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             startTime = NULL,
             endTime = NULL,
             responseVar = NULL,
+            censorVar = NULL,
+            groupVar = NULL,
             timeType = "raw",
             dateFormat = "ymd",
             timeUnit = "months",
@@ -31,6 +33,7 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             laneWidth = 3,
             markerSize = 5,
             plotTheme = "ggswim",
+            colorPalette = "default",
             showLegend = TRUE,
             referenceLines = "none",
             customReferenceTime = 12,
@@ -86,7 +89,30 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "ordinal"),
                 permitted=list(
                     "factor"),
-                required=FALSE)
+                required=FALSE,
+                default=NULL)
+            private$..censorVar <- jmvcore::OptionVariable$new(
+                "censorVar",
+                censorVar,
+                suggested=list(
+                    "nominal",
+                    "ordinal"),
+                permitted=list(
+                    "factor",
+                    "numeric"),
+                required=FALSE,
+                default=NULL)
+            private$..groupVar <- jmvcore::OptionVariable$new(
+                "groupVar",
+                groupVar,
+                suggested=list(
+                    "nominal",
+                    "ordinal"),
+                permitted=list(
+                    "factor",
+                    "numeric"),
+                required=FALSE,
+                default=NULL)
             private$..timeType <- jmvcore::OptionList$new(
                 "timeType",
                 timeType,
@@ -237,6 +263,15 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "ggswim_dark",
                     "minimal"),
                 default="ggswim")
+            private$..colorPalette <- jmvcore::OptionList$new(
+                "colorPalette",
+                colorPalette,
+                options=list(
+                    "default",
+                    "viridis",
+                    "contrast",
+                    "monochrome"),
+                default="default")
             private$..showLegend <- jmvcore::OptionBool$new(
                 "showLegend",
                 showLegend,
@@ -309,6 +344,8 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$.addOption(private$..startTime)
             self$.addOption(private$..endTime)
             self$.addOption(private$..responseVar)
+            self$.addOption(private$..censorVar)
+            self$.addOption(private$..groupVar)
             self$.addOption(private$..timeType)
             self$.addOption(private$..dateFormat)
             self$.addOption(private$..timeUnit)
@@ -330,6 +367,7 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$.addOption(private$..laneWidth)
             self$.addOption(private$..markerSize)
             self$.addOption(private$..plotTheme)
+            self$.addOption(private$..colorPalette)
             self$.addOption(private$..showLegend)
             self$.addOption(private$..referenceLines)
             self$.addOption(private$..customReferenceTime)
@@ -350,6 +388,8 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         startTime = function() private$..startTime$value,
         endTime = function() private$..endTime$value,
         responseVar = function() private$..responseVar$value,
+        censorVar = function() private$..censorVar$value,
+        groupVar = function() private$..groupVar$value,
         timeType = function() private$..timeType$value,
         dateFormat = function() private$..dateFormat$value,
         timeUnit = function() private$..timeUnit$value,
@@ -371,6 +411,7 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         laneWidth = function() private$..laneWidth$value,
         markerSize = function() private$..markerSize$value,
         plotTheme = function() private$..plotTheme$value,
+        colorPalette = function() private$..colorPalette$value,
         showLegend = function() private$..showLegend$value,
         referenceLines = function() private$..referenceLines$value,
         customReferenceTime = function() private$..customReferenceTime$value,
@@ -390,6 +431,8 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         ..startTime = NA,
         ..endTime = NA,
         ..responseVar = NA,
+        ..censorVar = NA,
+        ..groupVar = NA,
         ..timeType = NA,
         ..dateFormat = NA,
         ..timeUnit = NA,
@@ -411,6 +454,7 @@ swimmerplotOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         ..laneWidth = NA,
         ..markerSize = NA,
         ..plotTheme = NA,
+        ..colorPalette = NA,
         ..showLegend = NA,
         ..referenceLines = NA,
         ..customReferenceTime = NA,
@@ -431,6 +475,9 @@ swimmerplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
     "swimmerplotResults",
     inherit = jmvcore::Group,
     active = list(
+        errorNotice = function() private$.items[["errorNotice"]],
+        warningNotice = function() private$.items[["warningNotice"]],
+        infoNotice = function() private$.items[["infoNotice"]],
         instructions = function() private$.items[["instructions"]],
         plot = function() private$.items[["plot"]],
         summary = function() private$.items[["summary"]],
@@ -443,6 +490,7 @@ swimmerplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
         exportInfo = function() private$.items[["exportInfo"]],
         validationReport = function() private$.items[["validationReport"]],
         advancedMetrics = function() private$.items[["advancedMetrics"]],
+        groupComparisonTest = function() private$.items[["groupComparisonTest"]],
         clinicalGlossary = function() private$.items[["clinicalGlossary"]],
         copyReadyReport = function() private$.items[["copyReadyReport"]],
         aboutAnalysis = function() private$.items[["aboutAnalysis"]]),
@@ -456,6 +504,21 @@ swimmerplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                 refs=list(
                     "ClinicoPathJamoviModule",
                     "ggswim"))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="errorNotice",
+                title="",
+                visible=FALSE))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="warningNotice",
+                title="",
+                visible=FALSE))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="infoNotice",
+                title="",
+                visible=FALSE))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="instructions",
@@ -473,6 +536,7 @@ swimmerplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "startTime",
                     "endTime",
                     "responseVar",
+                    "censorVar",
                     "timeType",
                     "dateFormat",
                     "timeUnit",
@@ -559,7 +623,7 @@ swimmerplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                         `type`="number"),
                     list(
                         `name`="incidence_rate", 
-                        `title`="Incidence Rate", 
+                        `title`="Follow-up Density", 
                         `type`="number")),
                 clearWith=list(
                     "patientID",
@@ -689,6 +753,10 @@ swimmerplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                         `title`="Value", 
                         `type`="number"),
                     list(
+                        `name`="confidence_interval", 
+                        `title`="95% CI", 
+                        `type`="text"),
+                    list(
                         `name`="metric_unit", 
                         `title`="Unit", 
                         `type`="text"),
@@ -703,6 +771,34 @@ swimmerplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "responseVar",
                     "timeUnit",
                     "personTimeAnalysis")))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="groupComparisonTest",
+                title="Group Comparison Statistical Tests",
+                visible="(groupVar)",
+                rows=0,
+                columns=list(
+                    list(
+                        `name`="comparison", 
+                        `title`="Comparison", 
+                        `type`="text"),
+                    list(
+                        `name`="test_statistic", 
+                        `title`="Test Statistic", 
+                        `type`="text"),
+                    list(
+                        `name`="p_value", 
+                        `title`="P-value", 
+                        `type`="number", 
+                        `format`="zto,pvalue"),
+                    list(
+                        `name`="interpretation", 
+                        `title`="Interpretation", 
+                        `type`="text")),
+                clearWith=list(
+                    "patientID",
+                    "responseVar",
+                    "groupVar")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="clinicalGlossary",
@@ -736,7 +832,7 @@ swimmerplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "OncoPath",
                 name = "swimmerplot",
-                version = c(0,0,31),
+                version = c(0,0,32),
                 options = options,
                 results = swimmerplotResults$new(options=options),
                 data = data,
@@ -790,6 +886,14 @@ swimmerplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param endTime Time/date when observation/treatment ended.
 #' @param responseVar Optional variable for response types (e.g., CR, PR, SD,
 #'   PD) to color lanes.
+#' @param censorVar Optional variable indicating censoring status for ongoing
+#'   treatment arrows. Use 0/FALSE/"censored"/"alive" for ongoing patients
+#'   (shows arrow), or 1/TRUE/"event"/"dead" for completed follow-up (no arrow).
+#'   If not provided, arrows are drawn for patients at the latest time point.
+#' @param groupVar Optional grouping variable for comparing response rates
+#'   between patient groups (e.g., treatment arms, disease subtypes). When
+#'   specified, Fisher's exact tests compare ORR and DCR between groups. Groups
+#'   are also shown in separate colors.
 #' @param timeType Select whether time values are raw numbers or dates/times.
 #' @param dateFormat Select the date/time format in your data (only used when
 #'   Time Input Type is Date/Time).
@@ -816,6 +920,10 @@ swimmerplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param laneWidth Width/thickness of patient timeline lanes.
 #' @param markerSize Size of event markers and milestone markers.
 #' @param plotTheme Visual theme for the swimmer plot.
+#' @param colorPalette Select color palette for response categories and
+#'   groups. Colorblind Safe uses perceptually uniform colors distinguishable by
+#'   all color vision types. High Contrast is optimized for projectors and
+#'   printing. Monochrome ensures clarity in grayscale publications.
 #' @param showLegend Whether to display the plot legend.
 #' @param referenceLines Add reference time lines to the plot for clinical
 #'   context.
@@ -845,6 +953,9 @@ swimmerplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   metrics.
 #' @return A results object containing:
 #' \tabular{llllll}{
+#'   \code{results$errorNotice} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$warningNotice} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$infoNotice} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$instructions} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$summary} \tab \tab \tab \tab \tab a table \cr
@@ -857,6 +968,7 @@ swimmerplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$exportInfo} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$validationReport} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$advancedMetrics} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$groupComparisonTest} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$clinicalGlossary} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$copyReadyReport} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$aboutAnalysis} \tab \tab \tab \tab \tab a html \cr
@@ -874,7 +986,9 @@ swimmerplot <- function(
     patientID,
     startTime,
     endTime,
-    responseVar,
+    responseVar = NULL,
+    censorVar = NULL,
+    groupVar = NULL,
     timeType = "raw",
     dateFormat = "ymd",
     timeUnit = "months",
@@ -896,6 +1010,7 @@ swimmerplot <- function(
     laneWidth = 3,
     markerSize = 5,
     plotTheme = "ggswim",
+    colorPalette = "default",
     showLegend = TRUE,
     referenceLines = "none",
     customReferenceTime = 12,
@@ -918,6 +1033,8 @@ swimmerplot <- function(
     if ( ! missing(startTime)) startTime <- jmvcore::resolveQuo(jmvcore::enquo(startTime))
     if ( ! missing(endTime)) endTime <- jmvcore::resolveQuo(jmvcore::enquo(endTime))
     if ( ! missing(responseVar)) responseVar <- jmvcore::resolveQuo(jmvcore::enquo(responseVar))
+    if ( ! missing(censorVar)) censorVar <- jmvcore::resolveQuo(jmvcore::enquo(censorVar))
+    if ( ! missing(groupVar)) groupVar <- jmvcore::resolveQuo(jmvcore::enquo(groupVar))
     if ( ! missing(milestone1Date)) milestone1Date <- jmvcore::resolveQuo(jmvcore::enquo(milestone1Date))
     if ( ! missing(milestone2Date)) milestone2Date <- jmvcore::resolveQuo(jmvcore::enquo(milestone2Date))
     if ( ! missing(milestone3Date)) milestone3Date <- jmvcore::resolveQuo(jmvcore::enquo(milestone3Date))
@@ -933,6 +1050,8 @@ swimmerplot <- function(
             `if`( ! missing(startTime), startTime, NULL),
             `if`( ! missing(endTime), endTime, NULL),
             `if`( ! missing(responseVar), responseVar, NULL),
+            `if`( ! missing(censorVar), censorVar, NULL),
+            `if`( ! missing(groupVar), groupVar, NULL),
             `if`( ! missing(milestone1Date), milestone1Date, NULL),
             `if`( ! missing(milestone2Date), milestone2Date, NULL),
             `if`( ! missing(milestone3Date), milestone3Date, NULL),
@@ -950,6 +1069,8 @@ swimmerplot <- function(
         startTime = startTime,
         endTime = endTime,
         responseVar = responseVar,
+        censorVar = censorVar,
+        groupVar = groupVar,
         timeType = timeType,
         dateFormat = dateFormat,
         timeUnit = timeUnit,
@@ -971,6 +1092,7 @@ swimmerplot <- function(
         laneWidth = laneWidth,
         markerSize = markerSize,
         plotTheme = plotTheme,
+        colorPalette = colorPalette,
         showLegend = showLegend,
         referenceLines = referenceLines,
         customReferenceTime = customReferenceTime,
