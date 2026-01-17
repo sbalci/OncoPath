@@ -1,3 +1,111 @@
+# OncoPath 0.0.32.64 (2025-12-31)
+
+## Major New Features
+
+### Stage Migration Analysis Tools
+- **NEW**: Comprehensive suite of statistical helper functions for stage migration analysis
+- Advanced discrimination and reclassification metrics for comparing staging systems
+- Designed for cancer staging research and prognostic model evaluation
+- Supports survival analysis with Cox proportional hazards models
+
+### Advanced Discrimination Metrics
+- **Concordance Index (C-index)**: Paired comparison of staging system discrimination
+- **Bootstrap Validation**: Robust C-index comparison accounting for data correlation
+  - Configurable bootstrap replicates (default: 200)
+  - Correlation-aware variance estimation for dependent staging systems
+  - Automatic convergence handling and error recovery
+- **Confidence Intervals**: Both analytical and bootstrap-based 95% CI estimation
+- **Statistical Testing**: Two-sided hypothesis testing for C-index improvement
+
+### Reclassification Metrics
+- **Net Reclassification Improvement (NRI)**:
+  - Time-dependent NRI calculation at multiple time points
+  - Separate event and non-event reclassification statistics
+  - Risk category-based patient stratification (tertiles by default)
+  - Variance estimation with confidence intervals and p-values
+- **Integrated Discrimination Improvement (IDI)**:
+  - Discrimination slope comparison between staging systems
+  - Bootstrap validation option for robust inference
+  - Separate discrimination for events and non-events
+  - Direct probability-based assessment
+
+### Model Comparison Statistics
+- **Information Criteria**: AIC and BIC for both staging systems with improvement metrics
+- **Likelihood Ratio Tests**:
+  - Combined model testing for incremental value
+  - Individual model likelihood ratio statistics
+  - Chi-square test statistics with degrees of freedom and p-values
+- **Linear Trend Analysis**:
+  - Wald tests for ordinal staging progression
+  - Automatic handling of categorical and ordinal stage variables
+  - Separate trend tests for old and new staging systems
+
+### Pseudo R² Measures
+- **Multiple Pseudo R² Variants**:
+  - **McFadden R²**: Log-likelihood ratio measure
+  - **Adjusted McFadden R²**: Penalized for model complexity
+  - **Cox-Snell R²**: Exponential transformation approach
+  - **Nagelkerke R²**: Normalized Cox-Snell (0-1 range)
+  - **Royston R²**: Placeholder for future implementation
+- All measures calculated for both staging systems with improvement deltas
+- Robust handling of edge cases (zero log-likelihoods, division by zero)
+
+## Technical Improvements
+
+### Statistical Robustness
+- **Correlation-Aware Variance Estimation**:
+  - Spearman correlation coefficient for linear predictor correlation
+  - Covariance adjustment for paired C-index comparisons
+  - Conservative variance bounds (non-negative constraint)
+- **Bootstrap Methods for Correlated Data**:
+  - Stratified sampling preserving event/non-event ratios
+  - Percentile-based confidence intervals
+  - Automatic outlier detection and removal
+  - Progress checkpoint callbacks for long-running analyses
+
+### Error Handling and Validation
+- Comprehensive try-catch blocks throughout all functions
+- Graceful degradation with informative error messages
+- Automatic handling of:
+  - Model convergence failures in bootstrap samples
+  - Zero cells in contingency tables
+  - Insufficient sample sizes
+  - Missing or invalid data
+- Validation of minimum sample requirements for reliable inference
+
+### Flexible Staging System Support
+- **Categorical Staging**: Nominal categories without ordering assumptions
+- **Ordinal Staging**: Ordered stages with linear trend analysis
+- **Mixed Systems**: Comparison between different staging paradigms
+- Automatic detection of stage levels and appropriate statistical tests
+- Support for varying numbers of stages between old and new systems
+
+## Dependencies
+
+### Updated Imports
+- Enhanced `survival` package utilization for Cox models and concordance
+- Extended `Hmisc` usage for survival correlation metrics (`rcorrp.cens`)
+- `boot` package integration for bootstrap confidence intervals
+- Comprehensive `stats` imports for statistical distributions and tests
+
+## Internal Improvements
+- Modular helper function architecture for maintainability
+- Consistent naming conventions (`stagemigration_*` prefix)
+- Progress callback support for computationally intensive operations
+- Null coalescing operator (`%||%`) for default parameter handling
+- Safe mathematical operations with bounds checking
+
+## Use Cases
+
+These stage migration tools are designed for:
+- **Cancer Research**: Evaluating new TNM staging editions (e.g., AJCC 7th vs. 8th edition)
+- **Prognostic Models**: Comparing traditional staging with molecular or imaging-based classifiers
+- **Clinical Guidelines**: Evidence-based assessment of staging system updates
+- **Meta-Research**: Systematic evaluation of staging system performance across studies
+- **Quality Improvement**: Hospital-level assessment of staging accuracy and clinical impact
+
+---
+
 # OncoPath 0.0.32 (2025-10-09)
 
 ## Documentation Improvements

@@ -4,12 +4,13 @@ title: Treatment Response Analysis
 menuGroup: OncoPath
 menuSubgroup: 'Patient Follow-Up Plots'
 menuSubtitle: 'Waterfall Plot, Spider Plot'
-version: '0.0.32'
+version: '0.0.33'
 jas: '1.2'
 
 description:
-    main: >
+    main: |
         Creates waterfall and spider plots to analyze tumor response data following RECIST criteria.
+        
         Supports both raw tumor measurements and pre-calculated percentage changes.
         Provides comprehensive response analysis including ORR, DCR, and person-time metrics.
 

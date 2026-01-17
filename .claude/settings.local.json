@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(Rscript:*)"
+      "Bash(Rscript:*)",
+      "Bash(grep:*)",
+      "Bash(wc:*)",
+      "Bash(git -C /Users/serdarbalci/Documents/GitHub/OncoPath log --oneline)",
+      "Skill(scientific-writing)"
     ],
     "deny": [],
     "ask": []
