@@ -1,2 +1,15 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.claude$
+^\.github$
+^vignettes$
+^docs$
+^build$
+^_pkgdown\.yml$
+^CITATION\.cff$
+^.*\.code-workspace$
+^.*\.jmo$
+^README\.Rmd$
+^README\.html$
+^jamovi$
+data/.*\.omv$

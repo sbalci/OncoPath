@@ -112,16 +112,15 @@ reference:
     - starts_with("not-in")
     - "%>%"
 
-  - title: "Print Methods"
-    desc: "Custom print methods"
+  - title: "HTML Utilities"
+    desc: "HTML output utilities"
     contents:
-    - print.sensSpecTable
+    - sensSpecTableHTML
 
   - title: "Package Information"
     desc: "Package startup and information"
     contents:
     - clinicopath_startup_message
-    - hello
 
 footer:
   structure:
