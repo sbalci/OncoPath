@@ -1,7 +1,7 @@
 Package: OncoPath
 Type: Package
 Title: OncoPath Functions for Clinicopathological Research
-Version: 0.0.38.1
+Version: 0.0.38.11
 Author: Serdar Balci
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
 Description: OncoPath Functions for Clinicopathological Research.
@@ -26,4 +26,4 @@ Remotes: CHOP-CGTInformatics/ggswim
 URL: https://www.serdarbalci.com/OncoPath/,
         https://github.com/sbalci/OncoPath
 BugReports: https://github.com/sbalci/OncoPath/issues
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.0.0
