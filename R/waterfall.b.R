@@ -716,8 +716,8 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           return(list(
             valid = FALSE,
             message = paste0(
-              "<br>", msgs$missing_columns, " ", paste(missing_columns, collapse = ", "),
-              "<br>", msgs$available_columns, " ", paste(names(df), collapse = ", ")
+              "<br>", msgs$missing_columns, " ", paste(htmltools::htmlEscape(missing_columns), collapse = ", "),
+              "<br>", msgs$available_columns, " ", paste(htmltools::htmlEscape(names(df)), collapse = ", ")
             )
           ))
         }
@@ -1559,7 +1559,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             }
           }
 
-          stop(plain_message, call. = FALSE)
+          jmvcore::reject("{}", code = NULL, plain_message)
           return(NULL)
         }
 
@@ -3558,48 +3558,48 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
       #' Generate R source code for Waterfall Plot analysis
       #' @return Character string with R syntax for reproducible analysis
       asSource = function() {
-        responseVar <- self$options$responseVar
-        groupVar <- self$options$groupVar
+          responseVar <- self$options$responseVar
 
-        if (is.null(responseVar))
-          return('')
+          if (is.null(responseVar))
+              return('')
 
-        # Escape variable names that contain spaces or special characters
-        responseVar_escaped <- if (!is.null(responseVar) && !identical(make.names(responseVar), responseVar)) {
-          paste0('`', responseVar, '`')
-        } else {
-          responseVar
-        }
-
-        # Escape group variable if present
-        groupVar_arg <- ''
-        if (!is.null(groupVar)) {
-          groupVar_escaped <- if (!identical(make.names(groupVar), groupVar)) {
-            paste0('`', groupVar, '`')
-          } else {
-            groupVar
+          # Build the argument list in option-declaration order.
+          #
+          # Every variable-name option (single OptionVariable or multi-variable
+          # OptionVariables) is emitted as a deparse()'d string literal. deparse()
+          # produces valid, fully-escaped R for names containing spaces, quotes or
+          # backslashes (e.g. `Tumor Grade`); jmvcore's default sourcify would emit
+          # some of these as bare, unquoted symbols and yield invalid syntax.
+          # Detecting the option by CLASS (not by name) means any variable option
+          # added later is escaped automatically.
+          #
+          # Variables are NOT re-emitted through private$.asArgs() — doing so
+          # previously duplicated them in the generated syntax (the "double
+          # variables" bug). All non-variable options keep jmvcore's per-option
+          # sourcify so formatting stays consistent with jamovi.
+          args <- character(0)
+          for (option in private$.options$options) {
+              if (option$name == 'data')
+                  next
+              if (inherits(option, 'OptionVariable') || inherits(option, 'OptionVariables')) {
+                  val <- option$value
+                  if (!is.null(val) && length(val) > 0)
+                      args <- c(args, paste0(option$name, ' = ',
+                                             paste0(deparse(val), collapse = '')))
+              } else {
+                  as <- private$.sourcifyOption(option)
+                  if (!identical(as, ''))
+                      args <- c(args, as)
+              }
           }
-          groupVar_arg <- paste0(',\n    groupVar = "', groupVar_escaped, '"')
-        }
 
-        # Build responseVar argument
-        responseVar_arg <- paste0('responseVar = "', responseVar_escaped, '"')
+          # Get package name dynamically
+          pkg_name <- utils::packageName()
+          if (is.null(pkg_name)) pkg_name <- "ClinicoPath"  # fallback
 
-        # Get other arguments using base helper (if available)
-        args <- ''
-        if (!is.null(private$.asArgs)) {
-          args <- private$.asArgs(incData = FALSE)
-        }
-        if (args != '')
-          args <- paste0(',\n    ', args)
-
-        # Get package name dynamically
-        pkg_name <- utils::packageName()
-        if (is.null(pkg_name)) pkg_name <- "ClinicoPath"  # fallback
-
-        # Build complete function call
-        paste0(pkg_name, '::waterfall(\n    data = data,\n    ',
-               responseVar_arg, groupVar_arg, args, ')')
+          # Build complete function call
+          paste0(pkg_name, '::waterfall(\n    data = data,\n    ',
+                 paste(args, collapse = ',\n    '), ')')
       }
     ) # End of public list
 )
