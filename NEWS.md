@@ -1,3 +1,81 @@
+# OncoPath 0.0.46 (2026-07-04)
+
+This release rolls up all changes from 0.0.33 through 0.0.46 (intermediate
+versions 0.0.38.1, 0.0.43, and 0.0.45). The headline themes are a
+security/robustness hardening pass ahead of a jamovi-library refactor
+(HTML/XSS escaping of user-supplied text and error messages across every
+analysis, removal of an unreliable variable-name mangling helper), migration of
+the Swimmer Plot to a serialization-safe notices mechanism, a new suite of
+exported stage-migration utility functions, new bundled example datasets, and
+an upgrade of the module's minimum jamovi app and tooling requirements.
+
+## Security & Robustness
+
+### HTML/XSS Hardening (all analyses)
+- **Diagnostic Test Meta-Analysis** (`diagnosticmeta`):
+  - Wrapped error messages with `htmltools::htmlEscape()` in all five `tryCatch` handlers that write table notes: bivariate, HSROC, heterogeneity, meta-regression, and publication-bias analyses
+  - Escaped the user-supplied meta-regression covariate label (`safe_covariate_label`) before it is written into the meta-regression results table
+  - Escaped user-supplied study names in the zero-cell-correction warning note and HTML disclosure (`safe_studies_note`, `safe_studies_html`)
+- **Swimmer Plot** (`swimmerplot`):
+  - Escaped the best-response category in interpretation and manuscript-summary text
+  - Escaped user-derived example values in the "Data Type Mismatch" and "Date Format Detected" guidance panels, and the detected date-format string
+  - Escaped validation and analysis error messages before HTML interpolation
+- **Treatment Response Analysis** (`waterfall`):
+  - Escaped missing/available column names in the data-validation message
+  - Escaped patient IDs lacking a baseline measurement, and the printed data-frame rows for invalid tumor-shrinkage and unusually-large-growth warnings
+  - Replaced a bare `stop(plain_message)` with `jmvcore::reject("{}", code = NULL, plain_message)`
+- **IHC Heterogeneity Analysis** (`ihcheterogeneity`):
+  - Escaped the `spatial_id` variable name in the "not found in data" error message
+
+### Variable-name Handling Bug Fix
+- **`diagnosticmeta`**: removed the `.escapeVar()` helper, which mangled column names containing spaces or punctuation (e.g. `Study Name (2020)` became `Study_Name_2020_`) and then used the mangled string as a `self$data[[...]]` key, silently returning `NULL` and breaking the analysis. Study/TP/FP/FN/TN variables now use their raw option values as lookup keys.
+- **`diagnosticmeta`**: narrowed package imports from `@import mada` / `@import metafor` to `@importFrom mada reitsma phm` and `@importFrom metafor rma`, and set `dontrun: true` on the analysis example.
+
+### Output Cleanup
+- Removed emoji from all HTML output panels (welcome/about/interpretation/glossary/plot-explanation panels, notice icons, and the Swimmer Plot clinical-event glyph mapping) across `diagnosticmeta`, `swimmerplot`, `waterfall`, and `ihcheterogeneity`, and replaced `%` with the word "percent" in `waterfall` and `ihcheterogeneity` option descriptions.
+
+## Enhanced Existing Modules
+
+### Swimmer Plot (`swimmerplot`) — Notices Migration
+- **NEW output** `notices` (type `Preformatted`, title "Important Information") with `clearWith` on `patientID`, `startTime`, `endTime`, `responseVar`, `censorVar`, and `timeUnit`
+- Added `.noticeList`, `.addNotice()`, and `.renderNotices()` helpers that render plain-text notices via the Preformatted item, avoiding both the `jmvcore::Notice` serialization error and HTML in notice content
+- Re-enabled the small-sample-size `STRONG_WARNING` (n < 10 patients), which was previously commented out to avoid serialization errors
+- Emit an `ERROR` notice when required variables (Patient ID, Start Time, End Time) are missing
+- Reset the notice list at the top of `.run()` to prevent accumulation across runs
+
+## New Stage Migration Utility Functions
+
+Four new R source files add an exported `stagemigration_*` helper suite (with man pages and `STAGEMIGRATION_CONSTANTS`) supporting staging-system comparison and validation:
+- **Discrimination**: `stagemigration_calculateConcordance`, `stagemigration_bootstrapConcordance`, `stagemigration_competingRisksDiscrimination`
+- **Competing risks & survival**: `stagemigration_competingRisksAnalysis`, `stagemigration_calculateRMST`, `stagemigration_cutpointAnalysis`
+- **Data validation & quality**: `stagemigration_validateData`, `stagemigration_validateCovariates`, `stagemigration_validateStagingVars`, `stagemigration_createEventBinary`, `stagemigration_convertLabelled`, `stagemigration_detectOutliers`, `stagemigration_dataQualityReport`, `stagemigration_checkSampleSize`
+- **Safe execution & formulas**: `stagemigration_safeAtomic`, `stagemigration_safeExecute`, `stagemigration_buildFormula`, `stagemigration_escapeVar`
+
+### Shared Survival-Formula Helpers (`R/utils.R`)
+- Added `.asSurvivalFormula()`, which wraps `jmvcore::asFormula` with an extended function allow-list for survival/Cox/Fine-Gray formula paths under jamovi 2.7.27's hardened parser
+- Added `.buildSurvivalFormula()`, `.escapeVariableNames()`, `load_required_package()`, the `%notin%` / `%!in%` operators, and a `print.sensSpecTable` S3 method
+
+## New Example Datasets
+
+- **NEW** `R/data.R` documents five bundled datasets: `diagnostic_studies`, `histopathology`, `swimmerplot_sample`, `waterfall_percentage_basic`, and `waterfall_raw_longitudinal`
+- **NEW** `.rda` files: `diagnostic_studies` (5 studies with `study_name`, `tp`, `fp`, `fn`, `tn`), `swimmerplot_sample`, `waterfall_percentage_basic`, and `waterfall_raw_longitudinal`
+- **NEW** jamovi `.omv` versions under `inst/extdata/`: `swimmerplot_sample.omv`, `waterfall_percentage_basic.omv`, `waterfall_raw_longitudinal.omv`
+
+## Dependencies
+
+- Added `Imports`: `cluster`, `cmprsk`, `haven`, `maxstat`, `survRM2` (supporting the new competing-risks, RMST, cutpoint, and labelled-data utilities)
+- Added `Depends: R (>= 3.5.0)`
+
+## Package Infrastructure
+
+- Bumped version 0.0.33 → 0.0.46 (rolling up 0.0.38.1, 0.0.43, 0.0.45)
+- Raised `minApp` from 1.6.0 to 2.7.27 to align with jamovi's hardened `as.formula` allow-list
+- Migrated roxygen configuration from `RoxygenNote: 7.3.3` to `Config/roxygen2/version: 8.0.0`
+- De-bracketed the `BugReports` URL in DESCRIPTION
+- Added module audit report `docs/audit/MODULE_AUDIT_REPORT_20260514-1844.md`
+
+---
+
 # OncoPath 0.0.32.64 (2025-12-31)
 
 ## Major New Features
