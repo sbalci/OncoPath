@@ -632,7 +632,7 @@ diagnosticmetaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             super$initialize(
                 package = "OncoPath",
                 name = "diagnosticmeta",
-                version = c(0,0,46),
+                version = c(0,0,47),
                 options = options,
                 results = diagnosticmetaResults$new(options=options),
                 data = data,
