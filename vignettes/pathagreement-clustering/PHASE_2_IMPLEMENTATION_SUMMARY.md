@@ -14,6 +14,7 @@ Phase 2 implementation adds two advanced features to the `ihccluster` analysis:
 2. **Supervised Clustering** - Clustering within predefined diagnostic groups
 
 **Status:** ✅ COMPLETE
+
 - All backend functions implemented
 - YAML configurations updated
 - Result tables defined
@@ -30,17 +31,20 @@ Phase 2 implementation adds two advanced features to the `ihccluster` analysis:
 **Purpose:** Assess cluster stability using random split validation
 
 **Method:** Cohen's kappa agreement measure
+
 - Dataset randomly split 50/50 multiple times
 - Independent clustering on each split
 - Clusters matched based on marker profiles
 - Agreement measured for each cluster
 
 **Implementation Location:**
+
 - Options: `jamovi/ihccluster.a.yaml` (lines 313-326)
 - Results: `jamovi/ihccluster.r.yaml` (lines 181-206)
 - Backend: `R/ihccluster.b.R` (lines 256-416)
 
 **Key Functions:**
+
 ```r
 .testReproducibility()     # Main reproducibility testing
 .matchClusters()           # Match clusters between splits
@@ -55,16 +59,19 @@ Phase 2 implementation adds two advanced features to the `ihccluster` analysis:
 **Purpose:** Cluster cases within predefined diagnostic groups
 
 **Method:** Stratified clustering
+
 - Clustering performed separately for each group
 - Identifies subgroups within known diagnoses
 - Reveals intra-diagnostic heterogeneity
 
 **Implementation Location:**
+
 - Options: `jamovi/ihccluster.a.yaml` (lines 327-342)
 - Results: `jamovi/ihccluster.r.yaml` (lines 208-234)
 - Backend: `R/ihccluster.b.R` (lines 418-522)
 
 **Key Functions:**
+
 ```r
 .supervisedClustering()         # Main supervised clustering
 .populateSupervisedResults()    # Populate result tables and HTML
@@ -79,6 +86,7 @@ Phase 2 implementation adds two advanced features to the `ihccluster` analysis:
 **Added Options:**
 
 **Reproducibility Testing:**
+
 ```yaml
 - name: reproducibilityTest
   title: 'Test Cluster Reproducibility'
@@ -96,6 +104,7 @@ Phase 2 implementation adds two advanced features to the `ihccluster` analysis:
 ```
 
 **Supervised Clustering:**
+
 ```yaml
 - name: supervisedClustering
   title: 'Supervised Clustering'
@@ -121,6 +130,7 @@ Phase 2 implementation adds two advanced features to the `ihccluster` analysis:
 **Added Result Tables:**
 
 **Reproducibility Stats Table:**
+
 ```yaml
 - name: reproducibilityStats
   title: Cluster Reproducibility (Random Split Validation)
@@ -155,6 +165,7 @@ Phase 2 implementation adds two advanced features to the `ihccluster` analysis:
 ```
 
 **Supervised Clustering Tables:**
+
 ```yaml
 - name: supervisedSummary
   title: Supervised Clustering Summary
@@ -195,6 +206,7 @@ Phase 2 implementation adds two advanced features to the `ihccluster` analysis:
 **Purpose:** Perform random split validation
 
 **Algorithm:**
+
 1. For each split (1 to nSplits):
    - Randomly divide dataset 50/50
    - Cluster each half independently using provided clustering function
@@ -204,6 +216,7 @@ Phase 2 implementation adds two advanced features to the `ihccluster` analysis:
 3. Compute mean, SD, 95% CI, interpretation
 
 **Parameters:**
+
 - `df`: Data frame with markers
 - `catVars`: Categorical marker names
 - `contVars`: Continuous marker names
@@ -211,6 +224,7 @@ Phase 2 implementation adds two advanced features to the `ihccluster` analysis:
 - `cluster_func`: Clustering function to use
 
 **Returns:**
+
 ```r
 list(
     Cluster_1 = list(
@@ -227,6 +241,7 @@ list(
 ```
 
 **Error Handling:**
+
 - Returns `list(error = "message")` if sample size < 20
 
 ---
@@ -236,16 +251,19 @@ list(
 **Purpose:** Match cluster labels between two independent clustering runs
 
 **Algorithm:**
+
 1. Build confusion matrix of cluster similarities
 2. Use greedy algorithm to find best matches
 3. Similarity based on negative Euclidean distance of marker profiles
 
 **Parameters:**
+
 - `confusion`: Confusion matrix (clusters_a × clusters_b)
 - `markers_a`: Marker profiles for group A clusters
 - `markers_b`: Marker profiles for group B clusters
 
 **Returns:**
+
 ```r
 list(
     "1" = 2,  # Cluster 1 in A matches Cluster 2 in B
@@ -261,11 +279,12 @@ list(
 **Purpose:** Interpret Cohen's kappa using Landis & Koch scale
 
 **Thresholds:**
+
 - κ < 0.21: "Poor"
-- 0.21 ≤ κ < 0.41: "Fair"
-- 0.41 ≤ κ < 0.61: "Moderate"
-- 0.61 ≤ κ < 0.81: "Substantial"
-- 0.81 ≤ κ ≤ 1.0: "Almost Perfect"
+- 0.21 <= κ < 0.41: "Fair"
+- 0.41 <= κ < 0.61: "Moderate"
+- 0.61 <= κ < 0.81: "Substantial"
+- 0.81 <= κ <= 1.0: "Almost Perfect"
 
 ---
 
@@ -274,6 +293,7 @@ list(
 **Purpose:** Perform clustering within each diagnostic group
 
 **Algorithm:**
+
 1. Extract unique groups from grouping variable
 2. For each group:
    - Subset data to group members
@@ -284,6 +304,7 @@ list(
    - If insufficient: Skip with status message
 
 **Parameters:**
+
 - `df`: Data frame with markers
 - `catVars`: Categorical marker names
 - `contVars`: Continuous marker names
@@ -291,6 +312,7 @@ list(
 - `group_var`: Name of grouping variable
 
 **Returns:**
+
 ```r
 list(
     "Luminal_A" = list(
@@ -318,6 +340,7 @@ list(
 **Purpose:** Populate reproducibility statistics table
 
 **Logic:**
+
 1. Check if reproducibility testing is enabled
 2. Check for error messages
 3. For each cluster, add row with:
@@ -337,9 +360,11 @@ list(
 **Logic:**
 
 **Summary Table:**
+
 - For each group: Add row with group name, N cases, N clusters, avg silhouette, status
 
 **Detailed HTML:**
+
 - For each group:
   - Display group name and N cases
   - If successful: Show N clusters, avg silhouette, cluster sizes table
@@ -353,6 +378,7 @@ list(
 **Location:** Lines 1196-1271
 
 **Reproducibility Testing Integration:**
+
 ```r
 # Phase 2: Reproducibility testing (Sterlacci 2019)
 reproducibilityResults <- NULL
@@ -379,6 +405,7 @@ if (isTRUE(opts$reproducibilityTest)) {
 ```
 
 **Supervised Clustering Integration:**
+
 ```r
 # Phase 2: Supervised clustering (Sterlacci 2019)
 supervisedResults <- NULL
@@ -394,6 +421,7 @@ if (isTRUE(opts$supervisedClustering) && !is.null(opts$supervisedVariable)) {
 ```
 
 **Population Function Calls:**
+
 ```r
 private$.populateReproducibilityStats(reproducibilityResults)
 private$.populateSupervisedResults(supervisedResults)
@@ -406,11 +434,13 @@ private$.populateSupervisedResults(supervisedResults)
 ### Compilation Test
 
 **Command:**
+
 ```r
 jmvtools::prepare()
 ```
 
 **Result:** ✅ SUCCESS
+
 - No errors
 - No warnings
 - All .h.R files generated
@@ -423,6 +453,7 @@ jmvtools::prepare()
 **Test Script:** `data-raw/test_phase2_simple.R`
 
 **Tests Performed:**
+
 1. **Reproducibility Testing:**
    - Random split logic verified
    - Cohen's kappa calculation confirmed
@@ -436,6 +467,7 @@ jmvtools::prepare()
 **Result:** ✅ PASSED
 
 **Test Output:**
+
 ```
 === Phase 2 Implementation Verification ===
 
@@ -476,9 +508,11 @@ Phase 2 implementation logic is VERIFIED
 ## Documentation Created
 
 ### 1. User Guide
+
 **File:** `STERLACCI_2019_PHASE2_USER_GUIDE.md`
 
 **Contents:**
+
 - Overview of Phase 2 features
 - Detailed explanation of reproducibility testing
 - Detailed explanation of supervised clustering
@@ -491,9 +525,11 @@ Phase 2 implementation logic is VERIFIED
 ---
 
 ### 2. Implementation Summary
+
 **File:** `PHASE_2_IMPLEMENTATION_SUMMARY.md` (this document)
 
 **Contents:**
+
 - Executive summary
 - Features implemented
 - Files modified
@@ -512,6 +548,7 @@ Phase 2 implementation logic is VERIFIED
 Since random splits have different cases, standard Cohen's kappa cannot be used. Instead, we use proportional agreement:
 
 **For each cluster:**
+
 1. Calculate proportion of cases in cluster k in Group A: `prop_a`
 2. Calculate proportion of cases in cluster k in Group B: `prop_b`
 3. Observed agreement: `p_o = (prop_a × prop_b) + ((1-prop_a) × (1-prop_b))`
@@ -533,6 +570,7 @@ Since random splits have different cases, standard Cohen's kappa cannot be used.
 3. Use greedy algorithm to find best matches (minimize distance)
 
 **Example:**
+
 ```
 Group A: Cluster 1 (ER+, PR+, HER2-)
 Group B: Cluster 2 (ER+, PR+, HER2-)
@@ -544,16 +582,19 @@ Group B: Cluster 2 (ER+, PR+, HER2-)
 ### Minimum Sample Size Requirements
 
 **Reproducibility Testing:**
+
 - Absolute minimum: 20 cases (10 per split)
 - Recommended: 100+ cases
-- Each split should have ≥ 2k cases (where k = number of clusters)
+- Each split should have >= 2k cases (where k = number of clusters)
 
 **Supervised Clustering:**
+
 - Per group minimum: 2k cases (where k = number of clusters)
-- Default (k=3): Need ≥ 6 cases per group
+- Default (k=3): Need >= 6 cases per group
 - Recommended: 20+ cases per group
 
 **Implementation:**
+
 - Reproducibility: Returns error if total N < 20
 - Supervised: Skips groups with N < 2k, displays warning
 
@@ -587,6 +628,7 @@ From Sterlacci 2019 analysis, remaining features not yet implemented:
 **No new dependencies added in Phase 2**
 
 Phase 2 uses existing packages:
+
 - `cluster` (silhouette calculation)
 - `stats` (kmeans, distance calculation)
 - Base R functions
@@ -598,16 +640,19 @@ Phase 2 uses existing packages:
 ### Computational Cost
 
 **Reproducibility Testing:**
+
 - Time complexity: O(n_splits × clustering_time)
 - Default (10 splits): ~10× slower than single clustering
 - Recommend: Run with fewer splits initially (5) for exploration
 
 **Supervised Clustering:**
+
 - Time complexity: O(n_groups × clustering_time_per_group)
 - Generally fast (groups are smaller than full dataset)
 - Performance depends on number of groups and group sizes
 
 **Combined:**
+
 - Both features can be enabled simultaneously
 - Total time ≈ reproducibility_time + supervised_time
 - Consider computational resources for large datasets
@@ -617,7 +662,7 @@ Phase 2 uses existing packages:
 ## Known Limitations
 
 1. **Reproducibility Testing:**
-   - Requires sufficient sample size (N ≥ 40 recommended)
+   - Requires sufficient sample size (N >= 40 recommended)
    - High computational cost with many splits
    - Low kappa may indicate true homogeneity (not always a problem)
 
@@ -650,6 +695,7 @@ Rousseeuw PJ. (1987). Silhouettes: A graphical aid to the interpretation and val
 **Phase 2 Status:** ✅ COMPLETE
 
 **Implementation Verified:**
+
 - ✅ Options added to .a.yaml
 - ✅ Result tables added to .r.yaml
 - ✅ Helper functions implemented in .b.R
@@ -661,6 +707,7 @@ Rousseeuw PJ. (1987). Silhouettes: A graphical aid to the interpretation and val
 - ✅ Implementation summary created
 
 **Ready for:**
+
 - Testing in jamovi GUI
 - User testing with real IHC data
 - Publication of results

@@ -21,7 +21,8 @@ LazyData: true
 Imports: boot, cluster, cmprsk, dcurves, dplyr, ggplot2, ggswim,
         gridExtra, haven, Hmisc, jmvcore, lubridate, mada, magrittr,
         maxstat, metafor, mgcv, pROC, R6, RColorBrewer, rlang, rms,
-        scales, survival, survminer, survRM2, tibble, tidyr, timeROC
+        scales, survival, survminer, survRM2, tibble, tidyr, timeROC,
+        data.table, htmltools, psych, stringr
 Remotes: CHOP-CGTInformatics/ggswim
 URL: https://www.serdarbalci.com/OncoPath/,
         https://github.com/sbalci/OncoPath

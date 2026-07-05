@@ -115,7 +115,16 @@ reference:
   - title: "HTML Utilities"
     desc: "HTML output utilities"
     contents:
-    - sensSpecTableHTML
+    - print.sensSpecTable
+
+  - title: "Datasets"
+    desc: "Bundled example datasets"
+    contents:
+    - diagnostic_studies
+    - histopathology
+    - swimmerplot_sample
+    - waterfall_percentage_basic
+    - waterfall_raw_longitudinal
 
   - title: "Package Information"
     desc: "Package startup and information"

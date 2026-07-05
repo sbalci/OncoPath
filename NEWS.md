@@ -1,3 +1,9 @@
+# OncoPath 0.0.47 (2026-07-05)
+
+## Changes
+
+* Declared `data.table`, `htmltools`, `psych`, and `stringr` (used via `::` but previously undeclared) so they install reliably with the module.
+
 # OncoPath 0.0.46 (2026-07-04)
 
 This release rolls up all changes from 0.0.33 through 0.0.46 (intermediate

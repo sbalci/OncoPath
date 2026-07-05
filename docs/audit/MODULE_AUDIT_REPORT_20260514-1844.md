@@ -207,7 +207,7 @@
 **File:** `R/waterfall.b.R` (3 587 lines) + `jamovi/js/waterfall.events.js` (~190 lines)
 **Surface area:** 6 tables (summary, clinicalMetrics, personTime, enhancedClinicalMetrics, groupComparisonTable, groupComparisonTest) · 10 HTML panels · waterfall + spider Image outputs · RECIST-category Output variable · notices HTML (canonical reference implementation).
 
-**Executive summary.** This is the strongest of the four functions and the reference implementation for the notices-to-HTML pattern (per `CLAUDE.md`). Authors have already done substantial defensive work: `.safeHtmlOutput` helper, `.escapeVar` for column-access, exact-binomial and bootstrap CIs, REGULATORY USE PROHIBITED Notice, single-lesion limitation Notice, and the html-based Notices system (`.addNotice`/`.renderNotices`) at end of `.run()`. No code-execution sinks were found (no runtime evaluators, no `do.call(var)`, no `match.fun`, no `as.formula`, no `system`, no `source`). The remaining work is: (1) unescaped HTML interpolation of patient IDs in invalid-shrinkage / large-growth tables, (2) `clinicalPreset` dead-option mismatch between `waterfall.events.js` and `waterfall.a.yaml`, (3) a custom `.calculateStatisticalPower` formula that diverges from the textbook power-for-proportions, and (4) `personTimeTable`'s "rapid/standard/delayed" classification (≤2 / ≤6 / >6) with no time-unit awareness.
+**Executive summary.** This is the strongest of the four functions and the reference implementation for the notices-to-HTML pattern (per `CLAUDE.md`). Authors have already done substantial defensive work: `.safeHtmlOutput` helper, `.escapeVar` for column-access, exact-binomial and bootstrap CIs, REGULATORY USE PROHIBITED Notice, single-lesion limitation Notice, and the html-based Notices system (`.addNotice`/`.renderNotices`) at end of `.run()`. No code-execution sinks were found (no runtime evaluators, no `do.call(var)`, no `match.fun`, no `as.formula`, no `system`, no `source`). The remaining work is: (1) unescaped HTML interpolation of patient IDs in invalid-shrinkage / large-growth tables, (2) `clinicalPreset` dead-option mismatch between `waterfall.events.js` and `waterfall.a.yaml`, (3) a custom `.calculateStatisticalPower` formula that diverges from the textbook power-for-proportions, and (4) `personTimeTable`'s "rapid/standard/delayed" classification (<=2 / <=6 / >6) with no time-unit awareness.
 
 **Security findings.**
 
@@ -233,7 +233,7 @@
 
 *Argument Behavior:* all options wired except `clinicalPreset` (declared in `events.js` but commented out in `.a.yaml`) — this is the runtime JS error noted in Security #3.
 
-*Output Population:* all outputs populated correctly, with conditional gates. `personTimeTable` is conditional on `timeVar` + `inputType == "raw"` (good). `groupComparisonTest` is conditional on `groupVar` AND ≥2 groups (good).
+*Output Population:* all outputs populated correctly, with conditional gates. `personTimeTable` is conditional on `timeVar` + `inputType == "raw"` (good). `groupComparisonTest` is conditional on `groupVar` AND >=2 groups (good).
 
 *Notices coverage:* **canonical implementation.** Uses html-Notices pattern (`.addNotice`/`.renderNotices`) end-to-end. Emits ERROR (regulatory-use blocker), STRONG_WARNING (RECIST limitations, very-small-sample, wide CI), WARNING (single-lesion, no confirmation, TTE limitations, extreme values, small sample 10-20), INFO (baseline assumption). Clinical thresholds: n < 10 → STRONG_WARNING, n < 20 → WARNING, CI-width > 40pp → STRONG_WARNING.
 
@@ -243,7 +243,7 @@
 - **Three near-identical raw-data paths** — `.processRawDataStandard` (550), `.processDataStandard` (627), `.processData` (991). Consolidate.
 - **3 587 lines** — split into validate / process / render / report files.
 - **`.calculateStatisticalPower`** (145) uses a non-standard "h minus z_alpha*se / se" approximation that is not the textbook power-for-proportions formula. Today it produces a number interpreted to "Adequate/Moderate/Low" — wrong values shape the displayed verdict. Replace with `pwr::pwr.p.test` or textbook form.
-- **`personTimeTable` rapid/standard/delayed** uses hardcoded `≤2 / ≤6 / >6` cutoffs with no time-unit awareness — a study in days always says "rapid". Either scale by `timeUnitLabel` or disable when `generic`.
+- **`personTimeTable` rapid/standard/delayed** uses hardcoded `<=2 / <=6 / >6` cutoffs with no time-unit awareness — a study in days always says "rapid". Either scale by `timeUnitLabel` or disable when `generic`.
 - **`set.seed(123)` at b.R:2414** — collides with user RNG state. Use `withr::with_seed(123, …)` or save/restore `.Random.seed`.
 - **i18n: best of the four** — 27 `.()` wraps. Remaining unwrapped: notice titles ("REGULATORY USE PROHIBITED", "RECIST COMPLIANCE LIMITATION"), `"EXTREME VALUES DETECTED: "` at 1655. Most table content and HTML body strings are wrapped.
 
@@ -254,6 +254,7 @@
 ### Orphaned files — stagemigration-\* helpers (ORPHANED-IMPLEMENTATION)
 
 **Files (5 helpers, ~2 480 lines total):**
+
 - `R/stagemigration-competing-risks.R` (524 lines)
 - `R/stagemigration-discrimination.R` (301 lines)
 - `R/stagemigration-utils.R` (570 lines)
@@ -269,10 +270,12 @@
 **`R/utils.R` (620 lines) — separate issue: runtime side-effects.**
 
 - `R/utils.R:49-50` — **top-level executable code that triggers `install.packages()` transitively**:
+
   ```r
   load_required_package("rlang")
   load_required_package("magrittr")
   ```
+
   The helper at `R/utils.R:40` calls `install.packages(package_name)` when `requireNamespace` fails. Both `rlang` and `magrittr` are already in `DESCRIPTION` `Imports:`, so this code is dead-but-dangerous: it violates CRAN policy (a package must not auto-install dependencies) and would silently install code in any environment where `R/utils.R` is sourced but the imports failed.
   **Action:** delete the `load_required_package` helper and its two top-level invocations. If dependency loading needs explicit handling, do it inside a function that's called from `.run()` and uses `requireNamespace(..., quietly=TRUE)` only.
 

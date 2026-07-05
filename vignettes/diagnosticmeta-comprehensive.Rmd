@@ -254,7 +254,7 @@ knitr::kable(measures, caption = "Diagnostic Accuracy Interpretation")
 
 **Deeks' Funnel Plot Test**:
 - **p < 0.05**: Significant asymmetry suggests publication bias
-- **p ≥ 0.05**: No significant evidence of bias
+- **p >= 0.05**: No significant evidence of bias
 
 ## Clinical Applications
 

@@ -11,7 +11,7 @@ diagnosticmeta(
   false_positives,
   false_negatives,
   true_negatives,
-  covariate,
+  covariate = NULL,
   bivariate_analysis = TRUE,
   hsroc_analysis = FALSE,
   meta_regression = FALSE,

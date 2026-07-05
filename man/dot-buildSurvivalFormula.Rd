@@ -47,3 +47,4 @@ Consolidated helper used across the survival-analysis backends (e.g.
 from raw variable names, with safe escaping of non-syntactic names via
 `.escapeVariableNames()` and safe parsing via `.asSurvivalFormula()`.
 }
+\keyword{internal}

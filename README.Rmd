@@ -153,8 +153,8 @@ Access these datasets through the jamovi interface:
 
 ### Core Dependencies
 
-- R (≥ 4.1.0)
-- jmvcore (≥ 0.8.5)
+- R (>= 4.1.0)
+- jmvcore (>= 0.8.5)
 - ggplot2
 - dplyr
 - rlang

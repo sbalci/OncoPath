@@ -11,12 +11,14 @@ This synthetic dataset replicates the study design and key findings from:
 **Objective**: Assess interobserver reproducibility of EIN diagnosis among pathologists with varying experience and practice settings.
 
 **Materials**:
+
 - **62 endometrial biopsies** (cases) evaluated independently
 - **20 pathologists** (reviewers) from various institutions in Turkey
 - **3 diagnostic categories**: Benign non-EIN, EIN, Adenocarcinoma
 - **Expert consensus reference**: 2 subspecialty gynecologic pathologists
 
 **Key Findings**:
+
 - Overall 79% agreement with expert reference
 - Average weighted kappa: 0.72 (good reproducibility)
 - **3 diagnostic style groups** identified by hierarchical clustering:
@@ -29,24 +31,29 @@ This synthetic dataset replicates the study design and key findings from:
 ## Files
 
 ### 1. `ein_agreement_wide.csv`
+
 **Format**: Cases × Raters (62 rows, 23 columns)
 **Use**: For jamovi agreement analysis
 
 **Columns**:
+
 - `case_id`: Case identifier (1-62)
 - `reference`: Expert consensus diagnosis (Benign, EIN, Adenocarcinoma)
 - `discordant`: Whether case is high-disagreement (Yes/No)
 - `T` through `E`: Individual pathologist diagnoses (20 columns)
 
 **Pathologist column order** (by style group):
+
 - Green: T, S, R, N
 - Yellow: H, J, K, B, C, I, D, M, L, Q, P
 - Red: O, A, G, F, E
 
 ### 2. `ein_agreement_long.csv`
+
 **Format**: Long format (1240 rows = 62 cases × 20 pathologists)
 
 **Columns**:
+
 - `case_id`: Case identifier
 - `case_number`: Case number (1-62)
 - `reference_diagnosis`: Expert consensus
@@ -62,9 +69,11 @@ This synthetic dataset replicates the study design and key findings from:
 - `discordant_case`: Whether case is high-disagreement
 
 ### 3. `ein_pathologist_info.csv`
+
 **Format**: Pathologist characteristics (20 rows)
 
 **Columns**:
+
 - `pathologist`: Identifier
 - `style_group`: Diagnostic style group
 - `years_experience`: Years of practice (1-33 years)
@@ -85,7 +94,9 @@ This synthetic dataset replicates the study design and key findings from:
 ## Diagnostic Style Groups
 
 ### Green Group (n=4) - Conservative
+
 **Characteristics**:
+
 - Favor benign diagnoses
 - Miss some EIN cases
 - Tend to underdiagnose when confounders present:
@@ -96,13 +107,17 @@ This synthetic dataset replicates the study design and key findings from:
 **Discordant cases**: Cases 11, 26, 14, 38, 16
 
 ### Yellow Group (n=11) - Balanced
+
 **Characteristics**:
+
 - Balanced use of all diagnostic categories
 - Highest agreement with reference
 - Most representative of consensus approach
 
 ### Red Group (n=5) - Sensitive to EIN
+
 **Characteristics**:
+
 - Favor EIN diagnosis
 - Detect subtle EIN features
 - Some overdiagnosis in technically poor specimens or benign with hormonal effects
@@ -119,18 +134,20 @@ According to published criteria, EIN diagnosis requires **all 5 elements**:
 
 1. **Gland area > stromal area** (architectural threshold)
 2. **Cytological demarcation** from background normal glands
-3. **Lesion size ≥ 1 mm** minimum diameter
+3. **Lesion size >= 1 mm** minimum diameter
 4. **Exclusion of mimics** (polyp, metaplasia, hormonal effects)
 5. **Exclusion of cancer**
 
 ## Statistical Methods
 
 **Hierarchical Clustering**:
+
 - Distance metric: Percentage agreement (1 - proportion matching diagnoses)
 - Linkage method: Ward's linkage (minimize within-cluster variance)
 - Output: Heatmap with dual dendrograms (cases and raters)
 
 **Agreement Statistics**:
+
 - Overall kappa: 0.58 for all groups
 - Benign vs (EIN + Cancer): κ = 0.64
 - EIN vs (Benign + Cancer): κ = 0.47
@@ -139,12 +156,14 @@ According to published criteria, EIN diagnosis requires **all 5 elements**:
 ## Usage in jamovi
 
 ### Basic Agreement Analysis
+
 1. Load `ein_agreement_wide.csv`
 2. Use **Agreement** analysis
 3. Select pathologist columns (T through E) as rater variables
 4. Compare with `reference` column
 
 ### Clustering Analysis
+
 1. Enable **Perform Rater Clustering Analysis**
 2. Set clustering method to **Ward's method**
 3. Set number of style groups to **3** (or use automatic selection)
@@ -155,6 +174,7 @@ According to published criteria, EIN diagnosis requires **all 5 elements**:
 6. Enable **Show Clustering Heatmap**
 
 ### Expected Results
+
 - 3 distinct style groups should emerge
 - Green group: cases 11, 26, 14, 38, 16 show high disagreement
 - Red group: cases 51, 6, 25, 44, 61 show high disagreement
@@ -224,6 +244,7 @@ This is **synthetic data** generated to replicate the structure and patterns of 
 `data-raw/generate_ein_agreement_data.R`
 
 **Simulation approach**:
+
 - Reference diagnoses match published distribution (27/26/9)
 - Pathologist agreement rates match published values (66-89%)
 - Style-specific disagreement patterns programmed:
@@ -233,6 +254,7 @@ This is **synthetic data** generated to replicate the structure and patterns of 
 - Discordant cases match published case numbers
 
 **Limitations**:
+
 - Exact diagnoses differ from original (synthetic)
 - Absolute agreement percentages will vary slightly
 - Clustering structure should replicate (3 groups)
@@ -247,6 +269,7 @@ The clustering heatmap successfully replicates key features from the original pa
 ✅ **Dual dendrograms**: Top dendrogram clusters pathologists, left dendrogram clusters cases
 
 ✅ **Color-coded diagnoses**:
+
 - Blue = Benign non-EIN
 - Green = EIN
 - Gold/Yellow = Adenocarcinoma
@@ -266,22 +289,26 @@ The clustering heatmap successfully replicates key features from the original pa
 Test script (`data-raw/test_ein_clustering_replication.R`) executed successfully:
 
 📊 **Clustering Performance**:
+
 - ✓ 3 style groups identified
 - ✓ Ward's linkage with percentage agreement distance
 - ✓ Average pairwise agreement: ~65%
 - ✓ Silhouette analysis performed
 
 📊 **Discordant Cases**:
+
 - ✓ High-disagreement cases detected
 - ✓ Entropy calculations performed
 - ✓ Style-specific patterns identified
 
 📊 **Characteristic Associations**:
+
 - ✓ No significant association between style and specialty (p = 1.000)
 - ✓ No significant association between style and experience (p = 0.122)
 - ✓ Replicates original finding: style is independent of training/experience
 
 📊 **Heatmap Generation**:
+
 - ✓ Professional quality visualization
 - ✓ Shows horizontal banding by case difficulty
 - ✓ Shows vertical grouping by diagnostic style
@@ -312,6 +339,7 @@ Test script (`data-raw/test_ein_clustering_replication.R`) executed successfully
    - Check: ☑ **Perform Rater Clustering Analysis**
 
 5. **Configure Clustering**
+
    ```
    Hierarchical Clustering Settings:
    - Clustering Linkage Method: Ward's method (minimize variance)
@@ -321,6 +349,7 @@ Test script (`data-raw/test_ein_clustering_replication.R`) executed successfully
    ```
 
 6. **Enable Visualizations**
+
    ```
    Visualization Settings:
    - ☑ Show Clustering Heatmap
@@ -328,6 +357,7 @@ Test script (`data-raw/test_ein_clustering_replication.R`) executed successfully
    ```
 
 7. **Optional: Identify Discordant Cases**
+
    ```
    Discordant Case Analysis:
    - ☑ Identify High-Disagreement Cases
@@ -343,6 +373,7 @@ Test script (`data-raw/test_ein_clustering_replication.R`) executed successfully
      - Rater Institution → `institution`
 
 9. **Optional: Show Interpretation Guide**
+
    ```
    Interpretation Guide:
    - ☑ Show Clustering Interpretation Guide (optional)
@@ -381,21 +412,25 @@ Test script (`data-raw/test_ein_clustering_replication.R`) executed successfully
 ### Interpretation
 
 **Conservative Group** (typically ~4 raters):
+
 - Favor benign diagnoses
 - May miss subtle EIN cases
 - Response to confounders: call EIN → benign when uncertain
 
 **Balanced Group** (typically ~11 raters):
+
 - Use all categories appropriately
 - Highest agreement with reference
 - Representative of consensus approach
 
 **Sensitive Group** (typically ~5 raters):
+
 - Favor EIN diagnosis
 - Detect subtle features
 - May overdiagnose in ambiguous cases
 
 **Key Finding**: Diagnostic style is **NOT** associated with:
+
 - Years of experience
 - Training institution
 - Practice setting (university vs community)
@@ -441,19 +476,23 @@ META_institution | EUFM  | EUFM  | MUFM  | BUFM  | AUFM  | ...
 **Step 1**: Load `ein_agreement_wide_with_metadata.csv`
 
 **Step 2**: Run agreement analysis
+
 - Select rater variables (T through E)
 - Select Case ID variable: `case_id`
 
 **Step 3**: Enable clustering
+
 - Check: "Perform Rater Clustering Analysis"
 - Set clustering method: Ward's method
 - Set number of groups: 3
 
 **Step 4**: Enable metadata extraction
+
 - Expand: "Rater Metadata (Alternative Input Method)"
 - Check: "Extract rater characteristics from metadata rows"
 
 **Step 5**: Run analysis
+
 - Characteristic associations will automatically use the metadata
 
 ### Advantages
@@ -469,6 +508,7 @@ META_institution | EUFM  | EUFM  | MUFM  | BUFM  | AUFM  | ...
 ### Type Conversion
 
 The system automatically converts metadata types:
+
 - **Numeric metadata** (`experience`, `volume`, `years`, `age`): Converted to numbers
 - **Text metadata** (`specialty`, `institution`): Kept as categorical factors
 
@@ -478,6 +518,7 @@ The example dataset with metadata is available as:
 `data/ein_agreement_wide_with_metadata.csv`
 
 This file contains:
+
 - 62 case rows (diagnosis data)
 - 3 metadata rows (experience, specialty, institution)
 - 20 rater columns (T through E)

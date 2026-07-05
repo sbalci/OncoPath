@@ -31,6 +31,7 @@ Successfully implemented hierarchical clustering analysis for the `agreement` fu
    - Enable/disable conditions
 
 ### Module Compilation: ✅ SUCCESS
+
 - No errors or warnings
 - All functions compile correctly
 - Ready for testing in jamovi
@@ -61,25 +62,25 @@ Successfully implemented hierarchical clustering analysis for the `agreement` fu
 
 ### Statistical Outputs
 
-4. **Diagnostic Patterns** ✅
+1. **Diagnostic Patterns** ✅
    - Frequency tables by style group
    - Relative frequency comparisons
    - Category usage patterns
 
-5. **Discordant Case Identification** ✅
+2. **Discordant Case Identification** ✅
    - Between-group disagreement scoring
    - Entropy calculation
    - Case difficulty classification
    - Diagnostic pattern descriptions
 
-6. **Characteristic Associations** ✅
+3. **Characteristic Associations** ✅
    - Kruskal-Wallis test (continuous variables)
    - Chi-square test (categorical, adequate cells)
    - Fisher's exact test (categorical, sparse data)
    - Effect size calculations
    - Clinical interpretations
 
-7. **Reference Standard Comparison** ✅
+4. **Reference Standard Comparison** ✅
    - Cohen's kappa by style group
    - Agreement percentages
    - Confidence intervals
@@ -87,26 +88,26 @@ Successfully implemented hierarchical clustering analysis for the `agreement` fu
 
 ### Visualizations
 
-8. **Hierarchical Clustering Heatmap** ✅
+1. **Hierarchical Clustering Heatmap** ✅
    - Dual dendrograms (cases + raters)
    - Color-coded diagnoses
    - pheatmap integration
    - ggplot2 fallback
    - Multiple color schemes
 
-9. **Dendrogram Plot** ✅
+2. **Dendrogram Plot** ✅
    - Base R graphics
    - Colored rectangles around clusters
    - Clear group labels
 
-10. **Silhouette Plot** ✅
+3. **Silhouette Plot** ✅
     - Cluster quality visualization
     - Per-rater silhouette widths
     - Average silhouette annotation
 
 ### Interpretation Guide
 
-11. **Optional HTML Guide** ✅
+1. **Optional HTML Guide** ✅
     - Explanation of diagnostic styles
     - Clinical implications
     - Silhouette interpretation
@@ -122,6 +123,7 @@ Successfully implemented hierarchical clustering analysis for the `agreement` fu
 **Purpose**: Replicate Usubutun et al. (2012) study structure
 
 **Files Created**:
+
 1. `data/ein_agreement_wide.csv` - 62 cases × 23 columns (for jamovi)
 2. `data/ein_agreement_long.csv` - 1,240 rows (62 × 20)
 3. `data/ein_pathologist_info.csv` - 20 pathologists with characteristics
@@ -131,6 +133,7 @@ Successfully implemented hierarchical clustering analysis for the `agreement` fu
 7. `data-raw/test_ein_clustering_replication.R` - Testing script
 
 **Dataset Characteristics**:
+
 - 62 endometrial biopsies
 - 20 pathologists (raters)
 - 3 diagnostic categories: Benign, EIN, Adenocarcinoma
@@ -148,6 +151,7 @@ Successfully implemented hierarchical clustering analysis for the `agreement` fu
 **Command**: `Rscript data-raw/test_ein_clustering_replication.R`
 
 **Results**:
+
 ```
 Data Structure:
   Cases: 62
@@ -172,6 +176,7 @@ Characteristic Associations:
 ```
 
 **Heatmap Generated**: ✅
+
 - File: `data/ein_clustering_heatmap_test.png`
 - Shows dual dendrograms
 - Color-coded by diagnosis (Blue-Green-Gold)
@@ -203,22 +208,26 @@ Characteristic Associations:
 ### Step-by-Step Guide
 
 1. **Load Data**:
+
    ```
    Open jamovi → Import → ein_agreement_wide.csv
    ```
 
 2. **Open Agreement Analysis**:
+
    ```
    Analyses → ClinicoPath → meddecide → Agreement
    ```
 
 3. **Select Variables**:
+
    ```
    Rater Variables: Select columns T through E (20 pathologists)
    Reference Standard (optional): Select 'reference' column
    ```
 
 4. **Enable Clustering**:
+
    ```
    Rater Clustering Analysis (Diagnostic Styles) ▼
    ☑ Perform Rater Clustering Analysis
@@ -231,6 +240,7 @@ Characteristic Associations:
    ```
 
 5. **Configure Analysis**:
+
    ```
    Discordant Case Analysis:
    ☑ Identify High-Disagreement Cases
@@ -245,6 +255,7 @@ Characteristic Associations:
    ```
 
 6. **Add Rater Characteristics** (optional):
+
    ```
    Load ein_pathologist_info.csv
    Merge with main data by pathologist ID
@@ -306,23 +317,23 @@ Characteristic Associations:
 
 ### Plots
 
-6. **Hierarchical Clustering Heatmap (Cases × Raters)**
+1. **Hierarchical Clustering Heatmap (Cases × Raters)**
    - Dual dendrograms
    - Color-coded diagnoses
    - Style group annotation
    - Publication quality
 
-7. **Rater Clustering Dendrogram**
+2. **Rater Clustering Dendrogram**
    - Hierarchical relationships
    - Colored rectangles around clusters
    - Distance scale
 
-8. **Cluster Quality (Silhouette Plot)**
+3. **Cluster Quality (Silhouette Plot)**
    - Silhouette width per rater
    - Cluster grouping
    - Average silhouette line
 
-9. **Clustering Analysis Interpretation Guide** (if enabled)
+4. **Clustering Analysis Interpretation Guide** (if enabled)
    - What is diagnostic style clustering?
    - Understanding the tables
    - Clinical implications
@@ -337,6 +348,7 @@ Characteristic Associations:
 Based on the Usubutun methodology, clustering should identify:
 
 **Conservative Group** (~4 raters):
+
 - Favor benign diagnoses
 - Miss some EIN cases
 - Respond differently to confounders:
@@ -345,11 +357,13 @@ Based on the Usubutun methodology, clustering should identify:
   - Focal EIN → miss or call benign
 
 **Balanced Group** (~11 raters):
+
 - Use all diagnostic categories appropriately
 - Highest agreement with reference
 - Most representative of consensus
 
 **Sensitive Group** (~5 raters):
+
 - Favor EIN diagnosis
 - Detect subtle EIN features
 - May overdiagnose in:
@@ -422,6 +436,7 @@ The synthetic dataset shows **weak cluster separation** (silhouette = 0.069) com
 To better replicate the original:
 
 1. **Model specific confounders**:
+
    ```r
    # Cases with tubal differentiation
    # Conservative → benign
@@ -429,12 +444,14 @@ To better replicate the original:
    ```
 
 2. **Stronger style biases**:
+
    ```r
    # Conservative: 90% benign bias for ambiguous cases
    # Sensitive: 90% EIN bias for ambiguous cases
    ```
 
 3. **Reference-correlated patterns**:
+
    ```r
    # Red group should cluster with reference
    # Green group should differ systematically
@@ -449,23 +466,27 @@ The **implementation is production-ready**. The synthetic data is for **testing 
 ## Code Quality
 
 ### R6 Class Structure ✅
+
 - Proper inheritance from `agreementBase`
 - Private methods appropriately scoped
 - Checkpoint integration for long operations
 
 ### Error Handling ✅
-- Minimum rater checks (n ≥ 3)
+
+- Minimum rater checks (n >= 3)
 - Length validation
 - Package availability checks
 - Graceful degradation (pheatmap → ggplot2)
 
 ### Statistical Validity ✅
+
 - Proper distance metric
 - Appropriate test selection
 - Effect size calculations
 - Confidence interval reporting
 
 ### Code Documentation ✅
+
 - Clear function names
 - Inline comments
 - Section headers

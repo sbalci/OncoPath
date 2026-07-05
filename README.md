@@ -112,18 +112,18 @@ specifically designed for pathology and AI algorithm validation.
 
 ### Method 1: Via jamovi Library (Recommended)
 
-1.  Open jamovi
-2.  Click on the “Modules” (⊞) button in the top-right
-3.  Select “jamovi library”
-4.  Search for “OncoPath”
-5.  Click “Install”
+1. Open jamovi
+2. Click on the “Modules” (⊞) button in the top-right
+3. Select “jamovi library”
+4. Search for “OncoPath”
+5. Click “Install”
 
 ### Method 2: Sideload Installation
 
-1.  Download the latest `.jmo` file from
+1. Download the latest `.jmo` file from
     [releases](https://github.com/sbalci/OncoPath/releases/)
-2.  In jamovi, click “Modules” (⊞) → “Sideload”
-3.  Select the downloaded `.jmo` file
+2. In jamovi, click “Modules” (⊞) → “Sideload”
+3. Select the downloaded `.jmo` file
 
 ### Method 3: R Installation
 
@@ -136,7 +136,7 @@ remotes::install_github("sbalci/OncoPath")
 
 ### Swimmer Plot Example
 
-1.  Load your patient timeline data with columns for:
+1. Load your patient timeline data with columns for:
 
     - Patient ID
     - Start time
@@ -144,24 +144,24 @@ remotes::install_github("sbalci/OncoPath")
     - Events (optional)
     - Response data (optional)
 
-2.  Navigate to **OncoPath** → **Patient Follow-Up Plots** → **Swimmer
+2. Navigate to **OncoPath** → **Patient Follow-Up Plots** → **Swimmer
     Plot**
 
-3.  Configure your variables and customize the visualization
+3. Configure your variables and customize the visualization
 
 ### Waterfall Plot Example
 
-1.  Prepare your treatment response data with:
+1. Prepare your treatment response data with:
 
     - Patient ID
     - Response variable (percentage change or raw measurements)
     - Time points (for longitudinal analysis)
     - Group variables (optional)
 
-2.  Navigate to **OncoPath** → **Patient Follow-Up Plots** → **Treatment
+2. Navigate to **OncoPath** → **Patient Follow-Up Plots** → **Treatment
     Response Analysis**
 
-3.  Select RECIST criteria options and customize your analysis
+3. Select RECIST criteria options and customize your analysis
 
 ## Documentation
 
@@ -188,8 +188,8 @@ Library** → **OncoPath**
 
 ### Core Dependencies
 
-- R (≥ 4.1.0)
-- jmvcore (≥ 0.8.5)
+- R (>= 4.1.0)
+- jmvcore (>= 0.8.5)
 - ggplot2
 - dplyr
 - rlang
