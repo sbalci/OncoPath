@@ -217,39 +217,6 @@ including interpretation guidance</p></dd>
 <p><code>as.data.frame(results$bivariateresults)</code></p>
     </div>
 
-    <div class="section level2">
-    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'diagnostic_studies'</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">diagnosticmeta</span><span class="op">(</span>data <span class="op">=</span> <span class="va">diagnostic_studies</span>,</span></span>
-<span class="r-in"><span>              study <span class="op">=</span> <span class="va">study_name</span>,</span></span>
-<span class="r-in"><span>              true_positives <span class="op">=</span> <span class="va">tp</span>,</span></span>
-<span class="r-in"><span>              false_positives <span class="op">=</span> <span class="va">fp</span>,</span></span>
-<span class="r-in"><span>              false_negatives <span class="op">=</span> <span class="va">fn</span>,</span></span>
-<span class="r-in"><span>              true_negatives <span class="op">=</span> <span class="va">tn</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  DIAGNOSTIC TEST META-ANALYSIS FOR PATHOLOGY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Bivariate Meta-Analysis Results                                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Parameter                    Estimate      CI Lower      CI Upper      I²           P-value      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Pooled Sensitivity           75.5034620    69.1013875    80.9448381                 &lt; .0000001   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Pooled Specificity           89.7743919    85.6637800    92.8053613                 &lt; .0000001   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Positive Likelihood Ratio     7.3837625     5.1812094    10.5226299                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Negative Likelihood Ratio     0.2728678     0.2134943     0.3487532                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Diagnostic Odds Ratio        27.0598559    16.3971455    44.6562971                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. I² values are not included in the bivariate table as univariate I² calculations ignore</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    within-study correlation and bivariate model structure. Please refer to the Heterogeneity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Assessment table for proper evaluation using Q-statistics and tau-squared.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. Analysis completed successfully - table populated</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. Reitsma model estimated via reml</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
-</code></pre></div>
-    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

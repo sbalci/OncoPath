@@ -171,37 +171,3 @@ example:
 `results$bivariateresults$asDF`
 
 `as.data.frame(results$bivariateresults)`
-
-## Examples
-
-``` r
-# \donttest{
-data('diagnostic_studies')
-
-diagnosticmeta(data = diagnostic_studies,
-              study = study_name,
-              true_positives = tp,
-              false_positives = fp,
-              false_negatives = fn,
-              true_negatives = tn)
-#> 
-#>  DIAGNOSTIC TEST META-ANALYSIS FOR PATHOLOGY
-#> 
-#>  Bivariate Meta-Analysis Results                                                                    
-#>  ────────────────────────────────────────────────────────────────────────────────────────────────── 
-#>    Parameter                    Estimate      CI Lower      CI Upper      I²           P-value      
-#>  ────────────────────────────────────────────────────────────────────────────────────────────────── 
-#>    Pooled Sensitivity           75.5034620    69.1013875    80.9448381                 < .0000001   
-#>    Pooled Specificity           89.7743919    85.6637800    92.8053613                 < .0000001   
-#>    Positive Likelihood Ratio     7.3837625     5.1812094    10.5226299                              
-#>    Negative Likelihood Ratio     0.2728678     0.2134943     0.3487532                              
-#>    Diagnostic Odds Ratio        27.0598559    16.3971455    44.6562971                              
-#>  ────────────────────────────────────────────────────────────────────────────────────────────────── 
-#>    Note. I² values are not included in the bivariate table as univariate I² calculations ignore
-#>    within-study correlation and bivariate model structure. Please refer to the Heterogeneity
-#>    Assessment table for proper evaluation using Q-statistics and tau-squared.
-#>    Note. Analysis completed successfully - table populated
-#>    Note. Reitsma model estimated via reml
-#> 
-# }
-```
