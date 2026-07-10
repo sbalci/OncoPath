@@ -1,7 +1,7 @@
 Package: OncoPath
 Type: Package
 Title: OncoPath Functions for Clinicopathological Research
-Version: 0.0.47
+Version: 0.0.5
 Author: Serdar Balci
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
 Description: OncoPath Functions for Clinicopathological Research.
@@ -13,7 +13,7 @@ Description: OncoPath Functions for Clinicopathological Research.
         ggswim integration, comprehensive clinical event tracking,
         diagnostic test meta-analysis with bivariate modeling and HSROC
         methods, and IHC heterogeneity analysis for pathology biomarker
-        studies.
+        studies. For comments, suggestions, feature requests or reporting bugs, please open an issue <a href="https://github.com/sbalci/ClinicoPathJamoviModule/issues/" target="_blank">here</a>.
 Depends: R (>= 3.5.0)
 License: GPL (>= 2)
 Encoding: UTF-8

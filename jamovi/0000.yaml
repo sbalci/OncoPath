@@ -1,19 +1,22 @@
 ---
 title: OncoPath Functions for Clinicopathological Research
 name: OncoPath
-version: 0.0.47
+version: 0.0.5
 jms: '1.0'
 authors:
   - Serdar Balci
 maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
-date: '2026-07-05'
+date: '2026-07-10'
 type: R
 description: >-
   OncoPath Functions for Clinicopathological Research. Specialized oncology and
   pathology visualization tools from ClinicoPath jamovi module. OncoPath helps
   researchers create comprehensive patient follow-up plots including waterfall
   plots for treatment response analysis and swimmer plots for patient timeline
-  visualization.
+  visualization. For comments, suggestions, feature requests or reporting bugs,
+  please open an issue <a
+  href="https://github.com/sbalci/ClinicoPathJamoviModule/issues/"
+  target="_blank">here</a>. 
 analyses:
   - title: Treatment Response Analysis
     name: waterfall
