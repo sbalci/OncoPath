@@ -1,19 +1,23 @@
 Package: OncoPath
 Type: Package
 Title: OncoPath Functions for Clinicopathological Research
-Version: 0.0.5
-Author: Serdar Balci
+Version: 0.0.51
+Authors@R: person(given = "Serdar", family = "Balci", role = c("aut", "cre", "cph"), email = "serdarbalci@serdarbalci.com", comment = c(ORCID = "0000-0002-7852-3851"))
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
-Description: OncoPath Functions for Clinicopathological Research.
-        Specialized oncology and pathology visualization tools from
-        ClinicoPath jamovi module. OncoPath helps researchers create
+Description: Provides specialized oncology and pathology visualization
+        tools for clinicopathological research, adapted from the
+        ClinicoPath jamovi module. Helps researchers create
         comprehensive patient follow-up plots including waterfall plots
         for treatment response analysis and swimmer plots for patient
-        timeline visualization. Features RECIST criteria analysis,
-        ggswim integration, comprehensive clinical event tracking,
-        diagnostic test meta-analysis with bivariate modeling and HSROC
-        methods, and IHC heterogeneity analysis for pathology biomarker
-        studies. For comments, suggestions, feature requests or reporting bugs, please open an issue <a href="https://github.com/sbalci/ClinicoPathJamoviModule/issues/" target="_blank">here</a>.
+        timeline visualization. Features RECIST (Response Evaluation
+        Criteria in Solid Tumors) criteria analysis, ggswim integration,
+        comprehensive clinical event tracking, diagnostic test
+        meta-analysis with bivariate modeling and HSROC (Hierarchical
+        Summary Receiver Operating Characteristic) methods, and IHC
+        (immunohistochemistry) heterogeneity analysis for pathology
+        biomarker studies. For comments, suggestions, feature requests
+        or reporting bugs, please open an issue at
+        <https://github.com/sbalci/ClinicoPathJamoviModule/issues/>.
 Depends: R (>= 3.5.0)
 License: GPL (>= 2)
 Encoding: UTF-8

@@ -246,8 +246,8 @@ Library** → **OncoPath**
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing
-Guidelines](CONTRIBUTING.md) for details.
+We welcome contributions! Please see our Contributing Guidelines for
+details.
 
 ### Areas for Contribution
 
@@ -279,7 +279,7 @@ And the main ClinicoPath project:
 
 ## License
 
-GPL (\>= 2) - see [LICENSE](LICENSE) file for details.
+GPL (\>= 2) - see the LICENSE file for details.
 
 ## Related Projects
 

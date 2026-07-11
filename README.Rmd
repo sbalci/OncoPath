@@ -197,7 +197,7 @@ Access these datasets through the jamovi interface:
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+We welcome contributions! Please see our Contributing Guidelines for details.
 
 ### Areas for Contribution
 
@@ -231,7 +231,7 @@ Serdar Balci (2025). ClinicoPath jamovi Module. doi:10.5281/zenodo.3997188
 
 ## License
 
-GPL (>= 2) - see [LICENSE](LICENSE) file for details.
+GPL (>= 2) - see the LICENSE file for details.
 
 ## Related Projects
 
