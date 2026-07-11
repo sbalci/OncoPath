@@ -12,6 +12,9 @@ x \%|\% y
 
 \item{y}{Right-hand side default value}
 }
+\value{
+`x` if it is not `NA`, otherwise `y`.
+}
 \description{
 NA-coalescing operator
 }

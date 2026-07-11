@@ -6,6 +6,14 @@
 \usage{
 lhs \%>\% rhs
 }
+\arguments{
+\item{lhs}{A value passed into the right-hand side function.}
+
+\item{rhs}{A function call to which `lhs` is supplied as the first argument.}
+}
+\value{
+The result of calling `rhs` with `lhs` as its first argument.
+}
 \description{
 Pipe operator
 }

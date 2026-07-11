@@ -12,6 +12,9 @@ x \%notin\% table
 
 \item{table}{Values to check against}
 }
+\value{
+A logical vector, `TRUE` where an element of `x` is not present in `table`.
+}
 \description{
 Not-in operator
 }
