@@ -30,7 +30,8 @@ waterfall(
   showClinicalSignificance = FALSE,
   showConfidenceIntervals = TRUE,
   enableGuidedMode = FALSE,
-  showExplanations = FALSE
+  showExplanations = FALSE,
+  seed = 123
 )
 }
 \arguments{
@@ -113,6 +114,11 @@ confidence intervals for ORR and DCR}
 \item{showExplanations}{Display comprehensive explanation of what this
 analysis does, when to use it, data requirements, and key
 assumptions/limitations}
+
+\item{seed}{Random seed for the reproducible bootstrap confidence interval
+of the median response (used when 'Show Confidence Interval' is enabled).
+Change it to draw a different bootstrap sample; the default (123)
+reproduces the previous fixed behaviour.}
 }
 \value{
 A results object containing:

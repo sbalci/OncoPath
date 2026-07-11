@@ -30,7 +30,8 @@ waterfallOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             showClinicalSignificance = FALSE,
             showConfidenceIntervals = TRUE,
             enableGuidedMode = FALSE,
-            showExplanations = FALSE, ...) {
+            showExplanations = FALSE,
+            seed = 123, ...) {
 
             super$initialize(
                 package="OncoPath",
@@ -193,6 +194,10 @@ waterfallOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 default=FALSE)
             private$..addResponseCategory <- jmvcore::OptionOutput$new(
                 "addResponseCategory")
+            private$..seed <- jmvcore::OptionInteger$new(
+                "seed",
+                seed,
+                default=123)
 
             self$.addOption(private$..patientID)
             self$.addOption(private$..responseVar)
@@ -220,6 +225,7 @@ waterfallOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..enableGuidedMode)
             self$.addOption(private$..showExplanations)
             self$.addOption(private$..addResponseCategory)
+            self$.addOption(private$..seed)
         }),
     active = list(
         patientID = function() private$..patientID$value,
@@ -247,7 +253,8 @@ waterfallOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         showConfidenceIntervals = function() private$..showConfidenceIntervals$value,
         enableGuidedMode = function() private$..enableGuidedMode$value,
         showExplanations = function() private$..showExplanations$value,
-        addResponseCategory = function() private$..addResponseCategory$value),
+        addResponseCategory = function() private$..addResponseCategory$value,
+        seed = function() private$..seed$value),
     private = list(
         ..patientID = NA,
         ..responseVar = NA,
@@ -274,7 +281,8 @@ waterfallOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..showConfidenceIntervals = NA,
         ..enableGuidedMode = NA,
         ..showExplanations = NA,
-        ..addResponseCategory = NA)
+        ..addResponseCategory = NA,
+        ..seed = NA)
 )
 
 waterfallResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -741,6 +749,10 @@ waterfallBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param showExplanations Display comprehensive explanation of what this
 #'   analysis does, when to use it, data requirements, and key
 #'   assumptions/limitations
+#' @param seed Random seed for the reproducible bootstrap confidence interval
+#'   of the median response (used when 'Show Confidence Interval' is enabled).
+#'   Change it to draw a different bootstrap sample; the default (123)
+#'   reproduces the previous fixed behaviour.
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$guidedAnalysis} \tab \tab \tab \tab \tab a html \cr
@@ -798,7 +810,8 @@ waterfall <- function(
     showClinicalSignificance = FALSE,
     showConfidenceIntervals = TRUE,
     enableGuidedMode = FALSE,
-    showExplanations = FALSE) {
+    showExplanations = FALSE,
+    seed = 123) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("waterfall requires jmvcore to be installed (restart may be required)")
@@ -841,7 +854,8 @@ waterfall <- function(
         showClinicalSignificance = showClinicalSignificance,
         showConfidenceIntervals = showConfidenceIntervals,
         enableGuidedMode = enableGuidedMode,
-        showExplanations = showExplanations)
+        showExplanations = showExplanations,
+        seed = seed)
 
     analysis <- waterfallClass$new(
         options = options,
