@@ -2,8 +2,8 @@
 #'
 #' @description R6 class for performing treatment response analysis using waterfall plots.
 #' @name waterfallClass
-#' @return An \code{R6} class generator object for the \code{waterfallClass} backend; used internally by the jamovi analysis wrapper and not called directly.
 #' @importFrom R6 R6Class
+#' @return An \code{R6} class generator object for the \code{waterfallClass} backend; used internally by the jamovi analysis wrapper and not called directly.
 waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
     "waterfallClass",
     inherit = waterfallBase,
@@ -250,10 +250,29 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
               ) %>%
               dplyr::filter(!is.na(time_to_first_response) | !is.na(duration_of_response))
 
+            # Kaplan-Meier median duration of response (censoring-aware). The naive median
+            # of duration_of_response ignores responders still in response at last
+            # follow-up (duration_censored == 0) and so understates DoR.
+            km_median_dor <- NA_real_
+            n_dor_events <- NA_integer_
+            dor_ok <- !is.na(metrics$duration_of_response) & !is.na(metrics$duration_censored)
+            if (sum(dor_ok) >= 2 && requireNamespace("survival", quietly = TRUE)) {
+              km_dor <- tryCatch({
+                fit <- survival::survfit(
+                  survival::Surv(metrics$duration_of_response[dor_ok],
+                                 metrics$duration_censored[dor_ok]) ~ 1)
+                unname(summary(fit)$table["median"])
+              }, error = function(e) NA_real_)
+              km_median_dor <- km_dor
+              n_dor_events <- sum(metrics$duration_censored[dor_ok] == 1)
+            }
+
             # Summary statistics
             summary_stats <- list(
               median_time_to_response = median(metrics$time_to_first_response, na.rm = TRUE),
               median_duration_of_response = median(metrics$duration_of_response, na.rm = TRUE),
+              km_median_duration_of_response = km_median_dor,
+              n_duration_events = n_dor_events,
               median_time_to_best_response = median(metrics$time_to_best_response, na.rm = TRUE),
               n_responders = sum(!is.na(metrics$time_to_first_response)),
               n_with_duration_data = sum(!is.na(metrics$duration_of_response))
@@ -303,12 +322,127 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
 
           # Sort data
           if (plotData$options$sortBy == "response") {
-            df <- df[order(df$response, na.last = TRUE),]
+            # conventional oncology waterfall: worst (highest) on left, best (lowest) on right
+            decreasing <- !identical(plotData$options$sortDirection, "reverse")
+            df <- df[order(df$response, decreasing = decreasing, na.last = TRUE),]
           } else if (plotData$options$sortBy == "id") {
             df <- df[order(df[[plotData$options$patientID]], na.last = TRUE),]
           }
 
           return(df)
+        },
+
+        # --- Issue #1 enhancements: baseline line + annotation markers ---
+
+        # Vectorized isTRUE (NA -> FALSE)
+        .isTrueVec = function(x) !is.na(x) & x,
+
+        # Coerce an arbitrary vector to a logical "ongoing / on-treatment" flag
+        .coerceOngoing = function(x) {
+          if (is.logical(x)) return(ifelse(is.na(x), FALSE, x))
+          if (is.numeric(x)) return(!is.na(x) & x != 0)
+          xs <- tolower(trimws(as.character(x)))
+          !is.na(xs) & xs %in% c("yes", "y", "true", "on", "ongoing", "1")
+        },
+
+        # Attach optional per-patient annotation columns to the waterfall data.
+        # Matches by patient-ID VALUE, so it is robust to escaped column names.
+        .attachAnnotations = function(wdf, source_df, pidCol, confVar, ongVar) {
+          if (is.null(source_df) || is.null(pidCol) || !(pidCol %in% names(wdf)))
+            return(wdf)
+          src_pid_name <- self$options$patientID
+          if (is.null(src_pid_name) || !(src_pid_name %in% names(source_df)))
+            return(wdf)
+          idx <- match(wdf[[pidCol]], source_df[[src_pid_name]])
+          if (!is.null(confVar) && confVar %in% names(source_df))
+            wdf$confirm_status <- as.character(source_df[[confVar]])[idx]
+          if (!is.null(ongVar) && ongVar %in% names(source_df))
+            wdf$ongoing_flag <- private$.coerceOngoing(source_df[[ongVar]][idx])
+          wdf
+        },
+
+        # Override computed RECIST category with a user-supplied category variable.
+        # Matches by patient-ID VALUE; only rows with a supplied value are changed.
+        # Expected values: CR / PR / SD / PD (case-insensitive).
+        .applyCategoryOverride = function(wdf, source_df, pidCol, categoryVar) {
+          if (is.null(categoryVar) || is.null(source_df) ||
+              !(categoryVar %in% names(source_df)) || !(pidCol %in% names(wdf)) ||
+              !("recist_category" %in% names(wdf)))
+            return(wdf)
+          src_pid_name <- self$options$patientID
+          if (is.null(src_pid_name) || !(src_pid_name %in% names(source_df)))
+            return(wdf)
+          idx <- match(wdf[[pidCol]], source_df[[src_pid_name]])
+          user_cat <- toupper(trimws(as.character(source_df[[categoryVar]])[idx]))
+          ok <- !is.na(user_cat) & user_cat != ""
+          wdf$recist_category[ok] <- user_cat[ok]
+          wdf
+        },
+
+        # Add a Y = 0 baseline reference line
+        .addBaseline = function(plot, show_baseline) {
+          if (isTRUE(show_baseline)) {
+            plot + ggplot2::geom_hline(yintercept = 0, color = "black", linewidth = 0.5)
+          } else {
+            plot
+          }
+        },
+
+        # Draw per-bar annotation markers: confirmation shapes + ongoing arrows.
+        # x-positions match the bar index used in the base plot (seq_len(nrow(df))).
+        .addAnnotationMarkers = function(plot, df, plotData) {
+          n <- nrow(df)
+          # Confirmation: a point at each bar tip, shape mapped by level
+          if (!is.null(plotData$options$confirmationVar) && "confirm_status" %in% names(df)) {
+            keep <- !is.na(df$confirm_status)
+            if (any(keep)) {
+              marker_df <- data.frame(
+                xpos = which(keep),
+                ypos = df$response[keep],
+                confirm_status = df$confirm_status[keep],
+                stringsAsFactors = FALSE
+              )
+              nlev <- length(unique(marker_df$confirm_status))
+              plot <- plot +
+                ggplot2::geom_point(
+                  data = marker_df,
+                  mapping = ggplot2::aes(
+                    x = factor(xpos, levels = seq_len(n)),
+                    y = ypos,
+                    shape = confirm_status
+                  ),
+                  size = 2.5, colour = "black", inherit.aes = FALSE
+                ) +
+                ggplot2::scale_shape_manual(
+                  name = .("Confirmation"),
+                  values = c(16, 1, 17, 2, 15)[seq_len(min(5, nlev))]
+                )
+            }
+          }
+          # Ongoing: an arrow drawn outward from each ongoing bar tip
+          if (!is.null(plotData$options$ongoingVar) && "ongoing_flag" %in% names(df)) {
+            on_idx <- which(private$.isTrueVec(df$ongoing_flag))
+            if (length(on_idx) > 0) {
+              on_df <- data.frame(
+                xpos = on_idx,
+                ystart = df$response[on_idx],
+                stringsAsFactors = FALSE
+              )
+              on_df$yend <- on_df$ystart + ifelse(on_df$ystart >= 0, 8, -8)
+              plot <- plot +
+                ggplot2::geom_segment(
+                  data = on_df,
+                  mapping = ggplot2::aes(
+                    x = factor(xpos, levels = seq_len(n)),
+                    xend = factor(xpos, levels = seq_len(n)),
+                    y = ystart, yend = yend
+                  ),
+                  arrow = ggplot2::arrow(length = ggplot2::unit(0.15, "cm"), type = "closed"),
+                  colour = "black", linewidth = 0.5, inherit.aes = FALSE
+                )
+            }
+          }
+          plot
         },
 
         # Define color schemes for plots
@@ -1584,6 +1718,15 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           safe_groupVar
         )
 
+        # Optional: override the computed RECIST category with a user-supplied one
+        # (e.g., new-lesion PD despite target-lesion shrinkage). Applied before
+        # metrics and plots so ORR/DCR and bar coloring all reflect it.
+        if (!is.null(processed_data) && !is.null(processed_data$waterfall)) {
+          processed_data$waterfall <- private$.applyCategoryOverride(
+            processed_data$waterfall, self$data, safe_patientID,
+            self$options$responseCategoryVar)
+        }
+
         # ============================================================================
         # CRITICAL: REGULATORY USE BLOCKING
         # ============================================================================
@@ -1889,6 +2032,32 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
                                tte_metrics$summary$n_with_duration_data)
               ))
             }
+
+            # Dedicated TTR / DoR table with censoring-aware (Kaplan-Meier) DoR
+            if (isTRUE(self$options$showResponseDuration) &&
+                !is.null(self$results$responseDurationTable)) {
+              rdt <- self$results$responseDurationTable
+              s <- tte_metrics$summary
+              if (!is.na(s$median_time_to_response))
+                rdt$addRow(rowKey = "ttr", values = list(
+                  metric = "Median time to first response (TTR)",
+                  value = s$median_time_to_response,
+                  detail = sprintf("RECIST PR or better; n=%d responders", s$n_responders)))
+              if (!is.na(s$median_duration_of_response))
+                rdt$addRow(rowKey = "dor_naive", values = list(
+                  metric = "Median duration of response (naive)",
+                  value = s$median_duration_of_response,
+                  detail = sprintf("Ignores censoring; n=%d with duration data",
+                                   s$n_with_duration_data)))
+              if (!is.null(s$km_median_duration_of_response) &&
+                  !is.na(s$km_median_duration_of_response))
+                rdt$addRow(rowKey = "dor_km", values = list(
+                  metric = "Median duration of response (Kaplan-Meier)",
+                  value = s$km_median_duration_of_response,
+                  detail = sprintf("Censoring-aware; %d progression events", s$n_duration_events)))
+              rdt$setNote("dor",
+                "DoR is measured from first RECIST response to progression; responders still in response at last follow-up are censored. The Kaplan-Meier median accounts for this censoring and is the preferred summary.")
+            }
           }
         }
         
@@ -1998,6 +2167,14 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         safe_timeVar <- private$.escapeVar(self$options$timeVar)
         safe_groupVar <- private$.escapeVar(self$options$groupVar)
 
+        # Attach optional confirmation / ongoing annotations (issue #1 markers).
+        # Baked into the waterfall data so the plot state carries them to render.
+        if (!is.null(processed_data$waterfall)) {
+          processed_data$waterfall <- private$.attachAnnotations(
+            processed_data$waterfall, self$data, safe_patientID,
+            self$options$confirmationVar, self$options$ongoingVar)
+        }
+
         # Prepare comprehensive plot data structure
         plotData <- list(
           "data" = processed_data,
@@ -2006,6 +2183,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             "response" = safe_responseVar,
             "timeVar" = safe_timeVar,
             "sortBy" = self$options$sortBy,
+            "sortDirection" = self$options$sortDirection,
             "showThresholds" = self$options$showThresholds,
             "labelOutliers" = self$options$labelOutliers,
             "colorScheme" = self$options$colorScheme,
@@ -2016,6 +2194,9 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             "showMedian" = self$options$showMedian,
             "showCI" = self$options$showCI,
             "seed" = self$options$seed,
+            "showBaseline" = self$options$showBaseline,
+            "confirmationVar" = self$options$confirmationVar,
+            "ongoingVar" = self$options$ongoingVar,
             "minResponseForLabel" = self$options$minResponseForLabel,
             "spiderColorBy" = self$options$spiderColorBy,
             "spiderColorScheme" = self$options$spiderColorScheme,
@@ -2286,7 +2467,9 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
 
         # Sort data
         if (plotData$options$sortBy == "response") {
-          df <- df[order(df$response, na.last = TRUE),]
+          # conventional oncology waterfall: worst (highest) on left, best (lowest) on right
+          decreasing <- !identical(plotData$options$sortDirection, "reverse")
+          df <- df[order(df$response, decreasing = decreasing, na.last = TRUE),]
         } else if (plotData$options$sortBy == "id") {
           df <- df[order(df[[plotData$options$patientID]], na.last = TRUE),]
         }
@@ -2323,7 +2506,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
                            "patient_group" %in% names(df)
 
         # Preset-aware enhancements
-        preset <- "custom" # self$options$clinicalPreset
+        preset <- "custom"  # clinicalPreset option was removed; behavior fixed to "custom"
         if (preset == "biomarker" && !useGroupColoring) {
           message("Biomarker preset: Consider enabling group-based coloring for biomarker analysis")
         }
@@ -2499,7 +2682,9 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         #   p <- p + ggplot2::facet_wrap(~subgroup)
         # }
 
-
+        # Issue #1: baseline reference line + confirmation/ongoing markers
+        p <- private$.addBaseline(p, isTRUE(plotData$options$showBaseline))
+        p <- private$.addAnnotationMarkers(p, df, plotData)
 
         print(p)
         TRUE
@@ -2652,7 +2837,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         useGroupColoring <- spiderColorBy == "group" && "patient_group" %in% names(df)
 
         # Preset-aware spider plot enhancements
-        preset <- "custom" # self$options$clinicalPreset
+        preset <- "custom"  # clinicalPreset option was removed; behavior fixed to "custom"
         if (preset == "biomarker" && !useGroupColoring) {
           message("Biomarker preset: Group-based spider plot coloring recommended for biomarker studies")
         }
@@ -2969,7 +3154,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
       ,
       # Apply clinical presets ----
       .applyClinicalPreset = function() {
-        preset <- "custom" # self$options$clinicalPreset
+        preset <- "custom"  # clinicalPreset option was removed; behavior fixed to "custom"
         
 
         if (preset != "custom") {

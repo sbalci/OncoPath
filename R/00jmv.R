@@ -47,4 +47,11 @@
         `year`=2025, 
         `title`="mada: R package", 
         `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=mada", 
-        `url`="https://CRAN.R-project.org/package=mada"))
+        `url`="https://CRAN.R-project.org/package=mada"), 
+    `trialplots_highwind`=list(
+        `type`="software", 
+        `author`="highwind", 
+        `year`=2025, 
+        `title`="Jamovi-TrialPlots: Plot data for clinical trials (jamovi module)", 
+        `publisher`="GitHub", 
+        `url`="https://github.com/highwindmx/Jamovi-TrialPlots"))
