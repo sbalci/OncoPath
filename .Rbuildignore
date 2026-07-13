@@ -13,3 +13,5 @@
 ^README\.html$
 ^jamovi$
 data/.*\.omv$
+^data/.*\.omv$
+^inst/extdata/.*\.omv$
