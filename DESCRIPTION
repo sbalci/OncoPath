@@ -1,7 +1,7 @@
 Package: OncoPath
 Type: Package
 Title: OncoPath Functions for Clinicopathological Research
-Version: 0.0.51
+Version: 1.0.0
 Authors@R: person(given = "Serdar", family = "Balci", role = c("aut", "cre", "cph"), email = "serdarbalci@serdarbalci.com", comment = c(ORCID = "0000-0002-7852-3851"))
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
 Description: Provides specialized oncology and pathology visualization
@@ -22,10 +22,10 @@ Depends: R (>= 3.5.0)
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
-Imports: boot, cluster, cmprsk, dcurves, dplyr, ggplot2, ggswim,
-        gridExtra, haven, Hmisc, jmvcore, lubridate, mada, magrittr,
-        maxstat, metafor, mgcv, pROC, R6, RColorBrewer, rlang, rms,
-        scales, survival, survminer, survRM2, tibble, tidyr, timeROC,
+Imports: boot, cluster, cmprsk, dplyr, ggplot2, ggswim,
+        haven, Hmisc, jmvcore, lubridate, mada, magrittr,
+        maxstat, metafor, R6, RColorBrewer, rlang,
+        scales, survival, survminer, survRM2, tibble, tidyr,
         data.table, htmltools, psych, stringr
 Remotes: CHOP-CGTInformatics/ggswim
 URL: https://www.serdarbalci.com/OncoPath/,

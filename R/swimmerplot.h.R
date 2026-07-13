@@ -476,9 +476,7 @@ swimmerplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
     inherit = jmvcore::Group,
     active = list(
         notices = function() private$.items[["notices"]],
-        errorNotice = function() private$.items[["errorNotice"]],
         warningNotice = function() private$.items[["warningNotice"]],
-        infoNotice = function() private$.items[["infoNotice"]],
         instructions = function() private$.items[["instructions"]],
         plot = function() private$.items[["plot"]],
         summary = function() private$.items[["summary"]],
@@ -518,17 +516,7 @@ swimmerplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "timeUnit")))
             self$add(jmvcore::Html$new(
                 options=options,
-                name="errorNotice",
-                title="",
-                visible=FALSE))
-            self$add(jmvcore::Html$new(
-                options=options,
                 name="warningNotice",
-                title="",
-                visible=FALSE))
-            self$add(jmvcore::Html$new(
-                options=options,
-                name="infoNotice",
                 title="",
                 visible=FALSE))
             self$add(jmvcore::Html$new(
@@ -844,7 +832,7 @@ swimmerplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "OncoPath",
                 name = "swimmerplot",
-                version = c(0,0,51),
+                version = c(1,0,0),
                 options = options,
                 results = swimmerplotResults$new(options=options),
                 data = data,
@@ -939,9 +927,7 @@ swimmerplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$notices} \tab \tab \tab \tab \tab a preformatted \cr
-#'   \code{results$errorNotice} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$warningNotice} \tab \tab \tab \tab \tab a html \cr
-#'   \code{results$infoNotice} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$instructions} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$summary} \tab \tab \tab \tab \tab a table \cr
