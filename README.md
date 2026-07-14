@@ -47,7 +47,7 @@ events, milestones, and treatment responses.
   oncological clinical trial reporting
 
 **Documentation**: [Swimmer Plot
-Guide](https://www.serdarbalci.com/OncoPath/articles/swimmerplot_documentation.html)
+Guide](https://www.serdarbalci.com/OncoPath/)
 
 ### 🌊 **Waterfall Plot Analysis**
 
@@ -68,7 +68,7 @@ spider plots for tumor response visualization.
   patient responses over time
 
 **Documentation**: [Waterfall Plot
-Guide](https://www.serdarbalci.com/OncoPath/articles/waterfall_documentation.html)
+Guide](https://www.serdarbalci.com/OncoPath/)
 
 ### 🔬 **IHC Heterogeneity Analysis**
 
@@ -167,9 +167,9 @@ remotes::install_github("sbalci/OncoPath")
 
 - **Website**: <https://www.serdarbalci.com/OncoPath/>
 - **Swimmer Plot Guide**:
-  <https://www.serdarbalci.com/OncoPath/articles/swimmerplot_documentation.html>
+  <https://www.serdarbalci.com/OncoPath/>
 - **Waterfall Plot Guide**:
-  <https://www.serdarbalci.com/OncoPath/articles/waterfall_documentation.html>
+  <https://www.serdarbalci.com/OncoPath/>
 - **Main ClinicoPath Documentation**:
   <https://www.serdarbalci.com/ClinicoPathJamoviModule/>
 
@@ -262,7 +262,7 @@ details.
 - **Issues**: Report bugs or request features on [GitHub
   Issues](https://github.com/sbalci/OncoPath/issues)
 - **Discussions**: Join the conversation in [GitHub
-  Discussions](https://github.com/sbalci/OncoPath/discussions)
+  Discussions](https://github.com/sbalci/OncoPath/issues)
 - **Email**: Contact the maintainer at <serdarbalci@serdarbalci.com>
 
 ## Citation

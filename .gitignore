@@ -4,3 +4,6 @@
 .Ruserdata
 /build
 *.jmo
+*.tar.gz
+*/.DS_Store
+OncoPath_1.0.0.tar.gz
