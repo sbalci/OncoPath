@@ -96,7 +96,6 @@ including interpretation guidance}
 \value{
 A results object containing:
 \tabular{llllll}{
-  \code{results$welcome} \tab \tab \tab \tab \tab a html \cr
   \code{results$instructions} \tab \tab \tab \tab \tab a html \cr
   \code{results$summary} \tab \tab \tab \tab \tab a html \cr
   \code{results$about} \tab \tab \tab \tab \tab a html \cr
