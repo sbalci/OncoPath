@@ -1,3 +1,16 @@
+# OncoPath 1.0.0 (2026-07-13)
+
+## jamovi library readiness
+
+* Aligned all four analysis versions and the module manifest at 1.0.0.
+* Removed the unfinished clinical-preset and orphaned stage-migration code.
+* Reduced references and dependencies to the analyses that actually ship.
+* Replaced the misleading HSROC label with the implemented Holling
+  proportional-hazards SROC model and corrected its parameter descriptions.
+* Honored estimator and confidence-level selections in auxiliary `metafor`
+  models, with finite-value guards for zero-cell studies.
+* Hardened validation/error rendering and translation-ready message assembly.
+
 # OncoPath 0.0.47 (2026-07-05)
 
 ## Changes

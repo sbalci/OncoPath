@@ -168,11 +168,18 @@ standard:
 # Correlation between sensitivity and specificity accounted for
 ```
 
-### Hierarchical Summary ROC (HSROC)
+### Holling Proportional-Hazards Summary ROC
 
-Alternative parameterization focusing on: - **Accuracy parameter**:
-Overall discriminative ability - **Threshold parameter**: Cut-point
-variability
+The optional [`mada::phm()`](https://rdrr.io/pkg/mada/man/phm.html)
+analysis uses the proportional-hazards relation `u^theta = p`, where `p`
+is sensitivity and `u` is the false-positive rate. It reports:
+
+- **theta**: Diagnostic accuracy parameter
+- **tau-squared**: Between-study variation in diagnostic accuracy
+
+This compact model uses adjusted profile maximum likelihood and is
+distinct from the Rutter-Gatsonis HSROC threshold/accuracy
+parameterization.
 
 ### Meta-Regression
 
@@ -207,7 +214,8 @@ Investigates heterogeneity sources:
 4.  **Analysis Options**:
 
     - ✅ **Bivariate Random-Effects Model** (recommended)
-    - ✅ **HSROC Analysis**: Summary ROC analysis
+    - ✅ **Proportional-Hazards SROC Analysis**: Holling summary ROC
+      model
     - ✅ **Heterogeneity Assessment**: Study variation evaluation
     - **Meta-Regression**: Enable for covariate investigation
     - **Publication Bias**: Deeks’ funnel plot test

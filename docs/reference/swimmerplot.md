@@ -260,9 +260,7 @@ A results object containing:
 |                               |     |     |     |     |                |
 |-------------------------------|-----|-----|-----|-----|----------------|
 | `results$notices`             |     |     |     |     | a preformatted |
-| `results$errorNotice`         |     |     |     |     | a html         |
 | `results$warningNotice`       |     |     |     |     | a html         |
-| `results$infoNotice`          |     |     |     |     | a html         |
 | `results$instructions`        |     |     |     |     | a html         |
 | `results$plot`                |     |     |     |     | an image       |
 | `results$summary`             |     |     |     |     | a table        |

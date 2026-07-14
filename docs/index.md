@@ -44,7 +44,7 @@ events, milestones, and treatment responses.
   oncological clinical trial reporting
 
 **Documentation**: [Swimmer Plot
-Guide](https://www.serdarbalci.com/OncoPath/articles/swimmerplot_documentation.html)
+Guide](https://www.serdarbalci.com/OncoPath/)
 
 ### 🌊 **Waterfall Plot Analysis**
 
@@ -65,7 +65,7 @@ spider plots for tumor response visualization.
   patient responses over time
 
 **Documentation**: [Waterfall Plot
-Guide](https://www.serdarbalci.com/OncoPath/articles/waterfall_documentation.html)
+Guide](https://www.serdarbalci.com/OncoPath/)
 
 ### 🔬 **IHC Heterogeneity Analysis**
 
@@ -88,8 +88,8 @@ specifically designed for pathology and AI algorithm validation.
 
 - **Bivariate Meta-Analysis**: Advanced bivariate random-effects
   modeling using the Reitsma method
-- **HSROC Analysis**: Hierarchical Summary ROC curve analysis for
-  diagnostic accuracy
+- **Proportional-Hazards SROC Analysis**: Holling model for diagnostic
+  accuracy and between-study variation
 - **Meta-Regression**: Covariate analysis to explore heterogeneity
   sources
 - **Publication Bias Assessment**: Comprehensive bias detection and
@@ -164,10 +164,8 @@ remotes::install_github("sbalci/OncoPath")
 ## Documentation
 
 - **Website**: <https://www.serdarbalci.com/OncoPath/>
-- **Swimmer Plot Guide**:
-  <https://www.serdarbalci.com/OncoPath/articles/swimmerplot_documentation.html>
-- **Waterfall Plot Guide**:
-  <https://www.serdarbalci.com/OncoPath/articles/waterfall_documentation.html>
+- **Swimmer Plot Guide**: <https://www.serdarbalci.com/OncoPath/>
+- **Waterfall Plot Guide**: <https://www.serdarbalci.com/OncoPath/>
 - **Main ClinicoPath Documentation**:
   <https://www.serdarbalci.com/ClinicoPathJamoviModule/>
 
@@ -244,8 +242,7 @@ Library** → **OncoPath**
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing
-Guidelines](https://www.serdarbalci.com/OncoPath/CONTRIBUTING.md) for
+We welcome contributions! Please see our Contributing Guidelines for
 details.
 
 ### Areas for Contribution
@@ -261,7 +258,7 @@ details.
 - **Issues**: Report bugs or request features on [GitHub
   Issues](https://github.com/sbalci/OncoPath/issues)
 - **Discussions**: Join the conversation in [GitHub
-  Discussions](https://github.com/sbalci/OncoPath/discussions)
+  Discussions](https://github.com/sbalci/OncoPath/issues)
 - **Email**: Contact the maintainer at <serdarbalci@serdarbalci.com>
 
 ## Citation
@@ -269,8 +266,8 @@ details.
 If you use OncoPath in your research, please cite:
 
 ``` R
-Serdar Balci (2025). OncoPath: Specialized Oncological and Pathological Research Tools for jamovi.
-R package version 0.0.32. https://github.com/sbalci/OncoPath
+Serdar Balci (2026). OncoPath: Specialized Oncological and Pathological Research Tools for jamovi.
+R package version 1.0.0. https://github.com/sbalci/OncoPath
 ```
 
 And the main ClinicoPath project:
@@ -282,9 +279,7 @@ Serdar Balci (2025). ClinicoPath jamovi Module. doi:10.5281/zenodo.3997188
 
 ## License
 
-GPL (\>= 2) - see
-[LICENSE](https://www.serdarbalci.com/OncoPath/LICENSE) file for
-details.
+GPL (\>= 2) - see the LICENSE file for details.
 
 ## Related Projects
 

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,6 +45,18 @@
       <small>Source: <a href="https://github.com/sbalci/OncoPath/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.0" id="oncopath-100-2026-07-13">OncoPath 1.0.0 (2026-07-13)<a class="anchor" aria-label="anchor" href="#oncopath-100-2026-07-13"></a></h2>
+<div class="section level3">
+<h3 id="jamovi-library-readiness-1-0-0">jamovi library readiness<a class="anchor" aria-label="anchor" href="#jamovi-library-readiness-1-0-0"></a></h3>
+<ul><li>Aligned all four analysis versions and the module manifest at 1.0.0.</li>
+<li>Removed the unfinished clinical-preset and orphaned stage-migration code.</li>
+<li>Reduced references and dependencies to the analyses that actually ship.</li>
+<li>Replaced the misleading HSROC label with the implemented Holling proportional-hazards SROC model and corrected its parameter descriptions.</li>
+<li>Honored estimator and confidence-level selections in auxiliary <code>metafor</code> models, with finite-value guards for zero-cell studies.</li>
+<li>Hardened validation/error rendering and translation-ready message assembly.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.47" id="oncopath-0047-2026-07-05">OncoPath 0.0.47 (2026-07-05)<a class="anchor" aria-label="anchor" href="#oncopath-0047-2026-07-05"></a></h2>
 <div class="section level3">
@@ -113,8 +125,8 @@
 <p>Four new R source files add an exported <code>stagemigration_*</code> helper suite (with man pages and <code>STAGEMIGRATION_CONSTANTS</code>) supporting staging-system comparison and validation: - <strong>Discrimination</strong>: <code>stagemigration_calculateConcordance</code>, <code>stagemigration_bootstrapConcordance</code>, <code>stagemigration_competingRisksDiscrimination</code> - <strong>Competing risks &amp; survival</strong>: <code>stagemigration_competingRisksAnalysis</code>, <code>stagemigration_calculateRMST</code>, <code>stagemigration_cutpointAnalysis</code> - <strong>Data validation &amp; quality</strong>: <code>stagemigration_validateData</code>, <code>stagemigration_validateCovariates</code>, <code>stagemigration_validateStagingVars</code>, <code>stagemigration_createEventBinary</code>, <code>stagemigration_convertLabelled</code>, <code>stagemigration_detectOutliers</code>, <code>stagemigration_dataQualityReport</code>, <code>stagemigration_checkSampleSize</code> - <strong>Safe execution &amp; formulas</strong>: <code>stagemigration_safeAtomic</code>, <code>stagemigration_safeExecute</code>, <code>stagemigration_buildFormula</code>, <code>stagemigration_escapeVar</code></p>
 <div class="section level4">
 <h4 id="shared-survival-formula-helpers-rutilsr-0-0-46">Shared Survival-Formula Helpers (<code>R/utils.R</code>)<a class="anchor" aria-label="anchor" href="#shared-survival-formula-helpers-rutilsr-0-0-46"></a></h4>
-<ul><li>Added <code><a href="../reference/dot-asSurvivalFormula.html">.asSurvivalFormula()</a></code>, which wraps <code><a href="https://rdrr.io/pkg/jmvcore/man/asFormula.html" class="external-link">jmvcore::asFormula</a></code> with an extended function allow-list for survival/Cox/Fine-Gray formula paths under jamovi 2.7.27’s hardened parser</li>
-<li>Added <code><a href="../reference/dot-buildSurvivalFormula.html">.buildSurvivalFormula()</a></code>, <code><a href="../reference/dot-escapeVariableNames.html">.escapeVariableNames()</a></code>, <code><a href="../reference/load_required_package.html">load_required_package()</a></code>, the <code>%notin%</code> / <code>%!in%</code> operators, and a <code>print.sensSpecTable</code> S3 method</li>
+<ul><li>Added <code>.asSurvivalFormula()</code>, which wraps <code><a href="https://rdrr.io/pkg/jmvcore/man/asFormula.html" class="external-link">jmvcore::asFormula</a></code> with an extended function allow-list for survival/Cox/Fine-Gray formula paths under jamovi 2.7.27’s hardened parser</li>
+<li>Added <code>.buildSurvivalFormula()</code>, <code><a href="../reference/dot-escapeVariableNames.html">.escapeVariableNames()</a></code>, <code><a href="../reference/load_required_package.html">load_required_package()</a></code>, the <code>%notin%</code> / <code>%!in%</code> operators, and a <code>print.sensSpecTable</code> S3 method</li>
 </ul></div>
 </div>
 <div class="section level3">

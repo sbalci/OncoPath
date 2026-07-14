@@ -48,7 +48,8 @@ diagnosticmeta(
 
 \item{bivariate_analysis}{Perform bivariate random-effects meta-analysis}
 
-\item{hsroc_analysis}{Perform hierarchical summary ROC (HSROC) analysis}
+\item{hsroc_analysis}{Perform Holling proportional-hazards summary ROC
+analysis}
 
 \item{meta_regression}{Perform meta-regression with specified covariate}
 
@@ -121,11 +122,11 @@ Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.f
 \code{as.data.frame(results$bivariateresults)}
 }
 \description{
-Comprehensive meta-analysis of diagnostic test accuracy studies designed 
-for 
-pathology research. Performs bivariate random-effects modeling, HSROC 
-analysis, 
-meta-regression, and publication bias assessment for AI algorithm 
-validation 
+Comprehensive meta-analysis of diagnostic test accuracy studies designed
+for
+pathology research. Performs bivariate random-effects modeling,
+proportional-hazards SROC analysis,
+meta-regression, and publication bias assessment for AI algorithm
+validation
 and biomarker diagnostic accuracy synthesis.
 }

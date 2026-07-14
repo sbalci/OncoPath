@@ -1,5 +1,22 @@
 # Changelog
 
+## OncoPath 1.0.0 (2026-07-13)
+
+### jamovi library readiness
+
+- Aligned all four analysis versions and the module manifest at 1.0.0.
+- Removed the unfinished clinical-preset and orphaned stage-migration
+  code.
+- Reduced references and dependencies to the analyses that actually
+  ship.
+- Replaced the misleading HSROC label with the implemented Holling
+  proportional-hazards SROC model and corrected its parameter
+  descriptions.
+- Honored estimator and confidence-level selections in auxiliary
+  `metafor` models, with finite-value guards for zero-cell studies.
+- Hardened validation/error rendering and translation-ready message
+  assembly.
+
 ## OncoPath 0.0.47 (2026-07-05)
 
 ### Changes
@@ -117,14 +134,11 @@ survival**: `stagemigration_competingRisksAnalysis`,
 
 #### Shared Survival-Formula Helpers (`R/utils.R`)
 
-- Added
-  [`.asSurvivalFormula()`](https://www.serdarbalci.com/OncoPath/reference/dot-asSurvivalFormula.md),
-  which wraps
+- Added `.asSurvivalFormula()`, which wraps
   [`jmvcore::asFormula`](https://rdrr.io/pkg/jmvcore/man/asFormula.html)
   with an extended function allow-list for survival/Cox/Fine-Gray
   formula paths under jamovi 2.7.27’s hardened parser
-- Added
-  [`.buildSurvivalFormula()`](https://www.serdarbalci.com/OncoPath/reference/dot-buildSurvivalFormula.md),
+- Added `.buildSurvivalFormula()`,
   [`.escapeVariableNames()`](https://www.serdarbalci.com/OncoPath/reference/dot-escapeVariableNames.md),
   [`load_required_package()`](https://www.serdarbalci.com/OncoPath/reference/load_required_package.md),
   the `%notin%` / `%!in%` operators, and a `print.sensSpecTable` S3

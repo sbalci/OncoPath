@@ -2,7 +2,7 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: "ClinicoPath jamovi Module"
+title: "OncoPath: Functions for Clinicopathological Research"
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -12,8 +12,8 @@ authors:
     family-names: Balci
     email: serdarbalci@serdarbalci.com
     orcid: 'https://orcid.org/0000-0002-7852-3851'
-date-released: '2025-09-18'
-version: "0.0.31.69"
+date-released: '2026-07-13'
+version: "1.0.0"
 identifiers:
   - type: doi
     value: 10.5281/zenodo.3997188
@@ -46,15 +46,13 @@ identifiers:
   - type: url
     value: 'https://github.com/sbalci/OncoPath'
     description: OncoPath
-repository-code: 'https://github.com/sbalci/ClinicoPathJamoviModule/'
-url: 'https://www.serdarbalci.com/ClinicoPathJamoviModule'
+repository-code: 'https://github.com/sbalci/OncoPath/'
+url: 'https://www.serdarbalci.com/OncoPath/'
 abstract: >-
-  Comprehensive Analysis for Clinicopathological Research: ClinicoPath
-  is a jamovi module that helps researchers generate natural language
-  summaries of their datasets, create cross tables with statistical tests,
-  perform survival analyses with tables and plots, conduct medical decision
-  analysis, create statistical visualizations, and perform specialized
-  oncological patient follow-up analyses including waterfall and swimmer plots. 
+  OncoPath is a jamovi module for oncological and pathological research. It
+  provides waterfall and swimmer plots, immunohistochemistry heterogeneity
+  analysis, and diagnostic-test meta-analysis with bivariate and Holling
+  proportional-hazards summary ROC models.
 keywords:
   - jamovi
   - module
@@ -63,8 +61,8 @@ keywords:
   - pathology
   - research
   - biostatistics
-  - survival
-  - agreement
-  - descriptives
-  - plots
+  - oncology
+  - diagnostic-meta-analysis
+  - immunohistochemistry
+  - visualization
 license: GPL-2.0

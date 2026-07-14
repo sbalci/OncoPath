@@ -91,8 +91,8 @@ specifically designed for pathology and AI algorithm validation.
 
 - **Bivariate Meta-Analysis**: Advanced bivariate random-effects
   modeling using the Reitsma method
-- **HSROC Analysis**: Hierarchical Summary ROC curve analysis for
-  diagnostic accuracy
+- **Proportional-Hazards SROC Analysis**: Holling model for diagnostic
+  accuracy and between-study variation
 - **Meta-Regression**: Covariate analysis to explore heterogeneity
   sources
 - **Publication Bias Assessment**: Comprehensive bias detection and
@@ -269,8 +269,8 @@ details.
 
 If you use OncoPath in your research, please cite:
 
-    Serdar Balci (2025). OncoPath: Specialized Oncological and Pathological Research Tools for jamovi.
-    R package version 0.0.32. https://github.com/sbalci/OncoPath
+    Serdar Balci (2026). OncoPath: Specialized Oncological and Pathological Research Tools for jamovi.
+    R package version 1.0.0. https://github.com/sbalci/OncoPath
 
 And the main ClinicoPath project:
 

@@ -57,13 +57,13 @@ analyses:
     menuTitle: Diagnostic Test Meta-Analysis for Pathology
     description: >
       Comprehensive meta-analysis of diagnostic test accuracy studies designed
-      for 
+      for
 
-      pathology research. Performs bivariate random-effects modeling, HSROC
-      analysis, 
+      pathology research. Performs bivariate random-effects modeling,
+      proportional-hazards SROC analysis,
 
       meta-regression, and publication bias assessment for AI algorithm
-      validation 
+      validation
 
       and biomarker diagnostic accuracy synthesis.
     menuSubgroup: IHC Analysis

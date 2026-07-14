@@ -14,6 +14,11 @@ waterfall(
   groupVar = NULL,
   inputType = "percentage",
   sortBy = "response",
+  sortDirection = "conventional",
+  showBaseline = TRUE,
+  confirmationVar = NULL,
+  ongoingVar = NULL,
+  responseCategoryVar = NULL,
   showThresholds = TRUE,
   labelOutliers = FALSE,
   showMedian = FALSE,
@@ -32,7 +37,9 @@ waterfall(
   showClinicalSignificance = FALSE,
   showConfidenceIntervals = TRUE,
   enableGuidedMode = FALSE,
-  showExplanations = FALSE
+  showExplanations = FALSE,
+  showResponseDuration = FALSE,
+  seed = 123
 )
 ```
 
@@ -78,6 +85,37 @@ waterfall(
 - sortBy:
 
   Sort the waterfall plot by best response or patient ID.
+
+- sortDirection:
+
+  Direction for the response sort. 'conventional' places the highest
+  (worst) response on the left and the lowest (best, most negative) on
+  the right, following the standard oncology waterfall convention.
+
+- showBaseline:
+
+  Draw a horizontal reference line at 0 percent change to mark the
+  baseline.
+
+- confirmationVar:
+
+  Optional categorical variable indicating response confirmation status
+  (e.g., Confirmed vs Unconfirmed CR/PR). A distinct marker is drawn at
+  each bar tip according to the level of this variable.
+
+- ongoingVar:
+
+  Optional variable flagging patients still on treatment / with an
+  ongoing response. Truthy values (TRUE, non-zero, or text matching
+  yes/y/true/on/ongoing/1) draw an upward arrow at the bar tip.
+
+- responseCategoryVar:
+
+  Optional per-patient RECIST category (CR/PR/SD/PD). When supplied it
+  overrides the category computed from the percentage value, so a
+  patient with target-lesion shrinkage can still be classified PD (e.g.,
+  a new lesion). Affects both bar coloring and response metrics
+  (ORR/DCR).
 
 - showThresholds:
 
@@ -164,6 +202,20 @@ waterfall(
   Display comprehensive explanation of what this analysis does, when to
   use it, data requirements, and key assumptions/limitations
 
+- showResponseDuration:
+
+  Show a censoring-aware time-to-response (TTR) and duration-of-response
+  (DoR) table. DoR is summarized with the Kaplan-Meier median
+  (accounting for responders still in response at last follow-up), which
+  the naive median understates.
+
+- seed:
+
+  Random seed for the reproducible bootstrap confidence interval of the
+  median response (used when 'Show Confidence Interval' is enabled).
+  Change it to draw a different bootstrap sample; the default (123)
+  reproduces the previous fixed behaviour.
+
 ## Value
 
 A results object containing:
@@ -188,6 +240,7 @@ A results object containing:
 | `results$spiderplot`              |     |     |     |     | an image  |
 | `results$naturalLanguageSummary`  |     |     |     |     | a html    |
 | `results$explanations`            |     |     |     |     | a html    |
+| `results$responseDurationTable`   |     |     |     |     | a table   |
 | `results$addResponseCategory`     |     |     |     |     | an output |
 | `results$notices`                 |     |     |     |     | a html    |
 

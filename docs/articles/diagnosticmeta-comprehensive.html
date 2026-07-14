@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
                         <h4 data-toc-skip class="author">ClinicoPath
 Team</h4>
             
-            <h4 data-toc-skip class="date">2026-07-10</h4>
+            <h4 data-toc-skip class="date">2026-07-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/sbalci/OncoPath/blob/HEAD/vignettes/diagnosticmeta-comprehensive.Rmd" class="external-link"><code>vignettes/diagnosticmeta-comprehensive.Rmd</code></a></small>
       <div class="d-none name"><code>diagnosticmeta-comprehensive.Rmd</code></div>
@@ -443,11 +443,22 @@ is the gold standard:</p>
 <span><span class="co"># Correlation between sensitivity and specificity accounted for</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="hierarchical-summary-roc-hsroc">Hierarchical Summary ROC (HSROC)<a class="anchor" aria-label="anchor" href="#hierarchical-summary-roc-hsroc"></a>
+<h3 id="holling-proportional-hazards-summary-roc">Holling Proportional-Hazards Summary ROC<a class="anchor" aria-label="anchor" href="#holling-proportional-hazards-summary-roc"></a>
 </h3>
-<p>Alternative parameterization focusing on: - <strong>Accuracy
-parameter</strong>: Overall discriminative ability - <strong>Threshold
-parameter</strong>: Cut-point variability</p>
+<p>The optional <code><a href="https://rdrr.io/pkg/mada/man/phm.html" class="external-link">mada::phm()</a></code> analysis uses the
+proportional-hazards relation <code>u^theta = p</code>, where
+<code>p</code> is sensitivity and <code>u</code> is the false-positive
+rate. It reports:</p>
+<ul>
+<li>
+<strong>theta</strong>: Diagnostic accuracy parameter</li>
+<li>
+<strong>tau-squared</strong>: Between-study variation in diagnostic
+accuracy</li>
+</ul>
+<p>This compact model uses adjusted profile maximum likelihood and is
+distinct from the Rutter-Gatsonis HSROC threshold/accuracy
+parameterization.</p>
 </div>
 <div class="section level3">
 <h3 id="meta-regression">Meta-Regression<a class="anchor" aria-label="anchor" href="#meta-regression"></a>
@@ -500,7 +511,8 @@ meta-regression</li>
 <ul>
 <li>✅ <strong>Bivariate Random-Effects Model</strong>
 (recommended)</li>
-<li>✅ <strong>HSROC Analysis</strong>: Summary ROC analysis</li>
+<li>✅ <strong>Proportional-Hazards SROC Analysis</strong>: Holling
+summary ROC model</li>
 <li>✅ <strong>Heterogeneity Assessment</strong>: Study variation
 evaluation</li>
 <li>

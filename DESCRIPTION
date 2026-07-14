@@ -13,22 +13,21 @@ Description: Provides specialized oncology and pathology visualization
  timeline visualization. Features RECIST (Response Evaluation
  Criteria in Solid Tumors) criteria analysis, ggswim integration,
  comprehensive clinical event tracking, diagnostic test
- meta-analysis with bivariate modeling and HSROC (Hierarchical
- Summary Receiver Operating Characteristic) methods, and IHC
+ meta-analysis with bivariate modeling and Holling proportional-hazards
+ summary ROC methods, and IHC
  (immunohistochemistry) heterogeneity analysis for pathology
  biomarker studies. For comments, suggestions, feature requests
  or reporting bugs, please open an issue at
- <https://github.com/sbalci/ClinicoPathJamoviModule/issues/>.
+ <https://github.com/sbalci/OncoPath/issues/>.
 Depends: R (>= 3.5.0)
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
-Imports: boot, cluster, cmprsk, data.table, dplyr, ggplot2, ggswim, haven,
-        Hmisc, htmltools, jmvcore, lubridate, mada, magrittr, maxstat, metafor,
-        psych, R6, RColorBrewer, rlang, scales, stringr, survival, survminer,
-        survRM2, tibble, tidyr
+Imports: cluster, data.table, dplyr, ggplot2, ggswim, htmltools, jmvcore,
+        lubridate, mada, magrittr, metafor, psych, R6, RColorBrewer, rlang,
+        scales, stringr, survival, tibble, tidyr
 Suggests: testthat
-Remotes: CHOP-CGTInformatics/ggswim
+Remotes: CHOP-CGTInformatics/ggswim@b3c67a0796a850624745a439cac33d981d83e1dc
 URL: https://www.serdarbalci.com/OncoPath/, https://github.com/sbalci/OncoPath
 BugReports: https://github.com/sbalci/OncoPath/issues
 Config/roxygen2/version: 8.0.0
