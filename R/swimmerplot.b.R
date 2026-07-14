@@ -3,11 +3,11 @@
 #' Comprehensive swimmer plot function with full ggswim integration.
 #' Creates swimmer plots for visualizing patient timelines, treatments, milestones, and clinical events.
 #'
-#' @importFrom R6 R6Class  
+#' @importFrom R6 R6Class
 #' @import jmvcore
 #' @import ggswim
 #' @importFrom ggplot2 ggplot aes labs theme element_text element_blank
-#' @importFrom dplyr mutate filter select group_by summarize left_join arrange n bind_rows
+#' @importFrom dplyr mutate filter group_by summarize left_join arrange n bind_rows
 #' @importFrom tidyr pivot_wider
 #' @importFrom lubridate ymd_hms ymd ydm mdy myd dmy dym interval time_length
 #' @importFrom tibble tibble

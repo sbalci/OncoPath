@@ -27,6 +27,7 @@ Imports: boot, cluster, cmprsk, dplyr, ggplot2, ggswim,
         maxstat, metafor, R6, RColorBrewer, rlang,
         scales, survival, survminer, survRM2, tibble, tidyr,
         data.table, htmltools, psych, stringr
+Suggests: testthat
 Remotes: CHOP-CGTInformatics/ggswim
 URL: https://www.serdarbalci.com/OncoPath/,
         https://github.com/sbalci/OncoPath
