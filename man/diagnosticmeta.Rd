@@ -122,11 +122,11 @@ Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.f
 \code{as.data.frame(results$bivariateresults)}
 }
 \description{
-Comprehensive meta-analysis of diagnostic test accuracy studies designed
+Comprehensive meta-analysis of diagnostic test accuracy studies designed 
 for
-pathology research. Performs bivariate random-effects modeling,
+pathology research. Performs bivariate random-effects modeling, 
 proportional-hazards SROC analysis,
-meta-regression, and publication bias assessment for AI algorithm
+meta-regression, and publication bias assessment for AI algorithm 
 validation
 and biomarker diagnostic accuracy synthesis.
 }

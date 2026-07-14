@@ -648,14 +648,14 @@ diagnosticmetaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
 
 #' Diagnostic Test Meta-Analysis for Pathology
 #'
-#' Comprehensive meta-analysis of diagnostic test accuracy studies designed
+#' Comprehensive meta-analysis of diagnostic test accuracy studies designed 
 #' for
-#' pathology research. Performs bivariate random-effects modeling,
+#' pathology research. Performs bivariate random-effects modeling, 
 #' proportional-hazards SROC analysis,
-#' meta-regression, and publication bias assessment for AI algorithm
+#' meta-regression, and publication bias assessment for AI algorithm 
 #' validation
 #' and biomarker diagnostic accuracy synthesis.
-#'
+#' 
 #' @param data the data as a data frame
 #' @param study Variable containing unique study identifiers
 #' @param true_positives Number of true positive results in each study
@@ -800,3 +800,4 @@ diagnosticmeta <- function(
 
     analysis$results
 }
+
