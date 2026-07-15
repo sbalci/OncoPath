@@ -113,7 +113,8 @@ swimmerplot(
 
 - maxMilestones:
 
-  Maximum number of milestone events to support.
+  Maximum number of milestone events to support (milestone slots 1-5 are
+  defined).
 
 - milestone1Name:
 

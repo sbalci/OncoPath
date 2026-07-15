@@ -147,7 +147,6 @@ A results object containing:
 
 |                                  |     |     |     |     |          |
 |----------------------------------|-----|-----|-----|-----|----------|
-| `results$welcome`                |     |     |     |     | a html   |
 | `results$instructions`           |     |     |     |     | a html   |
 | `results$summary`                |     |     |     |     | a html   |
 | `results$about`                  |     |     |     |     | a html   |
