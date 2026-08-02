@@ -4,7 +4,7 @@ title: Treatment Response Analysis
 menuGroup: OncoPath
 menuSubgroup: 'Patient Follow-Up Plots'
 menuSubtitle: 'Waterfall Plot, Spider Plot'
-version: '1.0.1'
+version: '1.0.2'
 jas: '1.2'
 
 description:
@@ -26,6 +26,7 @@ options:
     - name: patientID
       title: Patient ID
       type: Variable
+      default: NULL
       suggested: [nominal]
       permitted: [numeric, factor, id]
       description:
@@ -39,6 +40,7 @@ options:
     - name: responseVar
       title: Response Value (Raw or Percentage)
       type: Variable
+      default: NULL
       suggested: [continuous]
       permitted: [numeric]
       description:

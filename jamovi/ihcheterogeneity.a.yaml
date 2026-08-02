@@ -3,7 +3,7 @@ name: ihcheterogeneity
 title: IHC Heterogeneity Analysis
 menuGroup: OncoPath
 menuSubgroup: IHC Analysis
-version: '1.0.1'
+version: '1.0.2'
 jas: '1.2'
 
 options:
@@ -28,6 +28,7 @@ options:
     - name: biopsy1
       title: Regional Measurement 1 (Required)
       type: Variable
+      default: NULL
       suggested:
         - continuous
       permitted:
