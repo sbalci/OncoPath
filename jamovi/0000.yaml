@@ -1,7 +1,7 @@
 ---
 title: OncoPath Functions for Clinicopathological Research
 name: OncoPath
-version: 1.0.3
+version: 1.0.4
 jms: '1.0'
 authors:
   - Serdar Balci
