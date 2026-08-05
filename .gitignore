@@ -7,3 +7,8 @@
 *.tar.gz
 */.DS_Store
 OncoPath_1.0.0.tar.gz
+
+# local scratch copies - never commit (see main repo .gitignore)
+temp/
+temp*/
+backups/

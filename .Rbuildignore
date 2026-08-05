@@ -16,3 +16,8 @@ data/.*\.omv$
 ^data/.*\.omv$
 ^inst/extdata/.*\.omv$
 ^scripts$
+^temp$
+^temp/
+^temp.*$
+^backups$
+^backups/
