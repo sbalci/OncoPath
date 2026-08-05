@@ -17,6 +17,9 @@ waterfallOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             confirmationVar = NULL,
             ongoingVar = NULL,
             responseCategoryVar = NULL,
+            showCategoryLabels = FALSE,
+            showSpiderLabels = FALSE,
+            annotationVars = NULL,
             showThresholds = TRUE,
             labelOutliers = FALSE,
             showMedian = FALSE,
@@ -130,6 +133,18 @@ waterfallOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "nominal"),
                 permitted=list(
                     "factor"),
+                default=NULL)
+            private$..showCategoryLabels <- jmvcore::OptionBool$new(
+                "showCategoryLabels",
+                showCategoryLabels,
+                default=FALSE)
+            private$..showSpiderLabels <- jmvcore::OptionBool$new(
+                "showSpiderLabels",
+                showSpiderLabels,
+                default=FALSE)
+            private$..annotationVars <- jmvcore::OptionVariables$new(
+                "annotationVars",
+                annotationVars,
                 default=NULL)
             private$..showThresholds <- jmvcore::OptionBool$new(
                 "showThresholds",
@@ -258,6 +273,9 @@ waterfallOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..confirmationVar)
             self$.addOption(private$..ongoingVar)
             self$.addOption(private$..responseCategoryVar)
+            self$.addOption(private$..showCategoryLabels)
+            self$.addOption(private$..showSpiderLabels)
+            self$.addOption(private$..annotationVars)
             self$.addOption(private$..showThresholds)
             self$.addOption(private$..labelOutliers)
             self$.addOption(private$..showMedian)
@@ -293,6 +311,9 @@ waterfallOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         confirmationVar = function() private$..confirmationVar$value,
         ongoingVar = function() private$..ongoingVar$value,
         responseCategoryVar = function() private$..responseCategoryVar$value,
+        showCategoryLabels = function() private$..showCategoryLabels$value,
+        showSpiderLabels = function() private$..showSpiderLabels$value,
+        annotationVars = function() private$..annotationVars$value,
         showThresholds = function() private$..showThresholds$value,
         labelOutliers = function() private$..labelOutliers$value,
         showMedian = function() private$..showMedian$value,
@@ -327,6 +348,9 @@ waterfallOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..confirmationVar = NA,
         ..ongoingVar = NA,
         ..responseCategoryVar = NA,
+        ..showCategoryLabels = NA,
+        ..showSpiderLabels = NA,
+        ..annotationVars = NA,
         ..showThresholds = NA,
         ..labelOutliers = NA,
         ..showMedian = NA,
@@ -408,7 +432,7 @@ waterfallResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "timeVar",
                     "inputType",
                     "enableGuidedMode"),
-                visible="(!enableGuidedMode)"))
+                visible="(enableGuidedMode:FALSE)"))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="todo2",
@@ -419,7 +443,7 @@ waterfallResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "timeVar",
                     "inputType",
                     "enableGuidedMode"),
-                visible="(!enableGuidedMode)"))
+                visible="(enableGuidedMode:FALSE)"))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="clinicalSummary",
@@ -442,11 +466,11 @@ waterfallResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "timeVar",
                     "inputType",
                     "enableGuidedMode"),
-                visible="(!enableGuidedMode)"))
+                visible="(enableGuidedMode:FALSE)"))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="summaryTable",
-                title="Response Categories Based on RECIST v1.1 Criteria",
+                title="Response Categories (threshold-based, not full RECIST v1.1)",
                 rows=0,
                 columns=list(
                     list(
@@ -551,8 +575,15 @@ waterfallResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "confirmationVar",
                     "ongoingVar",
                     "responseCategoryVar",
+                    "barAlpha",
+                    "barWidth",
+                    "minResponseForLabel",
+                    "seed",
                     "groupVar",
-                    "inputType")))
+                    "inputType",
+                    "timeVar",
+                    "annotationVars",
+                    "showCategoryLabels")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="copyReadyReport",
@@ -783,7 +814,7 @@ waterfallBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "OncoPath",
                 name = "waterfall",
-                version = c(1,0,2),
+                version = c(1,0,3),
                 options = options,
                 results = waterfallResults$new(options=options),
                 data = data,
@@ -796,14 +827,24 @@ waterfallBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 weightsSupport = 'none')
         }))
 
-#' Treatment Response Analysis
+#' Treatment Response: Patient-Level Burden
 #'
-#' Creates waterfall and spider plots to analyze tumor response data following 
-#' RECIST criteria.
-#' 
-#' Supports both raw tumor measurements and pre-calculated percentage changes.
-#' Provides comprehensive response analysis including ORR, DCR, and 
-#' person-time metrics.
+#' Use this when you have one tumour burden number per patient: either a 
+#' percent change from baseline you have already calculated (one row per 
+#' patient), or a single measurement recorded at each visit (one row per 
+#' patient per visit). It draws waterfall and spider plots, assigns each 
+#' patient a best response from their largest shrinkage from baseline, and 
+#' reports ORR and DCR with exact binomial confidence intervals, group 
+#' comparison, time to response and duration of response. When a time variable 
+#' is supplied, progression is measured against the patient's smallest 
+#' recorded burden (nadir), not against baseline. Categories are named CR, PR, 
+#' SD and PD and the thresholds are adapted from RECIST v1.1, but this is NOT 
+#' a RECIST v1.1 implementation: because it never sees individual lesions it 
+#' cannot sum target lesions, detect a new lesion, or judge non-target 
+#' progression, and it cannot apply the 4-week confirmation rule itself (you 
+#' may supply your own confirmation column). If your data list each lesion 
+#' separately, use the lesion-level RECIST v1.1 analysis. It will be available 
+#' in upcoming releases.
 #' 
 #' @param data The data as a data frame.
 #' @param patientID Variable containing patient identifiers (e.g., PT001,
@@ -842,6 +883,17 @@ waterfallBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   percentage value, so a patient with target-lesion shrinkage can still be
 #'   classified PD (e.g., a new lesion). Affects both bar coloring and response
 #'   metrics (ORR/DCR).
+#' @param showCategoryLabels Print the response category (CR, PR, SD, PD)
+#'   above each waterfall bar, so the category can be read directly instead of
+#'   being mapped back from the bar colour.
+#' @param showSpiderLabels Label the end of every spider trajectory with its
+#'   patient ID, so an outlying line can be traced to a patient without reading
+#'   a large legend.
+#' @param annotationVars Optional patient-level variables drawn as coloured
+#'   tracks beneath the waterfall bars, aligned to the same patient ordering.
+#'   One row of tiles per variable. Use for biomarker status, mutation, prior
+#'   therapy, treatment arm or any covariate you want read off against each
+#'   patient's response.
 #' @param showThresholds Show +20 percent and -30 percent RECIST v1.1
 #'   thresholds as dashed lines. Helps identify Progressive Disease (PD) and
 #'   Partial Response (PR) cutoffs.
@@ -929,6 +981,9 @@ waterfall <- function(
     confirmationVar = NULL,
     ongoingVar = NULL,
     responseCategoryVar = NULL,
+    showCategoryLabels = FALSE,
+    showSpiderLabels = FALSE,
+    annotationVars = NULL,
     showThresholds = TRUE,
     labelOutliers = FALSE,
     showMedian = FALSE,
@@ -961,6 +1016,7 @@ waterfall <- function(
     if ( ! missing(confirmationVar)) confirmationVar <- jmvcore::resolveQuo(jmvcore::enquo(confirmationVar))
     if ( ! missing(ongoingVar)) ongoingVar <- jmvcore::resolveQuo(jmvcore::enquo(ongoingVar))
     if ( ! missing(responseCategoryVar)) responseCategoryVar <- jmvcore::resolveQuo(jmvcore::enquo(responseCategoryVar))
+    if ( ! missing(annotationVars)) annotationVars <- jmvcore::resolveQuo(jmvcore::enquo(annotationVars))
     if (missing(data))
         data <- jmvcore::marshalData(
             parent.frame(),
@@ -970,7 +1026,8 @@ waterfall <- function(
             `if`( ! missing(groupVar), groupVar, NULL),
             `if`( ! missing(confirmationVar), confirmationVar, NULL),
             `if`( ! missing(ongoingVar), ongoingVar, NULL),
-            `if`( ! missing(responseCategoryVar), responseCategoryVar, NULL))
+            `if`( ! missing(responseCategoryVar), responseCategoryVar, NULL),
+            `if`( ! missing(annotationVars), annotationVars, NULL))
 
     for (v in confirmationVar) if (v %in% names(data)) data[[v]] <- as.factor(data[[v]])
     for (v in responseCategoryVar) if (v %in% names(data)) data[[v]] <- as.factor(data[[v]])
@@ -987,6 +1044,9 @@ waterfall <- function(
         confirmationVar = confirmationVar,
         ongoingVar = ongoingVar,
         responseCategoryVar = responseCategoryVar,
+        showCategoryLabels = showCategoryLabels,
+        showSpiderLabels = showSpiderLabels,
+        annotationVars = annotationVars,
         showThresholds = showThresholds,
         labelOutliers = labelOutliers,
         showMedian = showMedian,
