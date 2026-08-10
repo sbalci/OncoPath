@@ -15,56 +15,70 @@ importFrom(R6,R6Class)
 importFrom(RColorBrewer,brewer.pal)
 importFrom(cluster,daisy)
 importFrom(data.table,as.data.table)
-importFrom(dplyr,arrange)
-importFrom(dplyr,bind_rows)
-importFrom(dplyr,filter)
-importFrom(dplyr,group_by)
-importFrom(dplyr,left_join)
-importFrom(dplyr,mutate)
-importFrom(dplyr,n)
-importFrom(dplyr,summarize)
-importFrom(ggplot2,aes)
-importFrom(ggplot2,element_blank)
-importFrom(ggplot2,element_text)
-importFrom(ggplot2,ggplot)
-importFrom(ggplot2,labs)
-importFrom(ggplot2,theme)
-importFrom(ggswim,geom_swim_arrow)
-importFrom(ggswim,geom_swim_lane)
-importFrom(ggswim,geom_swim_marker)
-importFrom(ggswim,scale_marker_discrete)
-importFrom(ggswim,theme_ggswim)
-importFrom(ggswim,theme_ggswim_dark)
+importFrom(dplyr,
+  arrange,
+  bind_rows,
+  filter,
+  group_by,
+  left_join,
+  mutate,
+  n,
+  summarize
+)
+importFrom(ggplot2,
+  aes,
+  element_blank,
+  element_text,
+  ggplot,
+  labs,
+  theme
+)
+importFrom(ggswim,
+  geom_swim_arrow,
+  geom_swim_lane,
+  geom_swim_marker,
+  scale_marker_discrete,
+  theme_ggswim,
+  theme_ggswim_dark
+)
 importFrom(htmltools,tagList)
-importFrom(lubridate,dmy)
-importFrom(lubridate,dym)
-importFrom(lubridate,interval)
-importFrom(lubridate,mdy)
-importFrom(lubridate,myd)
-importFrom(lubridate,time_length)
-importFrom(lubridate,ydm)
-importFrom(lubridate,ymd)
-importFrom(lubridate,ymd_hms)
-importFrom(mada,phm)
-importFrom(mada,reitsma)
+importFrom(lubridate,
+  dmy,
+  dym,
+  interval,
+  mdy,
+  myd,
+  time_length,
+  ydm,
+  ymd,
+  ymd_hms
+)
+importFrom(mada,
+  phm,
+  reitsma
+)
 importFrom(magrittr,"%>%")
 importFrom(metafor,rma)
 importFrom(psych,ICC)
 importFrom(rlang,"%||%")
-importFrom(stats,binomial)
-importFrom(stats,cov)
-importFrom(stats,glm)
-importFrom(stats,pnorm)
-importFrom(stats,predict)
-importFrom(stats,pt)
-importFrom(stats,qbeta)
-importFrom(stats,qnorm)
-importFrom(stats,qt)
-importFrom(stats,quantile)
-importFrom(stats,var)
+importFrom(stats,
+  binomial,
+  cov,
+  glm,
+  pnorm,
+  predict,
+  pt,
+  qbeta,
+  qnorm,
+  qt,
+  quantile,
+  var
+)
 importFrom(stringr,str_to_title)
 importFrom(survival,Surv)
 importFrom(tibble,tibble)
 importFrom(tidyr,pivot_wider)
-importFrom(utils,sessionInfo)
-importFrom(utils,tail)
+importFrom(utils,
+  sessionInfo,
+  tail
+)

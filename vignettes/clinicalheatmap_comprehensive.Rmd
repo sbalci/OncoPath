@@ -21,6 +21,14 @@ knitr::opts_chunk$set(
 )
 ```
 
+> **Not yet released.** The `clinicalheatmap` analysis is not part of OncoPath 1.0.4. It is on a
+> development or test menu route in the umbrella ClinicoPath module and does not appear
+> in any jamovi menu yet. It is documented here ahead of a future release, so its
+> options, defaults and output may still change. For the analyses OncoPath ships today
+> - `waterfall`, `swimmerplot`, `ihcheterogeneity` and `diagnosticmeta` - see the
+> [OncoPath articles index](https://www.serdarbalci.com/OncoPath/articles/).
+
+
 # Introduction
 
 The Clinical Heatmap module leverages the powerful `tidyheatmaps` package to create sophisticated visualizations of multivariate clinical and biomedical data. This comprehensive guide demonstrates how to create publication-ready heatmaps for various clinical research applications.

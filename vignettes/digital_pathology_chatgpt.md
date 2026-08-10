@@ -1,3 +1,8 @@
+
+> **Ships in a different module.** It also uses `survival` (**jsurvival**),
+> which OncoPath does not provide - install the module named beside each one, or the
+> umbrella ClinicoPath module.
+
 Statistical Methods in Digital Pathology Research
 
 Digital pathology studies often generate quantitative data from whole-slide images (WSIs), regions of interest (ROIs), segmented cells, and classified tissues. A variety of classical statistical methods are used to analyze these data, from basic hypothesis tests to regression models and survival analysis. Many of these methods are implementable in R (and hence can be integrated as jamovi modules) via existing packages. Below we outline common statistical approaches, their use cases in digital pathology, and relevant implementations:

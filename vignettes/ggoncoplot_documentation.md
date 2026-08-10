@@ -1,5 +1,13 @@
 # Oncoplot Analysis Documentation
 
+> **Not yet released.** The `ggoncoplot` analysis is not part of OncoPath 1.0.4. It is on a
+> development or test menu route in the umbrella ClinicoPath module and does not appear
+> in any jamovi menu yet. It is documented here ahead of a future release, so its
+> options, defaults and output may still change. For the analyses OncoPath ships today
+> - `waterfall`, `swimmerplot`, `ihcheterogeneity` and `diagnosticmeta` - see the
+> [OncoPath articles index](https://www.serdarbalci.com/OncoPath/articles/).
+
+
 This document provides a comprehensive overview of the Oncoplot Analysis module (ggoncoplot), detailing its features, user interface elements, and the underlying R functions.
 
 ## Feature Summary

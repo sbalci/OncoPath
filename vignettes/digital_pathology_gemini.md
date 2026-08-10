@@ -2,6 +2,11 @@
 
 # **A Comprehensive Guide to Statistical Methods for a Digital Pathology Jamovi Module**
 
+> **Ships in a different module.** It also uses `survival` (**jsurvival**),
+> which OncoPath does not provide - install the module named beside each one, or the
+> umbrella ClinicoPath module.
+
+
 ## **Introduction: The Quantitative Shift in Pathology and the Imperative for Statistical Rigor**
 
 Digital pathology represents a fundamental paradigm shift, transforming the field from a primarily qualitative, descriptive science into a quantitative, data-driven discipline.1 This transformation is rooted in the ability to convert physical glass slides into high-resolution, gigapixel whole slide images (WSIs), which serve as the foundation for computational analysis.1 The journey from a physical tissue specimen to actionable statistical insight involves a sophisticated, multi-stage workflow that generates rich, multi-layered quantitative data, but also introduces new challenges for reproducibility and statistical validity. Understanding this workflow is paramount for developing any meaningful statistical analysis tool.

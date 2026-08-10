@@ -1,5 +1,13 @@
 # Statistical Methods in Pathology Research
 
+> **Not yet released.** This article also refers to `classification`, which
+> is on a development or test menu route and not released in any module yet.
+>
+> **Ships in a different module.** It also uses `agreement` (**meddecide**), `survival` (**jsurvival**),
+> which OncoPath does not provide - install the module named beside each one, or the
+> umbrella ClinicoPath module.
+
+
 https://chatgpt.com/share/68a6d06d-a3b4-8002-9b85-13cd174bc6d3
 
 

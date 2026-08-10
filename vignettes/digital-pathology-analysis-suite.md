@@ -1,5 +1,13 @@
 # Advanced Digital Pathology Analysis Suite
 
+> **Not yet released.** This article also refers to `decisiongraph`, `digitalvalidation`, `haralicktexture`, which
+> are on a development or test menu route and not released in any module yet.
+>
+> **Ships in a different module.** It also uses `agreement` (**meddecide**),
+> which OncoPath does not provide - install the module named beside each one, or the
+> umbrella ClinicoPath module.
+
+
 ## Overview
 
 The ClinicoPath Advanced Digital Pathology Analysis Suite provides comprehensive statistical analysis tools specifically designed for digital pathology validation, reproducibility assessment, and biomarker development. This suite implements methodologies validated in peer-reviewed research and follows international regulatory guidelines for clinical pathology applications.

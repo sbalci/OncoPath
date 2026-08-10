@@ -1,0 +1,181 @@
+---
+title: "IHC Heterogeneity: How Much Does a Biopsy Tell You About the Tumour?"
+author: "ClinicoPath Development Team"
+date: "`r Sys.Date()`"
+output: html_document
+vignette: >
+  %\VignetteIndexEntry{IHC Heterogeneity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+## The Question
+
+A pathologist scores Ki-67 on a core biopsy and the report carries that number forward as though
+it described the tumour. It describes the core. If the marker is heterogeneously expressed, a
+second core from the same tumour would have given a different answer, and the difference between
+those two numbers is not measurement error — it is the tumour.
+
+`ihcheterogeneity` quantifies that gap. Give it a reference measurement (whole section, or a
+hot-spot score) and two or more regional measurements from the same cases, and it reports how well
+the regions reproduce the reference, whether they do so with a systematic offset, and how much of
+the total variance is sampling rather than real between-case difference.
+
+This matters clinically wherever a threshold is applied to a single sample: Ki-67 cut-offs in
+neuroendocrine tumours and breast cancer, PD-L1 scoring, HER2 quantification. A marker with high
+within-tumour variability crossing a threshold on one core is not the same finding as one that
+sits comfortably on one side of it.
+
+## Data Layout
+
+One row per case. One column for the reference measurement, one column per region.
+
+```{r data}
+set.seed(11)
+n <- 40
+ihc <- data.frame(CaseID = sprintf("C%02d", 1:n))
+ihc$Whole <- round(pmin(100, pmax(0, rnorm(n, 45, 18))), 1)   # whole-section Ki-67 %
+
+jitter_from <- function(mu, sd) round(pmin(100, pmax(0, mu + rnorm(n, 0, sd))), 1)
+ihc$Biopsy1 <- jitter_from(ihc$Whole, 8)    # a well-sampled region
+ihc$Biopsy2 <- jitter_from(ihc$Whole, 11)
+ihc$Biopsy3 <- jitter_from(ihc$Whole, 14)   # a poorly representative one
+
+head(ihc)
+```
+
+`wholesection` is optional. Without it the analysis compares the regions against each other, which
+answers "do two cores agree?" rather than "does a core represent the tumour?" — a weaker question,
+but the only one available when no whole-section score exists.
+
+## A Complete Run
+
+```{r analysis}
+res <- ihcheterogeneity(
+  data         = ihc,
+  wholesection = "Whole",
+  biopsy1      = "Biopsy1",
+  biopsy2      = "Biopsy2",
+  biopsy3      = "Biopsy3",
+  # biopsy4 and `biopsies` take a fourth region and any number beyond that
+  analysis_type            = "comprehensive",  # reproducibility | bias | variability | comprehensive
+  sampling_strategy        = "random",         # random | systematic | stratified | unknown
+  cv_threshold             = 20,               # CV% above this is flagged as unacceptable
+  correlation_threshold    = 0.7,              # minimum acceptable region-reference correlation
+  variance_components      = TRUE,
+  power_analysis           = TRUE,
+  generate_recommendations = TRUE,
+  show_variability_plots   = TRUE
+)
+```
+
+### Reproducibility
+
+```
+                             metric     value ci_lower ci_upper  interpretation
+ Mean Regional-Reference Correlation     0.760       NA       NA  Good representativeness
+       ICC(2,1) - absolute agreement     0.663    0.527    0.783  Moderate reliability
+ ICC(3,1) - consistency (bias-blind)     0.658    0.521    0.779  Ignores systematic offset
+     Mean Inter-Regional Correlation     0.554       NA       NA  Variable sampling
+```
+
+Both ICCs are reported deliberately. **ICC(3,1)** asks whether the regions rank cases the same way;
+**ICC(2,1)** asks whether they give the same number. A large gap between them means a systematic
+offset — one region reads consistently high or low — which ranking-based agreement hides. Here they
+are nearly identical (0.658 vs 0.663), so there is no meaningful offset; the disagreement is
+scatter, not bias.
+
+Note that mean inter-regional correlation (0.554) is well below the region-reference correlation
+(0.760). Two cores agree with each other *less* than either agrees with the whole section, which is
+what you would expect when each core samples a different part of a heterogeneous tumour.
+
+### Sampling Bias
+
+```
+                   comparison mean_diff p_value effect_size clinical_impact
+        Region 1 vs Reference     0.288   0.813      0.0369   Minimal (<5%)
+        Region 2 vs Reference     0.110   0.949      0.0101   Minimal (<5%)
+        Region 3 vs Reference     1.400   0.555      0.0923   Minimal (<5%)
+ Mean of Regions vs Reference     0.599   0.547      0.0942   Minimal (<5%)
+```
+
+`clinical_impact` is the column to read, not `p_value`. A non-significant p-value on 40 cases does
+not establish that the bias is small; the effect size and the stated impact band do.
+
+### Variance Components
+
+```
+                       component variance percentage                  contribution
+           Between-Case Variance    196.65       65.8             Major contributor
+ Within-Case Variance (Sampling)    102.19       34.2     High sampling variability
+                 Method Variance      0.00        0.0 Negligible method differences
+                  Total Variance    298.84      100.0
+```
+
+This is the number to quote in a validation report. **34.2% of the total variance is within-case**
+— that is the proportion of the spread in your dataset that comes from *where you sampled*, not
+from which patient you sampled. A cut-off applied to a single core inherits all of it.
+
+### Power
+
+```
+              scenario effect_size power required_n                     recommendation
+  Small Effect (r=0.1)        0.10 0.094        783    Substantial sample increase
+ Medium Effect (r=0.3)        0.30 0.469         85    Substantial sample increase
+  Large Effect (r=0.5)        0.50 0.916         30       Adequate power achieved
+  Observed Effect Size        0.91 1.000          7  Post-hoc (observed) power
+```
+
+The last row is labelled as post-hoc for a reason: power computed from the observed effect is a
+restatement of the p-value, not evidence that the study was adequately powered. Use the first three
+rows for planning.
+
+## Spatial Compartments
+
+When regions are labelled by anatomical compartment — invasive front versus tumour centre, say —
+`spatial_id` names that column and the two compartment options compare them:
+
+```{r compartments}
+res_spatial <- ihcheterogeneity(
+  data                = ihc_with_regions,
+  wholesection        = "Whole",
+  biopsy1             = "Region_A",
+  biopsy2             = "Region_B",
+  spatial_id          = "Compartment",
+  compareCompartments = TRUE,
+  compartmentTests    = TRUE
+)
+```
+
+A significant compartment difference is a different finding from general heterogeneity: it says the
+marker varies *systematically* by location, so where the biopsy is taken from is a protocol
+decision, not a matter of chance.
+
+## Reading the Result
+
+- `analysis_type` narrows the output when you only need part of it: `reproducibility` for
+  correlations and ICCs, `bias` for the systematic-offset tests, `variability` for CV and variance
+  components, `comprehensive` (the default) for all of them.
+- `cv_threshold` (default 20) and `correlation_threshold` (default 0.8) set the bars against which
+  results are labelled acceptable. They are conventions, not standards — if your assay has a
+  published reproducibility requirement, use that number instead.
+- `sampling_strategy` documents how the regions were chosen. It does not change the arithmetic, but
+  it belongs in the record: results from systematically placed cores do not generalise to randomly
+  placed ones.
+- `showSummary` adds a plain-language summary and `showGlossary` a statistics glossary, both useful
+  when the output is going to a tumour board rather than a statistician.
+
+## Limitations
+
+The analysis describes the cases you measured. It cannot tell you that two cores are sufficient in
+general — only that, in this cohort, two cores left 34% of the variance unexplained. Extending that
+to a clinical protocol needs a prospectively defined validation study with the threshold and the
+decision it drives specified in advance.

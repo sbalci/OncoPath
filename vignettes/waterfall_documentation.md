@@ -1,5 +1,9 @@
 # Treatment Response Analysis Documentation
 
+> **Not yet released.** This article also refers to `recist`, which
+> is on a development or test menu route and not released in any module yet.
+
+
 This document provides a comprehensive overview of the Treatment Response Analysis module, detailing its features, user interface elements, and the underlying R functions.
 
 ## Feature Summary
