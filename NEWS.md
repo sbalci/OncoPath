@@ -1,12 +1,68 @@
 # OncoPath 1.0.4 (2026-08-07)
 
+No statistical changes. Two runtime dependencies were added to `Imports`, and the documentation was
+overhauled.
+
+## Fixed
+
+- **`ggrepel` and `patchwork` were used at runtime but not declared.** `R/waterfall.b.R` calls
+  `patchwork::wrap_plots` when assembling multi-panel figures and `ggrepel::geom_text_repel` when
+  labelling outliers, but neither package appeared in `DESCRIPTION`. jamovi installs a module's
+  `Imports` the first time it is used and cannot fetch a missing package on demand, so a user
+  without these already installed would have hit a failure at plot time rather than at install
+  time. Both are now in `Imports` (22 packages, one per line).
+
 ## Note
 
-- Version and date bump only: 1.0.3 → 1.0.4 across `DESCRIPTION`, `jamovi/0000.yaml` and the four
-  analysis definitions, plus `temp/` and `backups/` added to `.Rbuildignore` and `.gitignore`. No R
-  code, no statistical method and no output definition changed between 1.0.3 and this release.
-  Everything substantive from this development cycle is documented under 1.0.3 below, which was
-  tagged without release notes.
+- Apart from the dependency fix above, this is a version and date bump: 1.0.3 → 1.0.4 across
+  `DESCRIPTION`, `jamovi/0000.yaml` and the four analysis definitions, plus `temp/` and `backups/`
+  added to `.Rbuildignore` and `.gitignore`. No statistical method and no output definition changed
+  between 1.0.3 and this release. Everything substantive from this development cycle is documented
+  under 1.0.3 below, which was tagged without release notes.
+
+## Documentation
+
+All 21 files under `vignettes/` were audited against `jamovi/0000.yaml` and the generated wrapper
+signatures. These articles are published to <https://www.serdarbalci.com/OncoPath/articles/>;
+`vignettes/` is excluded by `.Rbuildignore` and there is no `VignetteBuilder`, so none of this
+affects `R CMD check`. Every example added below was executed against the bundled datasets before
+being written down.
+
+- **Option coverage went from 56% to 100%.** Of the 120 options across the four shipped analyses,
+  53 were not mentioned anywhere in the documentation; none remain.
+- **`ihcheterogeneity` had no documentation whatsoever** — 18 of its 19 options were unmentioned and
+  no article referred to it. `ihcheterogeneity-comprehensive.Rmd` is new: what the analysis is for
+  (a biopsy score describes the core, not the tumour), the data layout, a worked run reporting
+  ICC(2,1) 0.663 against ICC(3,1) 0.658 and why both are shown, the variance decomposition that
+  attributes 34.2% of total variance to within-case sampling, and why the post-hoc power row should
+  not be used for planning.
+- **The 447-line `diagnosticmeta` article never called `diagnosticmeta()`.** It described the
+  bivariate and HSROC models at length without a single executable example, so the argument names
+  and their scales appeared nowhere. It now carries a worked run against the bundled
+  `diagnostic_studies` data with the returned pooled sensitivity (75.5%, CI 69.1-80.9),
+  specificity (89.8%, CI 85.7-92.8), HSROC parameters, heterogeneity and Deeks' test. Two argument
+  traps are called out: `confidence_level` is a **percentage on a 50-99 scale** (passing `0.95`
+  errors), and `zero_cell_correction` has no `continuity` level — the four accepted values are
+  `none`, `constant`, `treatment_arm` and `empirical`. The Deeks' result on five studies is
+  presented as a caveat rather than a finding, since the test needs roughly ten.
+- **The waterfall article demonstrated nothing.** `06-function-waterfall.Rmd` pulled a dataset from
+  `ClinicoPathDescriptives`, called `library(ClinicoPath)` rather than `library(OncoPath)`, and its
+  three code chunks printed placeholder strings with `cat()` instead of calling `waterfall()`. It
+  has been rewritten around the bundled `waterfall_percentage_basic` and
+  `waterfall_raw_longitudinal` datasets, with the RECIST category breakdown and clinical metrics it
+  actually returns (ORR 35.0%, CI 15.4-59.2; DCR 80.0%, CI 56.3-94.3), the raw/spider input path,
+  and a table of the fifteen previously-undocumented options. Note `sortDirection` takes
+  `"conventional"` or `"reverse"`, not `"decreasing"`.
+- **`swimmerplot`'s `censorVar` was undocumented**, along with `customReferenceDate`,
+  `showGlossary`, `showCopyReady` and `showAbout`. `censorVar` matters more than its obscurity
+  suggests: without it a bar that ends because follow-up ended is drawn the same as one that ends
+  because the event occurred, which is the commonest way a swimmer plot misleads.
+- **Seven articles refer to analyses OncoPath does not ship, and now say so.**
+  `clinicalheatmap`, `ggoncoplot`, `recist`, `classification`, `decisiongraph`, `digitalvalidation`
+  and `haralicktexture` are all on development or test menu routes in the umbrella ClinicoPath
+  module and reach no user today. Separately, several articles use `agreement` (**meddecide**) and
+  `survival` (**jsurvival**), and now name the module to install for those steps. Nothing was
+  deleted.
 
 # OncoPath 1.0.3 (2026-08-05)
 
