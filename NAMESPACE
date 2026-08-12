@@ -60,7 +60,6 @@ importFrom(mada,
 importFrom(magrittr,"%>%")
 importFrom(metafor,rma)
 importFrom(psych,ICC)
-importFrom(rlang,"%||%")
 importFrom(stats,
   binomial,
   cov,
