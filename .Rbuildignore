@@ -21,3 +21,4 @@ data/.*\.omv$
 ^temp.*$
 ^backups$
 ^backups/
+^data/.*\.csv$
