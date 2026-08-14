@@ -1,5 +1,456 @@
 # Changelog
 
+## OncoPath 1.0.4 (2026-08-07)
+
+No statistical changes. Two runtime dependencies were added to
+`Imports`, and the documentation was overhauled.
+
+### Fixed
+
+- **`ggrepel` and `patchwork` were used at runtime but not declared.**
+  `R/waterfall.b.R` calls
+  [`patchwork::wrap_plots`](https://patchwork.data-imaginist.com/reference/wrap_plots.html)
+  when assembling multi-panel figures and
+  [`ggrepel::geom_text_repel`](https://ggrepel.slowkow.com/reference/geom_text_repel.html)
+  when labelling outliers, but neither package appeared in
+  `DESCRIPTION`. jamovi installs a module’s `Imports` the first time it
+  is used and cannot fetch a missing package on demand, so a user
+  without these already installed would have hit a failure at plot time
+  rather than at install time. Both are now in `Imports` (22 packages,
+  one per line).
+
+### Note
+
+- Apart from the dependency fix above, this is a version and date bump:
+  1.0.3 → 1.0.4 across `DESCRIPTION`, `jamovi/0000.yaml` and the four
+  analysis definitions, plus `temp/` and `backups/` added to
+  `.Rbuildignore` and `.gitignore`. No statistical method and no output
+  definition changed between 1.0.3 and this release. Everything
+  substantive from this development cycle is documented under 1.0.3
+  below, which was tagged without release notes.
+
+### Documentation
+
+All 21 files under `vignettes/` were audited against `jamovi/0000.yaml`
+and the generated wrapper signatures. These articles are published to
+<https://www.serdarbalci.com/OncoPath/articles/>; `vignettes/` is
+excluded by `.Rbuildignore` and there is no `VignetteBuilder`, so none
+of this affects `R CMD check`. Every example added below was executed
+against the bundled datasets before being written down.
+
+- **Option coverage went from 56% to 100%.** Of the 120 options across
+  the four shipped analyses, 53 were not mentioned anywhere in the
+  documentation; none remain.
+- **`ihcheterogeneity` had no documentation whatsoever** — 18 of its 19
+  options were unmentioned and no article referred to it.
+  `ihcheterogeneity-comprehensive.Rmd` is new: what the analysis is for
+  (a biopsy score describes the core, not the tumour), the data layout,
+  a worked run reporting ICC(2,1) 0.663 against ICC(3,1) 0.658 and why
+  both are shown, the variance decomposition that attributes 34.2% of
+  total variance to within-case sampling, and why the post-hoc power row
+  should not be used for planning.
+- **The 447-line `diagnosticmeta` article never called
+  [`diagnosticmeta()`](https://www.serdarbalci.com/OncoPath/reference/diagnosticmeta.md).**
+  It described the bivariate and HSROC models at length without a single
+  executable example, so the argument names and their scales appeared
+  nowhere. It now carries a worked run against the bundled
+  `diagnostic_studies` data with the returned pooled sensitivity (75.5%,
+  CI 69.1-80.9), specificity (89.8%, CI 85.7-92.8), HSROC parameters,
+  heterogeneity and Deeks’ test. Two argument traps are called out:
+  `confidence_level` is a **percentage on a 50-99 scale** (passing
+  `0.95` errors), and `zero_cell_correction` has no `continuity` level —
+  the four accepted values are `none`, `constant`, `treatment_arm` and
+  `empirical`. The Deeks’ result on five studies is presented as a
+  caveat rather than a finding, since the test needs roughly ten.
+- **The waterfall article demonstrated nothing.**
+  `06-function-waterfall.Rmd` pulled a dataset from
+  `ClinicoPathDescriptives`, called
+  [`library(ClinicoPath)`](https://rdrr.io/r/base/library.html) rather
+  than [`library(OncoPath)`](https://www.serdarbalci.com/OncoPath/), and
+  its three code chunks printed placeholder strings with
+  [`cat()`](https://rdrr.io/r/base/cat.html) instead of calling
+  [`waterfall()`](https://www.serdarbalci.com/OncoPath/reference/waterfall.md).
+  It has been rewritten around the bundled `waterfall_percentage_basic`
+  and `waterfall_raw_longitudinal` datasets, with the RECIST category
+  breakdown and clinical metrics it actually returns (ORR 35.0%, CI
+  15.4-59.2; DCR 80.0%, CI 56.3-94.3), the raw/spider input path, and a
+  table of the fifteen previously-undocumented options. Note
+  `sortDirection` takes `"conventional"` or `"reverse"`, not
+  `"decreasing"`.
+- **`swimmerplot`’s `censorVar` was undocumented**, along with
+  `customReferenceDate`, `showGlossary`, `showCopyReady` and
+  `showAbout`. `censorVar` matters more than its obscurity suggests:
+  without it a bar that ends because follow-up ended is drawn the same
+  as one that ends because the event occurred, which is the commonest
+  way a swimmer plot misleads.
+- **Seven articles refer to analyses OncoPath does not ship, and now say
+  so.** `clinicalheatmap`, `ggoncoplot`, `recist`, `classification`,
+  `decisiongraph`, `digitalvalidation` and `haralicktexture` are all on
+  development or test menu routes in the umbrella ClinicoPath module and
+  reach no user today. Separately, several articles use `agreement`
+  (**meddecide**) and `survival` (**jsurvival**), and now name the
+  module to install for those steps. Nothing was deleted.
+
+## OncoPath 1.0.3 (2026-08-05)
+
+An end-to-end pre-release review of all four shipped analyses —
+`waterfall`, `swimmerplot`, `diagnosticmeta` and `ihcheterogeneity` —
+reading each chain from the user interface through the backend to the
+rendered output, and checking every statistic against an independent
+implementation. Several of the defects below changed reported response
+rates, durations of response, variance components and publication-bias
+conclusions, so results produced with earlier versions of these analyses
+should be re-run.
+
+### Fixed
+
+#### Treatment Response (`waterfall`)
+
+- **Progression was measured from baseline instead of from the patient’s
+  nadir.** RECIST v1.1 defines progressive disease relative to the
+  smallest tumour burden recorded so far, not relative to the first
+  scan. A patient going 100 → 60 → 78 mm is +30% over their nadir —
+  progression — but still −22% from baseline, so they were counted as
+  censored and their duration of response ran on to last follow-up.
+  Every duration-of-response summary and the Kaplan–Meier curve built
+  from it were inflated. `.progressionTimes()` now carries the running
+  [`cummin()`](https://rdrr.io/r/base/cumsum.html) of the burden.
+- **A response-category override outside CR/PR/SD/PD was silently
+  converted to `NA`.** `recist_category` is a factor with levels
+  CR/PR/SD/PD/Unknown, so assigning an unrecognised label produced `NA`
+  with only an invalid-factor-level warning. If every row was overridden
+  the whole column went `NA` and the run aborted downstream with
+  `missing value where TRUE/FALSE needed`. Unrecognised labels are now
+  reported and rejected.
+- **Objective response and disease control rates were computed over
+  assessment rows, not patients, on some processing paths.** The same
+  90-observation dataset gave ORR 100% when it held 30 patients with 3
+  rows each and ORR 33.3% when it held 60 patients with 3 rows each,
+  because the row count decides which processing path runs. Every path
+  now collapses to one row per patient before counting, and unevaluable
+  rows no longer inflate the denominator.
+- **Physical limits on tumour measurements were never enforced.** The
+  Response Value option text had always promised that shrinkage would be
+  capped at −100%, and the code never applied the cap. Worse, a negative
+  raw measurement flips the sign of `((current − baseline) / baseline)`,
+  so a growing tumour was reported as a response. Both are now handled
+  at a single convergence point (`.enforceMeasurementLimits()`), and the
+  cap is announced in the always-visible notices panel rather than the
+  validation panel that is cleared when validation otherwise passes.
+- **Patients dropped for a missing or zero baseline simply vanished from
+  the cohort, and patients with only a baseline scan were scored SD.**
+  With a time variable, a baseline-only patient produced
+  `((baseline − baseline) / baseline) × 100` = 0% change and was
+  categorised as stable disease, although a patient with no
+  post-baseline assessment is not response-evaluable at all. Both groups
+  are now reconciled against the input and reported.
+- **The exported response-category column was written against the wrong
+  patients.** The path without a time variable took
+  [`rownames()`](https://rdrr.io/r/base/colnames.html) of a dplyr tibble
+  — always `"1"`…`"k"`, never the source row numbers — after that frame
+  had been collapsed to one row per patient and re-sorted into
+  patient-ID order. Rows are now matched back by patient ID.
+- **The ORR/DCR confidence intervals used a different denominator from
+  the rates themselves.** The interval was computed on
+  [`nrow()`](https://rdrr.io/r/base/nrow.html), which includes Unknown
+  and unevaluable patients, while the point estimate counted only
+  CR/PR/SD/PD — so the printed rate could fall outside its own interval,
+  for example ORR 50.0% displayed with a 95% CI of 28.8–46.8%. The
+  copy-ready report sentences shared the same defect and the same fix.
+- **The copy-ready “Main Results” paragraph rendered as nothing whenever
+  a response category had no patients.**
+  [`dplyr::count()`](https://dplyr.tidyverse.org/reference/count.html)
+  drops unobserved factor levels, so subsetting for an absent category
+  returned `integer(0)` — not `NULL`, so the `%||% 0` fallback never
+  fired — and [`sprintf()`](https://rdrr.io/r/base/sprintf.html) with a
+  zero-length argument returns `character(0)`, which
+  [`paste0()`](https://rdrr.io/r/base/paste.html) then collapses away.
+- **The to-do, validation and clinical-summary panels ignored guided
+  mode and were always on screen.** A jamovi `visible:` expression
+  beginning with `!` fails jmvcore’s routing regex, so
+  `(!enableGuidedMode)` evaluated to a raw truthy string. Rewritten as
+  `(enableGuidedMode:FALSE)`.
+- **The waterfall and spider plots did not refresh when `barAlpha`,
+  `barWidth`, `minResponseForLabel`, `seed`, `timeVar`, `annotationVars`
+  or `showCategoryLabels` changed.** Those options are read when the
+  figure is drawn but were missing from `clearWith`.
+
+#### Swimmer Plot (`swimmerplot`)
+
+- **“Relative (all start from 0)” anchored each row at zero instead of
+  each patient.** A swimmer plot is multi-row per patient by
+  construction, so row-wise rebasing stacked every episode of a patient
+  back onto t = 0, corrupting total person-time, mean and median
+  duration, follow-up density and the reverse Kaplan–Meier median — in
+  the default configuration, and invisibly in any fixture with one row
+  per patient. Lanes, milestones and events are now all measured from
+  the patient’s earliest start.
+- **Milestone markers were paired with lanes by position, so they landed
+  on the wrong patients.** Milestone columns were read from the
+  unfiltered data while the patient table had already had rows removed;
+  one dropped row shifted every later patient’s markers onto somebody
+  else’s lane and discarded the last patient’s milestone, silently, in
+  both the figure and the Milestone Event Summary. For multi-episode
+  patients the same milestone was also handed to both rows,
+  double-counting it and producing a negative re-based copy on the later
+  episode. Milestones are now collapsed to one row per patient and
+  realigned by patient ID.
+- **Ongoing-treatment arrows were inferred from the longest follow-up.**
+  Treating “largest end time” as evidence of still being on treatment at
+  data cutoff is wrong in the common case — the patient with the longest
+  follow-up is often the one who died last. Arrows are now drawn only
+  from an explicit censoring variable, using the same helper as the
+  median-follow-up calculation, and no arrows are drawn when there is
+  none.
+- **Every event-marker glyph was the empty string, so event markers were
+  invisible.** The symbols that once populated the glyph table were
+  deleted rather than escaped during a non-ASCII sweep, and
+  [`ggswim::scale_marker_discrete()`](https://chop-cgtinformatics.github.io/ggswim/reference/scale_marker_discrete.html)
+  therefore drew nothing for every labelled event. Restored as
+  print-safe geometric symbols (● ■ ▲ ▼ ◆ ★ ✚ ✖ ◑ ◎) that survive PDF
+  and Word export. Glyph pattern matching was tightened at the same time
+  so that short patterns match as whole words — a bare “ct” had been
+  matching “Infarction” and “Reaction”.
+- **Adding a milestone wiped the CR/PR/SD/PD colouring from the whole
+  figure.** Mapping milestones to `color` added a second
+  [`scale_color_manual()`](https://ggplot2.tidyverse.org/reference/scale_manual.html)
+  containing only milestone names; ggplot2 permits one colour scale per
+  plot, so it replaced the lane scale and every response category fell
+  through to `NA` grey. Milestones are now mapped to shape only.
+- **A custom reference line crashed the plot on an absolute date
+  scale.** lubridate does not export
+  [`months()`](https://rdrr.io/r/base/weekday.POSIXt.html) (`months` is
+  a base generic), so `lubridate::months()` threw — and months is the
+  default time unit, so this killed the plot out of the box. The Period
+  constructors also reject fractional amounts while
+  `customReferenceTime` is an unconstrained number, so 12.5 crashed too.
+  Now built with
+  [`lubridate::duration()`](https://lubridate.tidyverse.org/reference/duration.html).
+- **The copy-ready manuscript text asserted an objective response rate
+  of 0.0% where the metrics table declined to make the claim.** ORR and
+  DCR are defined only for RECIST-coded responses; with codings such as
+  “Responder”, 0/1 or “Grade 1” nothing normalises to CR/PR/SD/PD and
+  the numerator is legitimately zero, which read as a genuine ORR of
+  0.0% with an exact binomial interval attached. The guard existed in
+  one place only; both now go through one shared helper.
+- **The summary table could show a median follow-up outside its own
+  range.** The observed range was printed beside the reverse
+  Kaplan–Meier median rather than the observed one. The estimator is now
+  named, and the range stays attached to the observed median.
+- **Rows excluded before validation were never disclosed.**
+  `.validateClinicalData()` ran on the already-filtered frame, so its
+  “these will be excluded” warnings could not fire for the rows an
+  earlier filter had dropped; those patients disappeared from the figure
+  and from every denominator with nothing said.
+- **The plot and milestone table did not clear on `maxMilestones` or the
+  milestone name options, and the export tables did not clear on
+  `timeDisplay` or `timeUnit`.**
+- **The ggswim fallback subtitle always read “ggswim unavailable”
+  instead of the real error.** The helper signature is
+  `(patient_data, milestone_data, event_data, opts, stats, error_message)`,
+  and the error was being passed positionally into `milestone_data`,
+  where it was discarded.
+
+#### Diagnostic Test Meta-Analysis (`diagnosticmeta`)
+
+- **Deeks’ funnel-plot asymmetry test was specified incorrectly and
+  could report “no asymmetry” where Deeks’ own specification finds it.**
+  The effective sample size must be `4·n1·n0/(n1+n0)`, the regression of
+  log diagnostic odds ratio on `1/sqrt(ESS)` must be weighted by ESS,
+  and the slope referred to a *t* distribution on *k* − 2 degrees of
+  freedom; the code used inverse-variance weights and a normal
+  reference. The accompanying funnel plot has been switched to log DOR
+  against `1/sqrt(ESS)` so that plot and test show the same thing — it
+  previously drew the conventional Egger-style precision axis, which
+  Deeks et al. showed is misleading for diagnostic accuracy data because
+  log DOR and its standard error are intrinsically correlated, so a
+  visibly symmetric funnel could sit beside a significant asymmetry
+  p-value (Deeks, Macaskill & Irwig 2005, *J Clin Epidemiol* 58:882–93).
+- **A single missing cell count aborted the entire analysis, and
+  negative counts were dropped in silence.** The pre-exclusion study
+  count was computed but never used, so the reported number of studies
+  was the post-exclusion count with no indication that anything had been
+  removed. Unusable studies — missing or negative cells, or no diseased
+  or no non-diseased participants — are now excluded explicitly and
+  listed.
+- **The zero-cell option “None” applied a heavier correction than either
+  option that advertises one.** `mada`’s default
+  `correction.control = "all"` adds 0.5 to all four cells of *every*
+  study as soon as one zero cell appears anywhere; “None” now sets
+  `correction.control = "single"`, so only the affected studies are
+  corrected. The disclosure block was also gated on the method not being
+  “none”, making it the one setting that said nothing. The option is
+  retitled “None (correct only zero-cell studies)”.
+- **Meta-regression was guarded on the number of studies rather than on
+  residual degrees of freedom.** A four-level covariate on five studies
+  leaves none: `metafor` silently drops redundant predictors and the
+  table then looks normal while describing a different model. Rows are
+  also labelled with the user’s covariate name — the model is fitted on
+  an internal column literally named `covariate`, so they had read
+  “covariate”, “covariateB”, and so on.
+- **Warnings were written into a panel that `.run()` had already
+  hidden** as soon as all five variables were chosen, so a missing cell
+  produced a completely blank analysis with no explanation anywhere on
+  screen.
+- **Study-level sensitivity and specificity were shown as proportions
+  while the pooled table showed percentages** — 0.82 next to 81.59 for
+  the same quantity on one screen. Per-study values are now percentages
+  to one decimal place.
+- **The forest and SROC plots did not clear on `method`,
+  `bivariate_analysis` or `confidence_level`, and the SROC region legend
+  said “95%” unconditionally**, which became wrong once the ellipse
+  started honouring the chosen confidence level. The legend now names
+  the actual level and identifies the region as a confidence region for
+  the summary point.
+
+#### IHC Heterogeneity (`ihcheterogeneity`)
+
+- **The variance decomposition reported quantities that were not
+  components of a common total.** On a 20-case example the between-case
+  row read 102.3% of total and the three percentages summed to 107.5%,
+  under a row explicitly labelled “Sum of all variance components”.
+  Replaced with a balanced two-way random-effects model — σ²case =
+  (MScase − MSerror)/k, σ²method = (MSmethod − MSerror)/n, σ²error =
+  MSerror — fitted on the cases measured by every method, with that
+  number reported and any negative estimate truncated at zero and
+  disclosed.
+- **The intraclass correlation was not computed by the route the output
+  claimed.** The table reported ICC(2,1) absolute agreement; the
+  calculation did not match that definition. Now computed with
+  [`psych::ICC`](https://rdrr.io/pkg/psych/man/ICC.html), with the
+  consistency form reported alongside absolute agreement — the two
+  differ exactly when there is a systematic offset between methods,
+  which is the case worth seeing.
+- **Reliability rows were labelled with a statistic that had not
+  necessarily been computed.** Five fallback paths return the mean
+  Spearman correlation, and that value was printed under the ICC heading
+  and graded against ICC reliability cut-offs. The label now names the
+  statistic actually used.
+- **The per-case coefficient of variation had two definitions on one
+  screen.** The table computed it from the regional columns alone while
+  the interpretation folded in the reference measurement, so a single
+  run could read “Mean CV = 23.19 / High variability”, “moderate (mean
+  CV = 20%)” and “ADEQUATE SAMPLING” together. Excluding the reference
+  section also made a systematic under-read invisible: a 30% under-read
+  appeared as 1.2% variability. One definition is now shared by the
+  table and the narrative, and it includes the reference measurement
+  when one exists.
+- **Paired t-tests aborted the analysis when the difference vector had
+  zero variance.** `t.test(paired = TRUE)` errors with “data are
+  essentially constant”, which is routine when scores are binned to
+  whole percentages and every case shows the same offset. It was
+  unguarded in four places.
+- **The correlation power calculation counted rows with a missing
+  reference measurement.** Using the length of the reference column
+  rather than the number of complete pairs made `se_z = 1/sqrt(n − 3)`
+  too small, so every reported power was inflated and every required
+  sample size understated.
+
+### Added
+
+- **`waterfall`: three new display options.** `showCategoryLabels`
+  prints the response category above each bar, `showSpiderLabels` puts
+  the patient ID at the end of each spider line, and `annotationVars`
+  draws covariate tracks beneath the bars. The annotation-track figure
+  design is credited in code to Jamovi-TrialPlots by highwindmx (LGPL);
+  this is an independent implementation.
+- **`diagnosticmeta`: a prediction interval for a future study**, shown
+  as a note on the bivariate table with a matching prediction region on
+  the SROC plot. The pooled estimate and its confidence interval
+  describe how well the *average* is known and say nothing about
+  consistency across studies; the interval is built from the same
+  quantity `mada` uses for its prediction region, so note and plot
+  agree. A heterogeneity warning accompanies it.
+- **`ihcheterogeneity`: relative bias** reported alongside the per-case
+  coefficient of variation.
+- **`R/recist_engine.R`**, an internal lesion-level RECIST v1.1
+  assessment engine covering target lesion selection and validation,
+  target sums, new-lesion detection, non-target assessment, overall
+  visit response, confirmation and best overall response. All of it is
+  internal and unexported, and no shipped analysis calls it yet; it is
+  infrastructure for the lesion-level analyses described in the
+  `waterfall` documentation as coming in a future release.
+
+### Changed
+
+- **`waterfall` is now titled “Treatment Response: Patient-Level
+  Burden”**, with the description rewritten to state explicitly that
+  this is *not* a RECIST v1.1 implementation: because the analysis never
+  sees individual lesions it cannot sum target lesions, detect new
+  lesions, judge non-target progression, or apply the four-week
+  confirmation rule. The summary table is retitled “Response Categories
+  (threshold-based, not full RECIST v1.1)” and the menu subtitle changed
+  from “Waterfall Plot, Spider Plot” to “One burden value per patient or
+  visit”.
+- **`swimmerplot`: “Export Timeline Data” and “Export Summary
+  Statistics” changed from `type: Output` to `type: Table`.** An
+  `Output` result item writes a single computed column back into the
+  dataset and must be bound to a matching `type: Output` option — there
+  was none, and the backend called `setState()` rather than
+  `setRowNums()`/`setValues()`. Neither payload is a per-row column
+  anyway: one is a multi-column frame, the other is one row per metric.
+- **`diagnosticmeta`: performance claims in the interpretation text are
+  now qualified by the confidence interval.** A pooled sensitivity of
+  90.4% with a 95% CI of 71–97% had been reported as “excellent … will
+  detect 90 out of 100 patients”. The previously unlabelled p-value
+  column on the sensitivity and specificity rows is now named for what
+  it tests — the Wald test of the logit intercepts (H₀: sensitivity =
+  50%, H₀: false-positive rate = 50%), which is trivially significant
+  for any usable test.
+- **`ihcheterogeneity`: multiplicity is disclosed** for the up to five
+  unadjusted paired comparisons, and a statistically significant
+  sampling bias must now also exceed 5% of the reference mean before it
+  vetoes the adequacy verdict — 5% being the “Minimal (\<5%)” band the
+  sampling-bias table already uses for clinical impact.
+
+### Removed
+
+- **`waterfall`: post-hoc statistical power reporting.** Observed power
+  is a re-expression of the p-value and restates the test result rather
+  than informing it (Hoenig & Heisey 2001); users planning a study are
+  pointed to the Group-Sequential Design & Sample Size analysis instead.
+
+### Note
+
+- The lesion-level RECIST analyses that consume the new engine are still
+  in development and are not part of this module; only the internal
+  engine ships here.
+- The review pass carried out this release also covered analyses in
+  `meddecide`. **No file shipped in this module was affected by that
+  work.**
+
+## OncoPath 1.0.2 (2026-08-03)
+
+### Fixed
+
+- **Analysis variables were required arguments of the R function.** An
+  option with no default in its jamovi definition compiles to a bare
+  parameter, so calling the analysis from R without it failed with
+  `argument "X" is missing, with no default` before the analysis’s own
+  validation could produce a usable message. Now defaulting to `NULL`:
+  `diagnosticmeta` (`study`, `true_positives`, `false_positives`,
+  `true_negatives`, `false_negatives`), `ihcheterogeneity` (`biopsy1`)
+  and `waterfall` (`patientID`, `responseVar`). Behaviour in the jamovi
+  GUI is unchanged; no statistical method was altered.
+
+### Note
+
+- The pre-release review pass carried out this release covered the
+  survival-family and diagnostic-decision analyses (`jsurvival`,
+  `meddecide`) and a package-wide
+  [`format()`](https://rdrr.io/r/base/format.html) namespace fix in the
+  umbrella package. **No analysis shipped here was changed** — none of
+  the affected files is distributed to this module.
+
+### Added
+
+- **Automated GitHub release (`.github/workflows/release.yaml`).** A
+  push to the default branch touching `DESCRIPTION` or
+  `jamovi/0000.yaml` cross-checks the two version strings, refuses to
+  proceed if they disagree, and — if the tag does not already exist —
+  tags `v<version>` and publishes a release whose notes are the matching
+  section of this file.
+
 ## OncoPath 1.0.0 (2026-07-13)
 
 ### jamovi library readiness
@@ -140,9 +591,8 @@ survival**: `stagemigration_competingRisksAnalysis`,
   formula paths under jamovi 2.7.27’s hardened parser
 - Added `.buildSurvivalFormula()`,
   [`.escapeVariableNames()`](https://www.serdarbalci.com/OncoPath/reference/dot-escapeVariableNames.md),
-  [`load_required_package()`](https://www.serdarbalci.com/OncoPath/reference/load_required_package.md),
-  the `%notin%` / `%!in%` operators, and a `print.sensSpecTable` S3
-  method
+  `load_required_package()`, the `%notin%` / `%!in%` operators, and a
+  `print.sensSpecTable` S3 method
 
 ### New Example Datasets
 

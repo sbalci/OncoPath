@@ -402,6 +402,36 @@ cat("✓ Study design insights\n")
 
 ## Troubleshooting
 
+### Options Not Covered Above
+
+Five options had no coverage anywhere in the documentation. All were run
+against the bundled `swimmerplot_sample` dataset.
+
+``` r
+
+data(swimmerplot_sample, package = "OncoPath")
+
+res <- swimmerplot(
+  data        = swimmerplot_sample,
+  patientID   = "PatientID",
+  startTime   = "StartTime",
+  endTime     = "EndTime",
+  responseVar = "Response",
+
+  censorVar           = "EventType",   # who was censored vs who had the event
+  customReferenceDate = "",            # anchor date for absolute-date input
+  showGlossary        = TRUE,          # clinical glossary alongside the plot
+  showCopyReady       = TRUE,          # paste-ready manuscript text
+  showAbout           = TRUE           # what the analysis does and its assumptions
+)
+```
+
+| Option | What it does |
+|----|----|
+| `censorVar` | Names the column distinguishing an event from censoring. Without it a bar that ends because follow-up ended looks the same as one that ends because the event occurred — the single most common way a swimmer plot misleads. |
+| `customReferenceDate` | When times are supplied as absolute dates, this sets the anchor they are measured from. Leave empty to use each patient’s own start. |
+| `showGlossary`, `showCopyReady`, `showAbout` | Presentation aids: a glossary for non-statistician readers, a paste-ready results paragraph, and a description of the analysis and its assumptions. |
+
 ### Common Issues
 
 1.  **Date Parsing Errors**: Check date format specification

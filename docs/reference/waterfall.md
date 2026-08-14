@@ -1,15 +1,29 @@
-# Treatment Response Analysis
+# Treatment Response: Patient-Level Burden
 
-Creates waterfall and spider plots to analyze tumor response data
-following RECIST criteria.
+Use this when you have one tumour burden number per patient: either a
+percent change from baseline you have already calculated (one row per
+patient), or a single measurement recorded at each visit (one row per
+patient per visit). It draws waterfall and spider plots, assigns each
+patient a best response from their largest shrinkage from baseline, and
+reports ORR and DCR with exact binomial confidence intervals, group
+comparison, time to response and duration of response. When a time
+variable is supplied, progression is measured against the patient's
+smallest recorded burden (nadir), not against baseline. Categories are
+named CR, PR, SD and PD and the thresholds are adapted from RECIST v1.1,
+but this is NOT a RECIST v1.1 implementation: because it never sees
+individual lesions it cannot sum target lesions, detect a new lesion, or
+judge non-target progression, and it cannot apply the 4-week
+confirmation rule itself (you may supply your own confirmation column).
+If your data list each lesion separately, use the lesion-level RECIST
+v1.1 analysis. It will be available in upcoming releases.
 
 ## Usage
 
 ``` r
 waterfall(
   data,
-  patientID,
-  responseVar,
+  patientID = NULL,
+  responseVar = NULL,
   timeVar = NULL,
   groupVar = NULL,
   inputType = "percentage",
@@ -19,6 +33,9 @@ waterfall(
   confirmationVar = NULL,
   ongoingVar = NULL,
   responseCategoryVar = NULL,
+  showCategoryLabels = FALSE,
+  showSpiderLabels = FALSE,
+  annotationVars = NULL,
   showThresholds = TRUE,
   labelOutliers = FALSE,
   showMedian = FALSE,
@@ -116,6 +133,26 @@ waterfall(
   patient with target-lesion shrinkage can still be classified PD (e.g.,
   a new lesion). Affects both bar coloring and response metrics
   (ORR/DCR).
+
+- showCategoryLabels:
+
+  Print the response category (CR, PR, SD, PD) above each waterfall bar,
+  so the category can be read directly instead of being mapped back from
+  the bar colour.
+
+- showSpiderLabels:
+
+  Label the end of every spider trajectory with its patient ID, so an
+  outlying line can be traced to a patient without reading a large
+  legend.
+
+- annotationVars:
+
+  Optional patient-level variables drawn as coloured tracks beneath the
+  waterfall bars, aligned to the same patient ordering. One row of tiles
+  per variable. Use for biomarker status, mutation, prior therapy,
+  treatment arm or any covariate you want read off against each
+  patient's response.
 
 - showThresholds:
 
@@ -251,9 +288,3 @@ example:
 `results$summaryTable$asDF`
 
 `as.data.frame(results$summaryTable)`
-
-## Details
-
-Supports both raw tumor measurements and pre-calculated percentage
-changes. Provides comprehensive response analysis including ORR, DCR,
-and person-time metrics.

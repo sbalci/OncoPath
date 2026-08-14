@@ -4,6 +4,7 @@
 <url><loc>https://www.serdarbalci.com/OncoPath/articles/09-waterfall-legacy.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/articles/clinicalheatmap_comprehensive.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/articles/diagnosticmeta-comprehensive.html</loc></url>
+<url><loc>https://www.serdarbalci.com/OncoPath/articles/ihcheterogeneity-comprehensive.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/articles/index.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/articles/omentum_pathsampling_analysis.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/articles/swimmer-unified-datasets.html</loc></url>
@@ -11,6 +12,8 @@
 <url><loc>https://www.serdarbalci.com/OncoPath/authors.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/index.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/news/index.html</loc></url>
+<url><loc>https://www.serdarbalci.com/OncoPath/reference/%!in%.html</loc></url>
+<url><loc>https://www.serdarbalci.com/OncoPath/reference/%notin%.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/reference/STAGEMIGRATION_CONSTANTS.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/reference/bootstrapIDI.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/reference/calculateHScore.html</loc></url>
@@ -52,6 +55,9 @@
 <url><loc>https://www.serdarbalci.com/OncoPath/reference/print.sensSpecTable.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/reference/prop_to_percent.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/reference/raw_to_prob.html</loc></url>
+<url><loc>https://www.serdarbalci.com/OncoPath/reference/recist_context.html</loc></url>
+<url><loc>https://www.serdarbalci.com/OncoPath/reference/recist_engine.html</loc></url>
+<url><loc>https://www.serdarbalci.com/OncoPath/reference/recist_select_target_lesions.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/reference/safe_divide.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/reference/showIHCDataRequirements.html</loc></url>
 <url><loc>https://www.serdarbalci.com/OncoPath/reference/stagemigration_bootstrapConcordance.html</loc></url>

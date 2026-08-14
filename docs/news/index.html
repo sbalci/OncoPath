@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.52</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,6 +45,171 @@
       <small>Source: <a href="https://github.com/sbalci/OncoPath/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.4" id="oncopath-104-2026-08-07">OncoPath 1.0.4 (2026-08-07)<a class="anchor" aria-label="anchor" href="#oncopath-104-2026-08-07"></a></h2>
+<p>No statistical changes. Two runtime dependencies were added to <code>Imports</code>, and the documentation was overhauled.</p>
+<div class="section level3">
+<h3 id="fixed-1-0-4">Fixed<a class="anchor" aria-label="anchor" href="#fixed-1-0-4"></a></h3>
+<ul><li>
+<strong><code>ggrepel</code> and <code>patchwork</code> were used at runtime but not declared.</strong> <code>R/waterfall.b.R</code> calls <code><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">patchwork::wrap_plots</a></code> when assembling multi-panel figures and <code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_text_repel</a></code> when labelling outliers, but neither package appeared in <code>DESCRIPTION</code>. jamovi installs a module’s <code>Imports</code> the first time it is used and cannot fetch a missing package on demand, so a user without these already installed would have hit a failure at plot time rather than at install time. Both are now in <code>Imports</code> (22 packages, one per line).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="note-1-0-4">Note<a class="anchor" aria-label="anchor" href="#note-1-0-4"></a></h3>
+<ul><li>Apart from the dependency fix above, this is a version and date bump: 1.0.3 → 1.0.4 across <code>DESCRIPTION</code>, <code>jamovi/0000.yaml</code> and the four analysis definitions, plus <code>temp/</code> and <code>backups/</code> added to <code>.Rbuildignore</code> and <code>.gitignore</code>. No statistical method and no output definition changed between 1.0.3 and this release. Everything substantive from this development cycle is documented under 1.0.3 below, which was tagged without release notes.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentation-1-0-4">Documentation<a class="anchor" aria-label="anchor" href="#documentation-1-0-4"></a></h3>
+<p>All 21 files under <code>vignettes/</code> were audited against <code>jamovi/0000.yaml</code> and the generated wrapper signatures. These articles are published to <a href="https://www.serdarbalci.com/OncoPath/articles/" class="uri">https://www.serdarbalci.com/OncoPath/articles/</a>; <code>vignettes/</code> is excluded by <code>.Rbuildignore</code> and there is no <code>VignetteBuilder</code>, so none of this affects <code>R CMD check</code>. Every example added below was executed against the bundled datasets before being written down.</p>
+<ul><li>
+<strong>Option coverage went from 56% to 100%.</strong> Of the 120 options across the four shipped analyses, 53 were not mentioned anywhere in the documentation; none remain.</li>
+<li>
+<strong><code>ihcheterogeneity</code> had no documentation whatsoever</strong> — 18 of its 19 options were unmentioned and no article referred to it. <code>ihcheterogeneity-comprehensive.Rmd</code> is new: what the analysis is for (a biopsy score describes the core, not the tumour), the data layout, a worked run reporting ICC(2,1) 0.663 against ICC(3,1) 0.658 and why both are shown, the variance decomposition that attributes 34.2% of total variance to within-case sampling, and why the post-hoc power row should not be used for planning.</li>
+<li>
+<strong>The 447-line <code>diagnosticmeta</code> article never called <code><a href="../reference/diagnosticmeta.html">diagnosticmeta()</a></code>.</strong> It described the bivariate and HSROC models at length without a single executable example, so the argument names and their scales appeared nowhere. It now carries a worked run against the bundled <code>diagnostic_studies</code> data with the returned pooled sensitivity (75.5%, CI 69.1-80.9), specificity (89.8%, CI 85.7-92.8), HSROC parameters, heterogeneity and Deeks’ test. Two argument traps are called out: <code>confidence_level</code> is a <strong>percentage on a 50-99 scale</strong> (passing <code>0.95</code> errors), and <code>zero_cell_correction</code> has no <code>continuity</code> level — the four accepted values are <code>none</code>, <code>constant</code>, <code>treatment_arm</code> and <code>empirical</code>. The Deeks’ result on five studies is presented as a caveat rather than a finding, since the test needs roughly ten.</li>
+<li>
+<strong>The waterfall article demonstrated nothing.</strong> <code>06-function-waterfall.Rmd</code> pulled a dataset from <code>ClinicoPathDescriptives</code>, called <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(ClinicoPath)</a></code> rather than <code><a href="https://www.serdarbalci.com/OncoPath/">library(OncoPath)</a></code>, and its three code chunks printed placeholder strings with <code><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat()</a></code> instead of calling <code><a href="../reference/waterfall.html">waterfall()</a></code>. It has been rewritten around the bundled <code>waterfall_percentage_basic</code> and <code>waterfall_raw_longitudinal</code> datasets, with the RECIST category breakdown and clinical metrics it actually returns (ORR 35.0%, CI 15.4-59.2; DCR 80.0%, CI 56.3-94.3), the raw/spider input path, and a table of the fifteen previously-undocumented options. Note <code>sortDirection</code> takes <code>"conventional"</code> or <code>"reverse"</code>, not <code>"decreasing"</code>.</li>
+<li>
+<strong><code>swimmerplot</code>’s <code>censorVar</code> was undocumented</strong>, along with <code>customReferenceDate</code>, <code>showGlossary</code>, <code>showCopyReady</code> and <code>showAbout</code>. <code>censorVar</code> matters more than its obscurity suggests: without it a bar that ends because follow-up ended is drawn the same as one that ends because the event occurred, which is the commonest way a swimmer plot misleads.</li>
+<li>
+<strong>Seven articles refer to analyses OncoPath does not ship, and now say so.</strong> <code>clinicalheatmap</code>, <code>ggoncoplot</code>, <code>recist</code>, <code>classification</code>, <code>decisiongraph</code>, <code>digitalvalidation</code> and <code>haralicktexture</code> are all on development or test menu routes in the umbrella ClinicoPath module and reach no user today. Separately, several articles use <code>agreement</code> (<strong>meddecide</strong>) and <code>survival</code> (<strong>jsurvival</strong>), and now name the module to install for those steps. Nothing was deleted.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.3" id="oncopath-103-2026-08-05">OncoPath 1.0.3 (2026-08-05)<a class="anchor" aria-label="anchor" href="#oncopath-103-2026-08-05"></a></h2>
+<p>An end-to-end pre-release review of all four shipped analyses — <code>waterfall</code>, <code>swimmerplot</code>, <code>diagnosticmeta</code> and <code>ihcheterogeneity</code> — reading each chain from the user interface through the backend to the rendered output, and checking every statistic against an independent implementation. Several of the defects below changed reported response rates, durations of response, variance components and publication-bias conclusions, so results produced with earlier versions of these analyses should be re-run.</p>
+<div class="section level3">
+<h3 id="fixed-1-0-3">Fixed<a class="anchor" aria-label="anchor" href="#fixed-1-0-3"></a></h3>
+<div class="section level4">
+<h4 id="treatment-response-waterfall-1-0-3">Treatment Response (<code>waterfall</code>)<a class="anchor" aria-label="anchor" href="#treatment-response-waterfall-1-0-3"></a></h4>
+<ul><li>
+<strong>Progression was measured from baseline instead of from the patient’s nadir.</strong> RECIST v1.1 defines progressive disease relative to the smallest tumour burden recorded so far, not relative to the first scan. A patient going 100 → 60 → 78 mm is +30% over their nadir — progression — but still −22% from baseline, so they were counted as censored and their duration of response ran on to last follow-up. Every duration-of-response summary and the Kaplan–Meier curve built from it were inflated. <code>.progressionTimes()</code> now carries the running <code><a href="https://rdrr.io/r/base/cumsum.html" class="external-link">cummin()</a></code> of the burden.</li>
+<li>
+<strong>A response-category override outside CR/PR/SD/PD was silently converted to <code>NA</code>.</strong> <code>recist_category</code> is a factor with levels CR/PR/SD/PD/Unknown, so assigning an unrecognised label produced <code>NA</code> with only an invalid-factor-level warning. If every row was overridden the whole column went <code>NA</code> and the run aborted downstream with <code>missing value where TRUE/FALSE needed</code>. Unrecognised labels are now reported and rejected.</li>
+<li>
+<strong>Objective response and disease control rates were computed over assessment rows, not patients, on some processing paths.</strong> The same 90-observation dataset gave ORR 100% when it held 30 patients with 3 rows each and ORR 33.3% when it held 60 patients with 3 rows each, because the row count decides which processing path runs. Every path now collapses to one row per patient before counting, and unevaluable rows no longer inflate the denominator.</li>
+<li>
+<strong>Physical limits on tumour measurements were never enforced.</strong> The Response Value option text had always promised that shrinkage would be capped at −100%, and the code never applied the cap. Worse, a negative raw measurement flips the sign of <code>((current − baseline) / baseline)</code>, so a growing tumour was reported as a response. Both are now handled at a single convergence point (<code>.enforceMeasurementLimits()</code>), and the cap is announced in the always-visible notices panel rather than the validation panel that is cleared when validation otherwise passes.</li>
+<li>
+<strong>Patients dropped for a missing or zero baseline simply vanished from the cohort, and patients with only a baseline scan were scored SD.</strong> With a time variable, a baseline-only patient produced <code>((baseline − baseline) / baseline) × 100</code> = 0% change and was categorised as stable disease, although a patient with no post-baseline assessment is not response-evaluable at all. Both groups are now reconciled against the input and reported.</li>
+<li>
+<strong>The exported response-category column was written against the wrong patients.</strong> The path without a time variable took <code><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames()</a></code> of a dplyr tibble — always <code>"1"</code>…<code>"k"</code>, never the source row numbers — after that frame had been collapsed to one row per patient and re-sorted into patient-ID order. Rows are now matched back by patient ID.</li>
+<li>
+<strong>The ORR/DCR confidence intervals used a different denominator from the rates themselves.</strong> The interval was computed on <code><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow()</a></code>, which includes Unknown and unevaluable patients, while the point estimate counted only CR/PR/SD/PD — so the printed rate could fall outside its own interval, for example ORR 50.0% displayed with a 95% CI of 28.8–46.8%. The copy-ready report sentences shared the same defect and the same fix.</li>
+<li>
+<strong>The copy-ready “Main Results” paragraph rendered as nothing whenever a response category had no patients.</strong> <code><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">dplyr::count()</a></code> drops unobserved factor levels, so subsetting for an absent category returned <code>integer(0)</code> — not <code>NULL</code>, so the <code>%||% 0</code> fallback never fired — and <code><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf()</a></code> with a zero-length argument returns <code>character(0)</code>, which <code><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0()</a></code> then collapses away.</li>
+<li>
+<strong>The to-do, validation and clinical-summary panels ignored guided mode and were always on screen.</strong> A jamovi <code>visible:</code> expression beginning with <code>!</code> fails jmvcore’s routing regex, so <code>(!enableGuidedMode)</code> evaluated to a raw truthy string. Rewritten as <code>(enableGuidedMode:FALSE)</code>.</li>
+<li>
+<strong>The waterfall and spider plots did not refresh when <code>barAlpha</code>, <code>barWidth</code>, <code>minResponseForLabel</code>, <code>seed</code>, <code>timeVar</code>, <code>annotationVars</code> or <code>showCategoryLabels</code> changed.</strong> Those options are read when the figure is drawn but were missing from <code>clearWith</code>.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="swimmer-plot-swimmerplot-1-0-3">Swimmer Plot (<code>swimmerplot</code>)<a class="anchor" aria-label="anchor" href="#swimmer-plot-swimmerplot-1-0-3"></a></h4>
+<ul><li>
+<strong>“Relative (all start from 0)” anchored each row at zero instead of each patient.</strong> A swimmer plot is multi-row per patient by construction, so row-wise rebasing stacked every episode of a patient back onto t = 0, corrupting total person-time, mean and median duration, follow-up density and the reverse Kaplan–Meier median — in the default configuration, and invisibly in any fixture with one row per patient. Lanes, milestones and events are now all measured from the patient’s earliest start.</li>
+<li>
+<strong>Milestone markers were paired with lanes by position, so they landed on the wrong patients.</strong> Milestone columns were read from the unfiltered data while the patient table had already had rows removed; one dropped row shifted every later patient’s markers onto somebody else’s lane and discarded the last patient’s milestone, silently, in both the figure and the Milestone Event Summary. For multi-episode patients the same milestone was also handed to both rows, double-counting it and producing a negative re-based copy on the later episode. Milestones are now collapsed to one row per patient and realigned by patient ID.</li>
+<li>
+<strong>Ongoing-treatment arrows were inferred from the longest follow-up.</strong> Treating “largest end time” as evidence of still being on treatment at data cutoff is wrong in the common case — the patient with the longest follow-up is often the one who died last. Arrows are now drawn only from an explicit censoring variable, using the same helper as the median-follow-up calculation, and no arrows are drawn when there is none.</li>
+<li>
+<strong>Every event-marker glyph was the empty string, so event markers were invisible.</strong> The symbols that once populated the glyph table were deleted rather than escaped during a non-ASCII sweep, and <code><a href="https://chop-cgtinformatics.github.io/ggswim/reference/scale_marker_discrete.html" class="external-link">ggswim::scale_marker_discrete()</a></code> therefore drew nothing for every labelled event. Restored as print-safe geometric symbols (● ■ ▲ ▼ ◆ ★ ✚ ✖ ◑ ◎) that survive PDF and Word export. Glyph pattern matching was tightened at the same time so that short patterns match as whole words — a bare “ct” had been matching “Infarction” and “Reaction”.</li>
+<li>
+<strong>Adding a milestone wiped the CR/PR/SD/PD colouring from the whole figure.</strong> Mapping milestones to <code>color</code> added a second <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual()</a></code> containing only milestone names; ggplot2 permits one colour scale per plot, so it replaced the lane scale and every response category fell through to <code>NA</code> grey. Milestones are now mapped to shape only.</li>
+<li>
+<strong>A custom reference line crashed the plot on an absolute date scale.</strong> lubridate does not export <code><a href="https://rdrr.io/r/base/weekday.POSIXt.html" class="external-link">months()</a></code> (<code>months</code> is a base generic), so <code>lubridate::months()</code> threw — and months is the default time unit, so this killed the plot out of the box. The Period constructors also reject fractional amounts while <code>customReferenceTime</code> is an unconstrained number, so 12.5 crashed too. Now built with <code><a href="https://lubridate.tidyverse.org/reference/duration.html" class="external-link">lubridate::duration()</a></code>.</li>
+<li>
+<strong>The copy-ready manuscript text asserted an objective response rate of 0.0% where the metrics table declined to make the claim.</strong> ORR and DCR are defined only for RECIST-coded responses; with codings such as “Responder”, 0/1 or “Grade 1” nothing normalises to CR/PR/SD/PD and the numerator is legitimately zero, which read as a genuine ORR of 0.0% with an exact binomial interval attached. The guard existed in one place only; both now go through one shared helper.</li>
+<li>
+<strong>The summary table could show a median follow-up outside its own range.</strong> The observed range was printed beside the reverse Kaplan–Meier median rather than the observed one. The estimator is now named, and the range stays attached to the observed median.</li>
+<li>
+<strong>Rows excluded before validation were never disclosed.</strong> <code>.validateClinicalData()</code> ran on the already-filtered frame, so its “these will be excluded” warnings could not fire for the rows an earlier filter had dropped; those patients disappeared from the figure and from every denominator with nothing said.</li>
+<li><strong>The plot and milestone table did not clear on <code>maxMilestones</code> or the milestone name options, and the export tables did not clear on <code>timeDisplay</code> or <code>timeUnit</code>.</strong></li>
+<li>
+<strong>The ggswim fallback subtitle always read “ggswim unavailable” instead of the real error.</strong> The helper signature is <code>(patient_data, milestone_data, event_data, opts, stats, error_message)</code>, and the error was being passed positionally into <code>milestone_data</code>, where it was discarded.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="diagnostic-test-meta-analysis-diagnosticmeta-1-0-3">Diagnostic Test Meta-Analysis (<code>diagnosticmeta</code>)<a class="anchor" aria-label="anchor" href="#diagnostic-test-meta-analysis-diagnosticmeta-1-0-3"></a></h4>
+<ul><li>
+<strong>Deeks’ funnel-plot asymmetry test was specified incorrectly and could report “no asymmetry” where Deeks’ own specification finds it.</strong> The effective sample size must be <code>4·n1·n0/(n1+n0)</code>, the regression of log diagnostic odds ratio on <code>1/sqrt(ESS)</code> must be weighted by ESS, and the slope referred to a <em>t</em> distribution on <em>k</em> − 2 degrees of freedom; the code used inverse-variance weights and a normal reference. The accompanying funnel plot has been switched to log DOR against <code>1/sqrt(ESS)</code> so that plot and test show the same thing — it previously drew the conventional Egger-style precision axis, which Deeks et al. showed is misleading for diagnostic accuracy data because log DOR and its standard error are intrinsically correlated, so a visibly symmetric funnel could sit beside a significant asymmetry p-value (Deeks, Macaskill &amp; Irwig 2005, <em>J Clin Epidemiol</em> 58:882–93).</li>
+<li>
+<strong>A single missing cell count aborted the entire analysis, and negative counts were dropped in silence.</strong> The pre-exclusion study count was computed but never used, so the reported number of studies was the post-exclusion count with no indication that anything had been removed. Unusable studies — missing or negative cells, or no diseased or no non-diseased participants — are now excluded explicitly and listed.</li>
+<li>
+<strong>The zero-cell option “None” applied a heavier correction than either option that advertises one.</strong> <code>mada</code>’s default <code>correction.control = "all"</code> adds 0.5 to all four cells of <em>every</em> study as soon as one zero cell appears anywhere; “None” now sets <code>correction.control = "single"</code>, so only the affected studies are corrected. The disclosure block was also gated on the method not being “none”, making it the one setting that said nothing. The option is retitled “None (correct only zero-cell studies)”.</li>
+<li>
+<strong>Meta-regression was guarded on the number of studies rather than on residual degrees of freedom.</strong> A four-level covariate on five studies leaves none: <code>metafor</code> silently drops redundant predictors and the table then looks normal while describing a different model. Rows are also labelled with the user’s covariate name — the model is fitted on an internal column literally named <code>covariate</code>, so they had read “covariate”, “covariateB”, and so on.</li>
+<li>
+<strong>Warnings were written into a panel that <code>.run()</code> had already hidden</strong> as soon as all five variables were chosen, so a missing cell produced a completely blank analysis with no explanation anywhere on screen.</li>
+<li>
+<strong>Study-level sensitivity and specificity were shown as proportions while the pooled table showed percentages</strong> — 0.82 next to 81.59 for the same quantity on one screen. Per-study values are now percentages to one decimal place.</li>
+<li>
+<strong>The forest and SROC plots did not clear on <code>method</code>, <code>bivariate_analysis</code> or <code>confidence_level</code>, and the SROC region legend said “95%” unconditionally</strong>, which became wrong once the ellipse started honouring the chosen confidence level. The legend now names the actual level and identifies the region as a confidence region for the summary point.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="ihc-heterogeneity-ihcheterogeneity-1-0-3">IHC Heterogeneity (<code>ihcheterogeneity</code>)<a class="anchor" aria-label="anchor" href="#ihc-heterogeneity-ihcheterogeneity-1-0-3"></a></h4>
+<ul><li>
+<strong>The variance decomposition reported quantities that were not components of a common total.</strong> On a 20-case example the between-case row read 102.3% of total and the three percentages summed to 107.5%, under a row explicitly labelled “Sum of all variance components”. Replaced with a balanced two-way random-effects model — σ²case = (MScase − MSerror)/k, σ²method = (MSmethod − MSerror)/n, σ²error = MSerror — fitted on the cases measured by every method, with that number reported and any negative estimate truncated at zero and disclosed.</li>
+<li>
+<strong>The intraclass correlation was not computed by the route the output claimed.</strong> The table reported ICC(2,1) absolute agreement; the calculation did not match that definition. Now computed with <code><a href="https://rdrr.io/pkg/psych/man/ICC.html" class="external-link">psych::ICC</a></code>, with the consistency form reported alongside absolute agreement — the two differ exactly when there is a systematic offset between methods, which is the case worth seeing.</li>
+<li>
+<strong>Reliability rows were labelled with a statistic that had not necessarily been computed.</strong> Five fallback paths return the mean Spearman correlation, and that value was printed under the ICC heading and graded against ICC reliability cut-offs. The label now names the statistic actually used.</li>
+<li>
+<strong>The per-case coefficient of variation had two definitions on one screen.</strong> The table computed it from the regional columns alone while the interpretation folded in the reference measurement, so a single run could read “Mean CV = 23.19 / High variability”, “moderate (mean CV = 20%)” and “ADEQUATE SAMPLING” together. Excluding the reference section also made a systematic under-read invisible: a 30% under-read appeared as 1.2% variability. One definition is now shared by the table and the narrative, and it includes the reference measurement when one exists.</li>
+<li>
+<strong>Paired t-tests aborted the analysis when the difference vector had zero variance.</strong> <code>t.test(paired = TRUE)</code> errors with “data are essentially constant”, which is routine when scores are binned to whole percentages and every case shows the same offset. It was unguarded in four places.</li>
+<li>
+<strong>The correlation power calculation counted rows with a missing reference measurement.</strong> Using the length of the reference column rather than the number of complete pairs made <code>se_z = 1/sqrt(n − 3)</code> too small, so every reported power was inflated and every required sample size understated.</li>
+</ul></div>
+</div>
+<div class="section level3">
+<h3 id="added-1-0-3">Added<a class="anchor" aria-label="anchor" href="#added-1-0-3"></a></h3>
+<ul><li>
+<strong><code>waterfall</code>: three new display options.</strong> <code>showCategoryLabels</code> prints the response category above each bar, <code>showSpiderLabels</code> puts the patient ID at the end of each spider line, and <code>annotationVars</code> draws covariate tracks beneath the bars. The annotation-track figure design is credited in code to Jamovi-TrialPlots by highwindmx (LGPL); this is an independent implementation.</li>
+<li>
+<strong><code>diagnosticmeta</code>: a prediction interval for a future study</strong>, shown as a note on the bivariate table with a matching prediction region on the SROC plot. The pooled estimate and its confidence interval describe how well the <em>average</em> is known and say nothing about consistency across studies; the interval is built from the same quantity <code>mada</code> uses for its prediction region, so note and plot agree. A heterogeneity warning accompanies it.</li>
+<li>
+<strong><code>ihcheterogeneity</code>: relative bias</strong> reported alongside the per-case coefficient of variation.</li>
+<li>
+<strong><code>R/recist_engine.R</code></strong>, an internal lesion-level RECIST v1.1 assessment engine covering target lesion selection and validation, target sums, new-lesion detection, non-target assessment, overall visit response, confirmation and best overall response. All of it is internal and unexported, and no shipped analysis calls it yet; it is infrastructure for the lesion-level analyses described in the <code>waterfall</code> documentation as coming in a future release.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changed-1-0-3">Changed<a class="anchor" aria-label="anchor" href="#changed-1-0-3"></a></h3>
+<ul><li>
+<strong><code>waterfall</code> is now titled “Treatment Response: Patient-Level Burden”</strong>, with the description rewritten to state explicitly that this is <em>not</em> a RECIST v1.1 implementation: because the analysis never sees individual lesions it cannot sum target lesions, detect new lesions, judge non-target progression, or apply the four-week confirmation rule. The summary table is retitled “Response Categories (threshold-based, not full RECIST v1.1)” and the menu subtitle changed from “Waterfall Plot, Spider Plot” to “One burden value per patient or visit”.</li>
+<li>
+<strong><code>swimmerplot</code>: “Export Timeline Data” and “Export Summary Statistics” changed from <code>type: Output</code> to <code>type: Table</code>.</strong> An <code>Output</code> result item writes a single computed column back into the dataset and must be bound to a matching <code>type: Output</code> option — there was none, and the backend called <code>setState()</code> rather than <code>setRowNums()</code>/<code>setValues()</code>. Neither payload is a per-row column anyway: one is a multi-column frame, the other is one row per metric.</li>
+<li>
+<strong><code>diagnosticmeta</code>: performance claims in the interpretation text are now qualified by the confidence interval.</strong> A pooled sensitivity of 90.4% with a 95% CI of 71–97% had been reported as “excellent … will detect 90 out of 100 patients”. The previously unlabelled p-value column on the sensitivity and specificity rows is now named for what it tests — the Wald test of the logit intercepts (H₀: sensitivity = 50%, H₀: false-positive rate = 50%), which is trivially significant for any usable test.</li>
+<li>
+<strong><code>ihcheterogeneity</code>: multiplicity is disclosed</strong> for the up to five unadjusted paired comparisons, and a statistically significant sampling bias must now also exceed 5% of the reference mean before it vetoes the adequacy verdict — 5% being the “Minimal (&lt;5%)” band the sampling-bias table already uses for clinical impact.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="removed-1-0-3">Removed<a class="anchor" aria-label="anchor" href="#removed-1-0-3"></a></h3>
+<ul><li>
+<strong><code>waterfall</code>: post-hoc statistical power reporting.</strong> Observed power is a re-expression of the p-value and restates the test result rather than informing it (Hoenig &amp; Heisey 2001); users planning a study are pointed to the Group-Sequential Design &amp; Sample Size analysis instead.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="note-1-0-3">Note<a class="anchor" aria-label="anchor" href="#note-1-0-3"></a></h3>
+<ul><li>The lesion-level RECIST analyses that consume the new engine are still in development and are not part of this module; only the internal engine ships here.</li>
+<li>The review pass carried out this release also covered analyses in <code>meddecide</code>. <strong>No file shipped in this module was affected by that work.</strong>
+</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.2" id="oncopath-102-2026-08-03">OncoPath 1.0.2 (2026-08-03)<a class="anchor" aria-label="anchor" href="#oncopath-102-2026-08-03"></a></h2>
+<div class="section level3">
+<h3 id="fixed-1-0-2">Fixed<a class="anchor" aria-label="anchor" href="#fixed-1-0-2"></a></h3>
+<ul><li>
+<strong>Analysis variables were required arguments of the R function.</strong> An option with no default in its jamovi definition compiles to a bare parameter, so calling the analysis from R without it failed with <code>argument "X" is missing, with no default</code> before the analysis’s own validation could produce a usable message. Now defaulting to <code>NULL</code>: <code>diagnosticmeta</code> (<code>study</code>, <code>true_positives</code>, <code>false_positives</code>, <code>true_negatives</code>, <code>false_negatives</code>), <code>ihcheterogeneity</code> (<code>biopsy1</code>) and <code>waterfall</code> (<code>patientID</code>, <code>responseVar</code>). Behaviour in the jamovi GUI is unchanged; no statistical method was altered.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="note-1-0-2">Note<a class="anchor" aria-label="anchor" href="#note-1-0-2"></a></h3>
+<ul><li>The pre-release review pass carried out this release covered the survival-family and diagnostic-decision analyses (<code>jsurvival</code>, <code>meddecide</code>) and a package-wide <code><a href="https://rdrr.io/r/base/format.html" class="external-link">format()</a></code> namespace fix in the umbrella package. <strong>No analysis shipped here was changed</strong> — none of the affected files is distributed to this module.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="added-1-0-2">Added<a class="anchor" aria-label="anchor" href="#added-1-0-2"></a></h3>
+<ul><li>
+<strong>Automated GitHub release (<code>.github/workflows/release.yaml</code>).</strong> A push to the default branch touching <code>DESCRIPTION</code> or <code>jamovi/0000.yaml</code> cross-checks the two version strings, refuses to proceed if they disagree, and — if the tag does not already exist — tags <code>v&lt;version&gt;</code> and publishes a release whose notes are the matching section of this file.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.0" id="oncopath-100-2026-07-13">OncoPath 1.0.0 (2026-07-13)<a class="anchor" aria-label="anchor" href="#oncopath-100-2026-07-13"></a></h2>
 <div class="section level3">
@@ -126,7 +291,7 @@
 <div class="section level4">
 <h4 id="shared-survival-formula-helpers-rutilsr-0-0-46">Shared Survival-Formula Helpers (<code>R/utils.R</code>)<a class="anchor" aria-label="anchor" href="#shared-survival-formula-helpers-rutilsr-0-0-46"></a></h4>
 <ul><li>Added <code>.asSurvivalFormula()</code>, which wraps <code><a href="https://rdrr.io/pkg/jmvcore/man/asFormula.html" class="external-link">jmvcore::asFormula</a></code> with an extended function allow-list for survival/Cox/Fine-Gray formula paths under jamovi 2.7.27’s hardened parser</li>
-<li>Added <code>.buildSurvivalFormula()</code>, <code><a href="../reference/dot-escapeVariableNames.html">.escapeVariableNames()</a></code>, <code><a href="../reference/load_required_package.html">load_required_package()</a></code>, the <code>%notin%</code> / <code>%!in%</code> operators, and a <code>print.sensSpecTable</code> S3 method</li>
+<li>Added <code>.buildSurvivalFormula()</code>, <code><a href="../reference/dot-escapeVariableNames.html">.escapeVariableNames()</a></code>, <code>load_required_package()</code>, the <code>%notin%</code> / <code>%!in%</code> operators, and a <code>print.sensSpecTable</code> S3 method</li>
 </ul></div>
 </div>
 <div class="section level3">

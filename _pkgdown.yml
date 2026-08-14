@@ -54,6 +54,15 @@ navbar:
       aria-label: View source on GitHub
 
 reference:
+# NOTE: this index previously listed 26 topics that do not exist in OncoPath -
+# the IHC helpers (calculateHScore, getIHCTheme, validateIHCData, ...) live in
+# the main ClinicoPath module (R/ihc_utilities.R), and calculate_sensitivity and
+# friends exist in neither. It also carried three starts_with() selectors that
+# matched no file (the topic is null_coalescing.Rd, with an underscore, not
+# "null-coalescing"). pkgdown aborts the whole build on the first such entry.
+# Topics marked \keyword{internal} (pipe, null_coalescing, .escapeVariableNames,
+# recist_context, recist_engine, recist_select_target_lesions) are excluded by
+# pkgdown automatically and must NOT be listed here.
   - title: "Main Analysis Functions"
     desc: "Core functions for oncological and pathological research"
     contents:
@@ -68,54 +77,12 @@ reference:
   - title: "Diagnostic Test Functions"
     desc: "Functions for diagnostic test accuracy analysis"
     contents:
-    - calculate_sensitivity
-    - calculate_specificity
-    - calculate_ppv
-    - calculate_npv
-    - calculate_plr
-    - calculate_nlr
-    - calculate_auc
-    - validateROCInputs
     - bootstrapIDI
-
-  - title: "IHC Analysis Functions"
-    desc: "Immunohistochemistry marker analysis utilities"
-    contents:
-    - validateIHCData
-    - validateIHCClustering
-    - convertIHCToNumeric
-    - convertIHCMarkerToNumeric
-    - calculateIHCMarkerSummary
-    - calculateHScore
-    - calculateIHCDistance
-    - calculateIHCSilhouette
-    - showIHCDataRequirements
-
-  - title: "IHC Visualization Functions"
-    desc: "Functions for IHC visualization and theming"
-    contents:
-    - getIHCTheme
-    - getIHCColorPalette
-    - formatIHCPValue
-    - getIHCSignificanceStars
 
   - title: "Utility Functions"
     desc: "Helper functions for data processing"
     contents:
-    - safe_divide
-    - prop_to_percent
     - raw_to_prob
-    - is_in_range
-    - load_required_package
-    - starts_with("null-coalescing")
-    - starts_with("na-coalescing")
-    - starts_with("not-in")
-    - "%>%"
-
-  - title: "HTML Utilities"
-    desc: "HTML output utilities"
-    contents:
-    - print.sensSpecTable
 
   - title: "Datasets"
     desc: "Bundled example datasets"

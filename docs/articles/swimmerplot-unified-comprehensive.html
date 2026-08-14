@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.52</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
                         <h4 data-toc-skip class="author">ClinicoPath
 Development Team</h4>
             
-            <h4 data-toc-skip class="date">2026-07-15</h4>
+            <h4 data-toc-skip class="date">2026-08-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/sbalci/OncoPath/blob/HEAD/vignettes/swimmerplot-unified-comprehensive.Rmd" class="external-link"><code>vignettes/swimmerplot-unified-comprehensive.Rmd</code></a></small>
       <div class="d-none name"><code>swimmerplot-unified-comprehensive.Rmd</code></div>
@@ -524,6 +524,61 @@ planning</li>
 <div class="section level2">
 <h2 id="troubleshooting">Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"></a>
 </h2>
+<div class="section level3">
+<h3 id="options-not-covered-above">Options Not Covered Above<a class="anchor" aria-label="anchor" href="#options-not-covered-above"></a>
+</h3>
+<p>Five options had no coverage anywhere in the documentation. All were
+run against the bundled <code>swimmerplot_sample</code> dataset.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">swimmerplot_sample</span>, package <span class="op">=</span> <span class="st">"OncoPath"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/swimmerplot.html">swimmerplot</a></span><span class="op">(</span></span>
+<span>  data        <span class="op">=</span> <span class="va">swimmerplot_sample</span>,</span>
+<span>  patientID   <span class="op">=</span> <span class="st">"PatientID"</span>,</span>
+<span>  startTime   <span class="op">=</span> <span class="st">"StartTime"</span>,</span>
+<span>  endTime     <span class="op">=</span> <span class="st">"EndTime"</span>,</span>
+<span>  responseVar <span class="op">=</span> <span class="st">"Response"</span>,</span>
+<span></span>
+<span>  censorVar           <span class="op">=</span> <span class="st">"EventType"</span>,   <span class="co"># who was censored vs who had the event</span></span>
+<span>  customReferenceDate <span class="op">=</span> <span class="st">""</span>,            <span class="co"># anchor date for absolute-date input</span></span>
+<span>  showGlossary        <span class="op">=</span> <span class="cn">TRUE</span>,          <span class="co"># clinical glossary alongside the plot</span></span>
+<span>  showCopyReady       <span class="op">=</span> <span class="cn">TRUE</span>,          <span class="co"># paste-ready manuscript text</span></span>
+<span>  showAbout           <span class="op">=</span> <span class="cn">TRUE</span>           <span class="co"># what the analysis does and its assumptions</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead><tr class="header">
+<th>Option</th>
+<th>What it does</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>censorVar</code></td>
+<td>Names the column distinguishing an event from censoring. Without it
+a bar that ends because follow-up ended looks the same as one that ends
+because the event occurred — the single most common way a swimmer plot
+misleads.</td>
+</tr>
+<tr class="even">
+<td><code>customReferenceDate</code></td>
+<td>When times are supplied as absolute dates, this sets the anchor they
+are measured from. Leave empty to use each patient’s own start.</td>
+</tr>
+<tr class="odd">
+<td>
+<code>showGlossary</code>, <code>showCopyReady</code>,
+<code>showAbout</code>
+</td>
+<td>Presentation aids: a glossary for non-statistician readers, a
+paste-ready results paragraph, and a description of the analysis and its
+assumptions.</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section level3">
 <h3 id="common-issues">Common Issues<a class="anchor" aria-label="anchor" href="#common-issues"></a>
 </h3>

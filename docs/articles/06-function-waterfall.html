@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.52</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,10 +66,10 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Vignette: Creating Waterfall Plots</h1>
-                        <h4 data-toc-skip class="author">Analysis by
-Gemini</h4>
+                        <h4 data-toc-skip class="author">ClinicoPath
+Development Team</h4>
             
-            <h4 data-toc-skip class="date">2026-07-15</h4>
+            <h4 data-toc-skip class="date">2026-08-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/sbalci/OncoPath/blob/HEAD/vignettes/06-function-waterfall.Rmd" class="external-link"><code>vignettes/06-function-waterfall.Rmd</code></a></small>
       <div class="d-none name"><code>06-function-waterfall.Rmd</code></div>
@@ -77,40 +77,221 @@ Gemini</h4>
 
     
     
+<div class="section level2">
+<h2 id="what-a-waterfall-plot-is-for">What a Waterfall Plot Is For<a class="anchor" aria-label="anchor" href="#what-a-waterfall-plot-is-for"></a>
+</h2>
+<p>One bar per patient, sorted, showing the change in tumour burden from
+baseline. It is the standard first figure of a response-evaluable trial
+cohort because it shows the whole distribution rather than a single
+response rate — you can see at a glance whether a 35% response rate came
+from a few dramatic responders or from many patients sitting just past
+the threshold.</p>
+<p><code>waterfall</code> takes either <strong>percentage change already
+calculated</strong>, or <strong>raw measurements over time</strong> from
+which it calculates the change itself and can additionally draw a spider
+plot.</p>
+</div>
+<div class="section level2">
+<h2 id="percentage-input">Percentage Input<a class="anchor" aria-label="anchor" href="#percentage-input"></a>
+</h2>
+<p>The bundled <code>waterfall_percentage_basic</code> dataset has one
+row per patient with the change already computed.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># For vignette demonstration, ensure 'treatmentResponse' is available.</span></span>
-<span><span class="co"># This data is part of the ClinicoPathDescriptives package.</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">treatmentResponse</span>, package <span class="op">=</span> <span class="st">"ClinicoPathDescriptives"</span><span class="op">)</span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/exists.html" class="external-link">exists</a></span><span class="op">(</span><span class="st">"treatmentResponse"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="co"># Step 1: Create the data frame with the first two columns.</span></span>
-<span>  <span class="va">treatmentResponse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span>    patientID <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">50</span>,</span>
-<span>    change <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">25</span>, <span class="op">-</span><span class="fl">40</span>, <span class="fl">20</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">20</span>, <span class="fl">25</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="co"># Step 2: Now that 'treatmentResponse$change' exists, create the responseCategory column.</span></span>
-<span>  <span class="va">treatmentResponse</span><span class="op">$</span><span class="va">responseCategory</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">treatmentResponse</span><span class="op">$</span><span class="va">change</span> <span class="op">&lt;=</span> <span class="op">-</span><span class="fl">30</span>, <span class="st">"Partial Response"</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">treatmentResponse</span><span class="op">$</span><span class="va">change</span> <span class="op">&gt;=</span> <span class="fl">20</span>, <span class="st">"Progressive Disease"</span>, <span class="st">"Stable Disease"</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">treatmentResponse</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.serdarbalci.com/OncoPath/">OncoPath</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">waterfall_percentage_basic</span>, package <span class="op">=</span> <span class="st">"OncoPath"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">waterfall_percentage_basic</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   PatientID Response Treatment</span></span>
+<span><span class="co">#&gt; 1      PT01     -100    Drug A</span></span>
+<span><span class="co">#&gt; 2      PT02      -85    Drug A</span></span>
+<span><span class="co">#&gt; 3      PT03      -60    Drug A</span></span>
+<span><span class="co">#&gt; 4      PT04      -45    Drug A</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ClinicoPath</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/waterfall.html">waterfall</a></span><span class="op">(</span></span>
+<span>  data        <span class="op">=</span> <span class="va">waterfall_percentage_basic</span>,</span>
+<span>  patientID   <span class="op">=</span> <span class="st">"PatientID"</span>,</span>
+<span>  responseVar <span class="op">=</span> <span class="st">"Response"</span>,</span>
+<span>  inputType   <span class="op">=</span> <span class="st">"percentage"</span>,</span>
+<span>  sortBy      <span class="op">=</span> <span class="st">"response"</span>,</span>
 <span></span>
-<span><span class="co"># Check available variables in treatmentResponse</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Available variables in treatmentResponse:\n"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">treatmentResponse</span><span class="op">)</span><span class="op">)</span></span>
+<span>  showThresholds           <span class="op">=</span> <span class="cn">TRUE</span>,   <span class="co"># the -30% and +20% RECIST lines</span></span>
+<span>  showMedian               <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  labelOutliers            <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  showCategoryLabels       <span class="op">=</span> <span class="cn">TRUE</span>,   <span class="co"># CR/PR/SD/PD above each bar</span></span>
+<span>  showClinicalSignificance <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  showConfidenceIntervals  <span class="op">=</span> <span class="cn">TRUE</span>    <span class="co"># CIs on ORR and DCR</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="recist-categories">RECIST Categories<a class="anchor" aria-label="anchor" href="#recist-categories"></a>
+</h3>
+<pre><code> category n percent
+       CR 1    0.05
+       PR 6    0.30
+       SD 9    0.45
+       PD 4    0.20</code></pre>
+</div>
+<div class="section level3">
+<h3 id="clinical-metrics-with-uncertainty">Clinical Metrics, With Uncertainty<a class="anchor" aria-label="anchor" href="#clinical-metrics-with-uncertainty"></a>
+</h3>
+<pre><code>                        metric value ci_lower ci_upper
+ Objective Response Rate (ORR) 35.0%     15.4     59.2
+    Disease Control Rate (DCR) 80.0%     56.3     94.3</code></pre>
+<p><code>showConfidenceIntervals</code> is on by default and worth
+leaving on. An ORR of 35% in 20 patients has a 95% interval running from
+15% to 59% — the point estimate alone invites a confidence the data do
+not support, and this is exactly the figure that ends up in a slide
+deck.</p>
+<p>The interpretation text that accompanies these figures is
+deliberately hedged (“general benchmark; verify against tumor-specific
+thresholds”). A 35% ORR means something different in pancreatic cancer
+than in melanoma, and the analysis has no way to know which you are
+looking at.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="raw-longitudinal-input-and-the-spider-plot">Raw Longitudinal Input and the Spider Plot<a class="anchor" aria-label="anchor" href="#raw-longitudinal-input-and-the-spider-plot"></a>
+</h2>
+<p>With repeated measurements per patient, give <code>waterfall</code>
+the time variable and set <code>inputType = "raw"</code>. It computes
+the change from baseline itself and can draw a spider plot of the
+individual trajectories alongside the waterfall.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">waterfall_raw_longitudinal</span>, package <span class="op">=</span> <span class="st">"OncoPath"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">waterfall_raw_longitudinal</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   PatientID Time Measurement</span></span>
 <span></span>
-<span><span class="co"># Basic waterfall plot example</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"\nWaterfall plot functionality available with appropriate data structure"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"\nRequired variables: PatientID, ResponseValue, Month"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Waterfall plot output would be displayed here</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Waterfall plot visualization available with proper data structure"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">res_spider</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/waterfall.html">waterfall</a></span><span class="op">(</span></span>
+<span>  data        <span class="op">=</span> <span class="va">waterfall_raw_longitudinal</span>,</span>
+<span>  patientID   <span class="op">=</span> <span class="st">"PatientID"</span>,</span>
+<span>  responseVar <span class="op">=</span> <span class="st">"Measurement"</span>,</span>
+<span>  timeVar     <span class="op">=</span> <span class="st">"Time"</span>,</span>
+<span>  inputType   <span class="op">=</span> <span class="st">"raw"</span>,</span>
+<span></span>
+<span>  showWaterfallPlot    <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  showSpiderPlot       <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  timeUnitLabel        <span class="op">=</span> <span class="st">"months"</span>,  <span class="co"># generic | days | weeks | months | years</span></span>
+<span>  showSpiderLabels     <span class="op">=</span> <span class="cn">TRUE</span>,      <span class="co"># label each line with its patient ID</span></span>
+<span>  showResponseDuration <span class="op">=</span> <span class="cn">TRUE</span>       <span class="co"># time-to-response and duration-of-response table</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><code>showResponseDuration</code> needs the time variable, so it is
+only available on raw input. Duration of response is often the more
+clinically meaningful endpoint of the two: a 40% shrinkage that lasts
+three months and one that lasts two years produce the same waterfall
+bar.</p>
+</div>
+<div class="section level2">
+<h2 id="options-worth-knowing-about">Options Worth Knowing About<a class="anchor" aria-label="anchor" href="#options-worth-knowing-about"></a>
+</h2>
+<p>Several of these were undocumented until now.</p>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th>Option</th>
+<th>Default</th>
+<th>What it does</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>sortDirection</code></td>
+<td><code>"conventional"</code></td>
+<td>
+<code>"conventional"</code> puts the best responses on the left, as
+in published figures. <code>"reverse"</code> flips it. (Not
+<code>"decreasing"</code> — that value is rejected.)</td>
+</tr>
+<tr class="even">
+<td><code>showBaseline</code></td>
+<td><code>TRUE</code></td>
+<td>The Y = 0 reference line</td>
+</tr>
+<tr class="odd">
+<td><code>showCategoryLabels</code></td>
+<td><code>FALSE</code></td>
+<td>RECIST category above each bar</td>
+</tr>
+<tr class="even">
+<td><code>confirmationVar</code></td>
+<td>—</td>
+<td>A column marking which responses were confirmed on a later scan.
+Unconfirmed responses overstate activity</td>
+</tr>
+<tr class="odd">
+<td><code>ongoingVar</code></td>
+<td>—</td>
+<td>A column marking patients still on treatment, whose responses may
+deepen</td>
+</tr>
+<tr class="even">
+<td><code>responseCategoryVar</code></td>
+<td>—</td>
+<td>Override the computed RECIST category with an investigator-assigned
+one</td>
+</tr>
+<tr class="odd">
+<td><code>annotationVars</code></td>
+<td>—</td>
+<td>Extra tracks drawn below the bars (mutation status, prior lines, and
+so on)</td>
+</tr>
+<tr class="even">
+<td><code>showResponseDuration</code></td>
+<td><code>FALSE</code></td>
+<td>Time-to-response and duration-of-response; needs
+<code>timeVar</code>
+</td>
+</tr>
+<tr class="odd">
+<td><code>showSpiderLabels</code></td>
+<td><code>FALSE</code></td>
+<td>Patient ID on each spider line</td>
+</tr>
+<tr class="even">
+<td><code>timeUnitLabel</code></td>
+<td><code>"generic"</code></td>
+<td>Axis label for the spider plot</td>
+</tr>
+<tr class="odd">
+<td><code>showClinicalSignificance</code></td>
+<td><code>FALSE</code></td>
+<td>Clinical-significance threshold annotations</td>
+</tr>
+<tr class="even">
+<td><code>showConfidenceIntervals</code></td>
+<td><code>TRUE</code></td>
+<td>Confidence intervals on ORR and DCR</td>
+</tr>
+<tr class="odd">
+<td><code>generateCopyReadyReport</code></td>
+<td><code>FALSE</code></td>
+<td>A paste-ready results paragraph</td>
+</tr>
+<tr class="even">
+<td><code>showExplanations</code></td>
+<td><code>FALSE</code></td>
+<td>Notes explaining each output</td>
+</tr>
+<tr class="odd">
+<td><code>enableGuidedMode</code></td>
+<td><code>FALSE</code></td>
+<td>Step-by-step prompts for first-time users</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level2">
+<h2 id="a-caveat-on-sorting">A Caveat on Sorting<a class="anchor" aria-label="anchor" href="#a-caveat-on-sorting"></a>
+</h2>
+<p>Sorting by response is what makes the figure readable, and it is also
+what makes it easy to over-read. The bars are ordered by outcome, so any
+left-to-right pattern in an annotation track below them is a consequence
+of that ordering, not evidence of association. If you want to test
+whether a biomarker predicts response, test it — do not read it off the
+waterfall.</p>
+</div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>

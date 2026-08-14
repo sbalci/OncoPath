@@ -1,15 +1,16 @@
-pandoc: 3.8.2.1
-pkgdown: 2.2.0
+pandoc: '3.10'
+pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   06-function-waterfall: 06-function-waterfall.html
   09-waterfall-legacy: 09-waterfall-legacy.html
   clinicalheatmap_comprehensive: clinicalheatmap_comprehensive.html
   diagnosticmeta-comprehensive: diagnosticmeta-comprehensive.html
+  ihcheterogeneity-comprehensive: ihcheterogeneity-comprehensive.html
   omentum_pathsampling_analysis: omentum_pathsampling_analysis.html
   swimmer-unified-datasets: swimmer-unified-datasets.html
   swimmerplot-unified-comprehensive: swimmerplot-unified-comprehensive.html
-last_built: 2026-07-15T05:53Z
+last_built: 2026-08-14T13:05Z
 urls:
   reference: https://www.serdarbalci.com/OncoPath/reference
   article: https://www.serdarbalci.com/OncoPath/articles

@@ -269,8 +269,8 @@ A results object containing:
 | `results$personTimeTable`     |     |     |     |     | a table        |
 | `results$milestoneTable`      |     |     |     |     | a table        |
 | `results$eventMarkerTable`    |     |     |     |     | a table        |
-| `results$timelineData`        |     |     |     |     | an output      |
-| `results$summaryData`         |     |     |     |     | an output      |
+| `results$timelineData`        |     |     |     |     | a table        |
+| `results$summaryData`         |     |     |     |     | a table        |
 | `results$exportInfo`          |     |     |     |     | a html         |
 | `results$validationReport`    |     |     |     |     | a html         |
 | `results$advancedMetrics`     |     |     |     |     | a table        |

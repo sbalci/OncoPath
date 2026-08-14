@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.52</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
                         <h4 data-toc-skip class="author">ClinicoPath
 Team</h4>
             
-            <h4 data-toc-skip class="date">2026-07-15</h4>
+            <h4 data-toc-skip class="date">2026-08-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/sbalci/OncoPath/blob/HEAD/vignettes/diagnosticmeta-comprehensive.Rmd" class="external-link"><code>vignettes/diagnosticmeta-comprehensive.Rmd</code></a></small>
       <div class="d-none name"><code>diagnosticmeta-comprehensive.Rmd</code></div>
@@ -470,6 +470,116 @@ parameterization.</p>
 </div>
 </div>
 <div class="section level2">
+<h2 id="running-it-from-r">Running It From R<a class="anchor" aria-label="anchor" href="#running-it-from-r"></a>
+</h2>
+<p>Everything above describes the method; this section runs it. The
+article previously never called <code><a href="../reference/diagnosticmeta.html">diagnosticmeta()</a></code> at all, so
+the argument names and the scales they use were nowhere to be found. The
+call below was executed against the bundled
+<code>diagnostic_studies</code> dataset and the numbers shown are the
+ones it returned.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">diagnostic_studies</span>, package <span class="op">=</span> <span class="st">"OncoPath"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">diagnostic_studies</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   study_name tp fp fn tn</span></span>
+<span></span>
+<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/diagnosticmeta.html">diagnosticmeta</a></span><span class="op">(</span></span>
+<span>  data            <span class="op">=</span> <span class="va">diagnostic_studies</span>,</span>
+<span>  study           <span class="op">=</span> <span class="st">"study_name"</span>,</span>
+<span>  true_positives  <span class="op">=</span> <span class="st">"tp"</span>,</span>
+<span>  false_positives <span class="op">=</span> <span class="st">"fp"</span>,</span>
+<span>  false_negatives <span class="op">=</span> <span class="st">"fn"</span>,</span>
+<span>  true_negatives  <span class="op">=</span> <span class="st">"tn"</span>,</span>
+<span></span>
+<span>  bivariate_analysis      <span class="op">=</span> <span class="cn">TRUE</span>,   <span class="co"># Reitsma bivariate random-effects model</span></span>
+<span>  hsroc_analysis          <span class="op">=</span> <span class="cn">TRUE</span>,   <span class="co"># Holling proportional-hazards SROC</span></span>
+<span>  heterogeneity_analysis  <span class="op">=</span> <span class="cn">TRUE</span>,   <span class="co"># Q, I-squared, tau-squared</span></span>
+<span>  publication_bias        <span class="op">=</span> <span class="cn">TRUE</span>,   <span class="co"># Deeks' funnel plot asymmetry test</span></span>
+<span>  meta_regression         <span class="op">=</span> <span class="cn">FALSE</span>,  <span class="co"># needs `covariate` to be set</span></span>
+<span>  confidence_level        <span class="op">=</span> <span class="fl">95</span>,     <span class="co"># PERCENT, 50-99. Not 0.95 - that is rejected.</span></span>
+<span>  zero_cell_correction    <span class="op">=</span> <span class="st">"constant"</span>,  <span class="co"># none | constant | treatment_arm | empirical</span></span>
+<span>  forest_plot             <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  sroc_plot               <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  funnel_plot             <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  show_individual_studies <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  show_methodology        <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  show_analysis_summary   <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Two argument details are easy to get wrong and both raise an error
+rather than silently misbehaving:</p>
+<ul>
+<li>
+<strong><code>confidence_level</code> is a percentage on a 50-99
+scale.</strong> Passing the more usual <code>0.95</code> fails with
+<code>confidence_level must be between 50 and 99 (is 0.95)</code>.</li>
+<li>
+<strong><code>zero_cell_correction</code> does not have a level
+called <code>continuity</code>.</strong> The four accepted values are
+<code>none</code>, <code>constant</code>, <code>treatment_arm</code> and
+<code>empirical</code>.</li>
+</ul>
+<div class="section level3">
+<h3 id="what-comes-back">What Comes Back<a class="anchor" aria-label="anchor" href="#what-comes-back"></a>
+</h3>
+<pre><code>bivariateresults
+                 parameter estimate ci_lower ci_upper      p_value
+        Pooled Sensitivity    75.50    69.10    80.94    6.09e-12
+        Pooled Specificity    89.77    85.66    92.81    0.00e+00
+ Positive Likelihood Ratio     7.38     5.18    10.52          NA
+
+hsrocresults
+                              parameter  estimate std_error z_value  p_value
+  Diagnostic accuracy parameter (theta)  1.08e-01  2.19e-02   4.924 8.50e-07
+         Between-study variance (tau^2)  2.48e-05  1.70e-03   0.015 9.88e-01
+
+heterogeneity
+     measure q_statistic df p_value i_squared tau_squared
+ Sensitivity        3.49  4   0.480         0           0
+ Specificity        1.86  4   0.762         0           0
+
+publicationbias
+                              test statistic p_value                  interpretation
+ Deeks' Funnel Plot Asymmetry Test    -3.993  0.0281  Significant asymmetry detected</code></pre>
+<p>Read these together rather than in isolation. Heterogeneity is
+negligible here (I-squared 0 for both measures, tau-squared essentially
+zero in the HSROC fit), so the pooled estimates are describing a
+consistent set of studies. But Deeks’ test flags significant funnel
+asymmetry (p = 0.028) — on five studies, which is below the ten that
+Deeks’ test is generally considered to need. That is a caveat to state,
+not a finding to report: with this few studies the asymmetry test is
+underpowered <em>and</em> prone to false positives, and the honest
+reading is that publication bias cannot be assessed here.</p>
+</div>
+<div class="section level3">
+<h3 id="meta-regression-1">Meta-Regression<a class="anchor" aria-label="anchor" href="#meta-regression-1"></a>
+</h3>
+<p><code>meta_regression = TRUE</code> requires a <code>covariate</code>
+column naming a study-level characteristic:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res_mr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/diagnosticmeta.html">diagnosticmeta</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">diagnostic_studies</span>,</span>
+<span>  study <span class="op">=</span> <span class="st">"study_name"</span>, true_positives <span class="op">=</span> <span class="st">"tp"</span>, false_positives <span class="op">=</span> <span class="st">"fp"</span>,</span>
+<span>  false_negatives <span class="op">=</span> <span class="st">"fn"</span>, true_negatives <span class="op">=</span> <span class="st">"tn"</span>,</span>
+<span>  meta_regression <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  covariate <span class="op">=</span> <span class="st">"population_type"</span>    <span class="co"># a column in your data</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>With five studies a meta-regression is fitting a slope through five
+points; it will produce a number, and that number will not mean much.
+Ten studies per covariate is a common minimum.</p>
+</div>
+<div class="section level3">
+<h3 id="presentation-options">Presentation Options<a class="anchor" aria-label="anchor" href="#presentation-options"></a>
+</h3>
+<p><code>forest_plot</code>, <code>sroc_plot</code> and
+<code>funnel_plot</code> control the three figures;
+<code>color_palette</code> sets their colour scheme and
+<code>show_plot_explanations</code> adds a note under each explaining
+how to read it. <code>show_individual_studies</code> adds the per-study
+sensitivity and specificity table, which is worth keeping — a pooled
+estimate without the studies behind it is hard to sanity-check.</p>
+</div>
+</div>
+<div class="section level2">
 <h2 id="using-the-analysis-in-jamovi">Using the Analysis in jamovi<a class="anchor" aria-label="anchor" href="#using-the-analysis-in-jamovi"></a>
 </h2>
 <div class="section level3">
@@ -544,7 +654,7 @@ performance</li>
 <div class="section level4">
 <h4 id="pooled-sensitivity-and-specificity">Pooled Sensitivity and Specificity<a class="anchor" aria-label="anchor" href="#pooled-sensitivity-and-specificity"></a>
 </h4>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example results interpretation</span></span>
 <span><span class="co"># Pooled Sensitivity: 0.891 (95% CI: 0.808-0.941)</span></span>
 <span><span class="co"># Pooled Specificity: 0.780 (95% CI: 0.715-0.833)</span></span></code></pre></div>
@@ -557,7 +667,7 @@ plausible values for true parameters</p>
 <div class="section level4">
 <h4 id="diagnostic-accuracy-measures">Diagnostic Accuracy Measures<a class="anchor" aria-label="anchor" href="#diagnostic-accuracy-measures"></a>
 </h4>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example calculations for interpretation</span></span>
 <span><span class="va">pooled_sens</span> <span class="op">&lt;-</span> <span class="fl">0.891</span></span>
 <span><span class="va">pooled_spec</span> <span class="op">&lt;-</span> <span class="fl">0.780</span></span>
@@ -639,7 +749,7 @@ variations (antibody sources, protocols) - Methodological differences
 <h3 id="ihc-marker-validation">IHC Marker Validation<a class="anchor" aria-label="anchor" href="#ihc-marker-validation"></a>
 </h3>
 <p>When validating immunohistochemistry markers:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Clinical decision framework</span></span>
 <span><span class="va">create_clinical_table</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sens</span>, <span class="va">spec</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="co"># Calculate predictive values at different prevalences</span></span>
@@ -732,7 +842,7 @@ indicate reliability</li>
 <h3 id="meta-regression-results">Meta-Regression Results<a class="anchor" aria-label="anchor" href="#meta-regression-results"></a>
 </h3>
 <p>When investigating covariates:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example meta-regression results</span></span>
 <span><span class="co"># Sensitivity ~ Patient Population</span></span>
 <span><span class="co"># Advanced vs. Mixed: β = -0.45, p = 0.02</span></span>
@@ -783,7 +893,7 @@ analysis</p>
 <div class="section level3">
 <h3 id="complete-example-output">Complete Example Output<a class="anchor" aria-label="anchor" href="#complete-example-output"></a>
 </h3>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Sample results summary</span></span>
 <span><span class="va">results_summary</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
 <span><span class="st">Bivariate Meta-Analysis Results (n=10 studies, N=5,513 patients):</span></span>

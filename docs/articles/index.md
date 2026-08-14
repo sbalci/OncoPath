@@ -10,6 +10,8 @@
   Data](https://www.serdarbalci.com/OncoPath/articles/clinicalheatmap_comprehensive.md):
 - [Diagnostic Test Meta-Analysis for
   Pathology](https://www.serdarbalci.com/OncoPath/articles/diagnosticmeta-comprehensive.md):
+- [IHC Heterogeneity: How Much Does a Biopsy Tell You About the
+  Tumour?](https://www.serdarbalci.com/OncoPath/articles/ihcheterogeneity-comprehensive.md):
 - [Omentum Sampling Adequacy
   Analysis](https://www.serdarbalci.com/OncoPath/articles/omentum_pathsampling_analysis.md):
 - [Swimmer Plot Function: Example Datasets

@@ -9,7 +9,7 @@ diagnostic test accuracy studies, specifically designed for:
 
 - **Immunohistochemistry (IHC) marker validation** across multiple
   studies
-- **AI algorithm performance** meta-analysis  
+- **AI algorithm performance** meta-analysis\
 - **Biomarker diagnostic accuracy** synthesis
 - **Cross-study comparison** with heterogeneity analysis
 
@@ -36,7 +36,7 @@ Your dataset must contain these core variables:
 1.  **Study Identifier**: Unique name or ID for each study
 2.  **True Positives (TP)**: Cases correctly identified as positive
 3.  **False Positives (FP)**: Cases incorrectly identified as positive
-4.  **False Negatives (FN)**: Cases incorrectly identified as negative  
+4.  **False Negatives (FN)**: Cases incorrectly identified as negative\
 5.  **True Negatives (TN)**: Cases correctly identified as negative
 
 ### Optional Variables for Meta-Regression
@@ -102,7 +102,7 @@ Example Diagnostic Test Meta-Analysis Dataset {.table}
 Before analysis, verify:
 
 - ✅ No missing values in TP, FP, FN, TN columns
-- ✅ All values are non-negative integers  
+- ✅ All values are non-negative integers\
 - ✅ Each study has complete 2×2 table data
 - ✅ At least 2 studies with valid data
 - ✅ Study identifiers are unique
@@ -154,7 +154,7 @@ The **bivariate random-effects model** (Reitsma et al.) is the gold
 standard:
 
 - Jointly analyzes sensitivity and specificity
-- Accounts for correlation between measures  
+- Accounts for correlation between measures\
 - Handles threshold effects across studies
 - Provides pooled estimates with confidence intervals
 
@@ -191,6 +191,117 @@ Investigates heterogeneity sources:
 # Common covariates: population, methodology, geography
 ```
 
+## Running It From R
+
+Everything above describes the method; this section runs it. The article
+previously never called
+[`diagnosticmeta()`](https://www.serdarbalci.com/OncoPath/reference/diagnosticmeta.md)
+at all, so the argument names and the scales they use were nowhere to be
+found. The call below was executed against the bundled
+`diagnostic_studies` dataset and the numbers shown are the ones it
+returned.
+
+``` r
+
+data(diagnostic_studies, package = "OncoPath")
+head(diagnostic_studies)
+#>   study_name tp fp fn tn
+
+res <- diagnosticmeta(
+  data            = diagnostic_studies,
+  study           = "study_name",
+  true_positives  = "tp",
+  false_positives = "fp",
+  false_negatives = "fn",
+  true_negatives  = "tn",
+
+  bivariate_analysis      = TRUE,   # Reitsma bivariate random-effects model
+  hsroc_analysis          = TRUE,   # Holling proportional-hazards SROC
+  heterogeneity_analysis  = TRUE,   # Q, I-squared, tau-squared
+  publication_bias        = TRUE,   # Deeks' funnel plot asymmetry test
+  meta_regression         = FALSE,  # needs `covariate` to be set
+  confidence_level        = 95,     # PERCENT, 50-99. Not 0.95 - that is rejected.
+  zero_cell_correction    = "constant",  # none | constant | treatment_arm | empirical
+  forest_plot             = TRUE,
+  sroc_plot               = TRUE,
+  funnel_plot             = TRUE,
+  show_individual_studies = TRUE,
+  show_methodology        = TRUE,
+  show_analysis_summary   = TRUE
+)
+```
+
+Two argument details are easy to get wrong and both raise an error
+rather than silently misbehaving:
+
+- **`confidence_level` is a percentage on a 50-99 scale.** Passing the
+  more usual `0.95` fails with
+  `confidence_level must be between 50 and 99 (is 0.95)`.
+- **`zero_cell_correction` does not have a level called `continuity`.**
+  The four accepted values are `none`, `constant`, `treatment_arm` and
+  `empirical`.
+
+### What Comes Back
+
+    bivariateresults
+                     parameter estimate ci_lower ci_upper      p_value
+            Pooled Sensitivity    75.50    69.10    80.94    6.09e-12
+            Pooled Specificity    89.77    85.66    92.81    0.00e+00
+     Positive Likelihood Ratio     7.38     5.18    10.52          NA
+
+    hsrocresults
+                                  parameter  estimate std_error z_value  p_value
+      Diagnostic accuracy parameter (theta)  1.08e-01  2.19e-02   4.924 8.50e-07
+             Between-study variance (tau^2)  2.48e-05  1.70e-03   0.015 9.88e-01
+
+    heterogeneity
+         measure q_statistic df p_value i_squared tau_squared
+     Sensitivity        3.49  4   0.480         0           0
+     Specificity        1.86  4   0.762         0           0
+
+    publicationbias
+                                  test statistic p_value                  interpretation
+     Deeks' Funnel Plot Asymmetry Test    -3.993  0.0281  Significant asymmetry detected
+
+Read these together rather than in isolation. Heterogeneity is
+negligible here (I-squared 0 for both measures, tau-squared essentially
+zero in the HSROC fit), so the pooled estimates are describing a
+consistent set of studies. But Deeks’ test flags significant funnel
+asymmetry (p = 0.028) — on five studies, which is below the ten that
+Deeks’ test is generally considered to need. That is a caveat to state,
+not a finding to report: with this few studies the asymmetry test is
+underpowered *and* prone to false positives, and the honest reading is
+that publication bias cannot be assessed here.
+
+### Meta-Regression
+
+`meta_regression = TRUE` requires a `covariate` column naming a
+study-level characteristic:
+
+``` r
+
+res_mr <- diagnosticmeta(
+  data = diagnostic_studies,
+  study = "study_name", true_positives = "tp", false_positives = "fp",
+  false_negatives = "fn", true_negatives = "tn",
+  meta_regression = TRUE,
+  covariate = "population_type"    # a column in your data
+)
+```
+
+With five studies a meta-regression is fitting a slope through five
+points; it will produce a number, and that number will not mean much.
+Ten studies per covariate is a common minimum.
+
+### Presentation Options
+
+`forest_plot`, `sroc_plot` and `funnel_plot` control the three figures;
+`color_palette` sets their colour scheme and `show_plot_explanations`
+adds a note under each explaining how to read it.
+`show_individual_studies` adds the per-study sensitivity and specificity
+table, which is worth keeping — a pooled estimate without the studies
+behind it is hard to sanity-check.
+
 ## Using the Analysis in jamovi
 
 ### Step-by-Step Instructions
@@ -207,7 +318,7 @@ Investigates heterogeneity sources:
     - **Study Identifier**: Select study name/ID variable
     - **True Positives**: Select TP column
     - **False Positives**: Select FP column
-    - **False Negatives**: Select FN column  
+    - **False Negatives**: Select FN column\
     - **True Negatives**: Select TN column
     - **Covariate** (optional): Variable for meta-regression
 
@@ -481,7 +592,7 @@ population-specific validation
 ### Reporting Standards
 
 Follow **PRISMA-DTA** guidelines: - ✅ Structured abstract with key
-results - ✅ Study selection flow diagram  
+results - ✅ Study selection flow diagram\
 - ✅ Included studies characteristics table - ✅ Forest plots for
 sensitivity and specificity - ✅ Summary ROC plot with confidence
 region - ✅ Heterogeneity assessment and exploration - ✅ Publication
@@ -494,7 +605,7 @@ clinical decision-making. Key takeaways:
 
 1.  **Use bivariate models** for sensitivity and specificity analysis
 2.  **Investigate heterogeneity** through meta-regression and subgroups
-3.  **Assess publication bias** for unbiased estimates  
+3.  **Assess publication bias** for unbiased estimates\
 4.  **Consider clinical context** when interpreting pooled results
 5.  **Follow reporting guidelines** for transparent communication
 
