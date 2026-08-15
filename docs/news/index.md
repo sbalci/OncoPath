@@ -213,10 +213,10 @@ should be re-run.
   matching “Infarction” and “Reaction”.
 - **Adding a milestone wiped the CR/PR/SD/PD colouring from the whole
   figure.** Mapping milestones to `color` added a second
-  [`scale_color_manual()`](https://ggplot2.tidyverse.org/reference/scale_manual.html)
-  containing only milestone names; ggplot2 permits one colour scale per
-  plot, so it replaced the lane scale and every response category fell
-  through to `NA` grey. Milestones are now mapped to shape only.
+  `scale_color_manual()` containing only milestone names; ggplot2
+  permits one colour scale per plot, so it replaced the lane scale and
+  every response category fell through to `NA` grey. Milestones are now
+  mapped to shape only.
 - **A custom reference line crashed the plot on an absolute date
   scale.** lubridate does not export
   [`months()`](https://rdrr.io/r/base/weekday.POSIXt.html) (`months` is

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.53.01</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -113,7 +113,7 @@
 <li>
 <strong>Every event-marker glyph was the empty string, so event markers were invisible.</strong> The symbols that once populated the glyph table were deleted rather than escaped during a non-ASCII sweep, and <code><a href="https://chop-cgtinformatics.github.io/ggswim/reference/scale_marker_discrete.html" class="external-link">ggswim::scale_marker_discrete()</a></code> therefore drew nothing for every labelled event. Restored as print-safe geometric symbols (● ■ ▲ ▼ ◆ ★ ✚ ✖ ◑ ◎) that survive PDF and Word export. Glyph pattern matching was tightened at the same time so that short patterns match as whole words — a bare “ct” had been matching “Infarction” and “Reaction”.</li>
 <li>
-<strong>Adding a milestone wiped the CR/PR/SD/PD colouring from the whole figure.</strong> Mapping milestones to <code>color</code> added a second <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual()</a></code> containing only milestone names; ggplot2 permits one colour scale per plot, so it replaced the lane scale and every response category fell through to <code>NA</code> grey. Milestones are now mapped to shape only.</li>
+<strong>Adding a milestone wiped the CR/PR/SD/PD colouring from the whole figure.</strong> Mapping milestones to <code>color</code> added a second <code>scale_color_manual()</code> containing only milestone names; ggplot2 permits one colour scale per plot, so it replaced the lane scale and every response category fell through to <code>NA</code> grey. Milestones are now mapped to shape only.</li>
 <li>
 <strong>A custom reference line crashed the plot on an absolute date scale.</strong> lubridate does not export <code><a href="https://rdrr.io/r/base/weekday.POSIXt.html" class="external-link">months()</a></code> (<code>months</code> is a base generic), so <code>lubridate::months()</code> threw — and months is the default time unit, so this killed the plot out of the box. The Period constructors also reject fractional amounts while <code>customReferenceTime</code> is an unconstrained number, so 12.5 crashed too. Now built with <code><a href="https://lubridate.tidyverse.org/reference/duration.html" class="external-link">lubridate::duration()</a></code>.</li>
 <li>

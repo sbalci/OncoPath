@@ -9,7 +9,7 @@ diagnostic test accuracy studies, specifically designed for:
 
 - **Immunohistochemistry (IHC) marker validation** across multiple
   studies
-- **AI algorithm performance** meta-analysis\
+- **AI algorithm performance** meta-analysis  
 - **Biomarker diagnostic accuracy** synthesis
 - **Cross-study comparison** with heterogeneity analysis
 
@@ -36,7 +36,7 @@ Your dataset must contain these core variables:
 1.  **Study Identifier**: Unique name or ID for each study
 2.  **True Positives (TP)**: Cases correctly identified as positive
 3.  **False Positives (FP)**: Cases incorrectly identified as positive
-4.  **False Negatives (FN)**: Cases incorrectly identified as negative\
+4.  **False Negatives (FN)**: Cases incorrectly identified as negative  
 5.  **True Negatives (TN)**: Cases correctly identified as negative
 
 ### Optional Variables for Meta-Regression
@@ -102,7 +102,7 @@ Example Diagnostic Test Meta-Analysis Dataset {.table}
 Before analysis, verify:
 
 - ✅ No missing values in TP, FP, FN, TN columns
-- ✅ All values are non-negative integers\
+- ✅ All values are non-negative integers  
 - ✅ Each study has complete 2×2 table data
 - ✅ At least 2 studies with valid data
 - ✅ Study identifiers are unique
@@ -154,7 +154,7 @@ The **bivariate random-effects model** (Reitsma et al.) is the gold
 standard:
 
 - Jointly analyzes sensitivity and specificity
-- Accounts for correlation between measures\
+- Accounts for correlation between measures  
 - Handles threshold effects across studies
 - Provides pooled estimates with confidence intervals
 
@@ -318,7 +318,7 @@ behind it is hard to sanity-check.
     - **Study Identifier**: Select study name/ID variable
     - **True Positives**: Select TP column
     - **False Positives**: Select FP column
-    - **False Negatives**: Select FN column\
+    - **False Negatives**: Select FN column  
     - **True Negatives**: Select TN column
     - **Covariate** (optional): Variable for meta-regression
 
@@ -592,7 +592,7 @@ population-specific validation
 ### Reporting Standards
 
 Follow **PRISMA-DTA** guidelines: - ✅ Structured abstract with key
-results - ✅ Study selection flow diagram\
+results - ✅ Study selection flow diagram  
 - ✅ Included studies characteristics table - ✅ Forest plots for
 sensitivity and specificity - ✅ Summary ROC plot with confidence
 region - ✅ Heterogeneity assessment and exploration - ✅ Publication
@@ -605,7 +605,7 @@ clinical decision-making. Key takeaways:
 
 1.  **Use bivariate models** for sensitivity and specificity analysis
 2.  **Investigate heterogeneity** through meta-regression and subgroups
-3.  **Assess publication bias** for unbiased estimates\
+3.  **Assess publication bias** for unbiased estimates  
 4.  **Consider clinical context** when interpreting pooled results
 5.  **Follow reporting guidelines** for transparent communication
 
