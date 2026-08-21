@@ -2423,7 +2423,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           }
 
           summary_html <- paste0(
-            "<div style='padding: 15px; background-color: #f8f9fa; border-left: 4px solid #007bff; margin: 10px 0;'>",
+            "<div style='padding: 15px; background-color: rgba(138, 155, 172, 0.06); border-left: 4px solid #007bff; margin: 10px 0; color: inherit;'>",
             "<h3 style='color: #007bff; margin-top: 0;'>", .("Treatment Response Summary"), "</h3>",
 
             "<p><strong>", .("Analysis Overview:"), "</strong></p>",
@@ -2455,7 +2455,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
 
         # Generate Analysis Explanations
         explanations_html <- paste0(
-          "<div style='padding: 15px; background-color: #e8f4f8; border-left: 4px solid #17a2b8; margin: 20px 0;'>",
+          "<div style='padding: 15px; background-color: rgba(33, 149, 188, 0.1); border-left: 4px solid #17a2b8; margin: 20px 0; color: inherit;'>",
           "<h3 style='color: #17a2b8; margin-top: 0;'>", .("What This Analysis Does"), "</h3>",
           "<p>", .("The Treatment Response Analysis creates waterfall and spider plots to visualize tumor response data according to RECIST v1.1 criteria."), "</p>",
 
@@ -2466,7 +2466,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           "</ul>",
           "</div>",
 
-          "<div style='padding: 15px; background-color: #fff3cd; border-left: 4px solid #ffc107; margin: 20px 0;'>",
+          "<div style='padding: 15px; background-color: rgba(255, 202, 33, 0.23); border-left: 4px solid #ffc107; margin: 20px 0; color: inherit;'>",
           "<h3 style='color: #856404; margin-top: 0;'>", .("When to Use This Analysis:"), "</h3>",
           "<ul style='margin: 5px 0;'>",
           "<li>", .("Oncology clinical trials and treatment response studies"), "</li>",
@@ -2476,7 +2476,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           "</ul>",
           "</div>",
 
-          "<div style='padding: 15px; background-color: #d1ecf1; border-left: 4px solid #0c5460; margin: 20px 0;'>",
+          "<div style='padding: 15px; background-color: rgba(33, 163, 188, 0.21); border-left: 4px solid #0c5460; margin: 20px 0; color: inherit;'>",
           "<h3 style='color: #0c5460; margin-top: 0;'>", .("Data Requirements:"), "</h3>",
           "<ul style='margin: 5px 0;'>",
           "<li><strong>", .("Patient ID:"), "</strong> ", .("Unique identifier for each patient"), "</li>",
@@ -2485,7 +2485,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           "</ul>",
           "</div>",
 
-          "<div style='padding: 15px; background-color: #f8d7da; border-left: 4px solid #dc3545; margin: 20px 0;'>",
+          "<div style='padding: 15px; background-color: rgba(216, 33, 50, 0.18); border-left: 4px solid #dc3545; margin: 20px 0; color: inherit;'>",
           "<h3 style='color: #721c24; margin-top: 0;'>", .("Key Assumptions & Limitations:"), "</h3>",
           "<ul style='margin: 5px 0;'>",
           "<li>", sprintf(.("RECIST v1.1 thresholds: CR \u{2264}-100%%, PR \u{2264}-30%%, PD \u{2265}+20%%")), "</li>",
@@ -3189,7 +3189,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         
         # Generate natural language summary
         summary_text <- paste0(
-          "<div style='background-color: #f8f9fa; padding: 15px; border-left: 4px solid #1b9e77; margin: 10px 0;'>",
+          "<div style='background-color: rgba(138, 155, 172, 0.06); padding: 15px; border-left: 4px solid #1b9e77; margin: 10px 0; color: inherit;'>",
           "<h4 style='color: #1b9e77; margin-top: 0;'>", .("Treatment Response Summary"), "</h4>",
           
           "<p><strong>", .("Analysis Overview:"), "</strong> ",
@@ -3246,7 +3246,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
       # Generate about analysis panel ----
       .generateAboutAnalysis = function() {
         about_text <- paste0(
-          "<div style='background-color: #f0f8ff; padding: 15px; border: 1px solid #d1ecf1; border-radius: 5px; margin: 10px 0;'>",
+          "<div style='background-color: rgba(33, 152, 255, 0.07); padding: 15px; border: 1px solid #d1ecf1; border-radius: 5px; margin: 10px 0; color: inherit;'>",
           "<h4 style='color: #0c5460; margin-top: 0;'>", .("What This Analysis Does"), "</h4>",
           
           "<p>", .("The Treatment Response Analysis creates waterfall and spider plots to visualize tumor response data according to RECIST v1.1 criteria."), "</p>",
@@ -3413,12 +3413,12 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
 
         # Generate publication-ready sentences
         report_text <- paste0(
-          "<div style='background-color: #f0f9ff; padding: 15px; border: 1px solid #0369a1; border-radius: 5px; margin: 10px 0;'>",
+          "<div style='background-color: rgba(33, 166, 255, 0.07); padding: 15px; border: 1px solid #0369a1; border-radius: 5px; margin: 10px 0; color: inherit;'>",
           "<h4 style='color: #0369a1; margin-top: 0;'>", .("Copy-Ready Report Sentences"), "</h4>",
 
           "<div style='background-color: white; padding: 10px; border-radius: 3px; margin: 10px 0;'>",
           "<h5>", .("Main Results:"), "</h5>",
-          "<p style='font-family: monospace; background-color: #f8f9fa; padding: 8px; border-radius: 3px;'>",
+          "<p style='font-family: monospace; background-color: rgba(138, 155, 172, 0.06); padding: 8px; border-radius: 3px; color: inherit;'>",
           sprintf(.("Treatment response was evaluable in %d patients. The objective response rate (ORR) was %.1f%% (%s), with %d patients achieving complete response and %d achieving partial response. The disease control rate (DCR) was %.1f%%."),
                   n_patients, metrics$ORR, orr_ci, cr_count, pr_count, metrics$DCR),
           "</p>",
@@ -3426,7 +3426,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
 
           "<div style='background-color: white; padding: 10px; border-radius: 3px; margin: 10px 0;'>",
           "<h5>", .("Methods Description:"), "</h5>",
-          "<p style='font-family: monospace; background-color: #f8f9fa; padding: 8px; border-radius: 3px;'>",
+          "<p style='font-family: monospace; background-color: rgba(138, 155, 172, 0.06); padding: 8px; border-radius: 3px; color: inherit;'>",
           .("Tumor response was categorized using SIMPLIFIED threshold-based criteria adapted from RECIST v1.1 (NOT full RECIST-compliant). Categories based on percent change thresholds: CR \u{2264}-100%, PR \u{2264}-30%, SD >-30% to <+20%, PD \u{2265}+20%. This analysis does NOT include target lesion summation, new lesion detection, non-target assessment, or confirmation requirements mandated by RECIST v1.1. Response rates calculated with exact binomial confidence intervals."),
           "</p>",
           "</div>",
@@ -3533,7 +3533,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             orr_interpretation <- if (orr_test$p.value < 0.05) {
               .("Statistically significant difference in response rates between groups")
             } else {
-              .("No statistically significant difference in response rates between groups")
+              .("No statistically significant difference in response rates was detected; this does not establish that the rates are equal")
             }
 
             self$results$groupComparisonTest$addRow(rowKey = row_count, values = list(
@@ -3550,7 +3550,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             dcr_interpretation <- if (dcr_test$p.value < 0.05) {
               .("Statistically significant difference in disease control rates between groups")
             } else {
-              .("No statistically significant difference in disease control rates between groups")
+              .("No statistically significant difference in disease control rates was detected; this does not establish that the rates are equal")
             }
 
             self$results$groupComparisonTest$addRow(rowKey = row_count, values = list(
@@ -3568,7 +3568,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
       # Generate enhanced clinical glossary ----
       .generateClinicalGlossary = function() {
         glossary_text <- paste0(
-          "<div style='background-color: #f8f9fa; padding: 15px; border: 1px solid #dee2e6; border-radius: 5px; margin: 10px 0;'>",
+          "<div style='background-color: rgba(138, 155, 172, 0.06); padding: 15px; border: 1px solid #dee2e6; border-radius: 5px; margin: 10px 0; color: inherit;'>",
           "<h4 style='color: #495057; margin-top: 0;'>", .("Clinical Terms & Definitions"), "</h4>",
 
           "<div style='display: grid; grid-template-columns: 1fr 1fr; gap: 15px;'>",
@@ -3598,7 +3598,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           "<div style='margin-top: 15px;'>",
           "<h5 style='color: #6c757d; margin-bottom: 10px;'>", .("Statistical Terms"), "</h5>",
           "<ul style='margin: 0; padding-left: 15px; line-height: 1.6;'>",
-          "<li><strong>95% CI (Confidence Interval):</strong> ", .("Range of values likely to contain the true population parameter"), "</li>",
+          "<li><strong>95% CI (Confidence Interval):</strong> ", .("Range of values compatible with the observed data; over repeated studies, 95% of such intervals contain the true population parameter"), "</li>",
           "<li><strong>Fisher's Exact Test:</strong> ", .("Statistical test for comparing response rates between groups"), "</li>",
           "<li><strong>Binomial CI:</strong> ", .("Exact confidence interval for proportions (more accurate than normal approximation)"), "</li>",
           "<li><strong>Waterfall Plot:</strong> ", .("Bar chart showing best response for each patient, sorted by magnitude"), "</li>",
@@ -3606,7 +3606,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           "</ul>",
           "</div>",
 
-          "<div style='margin-top: 15px; padding: 10px; background-color: #e3f2fd; border-radius: 3px;'>",
+          "<div style='margin-top: 15px; padding: 10px; background-color: rgba(33, 152, 239, 0.13); border-radius: 3px; color: inherit;'>",
           "<small><strong>", .("Clinical Context:"), "</strong> ",
           .("These metrics follow international standards for oncology clinical trials and are commonly used in regulatory submissions and peer-reviewed publications."),
           "</small>",
@@ -3632,11 +3632,11 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         } else if (n_patients < 100) {
           .("Moderate sample size: Results provide reasonable evidence for preliminary conclusions.")
         } else {
-          .("Adequate sample size: Results provide reliable evidence for clinical interpretation.")
+          .("Adequate sample size (n>=100): confidence intervals for ORR and DCR will be comparatively narrow.")
         }
 
         significance_text <- paste0(
-          "<div style='background-color: #fef3c7; padding: 15px; border-left: 4px solid #f59e0b; margin: 10px 0;'>",
+          "<div style='background-color: rgba(251, 207, 33, 0.25); padding: 15px; border-left: 4px solid #f59e0b; margin: 10px 0; color: inherit;'>",
           "<h4 style='color: #92400e; margin-top: 0;'>", .("Clinical Significance Assessment"), "</h4>",
 
           "<h5>", .("Response Rate Interpretation:"), "</h5>",
@@ -3650,9 +3650,9 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
 
           "<h5>", .("Clinical Context:"), "</h5>",
           "<ul>",
-          "<li>", .("ORR <15%: May not warrant further development without compelling rationale"), "</li>",
-          "<li>", .("ORR 15-30%: Moderate activity, may justify phase III evaluation"), "</li>",
-          "<li>", .("ORR >30%: Promising activity, strong candidate for further development"), "</li>",
+          "<li>", .("ORR <15%: below the activity range conventionally cited for phase II single-agent studies"), "</li>",
+          "<li>", .("ORR 15-30%: within the moderate-activity range conventionally cited for phase II single-agent studies"), "</li>",
+          "<li>", .("ORR >30%: above the activity range conventionally cited for phase II single-agent studies"), "</li>",
           "</ul>",
 
           "</div>"
@@ -3671,7 +3671,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         input_type <- self$options$inputType
 
         guided_text <- paste0(
-          "<div style='background-color: #f0fdf4; padding: 15px; border: 1px solid #16a34a; border-radius: 5px; margin: 10px 0;'>",
+          "<div style='background-color: rgba(33, 225, 92, 0.07); padding: 15px; border: 1px solid #16a34a; border-radius: 5px; margin: 10px 0; color: inherit;'>",
           "<h4 style='color: #15803d; margin-top: 0;'>", .("Guided Analysis"), "</h4>",
 
           "<div style='margin: 15px 0;'>",
@@ -3739,7 +3739,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           "</ol>",
           "</div>",
 
-          "<div style='background-color: #dbeafe; padding: 10px; border-radius: 3px; margin: 10px 0;'>",
+          "<div style='background-color: rgba(33, 126, 249, 0.16); padding: 10px; border-radius: 3px; margin: 10px 0; color: inherit;'>",
           "<h5 style='margin-top: 0;'>", .("Quick Tips:"), "</h5>",
           "<ul style='margin: 5px 0; margin-left: 20px;'>",
           "<li>", .("Most studies use 'Percentage Changes' format"), "</li>",
@@ -3765,7 +3765,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         if (orr >= 30) {
           return(.("Promising activity for single-agent therapy (general benchmark; verify against tumor-specific thresholds)"))
         } else if (orr >= 15) {
-          return(.("Moderate activity - may justify phase III evaluation (context-dependent)"))
+          return(.("Moderate activity by general phase II benchmarks (context-dependent)"))
         } else {
           return(.("Limited activity by general phase II standards (may still be clinically meaningful in refractory settings)"))
         }
@@ -3778,7 +3778,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         } else if (dcr >= 50) {
           return(.("Good disease control for exploratory cohort"))
         } else {
-          return(.("Limited disease control - evaluate clinical benefit beyond response rates"))
+          return(.("Limited disease control by general benchmarks"))
         }
       }
 

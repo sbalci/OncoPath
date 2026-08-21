@@ -1,8 +1,8 @@
 Package: OncoPath
 Type: Package
 Title: OncoPath Functions for Clinicopathological Research
-Version: 1.0.6
-Date: 2026-08-15
+Version: 1.0.6.02
+Date: 2026-08-21
 Authors@R: person(given = "Serdar", family = "Balci", role = c("aut", "cre", "cph"), email = "serdarbalci@serdarbalci.com", comment = c(ORCID = "0000-0002-7852-3851"))
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
 Description: Provides specialized oncology and pathology visualization
@@ -30,6 +30,8 @@ Imports:
     ggplot2,
     ggrepel,
     ggswim,
+    grDevices,
+    grid,
     htmltools,
     jmvcore,
     lubridate,
@@ -41,10 +43,12 @@ Imports:
     R6,
     RColorBrewer,
     rlang,
+    stats,
     stringr,
     survival,
     tibble,
-    tidyr
+    tidyr,
+    utils
 Suggests: testthat
 Remotes: CHOP-CGTInformatics/ggswim@b3c67a0796a850624745a439cac33d981d83e1dc
 URL: https://www.serdarbalci.com/OncoPath/, https://github.com/sbalci/OncoPath

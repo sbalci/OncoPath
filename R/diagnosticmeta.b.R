@@ -124,6 +124,21 @@ diagnosticmetaClass <- R6::R6Class(
             self$results$about$setVisible(self$options$show_methodology)
             self$results$interpretation$setVisible(FALSE)
 
+            # Fixed row structure for the bivariate results table: the same five
+            # parameters with the same labels on every run. Only the estimates
+            # depend on the fitted model, so .run() fills them with setRow().
+            biv_parameters <- list(
+                sensitivity = "Pooled Sensitivity",
+                specificity = "Pooled Specificity",
+                plr         = "Positive Likelihood Ratio",
+                nlr         = "Negative Likelihood Ratio",
+                dor         = "Diagnostic Odds Ratio"
+            )
+            for (biv_key in names(biv_parameters))
+                self$results$bivariateresults$addRow(
+                    rowKey = biv_key,
+                    values = list(parameter = biv_parameters[[biv_key]]))
+
         },
         
         .run = function() {
@@ -156,6 +171,14 @@ diagnosticmetaClass <- R6::R6Class(
             private$.pooled_sensitivity <- NULL
             private$.pooled_specificity <- NULL
             private$.biv_model <- NULL
+            # The CI/PI fields are written late in the bivariate fit (and the PI
+            # only inside a tryCatch that can fail), so without clearing them a
+            # failed re-run would reuse the previous dataset's intervals in the
+            # summary and heterogeneity text.
+            private$.pooled_sens_ci <- NULL
+            private$.pooled_spec_ci <- NULL
+            private$.pooled_sens_pi <- NULL
+            private$.pooled_spec_pi <- NULL
 
             # Check if data is ready
             if (is.null(self$data) || nrow(self$data) == 0) {
@@ -243,7 +266,20 @@ diagnosticmetaClass <- R6::R6Class(
                     sum(drop), original_n, paste(reasons, collapse = "; "), nrow(meta_data)))
             }
 
-            # Enhanced validation with user-friendly warnings
+            if (nrow(meta_data) < 3) {
+                # Fatal: reject() so jamovi greys the results and reports an
+                # analysis-level error. Writing this into the instructions panel
+                # left the pane looking healthy, so a hard stop read as advice.
+                jmvcore::reject(
+                    jmvcore::format(
+                        .("At least 3 studies with complete diagnostic test data are required ({n} found)."),
+                        n = nrow(meta_data)),
+                    code = "insufficient_studies")
+            }
+
+            # Enhanced validation with user-friendly warnings. Its own
+            # <3-studies branch is unreachable now that the reject above fires
+            # first; it is kept as a guard for any other caller.
             validation_result <- private$.validateStudyData(meta_data, original_n)
             if (!validation_result) {
                 return()
@@ -251,14 +287,7 @@ diagnosticmetaClass <- R6::R6Class(
 
             # Store number of studies for summary
             private$.n_studies <- nrow(meta_data)
-            
-            if (nrow(meta_data) < 3) {
-                self$results$instructions$setContent(
-                    "<p><strong>Error:</strong> Insufficient valid studies for meta-analysis.</p>
-                     <p>At least 3 studies with complete diagnostic test data are required.</p>"
-                )
-                return()
-            }
+
 
             prepared_data <- private$.prepareAnalysisData(meta_data)
             analysis_data <- prepared_data$analysis_data
@@ -575,7 +604,6 @@ diagnosticmetaClass <- R6::R6Class(
             z_crit <- stats::qnorm(1 - (1 - conf_level) / 2)
 
             bivariate_table <- self$results$bivariateresults
-            bivariate_table$deleteRows()
 
             ci_lower_col <- grep("ci\\.lb$", colnames(coefficients), value = TRUE)
             ci_upper_col <- grep("ci\\.ub$", colnames(coefficients), value = TRUE)
@@ -681,8 +709,7 @@ diagnosticmetaClass <- R6::R6Class(
                 }
             }, error = function(e) NULL)
 
-            bivariate_table$addRow(rowKey = "sensitivity", values = list(
-                parameter = "Pooled Sensitivity",
+            bivariate_table$setRow(rowKey = "sensitivity", values = list(
                 estimate = pooled_sens * 100,  # Convert to percentage
                 ci_lower = sens_ci[1] * 100,   # Convert to percentage
                 ci_upper = sens_ci[2] * 100,   # Convert to percentage
@@ -690,8 +717,7 @@ diagnosticmetaClass <- R6::R6Class(
                 p_value = sens_logit_row[1, "Pr(>|z|)"]
             ))
 
-            bivariate_table$addRow(rowKey = "specificity", values = list(
-                parameter = "Pooled Specificity",
+            bivariate_table$setRow(rowKey = "specificity", values = list(
                 estimate = pooled_spec * 100,  # Convert to percentage
                 ci_lower = spec_ci[1] * 100,   # Convert to percentage
                 ci_upper = spec_ci[2] * 100,   # Convert to percentage
@@ -754,8 +780,7 @@ diagnosticmetaClass <- R6::R6Class(
                 }
             }
 
-            bivariate_table$addRow(rowKey = "plr", values = list(
-                parameter = "Positive Likelihood Ratio",
+            bivariate_table$setRow(rowKey = "plr", values = list(
                 estimate = pooled_plr,
                 ci_lower = lr_ci$plr[1],
                 ci_upper = lr_ci$plr[2],
@@ -763,8 +788,7 @@ diagnosticmetaClass <- R6::R6Class(
                 p_value = NA_real_
             ))
 
-            bivariate_table$addRow(rowKey = "nlr", values = list(
-                parameter = "Negative Likelihood Ratio",
+            bivariate_table$setRow(rowKey = "nlr", values = list(
                 estimate = pooled_nlr,
                 ci_lower = lr_ci$nlr[1],
                 ci_upper = lr_ci$nlr[2],
@@ -772,8 +796,7 @@ diagnosticmetaClass <- R6::R6Class(
                 p_value = NA_real_
             ))
 
-            bivariate_table$addRow(rowKey = "dor", values = list(
-                parameter = "Diagnostic Odds Ratio",
+            bivariate_table$setRow(rowKey = "dor", values = list(
                 estimate = pooled_dor,
                 ci_lower = lr_ci$dor[1],
                 ci_upper = lr_ci$dor[2],
@@ -1481,6 +1504,12 @@ diagnosticmetaClass <- R6::R6Class(
                             "A continuity correction of 0.5 was applied to %d study/studies with a zero cell so the odds ratio was finite.",
                             n_zero))
                     }
+                    if (nrow(fit_data) < 10) {
+                        note <- paste(note, sprintf(
+                            paste("With only %d studies the test is underpowered (at least 10 are usually required),",
+                                  "so a non-significant result does not establish that publication bias is absent."),
+                            nrow(fit_data)))
+                    }
                     bias_table$setNote("deeks_method", note)
                 }
             }
@@ -1564,6 +1593,9 @@ diagnosticmetaClass <- R6::R6Class(
         .forestplot = function(image, ggtheme, theme, ...) {
 
             state <- image$state
+
+            if (is.null(state))
+                return(FALSE)
 
             # Unpack state. New state is a list carrying the study data plus the
             # serialized pooled point and CIs. Legacy states (older saved .omv
@@ -2117,7 +2149,7 @@ diagnosticmetaClass <- R6::R6Class(
             </ul>
             
             <h3>Data Preparation Checklist</h3>
-            <div style='background-color: #f8f9fa; padding: 15px; border-left: 4px solid #007bff; margin: 10px 0;'>
+            <div style='background-color: rgba(138, 155, 172, 0.06); padding: 15px; border-left: 4px solid #007bff; margin: 10px 0; color: inherit;'>
                 <p><strong>Before running analysis, verify:</strong></p>
                 <ul>
                     <li> No missing values in TP, FP, FN, TN columns</li>
@@ -2130,7 +2162,7 @@ diagnosticmetaClass <- R6::R6Class(
             
             <h3>Example Data Format</h3>
             <table style='border-collapse: collapse; width: 100%; margin: 10px 0;'>
-                <tr style='background-color: #f1f1f1;'>
+                <tr style='background-color: rgba(33, 33, 33, 0.06); color: inherit;'>
                     <th style='border: 1px solid #ddd; padding: 8px;'>study_name</th>
                     <th style='border: 1px solid #ddd; padding: 8px;'>true_positives</th>
                     <th style='border: 1px solid #ddd; padding: 8px;'>false_positives</th>
@@ -2165,7 +2197,7 @@ diagnosticmetaClass <- R6::R6Class(
             </ul>
 
             <h3>Statistical Method Selection Guide</h3>
-            <div style='background-color: #f8f9fa; padding: 15px; border-left: 4px solid #28a745; margin: 10px 0;'>
+            <div style='background-color: rgba(138, 155, 172, 0.06); padding: 15px; border-left: 4px solid #28a745; margin: 10px 0; color: inherit;'>
                 <p><strong>Choose the appropriate estimation method for your meta-analysis:</strong></p>
                 <ul>
                     <li><strong>REML (Recommended):</strong> Default choice for most diagnostic meta-analyses. Most robust for random effects modeling with good performance across different scenarios.</li>
@@ -2248,7 +2280,7 @@ diagnosticmetaClass <- R6::R6Class(
             
             <h4>Likelihood Ratios for Clinical Decision-Making</h4>
             <table style='border-collapse: collapse; width: 100%; margin: 10px 0;'>
-                <tr style='background-color: #f1f1f1;'>
+                <tr style='background-color: rgba(33, 33, 33, 0.06); color: inherit;'>
                     <th style='border: 1px solid #ddd; padding: 8px;'>Likelihood Ratio</th>
                     <th style='border: 1px solid #ddd; padding: 8px;'>Value Range</th>
                     <th style='border: 1px solid #ddd; padding: 8px;'>Clinical Interpretation</th>
@@ -2295,7 +2327,7 @@ diagnosticmetaClass <- R6::R6Class(
             
             <h3> Heterogeneity Assessment</h3>
             
-            <div style='background-color: #fff3cd; padding: 15px; border-left: 4px solid #ffc107; margin: 10px 0;'>
+            <div style='background-color: rgba(255, 202, 33, 0.23); padding: 15px; border-left: 4px solid #ffc107; margin: 10px 0; color: inherit;'>
                 <h4>I[[SUP2]] Statistic Interpretation:</h4>
                 <p><em>The bands below are Higgins' conventional cut-points from intervention
                 meta-analysis. They are not established thresholds for diagnostic accuracy, where a
@@ -2303,7 +2335,7 @@ diagnosticmetaClass <- R6::R6Class(
                 situation the SROC curve exists to model - rather than a reason to abandon the
                 analysis. Treat them as rough orientation, and prefer the prediction region.</em></p>
                 <ul>
-                    <li><strong>I[[SUP2]] < 25%:</strong> Low heterogeneity - results can be reliably pooled</li>
+                    <li><strong>I[[SUP2]] < 25%:</strong> Little heterogeneity detected on this margin. I[[SUP2]] is imprecisely estimated when few studies are pooled and does not describe the bivariate model, so on its own it does not establish that pooling is appropriate - inspect the prediction region and check that positivity thresholds, patient spectrum and reference standards are comparable</li>
                     <li><strong>I[[SUP2]] 25-50%:</strong> Moderate heterogeneity - investigate potential sources</li>
                     <li><strong>I[[SUP2]] 50-75%:</strong> Substantial heterogeneity - pooling questionable</li>
                     <li><strong>I[[SUP2]] &gt; 75%:</strong> Considerable heterogeneity - a single pooled point is unlikely to describe the evidence; investigate thresholds, spectrum and reference standards, and report the SROC curve and prediction region</li>
@@ -2322,11 +2354,11 @@ diagnosticmetaClass <- R6::R6Class(
             
             <h4>Deeks' Funnel Plot Test:</h4>
             <ul>
-                <li><strong>p [[GE]] 0.05:</strong> No significant asymmetry - low risk of publication bias</li>
+                <li><strong>p [[GE]] 0.05:</strong> No statistically significant funnel-plot asymmetry was detected. This does NOT indicate that publication bias is unlikely: Deeks' test has low power and is unreliable with fewer than 10 studies, so a non-significant result is uninformative when few studies are pooled</li>
                 <li><strong>p < 0.05:</strong> Significant asymmetry - potential publication bias detected</li>
             </ul>
             
-            <div style='background-color: #f8d7da; padding: 15px; border-left: 4px solid #dc3545; margin: 10px 0;'>
+            <div style='background-color: rgba(216, 33, 50, 0.18); padding: 15px; border-left: 4px solid #dc3545; margin: 10px 0; color: inherit;'>
                 <p><strong> When Publication Bias is Detected:</strong></p>
                 <ul>
                     <li>Pooled estimates may be overoptimistic</li>
@@ -2347,16 +2379,16 @@ diagnosticmetaClass <- R6::R6Class(
             
             <h4>AI Algorithm Implementation:</h4>
             <ul>
-                <li><strong>Consistent Performance:</strong> Low heterogeneity supports broad implementation</li>
-                <li><strong>Variable Performance:</strong> High heterogeneity suggests population-specific validation needed</li>
-                <li><strong>External Validation:</strong> Meta-analysis provides evidence for regulatory approval</li>
+                <li><strong>Consistent Performance:</strong> low measured heterogeneity means the included studies produced similar estimates; with few studies it is imprecisely estimated and does not by itself show that performance transfers to a new setting</li>
+                <li><strong>Variable Performance:</strong> high heterogeneity indicates that accuracy differed across the included populations and protocols</li>
+                <li><strong>Not external validation:</strong> a meta-analysis summarises existing published evidence and inherits any publication, spectrum or reference-standard bias of the included studies; it is not a prospective evaluation in an intended-use population with a pre-specified threshold</li>
             </ul>
             
             <h4>Predictive Values in Clinical Practice:</h4>
             <p><strong>Important:</strong> Sensitivity and specificity are test characteristics, but clinicians need predictive values that depend on disease prevalence in their population.</p>
             
             <table style='border-collapse: collapse; width: 100%; margin: 10px 0;'>
-                <tr style='background-color: #f1f1f1;'>
+                <tr style='background-color: rgba(33, 33, 33, 0.06); color: inherit;'>
                     <th style='border: 1px solid #ddd; padding: 8px;'>Disease Prevalence</th>
                     <th style='border: 1px solid #ddd; padding: 8px;'>PPV (Sen=90%, Spe=80%)</th>
                     <th style='border: 1px solid #ddd; padding: 8px;'>NPV (Sen=90%, Spe=80%)</th>
@@ -2391,7 +2423,7 @@ diagnosticmetaClass <- R6::R6Class(
                 <li> <strong>Limitations:</strong> Study quality, missing data, generalizability</li>
             </ul>
             
-            <div style='background-color: #d1ecf1; padding: 15px; border-left: 4px solid #17a2b8; margin: 10px 0;'>
+            <div style='background-color: rgba(33, 163, 188, 0.21); padding: 15px; border-left: 4px solid #17a2b8; margin: 10px 0; color: inherit;'>
                 <p><strong> Pro Tip:</strong> Always interpret meta-analysis results in the context of your specific clinical population and intended use. A test excellent for one application may be inappropriate for another.</p>
             </div>
             "
@@ -2495,7 +2527,7 @@ diagnosticmetaClass <- R6::R6Class(
                     ))
                 }
             } else {
-                private$.renderSymbols("<p><strong>Negative Likelihood Ratio:</strong> Not estimable with the current data (sensitivity [[APPROX]] 100% or model unstable).</p>")
+                private$.renderSymbols("<p><strong>Negative Likelihood Ratio:</strong> Not estimable with the current data. LR- is (1 - sensitivity) / specificity, so it needs a pooled specificity above zero and finite pooled estimates; here the pooled specificity is 0 or an estimate did not converge. Read the pooled specificity and its confidence interval in the summary above to see which.</p>")
             }
 
             copy_text <- sprintf(
@@ -2540,7 +2572,7 @@ diagnosticmetaClass <- R6::R6Class(
                     self$results$bivariateresults$setNote("zero_cell_warning", warning_msg)
 
                     correction_disclosure <- sprintf(
-                        "<div style='background-color: #fff3cd; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                        "<div style='background-color: rgba(255, 202, 33, 0.23); padding: 15px; border-radius: 5px; margin: 10px 0; color: inherit;'>
                             <h5> Zero-Cell Correction Applied</h5>
                             <p><strong>Method:</strong> %s</p>
                             <p><strong>Studies corrected:</strong> %d of %d (%s)</p>
@@ -2555,11 +2587,11 @@ diagnosticmetaClass <- R6::R6Class(
             }
 
             summary_html <- sprintf("
-            <div class='analysis-summary' style='background-color: #e8f4f8; padding: 20px; border-radius: 8px; margin: 10px 0;'>
+            <div class='analysis-summary' style='background-color: rgba(33, 149, 188, 0.1); padding: 20px; border-radius: 8px; margin: 10px 0; color: inherit;'>
                 <h4>Meta-Analysis Summary</h4>
                 <p><strong>Analysis Type:</strong> Diagnostic test accuracy meta-analysis of %d studies</p>
 
-                <div style='background-color: white; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(255, 255, 255, 0.06); color: inherit; padding: 15px; border-radius: 5px; margin: 10px 0;'>
                     <h5>Pooled Test Performance</h5>
                     <p><strong>Sensitivity:</strong> %.1f%% - The test correctly identifies %.0f out of 100 patients with disease</p>
                     <p><strong>Specificity:</strong> %.1f%% - The test correctly identifies %.0f out of 100 healthy individuals</p>
@@ -2567,13 +2599,13 @@ diagnosticmetaClass <- R6::R6Class(
 
                 %s
 
-                <div style='background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(138, 155, 172, 0.06); padding: 15px; border-radius: 5px; margin: 10px 0; color: inherit;'>
                     <h5>Clinical Decision Metrics</h5>
                     %s
                     %s
                 </div>
 
-                <div style='background-color: #fff3cd; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(255, 202, 33, 0.23); padding: 15px; border-radius: 5px; margin: 10px 0; color: inherit;'>
                     <h5>Interpretation Guide</h5>
                     <p>%s</p>
                 </div>
@@ -2581,7 +2613,7 @@ diagnosticmetaClass <- R6::R6Class(
                 <div style='margin-top: 15px;'>
                     <button onclick='navigator.clipboard.writeText(this.getAttribute(\"data-text\"))'
                             data-text='%s'
-                            style='background-color: #007bff; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;'>
+                            style='background-color: #007bff; color: #ffffff; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;'>
                         Copy Summary to Clipboard
                     </button>
                 </div>
@@ -2633,25 +2665,25 @@ diagnosticmetaClass <- R6::R6Class(
             }
 
             summary_html <- sprintf("
-            <div class='analysis-summary' style='background-color: #e8f4f8; padding: 20px; border-radius: 8px; margin: 10px 0;'>
+            <div class='analysis-summary' style='background-color: rgba(33, 149, 188, 0.1); padding: 20px; border-radius: 8px; margin: 10px 0; color: inherit;'>
                 <h4>Meta-Analysis Summary</h4>
                 <p><strong>Analysis Status:</strong> %s</p>
 
-                <div style='background-color: white; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(255, 255, 255, 0.06); color: inherit; padding: 15px; border-radius: 5px; margin: 10px 0;'>
                     <h5>Study Overview</h5>
                     <p><strong>Number of Studies:</strong> %d</p>
                     <p><strong>Total Sample Size:</strong> %d participants</p>
                     <p><strong>Sample Size Range:</strong> %d - %d per study</p>
                 </div>
 
-                <div style='background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(138, 155, 172, 0.06); padding: 15px; border-radius: 5px; margin: 10px 0; color: inherit;'>
                     <h5>Individual Study Performance (Descriptive)</h5>
                     <p><strong>Sensitivity:</strong> Mean %.1f%% (Range: %.1f%% - %.1f%%)</p>
                     <p><strong>Specificity:</strong> Mean %.1f%% (Range: %.1f%% - %.1f%%)</p>
                     <p><em>Note: These are simple averages, not meta-analytic pooled estimates.</em></p>
                 </div>
 
-                <div style='background-color: #fff3cd; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(255, 202, 33, 0.23); padding: 15px; border-radius: 5px; margin: 10px 0; color: inherit;'>
                     <h5>Recommendation</h5>
                     <p>%s</p>
                     <p>Individual study results are available in the table below for detailed examination.</p>
@@ -2741,45 +2773,66 @@ diagnosticmetaClass <- R6::R6Class(
                         sprintf("With %.1f%% sensitivity, this test will detect %.0f out of 100 patients with disease, missing only %.0f. ",
                                 sens, sens, 100 - sens)
                     },
-                    "<strong>Clinical implication:</strong> Excellent for ruling OUT disease when test is negative (SnNout principle). "
+                    if (is.finite(lr_neg) && lr_neg < 0.1) {
+                        sprintf("Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone; here LR- = %.2f, which lowers the post-test odds substantially (the SnNout pattern). ",
+                                lr_neg)
+                    } else if (is.finite(lr_neg)) {
+                        sprintf("Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone; here LR- = %.2f, which provides %s evidence against disease after a negative result. ",
+                                lr_neg, nlr_class)
+                    } else {
+                        "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone, and LR- is not estimable here. "
+                    }
                 )
             } else if (sens >= 80) {
                 interpretation <- paste0(interpretation,
                     sprintf("With %.1f%% sensitivity, approximately %.0f out of 100 diseased patients will be correctly identified. ",
                             sens, sens),
-                    "<strong>Clinical implication:</strong> Acceptable for screening, but negative results should be interpreted with caution. "
+                    "<strong>Interpretation:</strong> a negative result reduces, but does not remove, the possibility of disease at this sensitivity. "
                 )
             } else {
                 interpretation <- paste0(interpretation,
                     sprintf("With %.1f%% sensitivity, up to %.0f out of 100 diseased patients may be missed. ",
                             sens, 100 - sens),
-                    "<strong>Clinical implication:</strong> Limited screening utility - negative results do NOT effectively rule out disease. "
+                    "<strong>Interpretation:</strong> at this sensitivity a substantial proportion of diseased patients are expected to test negative. "
                 )
             }
 
             # Add specificity interpretation
             interpretation <- paste0(interpretation,
-                sprintf("<br><br><strong>Your pooled specificity of %.1f%%</strong> is classified as <em>%s</em> for confirmatory testing. ",
-                        spec, spec_class)
+                sprintf("<br><br><strong>Your pooled specificity of %.1f%%%s</strong> is classified as <em>%s</em> for confirmatory testing. ",
+                        spec, ci_txt(spec_ci), spec_class)
             )
+            if (spec_uncertain) {
+                interpretation <- paste0(interpretation,
+                    "<strong>Note:</strong> the confidence interval spans more than one performance category, ",
+                    "so this classification is not firmly established by the pooled data. ")
+            }
 
             if (spec >= 90) {
                 interpretation <- paste0(interpretation,
                     sprintf("With %.1f%% specificity, only %.0f out of 100 healthy individuals will test positive (false alarms). ",
                             spec, 100 - spec),
-                    "<strong>Clinical implication:</strong> Excellent for ruling IN disease when test is positive (SpPin principle). "
+                    if (is.finite(lr_pos) && lr_pos > 10) {
+                        sprintf("Rule-in power is governed by the positive likelihood ratio rather than by specificity alone; here LR+ = %.2f, which raises the post-test odds substantially (the SpPin pattern). ",
+                                lr_pos)
+                    } else if (is.finite(lr_pos)) {
+                        sprintf("Rule-in power is governed by the positive likelihood ratio rather than by specificity alone; here LR+ = %.2f, which provides %s evidence for disease after a positive result. ",
+                                lr_pos, plr_class)
+                    } else {
+                        "Rule-in power is governed by the positive likelihood ratio rather than by specificity alone, and LR+ is not estimable here. "
+                    }
                 )
             } else if (spec >= 80) {
                 interpretation <- paste0(interpretation,
                     sprintf("With %.1f%% specificity, approximately %.0f out of 100 healthy individuals will be correctly classified. ",
                             spec, spec),
-                    "<strong>Clinical implication:</strong> Acceptable for confirmation, but positive results may include false positives. "
+                    "<strong>Interpretation:</strong> at this specificity an appreciable share of positive results are expected to be false positives. "
                 )
             } else {
                 interpretation <- paste0(interpretation,
                     sprintf("With %.1f%% specificity, up to %.0f out of 100 healthy individuals may test positive. ",
                             spec, 100 - spec),
-                    "<strong>Clinical implication:</strong> Limited confirmatory value - positive results do NOT strongly confirm disease. "
+                    "<strong>Interpretation:</strong> at this specificity a large share of positive results are expected to be false positives. "
                 )
             }
 
@@ -2801,7 +2854,8 @@ diagnosticmetaClass <- R6::R6Class(
                     )
                 } else {
                     interpretation <- paste0(interpretation,
-                        "A positive result provides only weak evidence - clinical context is essential. "
+                        sprintf("A positive result multiplies the pre-test odds by %.2fx; the post-test probability also depends on the pre-test probability. ",
+                                lr_pos)
                     )
                 }
             }
@@ -2823,27 +2877,50 @@ diagnosticmetaClass <- R6::R6Class(
                     )
                 } else {
                     interpretation <- paste0(interpretation,
-                        "A negative result provides only weak evidence - clinical context is essential. "
+                        sprintf("A negative result multiplies the pre-test odds by %.2fx; the post-test probability also depends on the pre-test probability. ",
+                                lr_neg)
                     )
                 }
             }
 
-            # Overall recommendation
+            # Overall summary of the pooled estimates. This describes what was
+            # computed; it deliberately issues no fitness-for-use verdict, and it
+            # is qualified by the between-study heterogeneity the same analysis
+            # measured - a single pooled pair does not describe any one setting
+            # when the prediction interval is wide.
             if (sens >= 90 && spec >= 90) {
                 interpretation <- paste0(interpretation,
-                    "<br><br><strong>Overall Assessment:</strong> This test demonstrates <em>excellent</em> diagnostic accuracy suitable for both screening and confirmatory use in appropriate clinical populations."
+                    sprintf("<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%) and pooled specificity (%.1f%%) both fall in the <em>excellent</em> band.",
+                            sens, spec)
                 )
             } else if (sens >= 80 && spec >= 80) {
                 interpretation <- paste0(interpretation,
-                    "<br><br><strong>Overall Assessment:</strong> This test demonstrates <em>good</em> diagnostic accuracy and can be useful for clinical decision-making when combined with other clinical information."
+                    sprintf("<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%) and pooled specificity (%.1f%%) both fall in the <em>good</em> band or above.",
+                            sens, spec)
                 )
             } else if (sens >= 90 || spec >= 90) {
                 interpretation <- paste0(interpretation,
-                    "<br><br><strong>Overall Assessment:</strong> This test has <em>asymmetric</em> performance - excellent for one purpose (rule-in OR rule-out) but limited for the other. Use strategically based on clinical goals."
+                    sprintf("<br><br><strong>Overall Summary:</strong> performance is <em>asymmetric</em> - pooled sensitivity (%.1f%%) and pooled specificity (%.1f%%) fall in different performance bands.",
+                            sens, spec)
                 )
             } else {
                 interpretation <- paste0(interpretation,
-                    "<br><br><strong>Overall Assessment:</strong> This test demonstrates <em>moderate</em> diagnostic accuracy. Consider using in combination with other tests or as part of a broader diagnostic algorithm rather than as a standalone test."
+                    sprintf("<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%, <em>%s</em>) and pooled specificity (%.1f%%, <em>%s</em>) do not both reach the <em>good</em> band.",
+                            sens, sens_class, spec, spec_class)
+                )
+            }
+
+            # Qualify the summary with the measured between-study heterogeneity.
+            pi_wide <- function(pi) {
+                !is.null(pi) && length(pi) == 2 && all(is.finite(pi)) && (max(pi) - min(pi)) > 30
+            }
+            if (pi_wide(private$.pooled_sens_pi) || pi_wide(private$.pooled_spec_pi)) {
+                interpretation <- paste0(interpretation,
+                    " Between-study heterogeneity is substantial - the prediction interval spans a wide range of accuracy - so this pooled pair does not describe any single population or laboratory. Read the prediction region and the subgroup or meta-regression results rather than the pooled point."
+                )
+            } else {
+                interpretation <- paste0(interpretation,
+                    " These are pooled estimates from the included studies only; how far they carry to another setting depends on the prediction region and on how comparable the positivity thresholds, patient spectrum and reference standards are."
                 )
             }
 
@@ -2854,7 +2931,7 @@ diagnosticmetaClass <- R6::R6Class(
         .populateAboutPanel = function() {
 
             html <- "
-            <div class='about-panel' style='background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 10px 0;'>
+            <div class='about-panel' style='background-color: rgba(138, 155, 172, 0.06); padding: 20px; border-radius: 8px; margin: 10px 0; color: inherit;'>
                 <h4> About Diagnostic Test Meta-Analysis</h4>
 
                 <div style='margin: 15px 0;'>
@@ -2868,7 +2945,7 @@ diagnosticmetaClass <- R6::R6Class(
                     </ul>
                 </div>
 
-                <div style='margin: 15px 0; background-color: #e3f2fd; padding: 15px; border-radius: 5px; border-left: 4px solid #2196F3;'>
+                <div style='margin: 15px 0; background-color: rgba(33, 152, 239, 0.13); padding: 15px; border-radius: 5px; border-left: 4px solid #2196F3; color: inherit;'>
                     <h5> Understanding Bivariate and Proportional-Hazards SROC Models</h5>
                     <p><strong>These models answer related questions using different parameterizations:</strong></p>
 
@@ -2903,7 +2980,7 @@ diagnosticmetaClass <- R6::R6Class(
                     </ul>
                 </div>
 
-                <div style='margin: 15px 0; background-color: #fff3cd; padding: 15px; border-radius: 5px;'>
+                <div style='margin: 15px 0; background-color: rgba(255, 202, 33, 0.23); padding: 15px; border-radius: 5px; color: inherit;'>
                     <h5> Key Requirements & Assumptions</h5>
                     <ul>
                         <li>Minimum 3 studies with 2[[TIMES]]2 diagnostic data</li>
@@ -2924,7 +3001,7 @@ diagnosticmetaClass <- R6::R6Class(
                     </ol>
                 </div>
 
-                <div style='background-color: #d1ecf1; padding: 15px; border-radius: 5px; margin: 15px 0;'>
+                <div style='background-color: rgba(33, 163, 188, 0.21); padding: 15px; border-radius: 5px; margin: 15px 0; color: inherit;'>
                     <p><strong> Tip:</strong> Start with the bivariate model and forest plot to understand overall performance, then explore heterogeneity sources with meta-regression if needed.</p>
                 </div>
             </div>
@@ -3034,10 +3111,10 @@ diagnosticmetaClass <- R6::R6Class(
         # Plot explanation functions
         .populateForestPlotExplanation = function() {
             html <- "
-            <div class='plot-explanation' style='background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 10px 0;'>
+            <div class='plot-explanation' style='background-color: rgba(138, 155, 172, 0.06); padding: 20px; border-radius: 8px; margin: 10px 0; color: inherit;'>
                 <h4> Forest Plot Interpretation Guide</h4>
 
-                <div style='background-color: white; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(255, 255, 255, 0.06); color: inherit; padding: 15px; border-radius: 5px; margin: 10px 0;'>
                     <h5>What This Plot Shows</h5>
                     <p><strong>Forest Plot:</strong> Displays individual study results for sensitivity and specificity with confidence intervals. Each study is represented by a point (estimate) with horizontal lines (confidence intervals).</p>
 
@@ -3049,7 +3126,7 @@ diagnosticmetaClass <- R6::R6Class(
                     </ul>
                 </div>
 
-                <div style='background-color: #e8f5e8; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(33, 159, 33, 0.1); padding: 15px; border-radius: 5px; margin: 10px 0; color: inherit;'>
                     <h5>Clinical Interpretation</h5>
                     <ul>
                         <li><strong>Consistent Results:</strong> Points clustered together = low heterogeneity</li>
@@ -3059,7 +3136,7 @@ diagnosticmetaClass <- R6::R6Class(
                     </ul>
                 </div>
 
-                <div style='background-color: #fff3cd; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(255, 202, 33, 0.23); padding: 15px; border-radius: 5px; margin: 10px 0; color: inherit;'>
                     <h5> Quick Assessment Tips</h5>
                     <ul>
                         <li>Look for outlier studies (points far from others)</li>
@@ -3076,10 +3153,10 @@ diagnosticmetaClass <- R6::R6Class(
 
         .populateSROCPlotExplanation = function() {
             html <- "
-            <div class='plot-explanation' style='background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 10px 0;'>
+            <div class='plot-explanation' style='background-color: rgba(138, 155, 172, 0.06); padding: 20px; border-radius: 8px; margin: 10px 0; color: inherit;'>
                 <h4> Summary ROC Plot Interpretation Guide</h4>
 
-                <div style='background-color: white; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(255, 255, 255, 0.06); color: inherit; padding: 15px; border-radius: 5px; margin: 10px 0;'>
                     <h5>What This Plot Shows</h5>
                     <p><strong>SROC Plot:</strong> Summary Receiver Operating Characteristic curve showing the trade-off between sensitivity and specificity across all studies.</p>
 
@@ -3093,7 +3170,7 @@ diagnosticmetaClass <- R6::R6Class(
                     </ul>
                 </div>
 
-                <div style='background-color: #fff3cd; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(255, 202, 33, 0.23); padding: 15px; border-radius: 5px; margin: 10px 0; color: inherit;'>
                     <h5>Confidence region vs prediction region</h5>
                     <p>These answer different questions and are routinely confused. A tight
                     <strong>confidence</strong> region means the pooled estimate is well determined; it says
@@ -3105,7 +3182,7 @@ diagnosticmetaClass <- R6::R6Class(
                     and the pooled point alone should not drive the decision.</p>
                 </div>
 
-                <div style='background-color: #e8f5e8; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(33, 159, 33, 0.1); padding: 15px; border-radius: 5px; margin: 10px 0; color: inherit;'>
                     <h5>Clinical Interpretation</h5>
                     <ul>
                         <li><strong>Upper Left Corner:</strong> Ideal performance (high sensitivity, low false positive rate)</li>
@@ -3115,7 +3192,7 @@ diagnosticmetaClass <- R6::R6Class(
                     </ul>
                 </div>
 
-                <div style='background-color: #fff3cd; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(255, 202, 33, 0.23); padding: 15px; border-radius: 5px; margin: 10px 0; color: inherit;'>
                     <h5> Quick Assessment Tips</h5>
                     <ul>
                         <li>Closer to upper-left corner = better overall diagnostic accuracy</li>
@@ -3125,7 +3202,7 @@ diagnosticmetaClass <- R6::R6Class(
                     </ul>
                 </div>
 
-                <div style='background-color: #d1ecf1; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(33, 163, 188, 0.21); padding: 15px; border-radius: 5px; margin: 10px 0; color: inherit;'>
                     <h5> Clinical Decision Making</h5>
                     <p><strong>Use this plot to:</strong> Visualize test performance trade-offs, identify optimal operating points, and assess consistency across different study populations and settings.</p>
                 </div>
@@ -3137,10 +3214,10 @@ diagnosticmetaClass <- R6::R6Class(
 
         .populateFunnelPlotExplanation = function() {
             html <- "
-            <div class='plot-explanation' style='background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 10px 0;'>
+            <div class='plot-explanation' style='background-color: rgba(138, 155, 172, 0.06); padding: 20px; border-radius: 8px; margin: 10px 0; color: inherit;'>
                 <h4> Funnel Plot Interpretation Guide</h4>
 
-                <div style='background-color: white; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(255, 255, 255, 0.06); color: inherit; padding: 15px; border-radius: 5px; margin: 10px 0;'>
                     <h5>What This Plot Shows</h5>
                     <p><strong>Funnel Plot:</strong> Assesses publication bias by plotting study precision against effect size (log diagnostic odds ratio).</p>
 
@@ -3152,7 +3229,7 @@ diagnosticmetaClass <- R6::R6Class(
                     </ul>
                 </div>
 
-                <div style='background-color: #f8d7da; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(216, 33, 50, 0.18); padding: 15px; border-radius: 5px; margin: 10px 0; color: inherit;'>
                     <h5> Publication Bias Indicators</h5>
                     <ul>
                         <li><strong>Asymmetric Funnel:</strong> Missing studies on one side (usually left = negative results)</li>
@@ -3161,16 +3238,17 @@ diagnosticmetaClass <- R6::R6Class(
                     </ul>
                 </div>
 
-                <div style='background-color: #d4edda; padding: 15px; border-radius: 5px; margin: 10px 0;'>
-                    <h5> No Bias Indicators</h5>
+                <div style='background-color: rgba(33, 162, 64, 0.19); padding: 15px; border-radius: 5px; margin: 10px 0; color: inherit;'>
+                    <h5> Features Consistent With a Symmetric Funnel</h5>
                     <ul>
                         <li><strong>Symmetric Funnel:</strong> Studies distributed evenly on both sides</li>
                         <li><strong>Deeks' Test p [[GE]] 0.05:</strong> No statistical evidence of asymmetry</li>
                         <li><strong>Small Studies Present:</strong> Range of precision levels represented</li>
+                        <li><em>These features do not establish that publication bias is absent: asymmetry tests have low power, and are unreliable with fewer than 10 studies.</em></li>
                     </ul>
                 </div>
 
-                <div style='background-color: #fff3cd; padding: 15px; border-radius: 5px; margin: 10px 0;'>
+                <div style='background-color: rgba(255, 202, 33, 0.23); padding: 15px; border-radius: 5px; margin: 10px 0; color: inherit;'>
                     <h5> Interpretation Caveats</h5>
                     <ul>
                         <li><strong>Small Sample:</strong> Funnel plot unreliable with <10 studies</li>
@@ -3186,25 +3264,60 @@ diagnosticmetaClass <- R6::R6Class(
                 private$.renderSymbols(html)
             )
         }
+    ),
+    public = list(
+        #' @description
+        #' Generate R source code for diagnostic test meta-analysis
+        #' @return Character string with reproducible R syntax
+        asSource = function() {
+            required <- c(
+                self$options$study,
+                self$options$true_positives,
+                self$options$false_positives,
+                self$options$false_negatives,
+                self$options$true_negatives
+            )
+            if (any(vapply(required, is.null, logical(1))))
+                return("")
 
-        # TODO (forward-looking): no `.asSource()` method - the jamovi syntax
-        # pane therefore cannot render the equivalent R call for the user's
-        # configured analysis (users cannot copy-paste the analysis as
-        # reproducible R code). Adding one requires emitting a call shape like:
-        #   diagnosticmeta(
-        #       data           = data,
-        #       study          = <varname>,
-        #       true_positives = <varname>, ...
-        #       bivariate_analysis   = <bool>,
-        #       confidence_level     = <int>,
-        #       method               = <enum>,
-        #       zero_cell_correction = <enum>,
-        #       ...
-        #   )
-        # Use `jmvcore::sourcifyOption()` per option and `jmvcore::sourcifyName()`
-        # for variable references (NOT manual paste0 quoting - see project
-        # MEMORY.md `feedback_sourcify_quoting_correct_helper`). The
-        # `/add-R-code diagnosticmeta` skill scaffolds this with the
-        # `showRCode` option + `rCode` Html output.
+            # Variable options are emitted as quoted R strings. deparse() handles
+            # spaces, quotes, backslashes and Unicode safely. Other options retain
+            # jmvcore's canonical sourcification and default suppression.
+            args <- character(0)
+            for (option in private$.options$options) {
+                if (identical(option$name, "data"))
+                    next
+
+                if (inherits(option, "OptionVariable") ||
+                    inherits(option, "OptionVariables")) {
+                    value <- option$value
+                    if (!is.null(value)) {
+                        args <- c(
+                            args,
+                            paste0(
+                                option$name,
+                                " = ",
+                                paste0(deparse(value), collapse = "")
+                            )
+                        )
+                    }
+                } else {
+                    source_arg <- private$.sourcifyOption(option)
+                    if (!identical(source_arg, ""))
+                        args <- c(args, source_arg)
+                }
+            }
+
+            package <- utils::packageName()
+            if (is.null(package))
+                package <- "ClinicoPath"
+
+            paste0(
+                package,
+                "::diagnosticmeta(\n    data = data,\n    ",
+                paste(args, collapse = ",\n    "),
+                ")"
+            )
+        }
     )
 )

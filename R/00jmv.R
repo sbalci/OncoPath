@@ -19,6 +19,14 @@
         `pages`="228-47", 
         `doi`="10.1016/j.ejca.2008.10.026", 
         `url`="https://pubmed.ncbi.nlm.nih.gov/19097774/"), 
+    `CochraneDTAHandbook2023`=list(
+        `type`="book", 
+        `author`="Deeks JJ, Bossuyt PM, Leeflang MM, Takwoingi Y, editors", 
+        `year`=2023, 
+        `title`="Cochrane Handbook for Systematic Reviews of Diagnostic Test Accuracy", 
+        `publisher`="Cochrane", 
+        `doi`="10.1002/9781119756194", 
+        `url`="https://www.cochrane.org/authors/handbooks-and-manuals/handbook-systematic-reviews-diagnostic-test-accuracy"), 
     `ClinicoPathJamoviModule`=list(
         `type`="software", 
         `author`="Serdar Balci", 
