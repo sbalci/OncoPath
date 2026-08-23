@@ -1,12 +1,12 @@
 ---
 title: OncoPath Functions for Clinicopathological Research
 name: OncoPath
-version: 1.0.6.02
+version: 1.0.6.05
 jms: '1.0'
 authors:
   - Serdar Balci
 maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
-date: '2026-08-21'
+date: '2026-08-23'
 type: R
 description: >-
   OncoPath Functions for Clinicopathological Research. Specialized oncology and
@@ -52,8 +52,8 @@ analyses:
     menuTitle: Swimmer Plot
     description: >
       Creates comprehensive swimmer plots using the ggswim package to visualize
-      patient timelines,  clinical events, milestones, and treatment responses.
-      Features enhanced data validation  and complete ggswim integration for
+      patient timelines, clinical events, milestones, and treatment responses.
+      Features enhanced data validation and complete ggswim integration for
       professional clinical visualization.
     category: analyses
   - title: IHC Heterogeneity Analysis
