@@ -22,3 +22,4 @@ data/.*\.omv$
 ^backups$
 ^backups/
 ^data/.*\.csv$
+^.*\.tar\.gz$
