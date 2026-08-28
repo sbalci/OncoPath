@@ -497,7 +497,7 @@ ihcheterogeneityClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Cl
             # reproducibility metric below.
             inter_biopsy_corr <- numeric(0)
             if (n_biopsies >= 2) {
-                biopsy_cor_matrix <- cor(biopsy_data, use = "pairwise.complete.obs", method = "spearman")
+                biopsy_cor_matrix <- suppressWarnings(stats::cor(biopsy_data, use = "pairwise.complete.obs", method = "spearman"))
                 upper_tri_indices <- which(upper.tri(biopsy_cor_matrix), arr.ind = TRUE)
                 inter_biopsy_corr <- biopsy_cor_matrix[upper_tri_indices]
                 inter_biopsy_corr <- inter_biopsy_corr[!is.na(inter_biopsy_corr)]
@@ -510,7 +510,7 @@ ihcheterogeneityClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Cl
 
                 # Calculate all correlations at once
                 if (nrow(combined_data) >= 3) {
-                    all_correlations <- cor(combined_data, use = "pairwise.complete.obs", method = "spearman")
+                    all_correlations <- suppressWarnings(stats::cor(combined_data, use = "pairwise.complete.obs", method = "spearman"))
                     # Extract correlations between reference and each regional measurement
                     correlations <- all_correlations[1, -1]  # First row, excluding self-correlation
                     correlations <- correlations[!is.na(correlations)]
@@ -915,7 +915,7 @@ ihcheterogeneityClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Cl
 
             if (n_cases >= 3) {
                 # Observed correlation effect size
-                obs_correlation <- cor(whole_section[complete_pairs], biopsy_means[complete_pairs], method = "spearman")
+                obs_correlation <- suppressWarnings(stats::cor(whole_section[complete_pairs], biopsy_means[complete_pairs], method = "spearman"))
                 
                 # Convert correlation to effect size (Cohen's convention)
                 # Small: r = 0.1, Medium: r = 0.3, Large: r = 0.5
@@ -1339,7 +1339,7 @@ ihcheterogeneityClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Cl
                                         any(!is.na(repro_stats$correlations))) {
                         mean(repro_stats$correlations, na.rm = TRUE)
                     } else {
-                        cor(whole_section[complete_pairs], biopsy_means[complete_pairs], method = "spearman")
+                        suppressWarnings(stats::cor(whole_section[complete_pairs], biopsy_means[complete_pairs], method = "spearman"))
                     }
                     bias_test <- private$.safePairedT(biopsy_means[complete_pairs], whole_section[complete_pairs])
                     mean_bias <- bias_test$estimate
@@ -2305,9 +2305,9 @@ ihcheterogeneityClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Cl
 
                     if (nrow(region_icc_data) >= 3 && ncol(region_icc_data) >= 2) {
                         # Calculate ICC using existing helper
-                        region_correlations <- cor(region_icc_data[, 1],
+                        region_correlations <- suppressWarnings(stats::cor(region_icc_data[, 1],
                                                    rowMeans(region_icc_data[, -1, drop = FALSE]),
-                                                   method = "spearman", use = "complete.obs")
+                                                   method = "spearman", use = "complete.obs"))
 
                         icc_result <- private$.calculateICC(
                             whole_section = region_whole_section,
