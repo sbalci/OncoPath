@@ -1003,7 +1003,7 @@ ihcheterogeneityClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Cl
                         scenario = scenario,
                         effect_size = effect_size,
                         power = power,
-                        required_n = required_n,
+                        required_n = as.integer(required_n),
                         recommendation = recommendation
                     ))
 
@@ -1078,7 +1078,7 @@ ihcheterogeneityClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Cl
                         
                         spatial_table$addRow(rowKey = i, values = list(
                             region = as.character(region),
-                            n_cases = sum(region_mask),
+                            n_cases = as.integer(sum(region_mask)),
                             mean_value = region_mean,
                             cv_percent = region_cv,
                             heterogeneity_level = heterogeneity_level
@@ -2620,7 +2620,7 @@ ihcheterogeneityClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Cl
                         test_table$addRow(rowKey = row_key, values = list(
                             test_type = "Levene's Test (CV Variance)",
                             statistic = NA,
-                            df = NA,
+                            df = NA_integer_,
                             p_value = NA,
                             interpretation = paste("Could not compute:", conditionMessage(e))
                         ))
@@ -2666,7 +2666,7 @@ ihcheterogeneityClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Cl
                         test_table$addRow(rowKey = row_key, values = list(
                             test_type = "Kruskal-Wallis Test (Distribution)",
                             statistic = NA,
-                            df = NA,
+                            df = NA_integer_,
                             p_value = NA,
                             interpretation = "Could not compute: insufficient data or computational error"
                         ))
