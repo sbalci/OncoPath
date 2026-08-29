@@ -24,7 +24,6 @@ License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 Imports:
-    cluster,
     data.table,
     dplyr,
     ggplot2,
@@ -47,7 +46,6 @@ Imports:
     stringr,
     survival,
     tibble,
-    tidyr,
     utils
 Suggests: testthat
 Remotes: CHOP-CGTInformatics/ggswim@b3c67a0796a850624745a439cac33d981d83e1dc
