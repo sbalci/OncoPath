@@ -484,7 +484,10 @@ diagnosticmetaClass <- R6::R6Class(
             }
 
             if (self$options$sroc_plot) {
-                private$.populateSROCPlot(meta_data)
+                # Same continuity-corrected data as the forest plot and the
+                # Reitsma fit behind the pooled point; the raw counts put
+                # zero-cell studies at a different place on the two figures.
+                private$.populateSROCPlot(analysis_data)
             }
 
             if (self$options$funnel_plot && self$options$publication_bias) {
@@ -1099,6 +1102,7 @@ diagnosticmetaClass <- R6::R6Class(
                     # top of .performPHMSROCAnalysis(); no need to clear again.
 
                     # Process each coefficient
+                    theta_se <- NA_real_
                     for (param_name in names(coefficients)) {
                         display_name <- param_labels[[param_name]] %||% param_name
                         estimate <- coefficients[param_name]
@@ -1138,12 +1142,29 @@ diagnosticmetaClass <- R6::R6Class(
                             }
                         }
 
+                        if (identical(param_name, "theta")) theta_se <- std_error
+
                         hsroc_table$addRow(rowKey = param_name, values = list(
                             parameter = display_name,
                             estimate = estimate,
                             std_error = std_error,
                             z_value = z_value,
                             p_value = p_value
+                        ))
+                    }
+
+                    # The AUC of the PHM SROC curve is 1/(1 + theta) (Holling,
+                    # Boehning & Boehning 2012). The note below quoted the formula
+                    # but the value itself was never shown. SE by the delta
+                    # method: d/dtheta [1/(1 + theta)] = -1/(1 + theta)^2.
+                    theta_val <- if ("theta" %in% names(coefficients)) unname(coefficients["theta"]) else NA_real_
+                    if (is.finite(theta_val) && theta_val > 0) {
+                        hsroc_table$addRow(rowKey = "auc", values = list(
+                            parameter = "Area under the SROC curve (AUC = 1/(1 + theta))",
+                            estimate = 1 / (1 + theta_val),
+                            std_error = if (is.finite(theta_se)) theta_se / (1 + theta_val)^2 else NA_real_,
+                            z_value = NA_real_,
+                            p_value = NA_real_
                         ))
                     }
 
@@ -1986,8 +2007,12 @@ diagnosticmetaClass <- R6::R6Class(
             # CRITICAL FIX: Extract only serializable data from model
             # Do NOT store the model object itself (contains non-serializable functions)
             biv_model <- private$.biv_model
-            summary_results <- summary(biv_model)
-            coefficients <- summary_results$coefficients
+            # mada 0.5.12: summary.reitsma() errors for method = "fixed" (the
+            # bivariate table reconstructs its rows for the same reason). Only
+            # the pooled point is needed here, so fall back to the fitted
+            # logit coefficients instead of aborting the whole analysis.
+            summary_results <- tryCatch(summary(biv_model), error = function(e) NULL)
+            coefficients <- if (!is.null(summary_results)) summary_results$coefficients else NULL
 
             # Helper to safely get coefficient by name
             get_coef <- function(target) {
@@ -2009,6 +2034,15 @@ diagnosticmetaClass <- R6::R6Class(
             if (is.null(sum_fpr)) {
                 tfpr <- get_coef("tfpr.(Intercept)")
                 if (!is.null(tfpr)) sum_fpr <- stats::plogis(tfpr)
+            }
+
+            # No usable summary (fixed-effects fit): use the fitted coefficients.
+            if (is.null(sum_sens) || is.null(sum_fpr)) {
+                fc <- biv_model$coefficients
+                if (is.matrix(fc) && all(c("tsens", "tfpr") %in% colnames(fc))) {
+                    sum_sens <- stats::plogis(fc[1, "tsens"])
+                    sum_fpr  <- stats::plogis(fc[1, "tfpr"])
+                }
             }
 
             # Store only serializable data (no model object!)
@@ -2079,13 +2113,26 @@ diagnosticmetaClass <- R6::R6Class(
                 }
             }, error = function(e) NULL)
 
+            # Under a fixed-effects fit mada::sroc() returns NaN: the
+            # Rutter-Gatsonis curve is built from the between-study variance,
+            # which fixed effects sets to zero. Say so on the plot rather than
+            # leaving the reader to wonder where the curve went.
+            curve_note <- NULL
+            if (is.null(sroc_curve) && identical(self$options$method, "fixed")) {
+                curve_note <- paste(
+                    "No SROC curve: the fixed-effects model assumes no between-study",
+                    "heterogeneity, so the curve is undefined. The summary point and",
+                    "its confidence region are shown. Choose REML for the curve.")
+            }
+
             plot_state <- list(
                 data = meta_data,
                 pooled_sens = as.numeric(sum_sens),
                 pooled_fpr = as.numeric(sum_fpr),
                 sroc_curve = sroc_curve,
                 conf_ellipse = conf_ellipse,
-                pred_ellipse = pred_ellipse
+                pred_ellipse = pred_ellipse,
+                curve_note = curve_note
             )
 
             image$setState(plot_state)
@@ -2217,6 +2264,7 @@ diagnosticmetaClass <- R6::R6Class(
                     ggplot2::labs(
                         title = "Summary ROC Plot",
                         subtitle = subtitle_txt,
+                        caption = state$curve_note,
                         size = "Sample Size"
                     ) +
                     ggtheme +
@@ -2686,7 +2734,8 @@ diagnosticmetaClass <- R6::R6Class(
         .generateSummary = function(meta_data) {
 
             # If pooled estimates are not available, provide basic summary
-            if (is.null(private$.pooled_sensitivity) || is.null(private$.pooled_specificity)) {
+            if (is.null(private$.pooled_sensitivity) || is.null(private$.pooled_specificity) ||
+                !is.finite(private$.pooled_sensitivity) || !is.finite(private$.pooled_specificity)) {
                 private$.generateBasicSummary(meta_data)
                 return()
             }
