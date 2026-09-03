@@ -35,7 +35,6 @@ Imports:
     jmvcore,
     lubridate,
     mada,
-    magrittr,
     metafor,
     patchwork,
     psych,

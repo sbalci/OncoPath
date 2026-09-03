@@ -8,6 +8,7 @@ export(waterfall)
 import(jmvcore)
 importFrom(R6,R6Class)
 importFrom(RColorBrewer,brewer.pal)
+importFrom(data.table,as.data.table)
 importFrom(dplyr,
   arrange,
   bind_rows,
