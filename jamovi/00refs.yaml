@@ -8,6 +8,18 @@ refs:
         publisher: '[R package]. Retrieved from https://CRAN.R-project.org/package=psych'
         url: https://CRAN.R-project.org/package=psych
 
+    SchemperSmith1996:
+        type: 'article'
+        author: "Schemper, M., & Smith, T. L."
+        year: 1996
+        title: "A Note on Quantifying Follow-up in Studies of Failure Time"
+        publisher: 'Controlled Clinical Trials'
+        volume: 17
+        issue: 4
+        pages: "343-346"
+        doi: 10.1016/0197-2456(96)00075-X
+        url: https://doi.org/10.1016/0197-2456(96)00075-X
+
     recist:
         type: 'article'
         author: Eisenhauer EA, Therasse P, Bogaerts J, Schwartz LH, Sargent D, Ford R, Dancey J, Arbuck S, Gwyther S, Mooney M, Rubinstein L, Shankar L, Dodd L, Kaplan R, Lacombe D, Verweij J.

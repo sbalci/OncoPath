@@ -1,8 +1,8 @@
 Package: OncoPath
 Type: Package
 Title: OncoPath Functions for Clinicopathological Research
-Version: 1.0.8.13
-Date: 2026-09-07
+Version: 1.0.8.14
+Date: 2026-09-08
 Authors@R: person(given = "Serdar", family = "Balci", role = c("aut", "cre", "cph"), email = "serdarbalci@serdarbalci.com", comment = c(ORCID = "0000-0002-7852-3851"))
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
 Description: Provides specialized oncology and pathology visualization
@@ -46,7 +46,7 @@ Imports:
     survival,
     tibble,
     utils
-Suggests: testthat
+Suggests: testthat, yaml
 Remotes: CHOP-CGTInformatics/ggswim@b3c67a0796a850624745a439cac33d981d83e1dc
 URL: https://www.serdarbalci.com/OncoPath/, https://github.com/sbalci/OncoPath
 BugReports: https://github.com/sbalci/OncoPath/issues

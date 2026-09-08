@@ -23,3 +23,5 @@ data/.*\.omv$
 ^backups/
 ^data/.*\.csv$
 ^.*\.tar\.gz$
+Rplots.pdf
+i18n-plans

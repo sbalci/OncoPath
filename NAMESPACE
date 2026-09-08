@@ -27,6 +27,7 @@ importFrom(ggplot2,
   labs,
   theme
 )
+importFrom(ggrepel,geom_text_repel)
 importFrom(ggswim,
   geom_swim_arrow,
   geom_swim_lane,
@@ -35,6 +36,8 @@ importFrom(ggswim,
   theme_ggswim,
   theme_ggswim_dark
 )
+importFrom(grDevices,colorRampPalette)
+importFrom(grid,viewport)
 importFrom(htmltools,tagList)
 importFrom(lubridate,
   dmy,
@@ -52,10 +55,16 @@ importFrom(mada,
   reitsma
 )
 importFrom(metafor,rma)
+importFrom(patchwork,wrap_plots)
+importFrom(psych,ICC)
+importFrom(rlang,sym)
 importFrom(stats,
   pnorm,
   pt,
   qnorm,
   qt
 )
+importFrom(stringr,str_to_title)
+importFrom(survival,survfit)
 importFrom(tibble,tibble)
+importFrom(utils,packageName)
