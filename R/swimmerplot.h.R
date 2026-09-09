@@ -915,7 +915,7 @@ swimmerplotBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "OncoPath",
                 name = "swimmerplot",
-                version = c(1,0,8),
+                version = c(1,0,81),
                 options = options,
                 results = swimmerplotResults$new(options=options),
                 data = data,
