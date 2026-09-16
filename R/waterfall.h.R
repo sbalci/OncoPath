@@ -408,9 +408,12 @@ waterfallResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 name="",
                 title="Treatment Response Analysis",
                 refs=list(
+                    "ClinicoPathJamoviModule",
                     "recist",
                     "trialplots_highwind",
-                    "ClinicoPathJamoviModule"))
+                    "ggrepel",
+                    "patchwork",
+                    "survival"))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="guidedAnalysis",

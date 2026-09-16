@@ -54,6 +54,7 @@ importFrom(mada,
   phm,
   reitsma
 )
+importFrom(magrittr,"%>%")
 importFrom(metafor,rma)
 importFrom(patchwork,wrap_plots)
 importFrom(psych,ICC)

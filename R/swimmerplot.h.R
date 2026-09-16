@@ -504,7 +504,9 @@ swimmerplotResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                     "ClinicoPathJamoviModule",
                     "ggswim",
                     "recist",
-                    "SchemperSmith1996"))
+                    "SchemperSmith1996",
+                    "data.table",
+                    "lubridate"))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="notices",
