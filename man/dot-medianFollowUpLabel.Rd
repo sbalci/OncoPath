@@ -7,7 +7,7 @@
 .medianFollowUpLabel(mfu)
 }
 \arguments{
-\item{mfu}{Result of [.medianFollowUp()].}
+\item{mfu}{Result of \code{\link[=.medianFollowUp]{.medianFollowUp()}}.}
 }
 \value{
 Character scalar.

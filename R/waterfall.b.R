@@ -3,6 +3,7 @@
 #' @description R6 class for performing treatment response analysis using waterfall plots.
 #' @name waterfallClass
 #' @importFrom R6 R6Class
+#' @importFrom withr local_seed
 #' @return An \code{R6} class generator object for the \code{waterfallClass} backend; used internally by the jamovi analysis wrapper and not called directly.
 waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
     "waterfallClass",
@@ -10,9 +11,9 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
     private = list(
 
         # RECIST v1.1 Constants ----
-        RECIST_CR_THRESHOLD = -100,  # Complete Response threshold (\u{2264}-100%)
-        RECIST_PR_THRESHOLD = -30,   # Partial Response threshold (\u{2264}-30%)
-        RECIST_PD_THRESHOLD = 20,    # Progressive Disease threshold (\u{2265}+20%, inclusive)
+        RECIST_CR_THRESHOLD = -100,  # Complete Response threshold (\u2264-100%)
+        RECIST_PR_THRESHOLD = -30,   # Partial Response threshold (\u2264-30%)
+        RECIST_PD_THRESHOLD = 20,    # Progressive Disease threshold (\u2265+20%, inclusive)
         RECIST_SD_MIN = -30,         # Stable Disease minimum (-30%)
         RECIST_SD_MAX = 20,          # Stable Disease maximum (20%)
 
@@ -46,6 +47,8 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         .noticeList = list(),
 
         # Add a notice to the collection
+        # library-audit 2026-09-16 OncoPath [INFO] REJECTED: no native notice element - type: Notice fails the
+        #   .r.yaml schema, type: Notification builds no results object (guide section 13)
         .addNotice = function(type, title, content) {
           private$.noticeList[[length(private$.noticeList) + 1]] <- list(
             type = type,
@@ -62,14 +65,13 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             return()
           }
 
-          # Map notice types to colors and icons. Backgrounds are translucent
-          # rgba tints (house theme-safe pattern) so they composite over either
-          # jamovi theme; title colors are saturated enough to read on both.
+          # library-audit 2026-09-16 OncoPath [INFO] DONE: titles inherit the pane colour - fixed hues fell to
+          #   2.7-2.9:1 on the dark theme; the translucent tint and the border carry the severity
           typeStyles <- list(
-            ERROR = list(color = "#dc2626", bgcolor = "rgba(220, 38, 38, 0.10)", border = "#fca5a5", icon = ""),
-            STRONG_WARNING = list(color = "#ea580c", bgcolor = "rgba(234, 88, 12, 0.10)", border = "#fdba74", icon = ""),
-            WARNING = list(color = "#ca8a04", bgcolor = "rgba(202, 138, 4, 0.12)", border = "#fde047", icon = ""),
-            INFO = list(color = "#2563eb", bgcolor = "rgba(37, 99, 235, 0.08)", border = "#93c5fd", icon = "")
+            ERROR = list(bgcolor = "rgba(220, 38, 38, 0.10)", border = "#fca5a5", icon = ""),
+            STRONG_WARNING = list(bgcolor = "rgba(234, 88, 12, 0.10)", border = "#fdba74", icon = ""),
+            WARNING = list(bgcolor = "rgba(202, 138, 4, 0.12)", border = "#fde047", icon = ""),
+            INFO = list(bgcolor = "rgba(37, 99, 235, 0.08)", border = "#93c5fd", icon = "")
           )
 
           html <- "<div style='margin: 10px 0;'>"
@@ -81,7 +83,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
               "<div style='background-color: ", style$bgcolor, "; ",
               "border-left: 4px solid ", style$border, "; ",
               "padding: 12px; margin: 8px 0; border-radius: 4px;'>",
-              "<strong style='color: ", style$color, ";'>",
+              "<strong style='color: inherit;'>",
               style$icon, " ", private$.safeHtmlOutput(notice$title), "</strong><br>",
               "<span style='color: inherit;'>", private$.safeHtmlOutput(notice$content), "</span>",
               "</div>"
@@ -1097,7 +1099,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
               "<br><br>", .("Recommended actions:"),
               "<br>1. ", .("Verify data entry for calculation errors"),
               "<br>2. ", .("Check if baseline measurements are correct"),
-              "<br>3. ", .("Confirm percentage calculation method: ((current - baseline) / baseline) \u{00d7} 100"),
+              "<br>3. ", .("Confirm percentage calculation method: ((current - baseline) / baseline) \u00d7 100"),
               "<br>4. ", .("Values will be automatically capped at -100% for analysis"),
               "<br><br>", .("Note: Values <-100% are mathematically impossible for tumor shrinkage.")
             ))
@@ -1874,7 +1876,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         private$.addNotice(
           type = "WARNING",
           title = .("CONFIRMATION NOT REQUIRED"),
-          content = .("RECIST v1.1 requires CR/PR confirmation at \u{2265}4 weeks. This analysis uses FIRST instance of response thresholds without confirmation. ORR and DCR may be INFLATED compared to confirmed RECIST responses. For clinical trials, unconfirmed responses should be clearly disclosed as exploratory endpoints.")
+          content = .("RECIST v1.1 requires CR/PR confirmation at \u22654 weeks. This analysis uses FIRST instance of response thresholds without confirmation. ORR and DCR may be INFLATED compared to confirmed RECIST responses. For clinical trials, unconfirmed responses should be clearly disclosed as exploratory endpoints.")
         )
 
         # Warning #4: Time-to-Event Methodology Limitations (MEDIUM)
@@ -2592,7 +2594,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           "<div style='padding: 15px; background-color: rgba(216, 33, 50, 0.18); border-left: 4px solid #dc3545; margin: 20px 0; color: inherit;'>",
           "<h3 style='color: inherit; margin-top: 0;'>", .("Key Assumptions & Limitations:"), "</h3>",
           "<ul style='margin: 5px 0;'>",
-          "<li>", sprintf(.("RECIST v1.1 thresholds: CR \u{2264}-100%%, PR \u{2264}-30%%, PD \u{2265}+20%%")), "</li>",
+          "<li>", sprintf(.("RECIST v1.1 thresholds: CR \u2264-100%%, PR \u2264-30%%, PD \u2265+20%%")), "</li>",
           "<li>", .("For raw measurements, baseline assumed at time = 0"), "</li>",
           "<li>", .("Waterfall plot shows best (most negative) response per patient"), "</li>",
           "<li>", .("Missing values are excluded from analysis"), "</li>",
@@ -2877,9 +2879,11 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           tryCatch({
             # REPRODUCIBILITY: user-configurable seed for reproducible bootstrap
             # results (defaults to 123 when unset).
+            # library-audit 2026-09-16 meddecide [LOW] DONE (same class): local_seed() restores the
+            #   session's RNG stream when this renderer returns; set.seed() left it fixed for the next analysis
             seed_val <- plotData$options$seed
             if (is.null(seed_val)) seed_val <- 123
-            set.seed(seed_val)
+            withr::local_seed(seed_val)
 
             # Resample the NON-MISSING responses only: drawing from the full
             # vector including NAs made each replicate's effective n random
@@ -2912,6 +2916,8 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
                 vjust = -0.5,
                 size = 3
               )
+            # the interval is a bootstrap: name the seed that drew it
+            p <- p + ggplot2::labs(caption = jmvcore::format(.("Random seed: {seed}"), seed = seed_val))
           }, error = function(e) {
             # No CI annotation; say so on the plot (notices are already rendered
             # by the time a renderer runs, and jamovi hides warning()).
@@ -3084,7 +3090,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
                 group = .data[[options$patientID]],
                 color = patient_group
               ),
-              size = 1,
+              linewidth = 1,
               alpha = 0.7
             ) +
             # Add points at each measurement, colored by group
@@ -3134,7 +3140,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
                 y = response,
                 group = .data[[options$patientID]]
               ),
-              size = 1,
+              linewidth = 1,
               color = "gray50"
             ) +
             # Add points at each measurement
@@ -3247,7 +3253,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
               ),
               color = "black",
               linetype = "dotted",
-              size = 1
+              linewidth = 1
             )
         }
 
@@ -3374,7 +3380,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           
           "<h5>", .("Key Assumptions & Limitations:"), "</h5>",
           "<ul>",
-          sprintf("<li>%s CR \u{2264}%d%%, PR \u{2264}%d%%, PD \u{2265}+%d%%</li>", .("RECIST v1.1 thresholds:"), private$RECIST_CR_THRESHOLD, private$RECIST_PR_THRESHOLD, private$RECIST_PD_THRESHOLD),
+          sprintf("<li>%s CR \u2264%d%%, PR \u2264%d%%, PD \u2265+%d%%</li>", .("RECIST v1.1 thresholds:"), private$RECIST_CR_THRESHOLD, private$RECIST_PR_THRESHOLD, private$RECIST_PD_THRESHOLD),
           "<li>", .("For raw measurements, baseline assumed at time = 0"), "</li>",
           "<li>", .("Waterfall plot shows best (most negative) response per patient"), "</li>",
           "<li>", .("Missing values are excluded from analysis"), "</li>",
@@ -3534,7 +3540,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           "<div style='background-color: rgba(138, 155, 172, 0.08); padding: 10px; border-radius: 3px; margin: 10px 0; color: inherit;'>",
           "<h5>", .("Methods Description:"), "</h5>",
           "<p style='font-family: monospace; background-color: rgba(138, 155, 172, 0.06); padding: 8px; border-radius: 3px; color: inherit;'>",
-          .("Tumor response was categorized using SIMPLIFIED threshold-based criteria adapted from RECIST v1.1 (NOT full RECIST-compliant). Categories based on percent change thresholds: CR \u{2264}-100%, PR \u{2264}-30%, SD >-30% to <+20%, PD \u{2265}+20%. This analysis does NOT include target lesion summation, new lesion detection, non-target assessment, or confirmation requirements mandated by RECIST v1.1. Response rates calculated with exact binomial confidence intervals."),
+          .("Tumor response was categorized using SIMPLIFIED threshold-based criteria adapted from RECIST v1.1 (NOT full RECIST-compliant). Categories based on percent change thresholds: CR \u2264-100%, PR \u2264-30%, SD >-30% to <+20%, PD \u2265+20%. This analysis does NOT include target lesion summation, new lesion detection, non-target assessment, or confirmation requirements mandated by RECIST v1.1. Response rates calculated with exact binomial confidence intervals."),
           "</p>",
           "</div>",
 
@@ -3712,7 +3718,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           "<div>",
           "<h5 style='color: inherit; margin-bottom: 10px;'>", .("Response Metrics"), "</h5>",
           "<ul style='margin: 0; padding-left: 15px; line-height: 1.6;'>",
-          "<li><strong>ORR (Objective Response Rate - Unconfirmed):</strong> ", .("Percentage of patients achieving threshold-based CR (\u{2264}-100%) or PR (\u{2264}-30%) without RECIST v1.1 confirmation requirement. May overestimate true confirmed ORR."), "</li>",
+          "<li><strong>ORR (Objective Response Rate - Unconfirmed):</strong> ", .("Percentage of patients achieving threshold-based CR (\u2264-100%) or PR (\u2264-30%) without RECIST v1.1 confirmation requirement. May overestimate true confirmed ORR."), "</li>",
           "<li><strong>DCR (Disease Control Rate - Unconfirmed):</strong> ", .("Percentage achieving threshold-based response or stable disease (CR + PR + SD) without confirmation. Exploratory endpoint only."), "</li>",
           "<li><strong>Best Response (Simplified):</strong> ", .("Most favorable (most negative) percent change from baseline. NOT equivalent to RECIST v1.1 'Best Overall Response' which requires confirmation."), "</li>",
           "<li><strong>Person-Time:</strong> ", .("Total time patients are followed, accounting for different follow-up durations"), "</li>",
@@ -3722,10 +3728,10 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           "<div>",
           "<h5 style='color: inherit; margin-bottom: 10px;'>", .("Response Categories (Simplified Threshold-Based)"), "</h5>",
           "<ul style='margin: 0; padding-left: 15px; line-height: 1.6;'>",
-          "<li><strong>CR (Complete Response - Threshold):</strong> ", .("\u{2264}-100% change from baseline (simplified criterion, NOT full RECIST CR which requires disappearance of ALL lesions including non-target)"), "</li>",
-          "<li><strong>PR (Partial Response - Threshold):</strong> ", .("\u{2264}-30% change from baseline (simplified criterion, NOT full RECIST PR which requires target lesion sum calculation and no new lesions)"), "</li>",
+          "<li><strong>CR (Complete Response - Threshold):</strong> ", .("\u2264-100% change from baseline (simplified criterion, NOT full RECIST CR which requires disappearance of ALL lesions including non-target)"), "</li>",
+          "<li><strong>PR (Partial Response - Threshold):</strong> ", .("\u2264-30% change from baseline (simplified criterion, NOT full RECIST PR which requires target lesion sum calculation and no new lesions)"), "</li>",
           "<li><strong>SD (Stable Disease - Threshold):</strong> ", .("Between -30% and +20% change (simplified criterion)"), "</li>",
-          "<li><strong>PD (Progressive Disease - Threshold):</strong> ", .("\u{2265}+20% change from baseline (simplified criterion, NOT full RECIST PD which includes new lesion detection and non-target progression)"), "</li>",
+          "<li><strong>PD (Progressive Disease - Threshold):</strong> ", .("\u2265+20% change from baseline (simplified criterion, NOT full RECIST PD which includes new lesion detection and non-target progression)"), "</li>",
           "</ul>",
           "</div>",
 

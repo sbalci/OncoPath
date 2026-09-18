@@ -13,7 +13,7 @@ x \%||\% y
 \item{y}{Right-hand side default value}
 }
 \value{
-`x` if it is not `NULL`, otherwise `y`.
+\code{x} if it is not \code{NULL}, otherwise \code{y}.
 }
 \description{
 Null-coalescing operator

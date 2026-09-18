@@ -171,24 +171,24 @@ metrics.}
 \value{
 A results object containing:
 \tabular{llllll}{
-  \code{results$notices} \tab \tab \tab \tab \tab a preformatted \cr
-  \code{results$warningNotice} \tab \tab \tab \tab \tab a html \cr
-  \code{results$instructions} \tab \tab \tab \tab \tab a html \cr
-  \code{results$plot} \tab \tab \tab \tab \tab an image \cr
-  \code{results$summary} \tab \tab \tab \tab \tab a table \cr
-  \code{results$interpretation} \tab \tab \tab \tab \tab a html \cr
-  \code{results$personTimeTable} \tab \tab \tab \tab \tab a table \cr
-  \code{results$milestoneTable} \tab \tab \tab \tab \tab a table \cr
-  \code{results$eventMarkerTable} \tab \tab \tab \tab \tab a table \cr
-  \code{results$timelineData} \tab \tab \tab \tab \tab a table \cr
-  \code{results$summaryData} \tab \tab \tab \tab \tab a table \cr
-  \code{results$exportInfo} \tab \tab \tab \tab \tab a html \cr
-  \code{results$validationReport} \tab \tab \tab \tab \tab a html \cr
-  \code{results$advancedMetrics} \tab \tab \tab \tab \tab a table \cr
-  \code{results$groupComparisonTest} \tab \tab \tab \tab \tab a table \cr
-  \code{results$clinicalGlossary} \tab \tab \tab \tab \tab a html \cr
-  \code{results$copyReadyReport} \tab \tab \tab \tab \tab a html \cr
-  \code{results$aboutAnalysis} \tab \tab \tab \tab \tab a html \cr
+\code{results$notices} \tab \tab \tab \tab \tab a preformatted \cr
+\code{results$warningNotice} \tab \tab \tab \tab \tab a html \cr
+\code{results$instructions} \tab \tab \tab \tab \tab a html \cr
+\code{results$plot} \tab \tab \tab \tab \tab an image \cr
+\code{results$summary} \tab \tab \tab \tab \tab a table \cr
+\code{results$interpretation} \tab \tab \tab \tab \tab a html \cr
+\code{results$personTimeTable} \tab \tab \tab \tab \tab a table \cr
+\code{results$milestoneTable} \tab \tab \tab \tab \tab a table \cr
+\code{results$eventMarkerTable} \tab \tab \tab \tab \tab a table \cr
+\code{results$timelineData} \tab \tab \tab \tab \tab a table \cr
+\code{results$summaryData} \tab \tab \tab \tab \tab a table \cr
+\code{results$exportInfo} \tab \tab \tab \tab \tab a html \cr
+\code{results$validationReport} \tab \tab \tab \tab \tab a html \cr
+\code{results$advancedMetrics} \tab \tab \tab \tab \tab a table \cr
+\code{results$groupComparisonTest} \tab \tab \tab \tab \tab a table \cr
+\code{results$clinicalGlossary} \tab \tab \tab \tab \tab a html \cr
+\code{results$copyReadyReport} \tab \tab \tab \tab \tab a html \cr
+\code{results$aboutAnalysis} \tab \tab \tab \tab \tab a html \cr
 }
 
 Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
@@ -198,8 +198,8 @@ Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.f
 \code{as.data.frame(results$summary)}
 }
 \description{
-Creates comprehensive swimmer plots using the ggswim package to visualize 
-patient timelines, clinical events, milestones, and treatment responses. 
-Features enhanced data validation and complete ggswim integration for 
+Creates comprehensive swimmer plots using the ggswim package to visualize
+patient timelines, clinical events, milestones, and treatment responses.
+Features enhanced data validation and complete ggswim integration for
 professional clinical visualization.
 }

@@ -17,21 +17,21 @@
 muffled. Defaults to the usual deprecation/migration vocabulary.}
 }
 \value{
-The value of `expr`.
+The value of \code{expr}.
 }
 \description{
-jamovi's engine captures `message()` and `warning()` conditions raised while
+jamovi's engine captures \code{message()} and \code{warning()} conditions raised while
 an analysis runs and renders them in the "Analysis Notes" panel, where users
 see them. Third-party modelling packages emit a lot of chatter that is
-meaningless to a pathologist reading their results -- glmnet's `cox.ties`
+meaningless to a pathologist reading their results -- glmnet's \code{cox.ties}
 migration notice, for example, appeared twelve times in a single Lasso-Cox
 run.
 }
 \details{
-Wrap a third-party call in `.quietly()` to keep that noise out of the
+Wrap a third-party call in \code{.quietly()} to keep that noise out of the
 results pane. It suppresses ALL messages (package chatter is never the user's
-problem) but muffles only *deprecation-flavoured* warnings, matched by
-`deprecation_pattern`. Substantive warnings -- non-convergence, NAs
+problem) but muffles only \emph{deprecation-flavoured} warnings, matched by
+\code{deprecation_pattern}. Substantive warnings -- non-convergence, NAs
 introduced, rank deficiency -- still propagate, because those change how the
 output should be read and must not be hidden.
 }

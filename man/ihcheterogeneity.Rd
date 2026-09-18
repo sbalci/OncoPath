@@ -108,23 +108,23 @@ methodological considerations}
 \value{
 A results object containing:
 \tabular{llllll}{
-  \code{results$welcome} \tab \tab \tab \tab \tab Welcome screen shown when no variables selected \cr
-  \code{results$notices} \tab \tab \tab \tab \tab a html \cr
-  \code{results$interpretation} \tab \tab \tab \tab \tab a html \cr
-  \code{results$report_sentences} \tab \tab \tab \tab \tab Pre-formatted sentences ready for clinical reports and publications \cr
-  \code{results$assumptions} \tab \tab \tab \tab \tab Analysis assumptions, data requirements, and methodological considerations \cr
-  \code{results$summary} \tab \tab \tab \tab \tab Natural-language summary of heterogeneity analysis results \cr
-  \code{results$glossary} \tab \tab \tab \tab \tab Definitions of key statistical terms used in the analysis \cr
-  \code{results$reproducibilitytable} \tab \tab \tab \tab \tab Correlation and reliability metrics \cr
-  \code{results$samplingbiastable} \tab \tab \tab \tab \tab Systematic bias assessment between methods \cr
-  \code{results$variancetable} \tab \tab \tab \tab \tab Sources of measurement variability \cr
-  \code{results$poweranalysistable} \tab \tab \tab \tab \tab Sample size recommendations and power calculations \cr
-  \code{results$spatialanalysistable} \tab \tab \tab \tab \tab Variability across spatial regions \cr
-  \code{results$compartmentComparison} \tab \tab \tab \tab \tab Statistical comparison of heterogeneity metrics between compartments \cr
-  \code{results$compartmentTests} \tab \tab \tab \tab \tab Formal statistical tests comparing heterogeneity across compartments \cr
-  \code{results$biopsyplot} \tab \tab \tab \tab \tab Distribution comparison across regional measurements and reference (if provided) \cr
-  \code{results$variabilityplot} \tab \tab \tab \tab \tab Coefficient of variation by case \cr
-  \code{results$spatialplot} \tab \tab \tab \tab \tab Spatial distribution of biomarker values \cr
+\code{results$welcome} \tab \tab \tab \tab \tab Welcome screen shown when no variables selected \cr
+\code{results$notices} \tab \tab \tab \tab \tab a html \cr
+\code{results$interpretation} \tab \tab \tab \tab \tab a html \cr
+\code{results$report_sentences} \tab \tab \tab \tab \tab Pre-formatted sentences ready for clinical reports and publications \cr
+\code{results$assumptions} \tab \tab \tab \tab \tab Analysis assumptions, data requirements, and methodological considerations \cr
+\code{results$summary} \tab \tab \tab \tab \tab Natural-language summary of heterogeneity analysis results \cr
+\code{results$glossary} \tab \tab \tab \tab \tab Definitions of key statistical terms used in the analysis \cr
+\code{results$reproducibilitytable} \tab \tab \tab \tab \tab Correlation and reliability metrics \cr
+\code{results$samplingbiastable} \tab \tab \tab \tab \tab Systematic bias assessment between methods \cr
+\code{results$variancetable} \tab \tab \tab \tab \tab Sources of measurement variability \cr
+\code{results$poweranalysistable} \tab \tab \tab \tab \tab Sample size recommendations and power calculations \cr
+\code{results$spatialanalysistable} \tab \tab \tab \tab \tab Variability across spatial regions \cr
+\code{results$compartmentComparison} \tab \tab \tab \tab \tab Statistical comparison of heterogeneity metrics between compartments \cr
+\code{results$compartmentTests} \tab \tab \tab \tab \tab Formal statistical tests comparing heterogeneity across compartments \cr
+\code{results$biopsyplot} \tab \tab \tab \tab \tab Distribution comparison across regional measurements and reference (if provided) \cr
+\code{results$variabilityplot} \tab \tab \tab \tab \tab Coefficient of variation by case \cr
+\code{results$spatialplot} \tab \tab \tab \tab \tab Spatial distribution of biomarker values \cr
 }
 
 Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:

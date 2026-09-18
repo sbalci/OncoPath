@@ -7,9 +7,9 @@
 .medianFollowUpExplanation(mfu, unit = "", conf_level = 0.95)
 }
 \arguments{
-\item{mfu}{Result of [.medianFollowUp()].}
+\item{mfu}{Result of \code{\link[=.medianFollowUp]{.medianFollowUp()}}.}
 
-\item{unit}{Optional time unit (e.g. `"months"`).}
+\item{unit}{Optional time unit (e.g. \code{"months"}).}
 
 \item{conf_level}{Confidence level used for the interval.}
 }

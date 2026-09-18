@@ -9,20 +9,20 @@
 \arguments{
 \item{time}{Numeric vector of observed times (event or censoring).}
 
-\item{censored}{Logical or 0/1 vector, `TRUE`/`1` where the subject was still
+\item{censored}{Logical or 0/1 vector, \code{TRUE}/\code{1} where the subject was still
 under observation when follow-up ended. Recycled length-1 values are not
-accepted; it must be parallel to `time`.}
+accepted; it must be parallel to \code{time}.}
 
 \item{conf_level}{Confidence level for the interval around the median.
 Default 0.95.}
 }
 \value{
-A list with `value` (the estimate), `ci_lower` / `ci_upper` (`NA`
-  unless the reverse fit succeeded and the interval is defined), `reverse`
-  (`TRUE` when the reverse-KM median was estimable), `method`
-  (`"reverse_km"` or `"observed_median"`), `reason` (empty when
-  `reverse = TRUE`, otherwise why the fallback was used), `n_total` and
-  `n_censored`.
+A list with \code{value} (the estimate), \code{ci_lower} / \code{ci_upper} (\code{NA}
+unless the reverse fit succeeded and the interval is defined), \code{reverse}
+(\code{TRUE} when the reverse-KM median was estimable), \code{method}
+(\code{"reverse_km"} or \code{"observed_median"}), \code{reason} (empty when
+\code{reverse = TRUE}, otherwise why the fallback was used), \code{n_total} and
+\code{n_censored}.
 }
 \description{
 Estimates how long a cohort was actually observed, by swapping the roles of
@@ -32,22 +32,22 @@ median of the potential-follow-up distribution: the time each subject would
 have been observed had the event not intervened.
 }
 \details{
-`censored` must mark subjects whose observation ended WITHOUT a terminal
+\code{censored} must mark subjects whose observation ended WITHOUT a terminal
 outcome -- alive at last contact, lost to follow-up, administratively
 censored. In a competing-risks setting a competing death is a terminal
 outcome and must NOT be marked censored here: it ends potential follow-up
 just as the event of interest does, and counting it as a reverse-KM event
 understates the reported follow-up.
 
-The median is undefined whenever the reversed curve never falls to 50%. That
+The median is undefined whenever the reversed curve never falls to 50\%. That
 depends on WHEN subjects were still under observation, not simply on how many
 were: a handful censored late can make the median estimable, while a cohort
 whose censored subjects all left early cannot -- so do not read a fallback as
 meaning "too little censoring". It is a real and common state, not an error,
 so the function falls back to the plain median of observed times and reports
-`reverse = FALSE` plus a `reason`. Callers MUST
+\code{reverse = FALSE} plus a \code{reason}. Callers MUST
 surface that distinction -- printing the fallback under a "reverse
-Kaplan-Meier" label is a quiet lie. Use [.medianFollowUpLabel()] rather than
+Kaplan-Meier" label is a quiet lie. Use \code{\link[=.medianFollowUpLabel]{.medianFollowUpLabel()}} rather than
 hardcoding a label.
 }
 \references{

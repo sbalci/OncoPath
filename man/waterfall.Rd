@@ -173,27 +173,27 @@ reproduces the previous fixed behaviour.}
 \value{
 A results object containing:
 \tabular{llllll}{
-  \code{results$guidedAnalysis} \tab \tab \tab \tab \tab a html \cr
-  \code{results$todo} \tab \tab \tab \tab \tab a html \cr
-  \code{results$todo2} \tab \tab \tab \tab \tab a html \cr
-  \code{results$clinicalSummary} \tab \tab \tab \tab \tab a html \cr
-  \code{results$aboutAnalysis} \tab \tab \tab \tab \tab a html \cr
-  \code{results$summaryTable} \tab \tab \tab \tab \tab a table \cr
-  \code{results$personTimeTable} \tab \tab \tab \tab \tab a table \cr
-  \code{results$clinicalMetrics} \tab \tab \tab \tab \tab a table \cr
-  \code{results$waterfallplot} \tab \tab \tab \tab \tab an image \cr
-  \code{results$copyReadyReport} \tab \tab \tab \tab \tab a html \cr
-  \code{results$clinicalSignificance} \tab \tab \tab \tab \tab a html \cr
-  \code{results$clinicalGlossary} \tab \tab \tab \tab \tab a html \cr
-  \code{results$enhancedClinicalMetrics} \tab \tab \tab \tab \tab a table \cr
-  \code{results$groupComparisonTable} \tab \tab \tab \tab \tab a table \cr
-  \code{results$groupComparisonTest} \tab \tab \tab \tab \tab a table \cr
-  \code{results$spiderplot} \tab \tab \tab \tab \tab an image \cr
-  \code{results$naturalLanguageSummary} \tab \tab \tab \tab \tab a html \cr
-  \code{results$explanations} \tab \tab \tab \tab \tab a html \cr
-  \code{results$responseDurationTable} \tab \tab \tab \tab \tab a table \cr
-  \code{results$addResponseCategory} \tab \tab \tab \tab \tab an output \cr
-  \code{results$notices} \tab \tab \tab \tab \tab a html \cr
+\code{results$guidedAnalysis} \tab \tab \tab \tab \tab a html \cr
+\code{results$todo} \tab \tab \tab \tab \tab a html \cr
+\code{results$todo2} \tab \tab \tab \tab \tab a html \cr
+\code{results$clinicalSummary} \tab \tab \tab \tab \tab a html \cr
+\code{results$aboutAnalysis} \tab \tab \tab \tab \tab a html \cr
+\code{results$summaryTable} \tab \tab \tab \tab \tab a table \cr
+\code{results$personTimeTable} \tab \tab \tab \tab \tab a table \cr
+\code{results$clinicalMetrics} \tab \tab \tab \tab \tab a table \cr
+\code{results$waterfallplot} \tab \tab \tab \tab \tab an image \cr
+\code{results$copyReadyReport} \tab \tab \tab \tab \tab a html \cr
+\code{results$clinicalSignificance} \tab \tab \tab \tab \tab a html \cr
+\code{results$clinicalGlossary} \tab \tab \tab \tab \tab a html \cr
+\code{results$enhancedClinicalMetrics} \tab \tab \tab \tab \tab a table \cr
+\code{results$groupComparisonTable} \tab \tab \tab \tab \tab a table \cr
+\code{results$groupComparisonTest} \tab \tab \tab \tab \tab a table \cr
+\code{results$spiderplot} \tab \tab \tab \tab \tab an image \cr
+\code{results$naturalLanguageSummary} \tab \tab \tab \tab \tab a html \cr
+\code{results$explanations} \tab \tab \tab \tab \tab a html \cr
+\code{results$responseDurationTable} \tab \tab \tab \tab \tab a table \cr
+\code{results$addResponseCategory} \tab \tab \tab \tab \tab an output \cr
+\code{results$notices} \tab \tab \tab \tab \tab a html \cr
 }
 
 Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
@@ -203,20 +203,20 @@ Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.f
 \code{as.data.frame(results$summaryTable)}
 }
 \description{
-Use this when you have one tumour burden number per patient: either a 
-percent change from baseline you have already calculated (one row per 
-patient), or a single measurement recorded at each visit (one row per 
-patient per visit). It draws waterfall and spider plots, assigns each 
-patient a best response from their largest shrinkage from baseline, and 
-reports ORR and DCR with exact binomial confidence intervals, group 
-comparison, time to response and duration of response. When a time variable 
-is supplied, progression is measured against the patient's smallest 
-recorded burden (nadir), not against baseline. Categories are named CR, PR, 
-SD and PD and the thresholds are adapted from RECIST v1.1, but this is NOT 
-a RECIST v1.1 implementation: because it never sees individual lesions it 
-cannot sum target lesions, detect a new lesion, or judge non-target 
-progression, and it cannot apply the 4-week confirmation rule itself (you 
-may supply your own confirmation column). If your data list each lesion 
-separately, use the lesion-level RECIST v1.1 analysis. It will be available 
+Use this when you have one tumour burden number per patient: either a
+percent change from baseline you have already calculated (one row per
+patient), or a single measurement recorded at each visit (one row per
+patient per visit). It draws waterfall and spider plots, assigns each
+patient a best response from their largest shrinkage from baseline, and
+reports ORR and DCR with exact binomial confidence intervals, group
+comparison, time to response and duration of response. When a time variable
+is supplied, progression is measured against the patient's smallest
+recorded burden (nadir), not against baseline. Categories are named CR, PR,
+SD and PD and the thresholds are adapted from RECIST v1.1, but this is NOT
+a RECIST v1.1 implementation: because it never sees individual lesions it
+cannot sum target lesions, detect a new lesion, or judge non-target
+progression, and it cannot apply the 4-week confirmation rule itself (you
+may supply your own confirmation column). If your data list each lesion
+separately, use the lesion-level RECIST v1.1 analysis. It will be available
 in upcoming releases.
 }

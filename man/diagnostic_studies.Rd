@@ -7,11 +7,11 @@
 \format{
 A data frame with 5 rows and 5 variables:
 \describe{
-  \item{study_name}{Factor with unique study identifiers}
-  \item{tp}{Number of true positive results}
-  \item{fp}{Number of false positive results}
-  \item{fn}{Number of false negative results}
-  \item{tn}{Number of true negative results}
+\item{study_name}{Factor with unique study identifiers}
+\item{tp}{Number of true positive results}
+\item{fp}{Number of false positive results}
+\item{fn}{Number of false negative results}
+\item{tn}{Number of true negative results}
 }
 }
 \usage{

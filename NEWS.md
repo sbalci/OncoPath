@@ -1,3 +1,137 @@
+# OncoPath 1.0.82.02 (2026-09-16)
+
+Fixes from the 2026-09-16 jamovi library review. No statistics or options changed.
+
+## Package
+
+- **`waterfall` runs again, and the person-time, milestone and event-marker tables in `swimmerplot`
+  are back.** `magrittr` is back in Imports, and its `%>%` pipe is imported into the package
+  namespace. This fixes the 1.0.81 regression.
+- **R callers can use `%>%` and `%||%` from OncoPath again,** as in 1.0.6.
+- **The translation catalogs now hold only OncoPath's own strings.** 1.0.81 shipped the catalogs of
+  the whole ClinicoPath project: 31,690 entries and 7.3 MB of runtime files for a module that uses
+  about 1,500 strings. They now carry 1,510 entries (about 440 KB), and every Turkish translation is
+  kept.
+- **Five plots redraw and export without re-reading the dataset:** the `diagnosticmeta` forest, SROC
+  and funnel plots, the swimmer plot, and the `waterfall` spider plot. The waterfall plot still reads
+  the data when it redraws, because its annotation tracks come from it.
+- **The References panels now cite the packages each analysis uses:** `swimmerplot` adds data.table
+  and lubridate, and `waterfall` adds ggrepel, patchwork and survival.
+- **Notice titles are readable in the dark theme.** In `diagnosticmeta`, `ihcheterogeneity` and
+  `waterfall` the error and information titles used fixed colours that fell below 3:1 contrast on a
+  dark background; titles now take the theme's text colour, and the coloured border still shows the
+  severity. The Copy-Ready Report card in `swimmerplot` no longer paints a white background.
+
+## `diagnosticmeta`
+
+- **Summaries in Turkish (or any language other than English) no longer print "Inf", or stop, when a
+  likelihood ratio cannot be estimated.** The text chose its paragraphs by comparing a translated
+  word with English. Each performance band is now a complete translatable sentence. In English, the
+  final "do not both reach the good band" summary no longer repeats the two band names given above
+  it.
+- **The likelihood-ratio notes for a pooled specificity or sensitivity near 100% are no longer cut
+  short.** In languages without a translation they ended at "(specificity"; in Turkish the unstable
+  negative-LR note stopped the summary with a formatting error.
+
+## `ihcheterogeneity`
+
+- **Copy-ready report sentences read correctly in Turkish.** The correlation sentence repeated a
+  postposition ("ile ile") because a phrase was spliced into it. Each grade now has its own sentence.
+  Without a reference measurement, the English sentence reads "correlation with one another" instead
+  of "correlation between regional measurements".
+- **The note shown when the psych package is unavailable prints its confidence interval as
+  "95% CI 0.62 to 0.91"** instead of in square brackets, which could cut the sentence short.
+
+# OncoPath 1.0.81 (2026-09-09)
+
+## Known issue
+
+- **`waterfall` did not run in this release, and three `swimmerplot` tables failed.** `magrittr` was
+  dropped from Imports while both analyses still use its `%>%` pipe. jamovi stopped with
+  `could not find function "%>%"`, which affected all of `waterfall` and the person-time, milestone
+  and event-marker tables in `swimmerplot`. Fixed in 1.0.82.02.
+
+## `diagnosticmeta`
+
+- **The proportional-hazards SROC table now reports the area under the curve.** A new row gives
+  AUC = 1/(1 + theta) with a delta-method standard error. Before, the note quoted the formula but
+  the value never appeared. An AUC below 0.70 raises a strong warning. Below 0.50 it raises an error
+  asking you to check the TP/FP/FN/TN column assignment.
+- **I-squared in the Heterogeneity Assessment table now agrees with its tau-squared column.** It is
+  taken from metafor's fitted model instead of Higgins' (Q - df)/Q, so it matches a refit in
+  metafor. Values can differ from 1.0.6.
+- **The SROC plot now uses the same zero-cell-corrected counts as the forest plot and the bivariate
+  model,** so a zero-cell study no longer sits in a different place on the two figures.
+- **Fixed-effects fits no longer break the SROC plot.** When mada cannot summarise the model, the
+  pooled point comes from the fitted coefficients, and a caption explains that fixed effects give no
+  SROC curve (choose REML to get one).
+- **More problems now reach the Notices panel, and the panel refreshes when options change.** New
+  notices cover a failed bivariate (Reitsma) model, zero cells when no correction is selected (mada
+  then applies its default 0.5 inside the models), and missing required variables. Deeks' test with
+  fewer than 10 studies is now a warning that states k.
+
+## `ihcheterogeneity`
+
+- **Power analysis now uses the correlation shown in the Reproducibility table,** the mean of the
+  per-region Spearman correlations, instead of a second, different r. The Spearman variance
+  inflation (1.06) now applies to every row, so power for the small, medium and large-effect
+  scenarios is slightly lower and required sample sizes are about 6% higher.
+- **Two statistics no longer mislead at the extremes.** A constant non-zero paired difference now
+  shows no p-value instead of p = 0, because the t statistic is undefined. Per-case CVs above 500%
+  are no longer dropped from the mean CV, which biased it towards "homogeneous".
+- **The compartment variability test is named for what it tests:** "Brown-Forsythe test (spread of
+  per-case CV)" replaces "Levene's Test (CV Variance)". Its interpretation says it compares how spread
+  out the CVs are between compartments, not which compartment is more heterogeneous on average.
+- **A new Notices panel gives strong warnings when the ICC cannot be estimated or when there are
+  fewer than 10 cases.** Without an ICC the table shows a mean Spearman correlation, which is not a
+  reliability coefficient, and the ICC(3,1) consistency row no longer appears next to an ICC marked
+  "not estimable".
+- **Measurement columns set as nominal with a numeric data type are now accepted** instead of
+  stopping with "non-numeric argument to binary operator".
+
+## `swimmerplot`
+
+- **Median follow-up now shows its confidence interval and names the method used.** In Advanced
+  Clinical Metrics the reverse Kaplan-Meier median (Schemper & Smith 1996) carries its CI, and the
+  interpretation says whether that estimate is shown or the plain median of observed durations,
+  which understates follow-up.
+- **Outputs no longer go stale.** The export tables and copy-ready text refresh when Date format,
+  Time input type or Time display changes, and the Important Information panel clears when grouping,
+  event or analysis options change. A notice states that raw start and end values are used as-is in
+  the selected time unit. The exported summary drops `mean_follow_up`, a copy of `mean_duration`.
+
+## `waterfall`
+
+- **Tables no longer double their rows** when jamovi re-runs the analysis without clearing results
+  (Clinical Response Metrics, Time-to-Response & Duration of Response, Person-Time Analysis, both
+  group-comparison tables, and the "Unknown / not evaluable" response-category row).
+- **One patient whose measurements are all missing no longer empties the time-to-response and
+  duration-of-response table for the whole cohort.**
+- **The Clinical Significance panel counts only evaluable patients (CR/PR/SD/PD),** matching the
+  response-rate denominators; it previously also counted patients in the unknown category.
+- **Interface changes:** the regulatory-use disclaimer is a strong warning instead of a red error;
+  choosing a time variable no longer ticks Spider plot automatically; "Time-to-response & duration of
+  response (KM)" moved to Clinical Reporting Options; two Person-Time columns are renamed "Median time
+  to best response" and "Median time in response".
+
+## `swimmerplot` and `waterfall`
+
+- **Comparing three or more groups no longer prints "OR = NA".** Fisher's exact test gives an odds
+  ratio only for 2x2 tables, so these rows read "Fisher's exact test", and a note says the ORR and
+  DCR p-values are not adjusted for multiple testing. `waterfall` also explains when a test was
+  skipped.
+
+## Package
+
+- **English and Turkish translation catalogs ship with the module, and more of the output can be
+  translated:** translatable strings rose from 1 to 212 in `diagnosticmeta` and from 10 to 291 in
+  `ihcheterogeneity`, with smaller gains in `swimmerplot` and `waterfall`. Option labels use sentence
+  case, and panel headings take the theme colour so they stay readable in dark mode.
+- **Unused dependencies and helpers were removed:** `cluster` and `tidyr` are no longer in Imports,
+  and the exported helpers `raw_to_prob()`, `bootstrapIDI()` and `clinicopath_startup_message()`,
+  which no OncoPath analysis used, are gone. The re-exports of `%>%` and `%||%` were also dropped;
+  they return in 1.0.82.02.
+
 # OncoPath 1.0.6.04 (2026-08-23)
 
 All four analyses went through a full audit, fix, review and release-review cycle this week, each
