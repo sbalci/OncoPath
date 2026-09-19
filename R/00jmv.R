@@ -36,20 +36,6 @@
         `title`="data.table: Extension of `data.frame`", 
         `publisher`="[R package version 1.18.6.1]. Retrieved from https://CRAN.R-project.org/package=data.table", 
         `url`="https://CRAN.R-project.org/package=data.table"), 
-    `devtools`=list(
-        `type`="software", 
-        `author`="Hadley Wickham, Jim Hester, Winston Chang, Jennifer Bryan", 
-        `year`=2026, 
-        `title`="devtools: R package", 
-        `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=devtools", 
-        `url`="https://CRAN.R-project.org/package=devtools"), 
-    `ggrepel`=list(
-        `type`="software", 
-        `author`="Kamil Slowikowski", 
-        `year`=2026, 
-        `title`="ggrepel: R package", 
-        `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=ggrepel", 
-        `url`="https://CRAN.R-project.org/package=ggrepel"), 
     `ggswim`=list(
         `type`="software", 
         `author`="Richard Hanna, Stephan Kadauke, Ezra Porter", 
@@ -78,20 +64,6 @@
         `title`="metafor: R package", 
         `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=metafor", 
         `url`="https://CRAN.R-project.org/package=metafor"), 
-    `patchwork`=list(
-        `type`="software", 
-        `author`="Thomas Lin Pedersen", 
-        `year`=2025, 
-        `title`="patchwork: R package", 
-        `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=patchwork", 
-        `url`="https://CRAN.R-project.org/package=patchwork"), 
-    `psych`=list(
-        `type`="software", 
-        `author`="Revelle, W.", 
-        `year`=2019, 
-        `title`="psych: Procedures for Psychological, Psychometric, and Personality Research", 
-        `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=psych", 
-        `url`="https://CRAN.R-project.org/package=psych"), 
     `recist`=list(
         `type`="article", 
         `author`="Eisenhauer EA, Therasse P, Bogaerts J, Schwartz LH, Sargent D, Ford R, Dancey J, Arbuck S, Gwyther S, Mooney M, Rubinstein L, Shankar L, Dodd L, Kaplan R, Lacombe D, Verweij J.", 
@@ -101,18 +73,4 @@
         `volume`="45(2)", 
         `pages`="228-47", 
         `doi`="10.1016/j.ejca.2008.10.026", 
-        `url`="https://pubmed.ncbi.nlm.nih.gov/19097774/"), 
-    `survival`=list(
-        `type`="software", 
-        `author`="Terry M Therneau", 
-        `year`=2026, 
-        `title`="survival: Survival Analysis", 
-        `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=survival", 
-        `url`="https://CRAN.R-project.org/package=survival"), 
-    `trialplots_highwind`=list(
-        `type`="software", 
-        `author`="highwind", 
-        `year`=2025, 
-        `title`="Jamovi-TrialPlots: Plot data for clinical trials (jamovi module)", 
-        `publisher`="GitHub", 
-        `url`="https://github.com/highwindmx/Jamovi-TrialPlots"))
+        `url`="https://pubmed.ncbi.nlm.nih.gov/19097774/"))

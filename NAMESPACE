@@ -4,9 +4,7 @@ export("%>%")
 export("%||%")
 export(diagnosticmeta)
 export(diagnosticmetaClass)
-export(ihcheterogeneity)
 export(swimmerplot)
-export(waterfall)
 import(jmvcore)
 importFrom(R6,R6Class)
 importFrom(RColorBrewer,brewer.pal)
@@ -82,4 +80,3 @@ importFrom(utils,
   sessionInfo,
   tail
 )
-importFrom(withr,local_seed)
