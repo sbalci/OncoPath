@@ -478,11 +478,11 @@ msgstr ""
 
 #: R/swimmerplot-html.R
 msgid "≥20% increase in sum of target lesion diameters"
-msgstr ""
+msgstr "Hedef lezyon çapları toplamında ≥%20 artış"
 
 #: R/swimmerplot-html.R
 msgid "≥30% decrease in sum of target lesion diameters"
-msgstr ""
+msgstr "Hedef lezyon çapları toplamında ≥%30 azalma"
 
 #: swimmerplot/results/advancedMetrics.columns.title
 msgid "95% CI"
@@ -1638,6 +1638,14 @@ msgid ""
 "model-consistent statement of how much studies differ, use the prediction "
 "interval above and the prediction region on the SROC plot."
 msgstr ""
+"I² burada raporlanmamıştır: tek değişkenli bir I², duyarlılık ve özgüllük "
+"arasındaki çalışma içi korelasyonu yok sayar ve iki değişkenli modeli "
+"tanımlamaz (Zwinderman & Bossuyt 2008). Heterojenlik Değerlendirmesi tablosu "
+"Q, tau-kare ve duyarlılık ile özgüllük için AYRI AYRI hesaplanan tek "
+"değişkenli bir I² raporlar - bunları iki değişkenli modelin heterojenliği "
+"olarak değil, her bir marjinin tanımlayıcı özetleri olarak okuyun. "
+"Çalışmaların ne kadar farklılaştığına dair modelle tutarlı bir ifade için "
+"yukarıdaki tahmin aralığını ve SROC grafiğindeki tahmin bölgesini kullanın."
 
 #: R/swimmerplot-html.R
 msgid ""

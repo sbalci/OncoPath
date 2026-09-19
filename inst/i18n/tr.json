@@ -203,10 +203,10 @@
                 "<strong>Havuzlanmış duyarlılığınız %%%.1f%s</strong> tarama amacıyla <em>orta</em> olarak sınıflandırılmıştır."
             ],
             "≥20% increase in sum of target lesion diameters": [
-                ""
+                "Hedef lezyon çapları toplamında ≥%20 artış"
             ],
             "≥30% decrease in sum of target lesion diameters": [
-                ""
+                "Hedef lezyon çapları toplamında ≥%30 azalma"
             ],
             "95% CI": [
                 "%95 GA"
@@ -893,7 +893,7 @@
                 "I² (%)"
             ],
             "I² is not reported here: a univariate I² ignores the within-study correlation between sensitivity and specificity and does not describe the bivariate model (Zwinderman & Bossuyt 2008). The Heterogeneity Assessment table reports Q, tau-squared and a univariate I² computed SEPARATELY for sensitivity and for specificity - read those as descriptive summaries of each margin, not as the heterogeneity of the bivariate model. For a model-consistent statement of how much studies differ, use the prediction interval above and the prediction region on the SROC plot.": [
-                ""
+                "I² burada raporlanmamıştır: tek değişkenli bir I², duyarlılık ve özgüllük arasındaki çalışma içi korelasyonu yok sayar ve iki değişkenli modeli tanımlamaz (Zwinderman & Bossuyt 2008). Heterojenlik Değerlendirmesi tablosu Q, tau-kare ve duyarlılık ile özgüllük için AYRI AYRI hesaplanan tek değişkenli bir I² raporlar - bunları iki değişkenli modelin heterojenliği olarak değil, her bir marjinin tanımlayıcı özetleri olarak okuyun. Çalışmaların ne kadar farklılaştığına dair modelle tutarlı bir ifade için yukarıdaki tahmin aralığını ve SROC grafiğindeki tahmin bölgesini kullanın."
             ],
             "Ideal for oncology trials, treatment response visualization, progression tracking, and regulatory submissions.": [
                 "Onkoloji çalışmaları, tedavi yanıtı görselleştirmesi, progresyon takibi ve ruhsatlandırma başvuruları için idealdir."
