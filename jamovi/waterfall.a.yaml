@@ -1,0 +1,581 @@
+---
+name: waterfall
+title: 'Treatment Response: Patient-Level Burden'
+menuGroup: OncoPath
+menuSubgroup: 'Patient Follow-Up Plots'
+menuSubtitle: 'One burden value per patient or visit'
+version: '1.0.81'
+jas: '1.2'
+
+description:
+    main: >
+        Use this when you have one tumour burden number per patient: either a percent
+        change from baseline you have already calculated (one row per patient), or a single
+        measurement recorded at each visit (one row per patient per visit). It draws waterfall
+        and spider plots, assigns each patient a best response from their largest shrinkage
+        from baseline, and reports ORR and DCR with exact binomial confidence intervals,
+        group comparison, time to response and duration of response. When a time variable is
+        supplied, progression is measured against the patient's smallest recorded burden
+        (nadir), not against baseline.
+        Categories are named CR, PR, SD and PD and the thresholds are adapted from RECIST
+        v1.1, but this is NOT a RECIST v1.1 implementation: because it never sees individual
+        lesions it cannot sum target lesions, detect a new lesion, or judge non-target
+        progression, and it cannot apply the 4-week confirmation rule (a confirmation column
+        only adds markers to the plot; to count confirmed responses, supply confirmed
+        categories through the category override). If your data list each lesion separately, use the
+        lesion-level RECIST v1.1 analysis. It will be available in upcoming releases.
+    # Kept commented, as in the great majority of this module's .a.yaml files:
+    # `dontrun: false` emits a BARE \examples{} block, so R CMD check runs it.
+    # waterfall ships to OncoPath, which does NOT carry waterfall_test (only
+    # waterfall_percentage_basic / waterfall_raw_longitudinal), so the example
+    # fails there on every check. Kept correct here so uncommenting works if the
+    # dataset is ever shipped.
+    # R:
+    #     dontrun: true
+    #     usage: |
+    #         data('waterfall_test', package = 'OncoPath')
+
+    #         waterfall(
+    #             data = waterfall_test,
+    #             patientID = 'patientID',
+    #             responseVar = 'best_response',
+    #             groupVar = 'treatment')
+
+options:
+    - name: data
+      type: Data
+      description:
+          R: >
+            The data as a data frame.
+          jamovi: >
+            The data as a data frame.
+
+    - name: patientID
+      title: Patient ID variable
+      type: Variable
+      default: null
+      suggested: [nominal]
+      permitted: [numeric, factor, id]
+      description:
+          R: >
+            Variable containing patient identifiers (e.g., PT001, Patient_1, Study_ID).
+            Each patient should have a unique identifier for proper analysis.
+          jamovi: >
+            Variable containing patient identifiers (e.g., PT001, Patient_1, Study_ID).
+            Each patient should have a unique identifier for proper analysis.
+
+    - name: responseVar
+      title: Response value (raw or percentage)
+      type: Variable
+      default: null
+      suggested: [continuous]
+      permitted: [numeric]
+      description:
+          R: >
+            Response variable: either raw tumor measurements (mm, cm, sum of diameters) or
+            pre-calculated percentage changes from baseline.
+            For raw measurements: requires time variable with baseline at time = 0.
+            For percentages: negative values = tumor shrinkage (good response),
+            positive values = tumor growth (poor response). Example: -30 means 30 percent decrease.
+          jamovi: >
+            Response variable: tumor measurements or percentage changes from baseline.
+            • Raw measurements: actual tumor sizes (mm, cm, sum of diameters)
+            • Percentage changes: pre-calculated changes (-30 = 30 percent shrinkage = good response)
+            Tip: Use percentage format if changes already calculated, raw format for actual measurements.
+
+
+    - name: timeVar
+      title: Time variable (required for raw input and spider plot)
+      type: Variable
+      suggested: [continuous]
+      permitted: [numeric]
+      default: null
+      description:
+          R: >
+            Time point of measurement (e.g., months from baseline, days from treatment start).
+            Required for spider plot and raw measurement processing. Baseline should be time = 0.
+          jamovi: >
+            Time point of measurement for tracking response over time.
+            • Examples: months from baseline, weeks from treatment start
+            • Required for: Spider plot visualization and raw measurement processing
+            • Format: Baseline = 0, follow-up = positive numbers (1, 2, 3, etc.)
+            Tip: Spider plots show treatment response trajectories over time.
+
+    - name: groupVar
+      title: Group variable
+      type: Variable
+      suggested: [nominal, ordinal]
+      permitted: [factor, numeric]
+      default: null
+      description:
+          R: >
+            Optional grouping variable for coloring bars by patient groups (e.g., treatment arms, disease subtypes).
+            When specified, overrides RECIST category coloring to show group-based colors.
+          jamovi: >
+            Optional grouping variable for coloring bars by patient groups (e.g., treatment arms, disease subtypes).
+            When specified, overrides RECIST category coloring to show group-based colors.
+
+
+    - name: inputType
+      title: Data input type
+      type: List
+      options:
+        - title: "Percentage Changes"
+          name: percentage
+        - title: "Raw Measurements"
+          name: raw
+      default: percentage
+      description:
+          R: >
+            Specify data format: 'raw' for actual tumor measurements (requires time variable)
+            or 'percentage' for pre-calculated percentage changes from baseline
+          jamovi: >
+            Choose your data format:
+            • Percentage Changes: Pre-calculated changes from baseline (-30 = 30 percent shrinkage)
+            • Raw Measurements: Actual tumor sizes (requires Time Variable for baseline calculation)
+            Most oncology studies use percentage changes. Use raw measurements only if you have
+            actual tumor measurements and want automatic percentage calculation.
+
+
+    - name: sortBy
+      title: Sort by
+      type: List
+      options:
+        - title: Best Response
+          name: response
+        - title: Patient ID
+          name: id
+      default: response
+      description:
+          R: >
+            Sort the waterfall plot by best response or patient ID.
+          jamovi: >
+            Sort the waterfall plot by best response or patient ID.
+
+    - name: sortDirection
+      title: Sort direction
+      type: List
+      options:
+        - title: "Conventional (worst on left, best on right)"
+          name: conventional
+        - title: "Reverse (best on left, worst on right)"
+          name: reverse
+      default: conventional
+      description:
+          R: >
+            Direction for the response sort. 'conventional' places the highest
+            (worst) response on the left and the lowest (best, most negative) on
+            the right, following the standard oncology waterfall convention.
+          jamovi: >
+            Direction for the response sort. Conventional = worst (highest) on the
+            left, best (lowest/most negative) on the right — the standard oncology
+            waterfall layout.
+
+    - name: showBaseline
+      title: Baseline (Y = 0) line
+      type: Bool
+      default: true
+      description:
+          R: >
+            Draw a horizontal reference line at 0 percent change to mark the
+            baseline.
+          jamovi: >
+            Draw a horizontal reference line at 0% change to mark the baseline.
+
+    - name: confirmationVar
+      title: Confirmation status (optional)
+      type: Variable
+      suggested: [nominal]
+      permitted: [factor]
+      default: NULL
+      description:
+          R: >
+            Optional categorical variable indicating response confirmation status
+            (e.g., Confirmed vs Unconfirmed CR/PR). A distinct marker is drawn at
+            each bar tip according to the level of this variable. The markers are
+            display only: ORR and DCR are not changed. To count only confirmed
+            responses, give the categories through Response category override.
+            One value per patient (the first non-missing value is used).
+          jamovi: >
+            Optional variable indicating confirmation status (e.g., Confirmed vs
+            Unconfirmed). A distinct marker is drawn at each bar tip per level;
+            ORR and DCR are not changed (use the category override for that).
+
+    - name: ongoingVar
+      title: On-Treatment / Ongoing (optional)
+      type: Variable
+      suggested: [nominal]
+      permitted: [factor, numeric]
+      default: NULL
+      description:
+          R: >
+            Optional variable flagging patients still on treatment / with an
+            ongoing response. Truthy values (TRUE, non-zero, or text matching
+            yes/y/true/on/ongoing/1) draw an arrow pointing away from the bar tip.
+            One value per patient (the first non-missing value is used).
+          jamovi: >
+            Optional flag for patients still on treatment / ongoing response.
+            'Yes'/TRUE/1 draws an arrow pointing away from the bar tip.
+
+    - name: responseCategoryVar
+      title: Response category override (optional)
+      type: Variable
+      suggested: [nominal]
+      permitted: [factor]
+      default: NULL
+      description:
+          R: >
+            Optional per-patient RECIST category (CR/PR/SD/PD). When supplied it
+            overrides the category computed from the percentage value, so a patient
+            with target-lesion shrinkage can still be classified PD (e.g., a new
+            lesion). Affects bar coloring, response metrics (ORR/DCR), time to
+            response and duration of response. One value per patient: the first
+            non-missing value is used and conflicting values are reported.
+          jamovi: >
+            Optional per-patient RECIST category (CR/PR/SD/PD). When supplied it
+            overrides the category computed from the % value — e.g., a shrinking
+            tumor can still be PD due to a new lesion. Affects coloring and metrics.
+
+    - name: showCategoryLabels
+      title: Response category above each bar
+      type: Bool
+      default: false
+      description:
+          R: >
+            Print the response category (CR, PR, SD, PD) above each waterfall bar, so
+            the category can be read directly instead of being mapped back from the
+            bar colour.
+
+    - name: showSpiderLabels
+      title: Patient ID labels on spider lines
+      type: Bool
+      default: false
+      description:
+          R: >
+            Label the end of every spider trajectory with its patient ID, so an
+            outlying line can be traced to a patient without reading a large legend.
+
+    - name: annotationVars
+      title: Annotation tracks (below the bars)
+      type: Variables
+      default: NULL
+      description:
+          R: >
+            Optional patient-level variables drawn as coloured tracks beneath the
+            waterfall bars, aligned to the same patient ordering. One row of tiles per
+            variable. Use for biomarker status, mutation, prior therapy, treatment arm
+            or any covariate you want read off against each patient's response.
+          jamovi: >
+            Optional. Variables shown as coloured annotation rows under the waterfall,
+            aligned with each patient's bar.
+
+    - name: showThresholds
+      title: RECIST thresholds
+      type: Bool
+      default: true
+      description:
+          R: >
+            Show +20 percent and -30 percent RECIST v1.1 thresholds as dashed lines
+            on the waterfall and spider plots. Helps identify Progressive Disease (PD)
+            and Partial Response (PR) cutoffs.
+          jamovi: >
+            Show RECIST v1.1 threshold lines on plots:
+            • -30 percent line: Partial Response (PR) cutoff - tumor shrinkage threshold
+            • +20 percent line: Progressive Disease (PD) cutoff - tumor growth threshold
+            Recommended: Keep enabled for clinical interpretation
+
+    - name: labelOutliers
+      title: Large-change labels
+      type: Bool
+      default: false
+      description:
+          R: >
+            Label responses exceeding the specified threshold.
+          jamovi: >
+            Label responses exceeding the specified threshold.
+
+    - name: showMedian
+      title: Median response
+      type: Bool
+      default: false
+      description:
+          R: >
+            Show the median response as a horizontal line on the waterfall plot and
+            as a median trajectory on the spider plot.
+          jamovi: >
+            Show the median response (waterfall: horizontal line; spider: median
+            trajectory).
+
+    - name: showCI
+      title: Confidence interval
+      type: Bool
+      default: false
+      description:
+          R: >
+            Show confidence interval around median response.
+          jamovi: >
+            Show confidence interval around median response.
+
+    - name: minResponseForLabel
+      title: Minimum response for labels (percent)
+      type: Number
+      default: 50
+      min: 0
+      max: 100
+      description:
+          R: >
+            Minimum response value for labels to be displayed.
+          jamovi: >
+            Minimum response value for labels to be displayed.
+
+
+    - name: colorBy
+      title: Color by
+      type: List
+      options:
+        - title: RECIST Categories (CR/PR/SD/PD)
+          name: recist
+        - title: Patient Groups
+          name: group
+      default: recist
+      description:
+          R: >
+            Coloring method: RECIST categories or patient groups (requires Group Variable).
+          jamovi: >
+            Coloring method: RECIST categories or patient groups (requires Group Variable).
+
+    - name: colorScheme
+      title: Color scheme
+      type: List
+      options:
+        - title: jamovi
+          name: jamovi
+        - title: RECIST (teal/purple/magenta/orange)
+          name: recist
+        - title: Simple (teal response, orange progression)
+          name: simple
+        - title: Colorful (Group Colors)
+          name: colorful
+        - title: Colorblind-Safe (Okabe-Ito)
+          name: colorblind
+      default: jamovi
+      description:
+          R: >
+            Color scheme for waterfall plot. 'Colorful' provides distinct colors for group-based coloring.
+          jamovi: >
+            Color scheme for waterfall plot. 'Colorful' provides distinct colors for group-based coloring.
+
+
+    - name: barAlpha
+      title: Bar transparency
+      type: Number
+      default: 1
+      min: 0
+      max: 1
+      description:
+          R: >
+            Transparency of bars in waterfall plot.
+          jamovi: >
+            Transparency of bars in waterfall plot.
+
+    - name: barWidth
+      title: Bar width
+      type: Number
+      default: 0.7
+      min: 0.1
+      max: 1
+      description:
+          R: >
+            Width of bars in waterfall plot.
+          jamovi: >
+            Width of bars in waterfall plot.
+
+    - name: showWaterfallPlot
+      title: Waterfall plot
+      type: Bool
+      default: true
+      description:
+          R: >
+            Display the waterfall plot showing best response for each patient.
+          jamovi: >
+            Display the waterfall plot showing best response for each patient.
+
+    - name: showSpiderPlot
+      title: Spider plot
+      type: Bool
+      default: false
+      description:
+          R: >
+            Display spider plot showing response trajectories over time (requires time variable).
+          jamovi: >
+            Display spider plot showing response trajectories over time (requires time variable).
+
+    - name: spiderColorBy
+      title: Spider plot color by
+      type: List
+      options:
+        - title: Response Status (Responder/Non-responder)
+          name: response
+        - title: Patient Groups
+          name: group
+      default: response
+      description:
+          R: >
+            Coloring method for spider plot: Response status or patient groups.
+            For backward compatibility, defaults to response status coloring.
+          jamovi: >
+            Coloring method for spider plot: Response status or patient groups.
+            For backward compatibility, defaults to response status coloring.
+
+    - name: spiderColorScheme
+      title: Spider plot color scheme
+      type: List
+      options:
+        - title: Classic (teal/orange)
+          name: classic
+        - title: jamovi Theme
+          name: jamovi
+        - title: Colorful (for groups)
+          name: colorful
+        - title: Colorblind-Safe (Okabe-Ito)
+          name: colorblind
+      default: classic
+      description:
+          R: >
+            Color scheme for spider plot lines and points.
+          jamovi: >
+            Color scheme for spider plot lines and points.
+
+    - name: timeUnitLabel
+      title: Spider plot time unit label
+      type: List
+      options:
+        - title: Generic (Time)
+          name: generic
+        - title: Days
+          name: days
+        - title: Weeks
+          name: weeks
+        - title: Months
+          name: months
+        - title: Years
+          name: years
+      default: generic
+      description:
+          R: >
+            Label to use for the spider plot time axis. Does not rescale data; only affects axis labeling.
+          jamovi: >
+            Choose the time unit label for the spider plot x-axis (for display only). Does not change your data values.
+
+    # Clinical Reporting Options
+    - name: generateCopyReadyReport
+      title: Copy-ready report
+      type: Bool
+      default: false
+      description:
+          R: >
+            Generate publication-ready result sentences with statistical details
+          jamovi: >
+            Generate copy-ready sentences for manuscripts and reports:
+            • Auto-filled with your results (ORR, DCR, confidence intervals)
+            • Publication-ready language following oncology standards
+            • Copy-paste directly into manuscripts or clinical reports
+            Recommended for publication or clinical documentation
+
+    - name: showClinicalSignificance
+      title: Clinical significance thresholds
+      type: Bool
+      default: false
+      description:
+          R: >
+            Display clinical significance context for ORR and DCR: the range of rates
+            compatible with the data (exact confidence interval) and a sample-size note.
+          jamovi: >
+            Add clinical significance context to results:
+            • The range of response rates compatible with the data (exact confidence interval)
+            • A reminder to compare with the rate expected in your tumour type and setting
+            • Sample size assessment
+
+    - name: showConfidenceIntervals
+      title: Confidence intervals for clinical metrics
+      type: Bool
+      default: true
+      description:
+          R: >
+            Calculate and display exact binomial confidence intervals for ORR and DCR
+          jamovi: >
+            Add statistical confidence intervals to clinical metrics:
+            • Exact binomial CIs for ORR and DCR (more accurate than normal approximation)
+            • Helps assess precision of response rate estimates
+            • Essential for clinical trial reporting
+            Recommended: Keep enabled for statistical rigor
+
+    - name: enableGuidedMode
+      title: Guided analysis mode
+      type: Bool
+      default: false
+      description:
+          R: >
+            Enable step-by-step guidance for new users
+          jamovi: >
+            Enable guided mode with step-by-step instructions:
+            • Walks through variable selection and options
+            • Provides contextual help and best practice recommendations
+            • Includes misuse detection and warnings
+            Recommended for new users or complex analyses
+
+    - name: showExplanations
+      title: Analysis explanations
+      type: Bool
+      default: false
+      description:
+          R: >
+            Display comprehensive explanation of what this analysis does, when to use it,
+            data requirements, and key assumptions/limitations
+          jamovi: >
+            Show detailed explanations at the bottom of results:
+            • What this analysis does (waterfall and spider plots)
+            • When to use this analysis (clinical trials, response monitoring)
+            • Data requirements (patient ID, response data, time variable)
+            • Key assumptions and limitations (RECIST thresholds, baseline handling)
+            Recommended for new users or when documenting analysis methods
+
+    - name: showResponseDuration
+      title: Time-to-response & duration of response (KM)
+      type: Bool
+      default: false
+      description:
+          R: >
+            Show a censoring-aware time-to-response (TTR) and duration-of-response (DoR)
+            table. DoR is summarized with the Kaplan-Meier median (accounting for responders
+            still in response at last follow-up), which the naive median understates.
+          jamovi: >
+            Add a dedicated efficacy table with:
+            • Median time to first response (RECIST PR or better)
+            • Kaplan-Meier median duration of response (censoring-aware)
+            • Number of responders and events
+            Requires a time variable and raw (per-visit) input.
+
+    - name: addResponseCategory
+      title: Response category column
+      type: Output
+      description:
+          R: >
+            Add a new variable to the data frame indicating response category (CR/PR/SD/PD).
+          jamovi: >
+            Add RECIST response categories (CR/PR/SD/PD) as a new variable to your dataset.
+
+    - name: seed
+      title: Random seed
+      type: Integer
+      default: 123
+      description:
+          R: >
+            Random seed for the reproducible bootstrap confidence interval of the
+            median response (used when 'Show Confidence Interval' is enabled).
+            Change it to draw a different bootstrap sample; the default (123)
+            reproduces the previous fixed behaviour.
+
+
+
+...

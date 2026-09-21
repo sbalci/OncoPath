@@ -237,7 +237,14 @@ test_that("diagnostic models honor estimator choices and zero-cell guards", {
     meta_regression = TRUE,
     confidence_level = 90,
     method = "fixed",
-    zero_cell_correction = "none"
+    zero_cell_correction = "none",
+    # These three panels are only built when their own option is ticked
+    # (2026-09-20: they used to be built unconditionally, about 31 KB of HTML
+    # written into every .omv whether or not anyone could see it). The symbol
+    # assertions below read their content, so the boxes have to be ticked.
+    show_interpretation = TRUE,
+    show_methodology = TRUE,
+    show_plot_explanations = TRUE
   )
 
   phm <- as.data.frame(result$hsrocresults)
@@ -261,6 +268,10 @@ test_that("diagnostic models honor estimator choices and zero-cell guards", {
     result$about$content,
     result$funnelplot_explanation$content
   )
+  # Assert the panels are populated BEFORE asserting what is in them: an option-gated
+  # panel returns "", which silently satisfies the "&#" check and turns the two symbol
+  # checks into cryptic failures that name the symbol rather than the empty panel.
+  expect_true(all(nzchar(symbol_outputs)))
   expect_true(any(grepl(intToUtf8(0x2265), symbol_outputs, fixed = TRUE)))
   expect_true(any(grepl(intToUtf8(0x00D7), symbol_outputs, fixed = TRUE)))
   expect_false(any(grepl("&#", symbol_outputs, fixed = TRUE)))

@@ -1,0 +1,438 @@
+---
+name:  waterfall
+title: Treatment Response Analysis
+jrs:   '1.1'
+
+items:
+
+
+    - name: guidedAnalysis
+      title: Guided Analysis Steps
+      type: Html
+      visible: (enableGuidedMode)
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - enableGuidedMode
+
+
+    - name: todo
+      title: Treatment Response Analysis Guide
+      type: Html
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - enableGuidedMode
+      visible: (enableGuidedMode:FALSE)
+
+    - name: todo2
+      title: Validation Messages
+      type: Html
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - enableGuidedMode
+      visible: (enableGuidedMode:FALSE)
+
+    - name: clinicalSummary
+      title: Clinical Summary
+      type: Html
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - colorScheme
+         - groupVar
+         - responseCategoryVar
+
+    - name: aboutAnalysis
+      title: About This Analysis
+      type: Html
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - enableGuidedMode
+      visible: (enableGuidedMode:FALSE)
+
+    - name: summaryTable
+      title: Response Categories (threshold-based, not full RECIST v1.1)
+      type: Table
+      rows: 0
+      columns:
+        - name: category
+          title: "Category"
+          type: text
+        - name: 'n'
+          title: "Number of Patients"
+          type: integer
+        - name: percent
+          title: "Percentage"
+          type: number
+          format: percent
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - responseCategoryVar
+
+
+    # - name: summaryTable_explanation
+    #   title: summaryTable
+    #   type: Html
+    #   clearWith:
+    #      - patientID
+    #      - responseVar
+    #      - timeVar
+    #      - inputType
+
+
+
+    - name: personTimeTable
+      title: Person-Time Analysis
+      type: Table
+      rows: 0
+      # Shown procedurally (option-driven): requires a time variable AND raw
+      # per-visit input; declared hidden so the empty shell never renders in the
+      # welcome state or in percentage mode, where it can never be populated.
+      visible: false
+      columns:
+        - name: category
+          title: "Response Category"
+          type: text
+        - name: patients
+          title: "Patients"
+          type: integer
+        - name: patient_pct
+          title: "% Patients"
+          type: text
+        - name: person_time
+          title: "Person-Time"
+          type: text
+        - name: time_pct
+          title: "% Time"
+          type: text
+        - name: median_time
+          title: "Median time to best response"
+          type: text
+        - name: median_duration
+          title: "Median DoR (Kaplan-Meier)"
+          type: text
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - responseCategoryVar
+
+
+    - name: clinicalMetrics
+      title: Clinical Response Metrics
+      type: Table
+      rows: 0
+      columns:
+        - name: metric
+          title: "Metric"
+          type: text
+        - name: value
+          title: "Value"
+          type: text
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - responseCategoryVar
+
+    - name: waterfallplot
+      title: 'Waterfall Plot'
+      type: Image
+      width: 800
+      height: 500
+      renderFun: .waterfallplot
+      # library-audit 2026-09-16 OncoPath [LOW] REJECTED: .annotationTrack() reads self$data at render;
+      #   without the flag the tracks vanish on resize/.omv reopen/export (guide section 15)
+      requiresData: true
+      visible: (showWaterfallPlot)
+      clearWith:
+        - patientID
+        - responseVar
+        - sortBy
+        - sortDirection
+        - showThresholds
+        - labelOutliers
+        - colorBy
+        - colorScheme
+        - showMedian
+        - showCI
+        - showBaseline
+        - confirmationVar
+        - ongoingVar
+        - responseCategoryVar
+        # .waterfallplot reads these too; without them the rendered image does
+        # not refresh when the user changes them.
+        - barAlpha
+        - barWidth
+        - minResponseForLabel
+        - seed
+        - groupVar
+        - inputType
+        # timeVar changes how percent change is derived, so it changes the bars
+        - timeVar
+        - annotationVars
+        - showCategoryLabels
+
+    - name: copyReadyReport
+      title: Copy-Ready Report Sentences
+      type: Html
+      visible: (generateCopyReadyReport)
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - generateCopyReadyReport
+         - responseCategoryVar
+
+    - name: clinicalSignificance
+      title: Clinical Significance Assessment
+      type: Html
+      visible: (showClinicalSignificance)
+      clearWith:
+         - patientID
+         - responseVar
+         # timeVar and inputType change how the response (and so ORR/DCR) is
+         # derived; without them the significance text goes stale.
+         - timeVar
+         - inputType
+         - showClinicalSignificance
+         - responseCategoryVar
+
+    - name: clinicalGlossary
+      title: Clinical Terms & Definitions
+      type: Html
+      visible: (showClinicalSignificance)
+      clearWith:
+         - patientID
+         - responseVar
+         - showClinicalSignificance
+
+
+
+    - name: enhancedClinicalMetrics
+      title: Enhanced Clinical Response Metrics
+      type: Table
+      rows: 0
+      columns:
+        - name: metric
+          title: "Metric"
+          type: text
+        - name: value
+          title: "Value"
+          type: text
+        - name: ci_lower
+          title: "95% CI Lower"
+          type: number
+        - name: ci_upper
+          title: "95% CI Upper"
+          type: number
+        - name: interpretation
+          title: "Clinical Interpretation"
+          type: text
+      visible: (showConfidenceIntervals)
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - showConfidenceIntervals
+         - responseCategoryVar
+
+    - name: groupComparisonTable
+      title: Group Comparison Analysis
+      type: Table
+      rows: 0
+      columns:
+        - name: group
+          title: "Group"
+          type: text
+        - name: n_patients
+          title: "N"
+          type: integer
+        - name: orr
+          title: "ORR (%)"
+          type: number
+        - name: orr_ci
+          title: "95% CI"
+          type: text
+        - name: dcr
+          title: "DCR (%)"
+          type: number
+        - name: dcr_ci
+          title: "95% CI"
+          type: text
+      visible: (groupVar)
+      clearWith:
+         - patientID
+         - responseVar
+         - groupVar
+         - inputType
+         # with raw input the per-group responses derive from the timeVar==0
+         # baseline, so a changed time variable changes every group rate
+         - timeVar
+         - responseCategoryVar
+
+    - name: groupComparisonTest
+      title: Group Comparison Statistical Test
+      type: Table
+      rows: 0
+      columns:
+        - name: comparison
+          title: "Comparison"
+          type: text
+        - name: test_statistic
+          title: "Test Statistic"
+          type: text
+        - name: p_value
+          title: "p-value"
+          type: number
+          format: zto,pvalue
+        - name: interpretation
+          title: "Clinical Interpretation"
+          type: text
+      visible: (groupVar)
+      clearWith:
+         - patientID
+         - responseVar
+         - groupVar
+         - inputType
+         - timeVar
+         - responseCategoryVar
+
+
+    - name: spiderplot
+      title: 'Spider Plot - Response Over Time'
+      type: Image
+      width: 800
+      height: 500
+      renderFun: .spiderplot
+      visible: (showSpiderPlot)
+      # Note: Spider plot requires both showSpiderPlot=true AND a time variable for meaningful trajectories
+      clearWith:
+        - patientID
+        - responseVar
+        - timeVar
+        - inputType
+        - sortBy
+        - groupVar
+        - showThresholds
+        - labelOutliers
+        - colorBy
+        - colorScheme
+        - spiderColorBy
+        - spiderColorScheme
+        - timeUnitLabel
+        - showMedian
+        - showCI
+        # .spiderplot reads this from state; without it the rendered image does
+        # not refresh when the user toggles the per-line patient-ID labels.
+        - showSpiderLabels
+
+
+
+    - name: naturalLanguageSummary
+      title: Treatment Response Summary
+      type: Html
+      visible: (showExplanations)
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - groupVar
+         - showExplanations
+         - responseCategoryVar
+
+    - name: explanations
+      title: Analysis Guide
+      type: Html
+      visible: (showExplanations)
+      clearWith:
+         - showExplanations
+
+    - name: responseDurationTable
+      title: Time-to-Response & Duration of Response
+      type: Table
+      visible: (showResponseDuration)
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - responseCategoryVar
+      columns:
+         - name: metric
+           title: "Metric"
+           type: text
+         - name: value
+           title: "Value"
+           type: number
+         - name: detail
+           title: "Detail"
+           type: text
+
+    - name: addResponseCategory
+      title: Add Response Category to Data
+      type: Output
+      varTitle: ResponseCategory
+      varDescription: Threshold-based response category adapted from RECIST v1.1 (not a full RECIST v1.1 assessment).
+      measureType: nominal
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         # the override rewrites exported categories; without this entry the
+         # isNotFilled() guard keeps a stale column after the override changes
+         - responseCategoryVar
+
+
+    # - name: mydataview
+    #   title: mydataview
+    #   type: Preformatted
+
+
+    # Notice outputs converted to HTML to avoid serialization errors
+    - name: notices
+      title: Important Information
+      type: Html
+      clearWith:
+         - patientID
+         - responseVar
+         - timeVar
+         - inputType
+         - groupVar
+         - responseCategoryVar
+         - showSpiderPlot
+         - showConfidenceIntervals
+         - showResponseDuration
+         - showCI
+
+
+refs:
+    - ClinicoPathJamoviModule
+    - recist
+    - trialplots_highwind
+    - ggrepel
+    - patchwork
+    - survival
+...

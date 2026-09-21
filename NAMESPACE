@@ -4,7 +4,9 @@ export("%>%")
 export("%||%")
 export(diagnosticmeta)
 export(diagnosticmetaClass)
+export(ihcheterogeneity)
 export(swimmerplot)
+export(waterfall)
 import(jmvcore)
 importFrom(R6,R6Class)
 importFrom(RColorBrewer,brewer.pal)
@@ -39,6 +41,7 @@ importFrom(ggswim,
 importFrom(grDevices,colorRampPalette)
 importFrom(grid,viewport)
 importFrom(htmltools,tagList)
+importFrom(jmvcore,.)
 importFrom(lubridate,
   dmy,
   dym,
@@ -80,3 +83,4 @@ importFrom(utils,
   sessionInfo,
   tail
 )
+importFrom(withr,local_seed)

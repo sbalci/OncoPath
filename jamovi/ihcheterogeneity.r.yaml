@@ -1,0 +1,467 @@
+---
+name: ihcheterogeneity
+title: IHC Heterogeneity Analysis
+jrs: '1.1'
+
+items:
+    - name: welcome
+      title: ""
+      type: Html
+      description: Welcome screen shown when no variables selected
+
+    - name: notices
+      title: Notices
+      type: Html
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - analysis_type
+        - sample_size_planning
+
+    - name: interpretation
+      title: Clinical Interpretation and Analysis Summary
+      type: Html
+      visible: true
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - cv_threshold
+        - correlation_threshold
+        - bias_margin
+        - analysis_type
+        - sampling_strategy
+        - generate_recommendations
+
+    - name: report_sentences
+      title: Copy-Ready Report Sentences
+      type: Html
+      visible: (showReportSentences)
+      description: Pre-formatted sentences ready for clinical reports and publications
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - cv_threshold
+        - correlation_threshold
+        - bias_margin
+        - analysis_type
+
+    - name: assumptions
+      title: Methodology & Assumptions
+      type: Html
+      visible: (showAssumptions)
+      description: Analysis assumptions, data requirements, and methodological considerations
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - cv_threshold
+        - correlation_threshold
+        - bias_margin
+        - analysis_type
+
+    - name: summary
+      title: Summary (Plain-Language)
+      type: Html
+      visible: false
+      description: Natural-language summary of heterogeneity analysis results
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - cv_threshold
+        - correlation_threshold
+        - bias_margin
+        - analysis_type
+
+    - name: glossary
+      title: Statistical Glossary
+      type: Html
+      visible: false
+      description: Definitions of key statistical terms used in the analysis
+
+    - name: reproducibilitytable
+      title: Reproducibility Assessment
+      type: Table
+      description: Correlation and reliability metrics
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - cv_threshold
+        - correlation_threshold
+        - analysis_type
+      columns:
+        - name: metric
+          title: 'Reproducibility Metric'
+          type: text
+        - name: value
+          title: 'Value'
+          type: number
+          format: zto
+        - name: ci_lower
+          title: '95% CI Lower'
+          type: number
+          format: zto
+        - name: ci_upper
+          title: '95% CI Upper'
+          type: number
+          format: zto
+        - name: interpretation
+          title: 'Clinical Interpretation'
+          type: text
+
+    - name: samplingbiastable
+      title: Sampling Bias Analysis
+      type: Table
+      description: Systematic bias assessment between methods
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - bias_margin
+        - analysis_type
+      columns:
+        - name: comparison
+          title: 'Comparison'
+          type: text
+        - name: n
+          title: 'N'
+          type: integer
+        - name: mean_diff
+          title: 'Mean Difference (Region - Reference)'
+          type: number
+          format: zto
+        - name: ci_lower
+          title: 'Lower'
+          superTitle: '95% CI'
+          type: number
+          format: zto
+        - name: ci_upper
+          title: 'Upper'
+          superTitle: '95% CI'
+          type: number
+          format: zto
+        - name: loa_lower
+          title: 'Lower'
+          superTitle: '95% Limits of Agreement'
+          type: number
+          format: zto
+        - name: loa_upper
+          title: 'Upper'
+          superTitle: '95% Limits of Agreement'
+          type: number
+          format: zto
+        - name: loa_lower_lcl
+          title: 'Lower'
+          superTitle: '95% CI of Lower Limit'
+          type: number
+          format: zto
+        - name: loa_lower_ucl
+          title: 'Upper'
+          superTitle: '95% CI of Lower Limit'
+          type: number
+          format: zto
+        - name: loa_upper_lcl
+          title: 'Lower'
+          superTitle: '95% CI of Upper Limit'
+          type: number
+          format: zto
+        - name: loa_upper_ucl
+          title: 'Upper'
+          superTitle: '95% CI of Upper Limit'
+          type: number
+          format: zto
+        - name: p_value
+          title: 'p-value'
+          type: number
+          format: zto,pvalue
+        - name: effect_size
+          title: 'Hedges'' g (paired)'
+          type: number
+          format: zto
+        - name: slope
+          title: 'Slope'
+          superTitle: 'Proportional Bias'
+          type: number
+          format: zto
+        - name: slope_p
+          title: 'p-value'
+          superTitle: 'Proportional Bias'
+          type: number
+          format: zto,pvalue
+        - name: clinical_impact
+          title: 'Clinical Impact'
+          type: text
+
+    - name: variancetable
+      title: Variance Component Analysis
+      type: Table
+      visible: (variance_components || analysis_type:variability || analysis_type:comprehensive)
+      description: Sources of measurement variability
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - analysis_type
+      columns:
+        - name: component
+          title: 'Variance Component'
+          type: text
+        - name: variance
+          title: 'Variance'
+          type: number
+          format: zto
+        - name: percentage
+          title: 'Percentage (%)'
+          type: number
+          format: zto
+        - name: contribution
+          title: 'Contribution to Total Variance'
+          type: text
+
+    - name: samplesizetable
+      title: Sample Size for ICC Precision
+      type: Table
+      visible: (sample_size_planning || analysis_type:comprehensive)
+      description: Cases needed to estimate the ICC with a chosen 95 percent CI width (Bonett 2002)
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - analysis_type
+      columns:
+        - name: scenario
+          title: 'Scenario'
+          type: text
+        - name: planning_icc
+          title: 'Planning ICC'
+          type: number
+          format: zto
+        - name: width_current
+          title: 'Expected CI Width (current n)'
+          type: number
+          format: zto
+        - name: n_w20
+          title: 'Width 0.20'
+          superTitle: 'Cases Needed'
+          type: integer
+        - name: n_w10
+          title: 'Width 0.10'
+          superTitle: 'Cases Needed'
+          type: integer
+
+    - name: spatialanalysistable
+      title: Spatial Heterogeneity Analysis
+      type: Table
+      visible: (spatial_id)
+      description: Variability across spatial regions
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - cv_threshold
+        - analysis_type
+      columns:
+        - name: region
+          title: 'Spatial Region'
+          type: text
+        - name: n_cases
+          title: 'Cases'
+          type: integer
+        - name: mean_value
+          title: 'Mean Value'
+          type: number
+          format: zto
+        - name: cv_percent
+          title: 'CV (%)'
+          type: number
+          format: zto
+        - name: heterogeneity_level
+          title: 'Heterogeneity Level'
+          type: text
+
+    - name: compartmentComparison
+      title: Compartment Heterogeneity Comparison
+      type: Table
+      visible: (compareCompartments && length(spatial_id) > 0)
+      description: Statistical comparison of heterogeneity metrics between compartments
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - cv_threshold
+        - analysis_type
+      columns:
+        - name: metric
+          title: 'Heterogeneity Metric'
+          type: text
+        - name: compartment
+          title: 'Compartment'
+          type: text
+        - name: value
+          title: 'Value'
+          type: number
+          format: zto
+        - name: ci_lower
+          title: '95% CI Lower'
+          type: number
+          format: zto
+        - name: ci_upper
+          title: '95% CI Upper'
+          type: number
+          format: zto
+        - name: comparison
+          title: 'Comparison to Other Compartments'
+          type: text
+
+    - name: compartmentTests
+      title: Statistical Tests for Compartment Differences
+      type: Table
+      visible: (compartmentTests && length(spatial_id) > 0)
+      description: Formal statistical tests comparing heterogeneity across compartments
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - analysis_type
+      columns:
+        - name: test_type
+          title: 'Test'
+          type: text
+        - name: statistic
+          title: 'Statistic'
+          type: number
+          format: zto
+        - name: df1
+          title: 'df1'
+          type: integer
+        - name: df2
+          title: 'df2'
+          type: integer
+        - name: p_value
+          title: 'p-value'
+          type: number
+          format: zto,pvalue
+        - name: interpretation
+          title: 'Interpretation'
+          type: text
+
+    - name: biopsyplot
+      title: Regional Measurements Comparison
+      type: Image
+      description: Distribution comparison across regional measurements and reference (if provided)
+      width: 700
+      height: 500
+      visible: (show_variability_plots || analysis_type:variability || analysis_type:comprehensive)
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - analysis_type
+      renderFun: .biopsyplot
+
+    - name: variabilityplot
+      title: Sampling Variability Analysis
+      type: Image
+      description: Coefficient of variation by case
+      width: 600
+      height: 400
+      visible: (show_variability_plots || analysis_type:variability || analysis_type:comprehensive)
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - cv_threshold
+        - analysis_type
+      renderFun: .variabilityplot
+
+    - name: spatialplot
+      title: Spatial Heterogeneity Visualization
+      type: Image
+      description: Spatial distribution of biomarker values
+      width: 600
+      height: 400
+      visible: (show_variability_plots || analysis_type:variability || analysis_type:comprehensive)
+      clearWith:
+        - wholesection
+        - biopsy1
+        - biopsy2
+        - biopsy3
+        - biopsy4
+        - biopsies
+        - spatial_id
+        - cv_threshold
+        - analysis_type
+      renderFun: .spatialplot
+
+
+refs:
+    - ClinicoPathJamoviModule
+    - Koo2016
+    - McGraw1996
+    - BlandAltman1986
+    - BonettWright2000
+    - Schuirmann1987
+    - Bonett2002
+    - BlandAltman1999
+    - MacKinnonWhite1985
+...
