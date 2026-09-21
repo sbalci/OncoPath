@@ -63,6 +63,9 @@ reference:
 # Topics marked \keyword{internal} (pipe, null_coalescing, .escapeVariableNames,
 # recist_context, recist_engine, recist_select_target_lesions) are excluded by
 # pkgdown automatically and must NOT be listed here.
+# Removed 2026-09-21 for the same reason: bootstrapIDI (it lives in the main
+# ClinicoPath module, R/psychopdaROC-nri-idi.R), raw_to_prob and
+# clinicopath_startup_message. Every entry below must match a \alias{} in man/.
   - title: "Main Analysis Functions"
     desc: "Core functions for oncological and pathological research"
     contents:
@@ -74,16 +77,6 @@ reference:
     - diagnosticmetaClass
     - ihcheterogeneity
 
-  - title: "Diagnostic Test Functions"
-    desc: "Functions for diagnostic test accuracy analysis"
-    contents:
-    - bootstrapIDI
-
-  - title: "Utility Functions"
-    desc: "Helper functions for data processing"
-    contents:
-    - raw_to_prob
-
   - title: "Datasets"
     desc: "Bundled example datasets"
     contents:
@@ -92,11 +85,6 @@ reference:
     - swimmerplot_sample
     - waterfall_percentage_basic
     - waterfall_raw_longitudinal
-
-  - title: "Package Information"
-    desc: "Package startup and information"
-    contents:
-    - clinicopath_startup_message
 
 footer:
   structure:
