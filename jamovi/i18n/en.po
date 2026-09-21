@@ -5182,10 +5182,6 @@ msgid ""
 "<https://github.com/sbalci/ClinicoPathJamoviModule/issues/>."
 msgstr ""
 
-#: package/analyses/waterfall.menuSubtitle
-msgid "One burden value per patient or visit"
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid ""
 "One of the two is effectively zero, so the correlation between them is not "
@@ -9073,6 +9069,7 @@ msgstr ""
 msgid "Waterfall and Spider Plot"
 msgstr ""
 
+#: package/analyses/waterfall.menuSubtitle
 #: waterfall/options.menuSubtitle
 msgid "Waterfall and SpiderPlot: One burden value per patient or visit"
 msgstr ""

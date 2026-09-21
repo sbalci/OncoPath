@@ -3172,9 +3172,6 @@
             "OncoPath Functions for Clinicopathological Research. Specialized oncology and pathology visualization tools from ClinicoPath jamovi module. OncoPath helps researchers create comprehensive patient follow-up plots including waterfall plots for treatment response analysis and swimmer plots for patient timeline visualization. For comments, suggestions, feature requests or reporting bugs, please open an issue at <https://github.com/sbalci/ClinicoPathJamoviModule/issues/>.": [
                 ""
             ],
-            "One burden value per patient or visit": [
-                ""
-            ],
             "One of the two is effectively zero, so the correlation between them is not identifiable and no threshold effect can be assessed from this fit; the other is not zero, so read the tau-squared values above as the heterogeneity on that margin.": [
                 ""
             ],
