@@ -1,0 +1,14 @@
+pandoc: 3.8.3
+pkgdown: 2.2.1
+pkgdown_sha: ~
+articles:
+  06-function-waterfall: 06-function-waterfall.html
+  09-waterfall-legacy: 09-waterfall-legacy.html
+  diagnosticmeta-comprehensive: diagnosticmeta-comprehensive.html
+  ihcheterogeneity-comprehensive: ihcheterogeneity-comprehensive.html
+  swimmer-unified-datasets: swimmer-unified-datasets.html
+  swimmerplot-unified-comprehensive: swimmerplot-unified-comprehensive.html
+last_built: 2026-09-21T13:26Z
+urls:
+  reference: https://www.serdarbalci.com/OncoPath/reference
+  article: https://www.serdarbalci.com/OncoPath/articles
