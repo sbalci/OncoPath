@@ -1880,7 +1880,9 @@ msgstr ""
 #: waterfall/options/colorScheme.description.jamovi
 msgid ""
 "Color scheme for waterfall plot. 'Colorful' provides distinct colors for "
-"group-based coloring."
+"group-based coloring; 'jamovi (follow global)' takes its colours from the "
+"palette set in jamovi's preferences, so the figure matches every other plot "
+"in the document."
 msgstr ""
 
 #: diagnosticmeta/options/color_palette/colorblind_safe.title
@@ -3715,16 +3717,12 @@ msgstr ""
 msgid "Its 95%% CI extends down to %s, below the threshold."
 msgstr ""
 
-#: waterfall/options/colorScheme/jamovi.title
-msgid "jamovi"
-msgstr ""
-
+#: diagnosticmeta/options/color_palette/jamovi.title
+#: swimmerplot/options/plotTheme/jamovi.title
 #: swimmerplot/options/colorPalette/jamovi.title
-msgid "jamovi (follow global)"
-msgstr ""
-
+#: waterfall/options/colorScheme/jamovi.title
 #: waterfall/options/spiderColorScheme/jamovi.title
-msgid "jamovi Theme"
+msgid "jamovi (follow global)"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -9001,6 +8999,10 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "Visualization Types:"
+msgstr ""
+
+#: waterfall/options/spiderColorScheme/vivid.title
+msgid "Vivid (orange/purple)"
 msgstr ""
 
 #: R/swimmerplot.b.R

@@ -120,6 +120,26 @@ datasets:
       - Oncology
       - Pathology
       - Follow-up
+  - name: Diagnostic Test Meta-Analysis
+    path: diagnosticmeta_test_categorical.omv
+    description: >-
+      Example analysis for Diagnostic Test Meta-Analysis: 20 studies with an imaging-modality
+      covariate, enough for heterogeneity and meta-regression.
+    tags:
+      - Diagnostic Test Meta-Analysis
+      - Meta-Analysis
+      - Oncology
+      - Pathology
+  - name: IHC Heterogeneity
+    path: ihcheterogeneity_test.omv
+    description: >-
+      Example analysis for IHC Heterogeneity: 50 cases with a whole-section reference, four
+      biopsies and a spatial compartment.
+    tags:
+      - IHC Heterogeneity
+      - Immunohistochemistry
+      - Oncology
+      - Pathology
 usesNative: true
 minApp: 2.7.27
 

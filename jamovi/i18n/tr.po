@@ -2170,10 +2170,10 @@ msgstr "Örümcek grafiği çizgileri ve noktaları için renk şeması."
 #: waterfall/options/colorScheme.description.jamovi
 msgid ""
 "Color scheme for waterfall plot. 'Colorful' provides distinct colors for "
-"group-based coloring."
+"group-based coloring; 'jamovi (follow global)' takes its colours from the "
+"palette set in jamovi's preferences, so the figure matches every other plot "
+"in the document."
 msgstr ""
-"Şelale grafiği için renk şeması. 'Renkli', grup tabanlı renklendirme için "
-"belirgin renkler sağlar."
 
 #: diagnosticmeta/options/color_palette/colorblind_safe.title
 msgid "Color-Blind Safe"
@@ -4188,17 +4188,13 @@ msgstr ""
 msgid "Its 95%% CI extends down to %s, below the threshold."
 msgstr "%%95 GA'sı eşiğin altında, %s değerine kadar iner."
 
-#: waterfall/options/colorScheme/jamovi.title
-msgid "jamovi"
-msgstr "jamovi"
-
+#: diagnosticmeta/options/color_palette/jamovi.title
+#: swimmerplot/options/plotTheme/jamovi.title
 #: swimmerplot/options/colorPalette/jamovi.title
+#: waterfall/options/colorScheme/jamovi.title
+#: waterfall/options/spiderColorScheme/jamovi.title
 msgid "jamovi (follow global)"
 msgstr ""
-
-#: waterfall/options/spiderColorScheme/jamovi.title
-msgid "jamovi Theme"
-msgstr "jamovi Teması"
 
 #: R/waterfall.b.R
 msgid ""
@@ -10263,6 +10259,10 @@ msgstr "Görselleştirme Seçenekleri:"
 #: R/waterfall.b.R
 msgid "Visualization Types:"
 msgstr "Görselleştirme Türleri:"
+
+#: waterfall/options/spiderColorScheme/vivid.title
+msgid "Vivid (orange/purple)"
+msgstr ""
 
 #: R/swimmerplot.b.R
 msgid "WARNING"
