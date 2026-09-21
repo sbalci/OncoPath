@@ -2930,6 +2930,10 @@ msgstr "Tanısal doğruluk parametresi (teta)"
 msgid "Diagnostic Odds Ratio"
 msgstr "Tanısal Odds Oranı"
 
+#: package/datasets/DiagnosticTestMeta-Analysis.name
+msgid "Diagnostic Test Meta-Analysis"
+msgstr ""
+
 #: package/analyses/diagnosticmeta.title
 #: package/analyses/diagnosticmeta.menuTitle
 #: diagnosticmeta/options.title
@@ -3354,6 +3358,18 @@ msgid ""
 "approximation)"
 msgstr "Oranlar için kesin güven aralığı (normal yaklaşımdan daha doğru)"
 
+#: package/datasets/DiagnosticTestMeta-Analysis.description
+msgid ""
+"Example analysis for Diagnostic Test Meta-Analysis: 20 studies with an "
+"imaging-modality covariate, enough for heterogeneity and meta-regression."
+msgstr ""
+
+#: package/datasets/IHCHeterogeneity.description
+msgid ""
+"Example analysis for IHC Heterogeneity: 50 cases with a whole-section "
+"reference, four biopsies and a spatial compartment."
+msgstr ""
+
 #: package/datasets/SwimmerPlotAnalysis.description
 msgid "Example analysis for swimmer plot."
 msgstr ""
@@ -3674,6 +3690,10 @@ msgstr "İyi güvenilirlik"
 msgid "Good reliability band (ICC = %.2f)."
 msgstr "İyi güvenilirlik kategorisi (ICC = %.2f)."
 
+#: ihcheterogeneity/ui[4][0].label
+msgid "Greyed out when the analysis focus above already includes them."
+msgstr ""
+
 #: waterfall/results/groupComparisonTable.columns.title
 msgid "Group"
 msgstr "Grup"
@@ -3922,6 +3942,10 @@ msgstr "Sistematik sapmayı yok sayar; yukarıdaki mutlak uyum ile karşılaşt�
 #: ihcheterogeneity/options.menuSubgroup
 msgid "IHC Analysis"
 msgstr "IHC Analizi"
+
+#: package/datasets/IHCHeterogeneity.name
+msgid "IHC Heterogeneity"
+msgstr ""
 
 #: R/ihcheterogeneity.b.R
 #: package/analyses/ihcheterogeneity.title
@@ -8624,17 +8648,6 @@ msgstr ""
 #: R/diagnosticmeta.b.R
 msgid "The coefficient is the change per one-unit increase in %s."
 msgstr ""
-
-#: ihcheterogeneity/ui[4][0].label
-msgid ""
-"The Comprehensive focus always includes plots, variance components and "
-"sample-size planning; the Variance focus includes plots and variance "
-"components. Use these toggles to add them under other focuses."
-msgstr ""
-"Kapsamlı Analiz odağı her zaman grafikleri, varyans bileşenlerini ve "
-"örneklem büyüklüğü planlamasını içerir; Varyans bileşeni analizi odağı "
-"grafikleri ve varyans bileşenlerini içerir. Bunları diğer odaklarda eklemek "
-"için bu seçenekleri kullanınız."
 
 #: R/ihcheterogeneity.b.R
 msgid ""

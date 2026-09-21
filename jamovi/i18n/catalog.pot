@@ -2573,6 +2573,10 @@ msgstr ""
 msgid "Diagnostic Odds Ratio"
 msgstr ""
 
+#: package/datasets/DiagnosticTestMeta-Analysis.name
+msgid "Diagnostic Test Meta-Analysis"
+msgstr ""
+
 #: package/analyses/diagnosticmeta.title
 #: package/analyses/diagnosticmeta.menuTitle
 #: diagnosticmeta/options.title
@@ -2960,6 +2964,18 @@ msgid ""
 "approximation)"
 msgstr ""
 
+#: package/datasets/DiagnosticTestMeta-Analysis.description
+msgid ""
+"Example analysis for Diagnostic Test Meta-Analysis: 20 studies with an "
+"imaging-modality covariate, enough for heterogeneity and meta-regression."
+msgstr ""
+
+#: package/datasets/IHCHeterogeneity.description
+msgid ""
+"Example analysis for IHC Heterogeneity: 50 cases with a whole-section "
+"reference, four biopsies and a spatial compartment."
+msgstr ""
+
 #: package/datasets/SwimmerPlotAnalysis.description
 msgid "Example analysis for swimmer plot."
 msgstr ""
@@ -3258,6 +3274,10 @@ msgstr ""
 msgid "Good reliability band (ICC = %.2f)."
 msgstr ""
 
+#: ihcheterogeneity/ui[4][0].label
+msgid "Greyed out when the analysis focus above already includes them."
+msgstr ""
+
 #: waterfall/results/groupComparisonTable.columns.title
 msgid "Group"
 msgstr ""
@@ -3486,6 +3506,10 @@ msgstr ""
 #: package/analyses/ihcheterogeneity.menuSubgroup
 #: ihcheterogeneity/options.menuSubgroup
 msgid "IHC Analysis"
+msgstr ""
+
+#: package/datasets/IHCHeterogeneity.name
+msgid "IHC Heterogeneity"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -7651,13 +7675,6 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "The coefficient is the change per one-unit increase in %s."
-msgstr ""
-
-#: ihcheterogeneity/ui[4][0].label
-msgid ""
-"The Comprehensive focus always includes plots, variance components and "
-"sample-size planning; the Variance focus includes plots and variance "
-"components. Use these toggles to add them under other focuses."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R

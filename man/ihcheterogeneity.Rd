@@ -179,7 +179,7 @@ Optional variance components, sample-size planning for ICC precision
 (Bonett 2002) and comparisons between spatial compartments.
 }
 \examples{
-\donttest{
+\dontrun{
 data('ihcheterogeneity_test', package = 'OncoPath')
 
 # Three regional Ki67 scores against the whole-section score
