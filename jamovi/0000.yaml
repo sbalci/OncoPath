@@ -75,7 +75,7 @@ analyses:
     menuGroup: OncoPath
     menuSubgroup: Patient Follow-Up Plots
     menuTitle: 'Treatment Response: Patient-Level Burden'
-    menuSubtitle: One burden value per patient or visit
+    menuSubtitle: 'Waterfall and SpiderPlot: One burden value per patient or visit'
     description: >
       Use this when you have one tumour burden number per patient: either a
       percent change from baseline you have already calculated (one row per

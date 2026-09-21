@@ -2773,6 +2773,10 @@ msgid "End Time (Required)"
 msgstr ""
 
 #: R/swimmerplot.b.R
+msgid "End Time is still empty."
+msgstr ""
+
+#: R/swimmerplot.b.R
 msgid "End time parsing: {message}"
 msgstr ""
 
@@ -3079,6 +3083,10 @@ msgstr ""
 
 #: diagnosticmeta/options/false_positives.title
 msgid "False Positives (FP)"
+msgstr ""
+
+#: R/swimmerplot.b.R
+msgid "Fill them in under Core Data Variables and the plot will appear."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -3756,6 +3764,10 @@ msgid ""
 "the confidence interval above, rather than against generic cut-offs."
 msgstr ""
 
+#: R/swimmerplot.b.R
+msgid "Keep going - a few variables to add"
+msgstr ""
+
 #: R/swimmerplot-html.R
 msgid "Key Assumptions"
 msgstr ""
@@ -4406,10 +4418,6 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "Missing required columns for proportional-hazards SROC analysis"
-msgstr ""
-
-#: R/swimmerplot.b.R
-msgid "Missing required variables"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -5175,7 +5183,6 @@ msgid ""
 msgstr ""
 
 #: package/analyses/waterfall.menuSubtitle
-#: waterfall/options.menuSubtitle
 msgid "One burden value per patient or visit"
 msgstr ""
 
@@ -5454,6 +5461,10 @@ msgstr ""
 msgid "Patient ID and response variables are required"
 msgstr ""
 
+#: R/swimmerplot.b.R
+msgid "Patient ID is still empty."
+msgstr ""
+
 #: waterfall/options/showSpiderLabels.title
 msgid "Patient ID labels on spider lines"
 msgstr ""
@@ -5464,12 +5475,6 @@ msgstr ""
 
 #: waterfall/options/patientID.title
 msgid "Patient ID variable"
-msgstr ""
-
-#: R/swimmerplot.b.R
-msgid ""
-"Patient ID, Start Time, and End Time are required to generate a swimmer "
-"plot. Please select all three variables in the Core Data Variables section."
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -7305,6 +7310,10 @@ msgid "Start Time (Required)"
 msgstr ""
 
 #: R/swimmerplot.b.R
+msgid "Start Time is still empty."
+msgstr ""
+
+#: R/swimmerplot.b.R
 msgid "Start time parsing: {message}"
 msgstr ""
 
@@ -9062,6 +9071,10 @@ msgstr ""
 
 #: package/datasets/WaterfallandSpiderPlot.name
 msgid "Waterfall and Spider Plot"
+msgstr ""
+
+#: waterfall/options.menuSubtitle
+msgid "Waterfall and SpiderPlot: One burden value per patient or visit"
 msgstr ""
 
 #: R/waterfall.b.R

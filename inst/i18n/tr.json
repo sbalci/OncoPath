@@ -1645,6 +1645,9 @@
             "End Time (Required)": [
                 "Bitiş Zamanı (Gerekli)"
             ],
+            "End Time is still empty.": [
+                "Bitiş Zamanı hâlâ boş."
+            ],
             "End time parsing: {message}": [
                 "Bitiş zamanı ayrıştırma: {message}"
             ],
@@ -1845,6 +1848,9 @@
             ],
             "False Positives (FP)": [
                 "Yanlış Pozitifler (YP)"
+            ],
+            "Fill them in under Core Data Variables and the plot will appear.": [
+                "Bunları Temel Veri Değişkenleri bölümünde doldurduğunuzda grafik görünecektir."
             ],
             "Findings may not generalise to other biomarkers or tissue types.": [
                 "Bulgular diğer biyobelirteçlere veya doku tiplerine genellenemeyebilir."
@@ -2274,6 +2280,9 @@
             ],
             "Judge the response rate against the rate expected without benefit in your tumour type and line of therapy (the null rate of your study design), using the confidence interval above, rather than against generic cut-offs.": [
                 "Yanıt oranını genel kesme değerlerine göre değil, yukarıdaki güven aralığını kullanarak tümör türünüzde ve tedavi basamağınızda fayda olmaksızın beklenen orana (çalışma tasarımınızın sıfır hipotezi oranı) göre değerlendirin."
+            ],
+            "Keep going - a few variables to add": [
+                "Devam edin - eklenecek birkaç değişken var"
             ],
             "Key Assumptions": [
                 "Temel Varsayımlar"
@@ -2718,9 +2727,6 @@
             ],
             "Missing required columns for proportional-hazards SROC analysis": [
                 "Orantılı tehlikeler SROC analizi için gerekli sütunlar eksik"
-            ],
-            "Missing required variables": [
-                "Gerekli değişkenler eksik"
             ],
             "Missing required variables: {vars}": [
                 "Gerekli değişkenler eksik: {vars}"
@@ -3310,6 +3316,9 @@
             "Patient ID and response variables are required": [
                 "Hasta Kimliği ve yanıt değişkenleri gereklidir"
             ],
+            "Patient ID is still empty.": [
+                "Hasta Kimliği hâlâ boş."
+            ],
             "Patient ID labels on spider lines": [
                 "Örümcek çizgilerinde Hasta Kimliği etiketleri"
             ],
@@ -3318,9 +3327,6 @@
             ],
             "Patient ID variable": [
                 "Hasta Kimliği değişkeni"
-            ],
-            "Patient ID, Start Time, and End Time are required to generate a swimmer plot. Please select all three variables in the Core Data Variables section.": [
-                "Bir yüzücü grafiği oluşturmak için Hasta Kimliği, Başlangıç Zamanı ve Bitiş Zamanı gereklidir. Lütfen Temel Veri Değişkenleri bölümünde her üç değişkeni de seçin."
             ],
             "Patient ID:": [
                 "Hasta Kimliği:"
@@ -4471,6 +4477,9 @@
             "Start Time (Required)": [
                 "Başlangıç Zamanı (Gerekli)"
             ],
+            "Start Time is still empty.": [
+                "Başlangıç Zamanı hâlâ boş."
+            ],
             "Start time parsing: {message}": [
                 "Başlangıç zamanı ayrıştırma: {message}"
             ],
@@ -5441,6 +5450,9 @@
                 "Uyarı: Bazı yüzde değişimleri tipik aralığın dışındadır (%%%d ila +%%500). Lütfen verileri doğrulayın."
             ],
             "Waterfall and Spider Plot": [
+                ""
+            ],
+            "Waterfall and SpiderPlot: One burden value per patient or visit": [
                 ""
             ],
             "Waterfall Plot": [

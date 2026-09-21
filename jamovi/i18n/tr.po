@@ -3151,6 +3151,10 @@ msgid "End Time (Required)"
 msgstr "Bitiş Zamanı (Gerekli)"
 
 #: R/swimmerplot.b.R
+msgid "End Time is still empty."
+msgstr "Bitiş Zamanı hâlâ boş."
+
+#: R/swimmerplot.b.R
 msgid "End time parsing: {message}"
 msgstr "Bitiş zamanı ayrıştırma: {message}"
 
@@ -3476,6 +3480,12 @@ msgstr "Yanlış Pozitifler (Hastalık-, Test+)"
 #: diagnosticmeta/options/false_positives.title
 msgid "False Positives (FP)"
 msgstr "Yanlış Pozitifler (YP)"
+
+#: R/swimmerplot.b.R
+msgid "Fill them in under Core Data Variables and the plot will appear."
+msgstr ""
+"Bunları Temel Veri Değişkenleri bölümünde doldurduğunuzda grafik "
+"görünecektir."
 
 #: R/ihcheterogeneity.b.R
 msgid "Findings may not generalise to other biomarkers or tissue types."
@@ -4230,6 +4240,10 @@ msgstr ""
 "kullanarak tümör türünüzde ve tedavi basamağınızda fayda olmaksızın beklenen "
 "orana (çalışma tasarımınızın sıfır hipotezi oranı) göre değerlendirin."
 
+#: R/swimmerplot.b.R
+msgid "Keep going - a few variables to add"
+msgstr "Devam edin - eklenecek birkaç değişken var"
+
 #: R/swimmerplot-html.R
 msgid "Key Assumptions"
 msgstr "Temel Varsayımlar"
@@ -4913,10 +4927,6 @@ msgstr "Eksik veriler uygun şekilde ele alınır (hesaplamalardan hariç tutulu
 #: R/diagnosticmeta.b.R
 msgid "Missing required columns for proportional-hazards SROC analysis"
 msgstr "Orantılı tehlikeler SROC analizi için gerekli sütunlar eksik"
-
-#: R/swimmerplot.b.R
-msgid "Missing required variables"
-msgstr "Gerekli değişkenler eksik"
 
 #: R/swimmerplot.b.R
 msgid "Missing required variables: {vars}"
@@ -5787,7 +5797,6 @@ msgid ""
 msgstr ""
 
 #: package/analyses/waterfall.menuSubtitle
-#: waterfall/options.menuSubtitle
 msgid "One burden value per patient or visit"
 msgstr "Hasta veya vizit başına bir tümör yükü değeri"
 
@@ -6120,6 +6129,10 @@ msgstr "Hasta Kimliği (Gerekli)"
 msgid "Patient ID and response variables are required"
 msgstr "Hasta Kimliği ve yanıt değişkenleri gereklidir"
 
+#: R/swimmerplot.b.R
+msgid "Patient ID is still empty."
+msgstr "Hasta Kimliği hâlâ boş."
+
 #: waterfall/options/showSpiderLabels.title
 msgid "Patient ID labels on spider lines"
 msgstr "Örümcek çizgilerinde Hasta Kimliği etiketleri"
@@ -6131,15 +6144,6 @@ msgstr "Hasta Kimliği seçildi"
 #: waterfall/options/patientID.title
 msgid "Patient ID variable"
 msgstr "Hasta Kimliği değişkeni"
-
-#: R/swimmerplot.b.R
-msgid ""
-"Patient ID, Start Time, and End Time are required to generate a swimmer "
-"plot. Please select all three variables in the Core Data Variables section."
-msgstr ""
-"Bir yüzücü grafiği oluşturmak için Hasta Kimliği, Başlangıç Zamanı ve Bitiş "
-"Zamanı gereklidir. Lütfen Temel Veri Değişkenleri bölümünde her üç değişkeni "
-"de seçin."
 
 #: R/swimmerplot-html.R
 #: R/waterfall.b.R
@@ -8222,6 +8226,10 @@ msgstr "Başlangıç zamanı"
 #: swimmerplot/ui[0][0][1].label
 msgid "Start Time (Required)"
 msgstr "Başlangıç Zamanı (Gerekli)"
+
+#: R/swimmerplot.b.R
+msgid "Start Time is still empty."
+msgstr "Başlangıç Zamanı hâlâ boş."
 
 #: R/swimmerplot.b.R
 msgid "Start time parsing: {message}"
@@ -10327,6 +10335,10 @@ msgstr ""
 
 #: package/datasets/WaterfallandSpiderPlot.name
 msgid "Waterfall and Spider Plot"
+msgstr ""
+
+#: waterfall/options.menuSubtitle
+msgid "Waterfall and SpiderPlot: One burden value per patient or visit"
 msgstr ""
 
 #: R/waterfall.b.R

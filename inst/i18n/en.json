@@ -1645,6 +1645,9 @@
             "End Time (Required)": [
                 ""
             ],
+            "End Time is still empty.": [
+                ""
+            ],
             "End time parsing: {message}": [
                 ""
             ],
@@ -1844,6 +1847,9 @@
                 ""
             ],
             "False Positives (FP)": [
+                ""
+            ],
+            "Fill them in under Core Data Variables and the plot will appear.": [
                 ""
             ],
             "Findings may not generalise to other biomarkers or tissue types.": [
@@ -2273,6 +2279,9 @@
                 ""
             ],
             "Judge the response rate against the rate expected without benefit in your tumour type and line of therapy (the null rate of your study design), using the confidence interval above, rather than against generic cut-offs.": [
+                ""
+            ],
+            "Keep going - a few variables to add": [
                 ""
             ],
             "Key Assumptions": [
@@ -2717,9 +2726,6 @@
                 ""
             ],
             "Missing required columns for proportional-hazards SROC analysis": [
-                ""
-            ],
-            "Missing required variables": [
                 ""
             ],
             "Missing required variables: {vars}": [
@@ -3310,6 +3316,9 @@
             "Patient ID and response variables are required": [
                 ""
             ],
+            "Patient ID is still empty.": [
+                ""
+            ],
             "Patient ID labels on spider lines": [
                 ""
             ],
@@ -3317,9 +3326,6 @@
                 ""
             ],
             "Patient ID variable": [
-                ""
-            ],
-            "Patient ID, Start Time, and End Time are required to generate a swimmer plot. Please select all three variables in the Core Data Variables section.": [
                 ""
             ],
             "Patient ID:": [
@@ -4471,6 +4477,9 @@
             "Start Time (Required)": [
                 ""
             ],
+            "Start Time is still empty.": [
+                ""
+            ],
             "Start time parsing: {message}": [
                 ""
             ],
@@ -5441,6 +5450,9 @@
                 ""
             ],
             "Waterfall and Spider Plot": [
+                ""
+            ],
+            "Waterfall and SpiderPlot: One burden value per patient or visit": [
                 ""
             ],
             "Waterfall Plot": [
