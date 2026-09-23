@@ -45,10 +45,10 @@ Comprehensive swimmer plots for visualizing patient timelines, clinical events, 
 
 ### 🌊 **Waterfall Plot Analysis**
 
-Treatment response analysis with RECIST criteria, creating waterfall and spider plots for tumor response visualization.
+Treatment response analysis with categories adapted from RECIST v1.1 thresholds, creating waterfall and spider plots for tumor response visualization.
 
 - **Treatment Response Visualization**: Create comprehensive waterfall and spider plots for tumor response analysis
-- **RECIST Criteria Support**: Built-in Response Evaluation Criteria In Solid Tumors (RECIST) guidelines
+- **Adapted RECIST Thresholds**: Response categories (CR, PR, SD, PD) adapted from RECIST v1.1 thresholds for patient-level burden
 - **Dual Data Input**: Supports both raw tumor measurements and pre-calculated percentage changes
 - **Clinical Metrics**: Automated calculation of ORR (Overall Response Rate), DCR (Disease Control Rate), and person-time metrics
 - **Publication Ready**: Professional visualization suitable for clinical publications and presentations
@@ -202,7 +202,7 @@ We welcome contributions! Please see our Contributing Guidelines for details.
 ### Areas for Contribution
 
 - Additional visualization options
-- Enhanced RECIST criteria support
+- Expanded tumor response criteria options
 - New clinical event types
 - Documentation improvements
 - Bug reports and feature requests

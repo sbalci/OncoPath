@@ -4,7 +4,6 @@ export("%>%")
 export("%||%")
 export(diagnosticmeta)
 export(diagnosticmetaClass)
-export(ihcheterogeneity)
 export(swimmerplot)
 export(waterfall)
 import(jmvcore)
@@ -60,7 +59,6 @@ importFrom(mada,
 importFrom(magrittr,"%>%")
 importFrom(metafor,rma)
 importFrom(patchwork,wrap_plots)
-importFrom(psych,ICC)
 importFrom(rlang,sym)
 importFrom(stats,
   binomial,
@@ -75,7 +73,6 @@ importFrom(stats,
   quantile,
   var
 )
-importFrom(stringr,str_to_title)
 importFrom(survival,survfit)
 importFrom(tibble,tibble)
 importFrom(utils,

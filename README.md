@@ -51,13 +51,13 @@ Guide](https://www.serdarbalci.com/OncoPath/)
 
 ### 🌊 **Waterfall Plot Analysis**
 
-Treatment response analysis with RECIST criteria, creating waterfall and
+Treatment response analysis with categories adapted from RECIST v1.1 thresholds, creating waterfall and
 spider plots for tumor response visualization.
 
 - **Treatment Response Visualization**: Create comprehensive waterfall
   and spider plots for tumor response analysis
-- **RECIST Criteria Support**: Built-in Response Evaluation Criteria In
-  Solid Tumors (RECIST) guidelines
+- **Adapted RECIST Thresholds**: Response categories (CR, PR, SD, PD) adapted from
+  RECIST v1.1 thresholds for patient-level burden
 - **Dual Data Input**: Supports both raw tumor measurements and
   pre-calculated percentage changes
 - **Clinical Metrics**: Automated calculation of ORR (Overall Response
@@ -252,7 +252,7 @@ details.
 ### Areas for Contribution
 
 - Additional visualization options
-- Enhanced RECIST criteria support
+- Expanded tumor response criteria options
 - New clinical event types
 - Documentation improvements
 - Bug reports and feature requests
@@ -329,3 +329,5 @@ including:
 Special thanks to the oncology and pathology research communities for
 feedback and feature requests that have shaped this module’s
 development.
+
+<!-- library-audit 2026-09-22 OncoPath [LOW] DONE: aligned RECIST claims across DESCRIPTION and README.md with 0000.yaml (guide section 27) -->

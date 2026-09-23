@@ -12,8 +12,8 @@ authors:
     family-names: Balci
     email: serdarbalci@serdarbalci.com
     orcid: 'https://orcid.org/0000-0002-7852-3851'
-date-released: '2026-09-21'
-version: "1.0.83"
+date-released: '2026-09-22'
+version: "1.0.83.02"
 identifiers:
   - type: doi
     value: 10.5281/zenodo.3997188
@@ -29,7 +29,7 @@ identifiers:
     description: webpage
   - type: url
     value: >-
-      https://github.com/sbalci/ClinicoPathJamoviModule/issues/
+      https://github.com/sbalci/OncoPath/issues/
     description: BugReports
   - type: url
     value: 'https://github.com/sbalci/ClinicoPathDescriptives/'

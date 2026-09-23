@@ -16,14 +16,15 @@
 # and produced no output. devtools::load_all() and this machine's ~/.Rprofile
 # (which attaches magrittr) both hide it; jamovi's engine reads neither. Verify
 # with Rscript --vanilla.
+#
+# library-audit 2026-09-22 OncoPath [LOW] DONE: stringr removed from Imports and zzz_imports.R
+#   after ihcheterogeneity rework eliminated its last str_to_title call (guide section 10)
 #' @importFrom ggrepel geom_text_repel
 #' @importFrom grDevices colorRampPalette
 #' @importFrom grid viewport
 #' @importFrom magrittr %>%
 #' @importFrom patchwork wrap_plots
-#' @importFrom psych ICC
 #' @importFrom rlang sym
-#' @importFrom stringr str_to_title
 #' @importFrom survival survfit
 #' @importFrom utils packageName
 NULL

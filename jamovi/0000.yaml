@@ -1,12 +1,12 @@
 ---
 title: OncoPath Functions for Clinicopathological Research
 name: OncoPath
-version: 1.0.83
+version: 1.0.83.02
 jms: '1.0'
 authors:
   - Serdar Balci
 maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
-date: '2026-09-21'
+date: '2026-09-22'
 type: R
 description: >-
   OncoPath Functions for Clinicopathological Research. Specialized oncology and
@@ -14,8 +14,7 @@ description: >-
   researchers create comprehensive patient follow-up plots including waterfall
   plots for treatment response analysis and swimmer plots for patient timeline
   visualization. For comments, suggestions, feature requests or reporting bugs,
-  please open an issue at
-  <https://github.com/sbalci/ClinicoPathJamoviModule/issues/>.
+  please open an issue at <https://github.com/sbalci/OncoPath/issues/>.
 analyses:
   - title: Diagnostic Test Meta-Analysis for Pathology
     name: diagnosticmeta
@@ -26,36 +25,10 @@ analyses:
     menuTitle: Diagnostic Test Meta-Analysis for Pathology
     description: >
       Comprehensive meta-analysis of diagnostic test accuracy studies designed
-      for
-
-      pathology research. Performs bivariate random-effects modeling,
-      proportional-hazards SROC analysis,
-
-      meta-regression, and publication bias assessment for AI algorithm
-      validation
-
-      and biomarker diagnostic accuracy synthesis.
-  - title: IHC Heterogeneity Analysis
-    name: ihcheterogeneity
-    ns: OncoPath
-    category: analyses
-    menuGroup: OncoPath
-    menuSubgroup: IHC Analysis
-    menuTitle: IHC Heterogeneity Analysis
-    description: >
-      Quantifies how well regional IHC measurements (biopsies, cores, fields)
-      represent a case. With a reference measurement (whole section, hotspot or
-      overall score) it reports the Spearman correlation of each region with the
-      reference, the absolute-agreement ICC(2,1), the per-case coefficient of
-      variation, and, for each region, the mean difference from the reference
-      with its 95 percent CI and Bland-Altman limits of agreement. Without a
-      reference it compares the regions with one another. Each difference is
-      judged against a margin set by the user (bias_margin, default 5 percent of
-      the comparison mean): ruled out when its 90 percent CI lies inside the
-      margin (two one-sided tests), shown to be material when a
-      Bonferroni-adjusted CI lies entirely beyond it, and inconclusive
-      otherwise. Optional variance components, sample-size planning for ICC
-      precision (Bonett 2002) and comparisons between spatial compartments.
+      for pathology research. Performs bivariate random-effects modeling,
+      proportional-hazards SROC analysis, meta-regression, and publication bias
+      assessment for AI algorithm validation and biomarker diagnostic accuracy
+      synthesis.
   - title: Swimmer Plot
     name: swimmerplot
     ns: OncoPath
@@ -113,7 +86,7 @@ datasets:
       - Follow-up
   - name: Waterfall and Spider Plot
     path: waterfall_raw_longitudinal.omv
-    description: Example analysis for Waterfall Plot.
+    description: Example longitudinal analysis for Waterfall and Spider Plot.
     tags:
       - Waterfall Plot
       - Spider Plot

@@ -1,8 +1,8 @@
 Package: OncoPath
 Type: Package
 Title: OncoPath Functions for Clinicopathological Research
-Version: 1.0.83
-Date: 2026-09-21
+Version: 1.0.83.02
+Date: 2026-09-22
 Authors@R: person(given = "Serdar", family = "Balci", role = c("aut", "cre", "cph"), email = "serdarbalci@serdarbalci.com", comment = c(ORCID = "0000-0002-7852-3851"))
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
 Description: Provides specialized oncology and pathology visualization
@@ -10,8 +10,8 @@ Description: Provides specialized oncology and pathology visualization
  ClinicoPath jamovi module. Helps researchers create
  comprehensive patient follow-up plots including waterfall plots
  for treatment response analysis and swimmer plots for patient
- timeline visualization. Features RECIST (Response Evaluation
- Criteria in Solid Tumors) criteria analysis, ggswim integration,
+ timeline visualization. Features response categories adapted from
+ RECIST v1.1 thresholds, ggswim integration,
  comprehensive clinical event tracking, diagnostic test
  meta-analysis with bivariate modeling and Holling proportional-hazards
  summary ROC methods, and IHC
@@ -38,12 +38,10 @@ Imports:
     mada,
     metafor,
     patchwork,
-    psych,
     R6,
     RColorBrewer,
     rlang,
     stats,
-    stringr,
     survival,
     tibble,
     utils,

@@ -1,54 +1,5 @@
 ---
 refs:
-    BlandAltman1986:
-        type: article
-        author: "Bland, J. M., & Altman, D. G."
-        year: 1986
-        title: Statistical methods for assessing agreement between two methods of clinical measurement
-        publisher: Lancet
-        volume: 1
-        issue: 8476
-        pages: 307-310
-        pmid: 2868172
-        url: "https://pubmed.ncbi.nlm.nih.gov/2868172/"
-    BlandAltman1999:
-        type: article
-        author: "Bland, J. M., & Altman, D. G."
-        year: 1999
-        title: Measuring agreement in method comparison studies
-        publisher: Statistical Methods in Medical Research
-        volume: 8
-        issue: 2
-        pages: 135-160
-        pmid: 10501650
-        doi: 10.1177/096228029900800204
-        url: "https://pubmed.ncbi.nlm.nih.gov/10501650/"
-
-
-    BonettWright2000:
-        type: article
-        author: "Bonett, D. G., & Wright, T. A."
-        year: 2000
-        title: Sample size requirements for estimating Pearson, Kendall and Spearman correlations
-        publisher: Psychometrika
-        volume: 65
-        issue: 1
-        pages: 23-28
-        doi: 10.1007/BF02294183
-        url: "https://doi.org/10.1007/BF02294183"
-
-    Bonett2002:
-        type: article
-        author: "Bonett, D. G."
-        year: 2002
-        title: Sample size requirements for estimating intraclass correlations with desired precision
-        publisher: Statistics in Medicine
-        volume: 21
-        issue: 9
-        pages: 1331-1335
-        doi: 10.1002/sim.1108
-        url: "https://doi.org/10.1002/sim.1108"
-
     ClinicoPathJamoviModule:
         type: software
         author: Serdar Balci
@@ -104,42 +55,6 @@ refs:
         doi: 10.1177/1471082X1201200403
         url: "https://doi.org/10.1177/1471082X1201200403"
 
-    Koo2016:
-        type: article
-        author: "Koo, T. K., & Li, M. Y."
-        year: 2016
-        title: A guideline of selecting and reporting intraclass correlation coefficients for reliability research
-        publisher: Journal of Chiropractic Medicine
-        volume: 15
-        issue: 2
-        pages: 155-163
-        doi: 10.1016/j.jcm.2016.02.012
-        url: "https://doi.org/10.1016/j.jcm.2016.02.012"
-
-    MacKinnonWhite1985:
-        type: article
-        author: "MacKinnon, J. G., & White, H."
-        year: 1985
-        title: Some heteroskedasticity-consistent covariance matrix estimators with improved finite sample properties
-        publisher: Journal of Econometrics
-        volume: 29
-        issue: 3
-        pages: 305-325
-        doi: 10.1016/0304-4076(85)90158-7
-        url: "https://doi.org/10.1016/0304-4076(85)90158-7"
-
-    McGraw1996:
-        type: article
-        author: "McGraw, K. O., & Wong, S. P."
-        year: 1996
-        title: Forming inferences about some intraclass correlation coefficients
-        publisher: Psychological Methods
-        volume: 1
-        issue: 1
-        pages: 30-46
-        doi: 10.1037/1082-989X.1.1.30
-        url: "https://doi.org/10.1037/1082-989X.1.1.30"
-
     RileyHigginsDeeks2011:
         type: article
         author: "Riley, R. D., Higgins, J. P. T., & Deeks, J. J."
@@ -163,18 +78,6 @@ refs:
         pages: 343-346
         doi: 10.1016/0197-2456(96)00075-X
         url: "https://doi.org/10.1016/0197-2456(96)00075-X"
-
-    Schuirmann1987:
-        type: article
-        author: "Schuirmann, D. J."
-        year: 1987
-        title: A comparison of the two one-sided tests procedure and the power approach for assessing the equivalence of average bioavailability
-        publisher: Journal of Pharmacokinetics and Biopharmaceutics
-        volume: 15
-        issue: 6
-        pages: 657-680
-        doi: 10.1007/BF01068419
-        url: "https://doi.org/10.1007/BF01068419"
 
     SweetingSuttonLambert2004:
         type: article

@@ -1,4 +1,27 @@
-# OncoPath 1.0.82.02 (2026-09-16)
+# OncoPath 1.0.83.02 (2026-09-22)
+
+Fixes and quality improvements from the 2026-09-22 jamovi library and module audit.
+
+## Package
+
+- **Pruned unused dependencies:** Removed unused `psych` and `stringr` packages from Imports.
+- **Unified bug-report and issue URLs:** Standardized issue tracking links to point consistently to `sbalci/OncoPath/issues`.
+- **Differentiated example dataset descriptions:** Clarified `waterfall_raw_longitudinal` dataset description to distinguish it from the basic percentage dataset in jamovi data picker.
+
+## `diagnosticmeta`
+
+- **Single-paragraph analysis description:** Folded analysis description into a single paragraph to prevent truncation in jamovi library listings.
+- **Preserved state in forest plot:** Annotated state fallback properties for pooled sensitivity and specificity during legacy state restorations and image exports.
+- **Robust YAML encoding:** Escaped non-ASCII Greek and superscript characters in table titles to avoid locale-dependent parsing warnings.
+
+## `waterfall`
+
+- **Correct table column format:** Changed percentage format token from `percent` to valid jamovi format specifier `pc`.
+- **Cleaned internal variable naming:** Renamed stable-disease count variable in explanations to avoid collision with standard-deviation heuristics.
+
+# OncoPath 1.0.83 (2026-09-21)
+
+<!-- library-audit 2026-09-22 OncoPath [LOW] DONE: retitled 1.0.82.02 section to 1.0.83 (2026-09-21) to match DESCRIPTION version and release workflow (guide section 1) -->
 
 Fixes from the 2026-09-16 jamovi library review. No statistics or options changed.
 

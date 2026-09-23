@@ -23,10 +23,6 @@ msgstr ""
 msgid "(%d of %d evaluable patients achieved response or stable disease)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "(1 × % weak) + (2 × % moderate) + (3 × % strong) staining; range 0 to 300."
-msgstr ""
-
 #: R/swimmerplot-html.R
 msgid "(numeric days/months/years)"
 msgstr ""
@@ -78,67 +74,12 @@ msgstr ""
 msgid "%.1f%% (95%% CI %.1f-%.1f%%)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "%+.1f%% of the reference mean"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%+.1f%% of the reference mean (other compartments: %+.1f%%)"
-msgstr ""
-
 #: R/swimmerplot.b.R
 msgid "%d after the patient's last end"
 msgstr ""
 
 #: R/swimmerplot.b.R
 msgid "%d before the patient's first start"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%d case(s) whose mean is 0 were left out, because their CV is undefined."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"%d case(s) whose mean is below %s (2%% of the 95th percentile of all values) "
-"were left out, because the CV is unstable near zero; %d of them had "
-"identical measurements."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%d case(s) with a mean near zero are not shown: their CV is unstable."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%d case(s) with a mean near zero have no CV and are not in the CV tests."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%d case(s) with an incomplete set of measurements were excluded."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"%d cases with a reference measurement and at least one of %d regional "
-"measurements."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%d cases with a reference measurement and one regional measurement."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%d cases with at least two of %d regional measurements."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%d cases with both regional measurements."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"%d cases without a Spatial Region ID are left out of the compartment "
-"analysis."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -235,18 +176,6 @@ msgid ""
 "person-time below are based on the remaining %d rows."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"%d of %d rows were not analysed because they have fewer than 2 regional "
-"measurements."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"%d of %d rows were not analysed because they lack a reference value or any "
-"regional measurement."
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid ""
 "%d of %d studies have a cell below 5. The bivariate model used here "
@@ -275,19 +204,6 @@ msgstr ""
 msgid ""
 "%d of %d studies were excluded from the meta-regression because the "
 "covariate is missing; the pooled estimates above use all %d."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%d of these cases have every measurement."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"%d paired comparisons are reported; the p-values test against zero and are "
-"unadjusted. With a margin of %s%% of the comparison mean, a difference is "
-"ruled out when its 90%% CI lies within the margin (two one-sided tests) and "
-"shown to be material when its Bonferroni-adjusted %s%% CI lies entirely "
-"beyond the margin; otherwise it is inconclusive."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -455,20 +371,10 @@ msgstr ""
 msgid "%s (cumulative)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "%s (reference)"
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid ""
 "%s A new study is predicted to fall between %.1f%% and %.1f%% for "
 "sensitivity and between %.1f%% and %.1f%% for specificity."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"%s is the reference measurement and was also selected as a regional "
-"measurement; it is analysed as the reference only."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -498,24 +404,6 @@ msgstr ""
 msgid "%s Positive LR %.2f and negative LR %.2f."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "%s vs %s"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%s vs mean of the other regions"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%s vs reference"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"%s was selected more than once as a regional measurement and is analysed "
-"once."
-msgstr ""
-
 #: R/swimmerplot.b.R
 msgid "%s: %d of %d responded (%.1f%%)"
 msgstr ""
@@ -528,52 +416,12 @@ msgstr ""
 msgid "%s: QM(%d) = %.2f, p = %.4g"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "%s%% (90%% CI %s%% to %s%%)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%s%% (90%% CI %s%% to %s%%): inconclusive at the %s%% margin"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%s%% (90%% CI %s%% to %s%%): ruled out, within the %s%% margin"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%s%% (90%% CI %s%% to %s%%): shown to exceed the %s%% margin"
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid "%s%% confidence region (dashed)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "%s%% CV (threshold/2)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%s%% CV threshold"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%s%% of the comparison mean"
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid "%s%% prediction region (dotted)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%s%%, identical in every case"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%s%%, identical in every case: beyond the %s%% margin"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "%s%%, identical in every case: within the %s%% margin"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -845,7 +693,6 @@ msgstr ""
 msgid "1 patient"
 msgstr ""
 
-#: ihcheterogeneity/results/samplingbiastable.columns.superTitle
 #: swimmerplot/results/advancedMetrics.columns.title
 #: waterfall/results/groupComparisonTable.columns.title
 msgid "95% CI"
@@ -856,32 +703,12 @@ msgstr ""
 msgid "95% CI (Confidence Interval):"
 msgstr ""
 
-#: ihcheterogeneity/results/reproducibilitytable.columns.title
-#: ihcheterogeneity/results/compartmentComparison.columns.title
 #: waterfall/results/enhancedClinicalMetrics.columns.title
 msgid "95% CI Lower"
 msgstr ""
 
-#: ihcheterogeneity/results/samplingbiastable.columns.superTitle
-msgid "95% CI of Lower Limit"
-msgstr ""
-
-#: ihcheterogeneity/results/samplingbiastable.columns.superTitle
-msgid "95% CI of Upper Limit"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "95% CI overlaps every other compartment: no clear difference"
-msgstr ""
-
-#: ihcheterogeneity/results/reproducibilitytable.columns.title
-#: ihcheterogeneity/results/compartmentComparison.columns.title
 #: waterfall/results/enhancedClinicalMetrics.columns.title
 msgid "95% CI Upper"
-msgstr ""
-
-#: ihcheterogeneity/results/samplingbiastable.columns.superTitle
-msgid "95% Limits of Agreement"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -892,27 +719,6 @@ msgstr ""
 msgid "95%% CI %s to %s"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"A blank slope means that no level check was possible: fewer than 5 cases or "
-"5 distinct levels (an ordinal score has no meaningful slope), or the same "
-"difference in every case."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "A clinically material systematic difference between regions is present."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"A clinically material systematic difference from the reference measurement "
-"is present."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "A comparison needs at least 2 compartments with %d or more cases each."
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid ""
 "A continuity correction of 0.5 was applied to every study so that the %d "
@@ -920,32 +726,10 @@ msgid ""
 "those studies would itself tilt the test."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"A difference between two measurements that changes with the level of the "
-"marker - for example a biopsy that reads higher than the whole section in "
-"low cases and lower in high cases. An average difference can hide it, and a "
-"fixed correction cannot remove it."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid ""
 "A Fisher's exact test was not run where every patient fell into the same "
 "class (e.g. no responders in any group), so there is no contrast to test."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"A material systematic difference between regions was present, so the regions "
-"should not be used interchangeably without calibration, whatever the "
-"correlation and CV."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"A material systematic difference from the reference measurement was present, "
-"so the affected regional measurement should not substitute for the reference "
-"without calibration, whatever the correlation and CV."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -986,62 +770,11 @@ msgid ""
 "assumption: switch to REML."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"A single region differs from the reference by about %s%% (root-mean-square "
-"relative difference, which includes any systematic offset). Averaging "
-"several regions per case reduces the random part of this difference by about "
-"the square root of their number."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid ""
 "A spider plot shows how each patient's response changes over time: each line "
 "is one patient's treatment journey, which makes response patterns and "
 "outcome types easy to see."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"A systematic difference is present, and averaging more regions removes "
-"neither an offset nor a difference that changes with the level. Address the "
-"systematic difference first."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"A systematic difference was neither ruled out nor shown: region '%s' differs "
-"by an estimated %s%% of the comparison mean (90%% CI %s%% to %s%%); "
-"agreement within the %s%% margin needs the whole 90%% CI inside it."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"A systematic difference was neither ruled out nor shown: the difference "
-"between region '%s' and its comparison changes with the level, an estimated "
-"%s at a level of %s (90%% CI %s to %s) and %s at %s (90%% CI %s to %s); "
-"agreement within the ±%s margin needs both CIs inside it."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"A systematic difference was neither ruled out nor shown: the difference "
-"between the mean of all regions and the reference changes with the level, an "
-"estimated %s at a level of %s (90%% CI %s to %s) and %s at %s (90%% CI %s to "
-"%s); agreement within the ±%s margin needs both CIs inside it."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"A systematic difference was neither ruled out nor shown: the mean of all "
-"regions differs by an estimated %s%% of the reference mean (90%% CI %s%% to "
-"%s%%); agreement within the %s%% margin needs the whole 90%% CI inside it."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"A systematic difference was shown to exceed your margin (Bonferroni-adjusted "
-"CI entirely beyond it); correlation and CV cannot rescue it."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -1115,18 +848,6 @@ msgstr ""
 msgid "Add time=0 measurements for each patient, OR"
 msgstr ""
 
-#: ihcheterogeneity/ui[4].label
-msgid "Additional Analyses"
-msgstr ""
-
-#: ihcheterogeneity/ui[0][5].label
-msgid "Additional Regional Measurements"
-msgstr ""
-
-#: ihcheterogeneity/options/biopsies.title
-msgid "Additional regional measurements"
-msgstr ""
-
 #: R/waterfall.b.R
 msgid ""
 "Adequate sample size (n>=100): confidence intervals for ORR and DCR will be "
@@ -1141,35 +862,6 @@ msgstr ""
 msgid "Advanced Options"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Agreement Level:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "AGREEMENT THRESHOLDS MET, NOT CONFIRMED:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "AGREEMENT THRESHOLDS MET:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Agreement thresholds met:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Agreement was assessed using Spearman rank correlation; an intraclass "
-"correlation coefficient could not be estimated from these data."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Agreement was assessed with the intraclass correlation coefficient "
-"(ICC(2,1), absolute agreement, two-way random effects) and Spearman rank "
-"correlation."
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid ""
 "All asymmetry tests have low power, particularly when the diagnostic odds "
@@ -1177,44 +869,12 @@ msgid ""
 "publication bias is absent."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"All per-case CVs are equally spread within compartments, so no test is "
-"possible."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "All per-case CVs are identical, so no test is possible."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "All per-case means are identical, so no test is possible."
-msgstr ""
-
 #: R/swimmerplot.b.R
 msgid "All required variables are selected"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"An ICC needs at least two measurements per case, each available in enough "
-"cases."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "An intraclass correlation could not be estimated from these data."
-msgstr ""
-
 #: swimmerplot/ui[6].label
 msgid "Analysis & Interpretation"
-msgstr ""
-
-#: ihcheterogeneity/results/assumptions.description
-msgid "Analysis assumptions, data requirements, and methodological considerations"
-msgstr ""
-
-#: ihcheterogeneity/ui[1].label
-msgid "Analysis Configuration"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -1235,11 +895,6 @@ msgstr ""
 
 #: waterfall/options/showExplanations.title
 msgid "Analysis explanations"
-msgstr ""
-
-#: ihcheterogeneity/options/analysis_type.title
-#: ihcheterogeneity/ui[1]/analysis_type.label
-msgid "Analysis focus"
 msgstr ""
 
 #: waterfall/results/explanations.title
@@ -1265,10 +920,6 @@ msgstr ""
 #: diagnosticmeta/options/show_analysis_summary.title
 #: diagnosticmeta/ui[1][3][0]/show_analysis_summary.label
 msgid "Analysis summary"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Analysis Summary in Plain Language"
 msgstr ""
 
 #: waterfall/ui[2][1][1][1].label
@@ -1299,21 +950,10 @@ msgstr ""
 msgid "Asymmetry detected (p < 0.05)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"At least 2 regional measurements are required for inter-regional "
-"heterogeneity analysis. With a reference (whole section) measurement "
-"selected, a single regional measurement is sufficient."
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid ""
 "At least 3 studies with complete diagnostic test data are required ({n} "
 "found)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "At least 5 cases are required; this run analysed %d cases."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -1330,14 +970,6 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "Available columns:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Average correlation of %.2f, below your %.2f threshold."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Average correlation of %.2f, which meets your %.2f threshold."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -1372,14 +1004,6 @@ msgstr ""
 msgid "BASELINE NOT AT TIME 0"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Below the threshold as a point estimate only: %s."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Below your threshold (< %s)"
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "Best change from baseline (%)"
 msgstr ""
@@ -1412,10 +1036,6 @@ msgstr ""
 msgid "Between -30% and +20% change (simplified criterion)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Between-Case Variance"
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid ""
 "Between-study heterogeneity is substantial - the prediction interval spans a "
@@ -1434,30 +1054,12 @@ msgid ""
 "tau-squared (logit false-positive rate) = %.3f."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Bias Correction:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Bias testing could not be performed because too few cases had paired "
-"measurements."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "Binomial CI:"
 msgstr ""
 
 #: R/waterfall.b.R
 msgid "Biomarker correlation studies"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Biomarker specificity:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Biomarker Value"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -1493,17 +1095,6 @@ msgstr ""
 msgid "Bivariate random-effects model"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Bonett (2002) planning for the consistency ICC, ICC(3,1), with k = %d "
-"measurements per case and a 95%% confidence interval; this analysis has %d "
-"complete cases. The widths are expected values, so about half of the studies "
-"of that size obtain a wider interval. A systematic offset between the "
-"measurements widens the interval of the absolute-agreement ICC(2,1), which "
-"then needs more cases. The number of cases is never shown below the 5 this "
-"analysis requires. This is precision planning, not a hypothesis test."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "Bootstrap CI for the median could not be computed."
 msgstr ""
@@ -1517,10 +1108,6 @@ msgid ""
 "Both are effectively zero, so the studies are consistent with a single "
 "common sensitivity and specificity and the correlation between them is not "
 "identifiable - no threshold effect can be assessed from this fit."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Brown-Forsythe test (spread of per-case CV)"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -1537,52 +1124,8 @@ msgstr ""
 msgid "Calculation methods"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Calibrate region(s) %s against the other regions before using them "
-"interchangeably."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Calibrate region(s) %s against the reference before substituting them."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Calibrate the affected measurement against the reference before using it in "
-"its place."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Calibrate the mean of all regions against the reference before using it in "
-"its place."
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid "Cannot access coefficients: %s"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Case mean (biomarker value)"
-msgstr ""
-
-#: ihcheterogeneity/results/spatialanalysistable.columns.title
-msgid "Cases"
-msgstr ""
-
-#: ihcheterogeneity/results/samplesizetable.columns.superTitle
-msgid "Cases Needed"
-msgstr ""
-
-#: ihcheterogeneity/results/samplesizetable.description
-msgid ""
-"Cases needed to estimate the ICC with a chosen 95 percent CI width (Bonett "
-"2002)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Cases not analysed"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -1660,22 +1203,6 @@ msgstr ""
 msgid "Change in Tumor Size (%)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Changes with the level: %s at %s (90%% CI %s to %s), %s at %s (90%% CI %s to "
-"%s); inconclusive at the ±%s margin"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Changes with the level: %s at %s, %s at %s"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Changes with the level: %s at %s, %s at %s (margin ±%s); ruled out, both "
-"90%% CIs within the margin"
-msgstr ""
-
 #: R/swimmerplot.b.R
 msgid "Check for negative follow-up times or unrealistic durations"
 msgstr ""
@@ -1729,14 +1256,6 @@ msgstr ""
 msgid "Classic (teal/orange)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Click and drag to select text, then copy (Ctrl+C/Cmd+C) for use in reports."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Clinical Assessment:"
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "Clinical Context:"
 msgstr ""
@@ -1758,12 +1277,8 @@ msgstr ""
 msgid "Clinical Guidance & Documentation"
 msgstr ""
 
-#: ihcheterogeneity/results/samplingbiastable.columns.title
-msgid "Clinical Impact"
-msgstr ""
-
 #: R/swimmerplot.b.R
-#: ihcheterogeneity/results/reproducibilitytable.columns.title
+#: diagnosticmeta/results/likelihoodRatioGuide.columns.title
 #: swimmerplot/results/interpretation.title
 #: swimmerplot/results/advancedMetrics.columns.title
 #: waterfall/results/enhancedClinicalMetrics.columns.title
@@ -1777,15 +1292,10 @@ msgstr ""
 msgid "Clinical interpretation"
 msgstr ""
 
-#: ihcheterogeneity/results/interpretation.title
-msgid "Clinical Interpretation and Analysis Summary"
-msgstr ""
-
 #: diagnosticmeta/results/interpretation.title
 msgid "Clinical Interpretation and Guidelines"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
 #: R/swimmerplot-html.R
 #: R/waterfall.b.R
 msgid "Clinical Interpretation:"
@@ -1797,11 +1307,6 @@ msgstr ""
 
 #: swimmerplot/ui[2].label
 msgid "Clinical Milestones"
-msgstr ""
-
-#: ihcheterogeneity/options/generate_recommendations.title
-#: ihcheterogeneity/ui[5]/generate_recommendations.label
-msgid "Clinical recommendations"
 msgstr ""
 
 #: waterfall/ui[4].label
@@ -1838,27 +1343,8 @@ msgstr ""
 msgid "Clinical Themes:"
 msgstr ""
 
-#: ihcheterogeneity/ui[3].label
-msgid "Clinical Thresholds"
-msgstr ""
-
 #: R/swimmerplot-html.R
 msgid "Clinical trial data visualization and regulatory submissions"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Coefficient of Variation (%)"
-msgstr ""
-
-#: ihcheterogeneity/results/variabilityplot.description
-msgid "Coefficient of variation by case"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Coefficient of variation per case (SD / mean of the case's measurements), "
-"combined over cases as a root mean square (the within-case CV); cases whose "
-"mean is near zero are left out."
 msgstr ""
 
 #: waterfall/options/colorBy.title
@@ -1940,39 +1426,9 @@ msgid ""
 "numeric days from treatment start"
 msgstr ""
 
-#: ihcheterogeneity/results/samplingbiastable.columns.title
 #: swimmerplot/results/groupComparisonTest.columns.title
 #: waterfall/results/groupComparisonTest.columns.title
 msgid "Comparison"
-msgstr ""
-
-#: ihcheterogeneity/results/compartmentComparison.columns.title
-msgid "Comparison to Other Compartments"
-msgstr ""
-
-#: ihcheterogeneity/results/compartmentComparison.columns.title
-msgid "Compartment"
-msgstr ""
-
-#: ihcheterogeneity/options/compartmentTests.title
-#: ihcheterogeneity/ui[2]/compartmentTests.label
-msgid "Compartment comparison tests"
-msgstr ""
-
-#: ihcheterogeneity/results/compartmentComparison.title
-msgid "Compartment Heterogeneity Comparison"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Compartments with fewer than %d cases are not analysed: %s."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Compartments with fewer than %d cases are not compared: %s."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Compartments with fewer than %d cases are not tested: %s."
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -2002,18 +1458,14 @@ msgstr ""
 msgid "Complete response: n = %d (%.1f%%)"
 msgstr ""
 
-#: ihcheterogeneity/options/analysis_type/comprehensive.title
-msgid "Comprehensive Analysis"
-msgstr ""
-
 #: package/analyses/diagnosticmeta.description
 #: diagnosticmeta/options.description.main
 msgid ""
-"Comprehensive meta-analysis of diagnostic test accuracy studies designed for\n"
+"Comprehensive meta-analysis of diagnostic test accuracy studies designed for "
 "pathology research. Performs bivariate random-effects modeling, "
-"proportional-hazards SROC analysis,\n"
-"meta-regression, and publication bias assessment for AI algorithm validation\n"
-"and biomarker diagnostic accuracy synthesis."
+"proportional-hazards SROC analysis, meta-regression, and publication bias "
+"assessment for AI algorithm validation and biomarker diagnostic accuracy "
+"synthesis."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -2029,12 +1481,6 @@ msgstr ""
 msgid "Confidence intervals for clinical metrics"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Confidence intervals for Spearman correlations used the Fisher z "
-"transformation with the variance of Bonett and Wright (2000)."
-msgstr ""
-
 #: diagnosticmeta/options/confidence_level.title
 msgid "Confidence level"
 msgstr ""
@@ -2048,10 +1494,6 @@ msgid ""
 "Configuring the date settings properly ensures accurate timeline "
 "calculations and gives you full control over how dates are displayed in your "
 "swimmer plot."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Confirm findings in independent dataset"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -2090,24 +1532,6 @@ msgstr ""
 msgid "CONFLICTING CONFIRMATION VALUES"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Consider averaging more than one region per case or revising the sampling "
-"protocol."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Constant reference measurement"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Continuous biomarker values (percentages, scores or quantitative units)."
-msgstr ""
-
-#: ihcheterogeneity/results/variancetable.columns.title
-msgid "Contribution to Total Variance"
-msgstr ""
-
 #: waterfall/options/sortDirection/conventional.title
 msgid "Conventional (worst on left, best on right)"
 msgstr ""
@@ -2131,28 +1555,13 @@ msgstr ""
 msgid "Copy-ready report"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
 #: R/waterfall.b.R
-#: ihcheterogeneity/results/report_sentences.title
 #: waterfall/results/copyReadyReport.title
 msgid "Copy-Ready Report Sentences"
 msgstr ""
 
-#: ihcheterogeneity/options/showReportSentences.title
-#: ihcheterogeneity/ui[5]/showReportSentences.label
-msgid "Copy-ready report sentences"
-msgstr ""
-
 #: swimmerplot/ui[0].label
 msgid "Core Data Variables"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Correlation"
-msgstr ""
-
-#: ihcheterogeneity/results/reproducibilitytable.description
-msgid "Correlation and reliability metrics"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -2160,57 +1569,6 @@ msgid ""
 "Correlation between logit sensitivity and logit specificity = %.2f. A "
 "strongly negative correlation suggests a threshold effect (studies trading "
 "sensitivity for specificity)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Correlation CIs use the Fisher z transformation with the Spearman variance "
-"of Bonett & Wright (2000); the CI of the mean correlation uses the smallest "
-"number of pairs and is conservative. Coverage falls below 95% when r is "
-"above about 0.97."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Correlation CIs use the Fisher z transformation with the Spearman variance "
-"of Bonett & Wright (2000). Coverage falls below 95% when r is above about "
-"0.97."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Correlation could not be estimated with the available data."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Correlation is blind to a constant offset, and the CV mixes an offset with "
-"random variation, so neither shows that the measurements are interchangeable."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Correlation metrics were not estimable with the available data."
-msgstr ""
-
-#: ihcheterogeneity/ui[3]/correlation_threshold.label
-msgid "Correlation threshold"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Correlation:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Correlations from fewer than %d pairs are not reported: %s."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Correlations involving a measurement with the same value in every case are "
-"not defined: %s."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Could not compute: %s"
 msgstr ""
 
 #: swimmerplot/results/eventMarkerTable.columns.title
@@ -2274,38 +1632,6 @@ msgstr ""
 msgid "Custom Time"
 msgstr ""
 
-#: ihcheterogeneity/results/spatialanalysistable.columns.title
-msgid "CV (%)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "CV (coefficient of variation):"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"CV bands follow your CV threshold (low up to half of it, moderate up to it, "
-"high above it). For a test of whether heterogeneity differs between "
-"compartments, use the Kruskal-Wallis test on per-case CV (Compartment "
-"comparison tests)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "CV not estimable"
-msgstr ""
-
-#: ihcheterogeneity/ui[3]/cv_threshold.label
-msgid "CV threshold (%)"
-msgstr ""
-
-#: ihcheterogeneity/options/cv_threshold.title
-msgid "CV Threshold for Acceptable Variability"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "CV: %s%%"
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "Data contains no complete rows. Check the data."
 msgstr ""
@@ -2332,18 +1658,6 @@ msgstr ""
 
 #: waterfall/options/inputType.title
 msgid "Data input type"
-msgstr ""
-
-#: R/waterfall.b.R
-msgid "DATA PROCESSING ERROR"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Data quality"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Data requirements and assumptions"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -2376,16 +1690,6 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "DATA VALIDATION WARNINGS"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Data were insufficient to characterize sampling reliability."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Data were insufficient to evaluate overall sampling quality against "
-"predefined criteria."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -2526,10 +1830,6 @@ msgid ""
 "the target-lesion sum alone."
 msgstr ""
 
-#: ihcheterogeneity/results/glossary.description
-msgid "Definitions of key statistical terms used in the analysis"
-msgstr ""
-
 #: R/swimmerplot-html.R
 msgid ""
 "Descriptive measure of patient concentration per unit of observation time "
@@ -2545,24 +1845,12 @@ msgid ""
 "analysis or treat response as a time-dependent covariate."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Descriptive, robust to a few extreme cases; not graded"
-msgstr ""
-
 #: waterfall/results/responseDurationTable.columns.title
 msgid "Detail"
 msgstr ""
 
 #: diagnosticmeta/results/heterogeneity.columns.title
 msgid "df"
-msgstr ""
-
-#: ihcheterogeneity/results/compartmentTests.columns.title
-msgid "df1"
-msgstr ""
-
-#: ihcheterogeneity/results/compartmentTests.columns.title
-msgid "df2"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -2583,10 +1871,6 @@ msgstr ""
 #: diagnosticmeta/ui.title
 #: diagnosticmeta/results.title
 msgid "Diagnostic Test Meta-Analysis for Pathology"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Differences Between Regions:"
 msgstr ""
 
 #: waterfall/options/sortDirection.description.jamovi
@@ -2630,16 +1914,6 @@ msgstr ""
 
 #: waterfall/options/showWaterfallPlot.description.jamovi
 msgid "Display the waterfall plot showing best response for each patient."
-msgstr ""
-
-#: ihcheterogeneity/results/biopsyplot.description
-msgid ""
-"Distribution comparison across regional measurements and reference (if "
-"provided)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Distribution of IHC biomarker values across tissue regions"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -2689,18 +1963,6 @@ msgid ""
 "gaps between episodes, while Total Person-Time is the union of the episodes "
 "themselves and excludes them - the two therefore differ whenever a patient "
 "has a treatment gap."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Each case contributes one value per test - its CV, or the mean of its "
-"reference and regional measurements - so the observations are independent."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Each case contributes one value per test - its CV, or the mean of its "
-"regional measurements - so the observations are independent."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -2943,10 +2205,6 @@ msgid ""
 "response and hides progression."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Every regional measurement equalled its comparison in every case."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid ""
 "Every response value is positive, so no patient shrank at all. If these are "
@@ -2985,7 +2243,6 @@ msgid "Example analysis for swimmer plot."
 msgstr ""
 
 #: package/datasets/WaterfallPlot.description
-#: package/datasets/WaterfallandSpiderPlot.description
 msgid "Example analysis for Waterfall Plot."
 msgstr ""
 
@@ -2997,26 +2254,16 @@ msgstr ""
 msgid "Example data format:"
 msgstr ""
 
+#: package/datasets/WaterfallandSpiderPlot.description
+msgid "Example longitudinal analysis for Waterfall and Spider Plot."
+msgstr ""
+
 #: R/waterfall.b.R
 msgid "Example: -30 means 30% decrease from baseline"
 msgstr ""
 
 #: R/swimmerplot-html.R
 msgid "Examples:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Excellent (ICC = %.2f): almost all of the variation in scores comes from "
-"differences between cases, not from which measurement was used."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Excellent reliability"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Excellent reliability band (ICC = %.2f)."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -3034,10 +2281,6 @@ msgid ""
 "cell - the 100%% sensitivity or 100%% specificity studies. The bivariate "
 "pooled estimates above keep them, so the two rest on different numbers of "
 "studies. Choose a zero-cell correction to retain them here."
-msgstr ""
-
-#: ihcheterogeneity/results/samplesizetable.columns.title
-msgid "Expected CI Width (current n)"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -3074,6 +2317,10 @@ msgid "False Negatives (FN)"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
+msgid "False negatives is still empty."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
 msgid "False Positive Rate (1 - Specificity)"
 msgstr ""
 
@@ -3085,12 +2332,20 @@ msgstr ""
 msgid "False Positives (FP)"
 msgstr ""
 
-#: R/swimmerplot.b.R
-msgid "Fill them in under Core Data Variables and the plot will appear."
+#: R/diagnosticmeta.b.R
+msgid "False positives is still empty."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Findings may not generalise to other biomarkers or tissue types."
+#: R/diagnosticmeta.b.R
+msgid "Fill them in and the meta-analysis will appear."
+msgstr ""
+
+#: R/waterfall.b.R
+msgid "Fill them in and the waterfall plot will appear."
+msgstr ""
+
+#: R/swimmerplot.b.R
+msgid "Fill them in under Core Data Variables and the plot will appear."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -3120,12 +2375,6 @@ msgstr ""
 #: R/swimmerplot-html.R
 #: R/waterfall.b.R
 msgid "Fisher's Exact Test:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Fixation, processing and staining variation are not separated from sampling "
-"variation."
 msgstr ""
 
 #: diagnosticmeta/options/method/fixed.title
@@ -3208,10 +2457,6 @@ msgstr ""
 msgid "Forest Plot: Sensitivity and Specificity by Study"
 msgstr ""
 
-#: ihcheterogeneity/results/compartmentTests.description
-msgid "Formal statistical tests comparing heterogeneity across compartments"
-msgstr ""
-
 #: R/swimmerplot-html.R
 msgid "Found date format:"
 msgstr ""
@@ -3248,10 +2493,6 @@ msgstr ""
 msgid "Generic (Time)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Get started:"
-msgstr ""
-
 #: diagnosticmeta/results/instructions.title
 msgid "Getting Started"
 msgstr ""
@@ -3266,24 +2507,6 @@ msgstr ""
 
 #: R/swimmerplot-html.R
 msgid "Go to the 'Time & Date Settings' section (click to expand)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Good (ICC = %.2f): most of the variation in scores comes from differences "
-"between cases rather than from which measurement was used."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Good reliability"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Good reliability band (ICC = %.2f)."
-msgstr ""
-
-#: ihcheterogeneity/ui[4][0].label
-msgid "Greyed out when the analysis focus above already includes them."
 msgstr ""
 
 #: waterfall/results/groupComparisonTable.columns.title
@@ -3344,14 +2567,6 @@ msgstr ""
 msgid "Guided Analysis Steps"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "H-score:"
-msgstr ""
-
-#: ihcheterogeneity/results/samplingbiastable.columns.title
-msgid "Hedges' g (paired)"
-msgstr ""
-
 #: diagnosticmeta/options/heterogeneity_analysis.title
 msgid "Heterogeneity analysis"
 msgstr ""
@@ -3368,69 +2583,12 @@ msgstr ""
 msgid "Heterogeneity assessment (study variability)"
 msgstr ""
 
-#: ihcheterogeneity/results/spatialanalysistable.columns.title
-msgid "Heterogeneity Level"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Heterogeneity level grades the within-case CV (root mean square over the "
-"compartment's cases) against your %1$s%% threshold: Low at or below %2$s%%, "
-"Moderate up to %1$s%%, High above it."
-msgstr ""
-
-#: ihcheterogeneity/results/compartmentComparison.columns.title
-msgid "Heterogeneity Metric"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "High"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "High (>%s%%)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"High (CV = %.1f%%, graded against your %s%% threshold) - measurements of the "
-"same case varied substantially."
-msgstr ""
-
 #: swimmerplot/options/colorPalette/contrast.title
 msgid "High Contrast"
 msgstr ""
 
 #: diagnosticmeta/options/color_palette/high_contrast.title
 msgid "High contrast"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"High number of outliers detected (%s%%). Consider checking for measurement "
-"errors or data entry issues."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"High percentage of missing regional measurements (%s%%). This may affect "
-"reliability of heterogeneity assessment."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "High sampling variability"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "High variability"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Higher CV band than %s"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Higher than %s (95%% CIs do not overlap)"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -3473,26 +2631,6 @@ msgid ""
 "summaries of each margin, not as the heterogeneity of the bivariate model."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "ICC not estimable"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "ICC(2,1) - absolute agreement"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "ICC(2,1), absolute agreement:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "ICC(3,1) - consistency (bias-blind)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "ICC(3,1), consistency:"
-msgstr ""
-
 #: R/swimmerplot-html.R
 msgid ""
 "Ideal for oncology trials, treatment response visualization, progression "
@@ -3507,58 +2645,8 @@ msgstr ""
 msgid "Ignores censoring; n=%d with duration data"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Ignores systematic offset; compare with absolute agreement above"
-msgstr ""
-
-#: package/analyses/ihcheterogeneity.menuSubgroup
-#: ihcheterogeneity/options.menuSubgroup
-msgid "IHC Analysis"
-msgstr ""
-
 #: package/datasets/IHCHeterogeneity.name
 msgid "IHC Heterogeneity"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-#: package/analyses/ihcheterogeneity.title
-#: package/analyses/ihcheterogeneity.menuTitle
-#: ihcheterogeneity/options.title
-#: ihcheterogeneity/ui.title
-#: ihcheterogeneity/results.title
-msgid "IHC Heterogeneity Analysis"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "IHC Heterogeneity Analysis Report"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"IHC heterogeneity analysis was performed on %d cases, each with a reference "
-"and a regional measurement."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"IHC heterogeneity analysis was performed on %d cases, each with a reference "
-"measurement and at least one of %d regional measurements."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"IHC heterogeneity analysis was performed on %d cases, each with at least two "
-"of %d regional measurements."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"IHC heterogeneity analysis was performed on %d cases, each with both "
-"regional measurements."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "IHC terms"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -3578,73 +2666,8 @@ msgstr ""
 msgid "IMPOSSIBLE SHRINKAGE CAPPED"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "In these data the 95%% CI of ICC(2,1) has width %s."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"In this dataset region(s) %s are systematically offset from the reference, "
-"so they should be calibrated before being used in its place."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"In this dataset region(s) %s differ systematically from the other regions, "
-"so the regions should not be used interchangeably without calibration."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"In this dataset the mean of all regions is systematically offset from the "
-"reference, although no single region is materially offset on its own."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"In this dataset the regional measurements met the correlation and "
-"variability thresholds, but agreement within the chosen margin was not "
-"demonstrated."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"In this dataset, measurement variability exceeded the CV threshold set for "
-"this analysis."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"In this dataset, measurement variability was well within the CV threshold "
-"set for this analysis."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"In this dataset, measurement variability was within, but close to, the CV "
-"threshold set for this analysis."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"In this dataset, the available data were insufficient to quantify "
-"measurement variability."
-msgstr ""
-
 #: R/swimmerplot-html.R
 msgid "in your time variables"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "INADEQUATE SAMPLING:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Independence:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Individual Agreement:"
 msgstr ""
 
 #: diagnosticmeta/results/individualstudies.title
@@ -3660,19 +2683,8 @@ msgstr ""
 msgid "Instructions"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Insufficient data for a sampling recommendation."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "Insufficient data for clinical interpretation"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Insufficient data for inter-regional heterogeneity analysis. At least 5 "
-"complete cases (at least 2 regional measurements each) are required; %d "
-"case(s) qualify."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -3683,70 +2695,21 @@ msgstr ""
 msgid "Insufficient data for proportional-hazards SROC analysis"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Insufficient data for reference-based heterogeneity analysis. At least 5 "
-"complete cases (a reference value and at least one regional measurement) are "
-"required; %d case(s) qualify."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "INSUFFICIENT DATA:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Inter- and intra-observer variation is not separated from regional variation."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Inter-Regional Measurements"
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid "Intercept"
 msgstr ""
 
 #: diagnosticmeta/results/publicationbias.columns.title
-#: ihcheterogeneity/results/compartmentTests.columns.title
 #: swimmerplot/results/groupComparisonTest.columns.title
 msgid "Interpretation"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Interpretation:"
 msgstr ""
 
 #: R/swimmerplot.b.R
 msgid "Interquartile Range (observed durations)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Intraclass correlation ICC(2,1), absolute agreement, two-way random effects, "
-"with the F-based 95% CI of McGraw & Wong (1996); the consistency form "
-"ICC(3,1) is shown beside it."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "Invalid Tumor Shrinkage Values Detected:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "It affects region(s) %s and the mean of all regions."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "It affects region(s) %s."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"It affects the mean of all regions, although no single region is materially "
-"offset on its own."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Its 95%% CI extends down to %s, below the threshold."
 msgstr ""
 
 #: diagnosticmeta/options/color_palette/jamovi.title
@@ -3764,7 +2727,9 @@ msgid ""
 "the confidence interval above, rather than against generic cut-offs."
 msgstr ""
 
+#: R/diagnosticmeta.b.R
 #: R/swimmerplot.b.R
+#: R/waterfall.b.R
 msgid "Keep going - a few variables to add"
 msgstr ""
 
@@ -3784,17 +2749,8 @@ msgstr ""
 msgid "Key clinical events with dates"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
 #: R/waterfall.b.R
 msgid "Key Findings:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Kruskal-Wallis test (per-case CV)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Kruskal-Wallis test (per-case means)"
 msgstr ""
 
 #: waterfall/options/labelOutliers.description.jamovi
@@ -3805,10 +2761,6 @@ msgstr ""
 msgid "Lane width"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Large share of total variance"
-msgstr ""
-
 #: waterfall/options/labelOutliers.title
 msgid "Large-change labels"
 msgstr ""
@@ -3817,12 +2769,12 @@ msgstr ""
 msgid "Legend"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Limitations"
+#: diagnosticmeta/results/likelihoodRatioGuide.columns.title
+msgid "Likelihood Ratio"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Limits of agreement:"
+#: diagnosticmeta/results/likelihoodRatioGuide.title
+msgid "Likelihood Ratios for Clinical Decision-Making"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -3833,43 +2785,12 @@ msgstr ""
 msgid "Log Diagnostic Odds Ratio"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Low"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Low (≤%s%%)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Low (CV = %.1f%%, graded against your %s%% threshold) - measurements of the "
-"same case were consistent."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Low sampling variability"
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid "Low SROC AUC"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Low variability"
-msgstr ""
-
 #: diagnosticmeta/results/metaregression.columns.title
-#: ihcheterogeneity/results/samplingbiastable.columns.title
 msgid "Lower"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Lower CV band than %s"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Lower than %s (95%% CIs do not overlap)"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -3878,10 +2799,6 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "Main Results:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Major contributor"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -3896,10 +2813,6 @@ msgstr ""
 msgid "Marker size"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Material systematic difference"
-msgstr ""
-
 #: diagnosticmeta/options/method/ml.title
 msgid "Maximum likelihood"
 msgstr ""
@@ -3912,93 +2825,12 @@ msgstr ""
 msgid "Maximum milestones"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Mean Bias (mean of regions - reference)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Mean Biomarker Value"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Mean biomarker values and variability by spatial region"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Mean Difference (Region - Comparator)"
-msgstr ""
-
-#: ihcheterogeneity/results/samplingbiastable.columns.title
-msgid "Mean Difference (Region - Reference)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Mean difference = region minus reference. Limits of agreement (Bland & "
-"Altman 1986): 95% of individual differences are expected between these "
-"bounds if the differences are roughly normal."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Mean difference = region minus the other region (or the mean of the other "
-"regions). Limits of agreement (Bland & Altman 1986): 95% of individual "
-"differences are expected between these bounds if the differences are roughly "
-"normal."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Mean difference plus or minus 1.96 SD of the differences: the range expected "
-"to hold 95% of individual region-minus-reference differences."
-msgstr ""
-
 #: R/swimmerplot.b.R
 msgid "Mean Duration"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Mean Inter-Regional Correlation"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Mean of all regions vs reference"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Mean Regional-Reference Correlation"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Mean Spearman correlation between regions = %s, which is below your %s "
-"threshold."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Mean Spearman correlation between regions = %s, which meets your %s "
-"threshold."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Mean Spearman correlation with the reference = %s across %d regions, which "
-"is below your %s threshold."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Mean Spearman correlation with the reference = %s across %d regions, which "
-"meets your %s threshold."
-msgstr ""
-
 #: swimmerplot/results/personTimeTable.columns.title
 msgid "Mean Time"
-msgstr ""
-
-#: ihcheterogeneity/results/spatialanalysistable.columns.title
-msgid "Mean Value"
 msgstr ""
 
 #: diagnosticmeta/results/heterogeneity.columns.title
@@ -4016,14 +2848,6 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "Measurement accuracy"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Measurement Location"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Measurement scale:"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -4092,10 +2916,6 @@ msgstr ""
 msgid "median observed follow-up duration (censoring coding not recognised)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Median per-case CV (%)"
-msgstr ""
-
 #: waterfall/options/showMedian.title
 msgid "Median response"
 msgstr ""
@@ -4130,10 +2950,6 @@ msgid ""
 "Median/Protocol reference lines measure a duration from each patient's own "
 "start, so they cannot be placed on an absolute axis where patients begin at "
 "different points."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Meets your threshold (≥ %s)"
 msgstr ""
 
 #: package/analyses/diagnosticmeta.menuSubgroup
@@ -4195,30 +3011,12 @@ msgstr ""
 msgid "Meta-regression skipped"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Method"
-msgstr ""
-
 #: diagnosticmeta/options/method/mm.title
 msgid "Method of Moments"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Method Variance"
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid "method-of-moments"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-#: ihcheterogeneity/results/assumptions.title
-msgid "Methodology & Assumptions"
-msgstr ""
-
-#: ihcheterogeneity/options/showAssumptions.title
-#: ihcheterogeneity/ui[5]/showAssumptions.label
-msgid "Methodology & assumptions"
 msgstr ""
 
 #: diagnosticmeta/options/show_methodology.title
@@ -4232,14 +3030,6 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "Methods note:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Methods Section:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Methods used in this run"
 msgstr ""
 
 #: swimmerplot/results/summary.columns.title
@@ -4392,20 +3182,12 @@ msgstr ""
 msgid "Minimal"
 msgstr ""
 
-#: ihcheterogeneity/options/correlation_threshold.title
-msgid "Minimum acceptable correlation"
-msgstr ""
-
 #: waterfall/options/minResponseForLabel.title
 msgid "Minimum response for labels (percent)"
 msgstr ""
 
 #: waterfall/options/minResponseForLabel.description.jamovi
 msgid "Minimum response value for labels to be displayed."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Minor contributor"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -4436,36 +3218,12 @@ msgstr ""
 msgid "MM-YYYY-DD"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Moderate"
+#: R/diagnosticmeta.b.R
+msgid "Moderate evidence against disease"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Moderate (%s-%s%%)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Moderate (CV = %.1f%%, graded against your %s%% threshold) - measurements of "
-"the same case varied moderately."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Moderate (ICC = %.2f): a substantial part of the variation in scores comes "
-"from which measurement was used."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Moderate contributor"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Moderate reliability"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Moderate reliability band (ICC = %.2f)."
+#: R/diagnosticmeta.b.R
+msgid "Moderate evidence for disease"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -4474,32 +3232,8 @@ msgid ""
 "conclusions."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Moderate sampling variability"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "MODERATE SAMPLING:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Moderate sampling:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Moderate share of total variance"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Moderate variability"
-msgstr ""
-
 #: swimmerplot/options/colorPalette/monochrome.title
 msgid "Monochrome"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Monotonicity:"
 msgstr ""
 
 #: swimmerplot/options/timeUnit/months.title
@@ -4514,10 +3248,6 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "Months from Baseline"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "More cases would narrow the interval."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -4566,10 +3296,6 @@ msgstr ""
 msgid "N=%d patients | Median duration: %.1f %s | Total person-time: %.1f %s"
 msgstr ""
 
-#: ihcheterogeneity/results/summary.description
-msgid "Natural-language summary of heterogeneity analysis results"
-msgstr ""
-
 #: R/swimmerplot.b.R
 msgid "NE"
 msgstr ""
@@ -4578,18 +3304,16 @@ msgstr ""
 msgid "Negative Likelihood Ratio"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Negative LR"
+msgstr ""
+
 #: R/waterfall.b.R
 msgid "NEGATIVE TUMOUR MEASUREMENTS"
 msgstr ""
 
 #: R/waterfall.b.R
 msgid "Negative values = tumor shrinkage (improvement)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Negative values detected. Most IHC biomarkers should have non-negative "
-"values (e.g., Ki67 %, H-scores). Verify data coding."
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -4606,24 +3330,6 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "No asymmetry detected (p >= 0.05)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"No case has a computable coefficient of variation (every case mean is zero "
-"or near zero), so the variability plot is not shown."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "No case has a CV above your %s%% threshold."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "No CI available for comparison"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "No comparison available"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -4656,24 +3362,6 @@ msgid ""
 "format."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"No difference in per-case CV between compartments was detected; this does "
-"not establish that they are equally heterogeneous"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"No difference in the spread of per-case CVs between compartments was "
-"detected; this does not establish that they are the same"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"No difference that changes with the level was detected; this does not show "
-"that there is none."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "NO EVALUABLE PATIENTS"
 msgstr ""
@@ -4703,16 +3391,6 @@ msgid ""
 "groups and both outcomes present: here every patient in the comparison had "
 "the same outcome (all responders or none, and likewise for disease control), "
 "so there is nothing to compare. The per-group counts are in the note above."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "No ICC for compartment '%s'."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"No material systematic difference: every 90%% CI lies within the %s%% margin "
-"(largest estimated difference %s%%)."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -4783,20 +3461,8 @@ msgstr ""
 msgid "No recorded response ({n}/{N})"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"No reference measurement was supplied: the ICC is the agreement between "
-"regions, and the bias rows are not shown."
-msgstr ""
-
 #: R/swimmerplot.b.R
 msgid "No response recorded for %d of %d patients (%.1f%%)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"No significant difference in per-case mean biomarker levels detected across "
-"compartments; this does not establish that the distributions are the same"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -4841,12 +3507,6 @@ msgstr ""
 msgid ""
 "No valid data rows after validation. Check that end times are >= start times "
 "and all required data is present."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"No variability in the data: every measurement has the same value, so there "
-"is nothing to decompose."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -4907,79 +3567,20 @@ msgid ""
 "obtain ORR and DCR."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Normality:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "NOT ADEQUATE FOR SUBSTITUTION:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Not adequate for substitution:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Not assessable (comparison mean near zero)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Not assessable (reference mean near zero)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Not assessable: the reference has the same value in every case."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Not assessed (too few paired values or the same value in every case): %s."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "Not available"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Not available - an ICC could not be estimated with the provided data."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Not available - correlation metrics were not estimable."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Not available - insufficient data to estimate variability."
 msgstr ""
 
 #: R/waterfall.b.R
 msgid "Not available (insufficient data)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Not available."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Not checked for a difference that changes with the level (too few cases or "
-"distinct values): %s."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Not enough paired observations to test for systematic differences."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
 #: R/waterfall.b.R
 msgid "Not estimable"
 msgstr ""
 
 #: R/waterfall.b.R
 msgid "not estimable"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Not estimable - see note"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -5028,10 +3629,6 @@ msgstr ""
 msgid "NOT RESPONSE-EVALUABLE"
 msgstr ""
 
-#: ihcheterogeneity/options/sampling_strategy/unknown.title
-msgid "Not specified"
-msgstr ""
-
 #: R/swimmerplot.b.R
 msgid "NOTE"
 msgstr ""
@@ -5040,13 +3637,6 @@ msgstr ""
 msgid ""
 "Note: Exported data can be accessed through the Output panel and used for "
 "external analysis."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Note: Stratified sampling was reported. This analysis applies NO "
-"design-based adjustment: all estimates treat the measurements as a simple "
-"sample, so stratification effects (if any) remain in the results."
 msgstr ""
 
 #: waterfall/ui[3][1][0][4].label
@@ -5062,8 +3652,11 @@ msgid "Nothing selected to display"
 msgstr ""
 
 #: diagnosticmeta/results/notices.title
-#: ihcheterogeneity/results/notices.title
 msgid "Notices"
+msgstr ""
+
+#: diagnosticmeta/results/predictiveValues.columns.title
+msgid "NPV"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -5110,14 +3703,6 @@ msgid ""
 "non-responders)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Observed ICC(3,1), consistency"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Observers:"
-msgstr ""
-
 #: R/swimmerplot-html.R
 msgid "Odds Ratio (OR):"
 msgstr ""
@@ -5128,13 +3713,6 @@ msgid ""
 "the notices). The unconfirmed objective response rate (ORR) was %.1f%% (95%% "
 "CI %.1f-%.1f%%; complete response n = %d, partial response n = %d), and the "
 "disease control rate (DCR) was %.1f%% (95%% CI %.1f-%.1f%%)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Of the total variance, %1$s%% lies between cases, %2$s%% within cases "
-"(sampling and scoring error) and %3$s%% between measurement methods (see the "
-"Variance Component Analysis table)."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -5157,11 +3735,9 @@ msgid "Oncology clinical trials and treatment response studies"
 msgstr ""
 
 #: package/analyses/diagnosticmeta.menuGroup
-#: package/analyses/ihcheterogeneity.menuGroup
 #: package/analyses/swimmerplot.menuGroup
 #: package/analyses/waterfall.menuGroup
 #: diagnosticmeta/options.menuGroup
-#: ihcheterogeneity/options.menuGroup
 #: swimmerplot/options.menuGroup
 #: waterfall/options.menuGroup
 msgid "OncoPath"
@@ -5179,7 +3755,7 @@ msgid ""
 "waterfall plots for treatment response analysis and swimmer plots for "
 "patient timeline visualization. For comments, suggestions, feature requests "
 "or reporting bugs, please open an issue at "
-"<https://github.com/sbalci/ClinicoPathJamoviModule/issues/>."
+"<https://github.com/sbalci/OncoPath/issues/>."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -5188,18 +3764,6 @@ msgid ""
 "identifiable and no threshold effect can be assessed from this fit; the "
 "other is not zero, so read the tau-squared values above as the heterogeneity "
 "on that margin."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Only %d cases are available. Reliability and variance estimates from fewer "
-"than 10 cases are imprecise; treat every coefficient below as provisional."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Only %d cases have every measurement; the ICC needs at least %d. Regions "
-"measured in different subsets of cases reduce this number."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -5260,18 +3824,6 @@ msgid ""
 "aligned with each patient's bar."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Optionally add a reference measurement (whole slide, hotspot or overall "
-"score); without one, select at least two regional measurements."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Optionally add a Spatial Region ID: the compartment each case was sampled "
-"from, with one row per case."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "ORR"
 msgstr ""
@@ -5314,61 +3866,6 @@ msgstr ""
 msgid "Output Interpretation"
 msgstr ""
 
-#: ihcheterogeneity/ui[5].label
-msgid "Output Options"
-msgstr ""
-
-#: ihcheterogeneity/options/wholesection.title
-#: ihcheterogeneity/ui[0][0].label
-msgid "Overall / Whole Slide / HotSpot (Optional)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Overall: region(s) %s differ systematically from the other regions, so the "
-"regions cannot be used interchangeably without calibration."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Overall: region(s) %s differ systematically from the reference and cannot "
-"replace it without calibration."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Overall: the data were not sufficient to judge agreement."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Overall: the mean of all regions is systematically offset from the "
-"reference, so the regions cannot replace it without calibration."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Overall: the regional measurements did not meet your agreement thresholds."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Overall: the regional measurements met your agreement thresholds in this "
-"dataset."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Overall: the regional measurements met your correlation and variability "
-"thresholds, but agreement was not confirmed (see the Clinical Assessment)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Overall: the regional measurements met your thresholds only after relaxing "
-"them, so a single region may not represent the case well."
-msgstr ""
-
-#: ihcheterogeneity/results/samplingbiastable.columns.title
-#: ihcheterogeneity/results/compartmentTests.columns.title
 #: waterfall/results/groupComparisonTest.columns.title
 msgid "p-value"
 msgstr ""
@@ -5395,15 +3892,6 @@ msgid ""
 "the confidence and prediction intervals for that. Sensitivity and "
 "specificity rows are percentages; likelihood ratios and the diagnostic odds "
 "ratio are ratios."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Paired t-test of each region against the other region(s), with the 95%% CI "
-"of the mean difference and Bland-Altman 95%% limits of agreement. With a "
-"margin of %s%% of the comparison mean, a difference is ruled out when its "
-"90%% CI lies within the margin (two one-sided tests) and material when a "
-"Bonferroni-adjusted CI lies entirely beyond it; otherwise it is inconclusive."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -5458,6 +3946,7 @@ msgid "Patient ID and response variables are required"
 msgstr ""
 
 #: R/swimmerplot.b.R
+#: R/waterfall.b.R
 msgid "Patient ID is still empty."
 msgstr ""
 
@@ -5539,33 +4028,6 @@ msgstr ""
 msgid "per 100 %s"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Per-case coefficient of variation against the case mean"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Per-case CV = SD / mean of that case's measurements. The within-case CV is "
-"their root mean square, which unlike their plain average does not fall when "
-"a case has fewer measurements; the median is descriptive and not graded."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Per-case CV differs between compartments: at least one compartment is more "
-"heterogeneous than another"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Per-region paired t-test of region minus reference (and of the mean of all "
-"regions), with the 95%% CI of the mean difference and Bland-Altman 95%% "
-"limits of agreement. With a margin of %s%% of the reference mean, a "
-"difference is ruled out when its 90%% CI lies within the margin (two "
-"one-sided tests) and material when a Bonferroni-adjusted CI lies entirely "
-"beyond it; otherwise it is inconclusive."
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid ""
 "Per-study intervals are Wilson score confidence intervals at the %d%% level "
@@ -5604,10 +4066,6 @@ msgstr ""
 msgid "Percentage"
 msgstr ""
 
-#: ihcheterogeneity/results/variancetable.columns.title
-msgid "Percentage (%)"
-msgstr ""
-
 #: R/waterfall.b.R
 msgid ""
 "Percentage achieving threshold-based response or stable disease (CR + PR + "
@@ -5631,12 +4089,6 @@ msgid ""
 "Percentage of patients achieving threshold-based CR (≤-100%) or PR (≤-30%) "
 "without RECIST v1.1 confirmation requirement. May overestimate true "
 "confirmed ORR."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Percentage of tumour cells staining positive (for example Ki67); range 0 to "
-"100."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -5705,23 +4157,6 @@ msgid ""
 "event-or-censoring, not as the length of follow-up."
 msgstr ""
 
-#: ihcheterogeneity/options/showSummary.title
-#: ihcheterogeneity/ui[5]/showSummary.label
-msgid "Plain-language summary"
-msgstr ""
-
-#: ihcheterogeneity/results/samplesizetable.columns.title
-msgid "Planning ICC"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Planning ICC 0.75 (lower limit of good reliability)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Planning ICC 0.90 (lower limit of excellent reliability)"
-msgstr ""
-
 #: diagnosticmeta/options/color_palette/plasma.title
 msgid "Plasma (Purple-Pink)"
 msgstr ""
@@ -5779,25 +4214,21 @@ msgid "Pooled Sensitivity"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
-msgid "Pooled Specificity"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
 msgid ""
-"Poor (ICC = %.2f): much of the variation in scores comes from which "
-"measurement was used rather than from differences between cases."
+"Pooled sensitivity and specificity estimates are unavailable; predictive "
+"values cannot be computed."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Poor reliability"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Poor reliability band (ICC = %.2f)."
+#: R/diagnosticmeta.b.R
+msgid "Pooled Specificity"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "Positive Likelihood Ratio"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Positive LR"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -5806,6 +4237,10 @@ msgid ""
 "(3) New lesions added during followup; (4) Measurement variability. Verify "
 "raw data before interpreting results. Extreme values can distort plot "
 "scaling and statistical summaries."
+msgstr ""
+
+#: diagnosticmeta/results/predictiveValues.columns.title
+msgid "PPV"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -5824,16 +4259,8 @@ msgstr ""
 msgid "PR: best change of -30% or less, above -100%."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Pre-analytical factors:"
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "Pre-calculated percent changes from baseline"
-msgstr ""
-
-#: ihcheterogeneity/results/report_sentences.description
-msgid "Pre-formatted sentences ready for clinical reports and publications"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -5843,6 +4270,14 @@ msgid ""
 "study or laboratory is expected to fall and includes between-study "
 "heterogeneity; the confidence intervals above describe only how precisely "
 "the pooled average is estimated."
+msgstr ""
+
+#: diagnosticmeta/results/predictiveValues.title
+msgid "Predictive Values by Prevalence"
+msgstr ""
+
+#: diagnosticmeta/results/predictiveValues.columns.title
+msgid "Prevalence"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -5877,10 +4312,6 @@ msgstr ""
 msgid "Progressive disease: n = %d (%.1f%%)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Proliferation index:"
-msgstr ""
-
 #: R/swimmerplot-html.R
 msgid "Proportion of patients with CR or PR"
 msgstr ""
@@ -5895,14 +4326,6 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid "Proportion with response or stable disease"
-msgstr ""
-
-#: ihcheterogeneity/results/samplingbiastable.columns.superTitle
-msgid "Proportional Bias"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Proportional bias:"
 msgstr ""
 
 #: diagnosticmeta/options/hsroc_analysis.title
@@ -6008,38 +4431,8 @@ msgstr ""
 msgid "Q Statistic"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Quality Control:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Quality thresholds were set at correlation ≥%s and CV ≤%s%%."
-msgstr ""
-
-#: package/analyses/ihcheterogeneity.description
-#: ihcheterogeneity/options.description.main
-msgid ""
-"Quantifies how well regional IHC measurements (biopsies, cores, fields) "
-"represent a case. With a reference measurement (whole section, hotspot or "
-"overall score) it reports the Spearman correlation of each region with the "
-"reference, the absolute-agreement ICC(2,1), the per-case coefficient of "
-"variation, and, for each region, the mean difference from the reference with "
-"its 95 percent CI and Bland-Altman limits of agreement. Without a reference "
-"it compares the regions with one another. Each difference is judged against "
-"a margin set by the user (bias_margin, default 5 percent of the comparison "
-"mean): ruled out when its 90 percent CI lies inside the margin (two "
-"one-sided tests), shown to be material when a Bonferroni-adjusted CI lies "
-"entirely beyond it, and inconclusive otherwise. Optional variance "
-"components, sample-size planning for ICC precision (Bonett 2002) and "
-"comparisons between spatial compartments."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "Quick Tips:"
-msgstr ""
-
-#: ihcheterogeneity/options/sampling_strategy/random.title
-msgid "Random Sampling"
 msgstr ""
 
 #: waterfall/options/seed.title
@@ -6062,14 +4455,6 @@ msgid ""
 "Range of values compatible with the observed data; over repeated studies, "
 "95% of such intervals contain the true population parameter. For response "
 "rates, exact binomial CIs are used for accuracy with small sample sizes."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Rank-order agreement between two sets of measurements, from -1 to +1. It is "
-"not affected by outliers or skewed distributions, and it cannot see a "
-"constant offset. This analysis compares it with the correlation threshold "
-"you set."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -6152,20 +4537,12 @@ msgstr ""
 msgid "RECIST v1.1 thresholds: CR ≤-100%%, PR ≤-30%%, PD ≥+20%%"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Recommendations:"
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "Recommended actions:"
 msgstr ""
 
 #: R/waterfall.b.R
 msgid "Recommended Data Format:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Reference"
 msgstr ""
 
 #: swimmerplot/ui[4][1][0].label
@@ -6182,155 +4559,6 @@ msgstr ""
 
 #: R/swimmerplot-html.R
 msgid "Reference Lines:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Reference measurement:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "References"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Region '%s' differs from region '%s' by %s on average (%s%% of its mean, "
-"95%% CI %s to %s); the difference is shown to exceed the %s%% margin."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Region '%s' differs from region '%s' by exactly %s in every case (%s%% of "
-"its mean)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Region '%s' differs from the mean of the other regions by %s on average "
-"(%s%% of their mean, 95%% CI %s to %s); the difference is shown to exceed "
-"the %s%% margin."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Region '%s' differs from the mean of the other regions by exactly %s in "
-"every case (%s%% of their mean)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Region '%s' differs from the reference by %s on average (%s%% of the "
-"reference mean, 95%% CI %s to %s); the difference is shown to exceed the "
-"%s%% margin."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Region '%s' differs from the reference by exactly %s in every case (%s%% of "
-"the reference mean)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Region(s) %s are offset from the reference by more than the %s%% margin and "
-"should not replace it without calibration; see the Clinical Assessment."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Region(s) %s differ systematically from the other regions by more than the "
-"%s%% margin, so the regions cannot be used interchangeably without "
-"calibration; see the Clinical Assessment."
-msgstr ""
-
-#: ihcheterogeneity/options/biopsy1.title
-#: ihcheterogeneity/ui[0][1].label
-msgid "Regional Measurement 1"
-msgstr ""
-
-#: ihcheterogeneity/options/biopsy2.title
-#: ihcheterogeneity/ui[0][2].label
-msgid "Regional Measurement 2 (Optional)"
-msgstr ""
-
-#: ihcheterogeneity/options/biopsy3.title
-#: ihcheterogeneity/ui[0][3].label
-msgid "Regional Measurement 3 (Optional)"
-msgstr ""
-
-#: ihcheterogeneity/options/biopsy4.title
-#: ihcheterogeneity/ui[0][4].label
-msgid "Regional Measurement 4 (Optional)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Regional measurements agree with one another in this dataset (correlation ≥ "
-"%s, CV ≤ %s%%), and the average difference of every comparison between "
-"regions was shown to lie within the %s%% margin (90%% CI)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Regional measurements agree with the reference measurement in this dataset "
-"(correlation ≥ %s, CV ≤ %s%%), and the average difference of every "
-"comparison with the reference was shown to lie within the %s%% margin (90%% "
-"CI)."
-msgstr ""
-
-#: ihcheterogeneity/results/biopsyplot.title
-msgid "Regional Measurements Comparison"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Regional measurements meet the correlation and CV thresholds (correlation ≥ "
-"%s, CV ≤ %s%%), but agreement is not confirmed."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Regional measurements of a case are treated as exchangeable, independently "
-"sampled measurements of that case."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Regional measurements with fewer than %d values are left out of the ICC and "
-"the variance components: %s."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Regional measurements with fewer than %d values were left out: %s."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Regional measurements with the same value in every case: %s. Check for data "
-"entry errors."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Regional Method Variance"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Regional vs Reference Measurements"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Regions per case:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Regions with fewer than %d paired values are not tested: %s."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Regions with fewer than %d values in a compartment are left out of that "
-"compartment's ICC, which then rests on fewer measurements than the others: "
-"%s."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -6353,21 +4581,6 @@ msgstr ""
 msgid "Relative vs Absolute:"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Reliability"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Reliability bands follow Koo & Li (2016): below 0.50 poor, 0.50 to 0.75 "
-"moderate, 0.75 to 0.90 good, above 0.90 excellent. Judge the band from the "
-"95% CI as well as from the point estimate."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Reliability:"
-msgstr ""
-
 #: diagnosticmeta/options/method/reml.title
 msgid "REML (Recommended)"
 msgstr ""
@@ -6382,22 +4595,6 @@ msgstr ""
 
 #: diagnosticmeta/ui[1][3].label
 msgid "Reporting Options"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Representativeness:"
-msgstr ""
-
-#: ihcheterogeneity/options/analysis_type/reproducibility.title
-msgid "Reproducibility & Bias Assessment"
-msgstr ""
-
-#: ihcheterogeneity/results/reproducibilitytable.title
-msgid "Reproducibility Assessment"
-msgstr ""
-
-#: ihcheterogeneity/results/reproducibilitytable.columns.title
-msgid "Reproducibility Metric"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -6581,6 +4778,10 @@ msgid "Response value (raw or percentage)"
 msgstr ""
 
 #: R/waterfall.b.R
+msgid "Response Value is still empty."
+msgstr ""
+
+#: R/waterfall.b.R
 msgid "Response Value:"
 msgstr ""
 
@@ -6609,10 +4810,6 @@ msgstr ""
 msgid "Response/Status Variable (Optional)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Results Section:"
-msgstr ""
-
 #: waterfall/options/sortDirection/reverse.title
 msgid "Reverse (best on left, worst on right)"
 msgstr ""
@@ -6627,16 +4824,6 @@ msgid ""
 "(Brookmeyer-Crowley) interval some trial reports use; the two differ "
 "materially with heavy censoring. Response-rate rows in this column instead "
 "carry exact binomial (Clopper-Pearson) intervals."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Review the %d of %d cases whose CV exceeds your %s%% threshold."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Review the sampling strategy; averaging several regions per case may be "
-"needed."
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -6733,98 +4920,12 @@ msgstr ""
 msgid "Safety event monitoring and adverse event reporting"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Same CV band as every other compartment"
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid "Sample Size"
 msgstr ""
 
 #: R/waterfall.b.R
 msgid "Sample Size Adequacy:"
-msgstr ""
-
-#: ihcheterogeneity/options/sample_size_planning.title
-#: ihcheterogeneity/ui[4]/sample_size_planning.label
-msgid "Sample size for ICC precision"
-msgstr ""
-
-#: ihcheterogeneity/results/samplesizetable.title
-msgid "Sample Size for ICC Precision"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Sample size:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Sample-size planning needs at least two measurements per case."
-msgstr ""
-
-#: ihcheterogeneity/results/samplingbiastable.title
-msgid "Sampling Bias Analysis"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Sampling Bias:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Sampling does not meet quality thresholds (correlation ≥ %s, CV ≤ %s%%)."
-msgstr ""
-
-#: ihcheterogeneity/options/sampling_strategy.title
-#: ihcheterogeneity/ui[1]/sampling_strategy.label
-msgid "Sampling strategy"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Sampling strategy recorded as systematic. The analysis treats the regions as "
-"exchangeable measurements of each case and applies no design-based "
-"adjustment; if the sampling pattern follows tissue architecture, the CV and "
-"ICC describe that pattern rather than the tumour as a whole."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-#: ihcheterogeneity/results/variabilityplot.title
-msgid "Sampling Variability Analysis"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Sampling variability could not be estimated."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Sampling variability was high (within-case CV = %s%%)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Sampling variability was low (within-case CV = %s%%)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Sampling variability was moderate (within-case CV = %s%%)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Sampling variability was quantified as the within-case coefficient of "
-"variation (CV), the root mean square of the per-case CVs; cases whose mean "
-"was near zero were left out."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Sampling Variability:"
-msgstr ""
-
-#: ihcheterogeneity/results/samplesizetable.columns.title
-msgid "Scenario"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Scope:"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -6835,35 +4936,12 @@ msgstr ""
 msgid "SD (Stable Disease):"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"SD divided by the mean, times 100, for one case's measurements. This "
-"analysis grades it against the CV threshold you set: low at or below half "
-"the threshold, moderate within it, high above it. The within-case CV "
-"combines the cases as a root mean square. It is unstable when the mean is "
-"near zero, so such cases are left out."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "SD: best change above -30% and below +20%; no minimum duration is required."
 msgstr ""
 
 #: R/swimmerplot-html.R
 msgid "Select 'Date Format':"
-msgstr ""
-
-#: R/waterfall.b.R
-msgid "Select a Patient ID and a Response Value variable to run the analysis."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Select at least one regional measurement (Regional Measurement 1 to 4, or "
-"Additional Regional Measurements)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Select at least one regional measurement other than the reference."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -6879,12 +4957,6 @@ msgid "Select the appropriate 'Time Unit' (Days, Weeks, Months, or Years)"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
-msgid ""
-"Select the study identifier and the TP, FP, FN and TN count variables to run "
-"the meta-analysis."
-msgstr ""
-
-#: R/diagnosticmeta.b.R
 msgid "Sensitivity"
 msgstr ""
 
@@ -6897,24 +4969,18 @@ msgid "Sensitivity (%)"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
-msgid "Sensitivity meta-regression failed"
+msgid ""
+"Sensitivity and specificity are test characteristics; predictive values "
+"depend on disease prevalence. Values calculated from pooled sensitivity "
+"(%s%%) and specificity (%s%%)."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Set the CV and correlation thresholds and the systematic difference margin "
-"before looking at the results."
+#: R/diagnosticmeta.b.R
+msgid "Sensitivity meta-regression failed"
 msgstr ""
 
 #: R/waterfall.b.R
 msgid "SEVERAL ROWS PER PATIENT"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Shares depend on how much the cases differ from one another: a small method "
-"share can still be a clinically material offset (see the Sampling Bias "
-"Analysis table)."
 msgstr ""
 
 #: waterfall/options/showCI.description.jamovi
@@ -6956,10 +5022,6 @@ msgid ""
 "statistics and every other table use all %d patients."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Shown to be below the threshold on their own (upper 95%% limit below it): %s."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "Shows best response for each patient as vertical bars"
 msgstr ""
@@ -6980,50 +5042,12 @@ msgid ""
 "variable for longitudinal data."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Significant difference in per-case mean biomarker levels across compartments"
-msgstr ""
-
 #: waterfall/options/colorScheme/simple.title
 msgid "Simple (teal response, orange progression)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Single regions of a case differ by about %s%% (root-mean-square within-case "
-"CV). Averaging several regions per case reduces this by about the square "
-"root of their number."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "SINGLE-LESION ASSUMPTION"
-msgstr ""
-
-#: ihcheterogeneity/results/samplingbiastable.columns.title
-msgid "Slope"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Slope of the difference on the case mean of all regions, with "
-"heteroscedasticity-robust (HC3) standard errors; p is unadjusted. Unequal "
-"measurement error between regions can produce a slope, so here a slope can "
-"stop a difference from being ruled out but never shows it to be material. "
-"When p is below 0.05 divided by the number of comparisons, the difference is "
-"also judged at the 5th and 95th percentiles of that level (Bland & Altman "
-"1999)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Slope of the difference on the reference value, with "
-"heteroscedasticity-robust (HC3) standard errors; p is unadjusted. "
-"Measurement error in the reference alone makes the difference appear to fall "
-"as the reference rises (regression to the mean), so a slope can stop a "
-"difference from being ruled out but never shows it to be material. When p is "
-"below 0.05 divided by the number of comparisons, the difference is also "
-"judged at the 5th and 95th percentiles of the reference (Bland & Altman "
-"1999)."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -7032,10 +5056,6 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "SMALL SAMPLE"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Small sample"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -7050,10 +5070,6 @@ msgstr ""
 msgid ""
 "Small sample size (n<50): Results provide preliminary evidence but should be "
 "confirmed in larger studies."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Small share of total variance"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -7114,91 +5130,8 @@ msgstr ""
 msgid "Sorting & Display Options"
 msgstr ""
 
-#: ihcheterogeneity/results/variancetable.description
-msgid "Sources of measurement variability"
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid "Sparse data: pooled estimates may be biased"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Spatial analysis needs at least 2 compartments with %d or more cases each; "
-"the Spatial Region ID variable supplies %d."
-msgstr ""
-
-#: ihcheterogeneity/options/compareCompartments.title
-#: ihcheterogeneity/ui[2]/compareCompartments.label
-msgid "Spatial compartment comparison"
-msgstr ""
-
-#: ihcheterogeneity/ui[2].label
-msgid "Spatial Compartments"
-msgstr ""
-
-#: ihcheterogeneity/results/spatialplot.description
-msgid "Spatial distribution of biomarker values"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-#: ihcheterogeneity/results/spatialanalysistable.title
-msgid "Spatial Heterogeneity Analysis"
-msgstr ""
-
-#: ihcheterogeneity/results/spatialplot.title
-msgid "Spatial Heterogeneity Visualization"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Spatial heterogeneity:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Spatial ID variable '%s' not found in data."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-#: ihcheterogeneity/results/spatialanalysistable.columns.title
-msgid "Spatial Region"
-msgstr ""
-
-#: ihcheterogeneity/options/spatial_id.title
-#: ihcheterogeneity/ui[0][6].label
-msgid "Spatial Region ID (Optional)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Spearman correlation = %s, which is below your %s threshold."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Spearman correlation = %s, which meets your %s threshold."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Spearman correlation measures monotonic association and is blind to "
-"systematic offsets."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Spearman correlation:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Spearman correlation: %s vs reference"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Spearman rank correlation between each pair of regions, averaged over pairs."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Spearman rank correlation between each region and the reference; each region "
-"is graded on its own and the mean is reported. CIs use the Fisher z "
-"transformation with the variance of Bonett & Wright (2000)."
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -7330,34 +5263,12 @@ msgid ""
 msgstr ""
 
 #: diagnosticmeta/results/publicationbias.columns.title
-#: ihcheterogeneity/results/compartmentTests.columns.title
 msgid "Statistic"
-msgstr ""
-
-#: ihcheterogeneity/results/compartmentComparison.description
-msgid "Statistical comparison of heterogeneity metrics between compartments"
-msgstr ""
-
-#: ihcheterogeneity/results/glossary.title
-msgid "Statistical Glossary"
-msgstr ""
-
-#: ihcheterogeneity/options/showGlossary.title
-#: ihcheterogeneity/ui[5]/showGlossary.label
-msgid "Statistical glossary"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Statistical Interpretation:"
 msgstr ""
 
 #: R/swimmerplot-html.R
 #: R/waterfall.b.R
 msgid "Statistical Terms"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Statistical Terms Glossary"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -7370,10 +5281,6 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "Statistical test for comparing response rates between groups"
-msgstr ""
-
-#: ihcheterogeneity/results/compartmentTests.title
-msgid "Statistical Tests for Compartment Differences"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -7422,8 +5329,12 @@ msgstr ""
 msgid "Step-by-Step Progress:"
 msgstr ""
 
-#: ihcheterogeneity/options/sampling_strategy/stratified.title
-msgid "Stratified Sampling"
+#: R/diagnosticmeta.b.R
+msgid "Strong evidence AGAINST disease when test negative"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Strong evidence FOR disease when test positive"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -7443,16 +5354,16 @@ msgstr ""
 msgid "Study"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Study Design:"
-msgstr ""
-
 #: diagnosticmeta/options/study.title
 msgid "Study identifier"
 msgstr ""
 
 #: diagnosticmeta/ui[0][0][0].label
 msgid "Study identifier (required)"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Study identifier is still empty."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -7471,14 +5382,6 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid "Suggestions:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Sum of all variance components"
-msgstr ""
-
-#: ihcheterogeneity/results/summary.title
-msgid "Summary (Plain-Language)"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -7542,62 +5445,7 @@ msgstr ""
 msgid "Switch to 'Percentage Changes' input format if changes are pre-calculated, OR"
 msgstr ""
 
-#: ihcheterogeneity/results/samplingbiastable.description
-msgid "Systematic bias assessment between methods"
-msgstr ""
-
-#: ihcheterogeneity/options/bias_margin.title
-#: ihcheterogeneity/ui[3]/bias_margin.label
-msgid "Systematic difference margin (%)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Systematic difference:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Systematic differences between regions were assessed with paired t-tests of "
-"each region against the other region(s) (mean difference with 95%% CI). With "
-"a margin of %s%% of the comparison mean, a difference was ruled out when its "
-"90%% CI lay within the margin (two one-sided tests) and considered material "
-"when a CI adjusted for the number of comparisons (Bonferroni) lay entirely "
-"beyond it."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Systematic differences could not be assessed."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Systematic differences could not be expressed relative to the comparison "
-"because its mean is near zero; see the Sampling Bias Analysis table."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Systematic differences from the reference measurement were assessed for each "
-"region, and for the mean of all regions, with paired t-tests (mean "
-"difference with 95%% CI) and Bland-Altman 95%% limits of agreement. With a "
-"margin of %s%% of the reference mean, a difference was ruled out when its "
-"90%% CI lay within the margin (two one-sided tests) and considered material "
-"when a CI adjusted for the number of comparisons (Bonferroni) lay entirely "
-"beyond it."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Systematic differences were not assessed because the reference had the same "
-"value in every case."
-msgstr ""
-
-#: ihcheterogeneity/options/sampling_strategy/systematic.title
-msgid "Systematic Sampling"
-msgstr ""
-
 #: diagnosticmeta/results/publicationbias.columns.title
-#: ihcheterogeneity/results/compartmentTests.columns.title
 msgid "Test"
 msgstr ""
 
@@ -7607,21 +5455,11 @@ msgstr ""
 msgid "Test Statistic"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Tests need at least 2 compartments with %d or more cases each."
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid ""
 "The %s meta-regression model could not be fitted, so no covariate effect is "
 "reported for that measure; the pooled estimates are unaffected. The "
 "underlying error was: %s"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The agreement thresholds (correlation ≥ %s, CV ≤ %s%%) are met, but a "
-"clinically material systematic difference from the reference is present."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -7646,16 +5484,6 @@ msgid ""
 "on the waterfall plot."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The case and method variance estimates were negative and have been truncated "
-"to zero."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "The case variance estimate was negative and has been truncated to zero."
-msgstr ""
-
 #: R/swimmerplot.b.R
 msgid ""
 "The censoring variable '%s' contains only the values 1 and 2, so it was read "
@@ -7671,36 +5499,14 @@ msgid ""
 "event."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The CIs of the limits of agreement use the approximate standard error of "
-"Bland & Altman (1999), SD x sqrt(1/n + 1.96^2 / (2(n - 1))); they are wide "
-"in small samples."
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid "The coefficient is the change per one-unit increase in %s."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The correlation and CV thresholds you set are met and the average difference "
-"of every comparison was shown to lie within your margin (90% CI inside it); "
-"a difference that changes with the level must also lie within it at both "
-"ends of the range. If the thresholds are met but a difference was not ruled "
-"out, the verdict is 'met, not confirmed'."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
 "The correlation is estimated at the boundary (+/-1), which with few studies "
 "usually means it cannot be estimated reliably - do not over-interpret it."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The correlation of region(s) %s was shown to be below the threshold (upper "
-"95%% confidence limit below it)."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -7729,12 +5535,6 @@ msgid ""
 "Measurements so percent changes are computed from the baseline."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The dataset contains no rows. Add data (or clear the active filter) and "
-"re-run."
-msgstr ""
-
 #: R/swimmerplot.b.R
 msgid ""
 "The disease-control row is absent because every patient in the comparison "
@@ -7757,12 +5557,6 @@ msgid ""
 "The event time variable contains calendar dates, but the timeline uses raw "
 "numeric times, so these events cannot be placed on the time axis. Switch "
 "Time Input Type to Date/Time (or supply numeric event times) to show them."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The expected width at the current size is blank because fewer than 2 cases "
-"have every measurement."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -7833,92 +5627,10 @@ msgid ""
 "a defect."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The ICC reported here is the absolute-agreement form: it is the share of the "
-"total variation in scores that comes from genuine differences between cases "
-"rather than from which region was measured, and a consistent offset between "
-"regions counts against it. It is not the proportion of cases whose scores "
-"matched, and it depends on how spread out your cohort is - the same "
-"measurement error yields a lower ICC when the cases have a narrow range of "
-"values. The 95%% CI columns of the Reproducibility Assessment table show how "
-"precisely these %d cases pin the figure down."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "The ICC(2,1) was %s (95%% CI %s to %s)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "The ICC(2,1) was %s."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The ICC(2,1), computed without the regions measured in too few cases (%s), "
-"was %s (95%% CI %s to %s)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The ICC(2,1), computed without the regions measured in too few cases (%s), "
-"was %s."
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid ""
 "The mada package is not available, so the proportional-hazards SROC model "
 "could not be fitted."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The mean of all regions differs from the reference by %s on average (%s%% of "
-"the reference mean, 95%% CI %s to %s); the difference is shown to exceed the "
-"%s%% margin."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The mean of all regions differs from the reference by exactly %s in every "
-"case (%s%% of the reference mean)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The mean of all regions is offset from the reference by more than the %s%% "
-"margin, although no single region is materially offset on its own; see the "
-"Clinical Assessment."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The mean Spearman correlation between regional and reference measurements "
-"was %s (range %s to %s across regions), below the %s threshold set for this "
-"analysis."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The mean Spearman correlation between regional and reference measurements "
-"was %s (range %s to %s across regions), which meets the %s threshold set for "
-"this analysis."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The mean Spearman correlation between regional measurements was %s, below "
-"the %s threshold set for this analysis."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The mean Spearman correlation between regional measurements was %s, which "
-"meets the %s threshold set for this analysis."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "The measurements show no variability, so the ICC is not defined."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -7933,10 +5645,6 @@ msgstr ""
 msgid ""
 "The metafor package is not available, so publication bias could not be "
 "assessed."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "The method variance estimate was negative and has been truncated to zero."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -8005,53 +5713,6 @@ msgid ""
 "converged, and the estimates below come from that converged fit."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The quality thresholds (correlation %s, CV %s%%) are set in the analysis "
-"options; results describe the cases analysed and are not an external "
-"validation."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The reference (whole section, hotspot or overall score) is treated as the "
-"comparison standard; its own measurement error is not modelled."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The reference has the same value in every case, so these differences compare "
-"the regions with one fixed number; none is judged material."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The reference variable '%s' has no values in the cases that have regional "
-"measurements. Remove it to run an inter-regional analysis, or check the data."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The reference variable '%s' has the same value in every case, so agreement "
-"with it cannot be judged. Check the data."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The reference variable '%s' is constant (the same value in every analysed "
-"case), so no correlation with it can be estimated. Check the data."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The regions are offset in opposite directions, so each needs its own "
-"calibration."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "The regions cannot be used interchangeably without calibration."
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid ""
 "The Reitsma bivariate model could not be fitted (%s). Pooled sensitivity and "
@@ -8086,84 +5747,8 @@ msgid ""
 "many censored early cannot."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The same ratio with systematic offsets removed; it is shown beside the "
-"absolute-agreement form so an offset can be seen."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "The sampling approach did not meet the predefined quality criteria."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The sampling approach met the correlation and CV criteria only after "
-"relaxing them to correlation ≥ %s and CV ≤ %s%%."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The sampling approach met the predefined correlation and CV criteria, and "
-"the average difference of every comparison between regions was shown to lie "
-"within the %s%% margin."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The sampling approach met the predefined correlation and CV criteria, and "
-"the average difference of every comparison with the reference was shown to "
-"lie within the %s%% margin."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The sampling approach met the predefined correlation and CV criteria, but "
-"agreement was not confirmed: a systematic difference was not ruled out, or a "
-"region could not be assessed."
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid "The sensitivity heterogeneity model failed: %s"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The share of the total variation in scores that comes from genuine "
-"differences between cases; a systematic offset between measurements counts "
-"against it. Bands (Koo & Li 2016): above 0.90 excellent, 0.75 to 0.90 good, "
-"0.50 to 0.75 moderate, below 0.50 poor."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The Spearman correlation between the regional and reference measurements was "
-"%s (95%% CI %s to %s), below the %s threshold set for this analysis."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The Spearman correlation between the regional and reference measurements was "
-"%s (95%% CI %s to %s), which meets the %s threshold set for this analysis."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The Spearman correlation between the regional and reference measurements was "
-"%s (95%% CI %s to %s); the point estimate meets the %s threshold set for "
-"this analysis, but the lower confidence limit does not."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The Spearman correlation between the regional and reference measurements was "
-"%s, below the %s threshold set for this analysis."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The Spearman correlation between the regional and reference measurements was "
-"%s, which meets the %s threshold set for this analysis."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -8180,13 +5765,6 @@ msgid ""
 "requires a Time Variable. None is selected, so no spider plot can be "
 "produced. Assign the visit/assessment time column to \"Time Variable\" to "
 "enable it."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The spread of per-case CVs differs between compartments (unequal variance of "
-"heterogeneity); this does not by itself mean one compartment is more "
-"heterogeneous on average"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -8211,29 +5789,6 @@ msgid ""
 "analysis and response rates."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "The t-test CIs and the limits of agreement assume roughly normal differences."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The thresholds are met only after relaxing them to correlation ≥ %s and CV ≤ "
-"%s%%."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The thresholds are met only after relaxing them to the correlation threshold "
-"minus 0.2 and 1.5 times the CV threshold. This band is a heuristic of this "
-"analysis, not a published criterion."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The total variance split into between-case, between-method and residual "
-"(within-case) parts."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid ""
 "The Treatment Response Analysis creates waterfall and spider plots using "
@@ -8247,37 +5802,6 @@ msgid ""
 "more than 100%%. The values look multiplied by 100 (for example -3500 for "
 "-35%%); values below -100 are capped to -100%% and counted as complete "
 "responses. Check the scale of the response column."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The weakest region, '%s', correlated %.2f with the reference, shown to be "
-"below your %.2f threshold; the average was %.2f."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The widest 95%% limits of agreement are %s to %s (region '%s'): an "
-"individual case can differ from the reference by about this much."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The widest 95%% limits of agreement are %s to %s (region '%s'): in an "
-"individual case this region can differ from region '%s' by about this much."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The widest 95%% limits of agreement are %s to %s (region '%s'): in an "
-"individual case this region can differ from the mean of the other regions by "
-"about this much."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"The within-case CV exceeds your threshold, so averaging more than one region "
-"per case is worth considering."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -8294,13 +5818,6 @@ msgid ""
 "produces no prediction interval, so nothing here describes how much the "
 "studies differ from each other; how far the estimates carry to another "
 "setting cannot be judged from them alone."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"These are summary statistics from this dataset alone; they are not an "
-"external validation and they do not describe agreement at the score "
-"thresholds used to classify cases."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -8320,18 +5837,6 @@ msgstr ""
 msgid ""
 "This model provides no prediction interval and no SROC prediction region, so "
 "it offers no model-consistent statement of how much studies differ."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"This relaxed band (correlation threshold minus 0.2, CV threshold times 1.5) "
-"is a heuristic of this analysis, not a published criterion."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"This summary provides a simplified interpretation of the statistical results "
-"for clinical understanding."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -8546,10 +6051,6 @@ msgstr ""
 msgid "To start analysis select <b>Patient ID</b> and <b>Response Value</b>"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Too few cases have paired regional measurements to compare the regions."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "Tool automatically calculates percent changes"
 msgstr ""
@@ -8596,10 +6097,6 @@ msgstr ""
 msgid ""
 "Total time patients are followed, accounting for different follow-up "
 "durations"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Total Variance"
 msgstr ""
 
 #: diagnosticmeta/results/individualstudies.columns.title
@@ -8674,12 +6171,20 @@ msgstr ""
 msgid "True Negatives (TN)"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "True negatives is still empty."
+msgstr ""
+
 #: diagnosticmeta/ui[0][1][0].label
 msgid "True Positives (Disease+, Test+)"
 msgstr ""
 
 #: diagnosticmeta/options/true_positives.title
 msgid "True Positives (TP)"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "True positives is still empty."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -8710,25 +6215,6 @@ msgid ""
 "Two separate UNIVARIATE meta-regression models were fitted (logit "
 "sensitivity and logit specificity), not a joint bivariate meta-regression, "
 "using %s estimation."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Two-way random-effects decomposition (value = case + method + error) on %d "
-"cases measured by %d methods; components sum to the total variance."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Two-way random-effects decomposition into case, method and residual variance "
-"on cases with every measurement."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Unable to evaluate sampling quality because the correlation or the "
-"variability could not be estimated; the notes under the Reproducibility "
-"Assessment table give the reason."
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -8765,11 +6251,9 @@ msgid "Update Data"
 msgstr ""
 
 #: diagnosticmeta/results/metaregression.columns.title
-#: ihcheterogeneity/results/samplingbiastable.columns.title
 msgid "Upper"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
 #: R/swimmerplot.b.R
 msgid "Usage:"
 msgstr ""
@@ -8828,12 +6312,6 @@ msgstr ""
 msgid "Validation Messages"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Validation:"
-msgstr ""
-
-#: ihcheterogeneity/results/reproducibilitytable.columns.title
-#: ihcheterogeneity/results/compartmentComparison.columns.title
 #: swimmerplot/results/summary.columns.title
 #: swimmerplot/results/summaryData.columns.title
 #: swimmerplot/results/advancedMetrics.columns.title
@@ -8841,6 +6319,10 @@ msgstr ""
 #: waterfall/results/enhancedClinicalMetrics.columns.title
 #: waterfall/results/responseDurationTable.columns.title
 msgid "Value"
+msgstr ""
+
+#: diagnosticmeta/results/likelihoodRatioGuide.columns.title
+msgid "Value Range"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -8855,106 +6337,18 @@ msgstr ""
 msgid "Values will be automatically capped at -100% for analysis"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Variability"
-msgstr ""
-
-#: ihcheterogeneity/results/spatialanalysistable.description
-msgid "Variability across spatial regions"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Variability between measurements was high in this dataset (within-case CV "
-"above your configured %s%% threshold)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Variability between measurements was low in this dataset (within-case CV at "
-"or below %s%%, half your configured threshold)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Variability between measurements was moderate in this dataset (within-case "
-"CV within your configured %s%% threshold)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Variability Level"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Variability plot not drawn"
-msgstr ""
-
-#: ihcheterogeneity/options/show_variability_plots.title
-#: ihcheterogeneity/ui[4]/show_variability_plots.label
-msgid "Variability plots"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Variability:"
-msgstr ""
-
 #: waterfall/options/patientID.description.jamovi
 msgid ""
 "Variable containing patient identifiers (e.g., PT001, Patient_1, Study_ID). "
 "Each patient should have a unique identifier for proper analysis."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid "Variable selected twice"
-msgstr ""
-
-#: R/diagnosticmeta.b.R
-#: R/waterfall.b.R
-msgid "Variables required"
-msgstr ""
-
-#: ihcheterogeneity/results/variancetable.columns.title
-msgid "Variance"
-msgstr ""
-
-#: ihcheterogeneity/results/variancetable.columns.title
-msgid "Variance Component"
-msgstr ""
-
-#: ihcheterogeneity/results/variancetable.title
-msgid "Variance Component Analysis"
-msgstr ""
-
-#: ihcheterogeneity/options/analysis_type/variability.title
-#: ihcheterogeneity/options/variance_components.title
-#: ihcheterogeneity/ui[4]/variance_components.label
-msgid "Variance component analysis"
-msgstr ""
-
 #: diagnosticmeta/options/method/vc.title
 msgid "Variance components"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Variance components need at least %d cases with every measurement, measured "
-"by at least 2 methods; %d case(s) qualify."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Variance components:"
-msgstr ""
-
 #: R/diagnosticmeta.b.R
 msgid "variance-components"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Variation in biomarker expression across regions of the same tumour."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Verdicts"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -8967,19 +6361,6 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "Very few studies"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Very high biomarker values detected (max: %s). Verify if these are "
-"appropriate for your biomarker scale (e.g., percentages should be ≤100%%, "
-"H-scores ≤300)."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Very high variability (CV > 50%%) detected in %d cases. This may indicate "
-"measurement inconsistencies or high biological heterogeneity."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -9096,17 +6477,12 @@ msgstr ""
 msgid "Waterfall Plot:"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"We analysed %d cases, each measured in one region and by a reference "
-"measurement, to see how well the regional measurement represents the "
-"biomarker expression of a case."
+#: R/diagnosticmeta.b.R
+msgid "Weak evidence against disease"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"We analysed %d cases, each measured in up to %d regions, to see how well "
-"regional measurements represent the biomarker expression of a case."
+#: R/diagnosticmeta.b.R
+msgid "Weak evidence for disease"
 msgstr ""
 
 #: swimmerplot/options/timeUnit/weeks.title
@@ -9121,10 +6497,6 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "Weeks from Baseline"
-msgstr ""
-
-#: ihcheterogeneity/results/welcome.description
-msgid "Welcome screen shown when no variables selected"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -9151,61 +6523,12 @@ msgstr ""
 msgid "When using raw tumor measurements, a time variable is essential to:"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Where every case differs by exactly the same amount there is no sampling "
-"variance, so no p-value or effect size is reported; the offset itself is "
-"exact."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Where the slope was shown, the limits of agreement, which assume a "
-"difference that does not change with the level, are too wide in the middle "
-"of the range and too narrow at its ends."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Whether a difference changed with the level (proportional bias) was assessed "
-"by regressing it on the case mean of all regions, with "
-"heteroscedasticity-robust standard errors (Bland & Altman 1999); where the "
-"slope differed from zero (p below 0.05 divided by the number of "
-"comparisons), the difference was also judged at the 5th and 95th percentiles "
-"of that level, and a difference that changed with the level was not "
-"considered ruled out."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Whether a difference changed with the level (proportional bias) was assessed "
-"by regressing it on the reference value, with heteroscedasticity-robust "
-"standard errors (Bland & Altman 1999); where the slope differed from zero (p "
-"below 0.05 divided by the number of comparisons), the difference was also "
-"judged at the 5th and 95th percentiles of the reference, and a difference "
-"that changed with the level was not considered ruled out."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Whether a difference changes with the level was not assessed (too few cases "
-"or distinct values)."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "While such large increases are possible, please verify:"
 msgstr ""
 
 #: R/waterfall.b.R
 msgid "Why this matters:"
-msgstr ""
-
-#: ihcheterogeneity/results/samplesizetable.columns.title
-msgid "Width 0.10"
-msgstr ""
-
-#: ihcheterogeneity/results/samplesizetable.columns.title
-msgid "Width 0.20"
 msgstr ""
 
 #: waterfall/options/barWidth.description.jamovi
@@ -9248,14 +6571,6 @@ msgid ""
 "positive."
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"With a margin of %s%% of the comparison mean, a difference is ruled out when "
-"its 90%% CI lies within the margin (two one-sided tests) and shown to be "
-"material when that CI lies entirely beyond the margin; otherwise it is "
-"inconclusive. The p-value tests against zero."
-msgstr ""
-
 #: R/swimmerplot.b.R
 msgid ""
 "With only %d patients these estimates are exploratory: the confidence "
@@ -9281,34 +6596,6 @@ msgid ""
 "With percentage input the spider plot connects the pre-calculated percent "
 "changes at each visit. If you have raw per-visit measurements, the raw input "
 "type gives trajectories computed against the time = 0 baseline."
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Within-case CV (%)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Within-case CV (%) - between regions"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Within-case CV (%) - region vs reference"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Within-case CV = %s%% (High variability)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Within-case CV = %s%% (Low variability)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Within-case CV = %s%% (Moderate variability)"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "Within-Case Variance (Sampling)"
 msgstr ""
 
 #: R/waterfall.b.R
