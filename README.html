@@ -4,1150 +4,186 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="generator" content="pandoc" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <style type="text/css">
-        @font-face {
-            font-family: octicons-link;
-            src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM+8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB/aFGpk3jaTY6xa8JAGMW/O62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v+k/0an2i+itHDw3v2+9+DBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3/I7AtxEJLtzzuZfI+VVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy/Lt7Kc+0vWY/gAgIIEqAN9we0pwKXreiMasxvabDQMM4riO+qxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw+ymhce7vwM9jSqO8JyVd5RH9gyTt2+J/yUmYlIR0s04n6+7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv/ocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi+W2+MjCzMIDApSwvXzC97Z4Ig8N/BxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh/8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT+AEjAwuDFpBmA9KMDEwMCh9i/v8H8sH0/4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9/lqYwOGZxeUelN2U2R6+cArgtCJpauW7UQBqnFkUsjAY/kOU1cP+DAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl+vvmM/byA48e6tWrKArm4ZJlCbdsrxksL1AwWn/yBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO//sdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd/89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF+9JOS0nbaaYDCQfwCJ7Au3AHj+LO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm+EBXuAbHmIMSRMs+4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL+hD7C1xoaHeLJSEao0FEW14ckxC+TU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOXqly7rqx0Z1Q5BAIoZBSFihQYQOOBEdkCOgXTOHA07HAGjGWiIjaPZNW13/+lm6S9FT7rLHFJ6fQbkATOG1j2OFMucKJJsxIVfQORl+9Jyda6Sl1dUYhSCm1dyClfoeDve4qMYdLEbfqHf3O/AdDumsjAAB42mNgYoAAZQYjBmyAGYQZmdhL8zLdDEydARfoAqIAAAABAAMABwAKABMAB///AA8AAQAAAAAAAAAAAAAAAAABAAAAAA==) format('woff');
-        }
-
-        body {
-            -webkit-text-size-adjust: 100%;
-            text-size-adjust: 100%;
-            color: #333;
-            font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            font-size: 16px;
-            line-height: 1.6;
-            word-wrap: break-word;
-        }
-
-        a {
-            background-color: transparent;
-        }
-
-        a:active,
-        a:hover {
-            outline: 0;
-        }
-
-        strong {
-            font-weight: bold;
-        }
-
-        h1 {
-            font-size: 2em;
-            margin: 0.67em 0;
-        }
-
-        img {
-            border: 0;
-        }
-
-        hr {
-            box-sizing: content-box;
-            height: 0;
-        }
-
-        pre {
-            overflow: auto;
-        }
-
-        code,
-        kbd,
-        pre {
-            font-family: monospace, monospace;
-            font-size: 1em;
-        }
-
-        input {
-            color: inherit;
-            font: inherit;
-            margin: 0;
-        }
-
-        html input[disabled] {
-            cursor: default;
-        }
-
-        input {
-            line-height: normal;
-        }
-
-        input[type="checkbox"] {
-            box-sizing: border-box;
-            padding: 0;
-        }
-
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-        }
-
-        td,
-        th {
-            padding: 0;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        input {
-            font: 13px / 1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-        }
-
-        a {
-            color: #4078c0;
-            text-decoration: none;
-        }
-
-        a:hover,
-        a:active {
-            text-decoration: underline;
-        }
-
-        hr {
-            height: 0;
-            margin: 15px 0;
-            overflow: hidden;
-            background: transparent;
-            border: 0;
-            border-bottom: 1px solid #ddd;
-        }
-
-        hr:before {
-            display: table;
-            content: "";
-        }
-
-        hr:after {
-            display: table;
-            clear: both;
-            content: "";
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            margin-top: 15px;
-            margin-bottom: 15px;
-            line-height: 1.1;
-        }
-
-        h1 {
-            font-size: 30px;
-        }
-
-        h2 {
-            font-size: 21px;
-        }
-
-        h3 {
-            font-size: 16px;
-        }
-
-        h4 {
-            font-size: 14px;
-        }
-
-        h5 {
-            font-size: 12px;
-        }
-
-        h6 {
-            font-size: 11px;
-        }
-
-        blockquote {
-            margin: 0;
-        }
-
-        ul,
-        ol {
-            padding: 0;
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-
-        ol ol,
-        ul ol {
-            list-style-type: lower-roman;
-        }
-
-        ul ul ol,
-        ul ol ol,
-        ol ul ol,
-        ol ol ol {
-            list-style-type: lower-alpha;
-        }
-
-        dd {
-            margin-left: 0;
-        }
-
-        code {
-            font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-            font-size: 12px;
-        }
-
-        pre {
-            margin-top: 0;
-            margin-bottom: 0;
-            font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
-        }
-
-        .select::-ms-expand {
-            opacity: 0;
-        }
-
-        .octicon {
-            font: normal normal normal 16px/1 octicons-link;
-            display: inline-block;
-            text-decoration: none;
-            text-rendering: auto;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        .octicon-link:before {
-            content: '\f05c';
-        }
-
-        .markdown-body:before {
-            display: table;
-            content: "";
-        }
-
-        .markdown-body:after {
-            display: table;
-            clear: both;
-            content: "";
-        }
-
-        .markdown-body>*:first-child {
-            margin-top: 0 !important;
-        }
-
-        .markdown-body>*:last-child {
-            margin-bottom: 0 !important;
-        }
-
-        a:not([href]) {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .anchor {
-            display: inline-block;
-            padding-right: 2px;
-            margin-left: -18px;
-        }
-
-        .anchor:focus {
-            outline: none;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            margin-top: 1em;
-            margin-bottom: 16px;
-            font-weight: bold;
-            line-height: 1.4;
-        }
-
-        h1 .octicon-link,
-        h2 .octicon-link,
-        h3 .octicon-link,
-        h4 .octicon-link,
-        h5 .octicon-link,
-        h6 .octicon-link {
-            color: #000;
-            vertical-align: middle;
-            visibility: hidden;
-        }
-
-        h1:hover .anchor,
-        h2:hover .anchor,
-        h3:hover .anchor,
-        h4:hover .anchor,
-        h5:hover .anchor,
-        h6:hover .anchor {
-            text-decoration: none;
-        }
-
-        h1:hover .anchor .octicon-link,
-        h2:hover .anchor .octicon-link,
-        h3:hover .anchor .octicon-link,
-        h4:hover .anchor .octicon-link,
-        h5:hover .anchor .octicon-link,
-        h6:hover .anchor .octicon-link {
-            visibility: visible;
-        }
-
-        h1 {
-            padding-bottom: 0.3em;
-            font-size: 2.25em;
-            line-height: 1.2;
-            border-bottom: 1px solid #eee;
-        }
-
-        h1 .anchor {
-            line-height: 1;
-        }
-
-        h2 {
-            padding-bottom: 0.3em;
-            font-size: 1.75em;
-            line-height: 1.225;
-            border-bottom: 1px solid #eee;
-        }
-
-        h2 .anchor {
-            line-height: 1;
-        }
-
-        h3 {
-            font-size: 1.5em;
-            line-height: 1.43;
-        }
-
-        h3 .anchor {
-            line-height: 1.2;
-        }
-
-        h4 {
-            font-size: 1.25em;
-        }
-
-        h4 .anchor {
-            line-height: 1.2;
-        }
-
-        h5 {
-            font-size: 1em;
-        }
-
-        h5 .anchor {
-            line-height: 1.1;
-        }
-
-        h6 {
-            font-size: 1em;
-            color: #777;
-        }
-
-        h6 .anchor {
-            line-height: 1.1;
-        }
-
-        p,
-        blockquote,
-        ul,
-        ol,
-        dl,
-        table,
-        pre {
-            margin-top: 0;
-            margin-bottom: 16px;
-        }
-
-        hr {
-            height: 4px;
-            padding: 0;
-            margin: 16px 0;
-            background-color: #e7e7e7;
-            border: 0 none;
-        }
-
-        ul,
-        ol {
-            padding-left: 2em;
-        }
-
-        ul ul,
-        ul ol,
-        ol ol,
-        ol ul {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-
-        li>p {
-            margin-top: 16px;
-        }
-
-        dl {
-            padding: 0;
-        }
-
-        dl dt {
-            padding: 0;
-            margin-top: 16px;
-            font-size: 1em;
-            font-style: italic;
-            font-weight: bold;
-        }
-
-        dl dd {
-            padding: 0 16px;
-            margin-bottom: 16px;
-        }
-
-        blockquote {
-            padding: 0 15px;
-            color: #777;
-            border-left: 4px solid #ddd;
-        }
-
-        blockquote>:first-child {
-            margin-top: 0;
-        }
-
-        blockquote>:last-child {
-            margin-bottom: 0;
-        }
-
-        table {
-            display: block;
-            width: 100%;
-            overflow: auto;
-            word-break: normal;
-            word-break: keep-all;
-        }
-
-        table th {
-            font-weight: bold;
-        }
-
-        table th,
-        table td {
-            padding: 6px 13px;
-            border: 1px solid #ddd;
-        }
-
-        table tr {
-            background-color: #fff;
-            border-top: 1px solid #ccc;
-        }
-
-        table tr:nth-child(2n) {
-            background-color: #f8f8f8;
-        }
-
-        img {
-            max-width: 100%;
-            box-sizing: content-box;
-            background-color: #fff;
-        }
-
-        code {
-            padding: 0;
-            padding-top: 0.2em;
-            padding-bottom: 0.2em;
-            margin: 0;
-            font-size: 85%;
-            background-color: rgba(0, 0, 0, 0.04);
-            border-radius: 3px;
-        }
-
-        code:before,
-        code:after {
-            letter-spacing: -0.2em;
-            content: "\00a0";
-        }
-
-        pre>code {
-            padding: 0;
-            margin: 0;
-            font-size: 100%;
-            word-break: normal;
-            white-space: pre;
-            background: transparent;
-            border: 0;
-        }
-
-        .highlight {
-            margin-bottom: 16px;
-        }
-
-        .highlight pre,
-        pre {
-            padding: 16px;
-            overflow: auto;
-            font-size: 85%;
-            line-height: 1.45;
-            background-color: #f7f7f7;
-            border-radius: 3px;
-        }
-
-        .highlight pre {
-            margin-bottom: 0;
-            word-break: normal;
-        }
-
-        pre {
-            word-wrap: normal;
-        }
-
-        pre code {
-            display: inline;
-            max-width: initial;
-            padding: 0;
-            margin: 0;
-            overflow: initial;
-            line-height: inherit;
-            word-wrap: normal;
-            background-color: transparent;
-            border: 0;
-        }
-
-        pre code:before,
-        pre code:after {
-            content: normal;
-        }
-
-        kbd {
-            display: inline-block;
-            padding: 3px 5px;
-            font-size: 11px;
-            line-height: 10px;
-            color: #555;
-            vertical-align: middle;
-            background-color: #fcfcfc;
-            border: solid 1px #ccc;
-            border-bottom-color: #bbb;
-            border-radius: 3px;
-            box-shadow: inset 0 -1px 0 #bbb;
-        }
-
-        .pl-c {
-            color: #969896;
-        }
-
-        .pl-c1,
-        .pl-s .pl-v {
-            color: #0086b3;
-        }
-
-        .pl-e,
-        .pl-en {
-            color: #795da3;
-        }
-
-        .pl-s .pl-s1,
-        .pl-smi {
-            color: #333;
-        }
-
-        .pl-ent {
-            color: #63a35c;
-        }
-
-        .pl-k {
-            color: #a71d5d;
-        }
-
-        .pl-pds,
-        .pl-s,
-        .pl-s .pl-pse .pl-s1,
-        .pl-sr,
-        .pl-sr .pl-cce,
-        .pl-sr .pl-sra,
-        .pl-sr .pl-sre {
-            color: #183691;
-        }
-
-        .pl-v {
-            color: #ed6a43;
-        }
-
-        .pl-id {
-            color: #b52a1d;
-        }
-
-        .pl-ii {
-            background-color: #b52a1d;
-            color: #f8f8f8;
-        }
-
-        .pl-sr .pl-cce {
-            color: #63a35c;
-            font-weight: bold;
-        }
-
-        .pl-ml {
-            color: #693a17;
-        }
-
-        .pl-mh,
-        .pl-mh .pl-en,
-        .pl-ms {
-            color: #1d3e81;
-            font-weight: bold;
-        }
-
-        .pl-mq {
-            color: #008080;
-        }
-
-        .pl-mi {
-            color: #333;
-            font-style: italic;
-        }
-
-        .pl-mb {
-            color: #333;
-            font-weight: bold;
-        }
-
-        .pl-md {
-            background-color: #ffecec;
-            color: #bd2c00;
-        }
-
-        .pl-mi1 {
-            background-color: #eaffea;
-            color: #55a532;
-        }
-
-        .pl-mdr {
-            color: #795da3;
-            font-weight: bold;
-        }
-
-        .pl-mo {
-            color: #1d3e81;
-        }
-
-        kbd {
-            display: inline-block;
-            padding: 3px 5px;
-            font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
-            line-height: 10px;
-            color: #555;
-            vertical-align: middle;
-            background-color: #fcfcfc;
-            border: solid 1px #ccc;
-            border-bottom-color: #bbb;
-            border-radius: 3px;
-            box-shadow: inset 0 -1px 0 #bbb;
-        }
-
-        .task-list-item {
-            list-style-type: none;
-        }
-
-        .task-list-item+.task-list-item {
-            margin-top: 3px;
-        }
-
-        .task-list-item input {
-            margin: 0 0.35em 0.25em -1.6em;
-            vertical-align: middle;
-        }
-
-        :checked+.radio-label {
-            z-index: 1;
-            position: relative;
-            border-color: #4078c0;
-        }
-
-        .sourceLine {
-            display: inline-block;
-        }
-
-        code .kw {
-            color: #000000;
-        }
-
-        code .dt {
-            color: #ed6a43;
-        }
-
-        code .dv {
-            color: #009999;
-        }
-
-        code .bn {
-            color: #009999;
-        }
-
-        code .fl {
-            color: #009999;
-        }
-
-        code .ch {
-            color: #009999;
-        }
-
-        code .st {
-            color: #183691;
-        }
-
-        code .co {
-            color: #969896;
-        }
-
-        code .ot {
-            color: #0086b3;
-        }
-
-        code .al {
-            color: #a61717;
-        }
-
-        code .fu {
-            color: #63a35c;
-        }
-
-        code .er {
-            color: #a61717;
-            background-color: #e3d2d2;
-        }
-
-        code .wa {
-            color: #000000;
-        }
-
-        code .cn {
-            color: #008080;
-        }
-
-        code .sc {
-            color: #008080;
-        }
-
-        code .vs {
-            color: #183691;
-        }
-
-        code .ss {
-            color: #183691;
-        }
-
-        code .im {
-            color: #000000;
-        }
-
-        code .va {
-            color: #008080;
-        }
-
-        code .cf {
-            color: #000000;
-        }
-
-        code .op {
-            color: #000000;
-        }
-
-        code .bu {
-            color: #000000;
-        }
-
-        code .ex {
-            color: #000000;
-        }
-
-        code .pp {
-            color: #999999;
-        }
-
-        code .at {
-            color: #008080;
-        }
-
-        code .do {
-            color: #969896;
-        }
-
-        code .an {
-            color: #008080;
-        }
-
-        code .cv {
-            color: #008080;
-        }
-
-        code .in {
-            color: #008080;
-        }
-    </style>
-    <style>
-        body {
-            box-sizing: border-box;
-            min-width: 200px;
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 45px;
-            padding-top: 0px;
-        }
-    </style>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="data:text/css,%0A%40font%2Dface%20%7B%0Afont%2Dfamily%3A%20octicons%2Dlink%3B%0Asrc%3A%20url%28data%3Afont%2Fwoff%3Bcharset%3Dutf%2D8%3Bbase64%2Cd09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM%2B8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB%2FaFGpk3jaTY6xa8JAGMW%2FO62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v%2Bk%2F0an2i%2BitHDw3v2%2B9%2BDBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3%2FI7AtxEJLtzzuZfI%2BVVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy%2FLt7Kc%2B0vWY%2FgAgIIEqAN9we0pwKXreiMasxvabDQMM4riO%2BqxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw%2Bymhce7vwM9jSqO8JyVd5RH9gyTt2%2BJ%2FyUmYlIR0s04n6%2B7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv%2FocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi%2BW2%2BMjCzMIDApSwvXzC97Z4Ig8N%2FBxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh%2F8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT%2BAEjAwuDFpBmA9KMDEwMCh9i%2Fv8H8sH0%2F4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9%2FlqYwOGZxeUelN2U2R6%2BcArgtCJpauW7UQBqnFkUsjAY%2FkOU1cP%2BDAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl%2BvvmM%2FbyA48e6tWrKArm4ZJlCbdsrxksL1AwWn%2FyBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO%2F%2FsdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd%2F89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF%2B9JOS0nbaaYDCQfwCJ7Au3AHj%2BLO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm%2BEBXuAbHmIMSRMs%2B4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL%2BhD7C1xoaHeLJSEao0FEW14ckxC%2BTU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOXqly7rqx0Z1Q5BAIoZBSFihQYQOOBEdkCOgXTOHA07HAGjGWiIjaPZNW13%2F%2Blm6S9FT7rLHFJ6fQbkATOG1j2OFMucKJJsxIVfQORl%2B9Jyda6Sl1dUYhSCm1dyClfoeDve4qMYdLEbfqHf3O%2FAdDumsjAAB42mNgYoAAZQYjBmyAGYQZmdhL8zLdDEydARfoAqIAAAABAAMABwAKABMAB%2F%2F%2FAA8AAQAAAAAAAAAAAAAAAAABAAAAAA%3D%3D%29%20format%28%27woff%27%29%3B%0A%7D%0Abody%20%7B%0A%2Dwebkit%2Dtext%2Dsize%2Dadjust%3A%20100%25%3B%0Atext%2Dsize%2Dadjust%3A%20100%25%3B%0Acolor%3A%20%23333%3B%0Afont%2Dfamily%3A%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20%22Segoe%20UI%22%2C%20Arial%2C%20freesans%2C%20sans%2Dserif%2C%20%22Apple%20Color%20Emoji%22%2C%20%22Segoe%20UI%20Emoji%22%2C%20%22Segoe%20UI%20Symbol%22%3B%0Afont%2Dsize%3A%2016px%3B%0Aline%2Dheight%3A%201%2E6%3B%0Aword%2Dwrap%3A%20break%2Dword%3B%0A%7D%0Aa%20%7B%0Abackground%2Dcolor%3A%20transparent%3B%0A%7D%0Aa%3Aactive%2C%0Aa%3Ahover%20%7B%0Aoutline%3A%200%3B%0A%7D%0Astrong%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Ah1%20%7B%0Afont%2Dsize%3A%202em%3B%0Amargin%3A%200%2E67em%200%3B%0A%7D%0Aimg%20%7B%0Aborder%3A%200%3B%0A%7D%0Ahr%20%7B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0Aheight%3A%200%3B%0A%7D%0Apre%20%7B%0Aoverflow%3A%20auto%3B%0A%7D%0Acode%2C%0Akbd%2C%0Apre%20%7B%0Afont%2Dfamily%3A%20monospace%2C%20monospace%3B%0Afont%2Dsize%3A%201em%3B%0A%7D%0Ainput%20%7B%0Acolor%3A%20inherit%3B%0Afont%3A%20inherit%3B%0Amargin%3A%200%3B%0A%7D%0Ahtml%20input%5Bdisabled%5D%20%7B%0Acursor%3A%20default%3B%0A%7D%0Ainput%20%7B%0Aline%2Dheight%3A%20normal%3B%0A%7D%0Ainput%5Btype%3D%22checkbox%22%5D%20%7B%0Abox%2Dsizing%3A%20border%2Dbox%3B%0Apadding%3A%200%3B%0A%7D%0Atable%20%7B%0Aborder%2Dcollapse%3A%20collapse%3B%0Aborder%2Dspacing%3A%200%3B%0A%7D%0Atd%2C%0Ath%20%7B%0Apadding%3A%200%3B%0A%7D%0A%2A%20%7B%0Abox%2Dsizing%3A%20border%2Dbox%3B%0A%7D%0Ainput%20%7B%0Afont%3A%2013px%20%2F%201%2E4%20Helvetica%2C%20arial%2C%20nimbussansl%2C%20liberationsans%2C%20freesans%2C%20clean%2C%20sans%2Dserif%2C%20%22Apple%20Color%20Emoji%22%2C%20%22Segoe%20UI%20Emoji%22%2C%20%22Segoe%20UI%20Symbol%22%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%234078c0%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%2C%0Aa%3Aactive%20%7B%0Atext%2Ddecoration%3A%20underline%3B%0A%7D%0Ahr%20%7B%0Aheight%3A%200%3B%0Amargin%3A%2015px%200%3B%0Aoverflow%3A%20hidden%3B%0Abackground%3A%20transparent%3B%0Aborder%3A%200%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23ddd%3B%0A%7D%0Ahr%3Abefore%20%7B%0Adisplay%3A%20table%3B%0Acontent%3A%20%22%22%3B%0A%7D%0Ahr%3Aafter%20%7B%0Adisplay%3A%20table%3B%0Aclear%3A%20both%3B%0Acontent%3A%20%22%22%3B%0A%7D%0Ah1%2C%0Ah2%2C%0Ah3%2C%0Ah4%2C%0Ah5%2C%0Ah6%20%7B%0Amargin%2Dtop%3A%2015px%3B%0Amargin%2Dbottom%3A%2015px%3B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ah1%20%7B%0Afont%2Dsize%3A%2030px%3B%0A%7D%0Ah2%20%7B%0Afont%2Dsize%3A%2021px%3B%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%2016px%3B%0A%7D%0Ah4%20%7B%0Afont%2Dsize%3A%2014px%3B%0A%7D%0Ah5%20%7B%0Afont%2Dsize%3A%2012px%3B%0A%7D%0Ah6%20%7B%0Afont%2Dsize%3A%2011px%3B%0A%7D%0Ablockquote%20%7B%0Amargin%3A%200%3B%0A%7D%0Aul%2C%0Aol%20%7B%0Apadding%3A%200%3B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Aol%20ol%2C%0Aul%20ol%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Droman%3B%0A%7D%0Aul%20ul%20ol%2C%0Aul%20ol%20ol%2C%0Aol%20ul%20ol%2C%0Aol%20ol%20ol%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Dalpha%3B%0A%7D%0Add%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0Afont%2Dsize%3A%2012px%3B%0A%7D%0Apre%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0Afont%3A%2012px%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0A%7D%0A%2Eselect%3A%3A%2Dms%2Dexpand%20%7B%0Aopacity%3A%200%3B%0A%7D%0A%2Eocticon%20%7B%0Afont%3A%20normal%20normal%20normal%2016px%2F1%20octicons%2Dlink%3B%0Adisplay%3A%20inline%2Dblock%3B%0Atext%2Ddecoration%3A%20none%3B%0Atext%2Drendering%3A%20auto%3B%0A%2Dwebkit%2Dfont%2Dsmoothing%3A%20antialiased%3B%0A%2Dmoz%2Dosx%2Dfont%2Dsmoothing%3A%20grayscale%3B%0A%2Dwebkit%2Duser%2Dselect%3A%20none%3B%0A%2Dmoz%2Duser%2Dselect%3A%20none%3B%0A%2Dms%2Duser%2Dselect%3A%20none%3B%0Auser%2Dselect%3A%20none%3B%0A%7D%0A%2Eocticon%2Dlink%3Abefore%20%7B%0Acontent%3A%20%27%5Cf05c%27%3B%0A%7D%0A%2Emarkdown%2Dbody%3Abefore%20%7B%0Adisplay%3A%20table%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%3Aafter%20%7B%0Adisplay%3A%20table%3B%0Aclear%3A%20both%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%20%21important%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%20%21important%3B%0A%7D%0Aa%3Anot%28%5Bhref%5D%29%20%7B%0Acolor%3A%20inherit%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0A%2Eanchor%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%2Dright%3A%202px%3B%0Amargin%2Dleft%3A%20%2D18px%3B%0A%7D%0A%2Eanchor%3Afocus%20%7B%0Aoutline%3A%20none%3B%0A%7D%0Ah1%2C%0Ah2%2C%0Ah3%2C%0Ah4%2C%0Ah5%2C%0Ah6%20%7B%0Amargin%2Dtop%3A%201em%3B%0Amargin%2Dbottom%3A%2016px%3B%0Afont%2Dweight%3A%20bold%3B%0Aline%2Dheight%3A%201%2E4%3B%0A%7D%0Ah1%20%2Eocticon%2Dlink%2C%0Ah2%20%2Eocticon%2Dlink%2C%0Ah3%20%2Eocticon%2Dlink%2C%0Ah4%20%2Eocticon%2Dlink%2C%0Ah5%20%2Eocticon%2Dlink%2C%0Ah6%20%2Eocticon%2Dlink%20%7B%0Acolor%3A%20%23000%3B%0Avertical%2Dalign%3A%20middle%3B%0Avisibility%3A%20hidden%3B%0A%7D%0Ah1%3Ahover%20%2Eanchor%2C%0Ah2%3Ahover%20%2Eanchor%2C%0Ah3%3Ahover%20%2Eanchor%2C%0Ah4%3Ahover%20%2Eanchor%2C%0Ah5%3Ahover%20%2Eanchor%2C%0Ah6%3Ahover%20%2Eanchor%20%7B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Ah1%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah2%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah3%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah4%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah5%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah6%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%20%7B%0Avisibility%3A%20visible%3B%0A%7D%0Ah1%20%7B%0Apadding%2Dbottom%3A%200%2E3em%3B%0Afont%2Dsize%3A%202%2E25em%3B%0Aline%2Dheight%3A%201%2E2%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23eee%3B%0A%7D%0Ah1%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%3B%0A%7D%0Ah2%20%7B%0Apadding%2Dbottom%3A%200%2E3em%3B%0Afont%2Dsize%3A%201%2E75em%3B%0Aline%2Dheight%3A%201%2E225%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23eee%3B%0A%7D%0Ah2%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%3B%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%201%2E5em%3B%0Aline%2Dheight%3A%201%2E43%3B%0A%7D%0Ah3%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E2%3B%0A%7D%0Ah4%20%7B%0Afont%2Dsize%3A%201%2E25em%3B%0A%7D%0Ah4%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E2%3B%0A%7D%0Ah5%20%7B%0Afont%2Dsize%3A%201em%3B%0A%7D%0Ah5%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ah6%20%7B%0Afont%2Dsize%3A%201em%3B%0Acolor%3A%20%23777%3B%0A%7D%0Ah6%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ap%2C%0Ablockquote%2C%0Aul%2C%0Aol%2C%0Adl%2C%0Atable%2C%0Apre%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0Ahr%20%7B%0Aheight%3A%204px%3B%0Apadding%3A%200%3B%0Amargin%3A%2016px%200%3B%0Abackground%2Dcolor%3A%20%23e7e7e7%3B%0Aborder%3A%200%20none%3B%0A%7D%0Aul%2C%0Aol%20%7B%0Apadding%2Dleft%3A%202em%3B%0A%7D%0Aul%20ul%2C%0Aul%20ol%2C%0Aol%20ol%2C%0Aol%20ul%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Ali%3Ep%20%7B%0Amargin%2Dtop%3A%2016px%3B%0A%7D%0Adl%20%7B%0Apadding%3A%200%3B%0A%7D%0Adl%20dt%20%7B%0Apadding%3A%200%3B%0Amargin%2Dtop%3A%2016px%3B%0Afont%2Dsize%3A%201em%3B%0Afont%2Dstyle%3A%20italic%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Adl%20dd%20%7B%0Apadding%3A%200%2016px%3B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0Ablockquote%20%7B%0Apadding%3A%200%2015px%3B%0Acolor%3A%20%23777%3B%0Aborder%2Dleft%3A%204px%20solid%20%23ddd%3B%0A%7D%0Ablockquote%3E%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Ablockquote%3E%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Atable%20%7B%0Adisplay%3A%20block%3B%0Awidth%3A%20100%25%3B%0Aoverflow%3A%20auto%3B%0Aword%2Dbreak%3A%20normal%3B%0Aword%2Dbreak%3A%20keep%2Dall%3B%0A%7D%0Atable%20th%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Atable%20th%2C%0Atable%20td%20%7B%0Apadding%3A%206px%2013px%3B%0Aborder%3A%201px%20solid%20%23ddd%3B%0A%7D%0Atable%20tr%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Aborder%2Dtop%3A%201px%20solid%20%23ccc%3B%0A%7D%0Atable%20tr%3Anth%2Dchild%282n%29%20%7B%0Abackground%2Dcolor%3A%20%23f8f8f8%3B%0A%7D%0Aimg%20%7B%0Amax%2Dwidth%3A%20100%25%3B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0Abackground%2Dcolor%3A%20%23fff%3B%0A%7D%0Acode%20%7B%0Apadding%3A%200%3B%0Apadding%2Dtop%3A%200%2E2em%3B%0Apadding%2Dbottom%3A%200%2E2em%3B%0Amargin%3A%200%3B%0Afont%2Dsize%3A%2085%25%3B%0Abackground%2Dcolor%3A%20rgba%280%2C0%2C0%2C0%2E04%29%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Acode%3Abefore%2C%0Acode%3Aafter%20%7B%0Aletter%2Dspacing%3A%20%2D0%2E2em%3B%0Acontent%3A%20%22%5C00a0%22%3B%0A%7D%0Apre%3Ecode%20%7B%0Apadding%3A%200%3B%0Amargin%3A%200%3B%0Afont%2Dsize%3A%20100%25%3B%0Aword%2Dbreak%3A%20normal%3B%0Awhite%2Dspace%3A%20pre%3B%0Abackground%3A%20transparent%3B%0Aborder%3A%200%3B%0A%7D%0A%2Ehighlight%20%7B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0A%2Ehighlight%20pre%2C%0Apre%20%7B%0Apadding%3A%2016px%3B%0Aoverflow%3A%20auto%3B%0Afont%2Dsize%3A%2085%25%3B%0Aline%2Dheight%3A%201%2E45%3B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0A%2Ehighlight%20pre%20%7B%0Amargin%2Dbottom%3A%200%3B%0Aword%2Dbreak%3A%20normal%3B%0A%7D%0Apre%20%7B%0Aword%2Dwrap%3A%20normal%3B%0A%7D%0Apre%20code%20%7B%0Adisplay%3A%20inline%3B%0Amax%2Dwidth%3A%20initial%3B%0Apadding%3A%200%3B%0Amargin%3A%200%3B%0Aoverflow%3A%20initial%3B%0Aline%2Dheight%3A%20inherit%3B%0Aword%2Dwrap%3A%20normal%3B%0Abackground%2Dcolor%3A%20transparent%3B%0Aborder%3A%200%3B%0A%7D%0Apre%20code%3Abefore%2C%0Apre%20code%3Aafter%20%7B%0Acontent%3A%20normal%3B%0A%7D%0Akbd%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%3A%203px%205px%3B%0Afont%2Dsize%3A%2011px%3B%0Aline%2Dheight%3A%2010px%3B%0Acolor%3A%20%23555%3B%0Avertical%2Dalign%3A%20middle%3B%0Abackground%2Dcolor%3A%20%23fcfcfc%3B%0Aborder%3A%20solid%201px%20%23ccc%3B%0Aborder%2Dbottom%2Dcolor%3A%20%23bbb%3B%0Aborder%2Dradius%3A%203px%3B%0Abox%2Dshadow%3A%20inset%200%20%2D1px%200%20%23bbb%3B%0A%7D%0A%2Epl%2Dc%20%7B%0Acolor%3A%20%23969896%3B%0A%7D%0A%2Epl%2Dc1%2C%0A%2Epl%2Ds%20%2Epl%2Dv%20%7B%0Acolor%3A%20%230086b3%3B%0A%7D%0A%2Epl%2De%2C%0A%2Epl%2Den%20%7B%0Acolor%3A%20%23795da3%3B%0A%7D%0A%2Epl%2Ds%20%2Epl%2Ds1%2C%0A%2Epl%2Dsmi%20%7B%0Acolor%3A%20%23333%3B%0A%7D%0A%2Epl%2Dent%20%7B%0Acolor%3A%20%2363a35c%3B%0A%7D%0A%2Epl%2Dk%20%7B%0Acolor%3A%20%23a71d5d%3B%0A%7D%0A%2Epl%2Dpds%2C%0A%2Epl%2Ds%2C%0A%2Epl%2Ds%20%2Epl%2Dpse%20%2Epl%2Ds1%2C%0A%2Epl%2Dsr%2C%0A%2Epl%2Dsr%20%2Epl%2Dcce%2C%0A%2Epl%2Dsr%20%2Epl%2Dsra%2C%0A%2Epl%2Dsr%20%2Epl%2Dsre%20%7B%0Acolor%3A%20%23183691%3B%0A%7D%0A%2Epl%2Dv%20%7B%0Acolor%3A%20%23ed6a43%3B%0A%7D%0A%2Epl%2Did%20%7B%0Acolor%3A%20%23b52a1d%3B%0A%7D%0A%2Epl%2Dii%20%7B%0Abackground%2Dcolor%3A%20%23b52a1d%3B%0Acolor%3A%20%23f8f8f8%3B%0A%7D%0A%2Epl%2Dsr%20%2Epl%2Dcce%20%7B%0Acolor%3A%20%2363a35c%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dml%20%7B%0Acolor%3A%20%23693a17%3B%0A%7D%0A%2Epl%2Dmh%2C%0A%2Epl%2Dmh%20%2Epl%2Den%2C%0A%2Epl%2Dms%20%7B%0Acolor%3A%20%231d3e81%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmq%20%7B%0Acolor%3A%20%23008080%3B%0A%7D%0A%2Epl%2Dmi%20%7B%0Acolor%3A%20%23333%3B%0Afont%2Dstyle%3A%20italic%3B%0A%7D%0A%2Epl%2Dmb%20%7B%0Acolor%3A%20%23333%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmd%20%7B%0Abackground%2Dcolor%3A%20%23ffecec%3B%0Acolor%3A%20%23bd2c00%3B%0A%7D%0A%2Epl%2Dmi1%20%7B%0Abackground%2Dcolor%3A%20%23eaffea%3B%0Acolor%3A%20%2355a532%3B%0A%7D%0A%2Epl%2Dmdr%20%7B%0Acolor%3A%20%23795da3%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmo%20%7B%0Acolor%3A%20%231d3e81%3B%0A%7D%0Akbd%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%3A%203px%205px%3B%0Afont%3A%2011px%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0Aline%2Dheight%3A%2010px%3B%0Acolor%3A%20%23555%3B%0Avertical%2Dalign%3A%20middle%3B%0Abackground%2Dcolor%3A%20%23fcfcfc%3B%0Aborder%3A%20solid%201px%20%23ccc%3B%0Aborder%2Dbottom%2Dcolor%3A%20%23bbb%3B%0Aborder%2Dradius%3A%203px%3B%0Abox%2Dshadow%3A%20inset%200%20%2D1px%200%20%23bbb%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%20%7B%0Alist%2Dstyle%2Dtype%3A%20none%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%2B%2Etask%2Dlist%2Ditem%20%7B%0Amargin%2Dtop%3A%203px%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%20input%20%7B%0Amargin%3A%200%200%2E35em%200%2E25em%20%2D1%2E6em%3B%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0A%3Achecked%2B%2Eradio%2Dlabel%20%7B%0Az%2Dindex%3A%201%3B%0Aposition%3A%20relative%3B%0Aborder%2Dcolor%3A%20%234078c0%3B%0A%7D%0A%2EsourceLine%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0A%7D%0Acode%20%2Ekw%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Edt%20%7B%20color%3A%20%23ed6a43%3B%20%7D%0Acode%20%2Edv%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Ebn%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Efl%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Ech%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Est%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%2Eco%20%7B%20color%3A%20%23969896%3B%20%7D%0Acode%20%2Eot%20%7B%20color%3A%20%230086b3%3B%20%7D%0Acode%20%2Eal%20%7B%20color%3A%20%23a61717%3B%20%7D%0Acode%20%2Efu%20%7B%20color%3A%20%2363a35c%3B%20%7D%0Acode%20%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%0Acode%20%2Ewa%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Ecn%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Esc%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Evs%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%2Ess%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%2Eim%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Eva%20%7Bcolor%3A%20%23008080%3B%20%7D%0Acode%20%2Ecf%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Eop%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Ebu%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Eex%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Epp%20%7B%20color%3A%20%23999999%3B%20%7D%0Acode%20%2Eat%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Edo%20%7B%20color%3A%20%23969896%3B%20%7D%0Acode%20%2Ean%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Ecv%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Ein%20%7B%20color%3A%20%23008080%3B%20%7D%0A">
+<style>
+body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+  padding-top: 0px;
+}
+</style>
 
 
 </head>
 
 <body>
 
-    <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    <h1 id="oncopath">OncoPath</h1>
-    <p><strong>Specialized Oncological and Pathological Research Tools for
-            jamovi</strong></p>
-    <p><a href="https://www.repostatus.org/#active"><img role="img" aria-label="Project Status: Active"
-                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTE2IiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9InJlcG8gc3RhdHVzOiBBY3RpdmUiPjx0aXRsZT5yZXBvIHN0YXR1czogQWN0aXZlPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxMTYiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI3MyIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjczIiB3aWR0aD0iNDMiIGhlaWdodD0iMjAiIGZpbGw9IiM0YzEiLz48cmVjdCB3aWR0aD0iMTE2IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjM3NSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNjMwIj5yZXBvIHN0YXR1czwvdGV4dD48dGV4dCB4PSIzNzUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9IjYzMCI+cmVwbyBzdGF0dXM8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjkzNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMzMwIj5BY3RpdmU8L3RleHQ+PHRleHQgeD0iOTM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSIzMzAiPkFjdGl2ZTwvdGV4dD48L2c+PC9zdmc+"
-                alt="Project Status: Active" /></a> <a href="https://github.com/sbalci/OncoPath/releases/"><img
-                role="img" aria-label="GitHub release"
-                src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDIiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0icmVsZWFzZTogdjAuMC4zMiI+PHRpdGxlPnJlbGVhc2U6IHYwLjAuMzI8L3RpdGxlPjxsaW5lYXJHcmFkaWVudCBpZD0icyIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxjbGlwUGF0aCBpZD0iciI+PHJlY3Qgd2lkdGg9IjEwMiIgaGVpZ2h0PSIyMCIgcng9IjMiIGZpbGw9IiNmZmYiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+PHJlY3Qgd2lkdGg9IjQ5IiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iNDkiIHdpZHRoPSI1MyIgaGVpZ2h0PSIyMCIgZmlsbD0iI2ZlN2QzNyIvPjxyZWN0IHdpZHRoPSIxMDIiIGhlaWdodD0iMjAiIGZpbGw9InVybCgjcykiLz48L2c+PGcgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IlZlcmRhbmEsR2VuZXZhLERlamFWdSBTYW5zLHNhbnMtc2VyaWYiIHRleHQtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iIGZvbnQtc2l6ZT0iMTEwIj48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iMjU1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIzOTAiPnJlbGVhc2U8L3RleHQ+PHRleHQgeD0iMjU1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSIzOTAiPnJlbGVhc2U8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9Ijc0NSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNDMwIj52MC4wLjMyPC90ZXh0Pjx0ZXh0IHg9Ijc0NSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNDMwIj52MC4wLjMyPC90ZXh0PjwvZz48L3N2Zz4="
-                alt="GitHub release" /></a> <a href="https://github.com/sbalci/OncoPath/issues"><img role="img"
-                aria-label="GitHub issues"
-                src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MCIgaGVpZ2h0PSIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJpc3N1ZXM6IDAgb3BlbiI+PHRpdGxlPmlzc3VlczogMCBvcGVuPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSI5MCIgaGVpZ2h0PSIyMCIgcng9IjMiIGZpbGw9IiNmZmYiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+PHJlY3Qgd2lkdGg9IjQzIiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iNDMiIHdpZHRoPSI0NyIgaGVpZ2h0PSIyMCIgZmlsbD0iIzRjMSIvPjxyZWN0IHdpZHRoPSI5MCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIyMjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjMzMCI+aXNzdWVzPC90ZXh0Pjx0ZXh0IHg9IjIyNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMzMwIj5pc3N1ZXM8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjY1NSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMzcwIj4wIG9wZW48L3RleHQ+PHRleHQgeD0iNjU1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSIzNzAiPjAgb3BlbjwvdGV4dD48L2c+PC9zdmc+"
-                alt="GitHub issues" /></a></p>
-    <hr />
-    <h2 id="overview">Overview</h2>
-    <p>OncoPath is a specialized <a href="https://www.jamovi.org">jamovi</a>
-        module designed specifically for oncological and pathological research.
-        It provides comprehensive patient follow-up visualization tools that are
-        essential for clinical research, treatment response analysis, and
-        patient timeline tracking.</p>
-    <p>This module is part of the <a href="https://github.com/sbalci/ClinicoPathJamoviModule">ClinicoPath</a>
-        ecosystem, offering specialized tools for oncology and pathology
-        research that complement the broader statistical analysis capabilities
-        of the main ClinicoPath module.</p>
-    <h2 id="features">Features</h2>
-    <h3 id="swimming_man-swimmer-plot-analysis">🏊‍♂️ <strong>Swimmer Plot
-            Analysis</strong></h3>
-    <p>Comprehensive swimmer plots for visualizing patient timelines,
-        clinical events, milestones, and treatment responses.</p>
-    <ul>
-        <li><strong>Patient Timeline Visualization</strong>: Create professional
-            swimmer plots using enhanced ggswim package integration</li>
-        <li><strong>Multi-dimensional Data Support</strong>: Visualize clinical
-            events, milestones, treatment responses, and adverse events</li>
-        <li><strong>Enhanced Data Validation</strong>: Robust input validation
-            with comprehensive error handling</li>
-        <li><strong>Flexible Timeline Display</strong>: Customizable patient
-            journey visualization with event overlays</li>
-        <li><strong>Clinical Research Integration</strong>: Designed
-            specifically for oncological clinical trial reporting</li>
-    </ul>
-    <p><strong>Documentation</strong>: <a
-            href="https://www.serdarbalci.com/OncoPath/articles/swimmerplot_documentation.html">Swimmer
-            Plot Guide</a></p>
-    <h3 id="ocean-waterfall-plot-analysis">🌊 <strong>Waterfall Plot
-            Analysis</strong></h3>
-    <p>Treatment response analysis with RECIST criteria, creating waterfall
-        and spider plots for tumor response visualization.</p>
-    <ul>
-        <li><strong>Treatment Response Visualization</strong>: Create
-            comprehensive waterfall and spider plots for tumor response
-            analysis</li>
-        <li><strong>RECIST Criteria Support</strong>: Built-in Response
-            Evaluation Criteria In Solid Tumors (RECIST) guidelines</li>
-        <li><strong>Dual Data Input</strong>: Supports both raw tumor
-            measurements and pre-calculated percentage changes</li>
-        <li><strong>Clinical Metrics</strong>: Automated calculation of ORR
-            (Overall Response Rate), DCR (Disease Control Rate), and person-time
-            metrics</li>
-        <li><strong>Publication Ready</strong>: Professional visualization
-            suitable for clinical publications and presentations</li>
-        <li><strong>Longitudinal Analysis</strong>: Spider plots for tracking
-            individual patient responses over time</li>
-    </ul>
-    <p><strong>Documentation</strong>: <a
-            href="https://www.serdarbalci.com/OncoPath/articles/waterfall_documentation.html">Waterfall
-            Plot Guide</a></p>
-    <h3 id="microscope-ihc-heterogeneity-analysis">🔬 <strong>IHC
-            Heterogeneity Analysis</strong></h3>
-    <p>Statistical analysis of immunohistochemistry marker heterogeneity for
-        pathology research.</p>
-    <ul>
-        <li><strong>Immunohistochemistry Analysis</strong>: Statistical analysis
-            of IHC marker heterogeneity</li>
-        <li><strong>Multi-marker Support</strong>: Comprehensive evaluation of
-            multiple biomarkers</li>
-        <li><strong>Statistical Validation</strong>: Robust statistical methods
-            for heterogeneity assessment</li>
-        <li><strong>Pathology Research</strong>: Specialized tools for
-            immunohistochemical studies</li>
-    </ul>
-    <h3 id="bar_chart-diagnostic-test-meta-analysis">📊 <strong>Diagnostic
-            Test Meta-Analysis</strong></h3>
-    <p>Comprehensive meta-analysis tools for diagnostic test accuracy
-        studies, specifically designed for pathology and AI algorithm
-        validation.</p>
-    <ul>
-        <li><strong>Bivariate Meta-Analysis</strong>: Advanced bivariate
-            random-effects modeling using the Reitsma method</li>
-        <li><strong>HSROC Analysis</strong>: Hierarchical Summary ROC curve
-            analysis for diagnostic accuracy</li>
-        <li><strong>Meta-Regression</strong>: Covariate analysis to explore
-            heterogeneity sources</li>
-        <li><strong>Publication Bias Assessment</strong>: Comprehensive bias
-            detection and visualization</li>
-        <li><strong>Forest and SROC Plots</strong>: Publication-ready
-            visualizations for diagnostic test accuracy</li>
-        <li><strong>AI Algorithm Validation</strong>: Designed for validating
-            AI/ML diagnostic algorithms in pathology</li>
-        <li><strong>Biomarker Studies</strong>: Comprehensive synthesis of
-            diagnostic biomarker accuracy studies</li>
-    </ul>
-    <h2 id="installation">Installation</h2>
-    <h3 id="prerequisites">Prerequisites</h3>
-    <ul>
-        <li><a href="https://www.jamovi.org">jamovi</a> version 2.7.2 or
-            higher</li>
-    </ul>
-    <h3 id="method-1-via-jamovi-library-recommended">Method 1: Via jamovi
-        Library (Recommended)</h3>
-    <ol style="list-style-type: decimal">
-        <li>Open jamovi</li>
-        <li>Click on the “Modules” (⊞) button in the top-right</li>
-        <li>Select “jamovi library”</li>
-        <li>Search for “OncoPath”</li>
-        <li>Click “Install”</li>
-    </ol>
-    <h3 id="method-2-sideload-installation">Method 2: Sideload
-        Installation</h3>
-    <ol style="list-style-type: decimal">
-        <li>Download the latest <code>.jmo</code> file from <a
-                href="https://github.com/sbalci/OncoPath/releases/">releases</a></li>
-        <li>In jamovi, click “Modules” (⊞) → “Sideload”</li>
-        <li>Select the downloaded <code>.jmo</code> file</li>
-    </ol>
-    <h3 id="method-3-r-installation">Method 3: R Installation</h3>
-    <div class="sourceCode" id="cb1">
-        <pre
-            class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Install from GitHub</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;sbalci/OncoPath&quot;</span>)</span></code></pre>
-    </div>
-    <h2 id="quick-start">Quick Start</h2>
-    <h3 id="swimmer-plot-example">Swimmer Plot Example</h3>
-    <ol style="list-style-type: decimal">
-        <li>
-            <p>Load your patient timeline data with columns for:</p>
-            <ul>
-                <li>Patient ID</li>
-                <li>Start time</li>
-                <li>End time</li>
-                <li>Events (optional)</li>
-                <li>Response data (optional)</li>
-            </ul>
-        </li>
-        <li>
-            <p>Navigate to <strong>OncoPath</strong> → <strong>Patient Follow-Up
-                    Plots</strong> → <strong>Swimmer Plot</strong></p>
-        </li>
-        <li>
-            <p>Configure your variables and customize the visualization</p>
-        </li>
-    </ol>
-    <h3 id="waterfall-plot-example">Waterfall Plot Example</h3>
-    <ol style="list-style-type: decimal">
-        <li>
-            <p>Prepare your treatment response data with:</p>
-            <ul>
-                <li>Patient ID</li>
-                <li>Response variable (percentage change or raw measurements)</li>
-                <li>Time points (for longitudinal analysis)</li>
-                <li>Group variables (optional)</li>
-            </ul>
-        </li>
-        <li>
-            <p>Navigate to <strong>OncoPath</strong> → <strong>Patient Follow-Up
-                    Plots</strong> → <strong>Treatment Response Analysis</strong></p>
-        </li>
-        <li>
-            <p>Select RECIST criteria options and customize your
-                analysis</p>
-        </li>
-    </ol>
-    <h2 id="documentation">Documentation</h2>
-    <ul>
-        <li><strong>Website</strong>: <a
-                href="https://www.serdarbalci.com/OncoPath/">https://www.serdarbalci.com/OncoPath/</a></li>
-        <li><strong>Swimmer Plot Guide</strong>: <a
-                href="https://www.serdarbalci.com/OncoPath/articles/swimmerplot_documentation.html">https://www.serdarbalci.com/OncoPath/articles/swimmerplot_documentation.html</a>
-        </li>
-        <li><strong>Waterfall Plot Guide</strong>: <a
-                href="https://www.serdarbalci.com/OncoPath/articles/waterfall_documentation.html">https://www.serdarbalci.com/OncoPath/articles/waterfall_documentation.html</a>
-        </li>
-        <li><strong>Main ClinicoPath Documentation</strong>: <a
-                href="https://www.serdarbalci.com/ClinicoPathJamoviModule/">https://www.serdarbalci.com/ClinicoPathJamoviModule/</a>
-        </li>
-    </ul>
-    <h2 id="sample-data">Sample Data</h2>
-    <p>OncoPath includes sample datasets to help you get started:</p>
-    <ul>
-        <li><strong>Swimmer Plot Analysis</strong>:
-            <code>swimmerplot_sample.omv</code>
-        </li>
-        <li><strong>Waterfall Plot</strong>:
-            <code>waterfall_percentage_basic.omv</code>
-        </li>
-        <li><strong>Waterfall and Spider Plot</strong>:
-            <code>waterfall_raw_longitudinal.omv</code>
-        </li>
-    </ul>
-    <p>Access these datasets through the jamovi interface:
-        <strong>Open</strong> → <strong>Data Library</strong> →
-        <strong>OncoPath</strong>
-    </p>
-    <h2 id="requirements">Requirements</h2>
-    <h3 id="core-dependencies">Core Dependencies</h3>
-    <ul>
-        <li>R (>= 4.1.0)</li>
-        <li>jmvcore (>= 0.8.5)</li>
-        <li>ggplot2</li>
-        <li>dplyr</li>
-        <li>rlang</li>
-    </ul>
-    <h3 id="specialized-dependencies">Specialized Dependencies</h3>
-    <ul>
-        <li><strong>ggswim</strong>: Enhanced swimmer plot functionality</li>
-        <li><strong>mada</strong>: Meta-analysis of diagnostic accuracy
-            studies</li>
-        <li><strong>metafor</strong>: Meta-regression and advanced meta-analysis
-            methods</li>
-        <li><strong>pROC</strong>: ROC curve analysis for diagnostic tests</li>
-        <li><strong>survival</strong> &amp; <strong>survminer</strong>: Survival
-            analysis and visualization</li>
-        <li><strong>lubridate</strong>: Date/time handling</li>
-        <li><strong>RColorBrewer</strong>: Professional color schemes</li>
-        <li><strong>gridExtra</strong>: Advanced plot layouts</li>
-        <li><strong>boot</strong>, <strong>dcurves</strong>,
-            <strong>Hmisc</strong>, <strong>rms</strong>, <strong>timeROC</strong>:
-            Advanced statistical methods
-        </li>
-    </ul>
-    <h2 id="use-cases">Use Cases</h2>
-    <h3 id="clinical-research">Clinical Research</h3>
-    <ul>
-        <li><strong>Clinical Trial Reporting</strong>: Patient timelines and
-            treatment responses</li>
-        <li><strong>Longitudinal Studies</strong>: Disease progression and
-            treatment effects over time</li>
-        <li><strong>Oncology Research</strong>: Tumor response evaluation
-            following RECIST guidelines</li>
-        <li><strong>Diagnostic Accuracy Studies</strong>: Meta-analysis of
-            biomarker and diagnostic test performance</li>
-        <li><strong>AI Algorithm Validation</strong>: Systematic review and
-            meta-analysis of AI-based diagnostic tools</li>
-    </ul>
-    <h3 id="pathology-research">Pathology Research</h3>
-    <ul>
-        <li><strong>Biomarker Validation</strong>: Comprehensive meta-analysis
-            of diagnostic biomarkers</li>
-        <li><strong>IHC Studies</strong>: Statistical analysis of
-            immunohistochemistry heterogeneity</li>
-        <li><strong>Systematic Reviews</strong>: Synthesis of diagnostic test
-            accuracy across multiple studies</li>
-        <li><strong>Method Comparison</strong>: Evaluation of different
-            diagnostic methods and techniques</li>
-    </ul>
-    <h3 id="publication-support">Publication Support</h3>
-    <ul>
-        <li><strong>Manuscript Figures</strong>: Publication-ready
-            visualizations with professional styling</li>
-        <li><strong>Conference Presentations</strong>: Clear, informative plots
-            for academic presentations</li>
-        <li><strong>Regulatory Submissions</strong>: Standardized reporting
-            formats for regulatory agencies</li>
-        <li><strong>Meta-Analysis Reports</strong>: Comprehensive forest plots,
-            SROC curves, and funnel plots</li>
-    </ul>
-    <h2 id="contributing">Contributing</h2>
-    <p>We welcome contributions! Please see our <a href="CONTRIBUTING.md">Contributing Guidelines</a> for details.</p>
-    <h3 id="areas-for-contribution">Areas for Contribution</h3>
-    <ul>
-        <li>Additional visualization options</li>
-        <li>Enhanced RECIST criteria support</li>
-        <li>New clinical event types</li>
-        <li>Documentation improvements</li>
-        <li>Bug reports and feature requests</li>
-    </ul>
-    <h2 id="support">Support</h2>
-    <ul>
-        <li><strong>Issues</strong>: Report bugs or request features on <a
-                href="https://github.com/sbalci/OncoPath/issues">GitHub Issues</a></li>
-        <li><strong>Discussions</strong>: Join the conversation in <a
-                href="https://github.com/sbalci/OncoPath/discussions">GitHub
-                Discussions</a></li>
-        <li><strong>Email</strong>: Contact the maintainer at <a
-                href="mailto:serdarbalci@serdarbalci.com">serdarbalci@serdarbalci.com</a></li>
-    </ul>
-    <h2 id="citation">Citation</h2>
-    <p>If you use OncoPath in your research, please cite:</p>
-    <pre><code>Serdar Balci (2025). OncoPath: Specialized Oncological and Pathological Research Tools for jamovi.
-R package version 0.0.32. https://github.com/sbalci/OncoPath</code></pre>
-    <p>And the main ClinicoPath project:</p>
-    <pre><code>Serdar Balci (2025). ClinicoPath jamovi Module. doi:10.5281/zenodo.3997188
-[R package]. Retrieved from https://github.com/sbalci/ClinicoPathJamoviModule</code></pre>
-    <h2 id="license">License</h2>
-    <p>GPL (&gt;= 2) - see <a href="LICENSE">LICENSE</a> file for
-        details.</p>
-    <h2 id="related-projects">Related Projects</h2>
-    <p>OncoPath is part of the <a href="https://github.com/sbalci/ClinicoPathJamoviModule">ClinicoPath</a>
-        ecosystem:</p>
-    <ul>
-        <li><strong><a href="https://github.com/sbalci/ClinicoPathJamoviModule">ClinicoPath</a></strong>:
-            Comprehensive clinicopathological research toolkit</li>
-        <li><strong><a href="https://github.com/sbalci/ClinicoPathDescriptives">ClinicoPathDescriptives</a></strong>:
-            Descriptive statistics and data quality tools</li>
-        <li><strong><a href="https://github.com/sbalci/jsurvival">jsurvival</a></strong>:
-            Comprehensive survival analysis</li>
-        <li><strong><a href="https://github.com/sbalci/meddecide">meddecide</a></strong>:
-            Medical decision analysis and ROC curves</li>
-        <li><strong><a href="https://github.com/sbalci/jjstatsplot">jjstatsplot</a></strong>:
-            Statistical visualization with ggstatsplot integration</li>
-    </ul>
-    <hr />
-    <p><strong>Developed by <a href="https://github.com/sbalci">Serdar
-                Balci</a></strong></p>
-    <p><a href="https://twitter.com/serdarbalci"><img role="img" aria-label="Twitter Follow"
-                src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMzMiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iRm9sbG93IEBzZXJkYXJiYWxjaTogIj48dGl0bGU+Rm9sbG93IEBzZXJkYXJiYWxjaTogPC90aXRsZT48YSB0YXJnZXQ9Il9ibGFuayIgaHJlZj0iaHR0cHM6Ly94LmNvbS9pbnRlbnQvZm9sbG93P3NjcmVlbl9uYW1lPXNlcmRhcmJhbGNpIj48c3R5bGU+YTpob3ZlciAjbGxpbmt7ZmlsbDp1cmwoI2IpO3N0cm9rZTojY2NjfWE6aG92ZXIgI3JsaW5re2ZpbGw6IzQxODNjNH08L3N0eWxlPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmY2ZjZmMiIHN0b3Atb3BhY2l0eT0iMCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJiIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2NjYyIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGcgc3Ryb2tlPSIjZDVkNWQ1Ij48cmVjdCBzdHJva2U9Im5vbmUiIGZpbGw9IiNmY2ZjZmMiIHg9IjAuNSIgeT0iMC41IiB3aWR0aD0iMTMyIiBoZWlnaHQ9IjE5IiByeD0iMiIvPjwvZz48aW1hZ2UgeD0iNSIgeT0iMyIgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiBocmVmPSJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUJtYVd4c1BTSWpNREF3TURBd0lpQnliMnhsUFNKcGJXY2lJSFpwWlhkQ2IzZzlJakFnTUNBeU5DQXlOQ0lnZUcxc2JuTTlJbWgwZEhBNkx5OTNkM2N1ZHpNdWIzSm5Mekl3TURBdmMzWm5JajQ4ZEdsMGJHVStXRHd2ZEdsMGJHVStQSEJoZEdnZ1pEMGlUVEU0TGprd01TQXhMakUxTTJnekxqWTRiQzA0TGpBMElEa3VNVGxNTWpRZ01qSXVPRFEyYUMwM0xqUXdObXd0TlM0NExUY3VOVGcwTFRZdU5qTTRJRGN1TlRnMFNDNDBOelJzT0M0MkxUa3VPRE5NTUNBeExqRTFOR2czTGpVNU5HdzFMakkwTXlBMkxqa3pNbHBOTVRjdU5qRWdNakF1TmpRMGFESXVNRE01VERZdU5EZzJJRE11TWpSSU5DNHlPVGhhSWk4K1BDOXpkbWMrIi8+PGcgYXJpYS1oaWRkZW49InRydWUiIGZpbGw9IiMzMzMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EgTmV1ZSxIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIxMTBweCIgbGluZS1oZWlnaHQ9IjE0cHgiPjxyZWN0IGlkPSJsbGluayIgc3Ryb2tlPSIjZDVkNWQ1IiBmaWxsPSJ1cmwoI2EpIiB4PSIuNSIgeT0iLjUiIHdpZHRoPSIxMzIiIGhlaWdodD0iMTkiIHJ4PSIyIi8+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9Ijc0NSIgeT0iMTUwIiBmaWxsPSIjZmZmIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMTA1MCI+Rm9sbG93IEBzZXJkYXJiYWxjaTwvdGV4dD48dGV4dCB4PSI3NDUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjEwNTAiPkZvbGxvdyBAc2VyZGFyYmFsY2k8L3RleHQ+PC9nPjwvYT48L3N2Zz4="
-                alt="Twitter Follow" /></a> <a href="https://github.com/sbalci"><img role="img"
-                aria-label="GitHub followers"
-                src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTIiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iRm9sbG93ZXJzOiAxMzIiPjx0aXRsZT5Gb2xsb3dlcnM6IDEzMjwvdGl0bGU+PHN0eWxlPmE6aG92ZXIgI2xsaW5re2ZpbGw6dXJsKCNiKTtzdHJva2U6I2NjY31hOmhvdmVyICNybGlua3tmaWxsOiM0MTgzYzR9PC9zdHlsZT48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmNmY2ZjIiBzdG9wLW9wYWNpdHk9IjAiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNjY2MiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxnIHN0cm9rZT0iI2Q1ZDVkNSI+PHJlY3Qgc3Ryb2tlPSJub25lIiBmaWxsPSIjZmNmY2ZjIiB4PSIwLjUiIHk9IjAuNSIgd2lkdGg9Ijc4IiBoZWlnaHQ9IjE5IiByeD0iMiIvPjxyZWN0IHg9Ijg0LjUiIHk9IjAuNSIgd2lkdGg9IjI3IiBoZWlnaHQ9IjE5IiByeD0iMiIgZmlsbD0iI2ZhZmFmYSIvPjxyZWN0IHg9Ijg0IiB5PSI3LjUiIHdpZHRoPSIwLjUiIGhlaWdodD0iNSIgc3Ryb2tlPSIjZmFmYWZhIi8+PHBhdGggZD0iTTg0LjUgNi41IGwtMyAzdjEgbDMgMyIgZmlsbD0iI2ZhZmFmYSIvPjwvZz48aW1hZ2UgeD0iNSIgeT0iMyIgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiBocmVmPSJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUJtYVd4c1BTSWpNVGd4TnpFM0lpQnliMnhsUFNKcGJXY2lJSFpwWlhkQ2IzZzlJakFnTUNBeU5DQXlOQ0lnZUcxc2JuTTlJbWgwZEhBNkx5OTNkM2N1ZHpNdWIzSm5Mekl3TURBdmMzWm5JajQ4ZEdsMGJHVStSMmwwU0hWaVBDOTBhWFJzWlQ0OGNHRjBhQ0JrUFNKTk1USWdMakk1TjJNdE5pNDJNeUF3TFRFeUlEVXVNemN6TFRFeUlERXlJREFnTlM0ek1ETWdNeTQwTXpnZ09TNDRJRGd1TWpBMUlERXhMak00TlM0MkxqRXhNeTQ0TWkwdU1qVTRMamd5TFM0MU56Y2dNQzB1TWpnMUxTNHdNUzB4TGpBMExTNHdNVFV0TWk0d05DMHpMak16T0M0M01qUXROQzR3TkRJdE1TNDJNUzAwTGpBME1pMHhMall4UXpRdU5ESXlJREU0TGpBM0lETXVOak16SURFM0xqY2dNeTQyTXpNZ01UY3VOMk10TVM0d09EY3RMamMwTkM0d09EUXRMamN5T1M0d09EUXRMamN5T1NBeExqSXdOUzR3T0RRZ01TNDRNemdnTVM0eU16WWdNUzQ0TXpnZ01TNHlNellnTVM0d055QXhMamd6TlNBeUxqZ3dPU0F4TGpNd05TQXpMalE1TlM0NU9UZ3VNVEE0TFM0M056WXVOREUzTFRFdU16QTFMamMyTFRFdU5qQTFMVEl1TmpZMUxTNHpMVFV1TkRZMkxURXVNek15TFRVdU5EWTJMVFV1T1RNZ01DMHhMak14TGpRMk5TMHlMak00SURFdU1qTTFMVE11TWpJdExqRXpOUzB1TXpBekxTNDFOQzB4TGpVeU15NHhNRFV0TXk0eE56WWdNQ0F3SURFdU1EQTFMUzR6TWpJZ015NHpJREV1TWpNdU9UWXRMakkyTnlBeExqazRMUzR6T1RrZ015MHVOREExSURFdU1ESXVNREEySURJdU1EUXVNVE00SURNZ0xqUXdOU0F5TGpJNExURXVOVFV5SURNdU1qZzFMVEV1TWpNZ015NHlPRFV0TVM0eU15NDJORFVnTVM0Mk5UTXVNalFnTWk0NE56TXVNVElnTXk0eE56WXVOelkxTGpnMElERXVNak1nTVM0NU1TQXhMakl6SURNdU1qSWdNQ0EwTGpZeExUSXVPREExSURVdU5qSTFMVFV1TkRjMUlEVXVPVEl1TkRJdU16WXVPREVnTVM0d09UWXVPREVnTWk0eU1pQXdJREV1TmpBMkxTNHdNVFVnTWk0NE9UWXRMakF4TlNBekxqSTROaUF3SUM0ek1UVXVNakV1TmprdU9ESTFMalUzUXpJd0xqVTJOU0F5TWk0d09USWdNalFnTVRjdU5Ua3lJREkwSURFeUxqSTVOMk13TFRZdU5qSTNMVFV1TXpjekxURXlMVEV5TFRFeUlpOCtQQzl6ZG1jKyIvPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMzMzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iSGVsdmV0aWNhIE5ldWUsSGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWYiIHRleHQtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iIGZvbnQtd2VpZ2h0PSI3MDAiIGZvbnQtc2l6ZT0iMTEwcHgiIGxpbmUtaGVpZ2h0PSIxNHB4Ij48cmVjdCBpZD0ibGxpbmsiIHN0cm9rZT0iI2Q1ZDVkNSIgZmlsbD0idXJsKCNhKSIgeD0iLjUiIHk9Ii41IiB3aWR0aD0iNzgiIGhlaWdodD0iMTkiIHJ4PSIyIi8+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjQ3NSIgeT0iMTUwIiBmaWxsPSIjZmZmIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNTEwIj5Gb2xsb3dlcnM8L3RleHQ+PHRleHQgeD0iNDc1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSI1MTAiPkZvbGxvd2VyczwvdGV4dD48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iOTc1IiB5PSIxNTAiIGZpbGw9IiNmZmYiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIxOTAiPjEzMjwvdGV4dD48dGV4dCBpZD0icmxpbmsiIHg9Ijk3NSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMTkwIj4xMzI8L3RleHQ+PC9nPjwvc3ZnPg=="
-                alt="GitHub followers" /></a></p>
-    <hr />
-    <h2 id="acknowledgements">Acknowledgements</h2>
-    <p>OncoPath builds upon the excellent work of many R package developers,
-        including:</p>
-    <ul>
-        <li><a href="https://github.com/CHOP-CGTInformatics/ggswim">ggswim</a>
-            for swimmer plot functionality</li>
-        <li><a href="https://ggplot2.tidyverse.org/">ggplot2</a> for graphics
-            infrastructure</li>
-        <li><a href="https://github.com/kassambara/survminer">survminer</a> for
-            survival visualizations</li>
-        <li><a href="https://cran.r-project.org/package=mada">mada</a> and <a
-                href="https://www.metafor-project.org/">metafor</a> for meta-analysis
-            tools</li>
-        <li>The <a href="https://www.jamovi.org">jamovi</a> team for creating an
-            accessible statistical platform</li>
-        <li>The broader <a href="https://www.r-project.org/">R</a> community for
-            continuous innovation</li>
-    </ul>
-    <p>Special thanks to the oncology and pathology research communities for
-        feedback and feature requests that have shaped this module’s
-        development.</p>
+<h1 id="oncopath">OncoPath</h1>
+<p><strong>Specialized Oncological and Pathological Research Tools for jamovi and R</strong></p>
+<p><a href="https://www.repostatus.org/#active"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTE2IiBoZWlnaHQ9IjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9InJlcG8gc3RhdHVzOiBBY3RpdmUiPjx0aXRsZT5yZXBvIHN0YXR1czogQWN0aXZlPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxMTYiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI3MyIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjczIiB3aWR0aD0iNDMiIGhlaWdodD0iMjAiIGZpbGw9IiM0YzEiLz48cmVjdCB3aWR0aD0iMTE2IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjM3NSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNjMwIj5yZXBvIHN0YXR1czwvdGV4dD48dGV4dCB4PSIzNzUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9IjYzMCI+cmVwbyBzdGF0dXM8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjkzNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMzMwIj5BY3RpdmU8L3RleHQ+PHRleHQgeD0iOTM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSIzMzAiPkFjdGl2ZTwvdGV4dD48L2c+PC9zdmc+" alt="Project Status: Active" /></a> <a href="https://github.com/sbalci/OncoPath/releases/"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NCIgaGVpZ2h0PSIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJyZWxlYXNlOiB2MS4wLjYiPjx0aXRsZT5yZWxlYXNlOiB2MS4wLjY8L3RpdGxlPjxmaWx0ZXIgaWQ9ImJsdXIiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjE2Ii8+PC9maWx0ZXI+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iOTQiIGhlaWdodD0iMjAiIHJ4PSIzIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI0OSIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjQ5IiB3aWR0aD0iNDUiIGhlaWdodD0iMjAiIGZpbGw9IiMwMDdlYzYiLz48cmVjdCB3aWR0aD0iOTQiIGhlaWdodD0iMjAiIGZpbGw9InVybCgjcykiLz48L2c+PGcgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IlZlcmRhbmEsR2VuZXZhLERlamFWdSBTYW5zLHNhbnMtc2VyaWYiIHRleHQtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iIGZvbnQtc2l6ZT0iMTEwIj48ZyB0cmFuc2Zvcm09InNjYWxlKC4xKSI+PGcgYXJpYS1oaWRkZW49InRydWUiIGZpbGw9IiMwMTAxMDEiPjx0ZXh0IHg9IjI1NSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii44IiBmaWx0ZXI9InVybCgjYmx1cikiIHRleHRMZW5ndGg9IjM5MCI+cmVsZWFzZTwvdGV4dD48dGV4dCB4PSIyNTUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuMyIgdGV4dExlbmd0aD0iMzkwIj5yZWxlYXNlPC90ZXh0PjwvZz48dGV4dCB4PSIyNTUiIHk9IjE0MCIgdGV4dExlbmd0aD0iMzkwIj5yZWxlYXNlPC90ZXh0PjwvZz48ZyB0cmFuc2Zvcm09InNjYWxlKC4xKSI+PGcgYXJpYS1oaWRkZW49InRydWUiIGZpbGw9IiMwMTAxMDEiPjx0ZXh0IHg9IjcwNSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii44IiBmaWx0ZXI9InVybCgjYmx1cikiIHRleHRMZW5ndGg9IjM1MCI+djEuMC42PC90ZXh0Pjx0ZXh0IHg9IjcwNSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSIzNTAiPnYxLjAuNjwvdGV4dD48L2c+PHRleHQgeD0iNzA1IiB5PSIxNDAiIHRleHRMZW5ndGg9IjM1MCI+djEuMC42PC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="GitHub release" /></a> <a href="https://github.com/sbalci/OncoPath/issues"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MCIgaGVpZ2h0PSIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJpc3N1ZXM6IDAgb3BlbiI+PHRpdGxlPmlzc3VlczogMCBvcGVuPC90aXRsZT48ZmlsdGVyIGlkPSJibHVyIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxNiIvPjwvZmlsdGVyPjxsaW5lYXJHcmFkaWVudCBpZD0icyIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxjbGlwUGF0aCBpZD0iciI+PHJlY3Qgd2lkdGg9IjkwIiBoZWlnaHQ9IjIwIiByeD0iMyIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNDMiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI0MyIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjNGIwIi8+PHJlY3Qgd2lkdGg9IjkwIiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSIyMjUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIzMzAiPmlzc3VlczwvdGV4dD48dGV4dCB4PSIyMjUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuMyIgdGV4dExlbmd0aD0iMzMwIj5pc3N1ZXM8L3RleHQ+PC9nPjx0ZXh0IHg9IjIyNSIgeT0iMTQwIiB0ZXh0TGVuZ3RoPSIzMzAiPmlzc3VlczwvdGV4dD48L2c+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSI2NTUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIzNzAiPjAgb3BlbjwvdGV4dD48dGV4dCB4PSI2NTUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuMyIgdGV4dExlbmd0aD0iMzcwIj4wIG9wZW48L3RleHQ+PC9nPjx0ZXh0IHg9IjY1NSIgeT0iMTQwIiB0ZXh0TGVuZ3RoPSIzNzAiPjAgb3BlbjwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="GitHub issues" /></a> <a href="https://www.jamovi.org/"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5OCIgaGVpZ2h0PSIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJqYW1vdmk6IG1vZHVsZSI+PHRpdGxlPmphbW92aTogbW9kdWxlPC90aXRsZT48ZmlsdGVyIGlkPSJibHVyIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxNiIvPjwvZmlsdGVyPjxsaW5lYXJHcmFkaWVudCBpZD0icyIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxjbGlwUGF0aCBpZD0iciI+PHJlY3Qgd2lkdGg9Ijk4IiBoZWlnaHQ9IjIwIiByeD0iMyIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNDciIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI0NyIgd2lkdGg9IjUxIiBoZWlnaHQ9IjIwIiBmaWxsPSIjNGIwIi8+PHJlY3Qgd2lkdGg9Ijk4IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSIyNDUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIzNzAiPmphbW92aTwvdGV4dD48dGV4dCB4PSIyNDUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuMyIgdGV4dExlbmd0aD0iMzcwIj5qYW1vdmk8L3RleHQ+PC9nPjx0ZXh0IHg9IjI0NSIgeT0iMTQwIiB0ZXh0TGVuZ3RoPSIzNzAiPmphbW92aTwvdGV4dD48L2c+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSI3MTUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSI0MTAiPm1vZHVsZTwvdGV4dD48dGV4dCB4PSI3MTUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuMyIgdGV4dExlbmd0aD0iNDEwIj5tb2R1bGU8L3RleHQ+PC9nPjx0ZXh0IHg9IjcxNSIgeT0iMTQwIiB0ZXh0TGVuZ3RoPSI0MTAiPm1vZHVsZTwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="jamovi Module" /></a> <a href="https://www.serdarbalci.com/OncoPath/"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NCIgaGVpZ2h0PSIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJkb2NzOiBwa2dkb3duIj48dGl0bGU+ZG9jczogcGtnZG93bjwvdGl0bGU+PGZpbHRlciBpZD0iYmx1ciI+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMTYiLz48L2ZpbHRlcj48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSI5NCIgaGVpZ2h0PSIyMCIgcng9IjMiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+PHJlY3Qgd2lkdGg9IjM1IiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iMzUiIHdpZHRoPSI1OSIgaGVpZ2h0PSIyMCIgZmlsbD0iIzAwN2VjNiIvPjxyZWN0IHdpZHRoPSI5NCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjxnIHRyYW5zZm9ybT0ic2NhbGUoLjEpIj48ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZmlsbD0iIzAxMDEwMSI+PHRleHQgeD0iMTg1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjgiIGZpbHRlcj0idXJsKCNibHVyKSIgdGV4dExlbmd0aD0iMjUwIj5kb2NzPC90ZXh0Pjx0ZXh0IHg9IjE4NSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSIyNTAiPmRvY3M8L3RleHQ+PC9nPjx0ZXh0IHg9IjE4NSIgeT0iMTQwIiB0ZXh0TGVuZ3RoPSIyNTAiPmRvY3M8L3RleHQ+PC9nPjxnIHRyYW5zZm9ybT0ic2NhbGUoLjEpIj48ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZmlsbD0iIzAxMDEwMSI+PHRleHQgeD0iNjM1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjgiIGZpbHRlcj0idXJsKCNibHVyKSIgdGV4dExlbmd0aD0iNDkwIj5wa2dkb3duPC90ZXh0Pjx0ZXh0IHg9IjYzNSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSI0OTAiPnBrZ2Rvd248L3RleHQ+PC9nPjx0ZXh0IHg9IjYzNSIgeT0iMTQwIiB0ZXh0TGVuZ3RoPSI0OTAiPnBrZ2Rvd248L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="Documentation" /></a></p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p><strong>OncoPath</strong> is a specialized <a href="https://www.jamovi.org">jamovi</a> module and R package designed specifically for oncological clinical trials and pathology research. As the oncology and pathology follow-up engine of the <a href="https://github.com/sbalci/ClinicoPathJamoviModule">ClinicoPath</a> ecosystem, it provides specialized tools for patient timeline tracking, tumor burden response assessment, diagnostic test meta-analysis, immunohistochemistry (IHC) marker heterogeneity, and pathology diagnostic agreement.</p>
+<hr />
+<h2 id="-key-features--analysis-suite-5-analyses">🎯 Key Features &amp; Analysis Suite (5 Analyses)</h2>
+<p>OncoPath provides <strong>5 specialized analyses</strong> under the <strong>OncoPath</strong> menu in jamovi:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Analysis</th>
+<th align="left">Function</th>
+<th align="left">Menu Subgroup</th>
+<th align="left">Key Clinical &amp; Pathological Features</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Swimmer Plot</strong></td>
+<td align="left"><code>swimmerplot</code></td>
+<td align="left">Patient Follow-Up Plots</td>
+<td align="left">Comprehensive patient timeline visualization using enhanced <code>ggswim</code>; displays disease duration, start/end dates, clinical milestones, discrete events, adverse event flags, and response durations for clinical trial reporting.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Treatment Response (Waterfall &amp; Spider)</strong></td>
+<td align="left"><code>waterfall</code></td>
+<td align="left">Patient Follow-Up Plots</td>
+<td align="left">Patient-level tumor burden analysis; generates publication-ready waterfall and longitudinal spider plots; measures progression against nadir; categorizes response (CR, PR, SD, PD) using adapted RECIST v1.1 thresholds; reports ORR, DCR, exact binomial CIs, and person-time metrics.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Diagnostic Test Meta-Analysis</strong></td>
+<td align="left"><code>diagnosticmeta</code></td>
+<td align="left">Meta-Analysis</td>
+<td align="left">Comprehensive meta-analysis of diagnostic accuracy studies in pathology and AI/ML algorithm validation; implements bivariate random-effects modeling (Reitsma method), proportional-hazards SROC (Holling model), meta-regression for heterogeneity, and publication-ready forest/SROC plots.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>IHC Heterogeneity Analysis</strong></td>
+<td align="left"><code>ihcheterogeneity</code></td>
+<td align="left">IHC Analysis</td>
+<td align="left">Quantitative statistical analysis of immunohistochemical biomarker heterogeneity; evaluates intratumoral expression variance, multi-marker profiles, spatial distribution indices, and clinical-pathological correlates.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Pathology Agreement</strong></td>
+<td align="left"><code>pathagreement</code></td>
+<td align="left">Agreement</td>
+<td align="left">Multi-rater agreement analysis tailored to histopathological scoring; computes Cohen’s Kappa, Fleiss’ Kappa, Krippendorff’s alpha, diagnostic consensus determinations (majority, super-majority), and rater concordance matrices.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="detailed-analysis-capabilities">Detailed Analysis Capabilities</h3>
+<h4 id="️-swimmer-plot-swimmerplot">🏊‍♂️ Swimmer Plot (<code>swimmerplot</code>)</h4>
+<ul>
+<li><strong>Patient Timeline Visualization</strong>: Professional swimmer charts showing therapy courses, treatment switching, and ongoing responses.</li>
+<li><strong>Multidimensional Event Overlays</strong>: Plot milestones (e.g. partial response, disease progression, toxicity) and continuous bars on the same axis.</li>
+<li><strong>Trial Reporting Ready</strong>: Formatted according to oncology trial presentation standards.</li>
+</ul>
+<h4 id="-treatment-response-waterfall">🌊 Treatment Response (<code>waterfall</code>)</h4>
+<ul>
+<li><strong>Tumor Burden Visualization</strong>: Waterfall plots of best percentage change from baseline and spider plots showing burden trajectories across visits.</li>
+<li><strong>Adapted RECIST v1.1 Thresholds</strong>: Response classification tailored for patient-level burden when single summary measurements or calculated percent changes are recorded.</li>
+<li><strong>Nadir-Based Progression</strong>: Progression calculated relative to the smallest recorded tumor burden (nadir).</li>
+<li><strong>Exact Clinical Metrics</strong>: Objective Response Rate (ORR) and Disease Control Rate (DCR) with exact Clopper-Pearson binomial confidence intervals.</li>
+</ul>
+<h4 id="-diagnostic-test-meta-analysis-diagnosticmeta">📊 Diagnostic Test Meta-Analysis (<code>diagnosticmeta</code>)</h4>
+<ul>
+<li><strong>Bivariate &amp; SROC Modeling</strong>: Bivariate random-effects synthesis preserving the negative correlation between sensitivity and specificity.</li>
+<li><strong>AI Algorithm Validation</strong>: Evaluate performance metrics of digital pathology and artificial intelligence diagnostic models across validation cohorts.</li>
+<li><strong>Heterogeneity &amp; Meta-Regression</strong>: Investigate study-level covariates explaining differences in diagnostic accuracy.</li>
+</ul>
+<h4 id="-ihc-heterogeneity-analysis-ihcheterogeneity">🔬 IHC Heterogeneity Analysis (<code>ihcheterogeneity</code>)</h4>
+<ul>
+<li><strong>Biomarker Variance</strong>: Assess intra-tumoral and inter-observer variability in immunohistochemical staining.</li>
+<li><strong>Quantitative &amp; Semiquantitative</strong>: Supports continuous H-scores, percentage positive cells, and ordinal intensity tiers.</li>
+</ul>
+<h4 id="-pathology-interrater-reliability-pathagreement">🤝 Pathology Interrater Reliability (<code>pathagreement</code>)</h4>
+<ul>
+<li><strong>Diagnostic Concordance</strong>: Evaluate consensus and discordance patterns across multiple evaluating pathologists.</li>
+<li><strong>Diagnostic Triage</strong>: Automated calculation of agreement levels for borderline and equivocal pathology categories.</li>
+</ul>
+<hr />
+<h2 id="-installation">🚀 Installation</h2>
+<h3 id="in-jamovi-recommended">In jamovi (Recommended)</h3>
+<ol style="list-style-type: decimal">
+<li>Open <strong>jamovi</strong> (&gt;= 2.6).</li>
+<li>Click <strong>Modules</strong> (top right) → <strong>jamovi library</strong>.</li>
+<li>Search for <strong>OncoPath</strong>.</li>
+<li>Click <strong>Install</strong>.</li>
+</ol>
+<h3 id="as-an-r-package">As an R Package</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install development version from GitHub</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;sbalci/OncoPath&quot;</span>)</span></code></pre></div>
+<hr />
+<h2 id="-quick-start-r-interface">💡 Quick Start (R Interface)</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(OncoPath)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Swimmer Plot for patient timelines</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;swimmerplot_sample&quot;</span>, <span class="at">package =</span> <span class="st">&quot;OncoPath&quot;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>swim_res <span class="ot">&lt;-</span> OncoPath<span class="sc">::</span><span class="fu">swimmerplot</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> swimmerplot_sample,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">patientID =</span> <span class="st">&quot;patient_id&quot;</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">startTime =</span> <span class="st">&quot;start_time&quot;</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">endTime =</span> <span class="st">&quot;end_time&quot;</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">responseVar =</span> <span class="st">&quot;response&quot;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Treatment Response Waterfall Plot</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;waterfall_percentage_basic&quot;</span>, <span class="at">package =</span> <span class="st">&quot;OncoPath&quot;</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>wf_res <span class="ot">&lt;-</span> OncoPath<span class="sc">::</span><span class="fu">waterfall</span>(</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> waterfall_percentage_basic,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">patientID =</span> <span class="st">&quot;patient_id&quot;</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">responseVar =</span> <span class="st">&quot;change_from_baseline&quot;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Diagnostic Meta-Analysis for Pathology Studies</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;diagnostic_studies&quot;</span>, <span class="at">package =</span> <span class="st">&quot;OncoPath&quot;</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>meta_res <span class="ot">&lt;-</span> OncoPath<span class="sc">::</span><span class="fu">diagnosticmeta</span>(</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> diagnostic_studies,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">tp =</span> <span class="st">&quot;TP&quot;</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">fp =</span> <span class="st">&quot;FP&quot;</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">fn =</span> <span class="st">&quot;FN&quot;</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">tn =</span> <span class="st">&quot;TN&quot;</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">study =</span> <span class="st">&quot;study_name&quot;</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<hr />
+<h2 id="-example-datasets">📚 Example Datasets</h2>
+<p>OncoPath includes authentic example datasets available directly in the jamovi Data Library (<strong>Open</strong> → <strong>Data Library</strong> → <strong>OncoPath</strong>):</p>
+<ul>
+<li><code>swimmerplot_sample.omv</code>: Patient timelines, milestones, and responses.</li>
+<li><code>waterfall_percentage_basic.omv</code>: Best percent change for single-visit waterfall analysis.</li>
+<li><code>waterfall_raw_longitudinal.omv</code>: Multi-visit raw tumor burden data for waterfall and spider plots.</li>
+<li><code>diagnostic_studies.omv</code>: Diagnostic accuracy study cohorts for meta-analysis.</li>
+<li><code>ihcheterogeneity_test.omv</code>: Multi-region IHC staining scores for heterogeneity testing.</li>
+</ul>
+<hr />
+<h2 id="-documentation--resources">📖 Documentation &amp; Resources</h2>
+<ul>
+<li><strong>OncoPath Website</strong>: <a href="https://www.serdarbalci.com/OncoPath/">https://www.serdarbalci.com/OncoPath/</a></li>
+<li><strong>ClinicoPath Umbrella Ecosystem</strong>: <a href="https://www.serdarbalci.com/ClinicoPathJamoviModule/">https://www.serdarbalci.com/ClinicoPathJamoviModule/</a></li>
+<li><strong>GitHub Repository</strong>: <a href="https://github.com/sbalci/OncoPath/">https://github.com/sbalci/OncoPath/</a></li>
+<li><strong>Issue Tracker &amp; Feature Requests</strong>: <a href="https://github.com/sbalci/OncoPath/issues">GitHub Issues</a></li>
+</ul>
+<hr />
+<h2 id="-citation">📝 Citation</h2>
+<p>If you use OncoPath in your research or publications, please cite:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">@manual</span>{<span class="ot">balci2026oncopath</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>  = {OncoPath: Specialized Oncological and Pathological Research Tools for jamovi},</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Serdar Balci},</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>   = {2026},</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span>    = {https://www.serdarbalci.com/OncoPath/},</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">doi</span>    = {10.5281/zenodo.3997188}</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="-license">📄 License</h2>
+<p>GPL (&gt;= 2) — see the <a href="LICENSE">LICENSE</a> file for details.</p>
 
 </body>
-
 </html>

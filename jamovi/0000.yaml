@@ -1,12 +1,12 @@
 ---
 title: OncoPath Functions for Clinicopathological Research
 name: OncoPath
-version: 1.0.83.02
+version: 1.0.83.04
 jms: '1.0'
 authors:
   - Serdar Balci
 maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
-date: '2026-09-22'
+date: '2026-09-24'
 type: R
 description: >-
   OncoPath Functions for Clinicopathological Research. Specialized oncology and
@@ -15,58 +15,7 @@ description: >-
   plots for treatment response analysis and swimmer plots for patient timeline
   visualization. For comments, suggestions, feature requests or reporting bugs,
   please open an issue at <https://github.com/sbalci/OncoPath/issues/>.
-analyses:
-  - title: Diagnostic Test Meta-Analysis for Pathology
-    name: diagnosticmeta
-    ns: OncoPath
-    category: analyses
-    menuGroup: OncoPath
-    menuSubgroup: Meta-Analysis
-    menuTitle: Diagnostic Test Meta-Analysis for Pathology
-    description: >
-      Comprehensive meta-analysis of diagnostic test accuracy studies designed
-      for pathology research. Performs bivariate random-effects modeling,
-      proportional-hazards SROC analysis, meta-regression, and publication bias
-      assessment for AI algorithm validation and biomarker diagnostic accuracy
-      synthesis.
-  - title: Swimmer Plot
-    name: swimmerplot
-    ns: OncoPath
-    category: analyses
-    menuGroup: OncoPath
-    menuSubgroup: Patient Follow-Up Plots
-    menuTitle: Swimmer Plot
-    description: >
-      Creates comprehensive swimmer plots using the ggswim package to visualize
-      patient timelines, clinical events, milestones, and treatment responses.
-      Features enhanced data validation and complete ggswim integration for
-      professional clinical visualization.
-  - title: 'Treatment Response: Patient-Level Burden'
-    name: waterfall
-    ns: OncoPath
-    category: analyses
-    menuGroup: OncoPath
-    menuSubgroup: Patient Follow-Up Plots
-    menuTitle: 'Treatment Response: Patient-Level Burden'
-    menuSubtitle: 'Waterfall and SpiderPlot: One burden value per patient or visit'
-    description: >
-      Use this when you have one tumour burden number per patient: either a
-      percent change from baseline you have already calculated (one row per
-      patient), or a single measurement recorded at each visit (one row per
-      patient per visit). It draws waterfall and spider plots, assigns each
-      patient a best response from their largest shrinkage from baseline, and
-      reports ORR and DCR with exact binomial confidence intervals, group
-      comparison, time to response and duration of response. When a time
-      variable is supplied, progression is measured against the patient's
-      smallest recorded burden (nadir), not against baseline. Categories are
-      named CR, PR, SD and PD and the thresholds are adapted from RECIST v1.1,
-      but this is NOT a RECIST v1.1 implementation: because it never sees
-      individual lesions it cannot sum target lesions, detect a new lesion, or
-      judge non-target progression, and it cannot apply the 4-week confirmation
-      rule (a confirmation column only adds markers to the plot; to count
-      confirmed responses, supply confirmed categories through the category
-      override). If your data list each lesion separately, use the lesion-level
-      RECIST v1.1 analysis. It will be available in upcoming releases.
+analyses: []
 datasets:
   - name: Swimmer Plot Analysis
     path: swimmerplot_sample.omv

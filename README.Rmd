@@ -15,252 +15,154 @@ knitr::opts_chunk$set(
 
 # OncoPath
 
-**Specialized Oncological and Pathological Research Tools for jamovi**
+**Specialized Oncological and Pathological Research Tools for jamovi and R**
 
 [![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![GitHub release](https://img.shields.io/github/release/sbalci/OncoPath.svg)](https://github.com/sbalci/OncoPath/releases/)
 [![GitHub issues](https://img.shields.io/github/issues/sbalci/OncoPath.svg)](https://github.com/sbalci/OncoPath/issues)
+[![jamovi Module](https://img.shields.io/badge/jamovi-module-brightgreen.svg?logo=jamovi)](https://www.jamovi.org/)
+[![Documentation](https://img.shields.io/badge/docs-pkgdown-blue.svg)](https://www.serdarbalci.com/OncoPath/)
 
 ---
 
 ## Overview
 
-OncoPath is a specialized [jamovi](https://www.jamovi.org) module designed specifically for oncological and pathological research. It provides comprehensive patient follow-up visualization tools that are essential for clinical research, treatment response analysis, and patient timeline tracking.
+**OncoPath** is a specialized [jamovi](https://www.jamovi.org) module and R package designed specifically for oncological clinical trials and pathology research. As the oncology and pathology follow-up engine of the [ClinicoPath](https://github.com/sbalci/ClinicoPathJamoviModule) ecosystem, it provides specialized tools for patient timeline tracking, tumor burden response assessment, diagnostic test meta-analysis, immunohistochemistry (IHC) marker heterogeneity, and pathology diagnostic agreement.
 
-This module is part of the [ClinicoPath](https://github.com/sbalci/ClinicoPathJamoviModule) ecosystem, offering specialized tools for oncology and pathology research that complement the broader statistical analysis capabilities of the main ClinicoPath module.
+---
 
-## Features
+## 🎯 Key Features & Analysis Suite (5 Analyses)
 
-### 🏊‍♂️ **Swimmer Plot Analysis**
+OncoPath provides **5 specialized analyses** under the **OncoPath** menu in jamovi:
 
-Comprehensive swimmer plots for visualizing patient timelines, clinical events, milestones, and treatment responses.
+| Analysis | Function | Menu Subgroup | Key Clinical & Pathological Features |
+| :--- | :--- | :--- | :--- |
+| **Swimmer Plot** | `swimmerplot` | Patient Follow-Up Plots | Comprehensive patient timeline visualization using enhanced `ggswim`; displays disease duration, start/end dates, clinical milestones, discrete events, adverse event flags, and response durations for clinical trial reporting. |
+| **Treatment Response (Waterfall & Spider)** | `waterfall` | Patient Follow-Up Plots | Patient-level tumor burden analysis; generates publication-ready waterfall and longitudinal spider plots; measures progression against nadir; categorizes response (CR, PR, SD, PD) using adapted RECIST v1.1 thresholds; reports ORR, DCR, exact binomial CIs, and person-time metrics. |
+| **Diagnostic Test Meta-Analysis** | `diagnosticmeta` | Meta-Analysis | Comprehensive meta-analysis of diagnostic accuracy studies in pathology and AI/ML algorithm validation; implements bivariate random-effects modeling (Reitsma method), proportional-hazards SROC (Holling model), meta-regression for heterogeneity, and publication-ready forest/SROC plots. |
+| **IHC Heterogeneity Analysis** | `ihcheterogeneity` | IHC Analysis | Quantitative statistical analysis of immunohistochemical biomarker heterogeneity; evaluates intratumoral expression variance, multi-marker profiles, spatial distribution indices, and clinical-pathological correlates. |
+| **Pathology Agreement** | `pathagreement` | Agreement | Multi-rater agreement analysis tailored to histopathological scoring; computes Cohen's Kappa, Fleiss' Kappa, Krippendorff's alpha, diagnostic consensus determinations (majority, super-majority), and rater concordance matrices. |
 
-- **Patient Timeline Visualization**: Create professional swimmer plots using enhanced ggswim package integration
-- **Multi-dimensional Data Support**: Visualize clinical events, milestones, treatment responses, and adverse events
-- **Enhanced Data Validation**: Robust input validation with comprehensive error handling
-- **Flexible Timeline Display**: Customizable patient journey visualization with event overlays
-- **Clinical Research Integration**: Designed specifically for oncological clinical trial reporting
+---
 
-**Documentation**: [Swimmer Plot Guide](https://www.serdarbalci.com/OncoPath/)
+### Detailed Analysis Capabilities
 
-### 🌊 **Waterfall Plot Analysis**
+#### 🏊‍♂️ Swimmer Plot (`swimmerplot`)
+- **Patient Timeline Visualization**: Professional swimmer charts showing therapy courses, treatment switching, and ongoing responses.
+- **Multidimensional Event Overlays**: Plot milestones (e.g. partial response, disease progression, toxicity) and continuous bars on the same axis.
+- **Trial Reporting Ready**: Formatted according to oncology trial presentation standards.
 
-Treatment response analysis with categories adapted from RECIST v1.1 thresholds, creating waterfall and spider plots for tumor response visualization.
+#### 🌊 Treatment Response (`waterfall`)
+- **Tumor Burden Visualization**: Waterfall plots of best percentage change from baseline and spider plots showing burden trajectories across visits.
+- **Adapted RECIST v1.1 Thresholds**: Response classification tailored for patient-level burden when single summary measurements or calculated percent changes are recorded.
+- **Nadir-Based Progression**: Progression calculated relative to the smallest recorded tumor burden (nadir).
+- **Exact Clinical Metrics**: Objective Response Rate (ORR) and Disease Control Rate (DCR) with exact Clopper-Pearson binomial confidence intervals.
 
-- **Treatment Response Visualization**: Create comprehensive waterfall and spider plots for tumor response analysis
-- **Adapted RECIST Thresholds**: Response categories (CR, PR, SD, PD) adapted from RECIST v1.1 thresholds for patient-level burden
-- **Dual Data Input**: Supports both raw tumor measurements and pre-calculated percentage changes
-- **Clinical Metrics**: Automated calculation of ORR (Overall Response Rate), DCR (Disease Control Rate), and person-time metrics
-- **Publication Ready**: Professional visualization suitable for clinical publications and presentations
-- **Longitudinal Analysis**: Spider plots for tracking individual patient responses over time
+#### 📊 Diagnostic Test Meta-Analysis (`diagnosticmeta`)
+- **Bivariate & SROC Modeling**: Bivariate random-effects synthesis preserving the negative correlation between sensitivity and specificity.
+- **AI Algorithm Validation**: Evaluate performance metrics of digital pathology and artificial intelligence diagnostic models across validation cohorts.
+- **Heterogeneity & Meta-Regression**: Investigate study-level covariates explaining differences in diagnostic accuracy.
 
-**Documentation**: [Waterfall Plot Guide](https://www.serdarbalci.com/OncoPath/)
+#### 🔬 IHC Heterogeneity Analysis (`ihcheterogeneity`)
+- **Biomarker Variance**: Assess intra-tumoral and inter-observer variability in immunohistochemical staining.
+- **Quantitative & Semiquantitative**: Supports continuous H-scores, percentage positive cells, and ordinal intensity tiers.
 
-### 🔬 **IHC Heterogeneity Analysis**
+#### 🤝 Pathology Interrater Reliability (`pathagreement`)
+- **Diagnostic Concordance**: Evaluate consensus and discordance patterns across multiple evaluating pathologists.
+- **Diagnostic Triage**: Automated calculation of agreement levels for borderline and equivocal pathology categories.
 
-Statistical analysis of immunohistochemistry marker heterogeneity for pathology research.
+---
 
-- **Immunohistochemistry Analysis**: Statistical analysis of IHC marker heterogeneity
-- **Multi-marker Support**: Comprehensive evaluation of multiple biomarkers
-- **Statistical Validation**: Robust statistical methods for heterogeneity assessment
-- **Pathology Research**: Specialized tools for immunohistochemical studies
+## 🚀 Installation
 
-### 📊 **Diagnostic Test Meta-Analysis**
+### In jamovi (Recommended)
 
-Comprehensive meta-analysis tools for diagnostic test accuracy studies, specifically designed for pathology and AI algorithm validation.
+1. Open **jamovi** (>= 2.6).
+2. Click **Modules** (top right) → **jamovi library**.
+3. Search for **OncoPath**.
+4. Click **Install**.
 
-- **Bivariate Meta-Analysis**: Advanced bivariate random-effects modeling using the Reitsma method
-- **Proportional-Hazards SROC Analysis**: Holling model for diagnostic accuracy and between-study variation
-- **Meta-Regression**: Covariate analysis to explore heterogeneity sources
-- **Publication Bias Assessment**: Comprehensive bias detection and visualization
-- **Forest and SROC Plots**: Publication-ready visualizations for diagnostic test accuracy
-- **AI Algorithm Validation**: Designed for validating AI/ML diagnostic algorithms in pathology
-- **Biomarker Studies**: Comprehensive synthesis of diagnostic biomarker accuracy studies
-
-## Installation
-
-### Prerequisites
-
-- [jamovi](https://www.jamovi.org) version 2.7.2 or higher
-
-### Method 1: Via jamovi Library (Recommended)
-
-1. Open jamovi
-2. Click on the "Modules" (⊞) button in the top-right
-3. Select "jamovi library"
-4. Search for "OncoPath"
-5. Click "Install"
-
-### Method 2: Sideload Installation
-
-1. Download the latest `.jmo` file from [releases](https://github.com/sbalci/OncoPath/releases/)
-2. In jamovi, click "Modules" (⊞) → "Sideload"
-3. Select the downloaded `.jmo` file
-
-### Method 3: R Installation
+### As an R Package
 
 ```r
-# Install from GitHub
+# Install development version from GitHub
 remotes::install_github("sbalci/OncoPath")
 ```
 
-## Quick Start
+---
 
-### Swimmer Plot Example
+## 💡 Quick Start (R Interface)
 
-1. Load your patient timeline data with columns for:
-   - Patient ID
-   - Start time
-   - End time
-   - Events (optional)
-   - Response data (optional)
+```r
+library(OncoPath)
 
-2. Navigate to **OncoPath** → **Patient Follow-Up Plots** → **Swimmer Plot**
+# 1. Swimmer Plot for patient timelines
+data("swimmerplot_sample", package = "OncoPath")
+swim_res <- OncoPath::swimmerplot(
+  data = swimmerplot_sample,
+  patientID = "patient_id",
+  startTime = "start_time",
+  endTime = "end_time",
+  responseVar = "response"
+)
 
-3. Configure your variables and customize the visualization
+# 2. Treatment Response Waterfall Plot
+data("waterfall_percentage_basic", package = "OncoPath")
+wf_res <- OncoPath::waterfall(
+  data = waterfall_percentage_basic,
+  patientID = "patient_id",
+  responseVar = "change_from_baseline"
+)
 
-### Waterfall Plot Example
-
-1. Prepare your treatment response data with:
-   - Patient ID
-   - Response variable (percentage change or raw measurements)
-   - Time points (for longitudinal analysis)
-   - Group variables (optional)
-
-2. Navigate to **OncoPath** → **Patient Follow-Up Plots** → **Treatment Response Analysis**
-
-3. Select RECIST criteria options and customize your analysis
-
-## Documentation
-
-- **Website**: https://www.serdarbalci.com/OncoPath/
-- **Swimmer Plot Guide**: https://www.serdarbalci.com/OncoPath/
-- **Waterfall Plot Guide**: https://www.serdarbalci.com/OncoPath/
-- **Main ClinicoPath Documentation**: https://www.serdarbalci.com/ClinicoPathJamoviModule/
-
-## Sample Data
-
-OncoPath includes sample datasets to help you get started:
-
-- **Swimmer Plot Analysis**: `swimmerplot_sample.omv`
-- **Waterfall Plot**: `waterfall_percentage_basic.omv`
-- **Waterfall and Spider Plot**: `waterfall_raw_longitudinal.omv`
-
-Access these datasets through the jamovi interface:
-**Open** → **Data Library** → **OncoPath**
-
-## Requirements
-
-### Core Dependencies
-
-- R (>= 4.1.0)
-- jmvcore (>= 0.8.5)
-- ggplot2
-- dplyr
-- rlang
-
-### Specialized Dependencies
-
-- **ggswim**: Enhanced swimmer plot functionality
-- **mada**: Meta-analysis of diagnostic accuracy studies
-- **metafor**: Meta-regression and advanced meta-analysis methods
-- **pROC**: ROC curve analysis for diagnostic tests
-- **survival** & **survminer**: Survival analysis and visualization
-- **lubridate**: Date/time handling
-- **RColorBrewer**: Professional color schemes
-- **gridExtra**: Advanced plot layouts
-- **boot**, **dcurves**, **Hmisc**, **rms**, **timeROC**: Advanced statistical methods
-
-## Use Cases
-
-### Clinical Research
-
-- **Clinical Trial Reporting**: Patient timelines and treatment responses
-- **Longitudinal Studies**: Disease progression and treatment effects over time
-- **Oncology Research**: Tumor response evaluation following RECIST guidelines
-- **Diagnostic Accuracy Studies**: Meta-analysis of biomarker and diagnostic test performance
-- **AI Algorithm Validation**: Systematic review and meta-analysis of AI-based diagnostic tools
-
-### Pathology Research
-
-- **Biomarker Validation**: Comprehensive meta-analysis of diagnostic biomarkers
-- **IHC Studies**: Statistical analysis of immunohistochemistry heterogeneity
-- **Systematic Reviews**: Synthesis of diagnostic test accuracy across multiple studies
-- **Method Comparison**: Evaluation of different diagnostic methods and techniques
-
-### Publication Support
-
-- **Manuscript Figures**: Publication-ready visualizations with professional styling
-- **Conference Presentations**: Clear, informative plots for academic presentations
-- **Regulatory Submissions**: Standardized reporting formats for regulatory agencies
-- **Meta-Analysis Reports**: Comprehensive forest plots, SROC curves, and funnel plots
-
-## Contributing
-
-We welcome contributions! Please see our Contributing Guidelines for details.
-
-### Areas for Contribution
-
-- Additional visualization options
-- Expanded tumor response criteria options
-- New clinical event types
-- Documentation improvements
-- Bug reports and feature requests
-
-## Support
-
-- **Issues**: Report bugs or request features on [GitHub Issues](https://github.com/sbalci/OncoPath/issues)
-- **Discussions**: Join the conversation in [GitHub Discussions](https://github.com/sbalci/OncoPath/issues)
-- **Email**: Contact the maintainer at [serdarbalci@serdarbalci.com](mailto:serdarbalci@serdarbalci.com)
-
-## Citation
-
-If you use OncoPath in your research, please cite:
-
+# 3. Diagnostic Meta-Analysis for Pathology Studies
+data("diagnostic_studies", package = "OncoPath")
+meta_res <- OncoPath::diagnosticmeta(
+  data = diagnostic_studies,
+  tp = "TP",
+  fp = "FP",
+  fn = "FN",
+  tn = "TN",
+  study = "study_name"
+)
 ```
-Serdar Balci (2026). OncoPath: Specialized Oncological and Pathological Research Tools for jamovi.
-R package version 1.0.0. https://github.com/sbalci/OncoPath
-```
-
-And the main ClinicoPath project:
-
-```
-Serdar Balci (2025). ClinicoPath jamovi Module. doi:10.5281/zenodo.3997188
-[R package]. Retrieved from https://github.com/sbalci/ClinicoPathJamoviModule
-```
-
-## License
-
-GPL (>= 2) - see the LICENSE file for details.
-
-## Related Projects
-
-OncoPath is part of the [ClinicoPath](https://github.com/sbalci/ClinicoPathJamoviModule) ecosystem:
-
-- **[ClinicoPath](https://github.com/sbalci/ClinicoPathJamoviModule)**: Comprehensive clinicopathological research toolkit
-- **[ClinicoPathDescriptives](https://github.com/sbalci/ClinicoPathDescriptives)**: Descriptive statistics and data quality tools
-- **[jsurvival](https://github.com/sbalci/jsurvival)**: Comprehensive survival analysis
-- **[meddecide](https://github.com/sbalci/meddecide)**: Medical decision analysis and ROC curves
-- **[jjstatsplot](https://github.com/sbalci/jjstatsplot)**: Statistical visualization with ggstatsplot integration
 
 ---
 
-**Developed by [Serdar Balci](https://github.com/sbalci)**
+## 📚 Example Datasets
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/serdarbalci?style=social)](https://twitter.com/serdarbalci)
-[![GitHub followers](https://img.shields.io/github/followers/sbalci?style=social)](https://github.com/sbalci)
+OncoPath includes authentic example datasets available directly in the jamovi Data Library (**Open** → **Data Library** → **OncoPath**):
+
+- `swimmerplot_sample.omv`: Patient timelines, milestones, and responses.
+- `waterfall_percentage_basic.omv`: Best percent change for single-visit waterfall analysis.
+- `waterfall_raw_longitudinal.omv`: Multi-visit raw tumor burden data for waterfall and spider plots.
+- `diagnostic_studies.omv`: Diagnostic accuracy study cohorts for meta-analysis.
+- `ihcheterogeneity_test.omv`: Multi-region IHC staining scores for heterogeneity testing.
 
 ---
 
-## Acknowledgements
+## 📖 Documentation & Resources
 
-OncoPath builds upon the excellent work of many R package developers, including:
+- **OncoPath Website**: [https://www.serdarbalci.com/OncoPath/](https://www.serdarbalci.com/OncoPath/)
+- **ClinicoPath Umbrella Ecosystem**: [https://www.serdarbalci.com/ClinicoPathJamoviModule/](https://www.serdarbalci.com/ClinicoPathJamoviModule/)
+- **GitHub Repository**: [https://github.com/sbalci/OncoPath/](https://github.com/sbalci/OncoPath/)
+- **Issue Tracker & Feature Requests**: [GitHub Issues](https://github.com/sbalci/OncoPath/issues)
 
-- [ggswim](https://github.com/CHOP-CGTInformatics/ggswim) for swimmer plot functionality
-- [ggplot2](https://ggplot2.tidyverse.org/) for graphics infrastructure
-- [survminer](https://github.com/kassambara/survminer) for survival visualizations
-- [mada](https://cran.r-project.org/package=mada) and [metafor](https://www.metafor-project.org/) for meta-analysis tools
-- The [jamovi](https://www.jamovi.org) team for creating an accessible statistical platform
-- The broader [R](https://www.r-project.org/) community for continuous innovation
+---
 
-Special thanks to the oncology and pathology research communities for feedback and feature requests that have shaped this module's development.
+## 📝 Citation
+
+If you use OncoPath in your research or publications, please cite:
+
+```bibtex
+@manual{balci2026oncopath,
+  title  = {OncoPath: Specialized Oncological and Pathological Research Tools for jamovi},
+  author = {Serdar Balci},
+  year   = {2026},
+  url    = {https://www.serdarbalci.com/OncoPath/},
+  doi    = {10.5281/zenodo.3997188}
+}
+```
+
+## 📄 License
+
+GPL (>= 2) — see the [LICENSE](LICENSE) file for details.

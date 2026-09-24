@@ -2,8 +2,6 @@
 
 export("%>%")
 export("%||%")
-export(diagnosticmeta)
-export(diagnosticmetaClass)
 export(swimmerplot)
 export(waterfall)
 import(jmvcore)
@@ -39,7 +37,6 @@ importFrom(ggswim,
 )
 importFrom(grDevices,colorRampPalette)
 importFrom(grid,viewport)
-importFrom(htmltools,tagList)
 importFrom(jmvcore,.)
 importFrom(lubridate,
   dmy,
@@ -52,24 +49,15 @@ importFrom(lubridate,
   ymd,
   ymd_hms
 )
-importFrom(mada,
-  phm,
-  reitsma
-)
 importFrom(magrittr,"%>%")
-importFrom(metafor,rma)
 importFrom(patchwork,wrap_plots)
 importFrom(rlang,sym)
 importFrom(stats,
   binomial,
   cov,
   glm,
-  pnorm,
   predict,
-  pt,
   qbeta,
-  qnorm,
-  qt,
   quantile,
   var
 )
