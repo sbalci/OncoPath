@@ -2,7 +2,7 @@
 refs:
     ClinicoPathJamoviModule:
         type: software
-        author: Serdar Balci
+        author: "Balci, Serdar"
         year: 2020
         title: "ClinicoPath jamovi Module"
         publisher: "[R package]. Retrieved from https://github.com/sbalci/ClinicoPathJamoviModule"
