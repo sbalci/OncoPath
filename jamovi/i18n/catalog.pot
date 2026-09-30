@@ -2017,6 +2017,7 @@ msgstr ""
 msgid "Comprehensive Analysis"
 msgstr ""
 
+#: package/analyses/diagnosticmeta.description
 #: diagnosticmeta/options.description.main
 msgid ""
 "Comprehensive meta-analysis of diagnostic test accuracy studies designed for "
@@ -2251,6 +2252,7 @@ msgid ""
 "treatments, and clinical events using the advanced ggswim package."
 msgstr ""
 
+#: package/analyses/swimmerplot.description
 #: swimmerplot/options.description.main
 msgid ""
 "Creates comprehensive swimmer plots using the ggswim package to visualize "
@@ -2582,6 +2584,8 @@ msgstr ""
 msgid "Diagnostic Test Meta-Analysis"
 msgstr ""
 
+#: package/analyses/diagnosticmeta.title
+#: package/analyses/diagnosticmeta.menuTitle
 #: diagnosticmeta/options.title
 #: diagnosticmeta/ui.title
 #: diagnosticmeta/results.title
@@ -3533,6 +3537,7 @@ msgstr ""
 msgid "Ignores systematic offset; compare with absolute agreement above"
 msgstr ""
 
+#: package/analyses/ihcheterogeneity.menuSubgroup
 #: ihcheterogeneity/options.menuSubgroup
 msgid "IHC Analysis"
 msgstr ""
@@ -3542,6 +3547,8 @@ msgid "IHC Heterogeneity"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
+#: package/analyses/ihcheterogeneity.title
+#: package/analyses/ihcheterogeneity.menuTitle
 #: ihcheterogeneity/options.title
 #: ihcheterogeneity/ui.title
 #: ihcheterogeneity/results.title
@@ -4165,6 +4172,7 @@ msgstr ""
 msgid "Meets your threshold (≥ %s)"
 msgstr ""
 
+#: package/analyses/diagnosticmeta.menuSubgroup
 #: diagnosticmeta/options.menuSubgroup
 msgid "Meta-Analysis"
 msgstr ""
@@ -5212,6 +5220,10 @@ msgstr ""
 msgid "Oncology clinical trials and treatment response studies"
 msgstr ""
 
+#: package/analyses/diagnosticmeta.menuGroup
+#: package/analyses/ihcheterogeneity.menuGroup
+#: package/analyses/swimmerplot.menuGroup
+#: package/analyses/waterfall.menuGroup
 #: diagnosticmeta/options.menuGroup
 #: ihcheterogeneity/options.menuGroup
 #: swimmerplot/options.menuGroup
@@ -5476,6 +5488,8 @@ msgstr ""
 msgid "Partial response: n = %d (%.1f%%)"
 msgstr ""
 
+#: package/analyses/swimmerplot.menuSubgroup
+#: package/analyses/waterfall.menuSubgroup
 #: swimmerplot/options.menuSubgroup
 #: waterfall/options.menuSubgroup
 msgid "Patient Follow-Up Plots"
@@ -6089,6 +6103,7 @@ msgstr ""
 msgid "Quality thresholds were set at correlation ≥%s and CV ≤%s%%."
 msgstr ""
 
+#: package/analyses/ihcheterogeneity.description
 #: ihcheterogeneity/options.description.main
 msgid ""
 "Quantifies how well regional IHC measurements (biopsies, cores, fields) "
@@ -7592,6 +7607,8 @@ msgstr ""
 msgid "Swim Lanes:"
 msgstr ""
 
+#: package/analyses/swimmerplot.title
+#: package/analyses/swimmerplot.menuTitle
 #: swimmerplot/options.title
 #: swimmerplot/ui.title
 #: swimmerplot/results.title
@@ -8730,6 +8747,8 @@ msgstr ""
 msgid "Treatment Response Summary"
 msgstr ""
 
+#: package/analyses/waterfall.title
+#: package/analyses/waterfall.menuTitle
 #: waterfall/options.title
 #: waterfall/ui.title
 msgid "Treatment Response: Patient-Level Burden"
@@ -8891,6 +8910,7 @@ msgid ""
 "model-consistent statement of between-study variability."
 msgstr ""
 
+#: package/analyses/waterfall.description
 #: waterfall/options.description.main
 msgid ""
 "Use this when you have one tumour burden number per patient: either a "
@@ -9156,6 +9176,7 @@ msgstr ""
 msgid "Waterfall and Spider Plot"
 msgstr ""
 
+#: package/analyses/waterfall.menuSubtitle
 #: waterfall/options.menuSubtitle
 msgid "Waterfall and SpiderPlot: One burden value per patient or visit"
 msgstr ""

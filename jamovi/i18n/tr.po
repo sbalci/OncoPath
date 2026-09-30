@@ -2304,6 +2304,7 @@ msgstr "Tam yanıt: n = %d (%%%.1f)"
 msgid "Comprehensive Analysis"
 msgstr "Kapsamlı Analiz"
 
+#: package/analyses/diagnosticmeta.description
 #: diagnosticmeta/options.description.main
 msgid ""
 "Comprehensive meta-analysis of diagnostic test accuracy studies designed for "
@@ -2567,6 +2568,7 @@ msgstr ""
 "Gelişmiş ggswim paketini kullanarak hasta zaman çizelgelerini, tedavilerini "
 "ve klinik olayları görselleştirmek için kapsamlı yüzücü grafikleri oluşturun."
 
+#: package/analyses/swimmerplot.description
 #: swimmerplot/options.description.main
 msgid ""
 "Creates comprehensive swimmer plots using the ggswim package to visualize "
@@ -2915,6 +2917,8 @@ msgstr "Tanısal Odds Oranı"
 msgid "Diagnostic Test Meta-Analysis"
 msgstr ""
 
+#: package/analyses/diagnosticmeta.title
+#: package/analyses/diagnosticmeta.menuTitle
 #: diagnosticmeta/options.title
 #: diagnosticmeta/ui.title
 #: diagnosticmeta/results.title
@@ -3935,6 +3939,7 @@ msgstr "Sansürlemeyi yok sayar; n=%d süre verisi olan"
 msgid "Ignores systematic offset; compare with absolute agreement above"
 msgstr "Sistematik sapmayı yok sayar; yukarıdaki mutlak uyum ile karşılaştırın"
 
+#: package/analyses/ihcheterogeneity.menuSubgroup
 #: ihcheterogeneity/options.menuSubgroup
 msgid "IHC Analysis"
 msgstr "IHC Analizi"
@@ -3944,6 +3949,8 @@ msgid "IHC Heterogeneity"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
+#: package/analyses/ihcheterogeneity.title
+#: package/analyses/ihcheterogeneity.menuTitle
 #: ihcheterogeneity/options.title
 #: ihcheterogeneity/ui.title
 #: ihcheterogeneity/results.title
@@ -4630,6 +4637,7 @@ msgstr ""
 msgid "Meets your threshold (≥ %s)"
 msgstr "Eşiğinizi karşılıyor (≥ %s)"
 
+#: package/analyses/diagnosticmeta.menuSubgroup
 #: diagnosticmeta/options.menuSubgroup
 msgid "Meta-Analysis"
 msgstr "Meta-Analiz"
@@ -5791,6 +5799,10 @@ msgstr "Tedavide / Devam Eden (isteğe bağlı)"
 msgid "Oncology clinical trials and treatment response studies"
 msgstr "Onkoloji klinik çalışmaları ve tedavi yanıtı araştırmaları"
 
+#: package/analyses/diagnosticmeta.menuGroup
+#: package/analyses/ihcheterogeneity.menuGroup
+#: package/analyses/swimmerplot.menuGroup
+#: package/analyses/waterfall.menuGroup
 #: diagnosticmeta/options.menuGroup
 #: ihcheterogeneity/options.menuGroup
 #: swimmerplot/options.menuGroup
@@ -6105,6 +6117,8 @@ msgstr "Kısmi Yanıt (PR): %%%d veya daha fazla azalma"
 msgid "Partial response: n = %d (%.1f%%)"
 msgstr "Kısmi yanıt: n = %d (%%%.1f)"
 
+#: package/analyses/swimmerplot.menuSubgroup
+#: package/analyses/waterfall.menuSubgroup
 #: swimmerplot/options.menuSubgroup
 #: waterfall/options.menuSubgroup
 msgid "Patient Follow-Up Plots"
@@ -6773,6 +6787,7 @@ msgstr "Kalite Kontrolü:"
 msgid "Quality thresholds were set at correlation ≥%s and CV ≤%s%%."
 msgstr "Kalite eşikleri korelasyon ≥%s ve CV ≤%%%s olarak belirlendi."
 
+#: package/analyses/ihcheterogeneity.description
 #: ihcheterogeneity/options.description.main
 msgid ""
 "Quantifies how well regional IHC measurements (biopsies, cores, fields) "
@@ -8470,6 +8485,8 @@ msgstr "Cerrahi"
 msgid "Swim Lanes:"
 msgstr "Yüzme Kulvarları:"
 
+#: package/analyses/swimmerplot.title
+#: package/analyses/swimmerplot.menuTitle
 #: swimmerplot/options.title
 #: swimmerplot/ui.title
 #: swimmerplot/results.title
@@ -9859,6 +9876,8 @@ msgstr "Tedavi yanıt kategorileri"
 msgid "Treatment Response Summary"
 msgstr "Tedavi Yanıtı Özeti"
 
+#: package/analyses/waterfall.title
+#: package/analyses/waterfall.menuTitle
 #: waterfall/options.title
 #: waterfall/ui.title
 msgid "Treatment Response: Patient-Level Burden"
@@ -10043,6 +10062,7 @@ msgid ""
 "model-consistent statement of between-study variability."
 msgstr ""
 
+#: package/analyses/waterfall.description
 #: waterfall/options.description.main
 msgid ""
 "Use this when you have one tumour burden number per patient: either a "
@@ -10357,6 +10377,7 @@ msgstr ""
 msgid "Waterfall and Spider Plot"
 msgstr ""
 
+#: package/analyses/waterfall.menuSubtitle
 #: waterfall/options.menuSubtitle
 msgid "Waterfall and SpiderPlot: One burden value per patient or visit"
 msgstr ""
