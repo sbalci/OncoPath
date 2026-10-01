@@ -200,3 +200,5 @@ If you use OncoPath in your research or publications, please cite:
 ## 📄 License
 
 GPL (>= 2) — see the [LICENSE](LICENSE) file for details.
+
+<!-- library-audit 2026-09-22 OncoPath [LOW] DONE: aligned RECIST claims across DESCRIPTION and README.md with 0000.yaml (guide section 27) -->

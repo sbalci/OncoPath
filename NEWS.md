@@ -1,3 +1,13 @@
+# OncoPath 1.0.83.05 (2026-09-30)
+
+## Package
+
+- **Installable again:** `swimmerplot`, `waterfall`, `diagnosticmeta` and `ihcheterogeneity` are back
+  in the module. 1.0.83.04 had removed their sources while `NAMESPACE` still exported `swimmerplot` and
+  `waterfall`, so the package could not be installed ("undefined exports").
+- **Continuous validation:** every pull request and push to master now runs R CMD check and the
+  source-tree tests on Ubuntu (R release).
+
 # OncoPath 1.0.83.02 (2026-09-22)
 
 Fixes and quality improvements from the 2026-09-22 jamovi library and module audit.
