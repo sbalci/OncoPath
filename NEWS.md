@@ -1,3 +1,16 @@
+# OncoPath 1.0.83.07 (2026-10-10)
+
+## Package
+
+- **Clear phantom table row names:** `diagnosticmeta`, `ihcheterogeneity`, `swimmerplot` and
+  `waterfall` now use a shared table-clearing helper that also resets retained row names, avoiding
+  invalid row-name lengths and out-of-range indexing when empty tables are exported or restored.
+- **Correct citation license identifier:** `CITATION.cff` now uses `GPL-2.0-or-later`, consistent
+  with the package's `GPL (>= 2)` license.
+- **Internal ROC helpers:** Added outcome-coding and label-formatting helpers. Outcome coding
+  defaults to 1 as the positive class only for numeric 0/1 outcomes and treats blank or NA levels
+  as missing. Label formatting handles tag-like text and square brackets in jamovi notes.
+
 # OncoPath 1.0.83.05 (2026-09-30)
 
 ## Package
