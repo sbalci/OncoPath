@@ -1579,7 +1579,7 @@ msgstr ""
 
 #: ihcheterogeneity/results/spatialanalysistable.columns.title
 msgid "Cases"
-msgstr ""
+msgstr "Cases"
 
 #: ihcheterogeneity/results/samplesizetable.columns.superTitle
 msgid "Cases Needed"
@@ -4245,7 +4245,7 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid "Method"
-msgstr ""
+msgstr "Method"
 
 #: diagnosticmeta/options/method/mm.title
 msgid "Method of Moments"
@@ -5090,7 +5090,7 @@ msgstr ""
 
 #: ihcheterogeneity/options/sampling_strategy/unknown.title
 msgid "Not specified"
-msgstr ""
+msgstr "Not specified"
 
 #: R/swimmerplot.b.R
 msgid "NOTE"
@@ -8949,7 +8949,7 @@ msgstr ""
 #: waterfall/results/enhancedClinicalMetrics.columns.title
 #: waterfall/results/responseDurationTable.columns.title
 msgid "Value"
-msgstr ""
+msgstr "Value"
 
 #: diagnosticmeta/results/likelihoodRatioGuide.columns.title
 msgid "Value Range"
