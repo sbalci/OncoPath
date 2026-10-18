@@ -1,3 +1,31 @@
+# OncoPath 1.1.0 (2026-10-18)
+
+## Release-review corrections
+
+- Diagnostic meta-regression interpretation uses the actual fitted design for each outcome.
+  Sensitivity and specificity may retain different reference levels after study exclusions.
+  Ordered and other contrast codings are described by their fitted design columns rather than
+  incorrectly interpreted as comparisons with a reference category. The numerical models are
+  unchanged for default coding. Explicit per-factor contrasts are now retained when all factor
+  levels are observed; previously they were discarded. If exclusions remove levels, the output
+  explicitly discloses contrast regeneration and describes the resulting fitted coding.
+- Swimmer analyses reject conflicting non-missing groups within a patient. Select one fixed
+  patient-level grouping variable for between-patient comparisons; episode-specific treatment
+  groups cannot define independent patient groups. Missing groups may be filled by another
+  episode with the same patient's single observed group.
+- Raw-measurement waterfall analyses calculate baselines without a helper-column join, so a
+  selected or unrelated column named `baseline` no longer crashes the analysis.
+- Unavailable IHC statistics and confidence limits use native empty cells, including
+  the descriptive CV and mean inter-regional correlation rows.
+- Unavailable diagnostic LR/DOR and proportional-hazards SROC test statistics use native empty
+  cells rather than displaying `NaN`; existing estimates and uncertainty remain unchanged.
+- Version 1.1.0 sorts above both 1.0.9 and the earlier 1.0.83 development builds, restoring
+  monotonic upgrade ordering.
+
+Saved analyses should be recalculated with this version. All five bundled examples have been
+recalculated, saved and cold reopened in jamovi 28.13; diagnostic and IHC PDF exports were
+checked for the corrected reference notes and native empty cells.
+
 # OncoPath 1.0.9 (2026-10-17)
 
 This release also includes the changes listed under 1.0.83.05 and 1.0.83.02 below. Neither was

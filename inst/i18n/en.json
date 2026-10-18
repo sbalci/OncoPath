@@ -181,6 +181,9 @@
             "%d patient(s) have a negative raw measurement, which is not a possible tumour size: %s. A negative baseline inverts the sign of the percent change, so a growing tumour would be reported as a response. These patients are reported as \"Unknown\" rather than guessed at. Check the measurement column for data-entry errors.": [
                 ""
             ],
+            "%d patient(s) have conflicting non-missing group values. Group comparisons require one fixed group per patient. Select a patient-level grouping variable or remove the grouping selection; episode-specific groups cannot define independent patient groups.": [
+                ""
+            ],
             "%d patient(s) have more than one assessment at the same time point: %s. All of them are used, and the best is taken as the best response. Check for duplicated rows.": [
                 ""
             ],
@@ -289,10 +292,22 @@
             "%s: %d of %d responded (%.1f%%)": [
                 ""
             ],
+            "%s: %s uses contrast coding, not level-versus-reference coefficients. The intercept is the fitted logit when all contrast columns are zero. Fitted design columns (level=coding): %s.": [
+                ""
+            ],
+            "%s: each coefficient contrasts that level of %s against the reference level '%s'; the intercept is the logit at that reference level.": [
+                ""
+            ],
             "%s: F(%d, %.0f) = %.2f, p = %.4g": [
                 ""
             ],
             "%s: QM(%d) = %.2f, p = %.4g": [
+                ""
+            ],
+            "%s: the coefficient is the change per one-unit increase in %s; the intercept is the logit at zero.": [
+                ""
+            ],
+            "%s: unused factor levels were dropped. Explicit factor contrasts were regenerated using the session contrast settings for the retained levels; the fitted coding is reported below.": [
                 ""
             ],
             "%s%% (90%% CI %s%% to %s%%)": [
@@ -2020,9 +2035,6 @@
             "Each case contributes one value per test - its CV, or the mean of its regional measurements - so the observations are independent.": [
                 ""
             ],
-            "Each coefficient contrasts that level of %s against the reference level '%s'.": [
-                ""
-            ],
             "Each row is a separate univariate FIXED-effect model on the logit of that measure, because that is the method selected; a fixed-effect model assumes there is no between-study variance, so tau-squared is 0 by construction and the I-squared beside it is not an estimate from that model.": [
                 ""
             ],
@@ -2116,7 +2128,7 @@
             "Estimate": [
                 ""
             ],
-            "Estimates, standard errors and confidence intervals are on the LOGIT scale, not the percentage scale used by the pooled results above: a coefficient of 0 means no association, and the intercept is the logit of the measure at the covariate's reference point, not a sensitivity or specificity.": [
+            "Estimates, standard errors and confidence intervals are on the LOGIT scale, not the percentage scale used by the pooled results above: a coefficient of 0 means no association.": [
                 ""
             ],
             "Estimation method": [
@@ -5330,9 +5342,6 @@
                 ""
             ],
             "The CIs of the limits of agreement use the approximate standard error of Bland & Altman (1999), SD x sqrt(1/n + 1.96^2 / (2(n - 1))); they are wide in small samples.": [
-                ""
-            ],
-            "The coefficient is the change per one-unit increase in %s.": [
                 ""
             ],
             "The correlation and CV thresholds you set are met and the average difference of every comparison was shown to lie within your margin (90% CI inside it); a difference that changes with the level must also lie within it at both ends of the range. If the thresholds are met but a difference was not ruled out, the verdict is 'met, not confirmed'.": [

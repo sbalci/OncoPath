@@ -323,6 +323,14 @@ msgid ""
 "for data-entry errors."
 msgstr ""
 
+#: R/swimmerplot.b.R
+msgid ""
+"%d patient(s) have conflicting non-missing group values. Group comparisons "
+"require one fixed group per patient. Select a patient-level grouping "
+"variable or remove the grouping selection; episode-specific groups cannot "
+"define independent patient groups."
+msgstr ""
+
 #: R/waterfall.b.R
 msgid ""
 "%d patient(s) have more than one assessment at the same time point: %s. All "
@@ -529,11 +537,37 @@ msgid "%s: %d of %d responded (%.1f%%)"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
+msgid ""
+"%s: %s uses contrast coding, not level-versus-reference coefficients. The "
+"intercept is the fitted logit when all contrast columns are zero. Fitted "
+"design columns (level=coding): %s."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"%s: each coefficient contrasts that level of %s against the reference level "
+"'%s'; the intercept is the logit at that reference level."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
 msgid "%s: F(%d, %.0f) = %.2f, p = %.4g"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "%s: QM(%d) = %.2f, p = %.4g"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"%s: the coefficient is the change per one-unit increase in %s; the intercept "
+"is the logit at zero."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"%s: unused factor levels were dropped. Explicit factor contrasts were "
+"regenerated using the session contrast settings for the retained levels; the "
+"fitted coding is reported below."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -3444,10 +3478,6 @@ msgid ""
 msgstr ""
 
 #: R/diagnosticmeta.b.R
-msgid "Each coefficient contrasts that level of %s against the reference level '%s'."
-msgstr ""
-
-#: R/diagnosticmeta.b.R
 msgid ""
 "Each row is a separate univariate FIXED-effect model on the logit of that "
 "measure, because that is the method selected; a fixed-effect model assumes "
@@ -3599,8 +3629,7 @@ msgstr ""
 msgid ""
 "Estimates, standard errors and confidence intervals are on the LOGIT scale, "
 "not the percentage scale used by the pooled results above: a coefficient of "
-"0 means no association, and the intercept is the logit of the measure at the "
-"covariate's reference point, not a sensitivity or specificity."
+"0 means no association."
 msgstr ""
 
 #: diagnosticmeta/ui[1][1][0]/method.label
@@ -8761,10 +8790,6 @@ msgid ""
 "The CIs of the limits of agreement use the approximate standard error of "
 "Bland & Altman (1999), SD x sqrt(1/n + 1.96^2 / (2(n - 1))); they are wide "
 "in small samples."
-msgstr ""
-
-#: R/diagnosticmeta.b.R
-msgid "The coefficient is the change per one-unit increase in %s."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R

@@ -407,6 +407,14 @@ msgstr ""
 "edilmek yerine \"Bilinmeyen\" olarak raporlanır. Veri girişi hataları için "
 "ölçüm sütununu kontrol edin."
 
+#: R/swimmerplot.b.R
+msgid ""
+"%d patient(s) have conflicting non-missing group values. Group comparisons "
+"require one fixed group per patient. Select a patient-level grouping "
+"variable or remove the grouping selection; episode-specific groups cannot "
+"define independent patient groups."
+msgstr ""
+
 #: R/waterfall.b.R
 msgid ""
 "%d patient(s) have more than one assessment at the same time point: %s. All "
@@ -672,12 +680,38 @@ msgid "%s: %d of %d responded (%.1f%%)"
 msgstr "%s: %d/%d hasta yanıt verdi (%%%.1f)"
 
 #: R/diagnosticmeta.b.R
+msgid ""
+"%s: %s uses contrast coding, not level-versus-reference coefficients. The "
+"intercept is the fitted logit when all contrast columns are zero. Fitted "
+"design columns (level=coding): %s."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"%s: each coefficient contrasts that level of %s against the reference level "
+"'%s'; the intercept is the logit at that reference level."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
 msgid "%s: F(%d, %.0f) = %.2f, p = %.4g"
 msgstr "%s: F(%d, %.0f) = %.2f, p = %.4g"
 
 #: R/diagnosticmeta.b.R
 msgid "%s: QM(%d) = %.2f, p = %.4g"
 msgstr "%s: QM(%d) = %.2f, p = %.4g"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"%s: the coefficient is the change per one-unit increase in %s; the intercept "
+"is the logit at zero."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"%s: unused factor levels were dropped. Explicit factor contrasts were "
+"regenerated using the session contrast settings for the retained levels; the "
+"fitted coding is reported below."
+msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid "%s%% (90%% CI %s%% to %s%%)"
@@ -4153,12 +4187,6 @@ msgstr ""
 "ortalaması - bu nedenle gözlemler bağımsızdır."
 
 #: R/diagnosticmeta.b.R
-msgid "Each coefficient contrasts that level of %s against the reference level '%s'."
-msgstr ""
-"Her katsayı, %s değişkeninin ilgili düzeyini '%s' referans düzeyiyle "
-"karşılaştırır."
-
-#: R/diagnosticmeta.b.R
 msgid ""
 "Each row is a separate univariate FIXED-effect model on the logit of that "
 "measure, because that is the method selected; a fixed-effect model assumes "
@@ -4330,13 +4358,8 @@ msgstr "Tahmin"
 msgid ""
 "Estimates, standard errors and confidence intervals are on the LOGIT scale, "
 "not the percentage scale used by the pooled results above: a coefficient of "
-"0 means no association, and the intercept is the logit of the measure at the "
-"covariate's reference point, not a sensitivity or specificity."
+"0 means no association."
 msgstr ""
-"Tahminler, standart hatalar ve güven aralıkları yukarıdaki birleştirilmiş "
-"sonuçların yüzde ölçeğinde değil LOGİT ölçeğindedir: 0 katsayısı ilişki "
-"olmadığını gösterir; sabit terim duyarlılık veya özgüllük değil, ortak "
-"değişkenin referans noktasındaki ölçütün logitidir."
 
 #: diagnosticmeta/ui[1][1][0]/method.label
 msgid "Estimation method"
@@ -10267,10 +10290,6 @@ msgid ""
 msgstr ""
 "Uyum sınırlarının GA'ları Bland & Altman (1999) yaklaşık standart hatasını "
 "kullanır, SD x sqrt(1/n + 1.96^2 / (2(n - 1))); küçük örneklemlerde geniştir."
-
-#: R/diagnosticmeta.b.R
-msgid "The coefficient is the change per one-unit increase in %s."
-msgstr "Katsayı %s değişkenindeki bir birim artış başına değişimdir."
 
 #: R/ihcheterogeneity.b.R
 msgid ""

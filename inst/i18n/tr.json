@@ -181,6 +181,9 @@
             "%d patient(s) have a negative raw measurement, which is not a possible tumour size: %s. A negative baseline inverts the sign of the percent change, so a growing tumour would be reported as a response. These patients are reported as \"Unknown\" rather than guessed at. Check the measurement column for data-entry errors.": [
                 "%d hastada olası bir tümör boyutu olmayan negatif bir ham ölçüm var: %s. Negatif bir başlangıç değeri yüzde değişimin işaretini tersine çevirir, böylece büyüyen bir tümör yanıt olarak raporlanabilir. Bu hastalar tahmin edilmek yerine \"Bilinmeyen\" olarak raporlanır. Veri girişi hataları için ölçüm sütununu kontrol edin."
             ],
+            "%d patient(s) have conflicting non-missing group values. Group comparisons require one fixed group per patient. Select a patient-level grouping variable or remove the grouping selection; episode-specific groups cannot define independent patient groups.": [
+                ""
+            ],
             "%d patient(s) have more than one assessment at the same time point: %s. All of them are used, and the best is taken as the best response. Check for duplicated rows.": [
                 "%d hastada aynı zaman noktasında birden fazla değerlendirme var: %s. Bunların tümü kullanılır ve en iyisi en iyi yanıt olarak alınır. Yinelenen satırları kontrol edin."
             ],
@@ -289,11 +292,23 @@
             "%s: %d of %d responded (%.1f%%)": [
                 "%s: %d/%d hasta yanıt verdi (%%%.1f)"
             ],
+            "%s: %s uses contrast coding, not level-versus-reference coefficients. The intercept is the fitted logit when all contrast columns are zero. Fitted design columns (level=coding): %s.": [
+                ""
+            ],
+            "%s: each coefficient contrasts that level of %s against the reference level '%s'; the intercept is the logit at that reference level.": [
+                ""
+            ],
             "%s: F(%d, %.0f) = %.2f, p = %.4g": [
                 "%s: F(%d, %.0f) = %.2f, p = %.4g"
             ],
             "%s: QM(%d) = %.2f, p = %.4g": [
                 "%s: QM(%d) = %.2f, p = %.4g"
+            ],
+            "%s: the coefficient is the change per one-unit increase in %s; the intercept is the logit at zero.": [
+                ""
+            ],
+            "%s: unused factor levels were dropped. Explicit factor contrasts were regenerated using the session contrast settings for the retained levels; the fitted coding is reported below.": [
+                ""
             ],
             "%s%% (90%% CI %s%% to %s%%)": [
                 "%%%s (%%90 GA %%%s ila %%%s)"
@@ -2020,9 +2035,6 @@
             "Each case contributes one value per test - its CV, or the mean of its regional measurements - so the observations are independent.": [
                 "Her vaka her teste bir değer katar - CV'si veya bölgesel ölçümlerinin ortalaması - bu nedenle gözlemler bağımsızdır."
             ],
-            "Each coefficient contrasts that level of %s against the reference level '%s'.": [
-                "Her katsayı, %s değişkeninin ilgili düzeyini '%s' referans düzeyiyle karşılaştırır."
-            ],
             "Each row is a separate univariate FIXED-effect model on the logit of that measure, because that is the method selected; a fixed-effect model assumes there is no between-study variance, so tau-squared is 0 by construction and the I-squared beside it is not an estimate from that model.": [
                 "Seçilen yöntem gereği her satır, ilgili ölçütün logiti üzerinde ayrı bir tek değişkenli SABİT etki modelidir. Sabit etki modeli çalışmalar arası varyans olmadığını varsayar; tau-kare yapısal olarak 0'dır ve yanındaki I-kare bu modelden tahmin edilmemiştir."
             ],
@@ -2116,8 +2128,8 @@
             "Estimate": [
                 "Tahmin"
             ],
-            "Estimates, standard errors and confidence intervals are on the LOGIT scale, not the percentage scale used by the pooled results above: a coefficient of 0 means no association, and the intercept is the logit of the measure at the covariate's reference point, not a sensitivity or specificity.": [
-                "Tahminler, standart hatalar ve güven aralıkları yukarıdaki birleştirilmiş sonuçların yüzde ölçeğinde değil LOGİT ölçeğindedir: 0 katsayısı ilişki olmadığını gösterir; sabit terim duyarlılık veya özgüllük değil, ortak değişkenin referans noktasındaki ölçütün logitidir."
+            "Estimates, standard errors and confidence intervals are on the LOGIT scale, not the percentage scale used by the pooled results above: a coefficient of 0 means no association.": [
+                ""
             ],
             "Estimation method": [
                 "Tahmin yöntemi"
@@ -5331,9 +5343,6 @@
             ],
             "The CIs of the limits of agreement use the approximate standard error of Bland & Altman (1999), SD x sqrt(1/n + 1.96^2 / (2(n - 1))); they are wide in small samples.": [
                 "Uyum sınırlarının GA'ları Bland & Altman (1999) yaklaşık standart hatasını kullanır, SD x sqrt(1/n + 1.96^2 / (2(n - 1))); küçük örneklemlerde geniştir."
-            ],
-            "The coefficient is the change per one-unit increase in %s.": [
-                "Katsayı %s değişkenindeki bir birim artış başına değişimdir."
             ],
             "The correlation and CV thresholds you set are met and the average difference of every comparison was shown to lie within your margin (90% CI inside it); a difference that changes with the level must also lie within it at both ends of the range. If the thresholds are met but a difference was not ruled out, the verdict is 'met, not confirmed'.": [
                 "Belirlediğiniz korelasyon ve CV eşikleri karşılanmıştır ve her karşılaştırmanın ortalama farkının marjınız içinde kaldığı gösterilmiştir (%90 GA marjın içinde); düzeye göre değişen bir fark da aralığın her iki ucunda marjın içinde olmalıdır. Eşikler karşılanmış ancak bir fark dışlanamamışsa sonuç 'karşılandı, doğrulanmadı' olur."
