@@ -1503,17 +1503,6 @@ msgstr ""
 msgid "Bivariate random-effects model"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"Bonett (2002) planning for the consistency ICC, ICC(3,1), with k = %d "
-"measurements per case and a 95%% confidence interval; this analysis has %d "
-"complete cases. The widths are expected values, so about half of the studies "
-"of that size obtain a wider interval. A systematic offset between the "
-"measurements widens the interval of the absolute-agreement ICC(2,1), which "
-"then needs more cases. The number of cases is never shown below the 5 this "
-"analysis requires. This is precision planning, not a hypothesis test."
-msgstr ""
-
 #: R/waterfall.b.R
 msgid "Bootstrap CI for the median could not be computed."
 msgstr ""
@@ -3670,6 +3659,18 @@ msgstr ""
 msgid "Individual study results"
 msgstr ""
 
+#: R/ihcheterogeneity.b.R
+msgid ""
+"Infinite biomarker measurements in variable(s) %s, analysis row(s) %s. Enter "
+"finite measurements or mark unavailable values as missing."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"Infinite diagnostic counts in variable(s) %s, analysis row(s) %s. Enter "
+"finite whole-number counts or mark unavailable values as missing."
+msgstr ""
+
 #: swimmerplot/results/instructions.title
 msgid "Instructions"
 msgstr ""
@@ -5761,6 +5762,19 @@ msgstr ""
 #: ihcheterogeneity/options/showSummary.title
 #: ihcheterogeneity/ui[5]/showSummary.label
 msgid "Plain-language summary"
+msgstr ""
+
+#: R/ihcheterogeneity.b.R
+msgid ""
+"Planning for the consistency ICC, ICC(3,1), with k = %d measurements per "
+"case and a 95%% confidence interval; this analysis has %d complete cases. "
+"Bonett (2002) provides the starting approximation, refined here by numerical "
+"integration of the exact F-interval width under a balanced normal ANOVA "
+"model. The required size is the smallest number of cases, at least 5, whose "
+"expected interval width meets the target. Some studies will obtain wider "
+"intervals: this is expected-width planning, not an assurance calculation or "
+"a hypothesis test. Systematic offsets affect the absolute-agreement "
+"ICC(2,1), whose precision needs separate planning."
 msgstr ""
 
 #: ihcheterogeneity/results/samplesizetable.columns.title

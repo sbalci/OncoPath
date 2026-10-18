@@ -859,9 +859,6 @@
             "Bivariate random-effects model": [
                 "İki değişkenli rastgele etkiler modeli"
             ],
-            "Bonett (2002) planning for the consistency ICC, ICC(3,1), with k = %d measurements per case and a 95%% confidence interval; this analysis has %d complete cases. The widths are expected values, so about half of the studies of that size obtain a wider interval. A systematic offset between the measurements widens the interval of the absolute-agreement ICC(2,1), which then needs more cases. The number of cases is never shown below the 5 this analysis requires. This is precision planning, not a hypothesis test.": [
-                "Vaka başına k = %d ölçüm ve %%95 güven aralığı ile tutarlılık ICC'si, ICC(3,1), için Bonett (2002) planlaması; bu analizde %d eksiksiz vaka vardır. Genişlikler beklenen değerlerdir, bu nedenle bu büyüklükteki çalışmaların yaklaşık yarısı daha geniş bir aralık elde eder. Ölçümler arasındaki sistematik bir sapma, mutlak uyum ICC(2,1) aralığını genişletir ve bu durumda daha fazla vaka gerekir. Vaka sayısı hiçbir zaman bu analizin gerektirdiği 5 vakanın altında gösterilmez. Bu bir kesinlik planlamasıdır, hipotez testi değildir."
-            ],
             "Bootstrap CI for the median could not be computed.": [
                 "Medyan için bootstrap GA hesaplanamadı."
             ],
@@ -2224,6 +2221,12 @@
             "Individual study results": [
                 "Bireysel çalışma sonuçları"
             ],
+            "Infinite biomarker measurements in variable(s) %s, analysis row(s) %s. Enter finite measurements or mark unavailable values as missing.": [
+                ""
+            ],
+            "Infinite diagnostic counts in variable(s) %s, analysis row(s) %s. Enter finite whole-number counts or mark unavailable values as missing.": [
+                ""
+            ],
             "Instructions": [
                 "Yönergeler"
             ],
@@ -3492,6 +3495,9 @@
             ],
             "Plain-language summary": [
                 "Sade dilde özet"
+            ],
+            "Planning for the consistency ICC, ICC(3,1), with k = %d measurements per case and a 95%% confidence interval; this analysis has %d complete cases. Bonett (2002) provides the starting approximation, refined here by numerical integration of the exact F-interval width under a balanced normal ANOVA model. The required size is the smallest number of cases, at least 5, whose expected interval width meets the target. Some studies will obtain wider intervals: this is expected-width planning, not an assurance calculation or a hypothesis test. Systematic offsets affect the absolute-agreement ICC(2,1), whose precision needs separate planning.": [
+                ""
             ],
             "Planning ICC": [
                 "Planlanan ICC"

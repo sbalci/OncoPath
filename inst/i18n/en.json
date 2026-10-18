@@ -859,9 +859,6 @@
             "Bivariate random-effects model": [
                 ""
             ],
-            "Bonett (2002) planning for the consistency ICC, ICC(3,1), with k = %d measurements per case and a 95%% confidence interval; this analysis has %d complete cases. The widths are expected values, so about half of the studies of that size obtain a wider interval. A systematic offset between the measurements widens the interval of the absolute-agreement ICC(2,1), which then needs more cases. The number of cases is never shown below the 5 this analysis requires. This is precision planning, not a hypothesis test.": [
-                ""
-            ],
             "Bootstrap CI for the median could not be computed.": [
                 ""
             ],
@@ -2224,6 +2221,12 @@
             "Individual study results": [
                 ""
             ],
+            "Infinite biomarker measurements in variable(s) %s, analysis row(s) %s. Enter finite measurements or mark unavailable values as missing.": [
+                ""
+            ],
+            "Infinite diagnostic counts in variable(s) %s, analysis row(s) %s. Enter finite whole-number counts or mark unavailable values as missing.": [
+                ""
+            ],
             "Instructions": [
                 ""
             ],
@@ -3491,6 +3494,9 @@
                 ""
             ],
             "Plain-language summary": [
+                ""
+            ],
+            "Planning for the consistency ICC, ICC(3,1), with k = %d measurements per case and a 95%% confidence interval; this analysis has %d complete cases. Bonett (2002) provides the starting approximation, refined here by numerical integration of the exact F-interval width under a balanced normal ANOVA model. The required size is the smallest number of cases, at least 5, whose expected interval width meets the target. Some studies will obtain wider intervals: this is expected-width planning, not an assurance calculation or a hypothesis test. Systematic offsets affect the absolute-agreement ICC(2,1), whose precision needs separate planning.": [
                 ""
             ],
             "Planning ICC": [
