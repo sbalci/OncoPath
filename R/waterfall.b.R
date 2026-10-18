@@ -1947,7 +1947,7 @@ waterfallClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         private$.checkpoint()  # Checkpoint before summary table population
         if ((is.null(metrics$n_unknown) || metrics$n_unknown == 0) &&
             "recist_Unknown" %in% self$results$summaryTable$rowKeys) {
-          self$results$summaryTable$deleteRows()
+          .deleteTableRows(self$results$summaryTable)
           self$results$summaryTable$setNote("unknown", NULL)
         }
         # The four category rows are created in .init() (fixed row set); fill
