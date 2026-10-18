@@ -1399,17 +1399,11 @@
             "Data Type Guide": [
                 "Veri Türü Kılavuzu"
             ],
-            "Data type mismatch": [
-                "Veri türü uyuşmazlığı"
-            ],
             "Data Type Mismatch": [
                 "Veri Türü Uyuşmazlığı"
             ],
             "Data Validation Error": [
                 "Veri Doğrulama Hatası"
-            ],
-            "Data validation error": [
-                "Veri doğrulama hatası"
             ],
             "Data validation failed.": [
                 "Veri doğrulaması başarısız oldu."
@@ -1440,9 +1434,6 @@
             ],
             "Date/Time:": [
                 "Tarih/Saat:"
-            ],
-            "Dates found on a raw numeric timeline": [
-                ""
             ],
             "Days": [
                 "Gün"

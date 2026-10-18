@@ -1,3 +1,46 @@
+# OncoPath 1.0.9 (2026-10-17)
+
+This release also includes the changes listed under 1.0.83.05 and 1.0.83.02 below. Neither was
+released on its own; the previous release was 1.0.83.
+
+## Behaviour changes -- saved analyses may produce different results
+
+- **`waterfall`: a patient with only a baseline scan who is coded PD in the response-category
+  variable now counts as evaluable PD.** This covers clinical progression, new lesions, or death
+  before the first follow-up scan. Before, the patient was first listed in the "not
+  response-evaluable" warning as Unknown, and the override was applied afterwards. The warning now
+  names only patients who stay Unknown.
+- **`waterfall`: the evaluable count in the notices is the ORR/DCR denominator.** The
+  dropped-patients notice and the small-sample warning now count patients classed CR, PR, SD or PD
+  after category overrides. Before, they counted patients with a measured response, so the
+  overrides were left out.
+- **`waterfall`: assessments dated before baseline (negative times) no longer count when finding
+  the first progression or the best response.**
+- **`waterfall`: a patient with a negative raw tumour measurement stays Unknown.** A category
+  override no longer reclassifies such a patient, and their line is removed from the spider plot.
+- **`diagnosticmeta`: the meta-regression note names the reference level the model actually
+  uses.** For a categorical covariate the note took the alphabetically first level. When the
+  factor's own order differed, the note named the wrong comparator, for example "Automated"
+  instead of "Manual". Levels absent from the analysed studies are also dropped before the model's
+  degrees of freedom are counted.
+
+## Fixed
+
+- **`waterfall`:** confirmation markers and "ongoing" arrows are no longer drawn for patients
+  without a bar. A stale "Unknown" row in the summary table is removed when a re-run has no
+  Unknown patients.
+- **`diagnosticmeta`:** the predictive-values note gives pooled sensitivity and specificity to one
+  decimal place (e.g. "85.7%"). Before, it printed every digit.
+- **`ihcheterogeneity`:** the sentence "The regions are offset in opposite directions, so each needs
+  its own calibration" appears only when a reference measurement is present.
+- **All four analyses:** a table emptied on a re-run (for example after removing a variable) now
+  clears completely. Before, it could keep hidden row labels, and the table then failed when read
+  back, for example from R or when reopening a saved `.omv`.
+
+## Package
+
+- **Citation metadata uses the license identifier GPL-2.0-or-later,** matching DESCRIPTION.
+
 # OncoPath 1.0.83.05 (2026-09-30)
 
 ## Package
@@ -179,40 +222,40 @@ independent implementation. Two analyses carry breaking option changes; they are
   every cell of the affected study, and "empirical" uses the reciprocal of the opposite-arm size --
   whereas the code adds 0.5 to the zero cells only, or 1/N to all cells. The options now say what they
   do. R callers passing the old keys get a clear "must be one of" error; the jamovi GUI is unaffected.
-- **`ihcheterogeneity`: the `bias` analysis focus was removed.**It was computationally identical to
+- **`ihcheterogeneity`: the `bias` analysis focus was removed.** It was computationally identical to
   `reproducibility` (one sentence of prose apart; the bias table is computed whenever a reference is
   supplied regardless of focus). The `reproducibility` level is retitled "Reproducibility & Bias
   Assessment". R callers passing `analysis_type = "bias"` get a clear error.
-- **`ihcheterogeneity`: the report-sentences and methodology panels are now opt-in.**Two new
+- **`ihcheterogeneity`: the report-sentences and methodology panels are now opt-in.** Two new
   options, "Copy-ready report sentences" and "Methodology & assumptions" (both off by default),
   gate roughly 7 KB of explanatory HTML that previously rendered on every run.
 
 ## `diagnosticmeta` -- Fixed, statistical
 
-- **The proportional-hazards SROC table tested the wrong null hypotheses.**Both parameters were
+- **The proportional-hazards SROC table tested the wrong null hypotheses.** Both parameters were
   tested against zero. For theta the no-accuracy null is theta = 1 (the chance diagonal; theta near 0
   is a near-perfect test), so the printed p-value rewarded good tests for the wrong reason. The
   between-study variance cannot be Wald-tested against zero at all (it sits on the boundary of its
   parameter space). Theta is now tested against 1, the variance carries no p-value, and a table note
   explains both.
-- **The bivariate and SROC sections were fitted to different data.**Under the default zero-cell
+- **The bivariate and SROC sections were fitted to different data.** Under the default zero-cell
   setting the bivariate model received mada's "single" continuity correction (0.5 added only to
   zero-cell studies) while `mada::phm` ran on its library default, which corrects every study when
   any zero cell exists. Both now use the same policy.
-- **Prediction intervals use t on k-2 degrees of freedom,**not a normal quantile, per Riley et al.
+- **Prediction intervals use t on k-2 degrees of freedom,** not a normal quantile, per Riley et al.
   2011. With the small study counts typical of diagnostic meta-analysis the normal interval was
   materially too narrow -- understating exactly the between-study uncertainty the interval exists to
   show. The table note names the distribution and degrees of freedom used.
-- **Meta-regression gained the Knapp-Hartung adjustment and an omnibus test.**Inference is t-based
+- **Meta-regression gained the Knapp-Hartung adjustment and an omnibus test.** Inference is t-based
   (z for fixed-effect models, where the adjustment is undefined), an omnibus QM/F test is reported per
   model so a multi-level factor covariate can be judged as a whole, and the output now says plainly
   that two separate univariate models (logit sensitivity, logit specificity) are fitted -- not a joint
   bivariate meta-regression. The statistic column is retitled accordingly.
-- **The fitted between-study variance components are reported:**tau-squared for logit sensitivity
+- **The fitted between-study variance components are reported:** tau-squared for logit sensitivity
   and logit false-positive rate, and the correlation between logit sensitivity and logit specificity
   (the threshold-effect indicator), sign-corrected for mada's parameterisation and flagged when it is
   estimated at the +/-1 boundary.
-- **The Deeks funnel plot and Deeks' test now describe the same studies.**The test applied a 0.5
+- **The Deeks funnel plot and Deeks' test now describe the same studies.** The test applied a 0.5
   correction to zero-cell studies so their odds ratio was finite; the plot computed the odds ratio
   on raw counts, so those same studies became infinite and were silently dropped from the figure.
   The plot now applies the identical correction and says so in its subtitle.
@@ -221,7 +264,7 @@ independent implementation. Two analyses carry breaking option changes; they are
 
 ## `diagnosticmeta` -- Fixed, behaviour and presentation
 
-- **Warnings have a home.**Every runtime warning -- excluded studies, substantial heterogeneity,
+- **Warnings have a home.** Every runtime warning -- excluded studies, substantial heterogeneity,
   meta-regression failures, the small-k Deeks caution, zero-cell corrections -- used to be appended
   to the end of the ninety-line "Getting Started" panel, with Bootstrap alert classes jamovi does not
   style, and nothing reset them between runs, so the same banner accumulated once per option change.
@@ -241,18 +284,18 @@ independent implementation. Two analyses carry breaking option changes; they are
 
 ## `ihcheterogeneity` -- Fixed, statistical
 
-- **The spatial plot measured the wrong thing.**It pooled every measurement of every case in a
+- **The spatial plot measured the wrong thing.** It pooled every measurement of every case in a
   compartment into one coefficient of variation -- between-patient biological spread -- while the
   spatial table beside it (correctly) averaged per-case CVs. The two could rank compartments in
   opposite orders on one screen. The plot now uses the table's per-case computation.
 - **The Kruskal-Wallis compartment test treated 4-5 measurements per patient as independent
-  observations,**inflating its sample size roughly k-fold and biasing the p-value anticonservatively.
+  observations,** inflating its sample size roughly k-fold and biasing the p-value anticonservatively.
   It now compares one per-case summary value per patient and says so in a note.
-- **One biopsy against the whole section is allowed again.**The reference + single-region design --
+- **One biopsy against the whole section is allowed again.** The reference + single-region design --
   the classic agreement question -- was rejected by a gate written for inter-regional studies, and the
   ICC gate counted regions rather than measurement columns, so even when allowed it would have
   fallen back to a correlation. ICC(2,1) for this design now matches `psych::ICC` exactly.
-- **Every panel grades variability and correlation against the thresholds you set.**The Key Findings
+- **Every panel grades variability and correlation against the thresholds you set.** The Key Findings
   line, the spatial table and plot, the plain-language summary and the variability plot's reference
   lines each carried their own hard-coded bands (15/30, 0.80/0.60), so one run could call the same
   CV "Low" in one place and "Moderate" or "High" in another -- including at the default threshold.
@@ -275,12 +318,12 @@ independent implementation. Two analyses carry breaking option changes; they are
 
 - **Response rates use the RECIST-evaluable population**(CR, PR, SD, PD) as the denominator in both
   analyses, disclosed in the output, with confidence intervals computed on that denominator.
-- **`swimmerplot`:**datetime event markers were shifted twice; milestones on an epoch date are
+- **`swimmerplot`:** datetime event markers were shifted twice; milestones on an epoch date are
   refused with a message rather than plotted at zero; median follow-up uses the reverse Kaplan-Meier
   method (Schemper & Smith); progression is referenced to the nadir; ISO-formatted date strings are
   detected; the HTML builders moved to `R/swimmerplot_html.R` and the static explanatory blocks were
   wrapped for translation.
-- **`waterfall`:**warnings are guaranteed to render even when the analysis stops early; fixed-row
+- **`waterfall`:** warnings are guaranteed to render even when the analysis stops early; fixed-row
   tables are built once rather than rebuilt every run; nadir-related wording corrected.
 
 ## Testing
@@ -298,14 +341,14 @@ clinical advice from results, and stops third-party package notices appearing in
 
 ## Fixed -- statements that were not true
 
-- **`diagnosticmeta`: a non-significant Deeks' test no longer means low publication-bias risk.**The
+- **`diagnosticmeta`: a non-significant Deeks' test no longer means low publication-bias risk.** The
   Clinical Interpretation panel read a non-significant result as evidence that publication bias is
   unlikely. Deeks' funnel-plot asymmetry test is recommended only when at least ten studies are
   available and has low power below that, so a non-significant result there is uninformative rather
   than reassuring. The panel now reports what was tested, states how many studies entered it, and
   explains that failing to detect asymmetry does not establish its absence.
 
-- **`ihcheterogeneity`: the sampling verdict is named for what it measures.**A verdict reading
+- **`ihcheterogeneity`: the sampling verdict is named for what it measures.** A verdict reading
   "ADEQUATE SAMPLING" was issued from correlation and coefficient-of-variation thresholds alone. It
   is renamed to state that the agreement thresholds were met, which is what the computation
   actually shows, and the accompanying text no longer implies the sampling strategy is validated for
@@ -319,12 +362,12 @@ clinical advice from results, and stops third-party package notices appearing in
 
 ## Fixed -- output hygiene
 
-- **R package chatter no longer appears in Analysis Notes.**jamovi surfaces `message()` and
+- **R package chatter no longer appears in Analysis Notes.** jamovi surfaces `message()` and
   `warning()` conditions to the user, so third-party notices leaked into results. Package chatter
   and deprecation notices are now suppressed at the call sites, while substantive warnings still
   reach you.
 
-- **A malformed reference no longer prevents results from rendering.**A citation with an empty
+- **A malformed reference no longer prevents results from rendering.** A citation with an empty
   publication year caused a serialization failure that produced no output at all, with an error
   mentioning `serialize` rather than anything about the analysis. All references now carry a year.
 
@@ -358,7 +401,7 @@ signatures. These articles are published to <https://www.serdarbalci.com/OncoPat
 affects `R CMD check`. Every example added below was executed against the bundled datasets before
 being written down.
 
-- **Option coverage went from 56% to 100%.**Of the 120 options across the four shipped analyses,
+- **Option coverage went from 56% to 100%.** Of the 120 options across the four shipped analyses,
   53 were not mentioned anywhere in the documentation; none remain.
 - **`ihcheterogeneity` had no documentation whatsoever** -- 18 of its 19 options were unmentioned and
   no article referred to it. `ihcheterogeneity-comprehensive.Rmd` is new: what the analysis is for
@@ -366,7 +409,7 @@ being written down.
   ICC(2,1) 0.663 against ICC(3,1) 0.658 and why both are shown, the variance decomposition that
   attributes 34.2% of total variance to within-case sampling, and why the post-hoc power row should
   not be used for planning.
-- **The 447-line `diagnosticmeta` article never called `diagnosticmeta()`.**It described the
+- **The 447-line `diagnosticmeta` article never called `diagnosticmeta()`.** It described the
   bivariate and HSROC models at length without a single executable example, so the argument names
   and their scales appeared nowhere. It now carries a worked run against the bundled
   `diagnostic_studies` data with the returned pooled sensitivity (75.5%, CI 69.1-80.9),
@@ -407,7 +450,7 @@ analyses should be re-run.
 
 ### Treatment Response (`waterfall`)
 
-- **Progression was measured from baseline instead of from the patient's nadir.**RECIST v1.1
+- **Progression was measured from baseline instead of from the patient's nadir.** RECIST v1.1
   defines progressive disease relative to the smallest tumour burden recorded so far, not relative
   to the first scan. A patient going 100 -> 60 -> 78 mm is +30% over their nadir -- progression -- but
   still -22% from baseline, so they were counted as censored and their duration of response ran on
@@ -419,26 +462,26 @@ analyses should be re-run.
   column went `NA` and the run aborted downstream with `missing value where TRUE/FALSE needed`.
   Unrecognised labels are now reported and rejected.
 - **Objective response and disease control rates were computed over assessment rows, not patients,
-  on some processing paths.**The same 90-observation dataset gave ORR 100% when it held 30 patients
+  on some processing paths.** The same 90-observation dataset gave ORR 100% when it held 30 patients
   with 3 rows each and ORR 33.3% when it held 60 patients with 3 rows each, because the row count
   decides which processing path runs. Every path now collapses to one row per patient before
   counting, and unevaluable rows no longer inflate the denominator.
-- **Physical limits on tumour measurements were never enforced.**The Response Value option text had
+- **Physical limits on tumour measurements were never enforced.** The Response Value option text had
   always promised that shrinkage would be capped at -100%, and the code never applied the cap. Worse,
   a negative raw measurement flips the sign of `((current - baseline) / baseline)`, so a growing
   tumour was reported as a response. Both are now handled at a single convergence point
   (`.enforceMeasurementLimits()`), and the cap is announced in the always-visible notices panel
   rather than the validation panel that is cleared when validation otherwise passes.
 - **Patients dropped for a missing or zero baseline simply vanished from the cohort, and patients
-  with only a baseline scan were scored SD.**With a time variable, a baseline-only patient produced
+  with only a baseline scan were scored SD.** With a time variable, a baseline-only patient produced
   `((baseline - baseline) / baseline) x 100` = 0% change and was categorised as stable disease,
   although a patient with no post-baseline assessment is not response-evaluable at all. Both groups
   are now reconciled against the input and reported.
-- **The exported response-category column was written against the wrong patients.**The path without
+- **The exported response-category column was written against the wrong patients.** The path without
   a time variable took `rownames()` of a dplyr tibble -- always `"1"`...`"k"`, never the source row
   numbers -- after that frame had been collapsed to one row per patient and re-sorted into patient-ID
   order. Rows are now matched back by patient ID.
-- **The ORR/DCR confidence intervals used a different denominator from the rates themselves.**The
+- **The ORR/DCR confidence intervals used a different denominator from the rates themselves.** The
   interval was computed on `nrow()`, which includes Unknown and unevaluable patients, while the point
   estimate counted only CR/PR/SD/PD -- so the printed rate could fall outside its own interval, for
   example ORR 50.0% displayed with a 95% CI of 28.8-46.8%. The copy-ready report sentences shared the
@@ -448,15 +491,15 @@ analyses should be re-run.
   returned `integer(0)` -- not `NULL`, so the `%||% 0` fallback never fired -- and `sprintf()` with a
   zero-length argument returns `character(0)`, which `paste0()` then collapses away.
 - **The to-do, validation and clinical-summary panels ignored guided mode and were always on
-  screen.**A jamovi `visible:` expression beginning with `!` fails jmvcore's routing regex, so
+  screen.** A jamovi `visible:` expression beginning with `!` fails jmvcore's routing regex, so
   `(!enableGuidedMode)` evaluated to a raw truthy string. Rewritten as `(enableGuidedMode:FALSE)`.
 - **The waterfall and spider plots did not refresh when `barAlpha`, `barWidth`,
-  `minResponseForLabel`, `seed`, `timeVar`, `annotationVars` or `showCategoryLabels` changed.**Those
+  `minResponseForLabel`, `seed`, `timeVar`, `annotationVars` or `showCategoryLabels` changed.** Those
   options are read when the figure is drawn but were missing from `clearWith`.
 
 ### Swimmer Plot (`swimmerplot`)
 
-- **"Relative (all start from 0)" anchored each row at zero instead of each patient.**A swimmer plot
+- **"Relative (all start from 0)" anchored each row at zero instead of each patient.** A swimmer plot
   is multi-row per patient by construction, so row-wise rebasing stacked every episode of a patient
   back onto t = 0, corrupting total person-time, mean and median duration, follow-up density and the
   reverse Kaplan-Meier median -- in the default configuration, and invisibly in any fixture with one
@@ -469,32 +512,32 @@ analyses should be re-run.
   Summary. For multi-episode patients the same milestone was also handed to both rows, double-counting
   it and producing a negative re-based copy on the later episode. Milestones are now collapsed to one
   row per patient and realigned by patient ID.
-- **Ongoing-treatment arrows were inferred from the longest follow-up.**Treating "largest end time"
+- **Ongoing-treatment arrows were inferred from the longest follow-up.** Treating "largest end time"
   as evidence of still being on treatment at data cutoff is wrong in the common case -- the patient
   with the longest follow-up is often the one who died last. Arrows are now drawn only from an
   explicit censoring variable, using the same helper as the median-follow-up calculation, and no
   arrows are drawn when there is none.
-- **Every event-marker glyph was the empty string, so event markers were invisible.**The symbols that
+- **Every event-marker glyph was the empty string, so event markers were invisible.** The symbols that
   once populated the glyph table were deleted rather than escaped during a non-ASCII sweep, and
   `ggswim::scale_marker_discrete()` therefore drew nothing for every labelled event. Restored as
   print-safe geometric symbols ( ) that survive PDF and Word export. Glyph pattern
   matching was tightened at the same time so that short patterns match as whole words -- a bare "ct"
   had been matching "Infarction" and "Reaction".
-- **Adding a milestone wiped the CR/PR/SD/PD colouring from the whole figure.**Mapping milestones to
+- **Adding a milestone wiped the CR/PR/SD/PD colouring from the whole figure.** Mapping milestones to
   `color` added a second `scale_color_manual()` containing only milestone names; ggplot2 permits one
   colour scale per plot, so it replaced the lane scale and every response category fell through to
   `NA` grey. Milestones are now mapped to shape only.
-- **A custom reference line crashed the plot on an absolute date scale.**lubridate does not export
+- **A custom reference line crashed the plot on an absolute date scale.** lubridate does not export
   `months()` (`months` is a base generic), so `lubridate::months()` threw -- and months is the default
   time unit, so this killed the plot out of the box. The Period constructors also reject fractional
   amounts while `customReferenceTime` is an unconstrained number, so 12.5 crashed too. Now built with
   `lubridate::duration()`.
 - **The copy-ready manuscript text asserted an objective response rate of 0.0% where the metrics table
-  declined to make the claim.**ORR and DCR are defined only for RECIST-coded responses; with codings
+  declined to make the claim.** ORR and DCR are defined only for RECIST-coded responses; with codings
   such as "Responder", 0/1 or "Grade 1" nothing normalises to CR/PR/SD/PD and the numerator is
   legitimately zero, which read as a genuine ORR of 0.0% with an exact binomial interval attached. The
   guard existed in one place only; both now go through one shared helper.
-- **The summary table could show a median follow-up outside its own range.**The observed range was
+- **The summary table could show a median follow-up outside its own range.** The observed range was
   printed beside the reverse Kaplan-Meier median rather than the observed one. The estimator is now
   named, and the range stays attached to the observed median.
 - **Rows excluded before validation were never disclosed.**`.validateClinicalData()` ran on the
@@ -503,14 +546,14 @@ analyses should be re-run.
   with nothing said.
 - **The plot and milestone table did not clear on `maxMilestones` or the milestone name options, and
   the export tables did not clear on `timeDisplay` or `timeUnit`.**
-- **The ggswim fallback subtitle always read "ggswim unavailable" instead of the real error.**The
+- **The ggswim fallback subtitle always read "ggswim unavailable" instead of the real error.** The
   helper signature is `(patient_data, milestone_data, event_data, opts, stats, error_message)`, and
   the error was being passed positionally into `milestone_data`, where it was discarded.
 
 ### Diagnostic Test Meta-Analysis (`diagnosticmeta`)
 
 - **Deeks' funnel-plot asymmetry test was specified incorrectly and could report "no asymmetry" where
-  Deeks' own specification finds it.**The effective sample size must be `4.n1.n0/(n1+n0)`, the
+  Deeks' own specification finds it.** The effective sample size must be `4.n1.n0/(n1+n0)`, the
   regression of log diagnostic odds ratio on `1/sqrt(ESS)` must be weighted by ESS, and the slope
   referred to a *t* distribution on *k* - 2 degrees of freedom; the code used inverse-variance weights
   and a normal reference. The accompanying funnel plot has been switched to log DOR against
@@ -520,7 +563,7 @@ analyses should be re-run.
   could sit beside a significant asymmetry p-value (Deeks, Macaskill & Irwig 2005, *J Clin Epidemiol*
   58:882-93).
 - **A single missing cell count aborted the entire analysis, and negative counts were dropped in
-  silence.**The pre-exclusion study count was computed but never used, so the reported number of
+  silence.** The pre-exclusion study count was computed but never used, so the reported number of
   studies was the post-exclusion count with no indication that anything had been removed. Unusable
   studies -- missing or negative cells, or no diseased or no non-diseased participants -- are now
   excluded explicitly and listed.
@@ -548,21 +591,21 @@ analyses should be re-run.
 
 ### IHC Heterogeneity (`ihcheterogeneity`)
 
-- **The variance decomposition reported quantities that were not components of a common total.**On a
+- **The variance decomposition reported quantities that were not components of a common total.** On a
   20-case example the between-case row read 102.3% of total and the three percentages summed to
   107.5%, under a row explicitly labelled "Sum of all variance components". Replaced with a balanced
   two-way random-effects model -- sigma^2case = (MScase - MSerror)/k, sigma^2method = (MSmethod - MSerror)/n,
   sigma^2error = MSerror -- fitted on the cases measured by every method, with that number reported and any
   negative estimate truncated at zero and disclosed.
-- **The intraclass correlation was not computed by the route the output claimed.**The table reported
+- **The intraclass correlation was not computed by the route the output claimed.** The table reported
   ICC(2,1) absolute agreement; the calculation did not match that definition. Now computed with
   `psych::ICC`, with the consistency form reported alongside absolute agreement -- the two differ
   exactly when there is a systematic offset between methods, which is the case worth seeing.
-- **Reliability rows were labelled with a statistic that had not necessarily been computed.**Five
+- **Reliability rows were labelled with a statistic that had not necessarily been computed.** Five
   fallback paths return the mean Spearman correlation, and that value was printed under the ICC
   heading and graded against ICC reliability cut-offs. The label now names the statistic actually
   used.
-- **The per-case coefficient of variation had two definitions on one screen.**The table computed it
+- **The per-case coefficient of variation had two definitions on one screen.** The table computed it
   from the regional columns alone while the interpretation folded in the reference measurement, so a
   single run could read "Mean CV = 23.19 / High variability", "moderate (mean CV = 20%)" and
   "ADEQUATE SAMPLING" together. Excluding the reference section also made a systematic under-read
@@ -571,7 +614,7 @@ analyses should be re-run.
 - **Paired t-tests aborted the analysis when the difference vector had zero variance.**
   `t.test(paired = TRUE)` errors with "data are essentially constant", which is routine when scores are
   binned to whole percentages and every case shows the same offset. It was unguarded in four places.
-- **The correlation power calculation counted rows with a missing reference measurement.**Using the
+- **The correlation power calculation counted rows with a missing reference measurement.** Using the
   length of the reference column rather than the number of complete pairs made `se_z = 1/sqrt(n - 3)`
   too small, so every reported power was inflated and every required sample size understated.
 
@@ -602,12 +645,12 @@ analyses should be re-run.
   Categories (threshold-based, not full RECIST v1.1)" and the menu subtitle changed from "Waterfall
   Plot, Spider Plot" to "One burden value per patient or visit".
 - **`swimmerplot`: "Export Timeline Data" and "Export Summary Statistics" changed from `type: Output`
-  to `type: Table`.**An `Output` result item writes a single computed column back into the dataset and
+  to `type: Table`.** An `Output` result item writes a single computed column back into the dataset and
   must be bound to a matching `type: Output` option -- there was none, and the backend called
   `setState()` rather than `setRowNums()`/`setValues()`. Neither payload is a per-row column anyway:
   one is a multi-column frame, the other is one row per metric.
 - **`diagnosticmeta`: performance claims in the interpretation text are now qualified by the
-  confidence interval.**A pooled sensitivity of 90.4% with a 95% CI of 71-97% had been reported as
+  confidence interval.** A pooled sensitivity of 90.4% with a 95% CI of 71-97% had been reported as
   "excellent ... will detect 90 out of 100 patients". The previously unlabelled p-value column on the
   sensitivity and specificity rows is now named for what it tests -- the Wald test of the logit
   intercepts (H0: sensitivity = 50%, H0: false-positive rate = 50%), which is trivially significant for
@@ -619,7 +662,7 @@ analyses should be re-run.
 
 ## Removed
 
-- **`waterfall`: post-hoc statistical power reporting.**Observed power is a re-expression of the
+- **`waterfall`: post-hoc statistical power reporting.** Observed power is a re-expression of the
   p-value and restates the test result rather than informing it (Hoenig & Heisey 2001); users planning
   a study are pointed to the Group-Sequential Design & Sample Size analysis instead.
 
@@ -634,7 +677,7 @@ analyses should be re-run.
 
 ## Fixed
 
-- **Analysis variables were required arguments of the R function.**An option with no default in
+- **Analysis variables were required arguments of the R function.** An option with no default in
   its jamovi definition compiles to a bare parameter, so calling the analysis from R without it
   failed with `argument "X" is missing, with no default` before the analysis's own validation
   could produce a usable message. Now defaulting to `NULL`: `diagnosticmeta` (`study`,
@@ -652,7 +695,7 @@ analyses should be re-run.
 
 ## Added
 
-- **Automated GitHub release (`.github/workflows/release.yaml`).**A push to the default branch
+- **Automated GitHub release (`.github/workflows/release.yaml`).** A push to the default branch
   touching `DESCRIPTION` or `jamovi/0000.yaml` cross-checks the two version strings, refuses to
   proceed if they disagree, and -- if the tag does not already exist -- tags `v<version>` and
   publishes a release whose notes are the matching section of this file.

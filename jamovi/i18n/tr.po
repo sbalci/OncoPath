@@ -2685,10 +2685,6 @@ msgstr "Veri Gereksinimleri:"
 msgid "Data Type Guide"
 msgstr "Veri Türü Kılavuzu"
 
-#: R/swimmerplot.b.R
-msgid "Data type mismatch"
-msgstr "Veri türü uyuşmazlığı"
-
 #: R/swimmerplot-html.R
 msgid "Data Type Mismatch"
 msgstr "Veri Türü Uyuşmazlığı"
@@ -2696,10 +2692,6 @@ msgstr "Veri Türü Uyuşmazlığı"
 #: R/swimmerplot.b.R
 msgid "Data Validation Error"
 msgstr "Veri Doğrulama Hatası"
-
-#: R/swimmerplot.b.R
-msgid "Data validation error"
-msgstr "Veri doğrulama hatası"
 
 #: R/waterfall.b.R
 msgid "Data validation failed."
@@ -2750,10 +2742,6 @@ msgstr ""
 #: R/swimmerplot-html.R
 msgid "Date/Time:"
 msgstr "Tarih/Saat:"
-
-#: R/swimmerplot.b.R
-msgid "Dates found on a raw numeric timeline"
-msgstr ""
 
 #: swimmerplot/options/timeUnit/days.title
 #: waterfall/options/timeUnitLabel/days.title

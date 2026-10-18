@@ -2361,20 +2361,12 @@ msgstr ""
 msgid "Data Type Guide"
 msgstr ""
 
-#: R/swimmerplot.b.R
-msgid "Data type mismatch"
-msgstr ""
-
 #: R/swimmerplot-html.R
 msgid "Data Type Mismatch"
 msgstr ""
 
 #: R/swimmerplot.b.R
 msgid "Data Validation Error"
-msgstr ""
-
-#: R/swimmerplot.b.R
-msgid "Data validation error"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -2420,10 +2412,6 @@ msgstr ""
 
 #: R/swimmerplot-html.R
 msgid "Date/Time:"
-msgstr ""
-
-#: R/swimmerplot.b.R
-msgid "Dates found on a raw numeric timeline"
 msgstr ""
 
 #: swimmerplot/options/timeUnit/days.title
