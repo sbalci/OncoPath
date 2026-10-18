@@ -3373,7 +3373,6 @@ msgstr "Ölçüm seçimini tamamlayın"
 msgid "Comprehensive analysis"
 msgstr "Kapsamlı Analiz"
 
-#: package/analyses/diagnosticmeta.description
 #: diagnosticmeta/options.description.main
 msgid ""
 "Comprehensive meta-analysis of diagnostic test accuracy studies designed for "
@@ -3654,7 +3653,6 @@ msgstr ""
 "Gelişmiş ggswim paketini kullanarak hasta zaman çizelgelerini, tedavilerini "
 "ve klinik olayları görselleştirmek için kapsamlı yüzücü grafikleri oluşturun."
 
-#: package/analyses/swimmerplot.description
 #: swimmerplot/options.description.main
 msgid ""
 "Creates comprehensive swimmer plots using the ggswim package to visualize "
@@ -3731,9 +3729,10 @@ msgstr "Kabul edilebilir değişkenlik için CV eşiği"
 msgid "CV: %s%%"
 msgstr "CV: %%%s"
 
+#: R/diagnosticmeta.b.R
 #: R/waterfall.b.R
-msgid "Data contains no complete rows. Check the data."
-msgstr "Veri eksiksiz satır içermiyor. Veriyi kontrol edin."
+msgid "Data contains no rows"
+msgstr "Veri satır içermiyor"
 
 #: R/swimmerplot.b.R
 msgid "Data contains valid values"
@@ -4031,8 +4030,6 @@ msgid "Diagnostic Test Meta-Analysis"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
-#: package/analyses/diagnosticmeta.title
-#: package/analyses/diagnosticmeta.menuTitle
 #: diagnosticmeta/options.title
 #: diagnosticmeta/ui.title
 #: diagnosticmeta/results.title
@@ -5922,7 +5919,6 @@ msgstr ""
 msgid "Meets your threshold (≥ %s)"
 msgstr "Eşiğinizi karşılıyor (≥ %s)"
 
-#: package/analyses/diagnosticmeta.menuSubgroup
 #: diagnosticmeta/options.menuSubgroup
 msgid "Meta-Analysis"
 msgstr "Meta-Analiz"
@@ -7167,10 +7163,7 @@ msgstr "Tedavi devam ediyor (isteğe bağlı)"
 msgid "Oncology clinical trials and treatment response studies"
 msgstr "Onkoloji klinik çalışmaları ve tedavi yanıtı araştırmaları"
 
-#: package/analyses/diagnosticmeta.menuGroup
 #: package/analyses/ihcheterogeneity.menuGroup
-#: package/analyses/swimmerplot.menuGroup
-#: package/analyses/waterfall.menuGroup
 #: diagnosticmeta/options.menuGroup
 #: ihcheterogeneity/options.menuGroup
 #: swimmerplot/options.menuGroup
@@ -7501,8 +7494,6 @@ msgstr "Kısmi Yanıt (PR): %%%d veya daha fazla azalma"
 msgid "Partial response: n = %d (%.1f%%)"
 msgstr "Kısmi yanıt: n = %d (%%%.1f)"
 
-#: package/analyses/swimmerplot.menuSubgroup
-#: package/analyses/waterfall.menuSubgroup
 #: swimmerplot/options.menuSubgroup
 #: waterfall/options.menuSubgroup
 msgid "Patient Follow-Up Plots"
@@ -10071,8 +10062,6 @@ msgstr "Cerrahi"
 msgid "Swim Lanes:"
 msgstr "Yüzme Kulvarları:"
 
-#: package/analyses/swimmerplot.title
-#: package/analyses/swimmerplot.menuTitle
 #: swimmerplot/options.title
 #: swimmerplot/ui.title
 #: swimmerplot/results.title
@@ -10359,7 +10348,9 @@ msgstr ""
 "Yüzde değişimlerinin başlangıçtan hesaplanması için Veri Giriş Türünü Ham "
 "Ölçümler olarak ayarlayın."
 
+#: R/diagnosticmeta.b.R
 #: R/ihcheterogeneity.b.R
+#: R/waterfall.b.R
 msgid ""
 "The dataset contains no rows. Add data (or clear the active filter) and "
 "re-run."
@@ -11587,8 +11578,6 @@ msgstr "Tedavi yanıt kategorileri"
 msgid "Treatment Response Summary"
 msgstr "Tedavi Yanıtı Özeti"
 
-#: package/analyses/waterfall.title
-#: package/analyses/waterfall.menuTitle
 #: waterfall/options.title
 #: waterfall/ui.title
 msgid "Treatment Response: Patient-Level Burden"
@@ -11795,7 +11784,6 @@ msgstr ""
 msgid "Use this plot to identify studies for sensitivity analysis"
 msgstr "Duyarlılık analizi için çalışmaları belirlemekte bu grafiği kullanın"
 
-#: package/analyses/waterfall.description
 #: waterfall/options.description.main
 msgid ""
 "Use this when you have one tumour burden number per patient: either a "
@@ -12118,7 +12106,6 @@ msgstr ""
 msgid "Waterfall and Spider Plot"
 msgstr ""
 
-#: package/analyses/waterfall.menuSubtitle
 #: waterfall/options.menuSubtitle
 msgid "Waterfall and SpiderPlot: One burden value per patient or visit"
 msgstr "Şelale ve örümcek grafiği: hasta veya ziyaret başına bir yük değeri"

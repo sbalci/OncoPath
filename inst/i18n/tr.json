@@ -1789,8 +1789,8 @@
             "CV: %s%%": [
                 "CV: %%%s"
             ],
-            "Data contains no complete rows. Check the data.": [
-                "Veri eksiksiz satır içermiyor. Veriyi kontrol edin."
+            "Data contains no rows": [
+                "Veri satır içermiyor"
             ],
             "Data contains valid values": [
                 "Veri geçerli değerler içeriyor"

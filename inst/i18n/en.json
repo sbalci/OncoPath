@@ -1789,7 +1789,7 @@
             "CV: %s%%": [
                 ""
             ],
-            "Data contains no complete rows. Check the data.": [
+            "Data contains no rows": [
                 ""
             ],
             "Data contains valid values": [
