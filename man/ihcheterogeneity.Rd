@@ -24,6 +24,7 @@ ihcheterogeneity(
   variance_components = FALSE,
   sample_size_planning = FALSE,
   generate_recommendations = FALSE,
+  showInterpretation = FALSE,
   showSummary = FALSE,
   showGlossary = FALSE,
   showReportSentences = FALSE,
@@ -126,6 +127,8 @@ shown under the Comprehensive focus.}
 calibration of systematic differences and quality control, derived from the
 results of this analysis.}
 
+\item{showInterpretation}{.}
+
 \item{showSummary}{Display natural-language summary of heterogeneity
 analysis results}
 
@@ -182,7 +185,7 @@ Optional variance components, sample-size planning for ICC precision
 (Bonett 2002) and comparisons between spatial compartments.
 }
 \examples{
-\donttest{
+\dontrun{
 data('ihcheterogeneity_test', package = 'OncoPath')
 
 # Three regional Ki67 scores against the whole-section score

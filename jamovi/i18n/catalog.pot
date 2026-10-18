@@ -15,6 +15,10 @@ msgstr ""
 msgid "- descriptive only: too many zero cells for a valid asymmetry test"
 msgstr ""
 
+#: R/ihcheterogeneity.b.R
+msgid "'%s' (r = %s, 95%% CI %s to %s)"
+msgstr ""
+
 #: R/waterfall.b.R
 msgid "(%d of %d evaluable patients achieved complete or partial response)"
 msgstr ""
@@ -253,7 +257,7 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"%d of %d studies have a cell below 5. The bivariate model used here "
+"%d of %d studies have a cell of 0 or 1. The bivariate model used here "
 "approximates the logit sensitivity and specificity as normal, which is "
 "biased when cells are that small, and any zero cell additionally needs a "
 "continuity correction. Published comparisons put the gap against an exact "
@@ -597,8 +601,11 @@ msgid "+0.5 to the zero cells only"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
-#: diagnosticmeta/options/zero_cell_correction/reciprocal_n.title
 msgid "+1/N to all cells (N = study size)"
+msgstr ""
+
+#: diagnosticmeta/options/zero_cell_correction/reciprocal_n.title
+msgid "+1/N to all cells (n = study size)"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -680,8 +687,308 @@ msgid ""
 "studies. Results should be interpreted with caution."
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid ""
+"<em>The bands below are Higgins' conventional cut-points from intervention "
+"meta-analysis. They are not established thresholds for diagnostic accuracy, "
+"where a high I[[SUP2]] commonly reflects studies using different positivity "
+"thresholds - the situation the SROC curve exists to model - rather than a "
+"reason to abandon the analysis. Treat them as rough orientation, and prefer "
+"the prediction region.</em>"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<em>These features do not establish that publication bias is absent: "
+"asymmetry tests have low power, and are unreliable with fewer than 10 "
+"studies.</em>"
+msgstr ""
+
 #: R/swimmerplot.b.R
 msgid "<p><strong>Error:</strong> {message}</p>"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong> Clinical Insight:</strong> The plotted SROC curve is derived from "
+"the <em>bivariate model</em>. The proportional-hazards SROC table is a "
+"separate compact model of diagnostic accuracy and between-study variation; "
+"it should not be interpreted as a Rutter-Gatsonis HSROC threshold/accuracy "
+"table."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong> Pro Tip:</strong> Always interpret meta-analysis results in the "
+"context of your specific clinical population and intended use. A test "
+"excellent for one application may be inappropriate for another."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong> Recommendation:</strong> Start with REML unless you have specific "
+"methodological requirements. It provides the best balance of statistical "
+"properties and computational stability for diagnostic test meta-analysis."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong> Tip:</strong> Start with the bivariate model and forest plot to "
+"understand overall performance, then explore heterogeneity sources with "
+"meta-regression if needed."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong> When the Funnel Plot is Asymmetric:</strong>"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Above Diagonal:</strong> Better than chance performance"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Action Needed:</strong> If the funnel is asymmetric, look for a "
+"clinical explanation first, then for unpublished studies"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Asymmetric Funnel:</strong> Studies concentrated on one side at the "
+"imprecise end of the plot"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Balanced Performance:</strong> Consider clinical costs of false "
+"positives vs false negatives"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Before running analysis, verify:</strong>"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Bivariate modeling</strong> - Jointly analyzes sensitivity and "
+"specificity"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Bivariate Random-Effects Model (Recommended Primary "
+"Approach):</strong>"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Bivariate Random-Effects Model (Recommended):</strong> Jointly "
+"analyzes sensitivity and specificity accounting for correlation"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Choose the appropriate estimation method for your "
+"meta-analysis:</strong>"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Clinical Implications:</strong> Population-specific predictive values"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Confidence region (dashed):</strong> how precisely the POOLED point "
+"is estimated. It shrinks as more studies are added."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Confirmatory Testing:</strong> Prioritize high specificity (≥90%)"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Consistent Performance:</strong> low measured heterogeneity means "
+"the included studies produced similar estimates; with few studies it is "
+"imprecisely estimated and does not by itself show that performance transfers "
+"to a new setting"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Consistent Results:</strong> Points clustered together = low "
+"heterogeneity"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Deeks' Test p < 0.05:</strong> Statistical evidence of funnel plot "
+"asymmetry - evidence of asymmetry, not of publication bias; see the causes "
+"listed below"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Deeks' Test p ≥ 0.05:</strong> No statistical evidence of asymmetry"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Diagonal Line:</strong> Represents random chance (no discriminative "
+"ability)"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>DOR &lt; 5:</strong> Limited discriminative ability"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>DOR > 25:</strong> Excellent overall discriminative ability"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>DOR 10-25:</strong> Good discriminative ability"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>DOR 5-10:</strong> Moderate discriminative ability"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Each Point:</strong> One study in your meta-analysis"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Essential Variables (Required):</strong>"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Expected Pattern:</strong> Inverted funnel shape if no bias present"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>False negatives (FN):</strong> Number incorrectly identified as "
+"negative"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>False positives (FP):</strong> Number incorrectly identified as "
+"positive"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Fixed Effects:</strong> Assumes every study shares the exact same "
+"sensitivity and specificity (τ² = 0). Under this assumption, the SROC curve "
+"and prediction region are undefined, and confidence intervals are narrower "
+"by construction."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Fixed Effects:</strong> Use when between-study heterogeneity is "
+"minimal or you want to assume all studies estimate the same underlying "
+"effect size."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Forest Plot:</strong> Displays individual study results for "
+"sensitivity and specificity with confidence intervals. Each study is "
+"represented by a point (estimate) with horizontal lines (confidence "
+"intervals)."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Funnel Plot:</strong> Assesses publication bias by plotting study "
+"precision against effect size (log diagnostic odds ratio)."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Gap in Lower Region:</strong> Small studies with low accuracy absent"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Geographic region:</strong> Study location for population analysis"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Geographic/Temporal:</strong> Population differences, technology "
+"evolution"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Heterogeneity assessment</strong> - Evaluates consistency across "
+"studies"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Heterogeneity:</strong> Clinical differences can mimic publication "
+"bias"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Heterogeneity:</strong> I[[SUP2]] values and potential sources "
+"investigated"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Holling Proportional-Hazards SROC Model:</strong>"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Horizontal Lines:</strong> Wilson score confidence intervals (at the "
+"chosen confidence level) showing precision of estimates"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>I[[SUP2]] &gt; 75%:</strong> Considerable heterogeneity - a single "
+"pooled point is unlikely to describe the evidence; investigate thresholds, "
+"spectrum and reference standards, and report the SROC curve and prediction "
+"region"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>I[[SUP2]] < 25%:</strong> Little heterogeneity detected on this "
+"margin. I[[SUP2]] is imprecisely estimated when few studies are pooled and "
+"does not describe the bivariate model, so on its own it does not establish "
+"that pooling is appropriate - inspect the prediction region and check that "
+"positivity thresholds, patient spectrum and reference standards are "
+"comparable"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>I[[SUP2]] 25-50%:</strong> Moderate heterogeneity - investigate "
+"potential sources"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>I[[SUP2]] 50-75%:</strong> Substantial heterogeneity - pooling "
+"questionable"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Important:</strong> Sensitivity and specificity are test "
+"characteristics, but clinicians need predictive values that depend on "
+"disease prevalence in their population. See the <em>Predictive Values by "
+"Prevalence</em> table below for estimated PPV and NPV across typical "
+"prevalence settings based on the pooled accuracy of this meta-analysis."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Individual Studies:</strong> Circles sized by sample size"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -709,7 +1016,51 @@ msgid ""
 msgstr ""
 
 #: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Left Panel (Sensitivity):</strong> Proportion of diseased cases "
+"correctly identified"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Likelihood Ratios:</strong> For clinical decision-making context"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Limitations:</strong> Study quality, missing data, generalizability"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Maximum Likelihood:</strong> Alternative estimation approach when "
+"maximum likelihood estimation is specifically preferred or required by study "
+"protocol."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Meta-Regression:</strong> Investigates sources of heterogeneity "
+"using study-level covariates"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Method of Moments:</strong> Classical moment-based estimation "
+"method, useful for comparison with older meta-analyses or when computational "
+"resources are limited."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
 msgid "<strong>Method:</strong> %s"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Methodological:</strong> Reference standards, blinding, cut-off "
+"thresholds"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Narrow CIs:</strong> Large studies with precise estimates"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -735,9 +1086,86 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
+"<strong>Not external validation:</strong> a meta-analysis summarises "
+"existing published evidence and inherits any publication, spectrum or "
+"reference-standard bias of the included studies; it is not a prospective "
+"evaluation in an intended-use population with a pre-specified threshold"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
 "<strong>Note:</strong> the confidence interval spans more than one "
 "performance category, so this classification is not firmly established by "
 "the pooled data."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Optional Variables for Meta-Regression:</strong>"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Other Causes:</strong> Different thresholds, narrower patient "
+"spectra in small studies, language or database bias, or chance"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>p < 0.05:</strong> The funnel plot is asymmetric - small studies "
+"report systematically different accuracy from large ones. Publication bias "
+"is one explanation; heterogeneity, a threshold effect, and a genuine "
+"relation between study size and accuracy (smaller studies often use narrower "
+"spectra) are others. The test cannot tell them apart, so a significant "
+"result is a prompt to investigate, not a finding of publication bias"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>p ≥ 0.05:</strong> No statistically significant funnel-plot "
+"asymmetry was detected. This does NOT indicate that publication bias is "
+"unlikely: Deeks' test has low power and is unreliable with fewer than 10 "
+"studies, so a non-significant result is uninformative when few studies are "
+"pooled"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Patient population:</strong> Disease stage, demographics (e.g., "
+"'early_stage', 'advanced', 'mixed')"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Patient Population:</strong> Disease stage, severity, demographics"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Point Scatter:</strong> Studies clustered tightly = consistent test "
+"performance"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Pooled Estimate:</strong> Large triangle showing meta-analytic "
+"summary"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Pooled Estimates:</strong> Sensitivity and specificity with "
+"confidence intervals at the level chosen in Advanced Options"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Pooled Sensitivity:</strong> Proportion of diseased cases correctly "
+"identified <ul> <li>Excellent sensitivity (≥90%): few diseased cases missed"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Pooled Specificity:</strong> Proportion of non-diseased cases "
+"correctly identified <ul> <li>Excellent specificity (≥90%): few false alarms"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -753,7 +1181,143 @@ msgid ""
 msgstr ""
 
 #: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Prediction region (dotted):</strong> where the accuracy of a FUTURE "
+"study in a new setting is expected to fall. It includes between-study "
+"heterogeneity and does NOT shrink with more studies."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Proportional-Hazards SROC Analysis:</strong> Holling model estimated "
+"by adjusted profile maximum likelihood"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Proportional-hazards SROC modeling</strong> - Models the trade-off "
+"between sensitivity and false-positive rate"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Publication Bias Assessment:</strong> Deeks' funnel plot asymmetry "
+"test"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Publication Bias:</strong> Deeks' test results and visual assessment"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Publication bias</strong> - Checks for selective reporting"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Publication year:</strong> For temporal trend investigation"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>REML (Random Effects, Default):</strong> Estimates between-study "
+"variance (τ²) to construct the SROC regression curve and prediction region. "
+"Recommended for diagnostic meta-analysis because test thresholds and patient "
+"populations inherently vary across studies."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>REML (Recommended):</strong> Default choice for most diagnostic "
+"meta-analyses. Most robust for random effects modeling with good performance "
+"across different scenarios."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Right Panel (Specificity):</strong> Proportion of healthy cases "
+"correctly identified"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Row order:</strong> studies are sorted by their mean of sensitivity "
+"and specificity, so each study keeps the same row in both panels and can be "
+"read across. Within one panel the rows are therefore <em>not</em> ranked by "
+"that panel's own metric"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Scale:</strong> both panels run from 0 to 1; the tables report the "
+"same quantities as percentages"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Screening Applications:</strong> Prioritize high sensitivity (≥90%)"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Small Sample:</strong> Funnel plot unreliable with &lt;10 studies"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Small Studies Present:</strong> Range of precision levels represented"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>SROC Plot:</strong> Summary Receiver Operating Characteristic curve "
+"showing the trade-off between sensitivity and specificity across all studies."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Step 1:</strong> Select your study identifier variable"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Step 2:</strong> Assign TP, FP, FN, TN count variables"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Step 3:</strong> Choose analysis options (bivariate recommended)"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Step 4:</strong> Review pooled estimates and heterogeneity"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Step 5:</strong> Interpret in your clinical context"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
 msgid "<strong>Studies corrected:</strong> %d of %d (%s)"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Study identifier:</strong> Unique name or ID for each study (e.g., "
+"'Smith_2020', 'Study_1')"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Study Selection:</strong> Number of studies included and excluded"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Symmetric Funnel:</strong> Studies distributed evenly on both sides"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Technical Factors:</strong> Staining protocols, antibody sources, "
+"automation"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Technical method:</strong> Staining protocol (e.g., 'automated', "
+"'manual')"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -764,6 +1328,79 @@ msgid ""
 "test and on the clinical cost of a false negative versus a false positive - "
 "none of which this analysis knows. Read the prediction interval alongside "
 "the pooled pair before applying either to practice."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>These models answer related questions using different "
+"parameterizations:</strong>"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>True negatives (TN):</strong> Number correctly identified as negative"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>True positives (TP):</strong> Number correctly identified as positive"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Upper Left Corner:</strong> Ideal performance (high sensitivity, low "
+"false positive rate)"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Use this plot to:</strong> Visualize test performance trade-offs, "
+"identify optimal operating points, and assess consistency across different "
+"study populations and settings."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Use this when:</strong> Studies use the same diagnostic threshold"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Variable Performance:</strong> high heterogeneity indicates that "
+"accuracy differed across the included populations and protocols"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Variance Components:</strong> Specialized approach for variance "
+"component estimation, typically used in advanced methodological research."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Wide CIs:</strong> Small studies with less precise estimates"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Wide Spread:</strong> Points scattered = high heterogeneity "
+"(investigate sources)"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>X-axis:</strong> False Positive Rate (1 - Specificity) - lower is "
+"better"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>X-axis:</strong> Log Diagnostic Odds Ratio (effect size)"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Y-axis:</strong> 1/√(effective sample size), reversed so the most "
+"precise studies sit at the top (Deeks' funnel plot)"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Y-axis:</strong> True Positive Rate (Sensitivity) - higher is better"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -1061,6 +1698,10 @@ msgid ""
 "table shows the raw counts."
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "About Diagnostic Test Meta-Analysis"
+msgstr ""
+
 #: R/swimmerplot-html.R
 msgid "About Swimmer Plot Analysis"
 msgstr ""
@@ -1072,11 +1713,16 @@ msgid "About This Analysis"
 msgstr ""
 
 #: swimmerplot/options/showAbout.title
+#: waterfall/options/showAboutAnalysis.title
 msgid "About this analysis"
 msgstr ""
 
 #: swimmerplot/options/timeDisplay/absolute.title
 msgid "Absolute (use actual start times)"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Accounts for correlation between sensitivity and specificity"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -1129,11 +1775,8 @@ msgstr ""
 msgid "Additional Analyses"
 msgstr ""
 
-#: ihcheterogeneity/ui[0][5].label
-msgid "Additional Regional Measurements"
-msgstr ""
-
 #: ihcheterogeneity/options/biopsies.title
+#: ihcheterogeneity/ui[0][5].label
 msgid "Additional regional measurements"
 msgstr ""
 
@@ -1181,6 +1824,14 @@ msgid ""
 msgstr ""
 
 #: R/diagnosticmeta.b.R
+msgid "AI Algorithm Implementation:"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "AI algorithm performance meta-analysis for clinical implementation"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
 msgid ""
 "All asymmetry tests have low power, particularly when the diagnostic odds "
 "ratio is heterogeneous, so a non-significant result does not establish that "
@@ -1203,6 +1854,10 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid "All required variables are selected"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "All values are non-negative integers"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -1260,6 +1915,10 @@ msgstr ""
 msgid "Analysis Information"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Analysis Methods"
+msgstr ""
+
 #: diagnosticmeta/ui[1][0].label
 msgid "Analysis Options"
 msgstr ""
@@ -1282,7 +1941,7 @@ msgid "Analysis Summary in Plain Language"
 msgstr ""
 
 #: waterfall/ui[2][1][1][1].label
-msgid "Annotation Tracks"
+msgid "Annotation tracks"
 msgstr ""
 
 #: waterfall/options/annotationVars.title
@@ -1306,14 +1965,25 @@ msgid "Arrow: patient still at risk (censored / alive) at the data cutoff."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
+msgid ""
+"Ask first whether the small studies differ clinically from the large ones - "
+"spectrum, setting, threshold, reference standard"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Assessing biomarker diagnostic accuracy"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Assessment of test performance heterogeneity and variation sources"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
 msgid "Asymmetry detected (p < 0.05)"
 msgstr ""
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"At least 2 regional measurements are required for inter-regional "
-"heterogeneity analysis. With a reference (whole section) measurement "
-"selected, a single regional measurement is sufficient."
+#: R/diagnosticmeta.b.R
+msgid "At least 3 studies with complete data"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -1363,7 +2033,7 @@ msgid "Bar width"
 msgstr ""
 
 #: waterfall/options/showBaseline.title
-msgid "Baseline (Y = 0) line"
+msgid "Baseline (y = 0) line"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -1460,6 +2130,10 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "Biomarker correlation studies"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Biomarker diagnostic accuracy synthesis for guideline development"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -1640,11 +2314,11 @@ msgid "Censoring-aware; %d progression events; %s"
 msgstr ""
 
 #: swimmerplot/ui[0][0][4].label
-msgid "Censoring/Event Status (Optional)"
+msgid "Censoring/Event status (optional)"
 msgstr ""
 
 #: swimmerplot/options/censorVar.title
-msgid "Censoring/Event Status Variable"
+msgid "Censoring/Event status variable"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -1681,6 +2355,10 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "Check if baseline measurements are correct"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Check if confidence intervals overlap substantially"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -1732,12 +2410,24 @@ msgstr ""
 msgid "Click and drag to select text, then copy (Ctrl+C/Cmd+C) for use in reports."
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Clinical Application Guidance"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Clinical Applications"
+msgstr ""
+
 #: R/ihcheterogeneity.b.R
 msgid "Clinical Assessment:"
 msgstr ""
 
 #: R/waterfall.b.R
 msgid "Clinical Context:"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Clinical Decision Making"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -1761,6 +2451,7 @@ msgstr ""
 msgid "Clinical Impact"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
 #: R/swimmerplot.b.R
 #: diagnosticmeta/results/likelihoodRatioGuide.columns.title
 #: ihcheterogeneity/results/reproducibilitytable.columns.title
@@ -1773,6 +2464,7 @@ msgstr ""
 
 #: diagnosticmeta/options/show_interpretation.title
 #: diagnosticmeta/ui[1][3][0]/show_interpretation.label
+#: ihcheterogeneity/options/showInterpretation.title
 #: swimmerplot/options/showInterpretation.title
 msgid "Clinical interpretation"
 msgstr ""
@@ -1783,6 +2475,10 @@ msgstr ""
 
 #: diagnosticmeta/results/interpretation.title
 msgid "Clinical Interpretation and Guidelines"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Clinical Interpretation Guidelines"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -1829,6 +2525,10 @@ msgstr ""
 msgid "Clinical Summary"
 msgstr ""
 
+#: waterfall/options/showClinicalSummary.title
+msgid "Clinical summary"
+msgstr ""
+
 #: R/waterfall.b.R
 #: waterfall/results/clinicalGlossary.title
 msgid "Clinical Terms & Definitions"
@@ -1844,6 +2544,10 @@ msgstr ""
 
 #: R/swimmerplot-html.R
 msgid "Clinical trial data visualization and regulatory submissions"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Closer to upper-left corner = better overall diagnostic accuracy"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -1886,7 +2590,7 @@ msgid ""
 msgstr ""
 
 #: diagnosticmeta/options/color_palette/colorblind_safe.title
-msgid "Color-Blind Safe"
+msgid "Color-Blind safe"
 msgstr ""
 
 #: swimmerplot/options/colorPalette/viridis.title
@@ -1922,6 +2626,12 @@ msgstr ""
 msgid "Colors bars by RECIST categories (CR/PR/SD/PD) or patient groups"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid ""
+"Combines results from multiple diagnostic accuracy studies to estimate "
+"overall test performance through:"
+msgstr ""
+
 #: R/swimmerplot.b.R
 msgid ""
 "Common formats: 2023-01-15 (treatment start), 15/01/2023 (surgery date), or "
@@ -1938,6 +2648,18 @@ msgstr ""
 msgid ""
 "Common formats: 2023-06-15 (treatment end), 15/06/2023 (last follow-up), or "
 "numeric days from treatment start"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Common Sources of Heterogeneity:"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Compare triangle position to individual studies for consistency"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Comparing imaging modalities"
 msgstr ""
 
 #: ihcheterogeneity/results/samplingbiastable.columns.title
@@ -2002,8 +2724,12 @@ msgstr ""
 msgid "Complete response: n = %d (%.1f%%)"
 msgstr ""
 
+#: R/ihcheterogeneity.b.R
+msgid "Complete the measurement selection"
+msgstr ""
+
 #: ihcheterogeneity/options/analysis_type/comprehensive.title
-msgid "Comprehensive Analysis"
+msgid "Comprehensive analysis"
 msgstr ""
 
 #: package/analyses/diagnosticmeta.description
@@ -2043,6 +2769,10 @@ msgstr ""
 msgid "Confidence level (%)"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Confidence region vs prediction region"
+msgstr ""
+
 #: R/swimmerplot-html.R
 msgid ""
 "Configuring the date settings properly ensures accurate timeline "
@@ -2064,11 +2794,8 @@ msgstr ""
 msgid "Confirmation"
 msgstr ""
 
-#: waterfall/ui[0][4].label
-msgid "Confirmation Status (optional)"
-msgstr ""
-
 #: waterfall/options/confirmationVar.title
+#: waterfall/ui[0][4].label
 msgid "Confirmation status (optional)"
 msgstr ""
 
@@ -2094,6 +2821,14 @@ msgstr ""
 msgid ""
 "Consider averaging more than one region per case or revising the sampling "
 "protocol."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Consider contacting study authors for additional data"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Consider whether variation reflects true differences or chance"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -2250,6 +2985,10 @@ msgid ""
 "professional clinical visualization."
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Cross-population comparison of diagnostic test performance"
+msgstr ""
+
 #: R/swimmerplot-html.R
 msgid "Custom glyphs for clinical events"
 msgstr ""
@@ -2299,7 +3038,7 @@ msgid "CV threshold (%)"
 msgstr ""
 
 #: ihcheterogeneity/options/cv_threshold.title
-msgid "CV Threshold for Acceptable Variability"
+msgid "CV threshold for acceptable variability"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -2332,6 +3071,10 @@ msgstr ""
 
 #: waterfall/options/inputType.title
 msgid "Data input type"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Data Preparation Checklist"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -2385,7 +3128,7 @@ msgid "Date Format Detected"
 msgstr ""
 
 #: swimmerplot/options/dateFormat.title
-msgid "Date Format in Data"
+msgid "Date format in data"
 msgstr ""
 
 #: swimmerplot/options/timeType/datetime.title
@@ -2459,6 +3202,10 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "Deeks' Funnel Plot Asymmetry Test"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Deeks' Funnel Plot Test:"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -2557,10 +3304,15 @@ msgstr ""
 msgid "Diagnostic Odds Ratio"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Diagnostic Odds Ratio (DOR)"
+msgstr ""
+
 #: package/datasets/DiagnosticTestMeta-Analysis.name
 msgid "Diagnostic Test Meta-Analysis"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
 #: package/analyses/diagnosticmeta.title
 #: package/analyses/diagnosticmeta.menuTitle
 #: diagnosticmeta/options.title
@@ -2578,6 +3330,10 @@ msgid ""
 "Direction for the response sort. Conventional = worst (highest) on the left, "
 "best (lowest/most negative) on the right -- the standard oncology waterfall "
 "layout."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Directly interpretable for clinical decision-making"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -2753,7 +3509,7 @@ msgid "End time"
 msgstr ""
 
 #: swimmerplot/ui[0][0][2].label
-msgid "End Time (Required)"
+msgid "End time (required)"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -2855,6 +3611,10 @@ msgstr ""
 msgid "Evaluable Patients"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Evaluating AI algorithms for pathology diagnosis"
+msgstr ""
+
 #: swimmerplot/results/eventMarkerTable.title
 msgid "Event Marker Summary"
 msgstr ""
@@ -2891,11 +3651,8 @@ msgstr ""
 msgid "Event Markers:"
 msgstr ""
 
-#: swimmerplot/ui[3][1][1].label
-msgid "Event Time Variable"
-msgstr ""
-
 #: swimmerplot/options/eventTimeVar.title
+#: swimmerplot/ui[3][1][1].label
 msgid "Event time variable"
 msgstr ""
 
@@ -2907,11 +3664,8 @@ msgstr ""
 msgid "Event Type"
 msgstr ""
 
-#: swimmerplot/ui[3][1][0].label
-msgid "Event Type Variable"
-msgstr ""
-
 #: swimmerplot/options/eventVar.title
+#: swimmerplot/ui[3][1][0].label
 msgid "Event type variable"
 msgstr ""
 
@@ -2970,6 +3724,10 @@ msgstr ""
 
 #: package/datasets/WaterfallPlot.description
 msgid "Example analysis for Waterfall Plot."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Example Data Format"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -3053,11 +3811,11 @@ msgid "EXTREME VALUES DETECTED"
 msgstr ""
 
 #: diagnosticmeta/ui[0][3][0].label
-msgid "False Negatives (Disease+, Test-)"
+msgid "False negatives (disease+, test-)"
 msgstr ""
 
 #: diagnosticmeta/options/false_negatives.title
-msgid "False Negatives (FN)"
+msgid "False negatives (FN)"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -3069,15 +3827,27 @@ msgid "False Positive Rate (1 - Specificity)"
 msgstr ""
 
 #: diagnosticmeta/ui[0][2][0].label
-msgid "False Positives (Disease-, Test+)"
+msgid "False positives (disease-, test+)"
 msgstr ""
 
 #: diagnosticmeta/options/false_positives.title
-msgid "False Positives (FP)"
+msgid "False positives (FP)"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "False positives is still empty."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "false_negatives"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "false_positives"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Features Consistent With a Symmetric Funnel"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -3106,6 +3876,14 @@ msgstr ""
 #: R/swimmerplot.b.R
 #: R/waterfall.b.R
 msgid "Fisher's exact test"
+msgstr ""
+
+#: R/swimmerplot.b.R
+#: R/waterfall.b.R
+msgid ""
+"Fisher's exact test for %s could not be computed: %s. No p-value is "
+"reported. Review the group counts or combine groups only when clinically "
+"justified."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -3208,6 +3986,10 @@ msgid "Forest Plot Explanation"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
+msgid "Forest Plot Interpretation Guide"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
 msgid "Forest Plot: Sensitivity and Specificity by Study"
 msgstr ""
 
@@ -3216,11 +3998,15 @@ msgid "Formal statistical tests comparing heterogeneity across compartments"
 msgstr ""
 
 #: R/swimmerplot-html.R
-msgid "Found date format:"
+msgid "Found date format {format} in your time variables."
 msgstr ""
 
 #: diagnosticmeta/results/individualstudies.columns.title
 msgid "FP"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Funnel Asymmetry Indicators"
 msgstr ""
 
 #: diagnosticmeta/options/funnel_plot.title
@@ -3237,6 +4023,10 @@ msgstr ""
 
 #: diagnosticmeta/results/funnelplot.title
 msgid "Funnel Plot for Publication Bias"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Funnel Plot Interpretation Guide"
 msgstr ""
 
 #: waterfall/options/generateCopyReadyReport.description.jamovi
@@ -3285,6 +4075,14 @@ msgstr ""
 msgid "Good reliability band (ICC = %.2f)."
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Good sensitivity (80-89%): acceptable miss rate for screening"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Good specificity (80-89%): some false positives"
+msgstr ""
+
 #: ihcheterogeneity/ui[4][0].label
 msgid "Greyed out when the analysis focus above already includes them."
 msgstr ""
@@ -3301,6 +4099,11 @@ msgstr ""
 msgid "Group Comparison Analysis"
 msgstr ""
 
+#: R/swimmerplot.b.R
+#: R/waterfall.b.R
+msgid "Group comparison could not be computed"
+msgstr ""
+
 #: waterfall/results/groupComparisonTest.title
 msgid "Group Comparison Statistical Test"
 msgstr ""
@@ -3315,11 +4118,8 @@ msgid ""
 "evaluable patient."
 msgstr ""
 
-#: waterfall/ui[0][3].label
-msgid "Group Variable"
-msgstr ""
-
 #: waterfall/options/groupVar.title
+#: waterfall/ui[0][3].label
 msgid "Group variable"
 msgstr ""
 
@@ -3328,7 +4128,7 @@ msgid "Grouping variable"
 msgstr ""
 
 #: swimmerplot/ui[0][0][5].label
-msgid "Grouping Variable (Optional)"
+msgid "Grouping variable (optional)"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -3363,6 +4163,7 @@ msgstr ""
 msgid "Heterogeneity analysis error: %s"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
 #: diagnosticmeta/results/heterogeneity.title
 msgid "Heterogeneity Assessment"
 msgstr ""
@@ -3462,6 +4263,10 @@ msgstr ""
 msgid "HSROC model did not converge"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "I[[SUP2]] Statistic Interpretation:"
+msgstr ""
+
 #: diagnosticmeta/results/heterogeneity.columns.title
 msgid "I² (%)"
 msgstr ""
@@ -3504,6 +4309,10 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "Identify baseline measurements (time = 0)"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "If no other explanation fits, pooled estimates may be overoptimistic"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -3558,6 +4367,14 @@ msgstr ""
 msgid ""
 "IHC heterogeneity analysis was performed on %d cases, each with both "
 "regional measurements."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "IHC marker validation across multiple pathology studies"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "IHC Marker Validation:"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -3634,10 +4451,6 @@ msgid ""
 "measurement variability."
 msgstr ""
 
-#: R/swimmerplot-html.R
-msgid "in your time variables"
-msgstr ""
-
 #: R/ihcheterogeneity.b.R
 msgid "INADEQUATE SAMPLING:"
 msgstr ""
@@ -3669,6 +4482,18 @@ msgstr ""
 msgid ""
 "Infinite diagnostic counts in variable(s) %s, analysis row(s) %s. Enter "
 "finite whole-number counts or mark unavailable values as missing."
+msgstr ""
+
+#: R/waterfall.b.R
+msgid ""
+"Infinite response or time values in variable '%s', analysis row(s) %s. Enter "
+"finite values or mark unavailable values as missing."
+msgstr ""
+
+#: R/swimmerplot.b.R
+msgid ""
+"Infinite time values in variable '%s', analysis row(s) %s. Enter finite "
+"start and end times or mark unavailable values as missing."
 msgstr ""
 
 #: swimmerplot/results/instructions.title
@@ -3727,6 +4552,10 @@ msgstr ""
 msgid "Interpretation"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Interpretation Caveats"
+msgstr ""
+
 #: R/ihcheterogeneity.b.R
 msgid "Interpretation:"
 msgstr ""
@@ -3744,6 +4573,10 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "Invalid Tumor Shrinkage Values Detected:"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Is distinct from the Rutter-Gatsonis HSROC model"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -3806,6 +4639,10 @@ msgstr ""
 msgid "Key Findings:"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Key Requirements & Assumptions"
+msgstr ""
+
 #: R/ihcheterogeneity.b.R
 msgid "Kruskal-Wallis test (per-case CV)"
 msgstr ""
@@ -3838,12 +4675,21 @@ msgstr ""
 msgid "Likelihood Ratio"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
 #: diagnosticmeta/results/likelihoodRatioGuide.title
 msgid "Likelihood Ratios for Clinical Decision-Making"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid "Limitations"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Limited sensitivity (&lt;70%): many cases missed"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Limited specificity (&lt;70%): many false alarms"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -3856,6 +4702,10 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "Log Diagnostic Odds Ratio"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Look for outlier studies (points far from others)"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -4237,7 +5087,7 @@ msgid "Method"
 msgstr ""
 
 #: diagnosticmeta/options/method/mm.title
-msgid "Method of Moments"
+msgid "Method of moments"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -4310,47 +5160,47 @@ msgstr ""
 
 #: swimmerplot/options/milestone1Date.title
 #: swimmerplot/ui[2][3][0].label
-msgid "Milestone 1 Date"
+msgid "Milestone 1 date"
 msgstr ""
 
 #: swimmerplot/options/milestone1Name.title
-msgid "Milestone 1 Name"
+msgid "Milestone 1 name"
 msgstr ""
 
 #: swimmerplot/options/milestone2Date.title
 #: swimmerplot/ui[2][3][1].label
-msgid "Milestone 2 Date"
+msgid "Milestone 2 date"
 msgstr ""
 
 #: swimmerplot/options/milestone2Name.title
-msgid "Milestone 2 Name"
+msgid "Milestone 2 name"
 msgstr ""
 
 #: swimmerplot/options/milestone3Date.title
 #: swimmerplot/ui[2][3][2].label
-msgid "Milestone 3 Date"
+msgid "Milestone 3 date"
 msgstr ""
 
 #: swimmerplot/options/milestone3Name.title
-msgid "Milestone 3 Name"
+msgid "Milestone 3 name"
 msgstr ""
 
 #: swimmerplot/options/milestone4Date.title
 #: swimmerplot/ui[2][3][3].label
-msgid "Milestone 4 Date"
+msgid "Milestone 4 date"
 msgstr ""
 
 #: swimmerplot/options/milestone4Name.title
-msgid "Milestone 4 Name"
+msgid "Milestone 4 name"
 msgstr ""
 
 #: swimmerplot/options/milestone5Date.title
 #: swimmerplot/ui[2][3][4].label
-msgid "Milestone 5 Date"
+msgid "Milestone 5 date"
 msgstr ""
 
 #: swimmerplot/options/milestone5Name.title
-msgid "Milestone 5 Name"
+msgid "Milestone 5 name"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -4406,7 +5256,7 @@ msgid "Milestone Support:"
 msgstr ""
 
 #: swimmerplot/ui[2][2][0].label
-msgid "Milestone Times/Dates"
+msgid "Milestone times/dates"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -4427,6 +5277,10 @@ msgstr ""
 
 #: swimmerplot/options/plotTheme/minimal.title
 msgid "Minimal"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Minimum 3 studies with 2[[TIMES]]2 diagnostic data"
 msgstr ""
 
 #: ihcheterogeneity/options/correlation_threshold.title
@@ -4471,6 +5325,10 @@ msgstr ""
 
 #: swimmerplot/options/dateFormat/myd.title
 msgid "MM-YYYY-DD"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Model Choice: Random vs Fixed Effects"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -4531,8 +5389,16 @@ msgstr ""
 msgid "Moderate sampling:"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Moderate sensitivity (70-79%): appreciable number of cases missed"
+msgstr ""
+
 #: R/ihcheterogeneity.b.R
 msgid "Moderate share of total variance"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Moderate specificity (70-79%): appreciable false-positive rate"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -4775,6 +5641,10 @@ msgid ""
 "No milestones to summarise. The milestone variable has no usable value for "
 "any patient in the analysis, or every milestone slot was skipped - see the "
 "notices above."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "No missing values in TP, FP, FN, TN columns"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -5202,7 +6072,7 @@ msgstr ""
 
 #: waterfall/options/ongoingVar.title
 #: waterfall/ui[0][5].label
-msgid "On-Treatment / Ongoing (optional)"
+msgid "On-Treatment / ongoing (optional)"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -5373,7 +6243,7 @@ msgstr ""
 
 #: ihcheterogeneity/options/wholesection.title
 #: ihcheterogeneity/ui[0][0].label
-msgid "Overall / Whole Slide / HotSpot (Optional)"
+msgid "Overall / whole slide / hotspot (optional)"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -5503,7 +6373,7 @@ msgid "Patient ID"
 msgstr ""
 
 #: swimmerplot/ui[0][0][0].label
-msgid "Patient ID (Required)"
+msgid "Patient ID (required)"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -5534,6 +6404,10 @@ msgstr ""
 
 #: R/swimmerplot-html.R
 msgid "Patient outcome tracking in longitudinal studies"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Patient spectrum should be clinically relevant"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -5790,7 +6664,7 @@ msgid "Planning ICC 0.90 (lower limit of excellent reliability)"
 msgstr ""
 
 #: diagnosticmeta/options/color_palette/plasma.title
-msgid "Plasma (Purple-Pink)"
+msgid "Plasma (purple-pink)"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -5843,6 +6717,10 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "Pooled Sensitivity"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Pooled Sensitivity and Specificity"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -5930,8 +6808,20 @@ msgstr ""
 msgid "Predictive Values by Prevalence"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Predictive Values in Clinical Practice:"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Preferred for meta-analyses with <em>homogeneous thresholds</em>"
+msgstr ""
+
 #: diagnosticmeta/results/predictiveValues.columns.title
 msgid "Prevalence"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Primary Results Interpretation"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -6053,6 +6943,10 @@ msgid ""
 "reverse Kaplan-Meier median follow-up calculation."
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Provides <em>intuitive</em> pooled sensitivity and specificity estimates"
+msgstr ""
+
 #: R/waterfall.b.R
 msgid "PT1        0     50          (baseline required)"
 msgstr ""
@@ -6077,6 +6971,7 @@ msgstr ""
 msgid "Publication bias analysis error: %s"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
 #: diagnosticmeta/results/publicationbias.title
 msgid "Publication Bias Assessment"
 msgstr ""
@@ -6091,6 +6986,10 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "Publication bias caution"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Purpose"
 msgstr ""
 
 #: diagnosticmeta/results/heterogeneity.columns.title
@@ -6123,12 +7022,20 @@ msgid ""
 "comparisons between spatial compartments."
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Quick Assessment Tips"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Quick Start Guide"
+msgstr ""
+
 #: R/waterfall.b.R
 msgid "Quick Tips:"
 msgstr ""
 
 #: ihcheterogeneity/options/sampling_strategy/random.title
-msgid "Random Sampling"
+msgid "Random sampling"
 msgstr ""
 
 #: waterfall/options/seed.title
@@ -6253,6 +7160,13 @@ msgstr ""
 msgid "Recommended Data Format:"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid ""
+"Refer to the <em>Likelihood Ratios for Clinical Decision-Making</em> table "
+"below for standard interpretation ranges for positive and negative "
+"likelihood ratios."
+msgstr ""
+
 #: R/ihcheterogeneity.b.R
 msgid "Reference"
 msgstr ""
@@ -6275,6 +7189,10 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid "Reference measurement:"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Reference standard should be consistent across studies"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -6334,22 +7252,22 @@ msgstr ""
 
 #: ihcheterogeneity/options/biopsy1.title
 #: ihcheterogeneity/ui[0][1].label
-msgid "Regional Measurement 1"
+msgid "Regional measurement 1"
 msgstr ""
 
 #: ihcheterogeneity/options/biopsy2.title
 #: ihcheterogeneity/ui[0][2].label
-msgid "Regional Measurement 2 (Optional)"
+msgid "Regional measurement 2 (optional)"
 msgstr ""
 
 #: ihcheterogeneity/options/biopsy3.title
 #: ihcheterogeneity/ui[0][3].label
-msgid "Regional Measurement 3 (Optional)"
+msgid "Regional measurement 3 (optional)"
 msgstr ""
 
 #: ihcheterogeneity/options/biopsy4.title
 #: ihcheterogeneity/ui[0][4].label
-msgid "Regional Measurement 4 (Optional)"
+msgid "Regional measurement 4 (optional)"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -6434,6 +7352,12 @@ msgstr ""
 msgid "Reitsma model returned unexpected coefficient structure"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid ""
+"Relates sensitivity (<em>p</em>) and false-positive rate (<em>u</em>) "
+"through <em>u</em><sup>theta</sup> = <em>p</em>"
+msgstr ""
+
 #: swimmerplot/options/timeDisplay/relative.title
 msgid "Relative (all start from 0)"
 msgstr ""
@@ -6458,7 +7382,7 @@ msgid "Reliability:"
 msgstr ""
 
 #: diagnosticmeta/options/method/reml.title
-msgid "REML (Recommended)"
+msgid "REML (recommended)"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -6469,8 +7393,24 @@ msgstr ""
 msgid "REPEATED VISIT TIMES"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Report the asymmetry as a limitation and interpret results cautiously"
+msgstr ""
+
 #: diagnosticmeta/ui[1][3].label
 msgid "Reporting Options"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Reporting Recommendations"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Reports tau<sup>2</sup> as between-study variation in diagnostic accuracy"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Reports theta as the diagnostic accuracy parameter"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -6478,7 +7418,7 @@ msgid "Representativeness:"
 msgstr ""
 
 #: ihcheterogeneity/options/analysis_type/reproducibility.title
-msgid "Reproducibility & Bias Assessment"
+msgid "Reproducibility & bias assessment"
 msgstr ""
 
 #: ihcheterogeneity/results/reproducibilitytable.title
@@ -6495,6 +7435,10 @@ msgstr ""
 
 #: R/swimmerplot-html.R
 msgid "Required Data"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Required Data Structure"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -6589,11 +7533,8 @@ msgstr ""
 msgid "Response category column"
 msgstr ""
 
-#: waterfall/ui[0][6].label
-msgid "Response Category Override (optional)"
-msgstr ""
-
 #: waterfall/options/responseCategoryVar.title
+#: waterfall/ui[0][6].label
 msgid "Response category override (optional)"
 msgstr ""
 
@@ -6662,7 +7603,7 @@ msgid "Response Type"
 msgstr ""
 
 #: waterfall/ui[0][1].label
-msgid "Response Value (Raw or Percentage Measurement)"
+msgid "Response value (raw or percentage measurement)"
 msgstr ""
 
 #: waterfall/options/responseVar.title
@@ -6695,11 +7636,11 @@ msgid ""
 msgstr ""
 
 #: swimmerplot/options/responseVar.title
-msgid "Response/Status Variable"
+msgid "Response/Status variable"
 msgstr ""
 
 #: swimmerplot/ui[0][0][3].label
-msgid "Response/Status Variable (Optional)"
+msgid "Response/Status variable (optional)"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -6851,6 +7792,10 @@ msgstr ""
 msgid "Sample size:"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Sample sizes are realistic (TP+FP+FN+TN = total cases per study)"
+msgstr ""
+
 #: R/ihcheterogeneity.b.R
 msgid "Sample-size planning needs at least two measurements per case."
 msgstr ""
@@ -6941,8 +7886,18 @@ msgstr ""
 msgid "SD: best change above -30% and below +20%; no minimum duration is required."
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Search for unpublished studies or negative results"
+msgstr ""
+
 #: R/swimmerplot-html.R
 msgid "Select 'Date Format':"
+msgstr ""
+
+#: R/ihcheterogeneity.b.R
+msgid ""
+"Select a reference measurement or a second distinct regional measurement to "
+"start the analysis."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -6953,6 +7908,10 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid "Select at least one regional measurement other than the reference."
+msgstr ""
+
+#: R/ihcheterogeneity.b.R
+msgid "Select at least one regional measurement to compare with the reference."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -7175,7 +8134,7 @@ msgid "Sort by variable"
 msgstr ""
 
 #: swimmerplot/ui[5][1][0].label
-msgid "Sort By Variable (Optional)"
+msgid "Sort by variable (optional)"
 msgstr ""
 
 #: waterfall/options/sortDirection.title
@@ -7255,7 +8214,7 @@ msgstr ""
 
 #: ihcheterogeneity/options/spatial_id.title
 #: ihcheterogeneity/ui[0][6].label
-msgid "Spatial Region ID (Optional)"
+msgid "Spatial region ID (optional)"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -7392,7 +8351,7 @@ msgid "Start time"
 msgstr ""
 
 #: swimmerplot/ui[0][0][1].label
-msgid "Start Time (Required)"
+msgid "Start time (required)"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -7439,6 +8398,10 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid "Statistical Interpretation:"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Statistical Method Selection Guide"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -7513,7 +8476,7 @@ msgid "Step-by-Step Progress:"
 msgstr ""
 
 #: ihcheterogeneity/options/sampling_strategy/stratified.title
-msgid "Stratified Sampling"
+msgid "Stratified sampling"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -7534,6 +8497,10 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "Studies excluded"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Studies should evaluate the same test and target condition"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -7561,10 +8528,18 @@ msgstr ""
 msgid "Study identifiers are not unique"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Study identifiers are unique"
+msgstr ""
+
 #: R/swimmerplot.b.R
 msgid ""
 "Study included %d patients with %d timeline observations. Median observed "
 "duration was %.1f %s (range: %.1f to %.1f %s)."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "study_name"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -7591,6 +8566,10 @@ msgstr ""
 #: diagnosticmeta/options/sroc_plot.title
 #: diagnosticmeta/ui[1][2][0]/sroc_plot.label
 msgid "Summary ROC plot"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Summary ROC Plot Interpretation Guide"
 msgstr ""
 
 #: swimmerplot/options/exportSummary.title
@@ -7644,6 +8623,10 @@ msgstr ""
 msgid "Switch to 'Percentage Changes' input format if changes are pre-calculated, OR"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Synthesizing evidence for clinical guidelines"
+msgstr ""
+
 #: ihcheterogeneity/results/samplingbiastable.description
 msgid "Systematic bias assessment between methods"
 msgstr ""
@@ -7695,7 +8678,7 @@ msgid ""
 msgstr ""
 
 #: ihcheterogeneity/options/sampling_strategy/systematic.title
-msgid "Systematic Sampling"
+msgid "Systematic sampling"
 msgstr ""
 
 #: diagnosticmeta/results/publicationbias.columns.title
@@ -8384,6 +9367,19 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
+"These answer different questions and are routinely confused. A tight "
+"<strong>confidence</strong> region means the pooled estimate is well "
+"determined; it says nothing about whether the assay will perform "
+"consistently. A wide <strong>prediction</strong> region means that even "
+"though the average is known precisely, the next study - or your laboratory - "
+"could see materially different sensitivity and specificity. <strong>For "
+"deciding whether to adopt an assay, the prediction region is the relevant "
+"one.</strong> When the two differ greatly, between-study heterogeneity "
+"dominates and the pooled point alone should not drive the decision."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
 "These are pooled estimates from the included studies only; how far they "
 "carry to another setting depends on the prediction region and on how "
 "comparable the positivity thresholds, patient spectrum and reference "
@@ -8422,6 +9418,13 @@ msgstr ""
 msgid ""
 "This model provides no prediction interval and no SROC prediction region, so "
 "it offers no model-consistent statement of how much studies differ."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"This module performs comprehensive meta-analysis of diagnostic test accuracy "
+"studies, specifically designed for pathology research including AI algorithm "
+"validation and biomarker diagnostic accuracy synthesis."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -8527,7 +9530,7 @@ msgid ""
 msgstr ""
 
 #: swimmerplot/options/timeUnit.title
-msgid "Time Unit for Display"
+msgid "Time unit for display"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -8549,7 +9552,7 @@ msgid "Time Variable (if needed)"
 msgstr ""
 
 #: waterfall/ui[0][2].label
-msgid "Time Variable (raw input, visits, spider plot)"
+msgid "Time variable (raw input, visits, spider plot)"
 msgstr ""
 
 #: waterfall/options/timeVar.title
@@ -8768,12 +9771,16 @@ msgstr ""
 msgid "Treatment/observation start time"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Triangle position shows where your pooled test performance lies"
+msgstr ""
+
 #: diagnosticmeta/ui[0][4][0].label
-msgid "True Negatives (Disease-, Test-)"
+msgid "True negatives (disease-, test-)"
 msgstr ""
 
 #: diagnosticmeta/options/true_negatives.title
-msgid "True Negatives (TN)"
+msgid "True negatives (TN)"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -8781,15 +9788,23 @@ msgid "True negatives is still empty."
 msgstr ""
 
 #: diagnosticmeta/ui[0][1][0].label
-msgid "True Positives (Disease+, Test+)"
+msgid "True positives (disease+, test+)"
 msgstr ""
 
 #: diagnosticmeta/options/true_positives.title
-msgid "True Positives (TP)"
+msgid "True positives (TP)"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "True positives is still empty."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "true_negatives"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "true_positives"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -8839,6 +9854,10 @@ msgid ""
 "Unable to evaluate sampling quality because the correlation or the "
 "variability could not be estimated; the notes under the Reproducibility "
 "Assessment table give the reason."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Understanding Bivariate and Proportional-Hazards SROC Models"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -8912,6 +9931,10 @@ msgid ""
 "model-consistent statement of between-study variability."
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Use this plot to identify studies for sensitivity analysis"
+msgstr ""
+
 #: package/analyses/waterfall.description
 #: waterfall/options.description.main
 msgid ""
@@ -8932,6 +9955,12 @@ msgid ""
 "categories through the category override). If your data list each lesion "
 "separately, use the lesion-level RECIST v1.1 analysis. It will be available "
 "in upcoming releases."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"Uses adjusted profile maximum likelihood and is suitable for smaller study "
+"sets"
 msgstr ""
 
 #: waterfall/results/todo2.title
@@ -9112,7 +10141,7 @@ msgid "VERY WIDE CONFIDENCE INTERVAL"
 msgstr ""
 
 #: diagnosticmeta/options/color_palette/viridis.title
-msgid "Viridis (Blue-Purple)"
+msgid "Viridis (blue-purple)"
 msgstr ""
 
 #: waterfall/ui[2][1][0].label
@@ -9252,12 +10281,25 @@ msgstr ""
 msgid "What is a Swimmer Plot?"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
 #: R/waterfall.b.R
 msgid "What This Analysis Does"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "What This Plot Shows"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "When reporting your meta-analysis results, include:"
+msgstr ""
+
 #: R/swimmerplot-html.R
 msgid "When to Use Swimmer Plots"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "When to Use This Analysis"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -9315,6 +10357,10 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "Why this matters:"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "Wide scatter of points = substantial between-study heterogeneity"
 msgstr ""
 
 #: ihcheterogeneity/results/samplesizetable.columns.title
@@ -9398,6 +10444,15 @@ msgid ""
 "With percentage input the spider plot connects the pre-calculated percent "
 "changes at each visit. If you have raw per-visit measurements, the raw input "
 "type gives trajectories computed against the time = 0 baseline."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"With the default zero-cell setting (no correction), where more than a "
+"quarter of the studies have a zero cell, no verdict is reported at all: the "
+"continuity correction the test needs produces asymmetry by itself. Choosing "
+"any Zero-Cell Correction leaves no zero cell for this test, so a verdict is "
+"always given"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R

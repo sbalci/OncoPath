@@ -10,6 +10,9 @@
             "- descriptive only: too many zero cells for a valid asymmetry test": [
                 ""
             ],
+            "'%s' (r = %s, 95%% CI %s to %s)": [
+                ""
+            ],
             "(%d of %d evaluable patients achieved complete or partial response)": [
                 ""
             ],
@@ -151,7 +154,7 @@
             "%d of %d rows were not analysed because they lack a reference value or any regional measurement.": [
                 ""
             ],
-            "%d of %d studies have a cell below 5. The bivariate model used here approximates the logit sensitivity and specificity as normal, which is biased when cells are that small, and any zero cell additionally needs a continuity correction. Published comparisons put the gap against an exact binomial (generalised linear mixed) model at several percentage points on data like this. Treat the pooled pair as approximate, and confirm it in software offering a binomial bivariate model before relying on it.": [
+            "%d of %d studies have a cell of 0 or 1. The bivariate model used here approximates the logit sensitivity and specificity as normal, which is biased when cells are that small, and any zero cell additionally needs a continuity correction. Published comparisons put the gap against an exact binomial (generalised linear mixed) model at several percentage points on data like this. Treat the pooled pair as approximate, and confirm it in software offering a binomial bivariate model before relying on it.": [
                 ""
             ],
             "%d of %d studies have fractional counts. Cell counts are numbers of participants; check whether percentages or rates were entered. These studies are excluded.": [
@@ -340,6 +343,9 @@
             "+1/N to all cells (N = study size)": [
                 ""
             ],
+            "+1/N to all cells (n = study size)": [
+                ""
+            ],
             "<br><br><strong>Overall Summary:</strong> performance is <em>asymmetric</em> - pooled sensitivity (%.1f%%) and pooled specificity (%.1f%%) fall in different performance bands.": [
                 ""
             ],
@@ -379,7 +385,160 @@
             "<em>Note:</em> Zero-cell corrections can introduce bias, especially in large studies. Results should be interpreted with caution.": [
                 ""
             ],
+            "<em>The bands below are Higgins' conventional cut-points from intervention meta-analysis. They are not established thresholds for diagnostic accuracy, where a high I[[SUP2]] commonly reflects studies using different positivity thresholds - the situation the SROC curve exists to model - rather than a reason to abandon the analysis. Treat them as rough orientation, and prefer the prediction region.</em>": [
+                ""
+            ],
+            "<em>These features do not establish that publication bias is absent: asymmetry tests have low power, and are unreliable with fewer than 10 studies.</em>": [
+                ""
+            ],
             "<p><strong>Error:</strong> {message}</p>": [
+                ""
+            ],
+            "<strong> Clinical Insight:</strong> The plotted SROC curve is derived from the <em>bivariate model</em>. The proportional-hazards SROC table is a separate compact model of diagnostic accuracy and between-study variation; it should not be interpreted as a Rutter-Gatsonis HSROC threshold/accuracy table.": [
+                ""
+            ],
+            "<strong> Pro Tip:</strong> Always interpret meta-analysis results in the context of your specific clinical population and intended use. A test excellent for one application may be inappropriate for another.": [
+                ""
+            ],
+            "<strong> Recommendation:</strong> Start with REML unless you have specific methodological requirements. It provides the best balance of statistical properties and computational stability for diagnostic test meta-analysis.": [
+                ""
+            ],
+            "<strong> Tip:</strong> Start with the bivariate model and forest plot to understand overall performance, then explore heterogeneity sources with meta-regression if needed.": [
+                ""
+            ],
+            "<strong> When the Funnel Plot is Asymmetric:</strong>": [
+                ""
+            ],
+            "<strong>Above Diagonal:</strong> Better than chance performance": [
+                ""
+            ],
+            "<strong>Action Needed:</strong> If the funnel is asymmetric, look for a clinical explanation first, then for unpublished studies": [
+                ""
+            ],
+            "<strong>Asymmetric Funnel:</strong> Studies concentrated on one side at the imprecise end of the plot": [
+                ""
+            ],
+            "<strong>Balanced Performance:</strong> Consider clinical costs of false positives vs false negatives": [
+                ""
+            ],
+            "<strong>Before running analysis, verify:</strong>": [
+                ""
+            ],
+            "<strong>Bivariate modeling</strong> - Jointly analyzes sensitivity and specificity": [
+                ""
+            ],
+            "<strong>Bivariate Random-Effects Model (Recommended Primary Approach):</strong>": [
+                ""
+            ],
+            "<strong>Bivariate Random-Effects Model (Recommended):</strong> Jointly analyzes sensitivity and specificity accounting for correlation": [
+                ""
+            ],
+            "<strong>Choose the appropriate estimation method for your meta-analysis:</strong>": [
+                ""
+            ],
+            "<strong>Clinical Implications:</strong> Population-specific predictive values": [
+                ""
+            ],
+            "<strong>Confidence region (dashed):</strong> how precisely the POOLED point is estimated. It shrinks as more studies are added.": [
+                ""
+            ],
+            "<strong>Confirmatory Testing:</strong> Prioritize high specificity (≥90%)": [
+                ""
+            ],
+            "<strong>Consistent Performance:</strong> low measured heterogeneity means the included studies produced similar estimates; with few studies it is imprecisely estimated and does not by itself show that performance transfers to a new setting": [
+                ""
+            ],
+            "<strong>Consistent Results:</strong> Points clustered together = low heterogeneity": [
+                ""
+            ],
+            "<strong>Deeks' Test p < 0.05:</strong> Statistical evidence of funnel plot asymmetry - evidence of asymmetry, not of publication bias; see the causes listed below": [
+                ""
+            ],
+            "<strong>Deeks' Test p ≥ 0.05:</strong> No statistical evidence of asymmetry": [
+                ""
+            ],
+            "<strong>Diagonal Line:</strong> Represents random chance (no discriminative ability)": [
+                ""
+            ],
+            "<strong>DOR &lt; 5:</strong> Limited discriminative ability": [
+                ""
+            ],
+            "<strong>DOR > 25:</strong> Excellent overall discriminative ability": [
+                ""
+            ],
+            "<strong>DOR 10-25:</strong> Good discriminative ability": [
+                ""
+            ],
+            "<strong>DOR 5-10:</strong> Moderate discriminative ability": [
+                ""
+            ],
+            "<strong>Each Point:</strong> One study in your meta-analysis": [
+                ""
+            ],
+            "<strong>Essential Variables (Required):</strong>": [
+                ""
+            ],
+            "<strong>Expected Pattern:</strong> Inverted funnel shape if no bias present": [
+                ""
+            ],
+            "<strong>False negatives (FN):</strong> Number incorrectly identified as negative": [
+                ""
+            ],
+            "<strong>False positives (FP):</strong> Number incorrectly identified as positive": [
+                ""
+            ],
+            "<strong>Fixed Effects:</strong> Assumes every study shares the exact same sensitivity and specificity (τ² = 0). Under this assumption, the SROC curve and prediction region are undefined, and confidence intervals are narrower by construction.": [
+                ""
+            ],
+            "<strong>Fixed Effects:</strong> Use when between-study heterogeneity is minimal or you want to assume all studies estimate the same underlying effect size.": [
+                ""
+            ],
+            "<strong>Forest Plot:</strong> Displays individual study results for sensitivity and specificity with confidence intervals. Each study is represented by a point (estimate) with horizontal lines (confidence intervals).": [
+                ""
+            ],
+            "<strong>Funnel Plot:</strong> Assesses publication bias by plotting study precision against effect size (log diagnostic odds ratio).": [
+                ""
+            ],
+            "<strong>Gap in Lower Region:</strong> Small studies with low accuracy absent": [
+                ""
+            ],
+            "<strong>Geographic region:</strong> Study location for population analysis": [
+                ""
+            ],
+            "<strong>Geographic/Temporal:</strong> Population differences, technology evolution": [
+                ""
+            ],
+            "<strong>Heterogeneity assessment</strong> - Evaluates consistency across studies": [
+                ""
+            ],
+            "<strong>Heterogeneity:</strong> Clinical differences can mimic publication bias": [
+                ""
+            ],
+            "<strong>Heterogeneity:</strong> I[[SUP2]] values and potential sources investigated": [
+                ""
+            ],
+            "<strong>Holling Proportional-Hazards SROC Model:</strong>": [
+                ""
+            ],
+            "<strong>Horizontal Lines:</strong> Wilson score confidence intervals (at the chosen confidence level) showing precision of estimates": [
+                ""
+            ],
+            "<strong>I[[SUP2]] &gt; 75%:</strong> Considerable heterogeneity - a single pooled point is unlikely to describe the evidence; investigate thresholds, spectrum and reference standards, and report the SROC curve and prediction region": [
+                ""
+            ],
+            "<strong>I[[SUP2]] < 25%:</strong> Little heterogeneity detected on this margin. I[[SUP2]] is imprecisely estimated when few studies are pooled and does not describe the bivariate model, so on its own it does not establish that pooling is appropriate - inspect the prediction region and check that positivity thresholds, patient spectrum and reference standards are comparable": [
+                ""
+            ],
+            "<strong>I[[SUP2]] 25-50%:</strong> Moderate heterogeneity - investigate potential sources": [
+                ""
+            ],
+            "<strong>I[[SUP2]] 50-75%:</strong> Substantial heterogeneity - pooling questionable": [
+                ""
+            ],
+            "<strong>Important:</strong> Sensitivity and specificity are test characteristics, but clinicians need predictive values that depend on disease prevalence in their population. See the <em>Predictive Values by Prevalence</em> table below for estimated PPV and NPV across typical prevalence settings based on the pooled accuracy of this meta-analysis.": [
+                ""
+            ],
+            "<strong>Individual Studies:</strong> Circles sized by sample size": [
                 ""
             ],
             "<strong>Interpretation:</strong> a negative result reduces, but does not remove, the possibility of disease at this sensitivity.": [
@@ -394,7 +553,31 @@
             "<strong>Interpretation:</strong> at this specificity an appreciable share of positive results are expected to be false positives.": [
                 ""
             ],
+            "<strong>Left Panel (Sensitivity):</strong> Proportion of diseased cases correctly identified": [
+                ""
+            ],
+            "<strong>Likelihood Ratios:</strong> For clinical decision-making context": [
+                ""
+            ],
+            "<strong>Limitations:</strong> Study quality, missing data, generalizability": [
+                ""
+            ],
+            "<strong>Maximum Likelihood:</strong> Alternative estimation approach when maximum likelihood estimation is specifically preferred or required by study protocol.": [
+                ""
+            ],
+            "<strong>Meta-Regression:</strong> Investigates sources of heterogeneity using study-level covariates": [
+                ""
+            ],
+            "<strong>Method of Moments:</strong> Classical moment-based estimation method, useful for comparison with older meta-analyses or when computational resources are limited.": [
+                ""
+            ],
             "<strong>Method:</strong> %s": [
+                ""
+            ],
+            "<strong>Methodological:</strong> Reference standards, blinding, cut-off thresholds": [
+                ""
+            ],
+            "<strong>Narrow CIs:</strong> Large studies with precise estimates": [
                 ""
             ],
             "<strong>Negative Likelihood Ratio:</strong> %.2f - A negative test is %.1fx more likely in healthy than disease": [
@@ -406,7 +589,43 @@
             "<strong>Negative Likelihood Ratio:</strong> Not estimable with the current data. LR- is (1 - sensitivity) / specificity, so it needs a pooled specificity above zero and finite pooled estimates; here the pooled specificity is 0 or an estimate did not converge. Read the pooled specificity and its confidence interval in the summary above to see which.": [
                 ""
             ],
+            "<strong>Not external validation:</strong> a meta-analysis summarises existing published evidence and inherits any publication, spectrum or reference-standard bias of the included studies; it is not a prospective evaluation in an intended-use population with a pre-specified threshold": [
+                ""
+            ],
             "<strong>Note:</strong> the confidence interval spans more than one performance category, so this classification is not firmly established by the pooled data.": [
+                ""
+            ],
+            "<strong>Optional Variables for Meta-Regression:</strong>": [
+                ""
+            ],
+            "<strong>Other Causes:</strong> Different thresholds, narrower patient spectra in small studies, language or database bias, or chance": [
+                ""
+            ],
+            "<strong>p < 0.05:</strong> The funnel plot is asymmetric - small studies report systematically different accuracy from large ones. Publication bias is one explanation; heterogeneity, a threshold effect, and a genuine relation between study size and accuracy (smaller studies often use narrower spectra) are others. The test cannot tell them apart, so a significant result is a prompt to investigate, not a finding of publication bias": [
+                ""
+            ],
+            "<strong>p ≥ 0.05:</strong> No statistically significant funnel-plot asymmetry was detected. This does NOT indicate that publication bias is unlikely: Deeks' test has low power and is unreliable with fewer than 10 studies, so a non-significant result is uninformative when few studies are pooled": [
+                ""
+            ],
+            "<strong>Patient population:</strong> Disease stage, demographics (e.g., 'early_stage', 'advanced', 'mixed')": [
+                ""
+            ],
+            "<strong>Patient Population:</strong> Disease stage, severity, demographics": [
+                ""
+            ],
+            "<strong>Point Scatter:</strong> Studies clustered tightly = consistent test performance": [
+                ""
+            ],
+            "<strong>Pooled Estimate:</strong> Large triangle showing meta-analytic summary": [
+                ""
+            ],
+            "<strong>Pooled Estimates:</strong> Sensitivity and specificity with confidence intervals at the level chosen in Advanced Options": [
+                ""
+            ],
+            "<strong>Pooled Sensitivity:</strong> Proportion of diseased cases correctly identified <ul> <li>Excellent sensitivity (≥90%): few diseased cases missed": [
+                ""
+            ],
+            "<strong>Pooled Specificity:</strong> Proportion of non-diseased cases correctly identified <ul> <li>Excellent specificity (≥90%): few false alarms": [
                 ""
             ],
             "<strong>Positive Likelihood Ratio:</strong> %.2f - A positive test is %.1fx more likely in disease than healthy": [
@@ -415,10 +634,130 @@
             "<strong>Positive Likelihood Ratio:</strong> Not estimable with the current data (specificity ≈ 100% or model unstable).": [
                 ""
             ],
+            "<strong>Prediction region (dotted):</strong> where the accuracy of a FUTURE study in a new setting is expected to fall. It includes between-study heterogeneity and does NOT shrink with more studies.": [
+                ""
+            ],
+            "<strong>Proportional-Hazards SROC Analysis:</strong> Holling model estimated by adjusted profile maximum likelihood": [
+                ""
+            ],
+            "<strong>Proportional-hazards SROC modeling</strong> - Models the trade-off between sensitivity and false-positive rate": [
+                ""
+            ],
+            "<strong>Publication Bias Assessment:</strong> Deeks' funnel plot asymmetry test": [
+                ""
+            ],
+            "<strong>Publication Bias:</strong> Deeks' test results and visual assessment": [
+                ""
+            ],
+            "<strong>Publication bias</strong> - Checks for selective reporting": [
+                ""
+            ],
+            "<strong>Publication year:</strong> For temporal trend investigation": [
+                ""
+            ],
+            "<strong>REML (Random Effects, Default):</strong> Estimates between-study variance (τ²) to construct the SROC regression curve and prediction region. Recommended for diagnostic meta-analysis because test thresholds and patient populations inherently vary across studies.": [
+                ""
+            ],
+            "<strong>REML (Recommended):</strong> Default choice for most diagnostic meta-analyses. Most robust for random effects modeling with good performance across different scenarios.": [
+                ""
+            ],
+            "<strong>Right Panel (Specificity):</strong> Proportion of healthy cases correctly identified": [
+                ""
+            ],
+            "<strong>Row order:</strong> studies are sorted by their mean of sensitivity and specificity, so each study keeps the same row in both panels and can be read across. Within one panel the rows are therefore <em>not</em> ranked by that panel's own metric": [
+                ""
+            ],
+            "<strong>Scale:</strong> both panels run from 0 to 1; the tables report the same quantities as percentages": [
+                ""
+            ],
+            "<strong>Screening Applications:</strong> Prioritize high sensitivity (≥90%)": [
+                ""
+            ],
+            "<strong>Small Sample:</strong> Funnel plot unreliable with &lt;10 studies": [
+                ""
+            ],
+            "<strong>Small Studies Present:</strong> Range of precision levels represented": [
+                ""
+            ],
+            "<strong>SROC Plot:</strong> Summary Receiver Operating Characteristic curve showing the trade-off between sensitivity and specificity across all studies.": [
+                ""
+            ],
+            "<strong>Step 1:</strong> Select your study identifier variable": [
+                ""
+            ],
+            "<strong>Step 2:</strong> Assign TP, FP, FN, TN count variables": [
+                ""
+            ],
+            "<strong>Step 3:</strong> Choose analysis options (bivariate recommended)": [
+                ""
+            ],
+            "<strong>Step 4:</strong> Review pooled estimates and heterogeneity": [
+                ""
+            ],
+            "<strong>Step 5:</strong> Interpret in your clinical context": [
+                ""
+            ],
             "<strong>Studies corrected:</strong> %d of %d (%s)": [
                 ""
             ],
+            "<strong>Study identifier:</strong> Unique name or ID for each study (e.g., 'Smith_2020', 'Study_1')": [
+                ""
+            ],
+            "<strong>Study Selection:</strong> Number of studies included and excluded": [
+                ""
+            ],
+            "<strong>Symmetric Funnel:</strong> Studies distributed evenly on both sides": [
+                ""
+            ],
+            "<strong>Technical Factors:</strong> Staining protocols, antibody sources, automation": [
+                ""
+            ],
+            "<strong>Technical method:</strong> Staining protocol (e.g., 'automated', 'manual')": [
+                ""
+            ],
             "<strong>These bands are a descriptive convention, not a fitness-for-use judgement.</strong> Whether an assay is adequate for screening, confirmation or any other role depends on the prevalence in the population you intend to test and on the clinical cost of a false negative versus a false positive - none of which this analysis knows. Read the prediction interval alongside the pooled pair before applying either to practice.": [
+                ""
+            ],
+            "<strong>These models answer related questions using different parameterizations:</strong>": [
+                ""
+            ],
+            "<strong>True negatives (TN):</strong> Number correctly identified as negative": [
+                ""
+            ],
+            "<strong>True positives (TP):</strong> Number correctly identified as positive": [
+                ""
+            ],
+            "<strong>Upper Left Corner:</strong> Ideal performance (high sensitivity, low false positive rate)": [
+                ""
+            ],
+            "<strong>Use this plot to:</strong> Visualize test performance trade-offs, identify optimal operating points, and assess consistency across different study populations and settings.": [
+                ""
+            ],
+            "<strong>Use this when:</strong> Studies use the same diagnostic threshold": [
+                ""
+            ],
+            "<strong>Variable Performance:</strong> high heterogeneity indicates that accuracy differed across the included populations and protocols": [
+                ""
+            ],
+            "<strong>Variance Components:</strong> Specialized approach for variance component estimation, typically used in advanced methodological research.": [
+                ""
+            ],
+            "<strong>Wide CIs:</strong> Small studies with less precise estimates": [
+                ""
+            ],
+            "<strong>Wide Spread:</strong> Points scattered = high heterogeneity (investigate sources)": [
+                ""
+            ],
+            "<strong>X-axis:</strong> False Positive Rate (1 - Specificity) - lower is better": [
+                ""
+            ],
+            "<strong>X-axis:</strong> Log Diagnostic Odds Ratio (effect size)": [
+                ""
+            ],
+            "<strong>Y-axis:</strong> 1/√(effective sample size), reversed so the most precise studies sit at the top (Deeks' funnel plot)": [
+                ""
+            ],
+            "<strong>Y-axis:</strong> True Positive Rate (Sensitivity) - higher is better": [
                 ""
             ],
             "<strong>Your negative LR of %.2f</strong> provides <em>minimal</em> evidence AGAINST disease when test is negative.": [
@@ -571,6 +910,9 @@
             "A zero-cell correction (%s) was applied to %d study/studies (%s). Corrected counts are used by all analyses and plots; the Individual Study Results table shows the raw counts.": [
                 ""
             ],
+            "About Diagnostic Test Meta-Analysis": [
+                ""
+            ],
             "About Swimmer Plot Analysis": [
                 ""
             ],
@@ -581,6 +923,9 @@
                 ""
             ],
             "Absolute (use actual start times)": [
+                ""
+            ],
+            "Accounts for correlation between sensitivity and specificity": [
                 ""
             ],
             "Actual calendar dates with multiple format support": [
@@ -608,9 +953,6 @@
                 ""
             ],
             "Additional Analyses": [
-                ""
-            ],
-            "Additional Regional Measurements": [
                 ""
             ],
             "Additional regional measurements": [
@@ -643,6 +985,12 @@
             "Agreement was assessed with the intraclass correlation coefficient (ICC(2,1), absolute agreement, two-way random effects) and Spearman rank correlation.": [
                 ""
             ],
+            "AI Algorithm Implementation:": [
+                ""
+            ],
+            "AI algorithm performance meta-analysis for clinical implementation": [
+                ""
+            ],
             "All asymmetry tests have low power, particularly when the diagnostic odds ratio is heterogeneous, so a non-significant result does not establish that publication bias is absent.": [
                 ""
             ],
@@ -656,6 +1004,9 @@
                 ""
             ],
             "All required variables are selected": [
+                ""
+            ],
+            "All values are non-negative integers": [
                 ""
             ],
             "An ICC needs at least two measurements per case, each available in enough cases.": [
@@ -697,6 +1048,9 @@
             "Analysis Information": [
                 ""
             ],
+            "Analysis Methods": [
+                ""
+            ],
             "Analysis Options": [
                 ""
             ],
@@ -712,7 +1066,7 @@
             "Analysis Summary in Plain Language": [
                 ""
             ],
-            "Annotation Tracks": [
+            "Annotation tracks": [
                 ""
             ],
             "Annotation tracks (below the bars)": [
@@ -730,10 +1084,19 @@
             "Arrow: patient still at risk (censored / alive) at the data cutoff.": [
                 ""
             ],
+            "Ask first whether the small studies differ clinically from the large ones - spectrum, setting, threshold, reference standard": [
+                ""
+            ],
+            "Assessing biomarker diagnostic accuracy": [
+                ""
+            ],
+            "Assessment of test performance heterogeneity and variation sources": [
+                ""
+            ],
             "Asymmetry detected (p < 0.05)": [
                 ""
             ],
-            "At least 2 regional measurements are required for inter-regional heterogeneity analysis. With a reference (whole section) measurement selected, a single regional measurement is sufficient.": [
+            "At least 3 studies with complete data": [
                 ""
             ],
             "At least 3 studies with complete diagnostic test data are required ({n} found).": [
@@ -769,7 +1132,7 @@
             "Bar width": [
                 ""
             ],
-            "Baseline (Y = 0) line": [
+            "Baseline (y = 0) line": [
                 ""
             ],
             "Baseline assumed at Time = 0": [
@@ -830,6 +1193,9 @@
                 ""
             ],
             "Biomarker correlation studies": [
+                ""
+            ],
+            "Biomarker diagnostic accuracy synthesis for guideline development": [
                 ""
             ],
             "Biomarker specificity:": [
@@ -940,10 +1306,10 @@
             "Censoring-aware; %d progression events; %s": [
                 ""
             ],
-            "Censoring/Event Status (Optional)": [
+            "Censoring/Event status (optional)": [
                 ""
             ],
-            "Censoring/Event Status Variable": [
+            "Censoring/Event status variable": [
                 ""
             ],
             "Change 'Time Input Type' from 'Date/Time' to 'Raw Values'": [
@@ -968,6 +1334,9 @@
                 ""
             ],
             "Check if baseline measurements are correct": [
+                ""
+            ],
+            "Check if confidence intervals overlap substantially": [
                 ""
             ],
             "Check that time variables contain valid numeric or date values": [
@@ -1000,10 +1369,19 @@
             "Click and drag to select text, then copy (Ctrl+C/Cmd+C) for use in reports.": [
                 ""
             ],
+            "Clinical Application Guidance": [
+                ""
+            ],
+            "Clinical Applications": [
+                ""
+            ],
             "Clinical Assessment:": [
                 ""
             ],
             "Clinical Context:": [
+                ""
+            ],
+            "Clinical Decision Making": [
                 ""
             ],
             "Clinical Events": [
@@ -1031,6 +1409,9 @@
                 ""
             ],
             "Clinical Interpretation and Guidelines": [
+                ""
+            ],
+            "Clinical Interpretation Guidelines": [
                 ""
             ],
             "Clinical Interpretation:": [
@@ -1063,6 +1444,9 @@
             "Clinical Summary": [
                 ""
             ],
+            "Clinical summary": [
+                ""
+            ],
             "Clinical Terms & Definitions": [
                 ""
             ],
@@ -1073,6 +1457,9 @@
                 ""
             ],
             "Clinical trial data visualization and regulatory submissions": [
+                ""
+            ],
+            "Closer to upper-left corner = better overall diagnostic accuracy": [
                 ""
             ],
             "Coefficient of Variation (%)": [
@@ -1099,7 +1486,7 @@
             "Color scheme for waterfall plot. 'Colorful' provides distinct colors for group-based coloring; 'jamovi (follow global)' takes its colours from the palette set in jamovi's preferences, so the figure matches every other plot in the document.": [
                 ""
             ],
-            "Color-Blind Safe": [
+            "Color-Blind safe": [
                 ""
             ],
             "Colorblind Safe (Viridis)": [
@@ -1123,6 +1510,9 @@
             "Colors bars by RECIST categories (CR/PR/SD/PD) or patient groups": [
                 ""
             ],
+            "Combines results from multiple diagnostic accuracy studies to estimate overall test performance through:": [
+                ""
+            ],
             "Common formats: 2023-01-15 (treatment start), 15/01/2023 (surgery date), or numeric days from study start": [
                 ""
             ],
@@ -1130,6 +1520,15 @@
                 ""
             ],
             "Common formats: 2023-06-15 (treatment end), 15/06/2023 (last follow-up), or numeric days from treatment start": [
+                ""
+            ],
+            "Common Sources of Heterogeneity:": [
+                ""
+            ],
+            "Compare triangle position to individual studies for consistency": [
+                ""
+            ],
+            "Comparing imaging modalities": [
                 ""
             ],
             "Comparison": [
@@ -1174,7 +1573,10 @@
             "Complete response: n = %d (%.1f%%)": [
                 ""
             ],
-            "Comprehensive Analysis": [
+            "Complete the measurement selection": [
+                ""
+            ],
+            "Comprehensive analysis": [
                 ""
             ],
             "Comprehensive meta-analysis of diagnostic test accuracy studies designed for pathology research. Performs bivariate random-effects modeling, proportional-hazards SROC analysis, meta-regression, and publication bias assessment for AI algorithm validation and biomarker diagnostic accuracy synthesis.": [
@@ -1198,6 +1600,9 @@
             "Confidence level (%)": [
                 ""
             ],
+            "Confidence region vs prediction region": [
+                ""
+            ],
             "Configuring the date settings properly ensures accurate timeline calculations and gives you full control over how dates are displayed in your swimmer plot.": [
                 ""
             ],
@@ -1208,9 +1613,6 @@
                 ""
             ],
             "Confirmation": [
-                ""
-            ],
-            "Confirmation Status (optional)": [
                 ""
             ],
             "Confirmation status (optional)": [
@@ -1229,6 +1631,12 @@
                 ""
             ],
             "Consider averaging more than one region per case or revising the sampling protocol.": [
+                ""
+            ],
+            "Consider contacting study authors for additional data": [
+                ""
+            ],
+            "Consider whether variation reflects true differences or chance": [
                 ""
             ],
             "Constant reference measurement": [
@@ -1324,6 +1732,9 @@
             "Creates comprehensive swimmer plots using the ggswim package to visualize patient timelines, clinical events, milestones, and treatment responses. Features enhanced data validation and complete ggswim integration for professional clinical visualization.": [
                 ""
             ],
+            "Cross-population comparison of diagnostic test performance": [
+                ""
+            ],
             "Custom glyphs for clinical events": [
                 ""
             ],
@@ -1357,7 +1768,7 @@
             "CV threshold (%)": [
                 ""
             ],
-            "CV Threshold for Acceptable Variability": [
+            "CV threshold for acceptable variability": [
                 ""
             ],
             "CV: %s%%": [
@@ -1382,6 +1793,9 @@
                 ""
             ],
             "Data input type": [
+                ""
+            ],
+            "Data Preparation Checklist": [
                 ""
             ],
             "Data quality": [
@@ -1420,7 +1834,7 @@
             "Date Format Detected": [
                 ""
             ],
-            "Date Format in Data": [
+            "Date format in data": [
                 ""
             ],
             "Date/Time": [
@@ -1474,6 +1888,9 @@
             "Deeks' Funnel Plot Asymmetry Test": [
                 ""
             ],
+            "Deeks' Funnel Plot Test:": [
+                ""
+            ],
             "Deeks' Funnel Plot: Publication Bias Assessment": [
                 ""
             ],
@@ -1525,6 +1942,9 @@
             "Diagnostic Odds Ratio": [
                 ""
             ],
+            "Diagnostic Odds Ratio (DOR)": [
+                ""
+            ],
             "Diagnostic Test Meta-Analysis": [
                 ""
             ],
@@ -1535,6 +1955,9 @@
                 ""
             ],
             "Direction for the response sort. Conventional = worst (highest) on the left, best (lowest/most negative) on the right -- the standard oncology waterfall layout.": [
+                ""
+            ],
+            "Directly interpretable for clinical decision-making": [
                 ""
             ],
             "Disappearance of all target lesions. Any pathological lymph node must have shrunk to under 10 mm in short axis.": [
@@ -1633,7 +2056,7 @@
             "End time": [
                 ""
             ],
-            "End Time (Required)": [
+            "End time (required)": [
                 ""
             ],
             "End Time is still empty.": [
@@ -1702,6 +2125,9 @@
             "Evaluable Patients": [
                 ""
             ],
+            "Evaluating AI algorithms for pathology diagnosis": [
+                ""
+            ],
             "Event Marker Summary": [
                 ""
             ],
@@ -1729,9 +2155,6 @@
             "Event Markers:": [
                 ""
             ],
-            "Event Time Variable": [
-                ""
-            ],
             "Event time variable": [
                 ""
             ],
@@ -1739,9 +2162,6 @@
                 ""
             ],
             "Event Type": [
-                ""
-            ],
-            "Event Type Variable": [
                 ""
             ],
             "Event type variable": [
@@ -1775,6 +2195,9 @@
                 ""
             ],
             "Example analysis for Waterfall Plot.": [
+                ""
+            ],
+            "Example Data Format": [
                 ""
             ],
             "Example data format with baseline:": [
@@ -1828,10 +2251,10 @@
             "EXTREME VALUES DETECTED": [
                 ""
             ],
-            "False Negatives (Disease+, Test-)": [
+            "False negatives (disease+, test-)": [
                 ""
             ],
-            "False Negatives (FN)": [
+            "False negatives (FN)": [
                 ""
             ],
             "False negatives is still empty.": [
@@ -1840,13 +2263,22 @@
             "False Positive Rate (1 - Specificity)": [
                 ""
             ],
-            "False Positives (Disease-, Test+)": [
+            "False positives (disease-, test+)": [
                 ""
             ],
-            "False Positives (FP)": [
+            "False positives (FP)": [
                 ""
             ],
             "False positives is still empty.": [
+                ""
+            ],
+            "false_negatives": [
+                ""
+            ],
+            "false_positives": [
+                ""
+            ],
+            "Features Consistent With a Symmetric Funnel": [
                 ""
             ],
             "Fill them in and the meta-analysis will appear.": [
@@ -1865,6 +2297,9 @@
                 ""
             ],
             "Fisher's exact test": [
+                ""
+            ],
+            "Fisher's exact test for %s could not be computed: %s. No p-value is reported. Review the group counts or combine groups only when clinically justified.": [
                 ""
             ],
             "Fisher's exact test, OR (%s vs %s) = %s": [
@@ -1930,16 +2365,22 @@
             "Forest Plot Explanation": [
                 ""
             ],
+            "Forest Plot Interpretation Guide": [
+                ""
+            ],
             "Forest Plot: Sensitivity and Specificity by Study": [
                 ""
             ],
             "Formal statistical tests comparing heterogeneity across compartments": [
                 ""
             ],
-            "Found date format:": [
+            "Found date format {format} in your time variables.": [
                 ""
             ],
             "FP": [
+                ""
+            ],
+            "Funnel Asymmetry Indicators": [
                 ""
             ],
             "Funnel plot": [
@@ -1952,6 +2393,9 @@
                 ""
             ],
             "Funnel Plot for Publication Bias": [
+                ""
+            ],
+            "Funnel Plot Interpretation Guide": [
                 ""
             ],
             "Generate copy-ready sentences for manuscripts and reports: - Auto-filled with your results (ORR, DCR, confidence intervals) - Publication-ready language following oncology standards - Copy-paste directly into manuscripts or clinical reports Recommended for publication or clinical documentation": [
@@ -1984,6 +2428,12 @@
             "Good reliability band (ICC = %.2f).": [
                 ""
             ],
+            "Good sensitivity (80-89%): acceptable miss rate for screening": [
+                ""
+            ],
+            "Good specificity (80-89%): some false positives": [
+                ""
+            ],
             "Greyed out when the analysis focus above already includes them.": [
                 ""
             ],
@@ -1996,6 +2446,9 @@
             "Group Comparison Analysis": [
                 ""
             ],
+            "Group comparison could not be computed": [
+                ""
+            ],
             "Group Comparison Statistical Test": [
                 ""
             ],
@@ -2005,16 +2458,13 @@
             "Group comparison tests need at least two groups, each with at least one evaluable patient.": [
                 ""
             ],
-            "Group Variable": [
-                ""
-            ],
             "Group variable": [
                 ""
             ],
             "Grouping variable": [
                 ""
             ],
-            "Grouping Variable (Optional)": [
+            "Grouping variable (optional)": [
                 ""
             ],
             "Grouping variable may not be categorical": [
@@ -2104,6 +2554,9 @@
             "HSROC model did not converge": [
                 ""
             ],
+            "I[[SUP2]] Statistic Interpretation:": [
+                ""
+            ],
             "I² (%)": [
                 ""
             ],
@@ -2129,6 +2582,9 @@
                 ""
             ],
             "Identify baseline measurements (time = 0)": [
+                ""
+            ],
+            "If no other explanation fits, pooled estimates may be overoptimistic": [
                 ""
             ],
             "Ignores censoring; n=%d with duration data": [
@@ -2159,6 +2615,12 @@
                 ""
             ],
             "IHC heterogeneity analysis was performed on %d cases, each with both regional measurements.": [
+                ""
+            ],
+            "IHC marker validation across multiple pathology studies": [
+                ""
+            ],
+            "IHC Marker Validation:": [
                 ""
             ],
             "IHC terms": [
@@ -2203,9 +2665,6 @@
             "In this dataset, the available data were insufficient to quantify measurement variability.": [
                 ""
             ],
-            "in your time variables": [
-                ""
-            ],
             "INADEQUATE SAMPLING:": [
                 ""
             ],
@@ -2225,6 +2684,12 @@
                 ""
             ],
             "Infinite diagnostic counts in variable(s) %s, analysis row(s) %s. Enter finite whole-number counts or mark unavailable values as missing.": [
+                ""
+            ],
+            "Infinite response or time values in variable '%s', analysis row(s) %s. Enter finite values or mark unavailable values as missing.": [
+                ""
+            ],
+            "Infinite time values in variable '%s', analysis row(s) %s. Enter finite start and end times or mark unavailable values as missing.": [
                 ""
             ],
             "Instructions": [
@@ -2263,6 +2728,9 @@
             "Interpretation": [
                 ""
             ],
+            "Interpretation Caveats": [
+                ""
+            ],
             "Interpretation:": [
                 ""
             ],
@@ -2273,6 +2741,9 @@
                 ""
             ],
             "Invalid Tumor Shrinkage Values Detected:": [
+                ""
+            ],
+            "Is distinct from the Rutter-Gatsonis HSROC model": [
                 ""
             ],
             "It affects region(s) %s and the mean of all regions.": [
@@ -2311,6 +2782,9 @@
             "Key Findings:": [
                 ""
             ],
+            "Key Requirements & Assumptions": [
+                ""
+            ],
             "Kruskal-Wallis test (per-case CV)": [
                 ""
             ],
@@ -2341,6 +2815,12 @@
             "Limitations": [
                 ""
             ],
+            "Limited sensitivity (&lt;70%): many cases missed": [
+                ""
+            ],
+            "Limited specificity (&lt;70%): many false alarms": [
+                ""
+            ],
             "Limits of agreement:": [
                 ""
             ],
@@ -2348,6 +2828,9 @@
                 ""
             ],
             "Log Diagnostic Odds Ratio": [
+                ""
+            ],
+            "Look for outlier studies (points far from others)": [
                 ""
             ],
             "Low": [
@@ -2602,7 +3085,7 @@
             "Method": [
                 "Method"
             ],
-            "Method of Moments": [
+            "Method of moments": [
                 ""
             ],
             "Method Variance": [
@@ -2647,34 +3130,34 @@
             "Milestone '%s' was skipped. %s": [
                 ""
             ],
-            "Milestone 1 Date": [
+            "Milestone 1 date": [
                 ""
             ],
-            "Milestone 1 Name": [
+            "Milestone 1 name": [
                 ""
             ],
-            "Milestone 2 Date": [
+            "Milestone 2 date": [
                 ""
             ],
-            "Milestone 2 Name": [
+            "Milestone 2 name": [
                 ""
             ],
-            "Milestone 3 Date": [
+            "Milestone 3 date": [
                 ""
             ],
-            "Milestone 3 Name": [
+            "Milestone 3 name": [
                 ""
             ],
-            "Milestone 4 Date": [
+            "Milestone 4 date": [
                 ""
             ],
-            "Milestone 4 Name": [
+            "Milestone 4 name": [
                 ""
             ],
-            "Milestone 5 Date": [
+            "Milestone 5 date": [
                 ""
             ],
-            "Milestone 5 Name": [
+            "Milestone 5 name": [
                 ""
             ],
             "Milestone dates could not be parsed": [
@@ -2713,7 +3196,7 @@
             "Milestone Support:": [
                 ""
             ],
-            "Milestone Times/Dates": [
+            "Milestone times/dates": [
                 ""
             ],
             "Milestone-based clinical pathway analysis": [
@@ -2729,6 +3212,9 @@
                 ""
             ],
             "Minimal": [
+                ""
+            ],
+            "Minimum 3 studies with 2[[TIMES]]2 diagnostic data": [
                 ""
             ],
             "Minimum acceptable correlation": [
@@ -2762,6 +3248,9 @@
                 ""
             ],
             "MM-YYYY-DD": [
+                ""
+            ],
+            "Model Choice: Random vs Fixed Effects": [
                 ""
             ],
             "Moderate": [
@@ -2803,7 +3292,13 @@
             "Moderate sampling:": [
                 ""
             ],
+            "Moderate sensitivity (70-79%): appreciable number of cases missed": [
+                ""
+            ],
             "Moderate share of total variance": [
+                ""
+            ],
+            "Moderate specificity (70-79%): appreciable false-positive rate": [
                 ""
             ],
             "Moderate variability": [
@@ -2945,6 +3440,9 @@
                 ""
             ],
             "No milestones to summarise. The milestone variable has no usable value for any patient in the analysis, or every milestone slot was skipped - see the notices above.": [
+                ""
+            ],
+            "No missing values in TP, FP, FN, TN columns": [
                 ""
             ],
             "NO NEGATIVE CHANGES": [
@@ -3193,7 +3691,7 @@
             "On the pooled estimate this test would detect about %.0f of 100 patients with disease, but the interval%s admits materially worse performance.": [
                 ""
             ],
-            "On-Treatment / Ongoing (optional)": [
+            "On-Treatment / ongoing (optional)": [
                 ""
             ],
             "Oncology clinical trials and treatment response studies": [
@@ -3277,7 +3775,7 @@
             "Output Options": [
                 ""
             ],
-            "Overall / Whole Slide / HotSpot (Optional)": [
+            "Overall / whole slide / hotspot (optional)": [
                 ""
             ],
             "Overall: region(s) %s differ systematically from the other regions, so the regions cannot be used interchangeably without calibration.": [
@@ -3343,7 +3841,7 @@
             "Patient ID": [
                 ""
             ],
-            "Patient ID (Required)": [
+            "Patient ID (required)": [
                 ""
             ],
             "Patient ID and response variables are required": [
@@ -3365,6 +3863,9 @@
                 ""
             ],
             "Patient outcome tracking in longitudinal studies": [
+                ""
+            ],
+            "Patient spectrum should be clinically relevant": [
                 ""
             ],
             "Patient Timeline Analysis": [
@@ -3508,7 +4009,7 @@
             "Planning ICC 0.90 (lower limit of excellent reliability)": [
                 ""
             ],
-            "Plasma (Purple-Pink)": [
+            "Plasma (purple-pink)": [
                 ""
             ],
             "Please check date format - use YYYY-MM-DD, DD/MM/YYYY, or numeric values": [
@@ -3545,6 +4046,9 @@
                 ""
             ],
             "Pooled Sensitivity": [
+                ""
+            ],
+            "Pooled Sensitivity and Specificity": [
                 ""
             ],
             "Pooled sensitivity and specificity estimates are unavailable; predictive values cannot be computed.": [
@@ -3601,7 +4105,16 @@
             "Predictive Values by Prevalence": [
                 ""
             ],
+            "Predictive Values in Clinical Practice:": [
+                ""
+            ],
+            "Preferred for meta-analyses with <em>homogeneous thresholds</em>": [
+                ""
+            ],
             "Prevalence": [
+                ""
+            ],
+            "Primary Results Interpretation": [
                 ""
             ],
             "Probability of observing results as extreme or more extreme than observed, assuming no true difference exists. Convention: p < 0.05 indicates statistical significance, but clinical significance should also be considered alongside statistical significance.": [
@@ -3688,6 +4201,9 @@
             "Provide an explicit censoring/status variable for accurate status arrows and reverse Kaplan-Meier median follow-up calculation.": [
                 ""
             ],
+            "Provides <em>intuitive</em> pooled sensitivity and specificity estimates": [
+                ""
+            ],
             "PT1        0     50          (baseline required)": [
                 ""
             ],
@@ -3718,6 +4234,9 @@
             "Publication bias caution": [
                 ""
             ],
+            "Purpose": [
+                ""
+            ],
             "Q Statistic": [
                 ""
             ],
@@ -3730,10 +4249,16 @@
             "Quantifies how well regional IHC measurements (biopsies, cores, fields) represent a case. With a reference measurement (whole section, hotspot or overall score) it reports the Spearman correlation of each region with the reference, the absolute-agreement ICC(2,1), the per-case coefficient of variation, and, for each region, the mean difference from the reference with its 95 percent CI and Bland-Altman limits of agreement. Without a reference it compares the regions with one another. Each difference is judged against a margin set by the user (bias_margin, default 5 percent of the comparison mean): ruled out when its 90 percent CI lies inside the margin (two one-sided tests), shown to be material when a Bonferroni-adjusted CI lies entirely beyond it, and inconclusive otherwise. Optional variance components, sample-size planning for ICC precision (Bonett 2002) and comparisons between spatial compartments.": [
                 ""
             ],
+            "Quick Assessment Tips": [
+                ""
+            ],
+            "Quick Start Guide": [
+                ""
+            ],
             "Quick Tips:": [
                 ""
             ],
-            "Random Sampling": [
+            "Random sampling": [
                 ""
             ],
             "Random seed": [
@@ -3811,6 +4336,9 @@
             "Recommended Data Format:": [
                 ""
             ],
+            "Refer to the <em>Likelihood Ratios for Clinical Decision-Making</em> table below for standard interpretation ranges for positive and negative likelihood ratios.": [
+                ""
+            ],
             "Reference": [
                 ""
             ],
@@ -3827,6 +4355,9 @@
                 ""
             ],
             "Reference measurement:": [
+                ""
+            ],
+            "Reference standard should be consistent across studies": [
                 ""
             ],
             "References": [
@@ -3856,16 +4387,16 @@
             "Region(s) %s differ systematically from the other regions by more than the %s%% margin, so the regions cannot be used interchangeably without calibration; see the Clinical Assessment.": [
                 ""
             ],
-            "Regional Measurement 1": [
+            "Regional measurement 1": [
                 ""
             ],
-            "Regional Measurement 2 (Optional)": [
+            "Regional measurement 2 (optional)": [
                 ""
             ],
-            "Regional Measurement 3 (Optional)": [
+            "Regional measurement 3 (optional)": [
                 ""
             ],
-            "Regional Measurement 4 (Optional)": [
+            "Regional measurement 4 (optional)": [
                 ""
             ],
             "Regional measurements agree with one another in this dataset (correlation ≥ %s, CV ≤ %s%%), and the average difference of every comparison between regions was shown to lie within the %s%% margin (90%% CI).": [
@@ -3916,6 +4447,9 @@
             "Reitsma model returned unexpected coefficient structure": [
                 ""
             ],
+            "Relates sensitivity (<em>p</em>) and false-positive rate (<em>u</em>) through <em>u</em><sup>theta</sup> = <em>p</em>": [
+                ""
+            ],
             "Relative (all start from 0)": [
                 ""
             ],
@@ -3931,7 +4465,7 @@
             "Reliability:": [
                 ""
             ],
-            "REML (Recommended)": [
+            "REML (recommended)": [
                 ""
             ],
             "Remove patients without baseline from analysis": [
@@ -3940,13 +4474,25 @@
             "REPEATED VISIT TIMES": [
                 ""
             ],
+            "Report the asymmetry as a limitation and interpret results cautiously": [
+                ""
+            ],
             "Reporting Options": [
+                ""
+            ],
+            "Reporting Recommendations": [
+                ""
+            ],
+            "Reports tau<sup>2</sup> as between-study variation in diagnostic accuracy": [
+                ""
+            ],
+            "Reports theta as the diagnostic accuracy parameter": [
                 ""
             ],
             "Representativeness:": [
                 ""
             ],
-            "Reproducibility & Bias Assessment": [
+            "Reproducibility & bias assessment": [
                 ""
             ],
             "Reproducibility Assessment": [
@@ -3959,6 +4505,9 @@
                 ""
             ],
             "Required Data": [
+                ""
+            ],
+            "Required Data Structure": [
                 ""
             ],
             "Required for raw measurements, for several rows per patient (visits), and for the spider plot (e.g., months from baseline)": [
@@ -4024,9 +4573,6 @@
             "Response category column": [
                 ""
             ],
-            "Response Category Override (optional)": [
-                ""
-            ],
             "Response category override (optional)": [
                 ""
             ],
@@ -4072,7 +4618,7 @@
             "Response Type": [
                 ""
             ],
-            "Response Value (Raw or Percentage Measurement)": [
+            "Response value (raw or percentage measurement)": [
                 ""
             ],
             "Response value (raw or percentage)": [
@@ -4093,10 +4639,10 @@
             "Response variable: tumor measurements or percentage changes from baseline. - Raw measurements: actual tumor sizes (mm, cm, sum of diameters) - Percentage changes: pre-calculated changes (-30 = 30 percent shrinkage = good response) Tip: Use percentage format if changes already calculated, raw format for actual measurements.": [
                 ""
             ],
-            "Response/Status Variable": [
+            "Response/Status variable": [
                 ""
             ],
-            "Response/Status Variable (Optional)": [
+            "Response/Status variable (optional)": [
                 ""
             ],
             "Results Section:": [
@@ -4180,6 +4726,9 @@
             "Sample size:": [
                 ""
             ],
+            "Sample sizes are realistic (TP+FP+FN+TN = total cases per study)": [
+                ""
+            ],
             "Sample-size planning needs at least two measurements per case.": [
                 ""
             ],
@@ -4237,13 +4786,22 @@
             "SD: best change above -30% and below +20%; no minimum duration is required.": [
                 ""
             ],
+            "Search for unpublished studies or negative results": [
+                ""
+            ],
             "Select 'Date Format':": [
+                ""
+            ],
+            "Select a reference measurement or a second distinct regional measurement to start the analysis.": [
                 ""
             ],
             "Select at least one regional measurement (Regional Measurement 1 to 4, or Additional Regional Measurements).": [
                 ""
             ],
             "Select at least one regional measurement other than the reference.": [
+                ""
+            ],
+            "Select at least one regional measurement to compare with the reference.": [
                 ""
             ],
             "Select Patient ID variable": [
@@ -4372,7 +4930,7 @@
             "Sort by variable": [
                 ""
             ],
-            "Sort By Variable (Optional)": [
+            "Sort by variable (optional)": [
                 ""
             ],
             "Sort direction": [
@@ -4426,7 +4984,7 @@
             "Spatial Region": [
                 ""
             ],
-            "Spatial Region ID (Optional)": [
+            "Spatial region ID (optional)": [
                 ""
             ],
             "Spearman correlation = %s, which is below your %s threshold.": [
@@ -4525,7 +5083,7 @@
             "Start time": [
                 ""
             ],
-            "Start Time (Required)": [
+            "Start time (required)": [
                 ""
             ],
             "Start Time is still empty.": [
@@ -4556,6 +5114,9 @@
                 ""
             ],
             "Statistical Interpretation:": [
+                ""
+            ],
+            "Statistical Method Selection Guide": [
                 ""
             ],
             "Statistical Terms": [
@@ -4600,7 +5161,7 @@
             "Step-by-Step Progress:": [
                 ""
             ],
-            "Stratified Sampling": [
+            "Stratified sampling": [
                 ""
             ],
             "Strong evidence AGAINST disease when test negative": [
@@ -4616,6 +5177,9 @@
                 ""
             ],
             "Studies excluded": [
+                ""
+            ],
+            "Studies should evaluate the same test and target condition": [
                 ""
             ],
             "Study": [
@@ -4636,7 +5200,13 @@
             "Study identifiers are not unique": [
                 ""
             ],
+            "Study identifiers are unique": [
+                ""
+            ],
             "Study included %d patients with %d timeline observations. Median observed duration was %.1f %s (range: %.1f to %.1f %s).": [
+                ""
+            ],
+            "study_name": [
                 ""
             ],
             "Substantial between-study heterogeneity": [
@@ -4655,6 +5225,9 @@
                 ""
             ],
             "Summary ROC plot": [
+                ""
+            ],
+            "Summary ROC Plot Interpretation Guide": [
                 ""
             ],
             "Summary statistics": [
@@ -4687,6 +5260,9 @@
             "Switch to 'Percentage Changes' input format if changes are pre-calculated, OR": [
                 ""
             ],
+            "Synthesizing evidence for clinical guidelines": [
+                ""
+            ],
             "Systematic bias assessment between methods": [
                 ""
             ],
@@ -4711,7 +5287,7 @@
             "Systematic differences were not assessed because the reference had the same value in every case.": [
                 ""
             ],
-            "Systematic Sampling": [
+            "Systematic sampling": [
                 ""
             ],
             "Test": [
@@ -5032,6 +5608,9 @@
             "The within-case CV exceeds your threshold, so averaging more than one region per case is worth considering.": [
                 ""
             ],
+            "These answer different questions and are routinely confused. A tight <strong>confidence</strong> region means the pooled estimate is well determined; it says nothing about whether the assay will perform consistently. A wide <strong>prediction</strong> region means that even though the average is known precisely, the next study - or your laboratory - could see materially different sensitivity and specificity. <strong>For deciding whether to adopt an assay, the prediction region is the relevant one.</strong> When the two differ greatly, between-study heterogeneity dominates and the pooled point alone should not drive the decision.": [
+                ""
+            ],
             "These are pooled estimates from the included studies only; how far they carry to another setting depends on the prediction region and on how comparable the positivity thresholds, patient spectrum and reference standards are.": [
                 ""
             ],
@@ -5048,6 +5627,9 @@
                 ""
             ],
             "This model provides no prediction interval and no SROC prediction region, so it offers no model-consistent statement of how much studies differ.": [
+                ""
+            ],
+            "This module performs comprehensive meta-analysis of diagnostic test accuracy studies, specifically designed for pathology research including AI algorithm validation and biomarker diagnostic accuracy synthesis.": [
                 ""
             ],
             "This relaxed band (correlation threshold minus 0.2, CV threshold times 1.5) is a heuristic of this analysis, not a published criterion.": [
@@ -5104,7 +5686,7 @@
             "Time to response and duration of response could not be computed (%s). The related rows and the Time-to-Response & Duration of Response table are omitted.": [
                 ""
             ],
-            "Time Unit for Display": [
+            "Time unit for display": [
                 ""
             ],
             "Time units": [
@@ -5119,7 +5701,7 @@
             "Time Variable (if needed)": [
                 ""
             ],
-            "Time Variable (raw input, visits, spider plot)": [
+            "Time variable (raw input, visits, spider plot)": [
                 ""
             ],
             "Time variable (required for raw input and spider plot)": [
@@ -5272,22 +5854,31 @@
             "Treatment/observation start time": [
                 ""
             ],
-            "True Negatives (Disease-, Test-)": [
+            "Triangle position shows where your pooled test performance lies": [
                 ""
             ],
-            "True Negatives (TN)": [
+            "True negatives (disease-, test-)": [
+                ""
+            ],
+            "True negatives (TN)": [
                 ""
             ],
             "True negatives is still empty.": [
                 ""
             ],
-            "True Positives (Disease+, Test+)": [
+            "True positives (disease+, test+)": [
                 ""
             ],
-            "True Positives (TP)": [
+            "True positives (TP)": [
                 ""
             ],
             "True positives is still empty.": [
+                ""
+            ],
+            "true_negatives": [
+                ""
+            ],
+            "true_positives": [
                 ""
             ],
             "Tumor response monitoring": [
@@ -5312,6 +5903,9 @@
                 ""
             ],
             "Unable to evaluate sampling quality because the correlation or the variability could not be estimated; the notes under the Reproducibility Assessment table give the reason.": [
+                ""
+            ],
+            "Understanding Bivariate and Proportional-Hazards SROC Models": [
                 ""
             ],
             "Unique identifier for each patient": [
@@ -5362,7 +5956,13 @@
             "Use the prediction interval and the SROC prediction region for a model-consistent statement of between-study variability.": [
                 ""
             ],
+            "Use this plot to identify studies for sensitivity analysis": [
+                ""
+            ],
             "Use this when you have one tumour burden number per patient: either a percent change from baseline you have already calculated (one row per patient), or a single measurement recorded at each visit (one row per patient per visit). It draws waterfall and spider plots, assigns each patient a best response from their largest shrinkage from baseline, and reports ORR and DCR with exact binomial confidence intervals, group comparison, time to response and duration of response. When a time variable is supplied, progression is measured against the patient's smallest recorded burden (nadir), not against baseline. Categories are named CR, PR, SD and PD and the thresholds are adapted from RECIST v1.1, but this is NOT a RECIST v1.1 implementation: because it never sees individual lesions it cannot sum target lesions, detect a new lesion, or judge non-target progression, and it cannot apply the 4-week confirmation rule (a confirmation column only adds markers to the plot; to count confirmed responses, supply confirmed categories through the category override). If your data list each lesion separately, use the lesion-level RECIST v1.1 analysis. It will be available in upcoming releases.": [
+                ""
+            ],
+            "Uses adjusted profile maximum likelihood and is suitable for smaller study sets": [
                 ""
             ],
             "Validation Messages": [
@@ -5476,7 +6076,7 @@
             "VERY WIDE CONFIDENCE INTERVAL": [
                 ""
             ],
-            "Viridis (Blue-Purple)": [
+            "Viridis (blue-purple)": [
                 ""
             ],
             "Visualization": [
@@ -5569,7 +6169,16 @@
             "What This Analysis Does": [
                 ""
             ],
+            "What This Plot Shows": [
+                ""
+            ],
+            "When reporting your meta-analysis results, include:": [
+                ""
+            ],
             "When to Use Swimmer Plots": [
+                ""
+            ],
+            "When to Use This Analysis": [
                 ""
             ],
             "When to Use This Analysis:": [
@@ -5597,6 +6206,9 @@
                 ""
             ],
             "Why this matters:": [
+                ""
+            ],
+            "Wide scatter of points = substantial between-study heterogeneity": [
                 ""
             ],
             "Width 0.10": [
@@ -5639,6 +6251,9 @@
                 ""
             ],
             "With percentage input the spider plot connects the pre-calculated percent changes at each visit. If you have raw per-visit measurements, the raw input type gives trajectories computed against the time = 0 baseline.": [
+                ""
+            ],
+            "With the default zero-cell setting (no correction), where more than a quarter of the studies have a zero cell, no verdict is reported at all: the continuity correction the test needs produces asymmetry by itself. Choosing any Zero-Cell Correction leaves no zero cell for this test, so a verdict is always given": [
                 ""
             ],
             "Within-case CV (%)": [

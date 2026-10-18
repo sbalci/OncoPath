@@ -14,6 +14,12 @@ msgstr ""
 #: R/diagnosticmeta.b.R
 msgid "- descriptive only: too many zero cells for a valid asymmetry test"
 msgstr ""
+"- yalnızca betimleyicidir: geçerli bir asimetri testi için sıfır hücreli "
+"çalışma sayısı çok fazla"
+
+#: R/ihcheterogeneity.b.R
+msgid "'%s' (r = %s, 95%% CI %s to %s)"
+msgstr "'%s' (r = %s, %%95 GA %s ile %s)"
 
 #: R/waterfall.b.R
 msgid "(%d of %d evaluable patients achieved complete or partial response)"
@@ -31,7 +37,7 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "(k = %d < 10: low statistical power, descriptive only)"
-msgstr ""
+msgstr "(k = %d < 10: istatistiksel güç düşük, yalnızca betimleyici)"
 
 #: R/swimmerplot-html.R
 msgid "(numeric days/months/years)"
@@ -43,10 +49,13 @@ msgid ""
 "these rows sum to {shown} of the {total} {unit} of total person-time "
 "reported in the summary."
 msgstr ""
+"{n}/{N} hastanın kayıtlı yanıtı yoktur ve burada gösterilmez; bu nedenle "
+"satırların toplamı, özetteki toplam {total} {unit} kişi-zamanın {shown} "
+"kadarını kapsar."
 
 #: R/swimmerplot.b.R
 msgid "{response} Rate ({n}/{N})"
-msgstr ""
+msgstr "{response} oranı ({n}/{N})"
 
 #: diagnosticmeta/ui[1][1][0]/confidence_level.suffix
 msgid "%"
@@ -66,7 +75,7 @@ msgstr "%.1f %s (%s; %d / %d yanıt veren hastada progresyon gelişti)"
 
 #: R/swimmerplot.b.R
 msgid "%.1f %s (95%% CI %s)"
-msgstr ""
+msgstr "%.1f %s (%%95 GA %s)"
 
 #: R/waterfall.b.R
 msgid "%.1f %s (n=%d responders)"
@@ -96,11 +105,11 @@ msgstr "Referans ortalamasına göre %%%+.1f (diğer kompartmanlar: %%%+.1f)"
 
 #: R/swimmerplot.b.R
 msgid "%d after the patient's last end"
-msgstr ""
+msgstr "%d işaret hastanın son bitişinden sonra"
 
 #: R/swimmerplot.b.R
 msgid "%d before the patient's first start"
-msgstr ""
+msgstr "%d işaret hastanın ilk başlangıcından önce"
 
 #: R/ihcheterogeneity.b.R
 msgid "%d case(s) whose mean is 0 were left out, because their CV is undefined."
@@ -158,29 +167,29 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid "%d for patients not in the analysis"
-msgstr ""
+msgstr "%d işaret analizde bulunmayan hastalara ait"
 
 #: R/swimmerplot.b.R
 msgid ""
 "%d had a start or end that could not be read with the selected Date Format "
 "(%s)."
-msgstr ""
+msgstr "%d satırda başlangıç veya bitiş seçilen tarih biçimiyle (%s) okunamadı."
 
 #: R/swimmerplot.b.R
 msgid "%d had a start or end that is not a number."
-msgstr ""
+msgstr "%d satırda başlangıç veya bitiş sayısal değil."
 
 #: R/swimmerplot.b.R
 msgid "%d had an end time before the start time."
-msgstr ""
+msgstr "%d satırda bitiş zamanı başlangıçtan önce."
 
 #: R/swimmerplot.b.R
 msgid "%d had no patient ID."
-msgstr ""
+msgstr "%d satırda hasta kimliği yok."
 
 #: R/swimmerplot.b.R
 msgid "%d had no start or end time."
-msgstr ""
+msgstr "%d satırda başlangıç veya bitiş zamanı yok."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -189,6 +198,10 @@ msgid ""
 "and receive no status arrow. Use 0/FALSE/no/censored/alive for ongoing and "
 "1/TRUE/yes/event/dead for completed."
 msgstr ""
+"%d/%d sansür/olay değeri yorumlanamadı; bu hastalar ters Kaplan-Meier "
+"tahmininde izlemi tamamlanmış (olay) olarak ele alınır ve durum oku almaz. "
+"Devam eden izlem için 0/FALSE/no/censored/alive, tamamlanmış izlem için "
+"1/TRUE/yes/event/dead kullanın."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -197,6 +210,10 @@ msgid ""
 "patient's timeline. Events recorded after follow-up ends, such as death, "
 "need an end time that covers them."
 msgstr ""
+"%d/%d olay işareti gösterilmez (%s). Aşağıdaki olay işareti özeti yalnızca "
+"hastanın zaman çizelgesi içindeki %d işareti kapsar. Ölüm gibi izlem "
+"bitiminden sonra kaydedilen olaylar için bitiş zamanının olayı kapsaması "
+"gerekir."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -206,6 +223,11 @@ msgid ""
 "that the milestone variable is measured on the same clock as Start Time and "
 "End Time."
 msgstr ""
+"%d/%d dönüm noktası değeri hastanın başlangıç-bitiş aralığı dışındadır (%s). "
+"Bu değerler yine çizilir ve dönüm noktası olay özetine katılır; dolayısıyla "
+"medyan ve aralık, çizelgenin kapsamadığı zamanları da içerir. Dönüm noktası "
+"değişkeninin başlangıç ve bitişle aynı zaman ölçeğini kullandığını kontrol "
+"edin."
 
 #: R/waterfall.b.R
 msgid ""
@@ -224,6 +246,9 @@ msgid ""
 "follow-up, which would bias it downward. Their timelines are still drawn, "
 "without a status arrow."
 msgstr ""
+"%d/%d hastanın sansür/olay değeri yoktur. Medyanı aşağı yönlü saptıracak "
+"biçimde tamamlanmış izlem sayılmak yerine ters Kaplan-Meier medyan "
+"izleminden dışlanırlar. Zaman çizelgeleri durum oku olmadan yine çizilir."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -231,6 +256,8 @@ msgid ""
 "from this comparison only. The response rates reported above still cover all "
 "%d patients, so the two denominators differ."
 msgstr ""
+"%d/%d hastanın grup değeri yoktur ve yalnızca bu karşılaştırmadan dışlanır. "
+"Yukarıdaki yanıt oranları tüm %d hastayı kapsadığından iki payda farklıdır."
 
 #: R/waterfall.b.R
 msgid ""
@@ -261,6 +288,8 @@ msgid ""
 "%d of %d rows were excluded before analysis. All counts, rates and "
 "person-time below are based on the remaining %d rows."
 msgstr ""
+"Analizden önce %d/%d satır dışlandı. Aşağıdaki tüm sayılar, oranlar ve "
+"kişi-zaman kalan %d satıra dayanır."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -278,7 +307,7 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"%d of %d studies have a cell below 5. The bivariate model used here "
+"%d of %d studies have a cell of 0 or 1. The bivariate model used here "
 "approximates the logit sensitivity and specificity as normal, which is "
 "biased when cells are that small, and any zero cell additionally needs a "
 "continuity correction. Published comparisons put the gap against an exact "
@@ -286,6 +315,14 @@ msgid ""
 "data like this. Treat the pooled pair as approximate, and confirm it in "
 "software offering a binomial bivariate model before relying on it."
 msgstr ""
+"%d/%d çalışmada 0 veya 1 değerli hücre bulunur. Buradaki iki değişkenli "
+"model, logit duyarlılık ve özgüllüğü normal dağılımla yaklaştırır; bu kadar "
+"küçük hücrelerde yaklaşım yanlıdır ve sıfır hücreler ayrıca süreklilik "
+"düzeltmesi gerektirir. Yayımlanmış karşılaştırmalarda benzer veriler için "
+"kesin binom (genelleştirilmiş doğrusal karma) modelden birkaç yüzde puanlık "
+"sapmalar görülmüştür. Birleştirilmiş değerleri yaklaşık kabul edin ve "
+"bunlara dayanmadan önce binom iki değişkenli model sunan yazılımla "
+"doğrulayın."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -293,6 +330,9 @@ msgid ""
 "participants; check whether percentages or rates were entered. These studies "
 "are excluded."
 msgstr ""
+"%d/%d çalışmada kesirli sayımlar bulunur. Hücre sayımları katılımcı "
+"sayılarını gösterir; yüzde veya oran girilip girilmediğini kontrol edin. Bu "
+"çalışmalar dışlanır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -307,6 +347,8 @@ msgid ""
 "%d of %d studies were excluded from the meta-regression because the "
 "covariate is missing; the pooled estimates above use all %d."
 msgstr ""
+"Ortak değişken eksik olduğundan %d/%d çalışma meta-regresyondan dışlandı; "
+"yukarıdaki birleştirilmiş tahminler tüm %d çalışmayı kullanır."
 
 #: R/ihcheterogeneity.b.R
 msgid "%d of these cases have every measurement."
@@ -435,7 +477,7 @@ msgstr "Tümör küçülmesi >%%100 olan %d hasta (tek lezyonla imkansızdır)."
 
 #: R/swimmerplot.b.R
 msgid "%d patients"
-msgstr ""
+msgstr "%d hasta"
 
 #: R/waterfall.b.R
 msgid ""
@@ -459,6 +501,9 @@ msgid ""
 "excluded. Time Input Type is set to Raw Values; if these are calendar dates, "
 "switch it to Date/Time."
 msgstr ""
+"%d başlangıç/bitiş değeri sayısal değil (örneğin '%s'); bu satırlar "
+"dışlanır. Zaman girdisi türü ham değer olarak seçilmiştir; değerler takvim "
+"tarihiyse tarih/saat türüne geçin."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -467,6 +512,10 @@ msgid ""
 "model for the pooled sensitivity and specificity, or any other option under "
 "Analysis, Visualization or Reporting."
 msgstr ""
+"%d çalışma başarıyla okundu ancak tüm analiz ve gösterim seçenekleri kapalı "
+"olduğundan gösterilecek sonuç yoktur. Birleştirilmiş duyarlılık ve özgüllük "
+"için iki değişkenli rastgele etkiler modelini ya da analiz, görselleştirme "
+"veya raporlama altındaki başka bir seçeneği açın."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -474,6 +523,9 @@ msgid ""
 "is analysed as its own study and the labels were made unique for the tables "
 "and the forest plot."
 msgstr ""
+"%d çalışma tanımlayıcısı tekrarlanmış veya eksiktir (%s). Her satır ayrı "
+"çalışma olarak analiz edilir; tablo ve orman grafiği etiketleri "
+"benzersizleştirilmiştir."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -508,6 +560,11 @@ msgid ""
 "estimates. Choose a Zero-Cell Correction option to keep every study in every "
 "model."
 msgstr ""
+"%d çalışmada sıfır hücre bulunur. Kullanıcı düzeltmesi seçilmediğinden "
+"mada'nın varsayılan çalışma bazlı 0,5 düzeltmesi yalnızca iki değişkenli "
+"model içinde uygulanır; tek değişkenli heterojenlik ve meta-regresyon "
+"modelleri bu çalışmaları dışlar ve daha az çalışmaya dayanır. Tüm modellerde "
+"her çalışmayı korumak için sıfır hücre düzeltmesi seçin."
 
 #: R/diagnosticmeta.b.R
 msgid "%d with missing counts"
@@ -523,11 +580,11 @@ msgstr "%d tanesinde hastalıklı veya hastalıksız katılımcı yok"
 
 #: R/swimmerplot.b.R
 msgid "%d with no event time"
-msgstr ""
+msgstr "%d işarette olay zamanı yok"
 
 #: R/swimmerplot.b.R
 msgid "%d with no event type"
-msgstr ""
+msgstr "%d işarette olay türü yok"
 
 #: R/swimmerplot.b.R
 msgid "%s (cumulative)"
@@ -542,6 +599,8 @@ msgid ""
 "%s A new study is predicted to fall between %.1f%% and %.1f%% for "
 "sensitivity and between %.1f%% and %.1f%% for specificity."
 msgstr ""
+"%s Yeni bir çalışmanın duyarlılığı için %%%.1f ile %%%.1f, özgüllüğü için "
+"%%%.1f ile %%%.1f arasında bir değer öngörülür."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -556,6 +615,8 @@ msgid ""
 "%s meta-regression not run: after excluding studies this model cannot use, "
 "the covariate takes the same value in every remaining study."
 msgstr ""
+"%s meta-regresyonu yapılmadı: modelin kullanamadığı çalışmalar dışlandıktan "
+"sonra kalan çalışmalarda ortak değişken sabittir."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -565,6 +626,10 @@ msgid ""
 "intervals would be meaningless. At least %d studies are needed, and 10 per "
 "covariate is the usual recommendation."
 msgstr ""
+"%s meta-regresyonu yapılmadı: kullanılabilen %d çalışma, %d model "
+"parametresi ekleyen ortak değişkeni desteklemez; artık serbestlik derecesi "
+"kalmadığından model kusursuz uyum verir ve güven aralıkları anlamsız olur. "
+"En az %d çalışma gerekir; genel öneri ortak değişken başına 10 çalışmadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -573,6 +638,10 @@ msgid ""
 "at least 10 studies per covariate, so estimates may be unstable and "
 "confidence intervals unreliable. Report this as exploratory only."
 msgstr ""
+"%s meta-regresyonu %d çalışma ve %d model parametresi ekleyen bir ortak "
+"değişkenle hesaplandı (%d artık serbestlik derecesi). Genel öneri ortak "
+"değişken başına en az 10 çalışmadır; tahminler kararsız, güven aralıkları "
+"güvenilmez olabilir. Yalnızca keşifsel olarak raporlayın."
 
 #: R/diagnosticmeta.b.R
 msgid "%s Positive LR %.2f and negative LR %.2f."
@@ -600,7 +669,7 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid "%s: %d of %d responded (%.1f%%)"
-msgstr ""
+msgstr "%s: %d/%d hasta yanıt verdi (%%%.1f)"
 
 #: R/diagnosticmeta.b.R
 msgid "%s: F(%d, %.0f) = %.2f, p = %.4g"
@@ -663,6 +732,8 @@ msgid ""
 "+0.5 continuity correction applied to all %d studies (%d had a zero cell), "
 "matching Deeks' test"
 msgstr ""
+"Deeks testiyle uyumlu olarak tüm %d çalışmaya +0,5 süreklilik düzeltmesi "
+"uygulandı (%d çalışmada sıfır hücre vardı)"
 
 #: R/diagnosticmeta.b.R
 #: diagnosticmeta/options/zero_cell_correction/constant.title
@@ -675,8 +746,11 @@ msgid "+0.5 to the zero cells only"
 msgstr "Yalnızca sıfır hücrelere +0.5"
 
 #: R/diagnosticmeta.b.R
-#: diagnosticmeta/options/zero_cell_correction/reciprocal_n.title
 msgid "+1/N to all cells (N = study size)"
+msgstr "Tüm hücrelere +1/N (N = çalışma büyüklüğü)"
+
+#: diagnosticmeta/options/zero_cell_correction/reciprocal_n.title
+msgid "+1/N to all cells (n = study size)"
 msgstr "Tüm hücrelere +1/N (N = çalışma büyüklüğü)"
 
 #: R/diagnosticmeta.b.R
@@ -720,24 +794,32 @@ msgid ""
 "<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the "
 "<em>excellent</em> band on the conventional 90/80/70 scale."
 msgstr ""
+"<br><br><strong>Birleştirilmiş özgüllüğünüz %%%.1f%s</strong>, geleneksel "
+"90/80/70 ölçeğinde <em>mükemmel</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
 "<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the "
 "<em>good</em> band on the conventional 90/80/70 scale."
 msgstr ""
+"<br><br><strong>Birleştirilmiş özgüllüğünüz %%%.1f%s</strong>, geleneksel "
+"90/80/70 ölçeğinde <em>iyi</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
 "<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the "
 "<em>limited</em> band on the conventional 90/80/70 scale."
 msgstr ""
+"<br><br><strong>Birleştirilmiş özgüllüğünüz %%%.1f%s</strong>, geleneksel "
+"90/80/70 ölçeğinde <em>sınırlı</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
 "<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the "
 "<em>moderate</em> band on the conventional 90/80/70 scale."
 msgstr ""
+"<br><br><strong>Birleştirilmiş özgüllüğünüz %%%.1f%s</strong>, geleneksel "
+"90/80/70 ölçeğinde <em>orta</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -779,9 +861,396 @@ msgstr ""
 "<em>Not:</em> Sıfır hücre düzeltmeleri, özellikle büyük çalışmalarda "
 "yanlılığa neden olabilir. Sonuçlar dikkatle yorumlanmalıdır."
 
+#: R/diagnosticmeta.b.R
+msgid ""
+"<em>The bands below are Higgins' conventional cut-points from intervention "
+"meta-analysis. They are not established thresholds for diagnostic accuracy, "
+"where a high I[[SUP2]] commonly reflects studies using different positivity "
+"thresholds - the situation the SROC curve exists to model - rather than a "
+"reason to abandon the analysis. Treat them as rough orientation, and prefer "
+"the prediction region.</em>"
+msgstr ""
+"<em>Aşağıdaki aralıklar Higgins'in müdahale meta-analizleri için geleneksel "
+"eşikleridir. Tanısal doğruluk için doğrulanmış eşikler değildir; burada "
+"yüksek I[[SUP2]], sıklıkla çalışmalarda farklı pozitiflik eşikleri "
+"kullanılmasını yansıtır. Bu durum analizi bırakma gerekçesi olmaktan çok "
+"SROC eğrisinin modellediği durumdur. Aralıkları kabaca yol gösterici kabul "
+"edin ve öngörü bölgesine öncelik verin.</em>"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<em>These features do not establish that publication bias is absent: "
+"asymmetry tests have low power, and are unreliable with fewer than 10 "
+"studies.</em>"
+msgstr ""
+"<em>Bu özellikler yayın yanlılığı bulunmadığını göstermez: asimetri "
+"testlerinin gücü düşüktür ve 10'dan az çalışmada güvenilir değildir.</em>"
+
 #: R/swimmerplot.b.R
 msgid "<p><strong>Error:</strong> {message}</p>"
 msgstr "<p><strong>Hata:</strong> {message}</p>"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong> Clinical Insight:</strong> The plotted SROC curve is derived from "
+"the <em>bivariate model</em>. The proportional-hazards SROC table is a "
+"separate compact model of diagnostic accuracy and between-study variation; "
+"it should not be interpreted as a Rutter-Gatsonis HSROC threshold/accuracy "
+"table."
+msgstr ""
+"<strong>Klinik bilgi:</strong> Çizilen SROC eğrisi <em>iki değişkenli "
+"modelden</em> türetilir. Orantılı tehlikeler SROC tablosu, tanısal doğruluk "
+"ve çalışmalar arası değişkenlik için ayrı, özlü bir modeldir; "
+"Rutter-Gatsonis HSROC eşik/doğruluk tablosu olarak yorumlanmamalıdır."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong> Pro Tip:</strong> Always interpret meta-analysis results in the "
+"context of your specific clinical population and intended use. A test "
+"excellent for one application may be inappropriate for another."
+msgstr ""
+"<strong>İpucu:</strong> Meta-analiz sonuçlarını daima hedef klinik topluluk "
+"ve kullanım amacı bağlamında yorumlayın. Bir uygulamada mükemmel olan test "
+"başka bir uygulamaya uygun olmayabilir."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong> Recommendation:</strong> Start with REML unless you have specific "
+"methodological requirements. It provides the best balance of statistical "
+"properties and computational stability for diagnostic test meta-analysis."
+msgstr ""
+"<strong>Öneri:</strong> Özel yöntem gereksinimleriniz yoksa REML ile "
+"başlayın. Tanısal test meta-analizi için istatistiksel özelliklerle "
+"hesaplama kararlılığı arasında en iyi dengeyi sağlar."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong> Tip:</strong> Start with the bivariate model and forest plot to "
+"understand overall performance, then explore heterogeneity sources with "
+"meta-regression if needed."
+msgstr ""
+"<strong>İpucu:</strong> Genel performansı anlamak için iki değişkenli model "
+"ve orman grafiğiyle başlayın; gerekirse meta-regresyonla heterojenlik "
+"kaynaklarını araştırın."
+
+#: R/diagnosticmeta.b.R
+msgid "<strong> When the Funnel Plot is Asymmetric:</strong>"
+msgstr "<strong>Huni grafiği asimetrik olduğunda:</strong>"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Above Diagonal:</strong> Better than chance performance"
+msgstr "<strong>Köşegenin üstü:</strong> Şanstan daha iyi performans"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Action Needed:</strong> If the funnel is asymmetric, look for a "
+"clinical explanation first, then for unpublished studies"
+msgstr ""
+"<strong>Gereken işlem:</strong> Huni asimetrikse önce klinik açıklamaları, "
+"ardından yayımlanmamış çalışmaları araştırın"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Asymmetric Funnel:</strong> Studies concentrated on one side at the "
+"imprecise end of the plot"
+msgstr ""
+"<strong>Asimetrik huni:</strong> Grafiğin kesinliği düşük ucunda "
+"çalışmaların bir tarafta yoğunlaşması"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Balanced Performance:</strong> Consider clinical costs of false "
+"positives vs false negatives"
+msgstr ""
+"<strong>Dengeli performans:</strong> Yanlış pozitif ve yanlış negatiflerin "
+"klinik maliyetlerini değerlendirin"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Before running analysis, verify:</strong>"
+msgstr "<strong>Analizden önce doğrulayın:</strong>"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Bivariate modeling</strong> - Jointly analyzes sensitivity and "
+"specificity"
+msgstr ""
+"<strong>İki değişkenli modelleme</strong> - Duyarlılık ve özgüllüğü birlikte "
+"analiz eder"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Bivariate Random-Effects Model (Recommended Primary "
+"Approach):</strong>"
+msgstr ""
+"<strong>İki değişkenli rastgele etkiler modeli (önerilen birincil "
+"yaklaşım):</strong>"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Bivariate Random-Effects Model (Recommended):</strong> Jointly "
+"analyzes sensitivity and specificity accounting for correlation"
+msgstr ""
+"<strong>İki değişkenli rastgele etkiler modeli (önerilen):</strong> "
+"Duyarlılık ve özgüllüğü korelasyonu dikkate alarak birlikte analiz eder"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Choose the appropriate estimation method for your "
+"meta-analysis:</strong>"
+msgstr "<strong>Meta-analiziniz için uygun tahmin yöntemini seçin:</strong>"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Clinical Implications:</strong> Population-specific predictive values"
+msgstr "<strong>Klinik sonuçlar:</strong> Topluluğa özgü öngörü değerleri"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Confidence region (dashed):</strong> how precisely the POOLED point "
+"is estimated. It shrinks as more studies are added."
+msgstr ""
+"<strong>Güven bölgesi (kesikli):</strong> BİRLEŞTİRİLMİŞ noktanın tahmin "
+"kesinliğini gösterir. Çalışma sayısı arttıkça daralır."
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Confirmatory Testing:</strong> Prioritize high specificity (≥90%)"
+msgstr "<strong>Doğrulama testleri:</strong> Yüksek özgüllüğe öncelik verin (≥90%)"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Consistent Performance:</strong> low measured heterogeneity means "
+"the included studies produced similar estimates; with few studies it is "
+"imprecisely estimated and does not by itself show that performance transfers "
+"to a new setting"
+msgstr ""
+"<strong>Tutarlı performans:</strong> Ölçülen heterojenliğin düşük olması, "
+"dahil edilen çalışmaların benzer tahminler ürettiğini gösterir; az sayıda "
+"çalışmada bu değer belirsiz tahmin edilir ve tek başına performansın yeni "
+"ortama aktarılacağını göstermez"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Consistent Results:</strong> Points clustered together = low "
+"heterogeneity"
+msgstr ""
+"<strong>Tutarlı sonuçlar:</strong> Noktaların yakın kümelenmesi = düşük "
+"heterojenlik"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Deeks' Test p < 0.05:</strong> Statistical evidence of funnel plot "
+"asymmetry - evidence of asymmetry, not of publication bias; see the causes "
+"listed below"
+msgstr ""
+"<strong>Deeks testi p < 0,05:</strong> Huni grafiği asimetrisi için "
+"istatistiksel kanıt; bu, yayın yanlılığının değil asimetrinin kanıtıdır. "
+"Aşağıdaki nedenlere bakın"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Deeks' Test p ≥ 0.05:</strong> No statistical evidence of asymmetry"
+msgstr "<strong>Deeks testi p ≥ 0,05:</strong> Asimetri için istatistiksel kanıt yok"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Diagonal Line:</strong> Represents random chance (no discriminative "
+"ability)"
+msgstr "<strong>Köşegen:</strong> Rastgele şansı gösterir (ayırt etme gücü yok)"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>DOR &lt; 5:</strong> Limited discriminative ability"
+msgstr "<strong>DOR &lt; 5:</strong> Sınırlı ayırt etme gücü"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>DOR > 25:</strong> Excellent overall discriminative ability"
+msgstr "<strong>DOR > 25:</strong> Mükemmel genel ayırt etme gücü"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>DOR 10-25:</strong> Good discriminative ability"
+msgstr "<strong>DOR 10-25:</strong> İyi ayırt etme gücü"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>DOR 5-10:</strong> Moderate discriminative ability"
+msgstr "<strong>DOR 5-10:</strong> Orta ayırt etme gücü"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Each Point:</strong> One study in your meta-analysis"
+msgstr "<strong>Her nokta:</strong> Meta-analizdeki bir çalışma"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Essential Variables (Required):</strong>"
+msgstr "<strong>Temel değişkenler (zorunlu):</strong>"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Expected Pattern:</strong> Inverted funnel shape if no bias present"
+msgstr "<strong>Beklenen desen:</strong> Yanlılık yoksa ters huni biçimi"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>False negatives (FN):</strong> Number incorrectly identified as "
+"negative"
+msgstr ""
+"<strong>Yanlış negatifler (FN):</strong> Yanlış biçimde negatif "
+"tanımlananların sayısı"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>False positives (FP):</strong> Number incorrectly identified as "
+"positive"
+msgstr ""
+"<strong>Yanlış pozitifler (FP):</strong> Yanlış biçimde pozitif "
+"tanımlananların sayısı"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Fixed Effects:</strong> Assumes every study shares the exact same "
+"sensitivity and specificity (τ² = 0). Under this assumption, the SROC curve "
+"and prediction region are undefined, and confidence intervals are narrower "
+"by construction."
+msgstr ""
+"<strong>Sabit etkiler:</strong> Tüm çalışmaların aynı duyarlılık ve "
+"özgüllüğü paylaştığını varsayar (τ² = 0). Bu varsayımda SROC eğrisi ve "
+"öngörü bölgesi tanımsızdır; güven aralıkları yapısal olarak daha dardır."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Fixed Effects:</strong> Use when between-study heterogeneity is "
+"minimal or you want to assume all studies estimate the same underlying "
+"effect size."
+msgstr ""
+"<strong>Sabit etkiler:</strong> Çalışmalar arası heterojenlik çok düşükse "
+"veya tüm çalışmaların aynı temel etkiyi tahmin ettiği varsayılacaksa "
+"kullanın."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Forest Plot:</strong> Displays individual study results for "
+"sensitivity and specificity with confidence intervals. Each study is "
+"represented by a point (estimate) with horizontal lines (confidence "
+"intervals)."
+msgstr ""
+"<strong>Orman grafiği:</strong> Duyarlılık ve özgüllük için çalışma "
+"sonuçlarını güven aralıklarıyla gösterir. Nokta tahmini, yatay çizgiler "
+"güven aralıklarını temsil eder."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Funnel Plot:</strong> Assesses publication bias by plotting study "
+"precision against effect size (log diagnostic odds ratio)."
+msgstr ""
+"<strong>Huni grafiği:</strong> Çalışma kesinliğini etki büyüklüğüne (log "
+"tanısal odds oranı) karşı çizerek yayın yanlılığını değerlendirir."
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Gap in Lower Region:</strong> Small studies with low accuracy absent"
+msgstr ""
+"<strong>Alt bölgedeki boşluk:</strong> Doğruluğu düşük küçük çalışmaların "
+"bulunmaması"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Geographic region:</strong> Study location for population analysis"
+msgstr "<strong>Coğrafi bölge:</strong> Topluluk analizi için çalışma yeri"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Geographic/Temporal:</strong> Population differences, technology "
+"evolution"
+msgstr "<strong>Coğrafi/zamansal:</strong> Topluluk farkları, teknoloji gelişimi"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Heterogeneity assessment</strong> - Evaluates consistency across "
+"studies"
+msgstr ""
+"<strong>Heterojenlik değerlendirmesi</strong> - Çalışmalar arası tutarlılığı "
+"değerlendirir"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Heterogeneity:</strong> Clinical differences can mimic publication "
+"bias"
+msgstr ""
+"<strong>Heterojenlik:</strong> Klinik farklar yayın yanlılığı görünümünü "
+"taklit edebilir"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Heterogeneity:</strong> I[[SUP2]] values and potential sources "
+"investigated"
+msgstr ""
+"<strong>Heterojenlik:</strong> I[[SUP2]] değerleri ve araştırılan olası "
+"kaynaklar"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Holling Proportional-Hazards SROC Model:</strong>"
+msgstr "<strong>Holling orantılı tehlikeler SROC modeli:</strong>"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Horizontal Lines:</strong> Wilson score confidence intervals (at the "
+"chosen confidence level) showing precision of estimates"
+msgstr ""
+"<strong>Yatay çizgiler:</strong> Tahmin kesinliğini gösteren, seçilen güven "
+"düzeyindeki Wilson skor güven aralıkları"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>I[[SUP2]] &gt; 75%:</strong> Considerable heterogeneity - a single "
+"pooled point is unlikely to describe the evidence; investigate thresholds, "
+"spectrum and reference standards, and report the SROC curve and prediction "
+"region"
+msgstr ""
+"<strong>I[[SUP2]] &gt; 75%:</strong> Çok yüksek heterojenlik; tek bir "
+"birleştirilmiş nokta kanıtları temsil etmeyebilir. Eşikleri, hasta "
+"spektrumunu ve referans standartlarını araştırın; SROC eğrisiyle öngörü "
+"bölgesini raporlayın"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>I[[SUP2]] < 25%:</strong> Little heterogeneity detected on this "
+"margin. I[[SUP2]] is imprecisely estimated when few studies are pooled and "
+"does not describe the bivariate model, so on its own it does not establish "
+"that pooling is appropriate - inspect the prediction region and check that "
+"positivity thresholds, patient spectrum and reference standards are "
+"comparable"
+msgstr ""
+"<strong>I[[SUP2]] < 25%:</strong> Bu ölçütte az heterojenlik saptandı. Az "
+"çalışmada I[[SUP2]] belirsiz tahmin edilir ve iki değişkenli modeli "
+"tanımlamaz; tek başına birleştirmenin uygunluğunu göstermez. Öngörü "
+"bölgesini inceleyin; pozitiflik eşiklerinin, hasta spektrumunun ve referans "
+"standartlarının karşılaştırılabilirliğini kontrol edin"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>I[[SUP2]] 25-50%:</strong> Moderate heterogeneity - investigate "
+"potential sources"
+msgstr ""
+"<strong>I[[SUP2]] 25-50%:</strong> Orta heterojenlik; olası kaynakları "
+"araştırın"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>I[[SUP2]] 50-75%:</strong> Substantial heterogeneity - pooling "
+"questionable"
+msgstr ""
+"<strong>I[[SUP2]] 50-75%:</strong> Belirgin heterojenlik; birleştirme "
+"tartışmalıdır"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Important:</strong> Sensitivity and specificity are test "
+"characteristics, but clinicians need predictive values that depend on "
+"disease prevalence in their population. See the <em>Predictive Values by "
+"Prevalence</em> table below for estimated PPV and NPV across typical "
+"prevalence settings based on the pooled accuracy of this meta-analysis."
+msgstr ""
+"<strong>Önemli:</strong> Duyarlılık ve özgüllük test özellikleridir; "
+"klinisyenler ise kendi topluluklarındaki hastalık prevalansına bağlı öngörü "
+"değerlerine ihtiyaç duyar. Bu meta-analizin birleştirilmiş doğruluğuna "
+"dayanarak tipik prevalanslarda tahmin edilen PPV ve NPV için aşağıdaki "
+"<em>Prevalansa göre öngörü değerleri</em> tablosuna bakın."
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Individual Studies:</strong> Circles sized by sample size"
+msgstr "<strong>Çalışmalar:</strong> Daire boyutu örneklem büyüklüğünü gösterir"
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -816,8 +1285,66 @@ msgstr ""
 "bir kısmının yanlış pozitif olması beklenir."
 
 #: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Left Panel (Sensitivity):</strong> Proportion of diseased cases "
+"correctly identified"
+msgstr ""
+"<strong>Sol panel (duyarlılık):</strong> Doğru tanımlanan hastalıklı "
+"olguların oranı"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Likelihood Ratios:</strong> For clinical decision-making context"
+msgstr "<strong>Olabilirlik oranları:</strong> Klinik karar bağlamı için"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Limitations:</strong> Study quality, missing data, generalizability"
+msgstr ""
+"<strong>Sınırlılıklar:</strong> Çalışma kalitesi, eksik veri, "
+"genellenebilirlik"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Maximum Likelihood:</strong> Alternative estimation approach when "
+"maximum likelihood estimation is specifically preferred or required by study "
+"protocol."
+msgstr ""
+"<strong>En çok olabilirlik:</strong> En çok olabilirlik tahmini özellikle "
+"tercih edildiğinde veya çalışma protokolünce gerektiğinde alternatif tahmin "
+"yaklaşımıdır."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Meta-Regression:</strong> Investigates sources of heterogeneity "
+"using study-level covariates"
+msgstr ""
+"<strong>Meta-regresyon:</strong> Çalışma düzeyindeki ortak değişkenlerle "
+"heterojenlik kaynaklarını araştırır"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Method of Moments:</strong> Classical moment-based estimation "
+"method, useful for comparison with older meta-analyses or when computational "
+"resources are limited."
+msgstr ""
+"<strong>Momentler yöntemi:</strong> Eski meta-analizlerle karşılaştırmada "
+"veya hesaplama kaynakları sınırlıyken yararlı klasik moment tabanlı tahmin "
+"yöntemidir."
+
+#: R/diagnosticmeta.b.R
 msgid "<strong>Method:</strong> %s"
 msgstr "<strong>Yöntem:</strong> %s"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Methodological:</strong> Reference standards, blinding, cut-off "
+"thresholds"
+msgstr "<strong>Yöntemsel:</strong> Referans standartları, körleme, kesim eşikleri"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Narrow CIs:</strong> Large studies with precise estimates"
+msgstr ""
+"<strong>Dar güven aralıkları:</strong> Kesin tahminler sağlayan büyük "
+"çalışmalar"
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -852,6 +1379,18 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
+"<strong>Not external validation:</strong> a meta-analysis summarises "
+"existing published evidence and inherits any publication, spectrum or "
+"reference-standard bias of the included studies; it is not a prospective "
+"evaluation in an intended-use population with a pre-specified threshold"
+msgstr ""
+"<strong>Dış doğrulama değildir:</strong> Meta-analiz mevcut yayımlanmış "
+"kanıtları özetler ve dahil edilen çalışmaların yayın, spektrum veya referans "
+"standardı yanlılıklarını devralır; önceden belirlenmiş eşikle hedef kullanım "
+"topluluğunda ileriye dönük değerlendirme değildir"
+
+#: R/diagnosticmeta.b.R
+msgid ""
 "<strong>Note:</strong> the confidence interval spans more than one "
 "performance category, so this classification is not firmly established by "
 "the pooled data."
@@ -859,6 +1398,100 @@ msgstr ""
 "<strong>Not:</strong> Güven aralığı birden fazla performans kategorisini "
 "kapsadığından, bu sınıflandırma havuzlanmış verilerle kesin olarak "
 "belirlenememiştir."
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Optional Variables for Meta-Regression:</strong>"
+msgstr "<strong>Meta-regresyon için isteğe bağlı değişkenler:</strong>"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Other Causes:</strong> Different thresholds, narrower patient "
+"spectra in small studies, language or database bias, or chance"
+msgstr ""
+"<strong>Diğer nedenler:</strong> Farklı eşikler, küçük çalışmalarda daha dar "
+"hasta spektrumu, dil veya veri tabanı yanlılığı ya da şans"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>p < 0.05:</strong> The funnel plot is asymmetric - small studies "
+"report systematically different accuracy from large ones. Publication bias "
+"is one explanation; heterogeneity, a threshold effect, and a genuine "
+"relation between study size and accuracy (smaller studies often use narrower "
+"spectra) are others. The test cannot tell them apart, so a significant "
+"result is a prompt to investigate, not a finding of publication bias"
+msgstr ""
+"<strong>p < 0,05:</strong> Huni asimetriktir; küçük çalışmalar büyük "
+"çalışmalardan sistematik olarak farklı doğruluk bildirir. Yayın yanlılığı "
+"bir açıklamadır; heterojenlik, eşik etkisi ve çalışma büyüklüğüyle doğruluk "
+"arasında gerçek ilişki (küçük çalışmalar sıklıkla daha dar spektrum "
+"kullanır) diğerleridir. Test bunları ayıramaz; anlamlı sonuç yayın yanlılığı "
+"bulgusu değil araştırma gerekçesidir"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>p ≥ 0.05:</strong> No statistically significant funnel-plot "
+"asymmetry was detected. This does NOT indicate that publication bias is "
+"unlikely: Deeks' test has low power and is unreliable with fewer than 10 "
+"studies, so a non-significant result is uninformative when few studies are "
+"pooled"
+msgstr ""
+"<strong>p ≥ 0,05:</strong> İstatistiksel olarak anlamlı huni asimetrisi "
+"saptanmadı. Bu, yayın yanlılığının olası olmadığını göstermez: Deeks "
+"testinin gücü düşüktür ve 10'dan az çalışmada güvenilir değildir; az çalışma "
+"birleştirildiğinde anlamsız sonuç bilgilendirici değildir"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Patient population:</strong> Disease stage, demographics (e.g., "
+"'early_stage', 'advanced', 'mixed')"
+msgstr ""
+"<strong>Hasta topluluğu:</strong> Hastalık evresi ve demografi (örneğin "
+"'early_stage', 'advanced', 'mixed')"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Patient Population:</strong> Disease stage, severity, demographics"
+msgstr "<strong>Hasta topluluğu:</strong> Hastalık evresi, şiddeti, demografi"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Point Scatter:</strong> Studies clustered tightly = consistent test "
+"performance"
+msgstr ""
+"<strong>Nokta dağılımı:</strong> Çalışmaların sıkı kümelenmesi = tutarlı "
+"test performansı"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Pooled Estimate:</strong> Large triangle showing meta-analytic "
+"summary"
+msgstr ""
+"<strong>Birleştirilmiş tahmin:</strong> Meta-analitik özeti gösteren büyük "
+"üçgen"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Pooled Estimates:</strong> Sensitivity and specificity with "
+"confidence intervals at the level chosen in Advanced Options"
+msgstr ""
+"<strong>Birleştirilmiş tahminler:</strong> Gelişmiş seçeneklerde seçilen "
+"düzeyde güven aralıklarıyla duyarlılık ve özgüllük"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Pooled Sensitivity:</strong> Proportion of diseased cases correctly "
+"identified <ul> <li>Excellent sensitivity (≥90%): few diseased cases missed"
+msgstr ""
+"<strong>Birleştirilmiş duyarlılık:</strong> Doğru tanımlanan hastalıklı "
+"olguların oranı <ul> <li>Mükemmel duyarlılık (≥90%): az sayıda hastalıklı "
+"olgu kaçırılır"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Pooled Specificity:</strong> Proportion of non-diseased cases "
+"correctly identified <ul> <li>Excellent specificity (≥90%): few false alarms"
+msgstr ""
+"<strong>Birleştirilmiş özgüllük:</strong> Doğru tanımlanan hastalıksız "
+"olguların oranı <ul> <li>Mükemmel özgüllük (≥90%): az sayıda yanlış alarm"
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -877,8 +1510,184 @@ msgstr ""
 "edilemiyor (özgüllük ≈ %100 veya model kararsız)."
 
 #: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Prediction region (dotted):</strong> where the accuracy of a FUTURE "
+"study in a new setting is expected to fall. It includes between-study "
+"heterogeneity and does NOT shrink with more studies."
+msgstr ""
+"<strong>Öngörü bölgesi (noktalı):</strong> Yeni bir ortamdaki GELECEK "
+"çalışmanın doğruluğunun bulunmasının beklendiği bölge. Çalışmalar arası "
+"heterojenliği içerir ve daha fazla çalışmayla daralmaz."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Proportional-Hazards SROC Analysis:</strong> Holling model estimated "
+"by adjusted profile maximum likelihood"
+msgstr ""
+"<strong>Orantılı tehlikeler SROC analizi:</strong> Düzeltilmiş profil en çok "
+"olabilirlikle tahmin edilen Holling modeli"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Proportional-hazards SROC modeling</strong> - Models the trade-off "
+"between sensitivity and false-positive rate"
+msgstr ""
+"<strong>Orantılı tehlikeler SROC modellemesi</strong> - Duyarlılık ile "
+"yanlış pozitif oranı arasındaki dengeyi modeller"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Publication Bias Assessment:</strong> Deeks' funnel plot asymmetry "
+"test"
+msgstr ""
+"<strong>Yayın yanlılığı değerlendirmesi:</strong> Deeks huni grafiği "
+"asimetri testi"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Publication Bias:</strong> Deeks' test results and visual assessment"
+msgstr ""
+"<strong>Yayın yanlılığı:</strong> Deeks testi sonuçları ve görsel "
+"değerlendirme"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Publication bias</strong> - Checks for selective reporting"
+msgstr "<strong>Yayın yanlılığı</strong> - Seçici raporlamayı kontrol eder"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Publication year:</strong> For temporal trend investigation"
+msgstr "<strong>Yayın yılı:</strong> Zamansal eğilim araştırması için"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>REML (Random Effects, Default):</strong> Estimates between-study "
+"variance (τ²) to construct the SROC regression curve and prediction region. "
+"Recommended for diagnostic meta-analysis because test thresholds and patient "
+"populations inherently vary across studies."
+msgstr ""
+"<strong>REML (rastgele etkiler, varsayılan):</strong> SROC regresyon eğrisi "
+"ve öngörü bölgesi için çalışmalar arası varyansı (τ²) tahmin eder. Test "
+"eşikleri ve hasta toplulukları çalışmalar arasında doğal olarak "
+"değiştiğinden tanısal meta-analizde önerilir."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>REML (Recommended):</strong> Default choice for most diagnostic "
+"meta-analyses. Most robust for random effects modeling with good performance "
+"across different scenarios."
+msgstr ""
+"<strong>REML (önerilen):</strong> Çoğu tanısal meta-analizde varsayılan "
+"seçimdir. Farklı koşullarda iyi performans gösteren, rastgele etkiler "
+"modellemesi için en sağlam yaklaşımdır."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Right Panel (Specificity):</strong> Proportion of healthy cases "
+"correctly identified"
+msgstr ""
+"<strong>Sağ panel (özgüllük):</strong> Doğru tanımlanan sağlıklı olguların "
+"oranı"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Row order:</strong> studies are sorted by their mean of sensitivity "
+"and specificity, so each study keeps the same row in both panels and can be "
+"read across. Within one panel the rows are therefore <em>not</em> ranked by "
+"that panel's own metric"
+msgstr ""
+"<strong>Satır sırası:</strong> Çalışmalar duyarlılık ve özgüllük "
+"ortalamalarına göre sıralanır; her çalışma iki panelde aynı satırda kalır ve "
+"yatay okunabilir. Tek panelde satırlar o panelin kendi ölçütüne göre "
+"<em>sıralanmamıştır</em>"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Scale:</strong> both panels run from 0 to 1; the tables report the "
+"same quantities as percentages"
+msgstr ""
+"<strong>Ölçek:</strong> İki panel de 0 ile 1 arasındadır; tablolar aynı "
+"değerleri yüzde olarak bildirir"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Screening Applications:</strong> Prioritize high sensitivity (≥90%)"
+msgstr "<strong>Tarama uygulamaları:</strong> Yüksek duyarlılığa öncelik verin (≥90%)"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Small Sample:</strong> Funnel plot unreliable with &lt;10 studies"
+msgstr ""
+"<strong>Küçük örneklem:</strong> &lt;10 çalışmada huni grafiği güvenilir "
+"değildir"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Small Studies Present:</strong> Range of precision levels represented"
+msgstr ""
+"<strong>Küçük çalışmalar mevcut:</strong> Farklı kesinlik düzeyleri temsil "
+"edilmiştir"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>SROC Plot:</strong> Summary Receiver Operating Characteristic curve "
+"showing the trade-off between sensitivity and specificity across all studies."
+msgstr ""
+"<strong>SROC grafiği:</strong> Tüm çalışmalarda duyarlılık ve özgüllük "
+"arasındaki dengeyi gösteren özet alıcı işlem karakteristik eğrisi."
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Step 1:</strong> Select your study identifier variable"
+msgstr "<strong>Adım 1:</strong> Çalışma tanımlayıcısı değişkenini seçin"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Step 2:</strong> Assign TP, FP, FN, TN count variables"
+msgstr "<strong>Adım 2:</strong> TP, FP, FN, TN sayım değişkenlerini atayın"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Step 3:</strong> Choose analysis options (bivariate recommended)"
+msgstr ""
+"<strong>Adım 3:</strong> Analiz seçeneklerini seçin (iki değişkenli model "
+"önerilir)"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Step 4:</strong> Review pooled estimates and heterogeneity"
+msgstr "<strong>Adım 4:</strong> Birleştirilmiş tahminleri ve heterojenliği inceleyin"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Step 5:</strong> Interpret in your clinical context"
+msgstr "<strong>Adım 5:</strong> Klinik bağlamınızda yorumlayın"
+
+#: R/diagnosticmeta.b.R
 msgid "<strong>Studies corrected:</strong> %d of %d (%s)"
 msgstr "<strong>Düzeltilen çalışmalar:</strong> %d / %d (%s)"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Study identifier:</strong> Unique name or ID for each study (e.g., "
+"'Smith_2020', 'Study_1')"
+msgstr ""
+"<strong>Çalışma tanımlayıcısı:</strong> Her çalışma için benzersiz ad veya "
+"kimlik (örneğin 'Smith_2020', 'Study_1')"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Study Selection:</strong> Number of studies included and excluded"
+msgstr "<strong>Çalışma seçimi:</strong> Dahil edilen ve dışlanan çalışma sayısı"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Symmetric Funnel:</strong> Studies distributed evenly on both sides"
+msgstr "<strong>Simetrik huni:</strong> Çalışmaların iki yana eşit dağılması"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Technical Factors:</strong> Staining protocols, antibody sources, "
+"automation"
+msgstr ""
+"<strong>Teknik etmenler:</strong> Boyama protokolleri, antikor kaynakları, "
+"otomasyon"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Technical method:</strong> Staining protocol (e.g., 'automated', "
+"'manual')"
+msgstr ""
+"<strong>Teknik yöntem:</strong> Boyama protokolü (örneğin 'automated', "
+"'manual')"
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -889,6 +1698,111 @@ msgid ""
 "none of which this analysis knows. Read the prediction interval alongside "
 "the pooled pair before applying either to practice."
 msgstr ""
+"<strong>Bu aralıklar kullanım uygunluğu kararı değil betimleyici bir "
+"gelenektir.</strong> Testin tarama, doğrulama veya başka bir role uygunluğu, "
+"hedef topluluktaki prevalansa ve yanlış negatif ile yanlış pozitifin klinik "
+"maliyetine bağlıdır; analiz bunları bilmez. Klinik uygulamadan önce "
+"birleştirilmiş değerlerle birlikte öngörü aralığını okuyun."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>These models answer related questions using different "
+"parameterizations:</strong>"
+msgstr ""
+"<strong>Bu modeller ilişkili soruları farklı parametreleştirmelerle "
+"yanıtlar:</strong>"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>True negatives (TN):</strong> Number correctly identified as negative"
+msgstr ""
+"<strong>Gerçek negatifler (TN):</strong> Doğru biçimde negatif "
+"tanımlananların sayısı"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>True positives (TP):</strong> Number correctly identified as positive"
+msgstr ""
+"<strong>Gerçek pozitifler (TP):</strong> Doğru biçimde pozitif "
+"tanımlananların sayısı"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Upper Left Corner:</strong> Ideal performance (high sensitivity, low "
+"false positive rate)"
+msgstr ""
+"<strong>Sol üst köşe:</strong> İdeal performans (yüksek duyarlılık, düşük "
+"yanlış pozitif oranı)"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Use this plot to:</strong> Visualize test performance trade-offs, "
+"identify optimal operating points, and assess consistency across different "
+"study populations and settings."
+msgstr ""
+"<strong>Bu grafiği şu amaçlarla kullanın:</strong> Test performansı "
+"dengesini görselleştirmek, uygun çalışma noktalarını belirlemek ve farklı "
+"çalışma topluluklarıyla ortamlardaki tutarlılığı değerlendirmek."
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Use this when:</strong> Studies use the same diagnostic threshold"
+msgstr ""
+"<strong>Şu durumda kullanın:</strong> Çalışmalar aynı tanısal eşiği "
+"kullanıyorsa"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Variable Performance:</strong> high heterogeneity indicates that "
+"accuracy differed across the included populations and protocols"
+msgstr ""
+"<strong>Değişken performans:</strong> Yüksek heterojenlik, dahil edilen "
+"topluluk ve protokollerde doğruluğun farklı olduğunu gösterir"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Variance Components:</strong> Specialized approach for variance "
+"component estimation, typically used in advanced methodological research."
+msgstr ""
+"<strong>Varyans bileşenleri:</strong> Genellikle ileri yöntem "
+"araştırmalarında kullanılan, varyans bileşeni tahminine özgü yaklaşım."
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Wide CIs:</strong> Small studies with less precise estimates"
+msgstr ""
+"<strong>Geniş güven aralıkları:</strong> Daha az kesin tahminler sağlayan "
+"küçük çalışmalar"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Wide Spread:</strong> Points scattered = high heterogeneity "
+"(investigate sources)"
+msgstr ""
+"<strong>Geniş dağılım:</strong> Dağınık noktalar = yüksek heterojenlik "
+"(kaynaklarını araştırın)"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>X-axis:</strong> False Positive Rate (1 - Specificity) - lower is "
+"better"
+msgstr ""
+"<strong>X ekseni:</strong> Yanlış pozitif oranı (1 - özgüllük); düşük olması "
+"daha iyidir"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>X-axis:</strong> Log Diagnostic Odds Ratio (effect size)"
+msgstr "<strong>X ekseni:</strong> Log tanısal odds oranı (etki büyüklüğü)"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Y-axis:</strong> 1/√(effective sample size), reversed so the most "
+"precise studies sit at the top (Deeks' funnel plot)"
+msgstr ""
+"<strong>Y ekseni:</strong> 1/√(etkin örneklem büyüklüğü); en kesin "
+"çalışmalar üstte olacak biçimde ters çevrilmiştir (Deeks huni grafiği)"
+
+#: R/diagnosticmeta.b.R
+msgid "<strong>Y-axis:</strong> True Positive Rate (Sensitivity) - higher is better"
+msgstr ""
+"<strong>Y ekseni:</strong> Gerçek pozitif oranı (duyarlılık); yüksek olması "
+"daha iyidir"
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -927,24 +1841,32 @@ msgid ""
 "<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the "
 "<em>excellent</em> band on the conventional 90/80/70 scale."
 msgstr ""
+"<strong>Birleştirilmiş duyarlılığınız %%%.1f%s</strong>, geleneksel 90/80/70 "
+"ölçeğinde <em>mükemmel</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
 "<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the "
 "<em>good</em> band on the conventional 90/80/70 scale."
 msgstr ""
+"<strong>Birleştirilmiş duyarlılığınız %%%.1f%s</strong>, geleneksel 90/80/70 "
+"ölçeğinde <em>iyi</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
 "<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the "
 "<em>limited</em> band on the conventional 90/80/70 scale."
 msgstr ""
+"<strong>Birleştirilmiş duyarlılığınız %%%.1f%s</strong>, geleneksel 90/80/70 "
+"ölçeğinde <em>sınırlı</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
 "<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the "
 "<em>moderate</em> band on the conventional 90/80/70 scale."
 msgstr ""
+"<strong>Birleştirilmiş duyarlılığınız %%%.1f%s</strong>, geleneksel 90/80/70 "
+"ölçeğinde <em>orta</em> aralığındadır."
 
 #: R/waterfall.b.R
 msgid ""
@@ -977,16 +1899,19 @@ msgid ""
 "recorded on study (the nadir), AND an absolute increase of at least 5 mm; or "
 "the appearance of any new lesion."
 msgstr ""
+"Hedef lezyon çapları toplamında çalışmada kaydedilmiş en küçük toplama "
+"(nadir) göre ≥%20 artış VE en az 5 mm mutlak artış; veya herhangi bir yeni "
+"lezyon görülmesi."
 
 #: R/swimmerplot-html.R
 msgid ""
 "≥30% decrease in the sum of target lesion diameters, taking the BASELINE sum "
 "as reference."
-msgstr ""
+msgstr "Hedef lezyon çapları toplamında BAŞLANGIÇ toplamına göre ≥%30 azalma."
 
 #: R/swimmerplot.b.R
 msgid "1 patient"
-msgstr ""
+msgstr "1 hasta"
 
 #: ihcheterogeneity/results/samplingbiastable.columns.superTitle
 #: swimmerplot/results/advancedMetrics.columns.title
@@ -1067,6 +1992,9 @@ msgid ""
 "study/studies with a zero cell had a finite odds ratio; correcting only "
 "those studies would itself tilt the test."
 msgstr ""
+"Sıfır hücreli %d çalışmanın sonlu odds oranına sahip olması için her "
+"çalışmaya 0,5 süreklilik düzeltmesi uygulandı; yalnızca bu çalışmaları "
+"düzeltmek testi kendi başına saptırırdı."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -1154,6 +2082,8 @@ msgid ""
 "A significant Q or a large I-squared here contradicts the fixed-effect "
 "assumption: switch to REML."
 msgstr ""
+"Burada anlamlı Q veya yüksek I-kare, sabit etki varsayımıyla çelişir: REML'e "
+"geçin."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -1245,6 +2175,8 @@ msgid ""
 "A Time Variable is required to compute time to response and duration of "
 "response."
 msgstr ""
+"Yanıta kadar geçen süre ve yanıt süresini hesaplamak için zaman değişkeni "
+"gerekir."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -1255,6 +2187,10 @@ msgstr ""
 "%2$d çalışmaya (%3$s) sıfır hücre düzeltmesi (%1$s) uygulandı. Düzeltilmiş "
 "sayımlar tüm analizler ve grafikler tarafından kullanılır; Bireysel Çalışma "
 "Sonuçları tablosu ham sayımları gösterir."
+
+#: R/diagnosticmeta.b.R
+msgid "About Diagnostic Test Meta-Analysis"
+msgstr "Tanısal test meta-analizi hakkında"
 
 #: R/swimmerplot-html.R
 msgid "About Swimmer Plot Analysis"
@@ -1267,12 +2203,17 @@ msgid "About This Analysis"
 msgstr "Bu Analiz Hakkında"
 
 #: swimmerplot/options/showAbout.title
+#: waterfall/options/showAboutAnalysis.title
 msgid "About this analysis"
 msgstr "Bu analiz hakkında"
 
 #: swimmerplot/options/timeDisplay/absolute.title
 msgid "Absolute (use actual start times)"
 msgstr "Mutlak (gerçek başlangıç zamanlarını kullan)"
+
+#: R/diagnosticmeta.b.R
+msgid "Accounts for correlation between sensitivity and specificity"
+msgstr "Duyarlılık ile özgüllük arasındaki korelasyonu dikkate alır"
 
 #: R/swimmerplot-html.R
 msgid "Actual calendar dates with multiple format support"
@@ -1289,6 +2230,10 @@ msgid ""
 "Number of responders and events Requires a time variable and raw (per-visit) "
 "input."
 msgstr ""
+"Şunları içeren ayrı bir etkililik tablosu ekler: - İlk yanıta kadar medyan "
+"süre (RECIST PR veya daha iyi) - Kaplan-Meier medyan yanıt süresi "
+"(sansürlemeyi dikkate alır) - Yanıt veren ve olay sayısı Zaman değişkeni ve "
+"ham (ziyaret bazlı) girdi gerektirir."
 
 #: waterfall/options/showClinicalSignificance.description.jamovi
 msgid ""
@@ -1297,6 +2242,9 @@ msgid ""
 "with the rate expected in your tumour type and setting - Sample size "
 "assessment"
 msgstr ""
+"Sonuçlara klinik anlamlılık bağlamı ekler: - Verilerle uyumlu yanıt oranları "
+"aralığı (kesin güven aralığı) - Tümör türü ve ortamında beklenen oranla "
+"karşılaştırma hatırlatması - Örneklem büyüklüğü değerlendirmesi"
 
 #: waterfall/options/addResponseCategory.description.jamovi
 msgid ""
@@ -1317,6 +2265,10 @@ msgid ""
 "precision of response rate estimates - Essential for clinical trial "
 "reporting Recommended: Keep enabled for statistical rigor"
 msgstr ""
+"Klinik ölçütlere istatistiksel güven aralıkları ekler: - ORR ve DCR için "
+"kesin binom güven aralıkları (normal yaklaşımdan daha doğru) - Yanıt "
+"oranlarının kesinliğini değerlendirme desteği - Klinik çalışma raporlaması "
+"için gereklidir Öneri: istatistiksel titizlik için açık tutun"
 
 #: R/waterfall.b.R
 msgid "Add time=0 measurements for each patient, OR"
@@ -1326,11 +2278,8 @@ msgstr "Her hasta için zaman=0 ölçümleri ekleyin VEYA"
 msgid "Additional Analyses"
 msgstr "Ek Analizler"
 
-#: ihcheterogeneity/ui[0][5].label
-msgid "Additional Regional Measurements"
-msgstr "Ek Bölgesel Ölçümler"
-
 #: ihcheterogeneity/options/biopsies.title
+#: ihcheterogeneity/ui[0][5].label
 msgid "Additional regional measurements"
 msgstr "Ek bölgesel ölçümler"
 
@@ -1384,11 +2333,22 @@ msgstr ""
 "rastgele etkiler) ve Spearman sıra korelasyonu ile değerlendirildi."
 
 #: R/diagnosticmeta.b.R
+msgid "AI Algorithm Implementation:"
+msgstr "Yapay zekâ algoritması uygulaması:"
+
+#: R/diagnosticmeta.b.R
+msgid "AI algorithm performance meta-analysis for clinical implementation"
+msgstr "Klinik uygulama için yapay zekâ algoritması performansının meta-analizi"
+
+#: R/diagnosticmeta.b.R
 msgid ""
 "All asymmetry tests have low power, particularly when the diagnostic odds "
 "ratio is heterogeneous, so a non-significant result does not establish that "
 "publication bias is absent."
 msgstr ""
+"Tüm asimetri testlerinin gücü, özellikle tanısal odds oranı heterojen "
+"olduğunda düşüktür; anlamsız sonuç yayın yanlılığının bulunmadığını "
+"göstermez."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -1409,6 +2369,10 @@ msgstr "Vaka başına tüm ortalamalar aynı olduğundan test yapılamaz."
 #: R/swimmerplot.b.R
 msgid "All required variables are selected"
 msgstr "Tüm gerekli değişkenler seçildi"
+
+#: R/diagnosticmeta.b.R
+msgid "All values are non-negative integers"
+msgstr "Tüm değerler negatif olmayan tam sayılardır"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -1467,6 +2431,10 @@ msgstr "Analiz Kılavuzu"
 msgid "Analysis Information"
 msgstr "Analiz Bilgisi"
 
+#: R/diagnosticmeta.b.R
+msgid "Analysis Methods"
+msgstr "Analiz yöntemleri"
+
 #: diagnosticmeta/ui[1][0].label
 msgid "Analysis Options"
 msgstr "Analiz Seçenekleri"
@@ -1489,8 +2457,8 @@ msgid "Analysis Summary in Plain Language"
 msgstr "Sade Dilde Analiz Özeti"
 
 #: waterfall/ui[2][1][1][1].label
-msgid "Annotation Tracks"
-msgstr "Ek Açıklama İzleri"
+msgid "Annotation tracks"
+msgstr "Açıklama şeritleri"
 
 #: waterfall/options/annotationVars.title
 msgid "Annotation tracks (below the bars)"
@@ -1510,21 +2478,33 @@ msgstr "SROC eğrisi altındaki alan (EAA = 1/(1 + teta))"
 
 #: R/swimmerplot.b.R
 msgid "Arrow: patient still at risk (censored / alive) at the data cutoff."
+msgstr "Ok: veri kesiminde hasta hâlâ risk altında (sansürlü / hayatta)."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"Ask first whether the small studies differ clinically from the large ones - "
+"spectrum, setting, threshold, reference standard"
 msgstr ""
+"Önce küçük çalışmaların büyüklerden klinik olarak farklı olup olmadığını "
+"sorgulayın: spektrum, ortam, eşik, referans standardı"
+
+#: R/diagnosticmeta.b.R
+msgid "Assessing biomarker diagnostic accuracy"
+msgstr "Biyobelirteç tanısal doğruluğunun değerlendirilmesi"
+
+#: R/diagnosticmeta.b.R
+msgid "Assessment of test performance heterogeneity and variation sources"
+msgstr ""
+"Test performansı heterojenliğinin ve değişkenlik kaynaklarının "
+"değerlendirilmesi"
 
 #: R/diagnosticmeta.b.R
 msgid "Asymmetry detected (p < 0.05)"
-msgstr ""
+msgstr "Asimetri saptandı (p < 0,05)"
 
-#: R/ihcheterogeneity.b.R
-msgid ""
-"At least 2 regional measurements are required for inter-regional "
-"heterogeneity analysis. With a reference (whole section) measurement "
-"selected, a single regional measurement is sufficient."
-msgstr ""
-"Bölgeler arası heterojenlik analizi için en az 2 bölgesel ölçüm gereklidir. "
-"Bir referans (bütün kesit) ölçümü seçildiğinde tek bir bölgesel ölçüm "
-"yeterlidir."
+#: R/diagnosticmeta.b.R
+msgid "At least 3 studies with complete data"
+msgstr "Tam verili en az 3 çalışma"
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -1573,8 +2553,8 @@ msgid "Bar width"
 msgstr "Çubuk genişliği"
 
 #: waterfall/options/showBaseline.title
-msgid "Baseline (Y = 0) line"
-msgstr "Başlangıç (Y = 0) çizgisi"
+msgid "Baseline (y = 0) line"
+msgstr "Başlangıç (y = 0) çizgisi"
 
 #: R/waterfall.b.R
 msgid "Baseline assumed at Time = 0"
@@ -1665,6 +2645,8 @@ msgid ""
 "Between-study variance components: tau-squared (logit sensitivity) = %.3f, "
 "tau-squared (logit false-positive rate) = %.3f."
 msgstr ""
+"Çalışmalar arası varyans bileşenleri: tau-kare (logit duyarlılık) = %.3f, "
+"tau-kare (logit yanlış pozitif oranı) = %.3f."
 
 #: R/ihcheterogeneity.b.R
 msgid "Bias Correction:"
@@ -1685,6 +2667,10 @@ msgstr "Binom GA:"
 #: R/waterfall.b.R
 msgid "Biomarker correlation studies"
 msgstr "Biyobelirteç korelasyon çalışmaları"
+
+#: R/diagnosticmeta.b.R
+msgid "Biomarker diagnostic accuracy synthesis for guideline development"
+msgstr "Kılavuz geliştirme için biyobelirteç tanısal doğruluğunun sentezi"
 
 #: R/ihcheterogeneity.b.R
 msgid "Biomarker specificity:"
@@ -1745,6 +2731,9 @@ msgid ""
 "common sensitivity and specificity and the correlation between them is not "
 "identifiable - no threshold effect can be assessed from this fit."
 msgstr ""
+"Her ikisi de pratik olarak sıfırdır; çalışmalar tek bir ortak duyarlılık ve "
+"özgüllükle uyumludur ve aralarındaki korelasyon tanımlanamaz. Bu uyumdan "
+"eşik etkisi değerlendirilemez."
 
 #: R/ihcheterogeneity.b.R
 msgid "Brown-Forsythe test (spread of per-case CV)"
@@ -1865,18 +2854,21 @@ msgid ""
 "counts, which leaves too few studies. Enter the number of participants in "
 "each cell of the 2x2 table (TP, FP, FN, TN)."
 msgstr ""
+"Hücre sayımları tam sayı olmalıdır; {n} çalışmada kesirli sayımlar "
+"bulunduğundan yeterli çalışma kalmamaktadır. 2x2 tablonun her hücresine "
+"katılımcı sayısını girin (TP, FP, FN, TN)."
 
 #: R/swimmerplot.b.R
 msgid "Censoring coded 1/2"
-msgstr ""
+msgstr "Sansürleme 1/2 olarak kodlanmış"
 
 #: R/swimmerplot.b.R
 msgid "Censoring coding"
-msgstr ""
+msgstr "Sansürleme kodlaması"
 
 #: R/swimmerplot.b.R
 msgid "Censoring status missing for some patients"
-msgstr ""
+msgstr "Bazı hastalarda sansürleme durumu eksik"
 
 #: R/swimmerplot.b.R
 msgid "Censoring variable not recognised"
@@ -1891,12 +2883,12 @@ msgid "Censoring-aware; %d progression events; %s"
 msgstr "Sansürlemeye duyarlı; %d progresyon olayı; %s"
 
 #: swimmerplot/ui[0][0][4].label
-msgid "Censoring/Event Status (Optional)"
-msgstr "Sansürleme/Olay Durumu (İsteğe Bağlı)"
+msgid "Censoring/Event status (optional)"
+msgstr "Sansür/olay durumu (isteğe bağlı)"
 
 #: swimmerplot/options/censorVar.title
-msgid "Censoring/Event Status Variable"
-msgstr "Sansürleme/Olay Durumu Değişkeni"
+msgid "Censoring/Event status variable"
+msgstr "Sansür/olay durumu değişkeni"
 
 #: R/swimmerplot-html.R
 msgid "Change 'Time Input Type' from 'Date/Time' to 'Raw Values'"
@@ -1938,6 +2930,10 @@ msgstr "Negatif takip sürelerini veya gerçekçi olmayan süreleri kontrol edin
 msgid "Check if baseline measurements are correct"
 msgstr "Başlangıç ölçümlerinin doğru olup olmadığını kontrol edin"
 
+#: R/diagnosticmeta.b.R
+msgid "Check if confidence intervals overlap substantially"
+msgstr "Güven aralıklarının önemli ölçüde örtüşüp örtüşmediğini kontrol edin"
+
 #: R/swimmerplot.b.R
 msgid "Check that time variables contain valid numeric or date values"
 msgstr ""
@@ -1964,6 +2960,11 @@ msgid ""
 "percentage changes. Use raw measurements only if you have actual tumor "
 "measurements and want automatic percentage calculation."
 msgstr ""
+"Veri biçiminizi seçin: - Yüzde değişimleri: başlangıca göre önceden "
+"hesaplanmış değişimler (-30 = yüzde 30 küçülme) - Ham ölçümler: gerçek tümör "
+"boyutları (başlangıç hesabı için zaman değişkeni gerekir) Çoğu onkoloji "
+"çalışması yüzde değişimlerini kullanır. Ham ölçümleri yalnızca gerçek tümör "
+"ölçümleriniz varsa ve otomatik yüzde hesabı istiyorsanız kullanın."
 
 #: R/swimmerplot-html.R
 msgid "Choose your preferred 'Time Display' mode"
@@ -1993,6 +2994,14 @@ msgstr ""
 "Metni seçmek için tıklayıp sürükleyin, ardından raporlarda kullanmak üzere "
 "kopyalayın (Ctrl+C/Cmd+C)."
 
+#: R/diagnosticmeta.b.R
+msgid "Clinical Application Guidance"
+msgstr "Klinik Uygulama Kılavuzu"
+
+#: R/diagnosticmeta.b.R
+msgid "Clinical Applications"
+msgstr "Klinik Uygulamalar"
+
 #: R/ihcheterogeneity.b.R
 msgid "Clinical Assessment:"
 msgstr "Klinik Değerlendirme:"
@@ -2000,6 +3009,10 @@ msgstr "Klinik Değerlendirme:"
 #: R/waterfall.b.R
 msgid "Clinical Context:"
 msgstr "Klinik Bağlam:"
+
+#: R/diagnosticmeta.b.R
+msgid "Clinical Decision Making"
+msgstr "Klinik karar verme"
 
 #: R/swimmerplot.b.R
 msgid "Clinical Events"
@@ -2022,6 +3035,7 @@ msgstr "Klinik Rehberlik ve Dokümantasyon"
 msgid "Clinical Impact"
 msgstr "Klinik Etki"
 
+#: R/diagnosticmeta.b.R
 #: R/swimmerplot.b.R
 #: diagnosticmeta/results/likelihoodRatioGuide.columns.title
 #: ihcheterogeneity/results/reproducibilitytable.columns.title
@@ -2034,6 +3048,7 @@ msgstr "Klinik Yorum"
 
 #: diagnosticmeta/options/show_interpretation.title
 #: diagnosticmeta/ui[1][3][0]/show_interpretation.label
+#: ihcheterogeneity/options/showInterpretation.title
 #: swimmerplot/options/showInterpretation.title
 msgid "Clinical interpretation"
 msgstr "Klinik yorum"
@@ -2045,6 +3060,10 @@ msgstr "Klinik Yorum ve Analiz Özeti"
 #: diagnosticmeta/results/interpretation.title
 msgid "Clinical Interpretation and Guidelines"
 msgstr "Klinik Yorum ve Kılavuzlar"
+
+#: R/diagnosticmeta.b.R
+msgid "Clinical Interpretation Guidelines"
+msgstr "Klinik Yorumlama Kılavuzları"
 
 #: R/ihcheterogeneity.b.R
 #: R/swimmerplot-html.R
@@ -2090,6 +3109,10 @@ msgstr "Klinik anlamlılık eşikleri"
 msgid "Clinical Summary"
 msgstr "Klinik Özet"
 
+#: waterfall/options/showClinicalSummary.title
+msgid "Clinical summary"
+msgstr "Klinik özet"
+
 #: R/waterfall.b.R
 #: waterfall/results/clinicalGlossary.title
 msgid "Clinical Terms & Definitions"
@@ -2106,6 +3129,10 @@ msgstr "Klinik Eşikler"
 #: R/swimmerplot-html.R
 msgid "Clinical trial data visualization and regulatory submissions"
 msgstr "Klinik çalışma verisi görselleştirmesi ve ruhsatlandırma başvuruları"
+
+#: R/diagnosticmeta.b.R
+msgid "Closer to upper-left corner = better overall diagnostic accuracy"
+msgstr "Sol üst köşeye yakınlık = daha iyi genel tanısal doğruluk"
 
 #: R/ihcheterogeneity.b.R
 msgid "Coefficient of Variation (%)"
@@ -2148,9 +3175,12 @@ msgid ""
 "palette set in jamovi's preferences, so the figure matches every other plot "
 "in the document."
 msgstr ""
+"Şelale grafiğinin renk şeması. 'Renkli', gruplara farklı renkler verir; "
+"'jamovi (genel ayarı izle)', jamovi tercihlerindeki paleti kullanarak "
+"grafiğin belgedeki diğer grafiklerle uyumlu olmasını sağlar."
 
 #: diagnosticmeta/options/color_palette/colorblind_safe.title
-msgid "Color-Blind Safe"
+msgid "Color-Blind safe"
 msgstr "Renk Körü Güvenli"
 
 #: swimmerplot/options/colorPalette/viridis.title
@@ -2192,6 +3222,14 @@ msgstr ""
 "Çubukları RECIST kategorilerine (CR/PR/SD/PD) veya hasta gruplarına göre "
 "renklendirir"
 
+#: R/diagnosticmeta.b.R
+msgid ""
+"Combines results from multiple diagnostic accuracy studies to estimate "
+"overall test performance through:"
+msgstr ""
+"Genel test performansını tahmin etmek için birden çok tanısal doğruluk "
+"çalışmasının sonuçlarını şu yollarla birleştirir:"
+
 #: R/swimmerplot.b.R
 msgid ""
 "Common formats: 2023-01-15 (treatment start), 15/01/2023 (surgery date), or "
@@ -2215,6 +3253,18 @@ msgid ""
 msgstr ""
 "Yaygın formatlar: 2023-06-15 (tedavi bitişi), 15/06/2023 (son takip) veya "
 "tedavi başlangıcından itibaren sayısal gün"
+
+#: R/diagnosticmeta.b.R
+msgid "Common Sources of Heterogeneity:"
+msgstr "Yaygın heterojenlik kaynakları:"
+
+#: R/diagnosticmeta.b.R
+msgid "Compare triangle position to individual studies for consistency"
+msgstr "Tutarlılık için üçgenin konumunu çalışmalarla karşılaştırın"
+
+#: R/diagnosticmeta.b.R
+msgid "Comparing imaging modalities"
+msgstr "Görüntüleme yöntemlerinin karşılaştırılması"
 
 #: ihcheterogeneity/results/samplingbiastable.columns.title
 #: swimmerplot/results/groupComparisonTest.columns.title
@@ -2267,7 +3317,7 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid "Complete patient timeline dataset with processed variables"
-msgstr ""
+msgstr "İşlenmiş değişkenlerle tam hasta zaman çizelgesi veri kümesi"
 
 #: R/waterfall.b.R
 msgid "Complete required steps above"
@@ -2281,8 +3331,12 @@ msgstr "Tam Yanıt (CR): %%%d değişim (tamamen kaybolma)"
 msgid "Complete response: n = %d (%.1f%%)"
 msgstr "Tam yanıt: n = %d (%%%.1f)"
 
+#: R/ihcheterogeneity.b.R
+msgid "Complete the measurement selection"
+msgstr "Ölçüm seçimini tamamlayın"
+
 #: ihcheterogeneity/options/analysis_type/comprehensive.title
-msgid "Comprehensive Analysis"
+msgid "Comprehensive analysis"
 msgstr "Kapsamlı Analiz"
 
 #: package/analyses/diagnosticmeta.description
@@ -2294,10 +3348,15 @@ msgid ""
 "assessment for AI algorithm validation and biomarker diagnostic accuracy "
 "synthesis."
 msgstr ""
+"Patoloji araştırmaları için tasarlanmış kapsamlı tanısal test doğruluğu "
+"meta-analizi. Yapay zekâ algoritması doğrulaması ve biyobelirteç tanısal "
+"doğruluğu sentezi için iki değişkenli rastgele etkiler modellemesi, orantılı "
+"tehlikeler SROC analizi, meta-regresyon ve yayın yanlılığı değerlendirmesi "
+"yapar."
 
 #: R/swimmerplot.b.R
 msgid "Comprehensive summary metrics and clinical indicators"
-msgstr ""
+msgstr "Kapsamlı özet ölçütler ve klinik göstergeler"
 
 #: diagnosticmeta/results/metaregression.columns.superTitle
 #: waterfall/options/showCI.title
@@ -2323,6 +3382,10 @@ msgstr "Güven düzeyi"
 #: diagnosticmeta/ui[1][1][0]/confidence_level.label
 msgid "Confidence level (%)"
 msgstr "Güven düzeyi (%)"
+
+#: R/diagnosticmeta.b.R
+msgid "Confidence region vs prediction region"
+msgstr "Güven bölgesi ve öngörü bölgesi"
 
 #: R/swimmerplot-html.R
 msgid ""
@@ -2350,11 +3413,8 @@ msgstr ""
 msgid "Confirmation"
 msgstr "Doğrulama"
 
-#: waterfall/ui[0][4].label
-msgid "Confirmation Status (optional)"
-msgstr "Doğrulama Durumu (isteğe bağlı)"
-
 #: waterfall/options/confirmationVar.title
+#: waterfall/ui[0][4].label
 msgid "Confirmation status (optional)"
 msgstr "Doğrulama durumu (isteğe bağlı)"
 
@@ -2385,6 +3445,14 @@ msgid ""
 msgstr ""
 "Vaka başına birden fazla bölgenin ortalamasını almayı veya örnekleme "
 "protokolünü gözden geçirmeyi değerlendirin."
+
+#: R/diagnosticmeta.b.R
+msgid "Consider contacting study authors for additional data"
+msgstr "Ek veriler için çalışma yazarlarıyla iletişime geçmeyi düşünün"
+
+#: R/diagnosticmeta.b.R
+msgid "Consider whether variation reflects true differences or chance"
+msgstr "Değişkenliğin gerçek farklardan mı şanstan mı kaynaklandığını değerlendirin"
 
 #: R/ihcheterogeneity.b.R
 msgid "Constant reference measurement"
@@ -2453,6 +3521,9 @@ msgid ""
 "strongly negative correlation suggests a threshold effect (studies trading "
 "sensitivity for specificity)."
 msgstr ""
+"Logit duyarlılık ile logit özgüllük korelasyonu = %.2f. Güçlü negatif "
+"korelasyon eşik etkisini düşündürür (çalışmaların duyarlılık ve özgüllük "
+"arasında denge kurması)."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -2523,7 +3594,7 @@ msgstr "Sayı"
 
 #: R/diagnosticmeta.b.R
 msgid "Counts are not whole numbers"
-msgstr ""
+msgstr "Sayımlar tam sayı değil"
 
 #: R/waterfall.b.R
 msgid "CR (Complete Response - Threshold):"
@@ -2562,6 +3633,10 @@ msgstr ""
 "grafikleri oluşturur. Profesyonel klinik görselleştirme için gelişmiş veri "
 "doğrulama ve eksiksiz ggswim entegrasyonu sunar."
 
+#: R/diagnosticmeta.b.R
+msgid "Cross-population comparison of diagnostic test performance"
+msgstr "Tanısal test performansının topluluklar arası karşılaştırılması"
+
 #: R/swimmerplot-html.R
 msgid "Custom glyphs for clinical events"
 msgstr "Klinik olaylar için özel glifler"
@@ -2572,11 +3647,11 @@ msgstr "Özel referans tarihi"
 
 #: R/swimmerplot.b.R
 msgid "Custom reference date not understood"
-msgstr ""
+msgstr "Özel referans tarihi anlaşılamadı"
 
 #: R/swimmerplot.b.R
 msgid "Custom reference in absolute mode"
-msgstr ""
+msgstr "Mutlak zaman kipinde özel referans"
 
 #: swimmerplot/options/customReferenceTime.title
 msgid "Custom reference time"
@@ -2615,8 +3690,8 @@ msgid "CV threshold (%)"
 msgstr "CV eşiği (%)"
 
 #: ihcheterogeneity/options/cv_threshold.title
-msgid "CV Threshold for Acceptable Variability"
-msgstr "Kabul Edilebilir Değişkenlik için CV Eşiği"
+msgid "CV threshold for acceptable variability"
+msgstr "Kabul edilebilir değişkenlik için CV eşiği"
 
 #: R/ihcheterogeneity.b.R
 msgid "CV: %s%%"
@@ -2649,6 +3724,10 @@ msgstr "Veri Giriş Seçenekleri:"
 #: waterfall/options/inputType.title
 msgid "Data input type"
 msgstr "Veri giriş türü"
+
+#: R/diagnosticmeta.b.R
+msgid "Data Preparation Checklist"
+msgstr "Veri hazırlama kontrol listesi"
 
 #: R/ihcheterogeneity.b.R
 msgid "Data quality"
@@ -2703,7 +3782,7 @@ msgid "Date Format Detected"
 msgstr "Tespit Edilen Tarih Formatı"
 
 #: swimmerplot/options/dateFormat.title
-msgid "Date Format in Data"
+msgid "Date format in data"
 msgstr "Verideki Tarih Formatı"
 
 #: swimmerplot/options/timeType/datetime.title
@@ -2776,11 +3855,15 @@ msgstr "Ölüm/Son Takip"
 
 #: R/diagnosticmeta.b.R
 msgid "Deeks' asymmetry test: t = %.2f on %d df, p = %.3f"
-msgstr ""
+msgstr "Deeks asimetri testi: t = %.2f, %d serbestlik derecesi, p = %.3f"
 
 #: R/diagnosticmeta.b.R
 msgid "Deeks' Funnel Plot Asymmetry Test"
 msgstr "Deeks Huni Grafiği Asimetri Testi"
+
+#: R/diagnosticmeta.b.R
+msgid "Deeks' Funnel Plot Test:"
+msgstr "Deeks huni grafiği testi:"
 
 #: R/diagnosticmeta.b.R
 msgid "Deeks' Funnel Plot: Publication Bias Assessment"
@@ -2802,6 +3885,11 @@ msgid ""
 "asymmetry cannot be assessed. This is expected when the studies are "
 "different tests or readers applied to one common sample."
 msgstr ""
+"Deeks testi log tanısal odds oranını 1/sqrt(etkin örneklem büyüklüğü) "
+"üzerine regrese eder. Burada tüm çalışmaların etkin örneklem büyüklüğü "
+"aynıdır; çalışma büyüklüğünde doğrulukla ilişkilendirilecek değişkenlik "
+"olmadığından huni asimetrisi değerlendirilemez. Aynı örneklere uygulanan "
+"farklı test veya okuyucular karşılaştırıldığında bu beklenir."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -2814,6 +3902,14 @@ msgid ""
 "effect, or a genuine relation between study size and accuracy (Cochrane DTA "
 "Handbook, chapter 10)."
 msgstr ""
+"Deeks testi: log tanısal odds oranı, etkin örneklem büyüklüğüyle "
+"ağırlıklandırılarak 1/sqrt(etkin örneklem büyüklüğü) üzerine regrese edilir; "
+"eğim %d serbestlik dereceli t dağılımına göre değerlendirilir (Deeks, "
+"Macaskill ve Irwig 2005). Karar alfa = 0,05 kullanır; bazı uygulamalar "
+"asimetri için 0,10 kullandığından aradaki p-değeri sınırda kabul edilir. "
+"Asimetri tek başına yayın yanlılığı kanıtı değildir; çalışmalar arası "
+"heterojenlik, eşik etkisi veya çalışma büyüklüğüyle doğruluk arasındaki "
+"gerçek ilişkiden de doğabilir (Cochrane DTA El Kitabı, bölüm 10)."
 
 #: swimmerplot/options/colorPalette/default.title
 msgid "Default"
@@ -2832,6 +3928,11 @@ msgid ""
 "from target lesions, non-target lesions and new lesions together - not from "
 "the target-lesion sum alone."
 msgstr ""
+"Tanımlar RECIST 1.1'e dayanır (Eisenhauer ve ark., Eur J Cancer "
+"2009;45:228-247, bölüm 4.3.1). PR başlangıç toplamına, SD ve PD nadire göre "
+"ölçülür. Hasta için gösterilen kategori en iyi genel yanıttır; RECIST bunu "
+"yalnızca hedef lezyon toplamından değil hedef, hedef dışı ve yeni lezyonları "
+"birlikte değerlendirerek belirler."
 
 #: ihcheterogeneity/results/glossary.description
 msgid "Definitions of key statistical terms used in the analysis"
@@ -2853,6 +3954,11 @@ msgid ""
 "must not be read as a survival benefit of responding: use a landmark "
 "analysis or treat response as a time-dependent covariate."
 msgstr ""
+"Yalnızca betimleyicidir. Zaman EN İYİ genel yanıta göre bölünür; bu yanıtı "
+"elde etmek için hastanın değerlendirmeye kadar yaşaması gerektiğinden yanıt "
+"verenlerde yapısal olarak daha çok izlem birikir (garanti-zaman yanlılığı). "
+"Satırlar yanıtın sağkalım yararı olarak yorumlanmamalıdır: landmark analizi "
+"veya zamana bağlı ortak değişken kullanın."
 
 #: R/ihcheterogeneity.b.R
 msgid "Descriptive, robust to a few extreme cases; not graded"
@@ -2882,10 +3988,15 @@ msgstr "Tanısal doğruluk parametresi (teta)"
 msgid "Diagnostic Odds Ratio"
 msgstr "Tanısal Odds Oranı"
 
+#: R/diagnosticmeta.b.R
+msgid "Diagnostic Odds Ratio (DOR)"
+msgstr "Tanısal odds oranı (DOR)"
+
 #: package/datasets/DiagnosticTestMeta-Analysis.name
 msgid "Diagnostic Test Meta-Analysis"
 msgstr ""
 
+#: R/diagnosticmeta.b.R
 #: package/analyses/diagnosticmeta.title
 #: package/analyses/diagnosticmeta.menuTitle
 #: diagnosticmeta/options.title
@@ -2904,12 +4015,20 @@ msgid ""
 "best (lowest/most negative) on the right -- the standard oncology waterfall "
 "layout."
 msgstr ""
+"Yanıta göre sıralama yönü. Geleneksel = en kötü (en yüksek) solda, en iyi "
+"(en düşük/en negatif) sağda; standart onkoloji şelale düzenidir."
+
+#: R/diagnosticmeta.b.R
+msgid "Directly interpretable for clinical decision-making"
+msgstr "Klinik kararlar için doğrudan yorumlanabilir"
 
 #: R/swimmerplot-html.R
 msgid ""
 "Disappearance of all target lesions. Any pathological lymph node must have "
 "shrunk to under 10 mm in short axis."
 msgstr ""
+"Tüm hedef lezyonların kaybolması. Patolojik lenf düğümlerinin kısa ekseni 10 "
+"mm'nin altına inmiş olmalıdır."
 
 #: R/waterfall.b.R
 msgid "Disease Control Rate (CR+PR+SD)"
@@ -2977,6 +4096,8 @@ msgid ""
 "Drawn for every patient whose status is censored / still at risk at the data "
 "cutoff - not only for patients still on treatment"
 msgstr ""
+"Yalnızca tedavisi devam edenlerde değil, veri kesiminde sansürlü / risk "
+"altında olan her hasta için çizilir"
 
 #: R/swimmerplot-html.R
 msgid ""
@@ -3010,6 +4131,10 @@ msgid ""
 "themselves and excludes them - the two therefore differ whenever a patient "
 "has a treatment gap."
 msgstr ""
+"Süreler ve kişi-zaman {unit} birimindedir; oran satırları yüzdedir. Ortalama "
+"süre, hastanın ilk başlangıcından son bitişine uzanır ve dönemler arasındaki "
+"boşlukları içerir. Toplam kişi-zaman ise dönemlerin birleşimidir ve "
+"boşlukları dışlar; tedavi arası boşluk olduğunda bu iki değer farklılaşır."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -3030,6 +4155,8 @@ msgstr ""
 #: R/diagnosticmeta.b.R
 msgid "Each coefficient contrasts that level of %s against the reference level '%s'."
 msgstr ""
+"Her katsayı, %s değişkeninin ilgili düzeyini '%s' referans düzeyiyle "
+"karşılaştırır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -3038,12 +4165,18 @@ msgid ""
 "there is no between-study variance, so tau-squared is 0 by construction and "
 "the I-squared beside it is not an estimate from that model."
 msgstr ""
+"Seçilen yöntem gereği her satır, ilgili ölçütün logiti üzerinde ayrı bir tek "
+"değişkenli SABİT etki modelidir. Sabit etki modeli çalışmalar arası varyans "
+"olmadığını varsayar; tau-kare yapısal olarak 0'dır ve yanındaki I-kare bu "
+"modelden tahmin edilmemiştir."
 
 #: R/diagnosticmeta.b.R
 msgid ""
 "Each row is a separate univariate random-effects model on the logit of that "
 "measure."
 msgstr ""
+"Her satır ilgili ölçütün logiti üzerinde ayrı bir tek değişkenli rastgele "
+"etkiler modelidir."
 
 #: R/swimmerplot-html.R
 msgid "Each row represents one patient episode or treatment course"
@@ -3059,6 +4192,12 @@ msgid ""
 "non-responders. The percentages are each rounded independently, so they need "
 "not add to exactly 100; the counts do."
 msgstr ""
+"Her satır, objektif yanıt ve hastalık kontrol oranlarıyla aynı payda olan "
+"analizdeki tüm %d hasta üzerinden sayımı gösterir. RECIST 1.1 bölüm 4.9.1, "
+"seçilmiş değerlendirilebilir alt grup yerine tüm hastaları gerektirir; NE, "
+"tanınmayan etiket veya kayıtsız yanıtlar paydada kalır ve yanıt vermemiş "
+"sayılır. Yüzdeler ayrı yuvarlandığından toplamları tam 100 olmayabilir; "
+"sayımların toplamı tamdır."
 
 #: R/waterfall.b.R
 msgid "Either percentage change or raw measurements"
@@ -3083,6 +4222,10 @@ msgid ""
 "recommendations - Includes misuse detection and warnings Recommended for new "
 "users or complex analyses"
 msgstr ""
+"Adım adım yönergelerle rehber kipini açar: - Değişken ve seçenek seçiminde "
+"yol gösterir - Bağlama özgü yardım ve iyi uygulama önerileri verir - Yanlış "
+"kullanım algılama ve uyarıları içerir Yeni kullanıcılar veya karmaşık "
+"analizler için önerilir"
 
 #: swimmerplot/results/timelineData.columns.title
 msgid "End"
@@ -3093,8 +4236,8 @@ msgid "End time"
 msgstr "Bitiş zamanı"
 
 #: swimmerplot/ui[0][0][2].label
-msgid "End Time (Required)"
-msgstr "Bitiş Zamanı (Gerekli)"
+msgid "End time (required)"
+msgstr "Bitiş zamanı (zorunlu)"
 
 #: R/swimmerplot.b.R
 msgid "End Time is still empty."
@@ -3190,6 +4333,10 @@ msgid ""
 "0 means no association, and the intercept is the logit of the measure at the "
 "covariate's reference point, not a sensitivity or specificity."
 msgstr ""
+"Tahminler, standart hatalar ve güven aralıkları yukarıdaki birleştirilmiş "
+"sonuçların yüzde ölçeğinde değil LOGİT ölçeğindedir: 0 katsayısı ilişki "
+"olmadığını gösterir; sabit terim duyarlılık veya özgüllük değil, ortak "
+"değişkenin referans noktasındaki ölçütün logitidir."
 
 #: diagnosticmeta/ui[1][1][0]/method.label
 msgid "Estimation method"
@@ -3198,6 +4345,10 @@ msgstr "Tahmin yöntemi"
 #: R/waterfall.b.R
 msgid "Evaluable Patients"
 msgstr "Değerlendirilebilir Hastalar"
+
+#: R/diagnosticmeta.b.R
+msgid "Evaluating AI algorithms for pathology diagnosis"
+msgstr "Patoloji tanısında yapay zekâ algoritmalarının değerlendirilmesi"
 
 #: swimmerplot/results/eventMarkerTable.title
 msgid "Event Marker Summary"
@@ -3217,7 +4368,7 @@ msgstr "Olay işaretçileri işlenemedi"
 
 #: R/swimmerplot.b.R
 msgid "Event markers outside the patient timeline"
-msgstr ""
+msgstr "Hasta zaman çizelgesi dışındaki olay işaretleri"
 
 #: R/swimmerplot.b.R
 msgid "Event markers skipped: calendar dates on a numeric timeline"
@@ -3235,11 +4386,8 @@ msgstr "Olay işaretçileri atlandı. %s"
 msgid "Event Markers:"
 msgstr "Olay İşaretçileri:"
 
-#: swimmerplot/ui[3][1][1].label
-msgid "Event Time Variable"
-msgstr "Olay Zamanı Değişkeni"
-
 #: swimmerplot/options/eventTimeVar.title
+#: swimmerplot/ui[3][1][1].label
 msgid "Event time variable"
 msgstr "Olay zamanı değişkeni"
 
@@ -3251,11 +4399,8 @@ msgstr "Olay zamanları ayrıştırılamadı"
 msgid "Event Type"
 msgstr "Olay Türü"
 
-#: swimmerplot/ui[3][1][0].label
-msgid "Event Type Variable"
-msgstr "Olay Türü Değişkeni"
-
 #: swimmerplot/options/eventVar.title
+#: swimmerplot/ui[3][1][0].label
 msgid "Event type variable"
 msgstr "Olay türü değişkeni"
 
@@ -3328,6 +4473,10 @@ msgstr ""
 msgid "Example analysis for Waterfall Plot."
 msgstr ""
 
+#: R/diagnosticmeta.b.R
+msgid "Example Data Format"
+msgstr "Örnek veri biçimi"
+
 #: R/waterfall.b.R
 msgid "Example data format with baseline:"
 msgstr "Başlangıç içeren örnek veri formatı:"
@@ -3371,6 +4520,9 @@ msgid ""
 "sensitivity or 100%% specificity studies. Choose a zero-cell correction to "
 "retain them."
 msgstr ""
+"Meta-regresyondan dışlananlar (duyarlılık: %d; özgüllük: %d): logiti sonsuz "
+"olan, yani sıfır hücreli çalışmalar (%%100 duyarlılık veya %%100 özgüllük). "
+"Bunları korumak için sıfır hücre düzeltmesi seçin."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -3380,6 +4532,11 @@ msgid ""
 "pooled estimates above keep them, so the two rest on different numbers of "
 "studies. Choose a zero-cell correction to retain them here."
 msgstr ""
+"Tek değişkenli heterojenlik modellerinden dışlananlar (duyarlılık: %d; "
+"özgüllük: %d): logiti sonsuz olan, yani sıfır hücreli çalışmalar (%%100 "
+"duyarlılık veya %%100 özgüllük). Yukarıdaki iki değişkenli birleştirilmiş "
+"tahminler bunları koruduğundan modeller farklı sayıda çalışmaya dayanır. "
+"Burada da korumak için sıfır hücre düzeltmesi seçin."
 
 #: ihcheterogeneity/results/samplesizetable.columns.title
 msgid "Expected CI Width (current n)"
@@ -3411,40 +4568,52 @@ msgid "EXTREME VALUES DETECTED"
 msgstr "UÇ DEĞERLER TESPİT EDİLDİ"
 
 #: diagnosticmeta/ui[0][3][0].label
-msgid "False Negatives (Disease+, Test-)"
-msgstr "Yanlış Negatifler (Hastalık+, Test-)"
+msgid "False negatives (disease+, test-)"
+msgstr "Yanlış negatifler (hastalık+, test-)"
 
 #: diagnosticmeta/options/false_negatives.title
-msgid "False Negatives (FN)"
-msgstr "Yanlış Negatifler (YN)"
+msgid "False negatives (FN)"
+msgstr "Yanlış negatifler (FN)"
 
 #: R/diagnosticmeta.b.R
 msgid "False negatives is still empty."
-msgstr ""
+msgstr "Yanlış negatifler henüz seçilmedi."
 
 #: R/diagnosticmeta.b.R
 msgid "False Positive Rate (1 - Specificity)"
 msgstr "Yanlış Pozitiflik Oranı (1 - Özgüllük)"
 
 #: diagnosticmeta/ui[0][2][0].label
-msgid "False Positives (Disease-, Test+)"
-msgstr "Yanlış Pozitifler (Hastalık-, Test+)"
+msgid "False positives (disease-, test+)"
+msgstr "Yanlış pozitifler (hastalık-, test+)"
 
 #: diagnosticmeta/options/false_positives.title
-msgid "False Positives (FP)"
-msgstr "Yanlış Pozitifler (YP)"
+msgid "False positives (FP)"
+msgstr "Yanlış pozitifler (FP)"
 
 #: R/diagnosticmeta.b.R
 msgid "False positives is still empty."
-msgstr ""
+msgstr "Yanlış pozitifler henüz seçilmedi."
+
+#: R/diagnosticmeta.b.R
+msgid "false_negatives"
+msgstr "false_negatives"
+
+#: R/diagnosticmeta.b.R
+msgid "false_positives"
+msgstr "false_positives"
+
+#: R/diagnosticmeta.b.R
+msgid "Features Consistent With a Symmetric Funnel"
+msgstr "Simetrik huniyle uyumlu özellikler"
 
 #: R/diagnosticmeta.b.R
 msgid "Fill them in and the meta-analysis will appear."
-msgstr ""
+msgstr "Seçimleri tamamladığınızda meta-analiz görünecektir."
 
 #: R/waterfall.b.R
 msgid "Fill them in and the waterfall plot will appear."
-msgstr ""
+msgstr "Seçimleri tamamladığınızda şelale grafiği görünecektir."
 
 #: R/swimmerplot.b.R
 msgid "Fill them in under Core Data Variables and the plot will appear."
@@ -3473,12 +4642,22 @@ msgid "Fisher's exact test"
 msgstr "Fisher kesin testi"
 
 #: R/swimmerplot.b.R
-msgid "Fisher's exact test, OR (%s vs %s) = %s"
+#: R/waterfall.b.R
+msgid ""
+"Fisher's exact test for %s could not be computed: %s. No p-value is "
+"reported. Review the group counts or combine groups only when clinically "
+"justified."
 msgstr ""
+"%s için Fisher kesin testi hesaplanamadı: %s. P-değeri bildirilmez. Grup "
+"sayılarını inceleyin veya yalnızca klinik gerekçeyle grupları birleştirin."
+
+#: R/swimmerplot.b.R
+msgid "Fisher's exact test, OR (%s vs %s) = %s"
+msgstr "Fisher kesin testi, OR (%s / %s) = %s"
 
 #: R/swimmerplot.b.R
 msgid "Fisher's exact test, OR (%s vs %s) = %s, 95%% CI %s to %s"
-msgstr ""
+msgstr "Fisher kesin testi, OR (%s / %s) = %s, %%95 GA %s ile %s"
 
 #: R/waterfall.b.R
 msgid "Fisher's exact test; OR (%s vs %s) = %.2f (95%% CI %.2f-%.2f)"
@@ -3511,7 +4690,7 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "Fixed-effect model: heterogeneity not assessed"
-msgstr ""
+msgstr "Sabit etki modeli: heterojenlik değerlendirilmedi"
 
 #: R/diagnosticmeta.b.R
 msgid "fixed-effects"
@@ -3533,6 +4712,10 @@ msgid ""
 "same row, so it carries no information beyond that column. Times are in "
 "{unit}."
 msgstr ""
+"İzlem yoğunluğu = 100 {unit} kişi-zaman başına hasta (betimleyici ölçüttür, "
+"olay hızı değildir). Aynı satırdaki ortalama zamanın tam olarak 100'e "
+"bölümünün tersidir; bu nedenle o sütunun ötesinde bilgi taşımaz. Zamanlar "
+"{unit} birimindedir."
 
 #: R/swimmerplot-html.R
 msgid "Follow-up Density:"
@@ -3553,6 +4736,8 @@ msgid ""
 "For a model-consistent statement of how much studies differ, use the "
 "prediction interval above and the prediction region on the SROC plot."
 msgstr ""
+"Çalışmaların ne kadar farklılaştığını modelle uyumlu biçimde belirtmek için "
+"yukarıdaki öngörü aralığını ve SROC grafiğindeki öngörü bölgesini kullanın."
 
 #: R/swimmerplot.b.R
 msgid "For date/time data, ensure correct format is selected"
@@ -3579,6 +4764,10 @@ msgid "Forest Plot Explanation"
 msgstr "Orman Grafiği Açıklaması"
 
 #: R/diagnosticmeta.b.R
+msgid "Forest Plot Interpretation Guide"
+msgstr "Orman grafiği yorumlama kılavuzu"
+
+#: R/diagnosticmeta.b.R
 msgid "Forest Plot: Sensitivity and Specificity by Study"
 msgstr "Orman Grafiği: Çalışmaya Göre Duyarlılık ve Özgüllük"
 
@@ -3589,12 +4778,16 @@ msgstr ""
 "testler"
 
 #: R/swimmerplot-html.R
-msgid "Found date format:"
-msgstr "Bulunan tarih formatı:"
+msgid "Found date format {format} in your time variables."
+msgstr "Zaman değişkenlerinizde {format} tarih biçimi bulundu."
 
 #: diagnosticmeta/results/individualstudies.columns.title
 msgid "FP"
 msgstr "FP"
+
+#: R/diagnosticmeta.b.R
+msgid "Funnel Asymmetry Indicators"
+msgstr "Huni asimetrisi göstergeleri"
 
 #: diagnosticmeta/options/funnel_plot.title
 msgid "Funnel plot"
@@ -3612,6 +4805,10 @@ msgstr "Huni Grafiği Açıklaması"
 msgid "Funnel Plot for Publication Bias"
 msgstr "Yayın Yanlılığı için Huni Grafiği"
 
+#: R/diagnosticmeta.b.R
+msgid "Funnel Plot Interpretation Guide"
+msgstr "Huni grafiği yorumlama kılavuzu"
+
 #: waterfall/options/generateCopyReadyReport.description.jamovi
 msgid ""
 "Generate copy-ready sentences for manuscripts and reports: - Auto-filled "
@@ -3619,6 +4816,10 @@ msgid ""
 "language following oncology standards - Copy-paste directly into manuscripts "
 "or clinical reports Recommended for publication or clinical documentation"
 msgstr ""
+"Makaleler ve raporlar için kopyalanabilir cümleler oluşturur: - "
+"Sonuçlarınızla otomatik doldurulur (ORR, DCR, güven aralıkları) - Onkoloji "
+"standartlarına uygun yayıma hazır dil - Makaleye veya klinik rapora doğrudan "
+"kopyalama Yayın veya klinik belgeleme için önerilir"
 
 #: waterfall/options/timeUnitLabel/generic.title
 msgid "Generic (Time)"
@@ -3660,6 +4861,14 @@ msgstr "İyi güvenilirlik"
 msgid "Good reliability band (ICC = %.2f)."
 msgstr "İyi güvenilirlik kategorisi (ICC = %.2f)."
 
+#: R/diagnosticmeta.b.R
+msgid "Good sensitivity (80-89%): acceptable miss rate for screening"
+msgstr "İyi duyarlılık (%80-89): tarama için kabul edilebilir kaçırma oranı"
+
+#: R/diagnosticmeta.b.R
+msgid "Good specificity (80-89%): some false positives"
+msgstr "İyi özgüllük (%80-89): bazı yanlış pozitifler"
+
 #: ihcheterogeneity/ui[4][0].label
 msgid "Greyed out when the analysis focus above already includes them."
 msgstr "Yukarıdaki analizler bunları içerdiğinden devre dışıdır."
@@ -3675,6 +4884,11 @@ msgstr "AYNI HASTADA DEĞİŞEN GRUP DEĞERİ"
 #: waterfall/results/groupComparisonTable.title
 msgid "Group Comparison Analysis"
 msgstr "Grup Karşılaştırma Analizi"
+
+#: R/swimmerplot.b.R
+#: R/waterfall.b.R
+msgid "Group comparison could not be computed"
+msgstr "Grup karşılaştırması hesaplanamadı"
 
 #: waterfall/results/groupComparisonTest.title
 msgid "Group Comparison Statistical Test"
@@ -3692,11 +4906,8 @@ msgstr ""
 "Grup karşılaştırma testleri, her birinde en az bir değerlendirilebilir hasta "
 "bulunan en az iki grup gerektirir."
 
-#: waterfall/ui[0][3].label
-msgid "Group Variable"
-msgstr "Grup Değişkeni"
-
 #: waterfall/options/groupVar.title
+#: waterfall/ui[0][3].label
 msgid "Group variable"
 msgstr "Grup değişkeni"
 
@@ -3705,12 +4916,12 @@ msgid "Grouping variable"
 msgstr "Gruplama değişkeni"
 
 #: swimmerplot/ui[0][0][5].label
-msgid "Grouping Variable (Optional)"
+msgid "Grouping variable (optional)"
 msgstr "Gruplama Değişkeni (İsteğe Bağlı)"
 
 #: R/swimmerplot.b.R
 msgid "Grouping variable may not be categorical"
-msgstr ""
+msgstr "Gruplama değişkeni kategorik olmayabilir"
 
 #: R/waterfall.b.R
 msgid "Guided Analysis"
@@ -3740,6 +4951,7 @@ msgstr "Heterojenlik analizi"
 msgid "Heterogeneity analysis error: %s"
 msgstr "Heterojenlik analizi hatası: %s"
 
+#: R/diagnosticmeta.b.R
 #: diagnosticmeta/results/heterogeneity.title
 msgid "Heterogeneity Assessment"
 msgstr "Heterojenlik Değerlendirmesi"
@@ -3848,11 +5060,15 @@ msgstr "Yanıt renklendirmeli yatay hasta zaman çizelgeleri"
 
 #: R/swimmerplot.b.R
 msgid "How ORR and DCR are counted"
-msgstr ""
+msgstr "ORR ve DCR nasıl sayılır?"
 
 #: R/diagnosticmeta.b.R
 msgid "HSROC model did not converge"
-msgstr ""
+msgstr "HSROC modeli yakınsamadı"
+
+#: R/diagnosticmeta.b.R
+msgid "I[[SUP2]] Statistic Interpretation:"
+msgstr "I[[SUP2]] istatistiğinin yorumu:"
 
 #: diagnosticmeta/results/heterogeneity.columns.title
 msgid "I² (%)"
@@ -3867,6 +5083,12 @@ msgid ""
 "SEPARATELY for sensitivity and for specificity - read those as descriptive "
 "summaries of each margin, not as the heterogeneity of the bivariate model."
 msgstr ""
+"Burada I² bildirilmez: tek değişkenli I², çalışma içi duyarlılık ve özgüllük "
+"korelasyonunu göz ardı eder ve iki değişkenli modeli tanımlamaz (Cochrane "
+"DTA El Kitabı, bölüm 10). Heterojenlik değerlendirme tablosu duyarlılık ve "
+"özgüllük için Q, tau-kare ve tek değişkenli I²'yi AYRI hesaplar; bunları iki "
+"değişkenli modelin heterojenliği olarak değil her marjın betimleyici özeti "
+"olarak okuyun."
 
 #: R/ihcheterogeneity.b.R
 msgid "ICC not estimable"
@@ -3899,6 +5121,10 @@ msgstr ""
 #: R/waterfall.b.R
 msgid "Identify baseline measurements (time = 0)"
 msgstr "Başlangıç ölçümlerini tanımlayın (zaman = 0)"
+
+#: R/diagnosticmeta.b.R
+msgid "If no other explanation fits, pooled estimates may be overoptimistic"
+msgstr "Başka açıklama bulunamazsa birleştirilmiş tahminler fazla iyimser olabilir"
 
 #: R/waterfall.b.R
 msgid "Ignores censoring; n=%d with duration data"
@@ -3961,6 +5187,14 @@ msgid ""
 msgstr ""
 "IHC heterojenlik analizi, her birinde her iki bölgesel ölçüm de bulunan %d "
 "vaka üzerinde yapıldı."
+
+#: R/diagnosticmeta.b.R
+msgid "IHC marker validation across multiple pathology studies"
+msgstr "Birden çok patoloji çalışmasında IHC belirteci doğrulaması"
+
+#: R/diagnosticmeta.b.R
+msgid "IHC Marker Validation:"
+msgstr "IHC belirteci doğrulaması:"
 
 #: R/ihcheterogeneity.b.R
 msgid "IHC terms"
@@ -4051,10 +5285,6 @@ msgid ""
 "measurement variability."
 msgstr "Bu veri setinde, mevcut veriler ölçüm değişkenliğini ölçmek için yetersizdi."
 
-#: R/swimmerplot-html.R
-msgid "in your time variables"
-msgstr "zaman değişkenlerinizde"
-
 #: R/ihcheterogeneity.b.R
 msgid "INADEQUATE SAMPLING:"
 msgstr "YETERSİZ ÖRNEKLEME:"
@@ -4081,12 +5311,35 @@ msgid ""
 "Infinite biomarker measurements in variable(s) %s, analysis row(s) %s. Enter "
 "finite measurements or mark unavailable values as missing."
 msgstr ""
+"%s değişken(ler)inde, %s analiz satır(lar)ında sonsuz biyobelirteç ölçümü "
+"var. Sonlu ölçüm girin veya mevcut olmayan değerleri eksik olarak "
+"işaretleyin."
 
 #: R/diagnosticmeta.b.R
 msgid ""
 "Infinite diagnostic counts in variable(s) %s, analysis row(s) %s. Enter "
 "finite whole-number counts or mark unavailable values as missing."
 msgstr ""
+"%s değişken(ler)inde, %s analiz satır(lar)ında sonsuz tanısal sayım var. "
+"Sonlu tam sayı girin veya mevcut olmayan değerleri eksik olarak işaretleyin."
+
+#: R/waterfall.b.R
+msgid ""
+"Infinite response or time values in variable '%s', analysis row(s) %s. Enter "
+"finite values or mark unavailable values as missing."
+msgstr ""
+"'%s' değişkeninde, %s analiz satır(lar)ında sonsuz yanıt veya zaman değeri "
+"var. Sonlu değer girin veya mevcut olmayan değerleri eksik olarak "
+"işaretleyin."
+
+#: R/swimmerplot.b.R
+msgid ""
+"Infinite time values in variable '%s', analysis row(s) %s. Enter finite "
+"start and end times or mark unavailable values as missing."
+msgstr ""
+"'%s' değişkeninde, %s analiz satır(lar)ında sonsuz zaman değeri var. Sonlu "
+"başlangıç ve bitiş zamanı girin veya mevcut olmayan değerleri eksik olarak "
+"işaretleyin."
 
 #: swimmerplot/results/instructions.title
 msgid "Instructions"
@@ -4152,6 +5405,10 @@ msgstr "Kesişim"
 msgid "Interpretation"
 msgstr "Yorum"
 
+#: R/diagnosticmeta.b.R
+msgid "Interpretation Caveats"
+msgstr "Yorumlama uyarıları"
+
 #: R/ihcheterogeneity.b.R
 msgid "Interpretation:"
 msgstr "Yorum:"
@@ -4173,6 +5430,10 @@ msgstr ""
 #: R/waterfall.b.R
 msgid "Invalid Tumor Shrinkage Values Detected:"
 msgstr "Geçersiz Tümör Küçülme Değerleri Tespit Edildi:"
+
+#: R/diagnosticmeta.b.R
+msgid "Is distinct from the Rutter-Gatsonis HSROC model"
+msgstr "Rutter-Gatsonis HSROC modelinden farklıdır"
 
 #: R/ihcheterogeneity.b.R
 msgid "It affects region(s) %s and the mean of all regions."
@@ -4200,7 +5461,7 @@ msgstr "%%95 GA'sı eşiğin altında, %s değerine kadar iner."
 #: waterfall/options/colorScheme/jamovi.title
 #: waterfall/options/spiderColorScheme/jamovi.title
 msgid "jamovi (follow global)"
-msgstr ""
+msgstr "jamovi (genel ayarı izle)"
 
 #: R/waterfall.b.R
 msgid ""
@@ -4239,6 +5500,10 @@ msgstr "Tarihleriyle temel klinik olaylar"
 msgid "Key Findings:"
 msgstr "Temel Bulgular:"
 
+#: R/diagnosticmeta.b.R
+msgid "Key Requirements & Assumptions"
+msgstr "Temel gereksinimler ve varsayımlar"
+
 #: R/ihcheterogeneity.b.R
 msgid "Kruskal-Wallis test (per-case CV)"
 msgstr "Kruskal-Wallis testi (vaka başına CV)"
@@ -4269,15 +5534,24 @@ msgstr "Gösterge"
 
 #: diagnosticmeta/results/likelihoodRatioGuide.columns.title
 msgid "Likelihood Ratio"
-msgstr ""
+msgstr "Olabilirlik oranı"
 
+#: R/diagnosticmeta.b.R
 #: diagnosticmeta/results/likelihoodRatioGuide.title
 msgid "Likelihood Ratios for Clinical Decision-Making"
-msgstr ""
+msgstr "Klinik kararlar için olabilirlik oranları"
 
 #: R/ihcheterogeneity.b.R
 msgid "Limitations"
 msgstr "Kısıtlılıklar"
+
+#: R/diagnosticmeta.b.R
+msgid "Limited sensitivity (&lt;70%): many cases missed"
+msgstr "Sınırlı duyarlılık (&lt;%70): çok sayıda olgu kaçırılır"
+
+#: R/diagnosticmeta.b.R
+msgid "Limited specificity (&lt;70%): many false alarms"
+msgstr "Sınırlı özgüllük (&lt;%70): çok sayıda yanlış alarm"
 
 #: R/ihcheterogeneity.b.R
 msgid "Limits of agreement:"
@@ -4290,6 +5564,10 @@ msgstr "Zaman içindeki bireysel hasta yanıt gidişatını gösteren çizgi gra
 #: R/diagnosticmeta.b.R
 msgid "Log Diagnostic Odds Ratio"
 msgstr "Log Tanısal Odds Oranı"
+
+#: R/diagnosticmeta.b.R
+msgid "Look for outlier studies (points far from others)"
+msgstr "Aykırı çalışmaları arayın (diğerlerinden uzak noktalar)"
 
 #: R/ihcheterogeneity.b.R
 msgid "Low"
@@ -4346,7 +5624,7 @@ msgstr "Ana katkı sağlayıcı"
 
 #: R/swimmerplot-html.R
 msgid "Mark patients still at risk (censored / alive) at the data cutoff"
-msgstr ""
+msgstr "Veri kesiminde hâlâ risk altında (sansürlü / hayatta) olan hastaları işaretle"
 
 #: R/waterfall.b.R
 msgid "MARKER SHAPES REUSED"
@@ -4550,7 +5828,7 @@ msgstr "Medyan Takip Süresi (gözlenen süreler; sansürleme bilgisi yok)"
 msgid ""
 "Median Follow-up Time (observed durations; reverse Kaplan-Meier not "
 "estimable)"
-msgstr ""
+msgstr "Medyan izlem süresi (gözlenen süreler; ters Kaplan-Meier tahmin edilemedi)"
 
 #: R/swimmerplot.b.R
 msgid "Median Follow-up Time (reverse Kaplan-Meier)"
@@ -4585,7 +5863,7 @@ msgstr "Medyan yanıt"
 #: swimmerplot/results/milestoneTable.columns.title
 #: swimmerplot/results/eventMarkerTable.columns.title
 msgid "Median Time from Start"
-msgstr ""
+msgstr "Başlangıçtan itibaren medyan süre"
 
 #: waterfall/results/personTimeTable.columns.title
 msgid "Median time to best response"
@@ -4613,6 +5891,9 @@ msgid ""
 "start, so they cannot be placed on an absolute axis where patients begin at "
 "different points."
 msgstr ""
+"Medyan/protokol referans çizgileri her hastanın kendi başlangıcından "
+"itibaren süreyi ölçer; hastalar farklı zamanlarda başladığında mutlak eksene "
+"yerleştirilemez."
 
 #: R/ihcheterogeneity.b.R
 msgid "Meets your threshold (≥ %s)"
@@ -4632,6 +5913,8 @@ msgid ""
 "Meta-analysis of %d diagnostic accuracy studies shows pooled sensitivity of "
 "%.1f%%%s and specificity of %.1f%%%s, at the %d%% confidence level."
 msgstr ""
+"%d tanısal doğruluk çalışmasının meta-analizinde birleştirilmiş duyarlılık "
+"%%%.1f%s, özgüllük %%%.1f%s ve güven düzeyi %%%d olarak bulundu."
 
 #: diagnosticmeta/options/meta_regression.title
 msgid "Meta-regression"
@@ -4639,15 +5922,15 @@ msgstr "Meta-regresyon"
 
 #: diagnosticmeta/ui[1][0][0]/meta_regression.label
 msgid "Meta-regression (covariate effects)"
-msgstr ""
+msgstr "Meta-regresyon (ortak değişken etkileri)"
 
 #: diagnosticmeta/options/covariate.title
 msgid "Meta-regression covariate"
-msgstr ""
+msgstr "Meta-regresyon ortak değişkeni"
 
 #: diagnosticmeta/ui[0][5][0].label
 msgid "Meta-regression covariate (optional)"
-msgstr ""
+msgstr "Meta-regresyon ortak değişkeni (isteğe bağlı)"
 
 #: R/diagnosticmeta.b.R
 msgid "Meta-regression error: %s"
@@ -4676,10 +5959,14 @@ msgid ""
 "least 10 studies per covariate parameter. Treat meta-regression coefficients "
 "as exploratory."
 msgstr ""
+"%d çalışma, %d ortak değişken parametresi ve %d artık serbestlik derecesiyle "
+"meta-regresyonun istatistiksel gücü sınırlıdır. Cochrane DTA El Kitabı ortak "
+"değişken parametresi başına en az 10 çalışma önerir. Meta-regresyon "
+"katsayılarını keşifsel kabul edin."
 
 #: R/diagnosticmeta.b.R
 msgid "Meta-regression power caution"
-msgstr ""
+msgstr "Meta-regresyon gücü uyarısı"
 
 #: R/diagnosticmeta.b.R
 msgid "Meta-regression requires a covariate"
@@ -4698,7 +5985,7 @@ msgid "Method"
 msgstr "Yöntem"
 
 #: diagnosticmeta/options/method/mm.title
-msgid "Method of Moments"
+msgid "Method of moments"
 msgstr "Momentler Yöntemi"
 
 #: R/ihcheterogeneity.b.R
@@ -4775,48 +6062,48 @@ msgstr "'%s' kilometre taşı atlandı. %s"
 
 #: swimmerplot/options/milestone1Date.title
 #: swimmerplot/ui[2][3][0].label
-msgid "Milestone 1 Date"
-msgstr "Kilometre Taşı 1 Tarihi"
+msgid "Milestone 1 date"
+msgstr "Dönüm noktası 1 tarihi"
 
 #: swimmerplot/options/milestone1Name.title
-msgid "Milestone 1 Name"
-msgstr "Kilometre Taşı 1 Adı"
+msgid "Milestone 1 name"
+msgstr "Dönüm noktası 1 adı"
 
 #: swimmerplot/options/milestone2Date.title
 #: swimmerplot/ui[2][3][1].label
-msgid "Milestone 2 Date"
-msgstr "Kilometre Taşı 2 Tarihi"
+msgid "Milestone 2 date"
+msgstr "Dönüm noktası 2 tarihi"
 
 #: swimmerplot/options/milestone2Name.title
-msgid "Milestone 2 Name"
-msgstr "Kilometre Taşı 2 Adı"
+msgid "Milestone 2 name"
+msgstr "Dönüm noktası 2 adı"
 
 #: swimmerplot/options/milestone3Date.title
 #: swimmerplot/ui[2][3][2].label
-msgid "Milestone 3 Date"
-msgstr "Kilometre Taşı 3 Tarihi"
+msgid "Milestone 3 date"
+msgstr "Dönüm noktası 3 tarihi"
 
 #: swimmerplot/options/milestone3Name.title
-msgid "Milestone 3 Name"
-msgstr "Kilometre Taşı 3 Adı"
+msgid "Milestone 3 name"
+msgstr "Dönüm noktası 3 adı"
 
 #: swimmerplot/options/milestone4Date.title
 #: swimmerplot/ui[2][3][3].label
-msgid "Milestone 4 Date"
-msgstr "Kilometre Taşı 4 Tarihi"
+msgid "Milestone 4 date"
+msgstr "Dönüm noktası 4 tarihi"
 
 #: swimmerplot/options/milestone4Name.title
-msgid "Milestone 4 Name"
-msgstr "Kilometre Taşı 4 Adı"
+msgid "Milestone 4 name"
+msgstr "Dönüm noktası 4 adı"
 
 #: swimmerplot/options/milestone5Date.title
 #: swimmerplot/ui[2][3][4].label
-msgid "Milestone 5 Date"
-msgstr "Kilometre Taşı 5 Tarihi"
+msgid "Milestone 5 date"
+msgstr "Dönüm noktası 5 tarihi"
 
 #: swimmerplot/options/milestone5Name.title
-msgid "Milestone 5 Name"
-msgstr "Kilometre Taşı 5 Adı"
+msgid "Milestone 5 name"
+msgstr "Dönüm noktası 5 adı"
 
 #: R/swimmerplot.b.R
 msgid "Milestone dates could not be parsed"
@@ -4832,7 +6119,7 @@ msgstr "Kilometre Taşı Olayları (isteğe bağlı):"
 
 #: R/swimmerplot.b.R
 msgid "Milestone name taken from the variable"
-msgstr ""
+msgstr "Dönüm noktası adı değişkenden alındı"
 
 #: swimmerplot/ui[2][1][0].label
 msgid "Milestone Names"
@@ -4840,7 +6127,7 @@ msgstr "Kilometre Taşı Adları"
 
 #: R/swimmerplot.b.R
 msgid "Milestone names repeated"
-msgstr ""
+msgstr "Dönüm noktası adları tekrarlanmış"
 
 #: R/swimmerplot.b.R
 msgid "Milestone skipped: calendar dates on a numeric timeline"
@@ -4851,28 +6138,32 @@ msgid ""
 "Milestone slot(s) %s have a variable assigned but 'Maximum milestones' is "
 "set to %d, so they are not shown. Raise it to include them."
 msgstr ""
+"%s dönüm noktası alan(lar)ına değişken atanmış ancak azami dönüm noktası "
+"sayısı %d olduğundan gösterilmez. Dahil etmek için sınırı yükseltin."
 
 #: R/swimmerplot.b.R
 msgid "Milestone slot(s) %s have no name, so the variable name is used instead."
-msgstr ""
+msgstr "%s dönüm noktası alan(lar)ının adı yok; değişken adı kullanılır."
 
 #: R/swimmerplot.b.R
 msgid ""
 "Milestone slot(s) %s share a name, so each is labelled with the variable it "
 "came from to keep them apart in the summary."
 msgstr ""
+"%s dönüm noktası alan(lar)ı aynı adı paylaşır; özette ayırt etmek için her "
+"biri kaynak değişkenle etiketlenir."
 
 #: R/swimmerplot.b.R
 msgid "Milestone slots not shown"
-msgstr ""
+msgstr "Gösterilmeyen dönüm noktası alanları"
 
 #: R/swimmerplot-html.R
 msgid "Milestone Support:"
 msgstr "Kilometre Taşı Desteği:"
 
 #: swimmerplot/ui[2][2][0].label
-msgid "Milestone Times/Dates"
-msgstr "Kilometre Taşı Zamanları/Tarihleri"
+msgid "Milestone times/dates"
+msgstr "Dönüm noktası zamanları/tarihleri"
 
 #: R/swimmerplot-html.R
 msgid "Milestone-based clinical pathway analysis"
@@ -4884,7 +6175,7 @@ msgstr "Kilometre Taşları"
 
 #: R/swimmerplot.b.R
 msgid "Milestones outside the patient timeline"
-msgstr ""
+msgstr "Hasta zaman çizelgesi dışındaki dönüm noktaları"
 
 #: R/swimmerplot-html.R
 msgid "Milestones:"
@@ -4893,6 +6184,10 @@ msgstr "Kilometre Taşları:"
 #: swimmerplot/options/plotTheme/minimal.title
 msgid "Minimal"
 msgstr "Minimal"
+
+#: R/diagnosticmeta.b.R
+msgid "Minimum 3 studies with 2[[TIMES]]2 diagnostic data"
+msgstr "2[[TIMES]]2 tanısal verili en az 3 çalışma"
 
 #: ihcheterogeneity/options/correlation_threshold.title
 msgid "Minimum acceptable correlation"
@@ -4937,6 +6232,10 @@ msgstr "AA-GG-YYYY"
 #: swimmerplot/options/dateFormat/myd.title
 msgid "MM-YYYY-DD"
 msgstr "AA-YYYY-GG"
+
+#: R/diagnosticmeta.b.R
+msgid "Model Choice: Random vs Fixed Effects"
+msgstr "Model seçimi: rastgele ve sabit etkiler"
 
 #: R/ihcheterogeneity.b.R
 msgid "Moderate"
@@ -5000,9 +6299,17 @@ msgstr "ORTA DÜZEYDE ÖRNEKLEME:"
 msgid "Moderate sampling:"
 msgstr "Orta düzeyde örnekleme:"
 
+#: R/diagnosticmeta.b.R
+msgid "Moderate sensitivity (70-79%): appreciable number of cases missed"
+msgstr "Orta duyarlılık (%70-79): kayda değer sayıda olgu kaçırılır"
+
 #: R/ihcheterogeneity.b.R
 msgid "Moderate share of total variance"
 msgstr "Toplam varyansta orta düzeyde pay"
+
+#: R/diagnosticmeta.b.R
+msgid "Moderate specificity (70-79%): appreciable false-positive rate"
+msgstr "Orta özgüllük (%70-79): kayda değer yanlış pozitif oranı"
 
 #: R/ihcheterogeneity.b.R
 msgid "Moderate variability"
@@ -5041,6 +6348,8 @@ msgstr "En yaygın yanıt %s oldu (hastaların %%%.1f'i)."
 #: R/swimmerplot.b.R
 msgid "Most common response was a tie between %s, each in %.1f%% of patients."
 msgstr ""
+"En sık yanıt %s arasında eşitti; her biri hastaların %%%.1f kadarında "
+"görüldü."
 
 #: R/waterfall.b.R
 msgid ""
@@ -5060,7 +6369,7 @@ msgstr "Çoğu çalışma 'Yüzde Değişimleri' formatını kullanır"
 msgid ""
 "Multiple episodes recorded for %d of %d patients. This is normal for "
 "longitudinal data."
-msgstr ""
+msgstr "%d/%d hastada birden çok dönem kaydedildi. Boylamsal veride bu normaldir."
 
 #: R/swimmerplot-html.R
 msgid "Multiple Time Units:"
@@ -5094,7 +6403,7 @@ msgstr "Heterojenlik analizi sonuçlarının doğal dildeki özeti"
 
 #: R/swimmerplot.b.R
 msgid "NE"
-msgstr ""
+msgstr "NE"
 
 #: R/diagnosticmeta.b.R
 msgid "Negative Likelihood Ratio"
@@ -5126,6 +6435,8 @@ msgid ""
 "Neither enough shrinkage for PR nor enough increase for PD, taking the "
 "smallest sum recorded on study (the nadir) as reference."
 msgstr ""
+"Çalışmada kaydedilen en küçük toplam (nadir) referans alınarak ne PR için "
+"yeterli küçülme ne de PD için yeterli artış vardır."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -5137,7 +6448,7 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "No asymmetry detected (p >= 0.05)"
-msgstr ""
+msgstr "Asimetri saptanmadı (p >= 0,05)"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -5164,10 +6475,12 @@ msgid ""
 "No comparison was run: Fisher's exact test needs at least two groups and the "
 "group variable has %d in these data."
 msgstr ""
+"Karşılaştırma yapılmadı: Fisher kesin testi en az iki grup gerektirir; bu "
+"verilerde grup değişkeninin %d grubu vardır."
 
 #: R/swimmerplot.b.R
 msgid "No comparison was run: no patient has a value in the group variable."
-msgstr ""
+msgstr "Karşılaştırma yapılmadı: hiçbir hastanın grup değeri yoktur."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -5176,12 +6489,18 @@ msgid ""
 "the response variable could be recognised as one. Recode the response "
 "variable to compare groups."
 msgstr ""
+"Karşılaştırma yapılmadı: objektif yanıt ve hastalık kontrolü yalnızca RECIST "
+"kodlu yanıtlar (CR, PR, SD, PD) için tanımlıdır; yanıt değişkenindeki hiçbir "
+"değer bunlardan biri olarak tanınmadı. Grupları karşılaştırmak için yanıt "
+"değişkenini yeniden kodlayın."
 
 #: R/swimmerplot.b.R
 msgid ""
 "No comparison was run: the group tests compare objective response and "
 "disease control between groups, and no Response/Status variable is selected."
 msgstr ""
+"Karşılaştırma yapılmadı: grup testleri objektif yanıt ve hastalık kontrolünü "
+"gruplar arasında karşılaştırır; yanıt/durum değişkeni seçilmemiştir."
 
 #: R/waterfall.b.R
 msgid ""
@@ -5232,6 +6551,8 @@ msgid ""
 "No event markers to summarise: none of the event times could be converted to "
 "a time on this timeline."
 msgstr ""
+"Özetlenecek olay işareti yok: olay zamanlarından hiçbiri bu çizelgede bir "
+"zamana dönüştürülemedi."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -5239,6 +6560,9 @@ msgid ""
 "selected, or none of the events falls inside a patient's timeline - see the "
 "notices above."
 msgstr ""
+"Özetlenecek olay işareti yok. Olay türü/zaman değişkeni seçilmemiş veya "
+"hiçbir olay hastanın zaman çizelgesi içine düşmemiştir; yukarıdaki "
+"bildirimlere bakın."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -5247,6 +6571,11 @@ msgid ""
 "the same outcome (all responders or none, and likewise for disease control), "
 "so there is nothing to compare. The per-group counts are in the note above."
 msgstr ""
+"Grup karşılaştırması yapılamadı. Fisher kesin testi en az iki grup ve her "
+"iki sonucun da varlığını gerektirir: burada karşılaştırmadaki tüm hastalar "
+"aynı sonuca sahiptir (yanıt verenlerin tümü veya hiçbiri; hastalık kontrolü "
+"için de aynı durum); karşılaştırılacak fark yoktur. Grup bazında sayımlar "
+"yukarıdaki nottadır."
 
 #: R/ihcheterogeneity.b.R
 msgid "No ICC for compartment '%s'."
@@ -5265,6 +6594,8 @@ msgid ""
 "No milestones to summarise: none of the milestone values could be converted "
 "to a time on this timeline."
 msgstr ""
+"Özetlenecek dönüm noktası yok: dönüm noktası değerlerinden hiçbiri bu "
+"çizelgede bir zamana dönüştürülemedi."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -5272,6 +6603,13 @@ msgid ""
 "any patient in the analysis, or every milestone slot was skipped - see the "
 "notices above."
 msgstr ""
+"Özetlenecek dönüm noktası yok. Analizdeki hiçbir hastada kullanılabilir "
+"değer bulunmuyor veya tüm dönüm noktası alanları atlandı; yukarıdaki "
+"bildirimlere bakın."
+
+#: R/diagnosticmeta.b.R
+msgid "No missing values in TP, FP, FN, TN columns"
+msgstr "TP, FP, FN, TN sütunlarında eksik değer yok"
 
 #: R/waterfall.b.R
 msgid "NO NEGATIVE CHANGES"
@@ -5291,6 +6629,9 @@ msgid ""
 "reaches 50%. Every patient was observed to the terminal outcome, so the "
 "observed times are the complete follow-up."
 msgstr ""
+"Hiçbir hasta sansürlenmediğinden ters eğride olay yoktur ve eğri %50'ye "
+"ulaşmaz. Her hasta sonlanıma kadar gözlendiği için gözlenen süreler tam "
+"izlemi oluşturur."
 
 #: R/waterfall.b.R
 msgid "No patients with valid response data found."
@@ -5301,6 +6642,8 @@ msgid ""
 "No person-time by response to show: no patient in the analysis has a "
 "recorded response."
 msgstr ""
+"Gösterilecek yanıta göre kişi-zaman yok: analizdeki hiçbir hastanın kayıtlı "
+"yanıtı bulunmuyor."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -5313,6 +6656,12 @@ msgid ""
 "fixed-effect estimate does not describe this body of evidence and REML "
 "should be used instead."
 msgstr ""
+"Öngörü aralığı yoktur: sabit etki yöntemi her çalışmanın AYNI duyarlılık ve "
+"özgüllüğü tahmin ettiğini varsayar; çalışmalar arası varyansı tahmin etmez. "
+"Yukarıdaki güven aralığı yapısal olarak rastgele etkiler aralığından dardır "
+"ve SROC grafiğinde öngörü bölgesi çizilmez. Buna dayanmadan önce "
+"heterojenlik tablosunu kontrol edin: Q anlamlı veya I-kare yüksekse tek "
+"sabit etki tahmini bu kanıtları temsil etmez; REML kullanılmalıdır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -5321,14 +6670,17 @@ msgid ""
 "only how precisely the pooled average is estimated, not how much studies "
 "differ."
 msgstr ""
+"Öngörü aralığı yoktur: model çalışmalar arası kovaryans matrisi döndürmedi. "
+"Yukarıdaki güven aralığı yalnızca birleştirilmiş ortalamanın kesinliğini "
+"gösterir; çalışmaların ne kadar farklılaştığını göstermez."
 
 #: R/swimmerplot.b.R
 msgid "no recorded response"
-msgstr ""
+msgstr "kayıtlı yanıt yok"
 
 #: R/swimmerplot.b.R
 msgid "No recorded response ({n}/{N})"
-msgstr ""
+msgstr "Kayıtlı yanıt yok ({n}/{N})"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -5340,7 +6692,7 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid "No response recorded for %d of %d patients (%.1f%%)."
-msgstr ""
+msgstr "%d/%d hastada kayıtlı yanıt yok (%%%.1f)."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -5427,6 +6779,10 @@ msgid ""
 "more often than 5%% of the time even when no study is missing. Read the "
 "statistic as descriptive only."
 msgstr ""
+"Karar bildirilmez: çalışmaların %%%.0f kadarında sıfır hücre vardır; bu "
+"düzeyde, hiçbir çalışma eksik olmasa bile süreklilik düzeltmesi tek başına "
+"%%5'ten çok daha sık anlamlı asimetri üretir. İstatistiği yalnızca "
+"betimleyici olarak okuyun."
 
 #: R/waterfall.b.R
 msgid "Non-responder"
@@ -5458,6 +6814,10 @@ msgid ""
 "dates, switch Time Input Type to Date/Time and choose the matching Date "
 "Format."
 msgstr ""
+"Başlangıç/bitiş değerlerinden hiçbiri sayısal değil (örneğin '%s'). Zaman "
+"girdisi türü ham değer olarak seçilmiştir ve %s cinsinden sayı beklenir. "
+"Bunlar takvim tarihiyse tarih/saat türüne geçin ve uygun tarih biçimini "
+"seçin."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -5578,7 +6938,7 @@ msgstr "Tahmin edilemiyor - nota bakınız"
 
 #: R/swimmerplot.b.R
 msgid "not estimable (a zero cell)"
-msgstr ""
+msgstr "tahmin edilemez (sıfır hücre)"
 
 #: R/waterfall.b.R
 msgid ""
@@ -5594,7 +6954,7 @@ msgstr "Tahmin edilemiyor: yanıt veren hasta sayısı 2'den az"
 
 #: R/diagnosticmeta.b.R
 msgid "Not estimable: all studies have the same effective sample size"
-msgstr ""
+msgstr "Tahmin edilemez: tüm çalışmaların etkin örneklem büyüklüğü aynı"
 
 #: R/diagnosticmeta.b.R
 msgid "Not estimable: at least 3 studies with finite odds ratios are required"
@@ -5608,7 +6968,7 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "Not interpretable: too many zero cells"
-msgstr ""
+msgstr "Yorumlanamaz: sıfır hücre sayısı çok fazla"
 
 #: R/waterfall.b.R
 msgid "not reached"
@@ -5666,7 +7026,7 @@ msgstr "Not: <-%100 değerleri tümör küçülmesi için matematiksel olarak im
 
 #: R/diagnosticmeta.b.R
 msgid "Nothing selected to display"
-msgstr ""
+msgstr "Gösterim için hiçbir şey seçilmedi"
 
 #: diagnosticmeta/results/notices.title
 #: ihcheterogeneity/results/notices.title
@@ -5679,7 +7039,7 @@ msgstr "NPV"
 
 #: R/swimmerplot.b.R
 msgid "NR"
-msgstr ""
+msgstr "NR"
 
 #: R/swimmerplot.b.R
 #: waterfall/results/summaryTable.columns.title
@@ -5693,6 +7053,10 @@ msgid ""
 "by person-time (the union of treatment episodes), not by Mean Duration, "
 "which spans first start to last end and so includes any gaps."
 msgstr ""
+"100 gözlem zamanı birimi başına hasta sayısı; hasta başına ortalama "
+"kişi-zamanın 100'e bölümünün tersidir. Olay hızı değildir. İlk başlangıçtan "
+"son bitişe uzanarak boşlukları içeren ortalama süreye değil, tedavi "
+"dönemlerinin birleşimi olan kişi-zamana bölünür."
 
 #: R/swimmerplot-html.R
 msgid "numeric values"
@@ -5700,7 +7064,7 @@ msgstr "sayısal değerler"
 
 #: R/swimmerplot.b.R
 msgid "Objective response by group - %s."
-msgstr ""
+msgstr "Gruba göre objektif yanıt - %s."
 
 #: R/waterfall.b.R
 msgid "Objective Response Rate (CR+PR)"
@@ -5773,8 +7137,8 @@ msgstr ""
 
 #: waterfall/options/ongoingVar.title
 #: waterfall/ui[0][5].label
-msgid "On-Treatment / Ongoing (optional)"
-msgstr "Tedavide / Devam Eden (isteğe bağlı)"
+msgid "On-Treatment / ongoing (optional)"
+msgstr "Tedavi devam ediyor (isteğe bağlı)"
 
 #: R/waterfall.b.R
 msgid "Oncology clinical trials and treatment response studies"
@@ -5813,6 +7177,9 @@ msgid ""
 "other is not zero, so read the tau-squared values above as the heterogeneity "
 "on that margin."
 msgstr ""
+"İkisinden biri pratik olarak sıfırdır; aralarındaki korelasyon tanımlanamaz "
+"ve bu uyumdan eşik etkisi değerlendirilemez. Diğeri sıfır olmadığından "
+"yukarıdaki tau-kare değerlerini ilgili marjın heterojenliği olarak okuyun."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -5840,6 +7207,11 @@ msgid ""
 "pooled pair as descriptive, report the individual studies alongside it, and "
 "do not use it to set a clinical threshold."
 msgstr ""
+"Yalnızca %d çalışma birleştirildi. İki değişkenli model beş parametre tahmin "
+"eder (iki ortalama ve üç çalışmalar arası varyans bileşeni); bu kadar az "
+"çalışmada varyans güçlükle tanımlanır ve güven aralıkları kanıtın "
+"desteklediğinden dar olur. Birleştirilmiş değerleri betimleyici kabul edin, "
+"çalışmaları yanında raporlayın ve klinik eşik belirlemek için kullanmayın."
 
 #: R/diagnosticmeta.b.R
 msgid "Only %d studies available. At least 3 studies are required for meta-analysis."
@@ -5884,6 +7256,9 @@ msgid ""
 "overrides the category computed from the % value -- e.g., a shrinking tumor "
 "can still be PD due to a new lesion. Affects coloring and metrics."
 msgstr ""
+"İsteğe bağlı hasta bazlı RECIST kategorisi (CR/PR/SD/PD). Verildiğinde yüzde "
+"değerinden hesaplanan kategorinin yerine geçer; örneğin küçülen bir tümör "
+"yeni lezyon nedeniyle yine PD olabilir. Renkleri ve ölçütleri etkiler."
 
 #: waterfall/options/confirmationVar.description.jamovi
 msgid ""
@@ -5943,6 +7318,11 @@ msgid ""
 "Over the %d CR/PR/SD/PD patients alone the rates would be ORR %.1f%% and DCR "
 "%.1f%%; those are per-protocol figures and are not what the tables report."
 msgstr ""
+"RECIST 1.1 bölüm 4.9.1 gereği ORR ve DCR tüm %d hasta üzerinden hesaplanır: "
+"CR/PR/SD/PD dışı yanıtı olan %d hasta (örneğin NE) ve kayıtlı yanıtı olmayan "
+"%d hasta dışlanmaz, yanıt vermemiş sayılır. Yalnızca %d CR/PR/SD/PD hastası "
+"kullanılsaydı ORR %%%.1f ve DCR %%%.1f olurdu; bu protokole uygun alt grup "
+"değerleri tablolarda bildirilmez."
 
 #: R/waterfall.b.R
 msgid ""
@@ -5972,8 +7352,8 @@ msgstr "Çıktı Seçenekleri"
 
 #: ihcheterogeneity/options/wholesection.title
 #: ihcheterogeneity/ui[0][0].label
-msgid "Overall / Whole Slide / HotSpot (Optional)"
-msgstr "Genel / Bütün Kesit / HotSpot (İsteğe Bağlı)"
+msgid "Overall / whole slide / hotspot (optional)"
+msgstr "Genel / tüm kesit / sıcak nokta (isteğe bağlı)"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -6082,7 +7462,7 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid "Palette changed"
-msgstr ""
+msgstr "Palet değiştirildi"
 
 #: diagnosticmeta/results/bivariateresults.columns.title
 #: diagnosticmeta/results/hsrocresults.columns.title
@@ -6124,8 +7504,8 @@ msgid "Patient ID"
 msgstr "Hasta Kimliği"
 
 #: swimmerplot/ui[0][0][0].label
-msgid "Patient ID (Required)"
-msgstr "Hasta Kimliği (Gerekli)"
+msgid "Patient ID (required)"
+msgstr "Hasta kimliği (zorunlu)"
 
 #: R/waterfall.b.R
 msgid "Patient ID and response variables are required"
@@ -6157,6 +7537,10 @@ msgstr "Hasta Kimliği:"
 msgid "Patient outcome tracking in longitudinal studies"
 msgstr "İzlemsel çalışmalarda hasta sonuç takibi"
 
+#: R/diagnosticmeta.b.R
+msgid "Patient spectrum should be clinically relevant"
+msgstr "Hasta spektrumu klinik olarak ilgili olmalıdır"
+
 #: R/swimmerplot.b.R
 msgid "Patient Timeline Analysis"
 msgstr "Hasta Zaman Çizelgesi Analizi"
@@ -6172,6 +7556,10 @@ msgid ""
 "observed durations ranged from %.1f to %.1f %s. Total person-time was %.1f "
 "%s."
 msgstr ""
+"Hasta zaman çizelgeleri tedavi süreçlerini ve klinik sonuçları "
+"görselleştirmek için yüzücü grafikleriyle analiz edildi. Çalışma %s "
+"içeriyordu; %s değeri %s idi. Gözlenen süreler %.1f ile %.1f %s arasında "
+"değişti. Toplam kişi-zaman %.1f %s idi."
 
 #: R/waterfall.b.R
 #: swimmerplot/results/personTimeTable.columns.title
@@ -6185,6 +7573,9 @@ msgid ""
 "not applied while a Sort Variable is selected; clear it to sort by duration, "
 "patient ID or response."
 msgstr ""
+"Hastalar '%s' sıralama değişkenine göre sıralanır. Sıralama değişkeni "
+"seçiliyken sıralama düzeni ayarı uygulanmaz; süre, hasta kimliği veya yanıta "
+"göre sıralamak için değişkeni temizleyin."
 
 #: R/waterfall.b.R
 msgid "PATIENTS EXCLUDED"
@@ -6192,7 +7583,7 @@ msgstr "HARİÇ TUTULAN HASTALAR"
 
 #: R/swimmerplot.b.R
 msgid "Patients excluded from the group comparison"
-msgstr ""
+msgstr "Grup karşılaştırmasından dışlanan hastalar"
 
 #: R/waterfall.b.R
 msgid "PD (Progressive Disease - Threshold):"
@@ -6362,6 +7753,10 @@ msgid ""
 "markers counts several times. Median Time is measured from each patient's "
 "own start, in {unit}."
 msgstr ""
+"Yüzdeler, olay işareti bulunan {p} hasta veya analizdeki {N} hasta üzerinden "
+"değil, gösterilen {n} olay işareti üzerinden hesaplanır; birden çok işaretli "
+"hasta birden çok kez sayılır. Medyan zaman, hastanın kendi başlangıcından "
+"itibaren {unit} cinsinden ölçülür."
 
 #: waterfall/results/personTimeTable.columns.title
 msgid "Person-Time"
@@ -6417,6 +7812,9 @@ msgid ""
 "estimate was not available. Read it as the median time to "
 "event-or-censoring, not as the length of follow-up."
 msgstr ""
+"Ters Kaplan-Meier tahmini elde edilemediğinden gözlenen sürelerin basit "
+"medyanıdır. İzlem uzunluğu olarak değil, olaya veya sansürlenmeye kadar "
+"medyan süre olarak okuyun."
 
 #: ihcheterogeneity/options/showSummary.title
 #: ihcheterogeneity/ui[5]/showSummary.label
@@ -6435,6 +7833,15 @@ msgid ""
 "a hypothesis test. Systematic offsets affect the absolute-agreement "
 "ICC(2,1), whose precision needs separate planning."
 msgstr ""
+"Olgu başına k = %d ölçüm ve %%95 güven aralığı için tutarlılık ICC'si "
+"ICC(3,1) planlanır; bu analizde %d tam olgu vardır. Bonett (2002) başlangıç "
+"yaklaşımını sağlar; burada dengeli normal ANOVA modelinde kesin F-aralığı "
+"genişliğinin sayısal integrasyonuyla iyileştirilir. Gereken büyüklük, "
+"beklenen aralık genişliği hedefini karşılayan, en az 5 olmak üzere en küçük "
+"olgu sayısıdır. Bazı çalışmalarda daha geniş aralık elde edilir: bu, "
+"beklenen genişlik planlamasıdır; güvence hesabı veya hipotez testi değildir. "
+"Sistematik kaymalar mutlak uyum ICC(2,1)'i etkiler; onun kesinliği ayrıca "
+"planlanmalıdır."
 
 #: ihcheterogeneity/results/samplesizetable.columns.title
 msgid "Planning ICC"
@@ -6449,8 +7856,8 @@ msgid "Planning ICC 0.90 (lower limit of excellent reliability)"
 msgstr "Planlanan ICC 0.90 (mükemmel güvenilirliğin alt sınırı)"
 
 #: diagnosticmeta/options/color_palette/plasma.title
-msgid "Plasma (Purple-Pink)"
-msgstr "Plasma (Mor-Pembe)"
+msgid "Plasma (purple-pink)"
+msgstr "Plasma (mor-pembe)"
 
 #: R/swimmerplot.b.R
 msgid "Please check date format - use YYYY-MM-DD, DD/MM/YYYY, or numeric values"
@@ -6501,16 +7908,25 @@ msgid ""
 "and specificity are percentages, the likelihood ratios and the diagnostic "
 "odds ratio are ratios."
 msgstr ""
+"%d çalışmadaki %s katılımcıdan birleştirildi (%s hedef durumlu, %s hedef "
+"durumsuz). Aralıklar %%%d güven aralıklarıdır; duyarlılık ve özgüllük yüzde, "
+"olabilirlik oranları ve tanısal odds oranı ise oran olarak verilir."
 
 #: R/diagnosticmeta.b.R
 msgid "Pooled Sensitivity"
 msgstr "Havuzlanmış Duyarlılık"
 
 #: R/diagnosticmeta.b.R
+msgid "Pooled Sensitivity and Specificity"
+msgstr "Birleştirilmiş duyarlılık ve özgüllük"
+
+#: R/diagnosticmeta.b.R
 msgid ""
 "Pooled sensitivity and specificity estimates are unavailable; predictive "
 "values cannot be computed."
 msgstr ""
+"Birleştirilmiş duyarlılık ve özgüllük tahminleri yok; öngörü değerleri "
+"hesaplanamaz."
 
 #: R/diagnosticmeta.b.R
 msgid "Pooled Specificity"
@@ -6600,11 +8016,23 @@ msgstr ""
 
 #: diagnosticmeta/results/predictiveValues.title
 msgid "Predictive Values by Prevalence"
-msgstr ""
+msgstr "Prevalansa göre öngörü değerleri"
+
+#: R/diagnosticmeta.b.R
+msgid "Predictive Values in Clinical Practice:"
+msgstr "Klinik uygulamada öngörü değerleri:"
+
+#: R/diagnosticmeta.b.R
+msgid "Preferred for meta-analyses with <em>homogeneous thresholds</em>"
+msgstr "<em>Homojen eşikli</em> meta-analizlerde tercih edilir"
 
 #: diagnosticmeta/results/predictiveValues.columns.title
 msgid "Prevalence"
 msgstr "Prevalans"
+
+#: R/diagnosticmeta.b.R
+msgid "Primary Results Interpretation"
+msgstr "Birincil sonuçların yorumu"
 
 #: R/swimmerplot-html.R
 msgid ""
@@ -6701,7 +8129,7 @@ msgstr "Orantılı tehlikeler SROC uyumu başarısız oldu; veri kalitesini kont
 
 #: R/diagnosticmeta.b.R
 msgid "Proportional-hazards SROC model does not fit"
-msgstr ""
+msgstr "Orantılı tehlikeler SROC modeli uygun değil"
 
 #: diagnosticmeta/results/hsrocresults.title
 msgid "Proportional-Hazards SROC Model Results"
@@ -6728,6 +8156,14 @@ msgid ""
 "Provide an explicit censoring/status variable for accurate status arrows and "
 "reverse Kaplan-Meier median follow-up calculation."
 msgstr ""
+"Doğru durum okları ve ters Kaplan-Meier medyan izlem hesabı için açık bir "
+"sansür/durum değişkeni sağlayın."
+
+#: R/diagnosticmeta.b.R
+msgid "Provides <em>intuitive</em> pooled sensitivity and specificity estimates"
+msgstr ""
+"<em>Sezgisel olarak anlaşılır</em> birleştirilmiş duyarlılık ve özgüllük "
+"tahminleri sağlar"
 
 #: R/waterfall.b.R
 msgid "PT1        0     50          (baseline required)"
@@ -6753,6 +8189,7 @@ msgstr "PT1        4     10          (4 ay)"
 msgid "Publication bias analysis error: %s"
 msgstr "Yayın yanlılığı analizi hatası: %s"
 
+#: R/diagnosticmeta.b.R
 #: diagnosticmeta/results/publicationbias.title
 msgid "Publication Bias Assessment"
 msgstr "Yayın Yanlılığı Değerlendirmesi"
@@ -6768,6 +8205,10 @@ msgstr "Yayın yanlılığı değerlendirmesi (Deeks testi)"
 #: R/diagnosticmeta.b.R
 msgid "Publication bias caution"
 msgstr "Yayın yanlılığı uyarısı"
+
+#: R/diagnosticmeta.b.R
+msgid "Purpose"
+msgstr "Amaç"
 
 #: diagnosticmeta/results/heterogeneity.columns.title
 msgid "Q Statistic"
@@ -6813,13 +8254,21 @@ msgstr ""
 "planlaması (Bonett 2002) ve uzamsal kompartmanlar arası karşılaştırmalar "
 "sunar."
 
+#: R/diagnosticmeta.b.R
+msgid "Quick Assessment Tips"
+msgstr "Hızlı değerlendirme ipuçları"
+
+#: R/diagnosticmeta.b.R
+msgid "Quick Start Guide"
+msgstr "Hızlı başlangıç kılavuzu"
+
 #: R/waterfall.b.R
 msgid "Quick Tips:"
 msgstr "Hızlı İpuçları:"
 
 #: ihcheterogeneity/options/sampling_strategy/random.title
-msgid "Random Sampling"
-msgstr "Rastgele Örnekleme"
+msgid "Random sampling"
+msgstr "Rastgele örnekleme"
 
 #: waterfall/options/seed.title
 #: waterfall/ui[2][1][1]/seed.label
@@ -6867,6 +8316,10 @@ msgid ""
 "count as non-responders, the same rule the Objective Response Rate uses. "
 "This is what lets the test and the rate above it be read together."
 msgstr ""
+"Oranlar, karşılaştırmada grup değeri olan tüm %d hasta üzerinden hesaplanır; "
+"gruplar aşağıda ayrılır. Değerlendirilemeyen, tanınmayan ve kayıtsız "
+"yanıtlar, objektif yanıt oranındaki kuralla yanıt vermemiş sayılır. Böylece "
+"test ve üstündeki oran birlikte okunabilir."
 
 #: waterfall/options/inputType/raw.title
 msgid "Raw Measurements"
@@ -6960,6 +8413,15 @@ msgstr "Önerilen eylemler:"
 msgid "Recommended Data Format:"
 msgstr "Önerilen Veri Formatı:"
 
+#: R/diagnosticmeta.b.R
+msgid ""
+"Refer to the <em>Likelihood Ratios for Clinical Decision-Making</em> table "
+"below for standard interpretation ranges for positive and negative "
+"likelihood ratios."
+msgstr ""
+"Pozitif ve negatif olabilirlik oranlarının standart yorum aralıkları için "
+"aşağıdaki <em>Klinik kararlar için olabilirlik oranları</em> tablosuna bakın."
+
 #: R/ihcheterogeneity.b.R
 msgid "Reference"
 msgstr "Referans"
@@ -6974,7 +8436,7 @@ msgstr "Referans çizgileri"
 
 #: R/swimmerplot.b.R
 msgid "Reference lines on an absolute axis"
-msgstr ""
+msgstr "Mutlak eksende referans çizgileri"
 
 #: R/swimmerplot-html.R
 msgid "Reference Lines:"
@@ -6983,6 +8445,10 @@ msgstr "Referans Çizgileri:"
 #: R/ihcheterogeneity.b.R
 msgid "Reference measurement:"
 msgstr "Referans ölçümü:"
+
+#: R/diagnosticmeta.b.R
+msgid "Reference standard should be consistent across studies"
+msgstr "Referans standardı çalışmalar arasında tutarlı olmalıdır"
 
 #: R/ihcheterogeneity.b.R
 msgid "References"
@@ -7061,23 +8527,23 @@ msgstr ""
 
 #: ihcheterogeneity/options/biopsy1.title
 #: ihcheterogeneity/ui[0][1].label
-msgid "Regional Measurement 1"
-msgstr "Bölgesel Ölçüm 1"
+msgid "Regional measurement 1"
+msgstr "Bölgesel ölçüm 1"
 
 #: ihcheterogeneity/options/biopsy2.title
 #: ihcheterogeneity/ui[0][2].label
-msgid "Regional Measurement 2 (Optional)"
-msgstr "Bölgesel Ölçüm 2 (İsteğe Bağlı)"
+msgid "Regional measurement 2 (optional)"
+msgstr "Bölgesel ölçüm 2 (isteğe bağlı)"
 
 #: ihcheterogeneity/options/biopsy3.title
 #: ihcheterogeneity/ui[0][3].label
-msgid "Regional Measurement 3 (Optional)"
-msgstr "Bölgesel Ölçüm 3 (İsteğe Bağlı)"
+msgid "Regional measurement 3 (optional)"
+msgstr "Bölgesel ölçüm 3 (isteğe bağlı)"
 
 #: ihcheterogeneity/options/biopsy4.title
 #: ihcheterogeneity/ui[0][4].label
-msgid "Regional Measurement 4 (Optional)"
-msgstr "Bölgesel Ölçüm 4 (İsteğe Bağlı)"
+msgid "Regional measurement 4 (optional)"
+msgstr "Bölgesel ölçüm 4 (isteğe bağlı)"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -7178,6 +8644,14 @@ msgstr "Reitsma modeli başarısız oldu - katsayı matrisi eksik"
 msgid "Reitsma model returned unexpected coefficient structure"
 msgstr "Reitsma modeli beklenmeyen katsayı yapısı döndürdü"
 
+#: R/diagnosticmeta.b.R
+msgid ""
+"Relates sensitivity (<em>p</em>) and false-positive rate (<em>u</em>) "
+"through <em>u</em><sup>theta</sup> = <em>p</em>"
+msgstr ""
+"Duyarlılık (<em>p</em>) ile yanlış pozitif oranını (<em>u</em>), "
+"<em>u</em><sup>theta</sup> = <em>p</em> üzerinden ilişkilendirir"
+
 #: swimmerplot/options/timeDisplay/relative.title
 msgid "Relative (all start from 0)"
 msgstr "Göreceli (hepsi 0'dan başlar)"
@@ -7205,8 +8679,8 @@ msgid "Reliability:"
 msgstr "Güvenilirlik:"
 
 #: diagnosticmeta/options/method/reml.title
-msgid "REML (Recommended)"
-msgstr "REML (Önerilen)"
+msgid "REML (recommended)"
+msgstr "REML (önerilen)"
 
 #: R/waterfall.b.R
 msgid "Remove patients without baseline from analysis"
@@ -7216,17 +8690,35 @@ msgstr "Başlangıç değeri olmayan hastaları analizden çıkarın"
 msgid "REPEATED VISIT TIMES"
 msgstr "YİNELENEN VİZİT ZAMANLARI"
 
+#: R/diagnosticmeta.b.R
+msgid "Report the asymmetry as a limitation and interpret results cautiously"
+msgstr "Asimetriyi sınırlılık olarak raporlayın ve sonuçları dikkatle yorumlayın"
+
 #: diagnosticmeta/ui[1][3].label
 msgid "Reporting Options"
 msgstr "Raporlama Seçenekleri"
+
+#: R/diagnosticmeta.b.R
+msgid "Reporting Recommendations"
+msgstr "Raporlama önerileri"
+
+#: R/diagnosticmeta.b.R
+msgid "Reports tau<sup>2</sup> as between-study variation in diagnostic accuracy"
+msgstr ""
+"Tanısal doğrulukta çalışmalar arası değişkenliği tau<sup>2</sup> olarak "
+"bildirir"
+
+#: R/diagnosticmeta.b.R
+msgid "Reports theta as the diagnostic accuracy parameter"
+msgstr "Tanısal doğruluk parametresi olarak theta bildirir"
 
 #: R/ihcheterogeneity.b.R
 msgid "Representativeness:"
 msgstr "Temsil Yeteneği:"
 
 #: ihcheterogeneity/options/analysis_type/reproducibility.title
-msgid "Reproducibility & Bias Assessment"
-msgstr "Tekrarlanabilirlik ve Yanlılık Değerlendirmesi"
+msgid "Reproducibility & bias assessment"
+msgstr "Tekrarlanabilirlik ve yanlılık değerlendirmesi"
 
 #: ihcheterogeneity/results/reproducibilitytable.title
 msgid "Reproducibility Assessment"
@@ -7243,6 +8735,10 @@ msgstr "Gerekli Eylem"
 #: R/swimmerplot-html.R
 msgid "Required Data"
 msgstr "Gerekli Veri"
+
+#: R/diagnosticmeta.b.R
+msgid "Required Data Structure"
+msgstr "Gerekli veri yapısı"
 
 #: R/waterfall.b.R
 msgid ""
@@ -7343,11 +8839,8 @@ msgstr "Her çubuğun üzerinde yanıt kategorisi"
 msgid "Response category column"
 msgstr "Yanıt kategorisi sütunu"
 
-#: waterfall/ui[0][6].label
-msgid "Response Category Override (optional)"
-msgstr "Yanıt Kategorisi Geçersiz Kılma (isteğe bağlı)"
-
 #: waterfall/options/responseCategoryVar.title
+#: waterfall/ui[0][6].label
 msgid "Response category override (optional)"
 msgstr "Yanıt kategorisi geçersiz kılma (isteğe bağlı)"
 
@@ -7374,6 +8867,10 @@ msgid ""
 "Rates are over all patients analysed, with not-evaluable and unrecorded "
 "responses counted as non-responders (RECIST 1.1 section 4.9.1)."
 msgstr ""
+"Yanıt değerlendirmesinde objektif yanıt oranı (ORR) %%%.1f (%d/%d hasta%s), "
+"hastalık kontrol oranı (DCR) %%%.1f (%d/%d hasta%s) olarak bulundu. Oranlar, "
+"değerlendirilemeyen ve kayıtsız yanıtlar yanıt vermemiş sayılarak analiz "
+"edilen tüm hastalar üzerinden hesaplanır (RECIST 1.1 bölüm 4.9.1)."
 
 #: R/waterfall.b.R
 msgid "Response Metrics"
@@ -7419,8 +8916,8 @@ msgid "Response Type"
 msgstr "Yanıt Türü"
 
 #: waterfall/ui[0][1].label
-msgid "Response Value (Raw or Percentage Measurement)"
-msgstr "Yanıt Değeri (Ham veya Yüzde Ölçümü)"
+msgid "Response value (raw or percentage measurement)"
+msgstr "Yanıt değeri (ham ölçüm veya yüzde)"
 
 #: waterfall/options/responseVar.title
 msgid "Response value (raw or percentage)"
@@ -7428,7 +8925,7 @@ msgstr "Yanıt değeri (ham veya yüzde)"
 
 #: R/waterfall.b.R
 msgid "Response Value is still empty."
-msgstr ""
+msgstr "Yanıt değeri henüz seçilmedi."
 
 #: R/waterfall.b.R
 msgid "Response Value:"
@@ -7450,14 +8947,19 @@ msgid ""
 "Tip: Use percentage format if changes already calculated, raw format for "
 "actual measurements."
 msgstr ""
+"Yanıt değişkeni: tümör ölçümleri veya başlangıca göre yüzde değişimleri. - "
+"Ham ölçümler: gerçek tümör boyutları (mm, cm, çap toplamı) - Yüzde "
+"değişimleri: önceden hesaplanmış değişimler (-30 = yüzde 30 küçülme = iyi "
+"yanıt) İpucu: değişimler hesaplanmışsa yüzde biçimini, gerçek ölçümler için "
+"ham biçimi kullanın."
 
 #: swimmerplot/options/responseVar.title
-msgid "Response/Status Variable"
-msgstr "Yanıt/Durum Değişkeni"
+msgid "Response/Status variable"
+msgstr "Yanıt/durum değişkeni"
 
 #: swimmerplot/ui[0][0][3].label
-msgid "Response/Status Variable (Optional)"
-msgstr "Yanıt/Durum Değişkeni (İsteğe Bağlı)"
+msgid "Response/Status variable (optional)"
+msgstr "Yanıt/durum değişkeni (isteğe bağlı)"
 
 #: R/ihcheterogeneity.b.R
 msgid "Results Section:"
@@ -7478,6 +8980,14 @@ msgid ""
 "materially with heavy censoring. Response-rate rows in this column instead "
 "carry exact binomial (Clopper-Pearson) intervals."
 msgstr ""
+"Ters Kaplan-Meier tahmini (Schemper ve Smith 1996): olay ve sansür rolleri "
+"yer değiştirir; böylece hastaların ne kadar süre gözlenmiş olacağını tahmin "
+"eder. Gözlenen sürelerin basit medyanı, olaya veya sansüre kadar medyan "
+"süredir ve olaylar sıkken izlemi olduğundan kısa gösterir. Aralık, bazı "
+"çalışma raporlarındaki log-log (Brookmeyer-Crowley) yerine survfit'in "
+"varsayılan log dönüşümünü kullanır; yoğun sansürlemede ikisi önemli ölçüde "
+"farklıdır. Bu sütundaki yanıt oranı satırları ise kesin binom "
+"(Clopper-Pearson) aralıklarını içerir."
 
 #: R/ihcheterogeneity.b.R
 msgid "Review the %d of %d cases whose CV exceeds your %s%% threshold."
@@ -7640,6 +9150,10 @@ msgstr "ICC Kesinliği için Örneklem Büyüklüğü"
 msgid "Sample size:"
 msgstr "Örneklem büyüklüğü:"
 
+#: R/diagnosticmeta.b.R
+msgid "Sample sizes are realistic (TP+FP+FN+TN = total cases per study)"
+msgstr "Örneklem büyüklükleri gerçekçidir (TP+FP+FN+TN = çalışma başına toplam olgu)"
+
 #: R/ihcheterogeneity.b.R
 msgid "Sample-size planning needs at least two measurements per case."
 msgstr "Örneklem büyüklüğü planlaması vaka başına en az iki ölçüm gerektirir."
@@ -7745,9 +9259,21 @@ msgstr ""
 "SD: -%30'un üzerinde ve +%20'nin altında en iyi değişim; minimum süre "
 "gerekmez."
 
+#: R/diagnosticmeta.b.R
+msgid "Search for unpublished studies or negative results"
+msgstr "Yayımlanmamış çalışmaları veya negatif sonuçları araştırın"
+
 #: R/swimmerplot-html.R
 msgid "Select 'Date Format':"
 msgstr "'Tarih Formatı'nı seçin:"
+
+#: R/ihcheterogeneity.b.R
+msgid ""
+"Select a reference measurement or a second distinct regional measurement to "
+"start the analysis."
+msgstr ""
+"Analizi başlatmak için bir referans ölçümü veya ikinci bir farklı bölgesel "
+"ölçüm seçin."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -7760,6 +9286,10 @@ msgstr ""
 #: R/ihcheterogeneity.b.R
 msgid "Select at least one regional measurement other than the reference."
 msgstr "Referans dışında en az bir bölgesel ölçüm seçiniz."
+
+#: R/ihcheterogeneity.b.R
+msgid "Select at least one regional measurement to compare with the reference."
+msgstr "Referansla karşılaştırmak için en az bir bölgesel ölçüm seçin."
 
 #: R/waterfall.b.R
 msgid "Select Patient ID variable"
@@ -7791,10 +9321,13 @@ msgid ""
 "depend on disease prevalence. Values calculated from pooled sensitivity "
 "(%s%%) and specificity (%s%%)."
 msgstr ""
+"Duyarlılık ve özgüllük test özellikleridir; öngörü değerleri hastalık "
+"prevalansına bağlıdır. Değerler birleştirilmiş duyarlılık (%s%%) ve "
+"özgüllükten (%s%%) hesaplanır."
 
 #: R/diagnosticmeta.b.R
 msgid "Sensitivity meta-regression failed"
-msgstr ""
+msgstr "Duyarlılık meta-regresyonu başarısız"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -7831,6 +9364,11 @@ msgid ""
 "baseline handling) Recommended for new users or when documenting analysis "
 "methods"
 msgstr ""
+"Sonuçların altında ayrıntılı açıklamalar gösterir: - Analizin işlevi (şelale "
+"ve örümcek grafikleri) - Kullanım alanları (klinik çalışmalar, yanıt izlemi) "
+"- Veri gereksinimleri (hasta kimliği, yanıt verisi, zaman değişkeni) - Temel "
+"varsayımlar ve sınırlılıklar (RECIST eşikleri, başlangıç işlemleri) Yeni "
+"kullanıcılar veya yöntem belgeleme için önerilir"
 
 #: waterfall/options/showThresholds.description.jamovi
 msgid ""
@@ -7839,6 +9377,9 @@ msgid ""
 "Progressive Disease (PD) cutoff - tumor growth threshold Recommended: Keep "
 "enabled for clinical interpretation"
 msgstr ""
+"Grafiklerde RECIST v1.1 eşik çizgilerini gösterir: - Yüzde -30 çizgisi: "
+"kısmi yanıt (PR) eşiği, tümör küçülmesi - Yüzde +20 çizgisi: progresif "
+"hastalık (PD) eşiği, tümör büyümesi Öneri: klinik yorumlama için açık tutun"
 
 #: R/swimmerplot-html.R
 msgid "Show specific events along patient timelines"
@@ -7856,6 +9397,9 @@ msgid ""
 "this table is slow for large cohorts, so it is capped. The plot, the "
 "statistics and every other table use all %d patients."
 msgstr ""
+"%d/%d hastanın ilki, grafiğin sırasıyla gösterilir. Büyük topluluklarda bu "
+"tabloyu oluşturmak yavaş olduğundan sınırlandırılmıştır. Grafik, "
+"istatistikler ve diğer tüm tablolar %d hastanın tamamını kullanır."
 
 #: R/ihcheterogeneity.b.R
 msgid "Shown to be below the threshold on their own (upper 95%% limit below it): %s."
@@ -7954,7 +9498,7 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid "Small cell counts in Fisher's exact test"
-msgstr ""
+msgstr "Fisher kesin testinde küçük hücre sayıları"
 
 #: R/waterfall.b.R
 msgid "SMALL SAMPLE"
@@ -8017,8 +9561,8 @@ msgid "Sort by variable"
 msgstr "Değişkene göre sırala"
 
 #: swimmerplot/ui[5][1][0].label
-msgid "Sort By Variable (Optional)"
-msgstr "Değişkene Göre Sırala (İsteğe Bağlı)"
+msgid "Sort by variable (optional)"
+msgstr "Sıralama değişkeni (isteğe bağlı)"
 
 #: waterfall/options/sortDirection.title
 msgid "Sort direction"
@@ -8038,7 +9582,7 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid "Sort order overridden"
-msgstr ""
+msgstr "Sıralama düzeni geçersiz kılındı"
 
 #: waterfall/options/sortBy.description.jamovi
 msgid "Sort the waterfall plot by best response or patient ID."
@@ -8054,7 +9598,7 @@ msgstr "Ölçüm değişkenliği kaynakları"
 
 #: R/diagnosticmeta.b.R
 msgid "Sparse data: pooled estimates may be biased"
-msgstr ""
+msgstr "Seyrek veri: birleştirilmiş tahminler yanlı olabilir"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -8102,8 +9646,8 @@ msgstr "Uzamsal Bölge"
 
 #: ihcheterogeneity/options/spatial_id.title
 #: ihcheterogeneity/ui[0][6].label
-msgid "Spatial Region ID (Optional)"
-msgstr "Uzamsal Bölge Kimliği (İsteğe Bağlı)"
+msgid "Spatial region ID (optional)"
+msgstr "Mekânsal bölge kimliği (isteğe bağlı)"
 
 #: R/ihcheterogeneity.b.R
 msgid "Spearman correlation = %s, which is below your %s threshold."
@@ -8161,7 +9705,7 @@ msgstr "Özgüllük (%)"
 
 #: R/diagnosticmeta.b.R
 msgid "Specificity meta-regression failed"
-msgstr ""
+msgstr "Özgüllük meta-regresyonu başarısız"
 
 #: R/waterfall.b.R
 msgid "Spider Plot"
@@ -8217,7 +9761,7 @@ msgstr "Örümcek Grafiği:"
 
 #: R/diagnosticmeta.b.R
 msgid "SROC curve over the observed false-positive range only"
-msgstr ""
+msgstr "SROC eğrisi yalnızca gözlenen yanlış pozitif aralığında"
 
 #: diagnosticmeta/results/srocplot_explanation.title
 msgid "SROC Plot Explanation"
@@ -8244,8 +9788,8 @@ msgid "Start time"
 msgstr "Başlangıç zamanı"
 
 #: swimmerplot/ui[0][0][1].label
-msgid "Start Time (Required)"
-msgstr "Başlangıç Zamanı (Gerekli)"
+msgid "Start time (required)"
+msgstr "Başlangıç zamanı (zorunlu)"
 
 #: R/swimmerplot.b.R
 msgid "Start Time is still empty."
@@ -8298,6 +9842,10 @@ msgstr "İstatistiksel sözlük"
 #: R/ihcheterogeneity.b.R
 msgid "Statistical Interpretation:"
 msgstr "İstatistiksel Yorum:"
+
+#: R/diagnosticmeta.b.R
+msgid "Statistical Method Selection Guide"
+msgstr "İstatistiksel yöntem seçimi kılavuzu"
 
 #: R/swimmerplot-html.R
 #: R/waterfall.b.R
@@ -8362,10 +9910,15 @@ msgid ""
 "a censoring variable (0/FALSE/no/censored/alive for still at risk, "
 "1/TRUE/yes/event/dead for completed) to show them."
 msgstr ""
+"Durum okları veri kesiminde sansürlü / hâlâ risk altında hastaları işaretler "
+"ve sansür/olay değişkeni gerektirir. Bu bilgi yalnızca çizelgeden "
+"belirlenemediğinden değişken yoksa ok çizilmez. Oklar için sansür değişkeni "
+"sağlayın (risk altında için 0/FALSE/no/censored/alive; tamamlanmış için "
+"1/TRUE/yes/event/dead)."
 
 #: R/swimmerplot.b.R
 msgid "Status arrows not drawn"
-msgstr ""
+msgstr "Durum okları çizilmedi"
 
 #: R/swimmerplot-html.R
 msgid "Status Arrows:"
@@ -8381,16 +9934,16 @@ msgid "Step-by-Step Progress:"
 msgstr "Adım Adım İlerleme:"
 
 #: ihcheterogeneity/options/sampling_strategy/stratified.title
-msgid "Stratified Sampling"
+msgid "Stratified sampling"
 msgstr "Tabakalı Örnekleme"
 
 #: R/diagnosticmeta.b.R
 msgid "Strong evidence AGAINST disease when test negative"
-msgstr ""
+msgstr "Test negatifken hastalık ALEYHİNE güçlü kanıt"
 
 #: R/diagnosticmeta.b.R
 msgid "Strong evidence FOR disease when test positive"
-msgstr ""
+msgstr "Test pozitifken hastalık LEHİNE güçlü kanıt"
 
 #: R/swimmerplot.b.R
 msgid "STRONG WARNING"
@@ -8398,11 +9951,15 @@ msgstr "GÜÇLÜ UYARI"
 
 #: R/diagnosticmeta.b.R
 msgid "Studies (circles), pooled estimate (triangle), chance line (dot-dash)"
-msgstr ""
+msgstr "Çalışmalar (daire), birleştirilmiş tahmin (üçgen), şans çizgisi (nokta-çizgi)"
 
 #: R/diagnosticmeta.b.R
 msgid "Studies excluded"
 msgstr "Hariç tutulan çalışmalar"
+
+#: R/diagnosticmeta.b.R
+msgid "Studies should evaluate the same test and target condition"
+msgstr "Çalışmalar aynı testi ve hedef durumu değerlendirmelidir"
 
 #: R/diagnosticmeta.b.R
 #: diagnosticmeta/results/individualstudies.columns.title
@@ -8419,15 +9976,19 @@ msgstr "Çalışma tanımlayıcısı"
 
 #: diagnosticmeta/ui[0][0][0].label
 msgid "Study identifier (required)"
-msgstr ""
+msgstr "Çalışma tanımlayıcısı (zorunlu)"
 
 #: R/diagnosticmeta.b.R
 msgid "Study identifier is still empty."
-msgstr ""
+msgstr "Çalışma tanımlayıcısı henüz seçilmedi."
 
 #: R/diagnosticmeta.b.R
 msgid "Study identifiers are not unique"
-msgstr ""
+msgstr "Çalışma tanımlayıcıları benzersiz değil"
+
+#: R/diagnosticmeta.b.R
+msgid "Study identifiers are unique"
+msgstr "Çalışma tanımlayıcıları benzersizdir"
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -8436,6 +9997,10 @@ msgid ""
 msgstr ""
 "Çalışmaya %2$d zaman çizelgesi gözlemiyle %1$d hasta dahil edildi. Medyan "
 "gözlenen süre %3$.1f %4$s idi (aralık: %5$.1f ila %6$.1f %7$s)."
+
+#: R/diagnosticmeta.b.R
+msgid "study_name"
+msgstr "study_name"
 
 #: R/diagnosticmeta.b.R
 msgid "Substantial between-study heterogeneity"
@@ -8463,13 +10028,17 @@ msgstr "Özet ROC Grafiği"
 msgid "Summary ROC plot"
 msgstr "Özet ROC grafiği"
 
+#: R/diagnosticmeta.b.R
+msgid "Summary ROC Plot Interpretation Guide"
+msgstr "Özet ROC grafiği yorumlama kılavuzu"
+
 #: swimmerplot/options/exportSummary.title
 msgid "Summary statistics"
 msgstr "Özet istatistikler"
 
 #: R/swimmerplot.b.R
 msgid "Summary Statistics:"
-msgstr ""
+msgstr "Özet istatistikler:"
 
 #: swimmerplot/options/milestone1Name.default
 msgid "Surgery"
@@ -8513,12 +10082,18 @@ msgid ""
 "Switch Time Display to 'Relative (all start from 0)' to show them, or use "
 "'Custom Time'."
 msgstr ""
+"Bunları göstermek için zaman gösterimini 'Göreli (tümü 0'dan başlar)' olarak "
+"seçin veya 'Özel zaman' kullanın."
 
 #: R/waterfall.b.R
 msgid "Switch to 'Percentage Changes' input format if changes are pre-calculated, OR"
 msgstr ""
 "Değişimler önceden hesaplanmışsa 'Yüzde Değişimleri' giriş formatına geçin "
 "VEYA"
+
+#: R/diagnosticmeta.b.R
+msgid "Synthesizing evidence for clinical guidelines"
+msgstr "Klinik kılavuzlar için kanıt sentezi"
 
 #: ihcheterogeneity/results/samplingbiastable.description
 msgid "Systematic bias assessment between methods"
@@ -8589,8 +10164,8 @@ msgstr ""
 "değerlendirilmedi."
 
 #: ihcheterogeneity/options/sampling_strategy/systematic.title
-msgid "Systematic Sampling"
-msgstr "Sistematik Örnekleme"
+msgid "Systematic sampling"
+msgstr "Sistematik örnekleme"
 
 #: diagnosticmeta/results/publicationbias.columns.title
 #: ihcheterogeneity/results/compartmentTests.columns.title
@@ -8615,6 +10190,8 @@ msgid ""
 "reported for that measure; the pooled estimates are unaffected. The "
 "underlying error was: %s"
 msgstr ""
+"%s meta-regresyon modeli uydurulamadığından bu ölçüt için ortak değişken "
+"etkisi bildirilmez; birleştirilmiş tahminler etkilenmez. Temel hata: %s"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -8669,12 +10246,18 @@ msgid ""
 "and 1 = event, because every follow-up figure below depends on which way "
 "round this is."
 msgstr ""
+"'%s' sansür değişkeni yalnızca 1 ve 2 içerdiğinden survival paketinin "
+"kuralıyla okundu: 1 = sansürlü (hâlâ risk altında), 2 = olay. Verinizde 1 "
+"olay anlamındaysa 0 = sansürlü ve 1 = olay olarak yeniden kodlayın; "
+"aşağıdaki tüm izlem değerleri bu yönlendirmeye bağlıdır."
 
 #: R/swimmerplot.b.R
 msgid ""
 "The censoring variable '%s' was read as 0 = censored (still at risk), 1 = "
 "event."
 msgstr ""
+"'%s' sansür değişkeni 0 = sansürlü (hâlâ risk altında), 1 = olay olarak "
+"okundu."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -8687,7 +10270,7 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "The coefficient is the change per one-unit increase in %s."
-msgstr ""
+msgstr "Katsayı %s değişkenindeki bir birim artış başına değişimdir."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -8726,6 +10309,9 @@ msgid ""
 "non-diseased participant. Enter the number of participants in each cell of "
 "the 2x2 table (TP, FP, FN, TN)."
 msgstr ""
+"Sayımlar oran gibi görünmektedir: hiçbir çalışmada birden fazla hastalıklı "
+"veya hastalıksız katılımcı yoktur. 2x2 tablonun her hücresine katılımcı "
+"sayısını girin (TP, FP, FN, TN)."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -8734,6 +10320,10 @@ msgid ""
 "Reference Time measured from the earliest start date. Enter the date in the "
 "same format as your data, or clear the box to use the offset deliberately."
 msgstr ""
+"Özel referans tarihi '%s' seçilen tarih biçimiyle (%s) okunamadığından göz "
+"ardı edildi. Referans çizgisi, en erken başlangıç tarihinden itibaren "
+"ölçülen özel referans zamanına döner. Tarihi verinizle aynı biçimde girin "
+"veya kaydırma değerini özellikle kullanmak için kutuyu temizleyin."
 
 #: waterfall/options/data.description.jamovi
 msgid "The data as a data frame."
@@ -8764,6 +10354,9 @@ msgid ""
 "had the same disease-control status, so Fisher's exact test has nothing to "
 "compare on that outcome."
 msgstr ""
+"Karşılaştırmadaki tüm hastaların hastalık kontrol durumu aynı olduğundan "
+"hastalık kontrol satırı yoktur; Fisher kesin testinin bu sonuçta "
+"karşılaştıracağı fark bulunmaz."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -8774,6 +10367,12 @@ msgid ""
 "two, and above that the region is. Read them as two views of the same "
 "quantity rather than matching one to the other."
 msgstr ""
+"SROC grafiğindeki noktalı öngörü bölgesi bu aralığın iki boyutlu ortak "
+"karşılığıdır; mada'nın büyük örneklem yarıçapıyla (%95 için 2,45) çizilir. "
+"Bu aralık ise k-2 serbestlik dereceli t kullanır. Bu nedenle örtüşmezler: "
+"yaklaşık sekiz çalışmanın altında yazılı aralık, üstünde ise bölge daha "
+"geniştir. Birbirine eşitlemek yerine aynı niceliğin iki görünümü olarak "
+"okuyun."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -8803,6 +10402,12 @@ msgid ""
 "show. Use it only when the Heterogeneity Assessment table gives no sign of "
 "heterogeneity; REML (the default) is the appropriate choice otherwise."
 msgstr ""
+"Sabit etki yöntemi tüm çalışmalarda tek ortak duyarlılık ve özgüllük "
+"varsayar. Öngörü aralığı, SROC öngörü bölgesi veya heterojenlik uyarısı "
+"üretmez; çalışmalar ne gösterirse göstersin güven aralıkları rastgele "
+"etkiler eşdeğerlerinden dardır. Yalnızca heterojenlik tablosunda "
+"heterojenlik işareti yoksa kullanın; diğer durumlarda REML (varsayılan) "
+"uygundur."
 
 #: R/waterfall.b.R
 msgid "The following measurements show >200% growth:"
@@ -8828,6 +10433,10 @@ msgid ""
 "mistake. Choose a variable with a small number of clinically meaningful "
 "categories."
 msgstr ""
+"Gruplama değişkeni %d hastayı %d gruba ayırır; bunların %d tanesi tek "
+"hastalıdır. Bu kadar çok küçük grup karşılaştırmasının gücü yok denecek "
+"kadar azdır ve genellikle yanlışlıkla sürekli değişken seçildiğini gösterir. "
+"Az sayıda, klinik olarak anlamlı kategori içeren değişken seçin."
 
 #: R/waterfall.b.R
 msgid ""
@@ -8862,6 +10471,9 @@ msgid ""
 "%d categories, so the plot uses the Viridis palette instead. Group the "
 "response categories to keep High Contrast."
 msgstr ""
+"Yüksek kontrast paleti 8 renk sağlıyor ancak yanıt değişkeninde %d kategori "
+"var; bu nedenle Viridis kullanılır. Yüksek kontrastı korumak için yanıt "
+"kategorilerini gruplayın."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -8873,6 +10485,12 @@ msgid ""
 "signals a threshold effect to be modelled by the SROC curve, not necessarily "
 "a defect."
 msgstr ""
+"I-kare, yalnızca İLGİLİ marjdaki varyansın örnekleme hatasına bağlanamayan "
+"oranıdır; iki değişkenli modeli tanımlamaz ve genel heterojenlik olarak "
+"okunmamalıdır (Cochrane DTA El Kitabı, bölüm 10). Tanısal doğruluk "
+"meta-analizinde farklı pozitiflik eşikleri kullanıldığında yüksek I-kare "
+"beklenir; mutlaka kusur değil, SROC eğrisiyle modellenecek eşik etkisi "
+"işaretidir."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -9016,6 +10634,9 @@ msgid ""
 "had the same response status - all responders or none - so Fisher's exact "
 "test has nothing to compare on that outcome."
 msgstr ""
+"Karşılaştırmadaki tüm hastaların yanıt durumu aynı (tümü yanıt veren veya "
+"hiçbiri) olduğundan objektif yanıt satırı yoktur; Fisher kesin testinin bu "
+"sonuçta karşılaştıracağı fark bulunmaz."
 
 #: R/waterfall.b.R
 msgid ""
@@ -9055,6 +10676,11 @@ msgid ""
 "bivariate model and the SROC curve instead, or reduce the heterogeneity by "
 "restricting the study set."
 msgstr ""
+"Orantılı tehlikeler SROC (HSROC) modeli yakınsamadı. Theta, tau-kare ve eğri "
+"altı alan tamamlanmamış optimizasyonun son yinelemesidir ve güvenilmezdir; "
+"benzer veride yakınsamayan ve yakınsayan değerler bir büyüklük mertebesi "
+"farklı olabilmiştir. İki değişkenli modeli ve SROC eğrisini kullanın veya "
+"çalışma kümesini kısıtlayarak heterojenliği azaltın."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -9073,6 +10699,12 @@ msgid ""
 "the bivariate model and its SROC curve instead. If the pooled pair above is "
 "also below chance, check the TP/FP/FN/TN column assignment."
 msgstr ""
+"Orantılı tehlikeler SROC eğrisi köşegenin altına düşer (alan %.2f, 0,5'ten "
+"küçük). Bu, modelin Lehmann ailesinin çalışmaları tanımlamadığını gösterir; "
+"testin şanstan kötü olduğu kanıtı değildir ve yukarıdaki birleştirilmiş "
+"duyarlılık/özgüllük etkilenmez. İki değişkenli modeli ve onun SROC eğrisini "
+"kullanın. Yukarıdaki birleştirilmiş değerler de şansın altındaysa "
+"TP/FP/FN/TN sütun atamalarını kontrol edin."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -9081,6 +10713,10 @@ msgid ""
 "maximum-likelihood solution: they can change substantially with a different "
 "iteration limit and should not be reported."
 msgstr ""
+"Orantılı tehlikeler SROC modeli 5000 profil olabilirlik yinelemesinde "
+"yakınsamadı. Aşağıdaki değerler en çok olabilirlik çözümü değil son "
+"yinelemedir; yineleme sınırıyla önemli ölçüde değişebilir ve "
+"raporlanmamalıdır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -9088,6 +10724,9 @@ msgid ""
 "profile-likelihood iterations; it was refitted with a limit of 5000 and "
 "converged, and the estimates below come from that converged fit."
 msgstr ""
+"Orantılı tehlikeler SROC modeli mada'nın varsayılan 100 profil olabilirlik "
+"yinelemesinden fazlasını gerektirdi; 5000 sınırıyla yeniden uydurulup "
+"yakınsadı. Aşağıdaki tahminler bu yakınsamış uyumdan gelir."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -9194,6 +10833,10 @@ msgid ""
 "merely how many: a few censored late can make the median estimable while "
 "many censored early cannot."
 msgstr ""
+"Ters Kaplan-Meier eğrisi %50'ye düşmediğinden medyan tanımsızdır. Bu "
+"yalnızca kaç hastanın değil, hastaların NE ZAMAN gözlem altında olduğuna "
+"bağlıdır: geç sansürlenen birkaç hasta medyanı tahmin edilebilir kılarken "
+"erken sansürlenen çok sayıda hasta kılamayabilir."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -9247,7 +10890,7 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "The sensitivity heterogeneity model failed: %s"
-msgstr ""
+msgstr "Duyarlılık heterojenlik modeli başarısız: %s"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -9306,7 +10949,7 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "The specificity heterogeneity model failed: %s"
-msgstr ""
+msgstr "Özgüllük heterojenlik modeli başarısız: %s"
 
 #: R/waterfall.b.R
 msgid "The spider plot could not be drawn: %s"
@@ -9340,6 +10983,9 @@ msgid ""
 "is set to Raw Values, so no timeline could be built. Switch Time Input Type "
 "to Date/Time and choose the matching Date Format."
 msgstr ""
+"Başlangıç/bitiş değişkenleri takvim tarihi gibi görünmektedir (%s) ancak "
+"zaman girdisi türü ham değerdir; bu nedenle çizelge oluşturulamadı. "
+"Tarih/saat türüne geçin ve uygun tarih biçimini seçin."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -9461,6 +11107,28 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
+"These answer different questions and are routinely confused. A tight "
+"<strong>confidence</strong> region means the pooled estimate is well "
+"determined; it says nothing about whether the assay will perform "
+"consistently. A wide <strong>prediction</strong> region means that even "
+"though the average is known precisely, the next study - or your laboratory - "
+"could see materially different sensitivity and specificity. <strong>For "
+"deciding whether to adopt an assay, the prediction region is the relevant "
+"one.</strong> When the two differ greatly, between-study heterogeneity "
+"dominates and the pooled point alone should not drive the decision."
+msgstr ""
+"Bunlar farklı soruları yanıtlar ve sıklıkla karıştırılır. Dar "
+"<strong>güven</strong> bölgesi birleştirilmiş tahminin iyi belirlendiğini "
+"gösterir; testin tutarlı çalışıp çalışmayacağını göstermez. Geniş "
+"<strong>öngörü</strong> bölgesi, ortalama kesin bilinse bile sonraki "
+"çalışmanın veya laboratuvarınızın duyarlılık ve özgüllüğünün önemli ölçüde "
+"farklı olabileceğini gösterir. <strong>Bir testi benimseme kararında ilgili "
+"olan öngörü bölgesidir.</strong> İkisi çok farklıysa çalışmalar arası "
+"heterojenlik baskındır ve karar yalnızca birleştirilmiş noktaya "
+"dayanmamalıdır."
+
+#: R/diagnosticmeta.b.R
+msgid ""
 "These are pooled estimates from the included studies only; how far they "
 "carry to another setting depends on the prediction region and on how "
 "comparable the positivity thresholds, patient spectrum and reference "
@@ -9478,6 +11146,10 @@ msgid ""
 "studies differ from each other; how far the estimates carry to another "
 "setting cannot be judged from them alone."
 msgstr ""
+"Bunlar yalnızca dahil edilen çalışmalardan birleştirilmiş tahminlerdir. "
+"Model öngörü aralığı üretmez; çalışmaların ne kadar farklılaştığını burada "
+"hiçbir şey açıklamaz. Başka ortama ne ölçüde aktarılabilecekleri yalnızca "
+"bunlardan değerlendirilemez."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -9501,12 +11173,29 @@ msgid ""
 "having only %d studies, not from the studies disagreeing. More studies would "
 "narrow it."
 msgstr ""
+"Bu aralık geniştir; ancak tahmin edilen çalışmalar arası varyans (logit "
+"duyarlılık için tau-kare = %.3f, logit yanlış pozitif oranı için %.3f), "
+"birleştirilmiş ortalamanın belirsizliğinden küçüktür: genişliğin çoğu "
+"çalışmaların uyuşmamasından değil yalnızca %d çalışma olmasından "
+"kaynaklanır. Daha çok çalışma aralığı daraltır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
 "This model provides no prediction interval and no SROC prediction region, so "
 "it offers no model-consistent statement of how much studies differ."
 msgstr ""
+"Bu model öngörü aralığı veya SROC öngörü bölgesi sağlamaz; çalışmaların ne "
+"kadar farklılaştığına ilişkin modelle uyumlu açıklama sunmaz."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"This module performs comprehensive meta-analysis of diagnostic test accuracy "
+"studies, specifically designed for pathology research including AI algorithm "
+"validation and biomarker diagnostic accuracy synthesis."
+msgstr ""
+"Bu modül, yapay zekâ algoritması doğrulaması ve biyobelirteç tanısal "
+"doğruluğu sentezi dahil patoloji araştırmaları için özel tasarlanmış "
+"kapsamlı tanısal test doğruluğu meta-analizi yapar."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -9541,6 +11230,8 @@ msgid ""
 "Copy and paste into your document and adjust as needed for your specific "
 "requirements."
 msgstr ""
+"Bu metin makale ve klinik raporlarda doğrudan kullanılabilecek biçimdedir. "
+"Belgenize kopyalayın ve gereksinimlerinize göre düzenleyin."
 
 #: R/waterfall.b.R
 msgid ""
@@ -9609,10 +11300,15 @@ msgid ""
 "follow-up = positive numbers (1, 2, 3, etc.) Tip: Spider plots show "
 "treatment response trajectories over time."
 msgstr ""
+"Zaman içinde yanıt izlemek için ölçüm zamanı. - Örnekler: başlangıçtan "
+"itibaren ay, tedavi başlangıcından itibaren hafta - Örümcek grafiği ve ham "
+"ölçüm işlemleri için gereklidir - Biçim: başlangıç = 0; izlem = pozitif "
+"sayılar (1, 2, 3 vb.) İpucu: örümcek grafikleri zaman içindeki tedavi "
+"yanıtını gösterir."
 
 #: swimmerplot/results/milestoneTable.columns.title
 msgid "Time Range from Start"
-msgstr ""
+msgstr "Başlangıçtan itibaren zaman aralığı"
 
 #: R/waterfall.b.R
 msgid ""
@@ -9635,8 +11331,8 @@ msgstr ""
 "ve Yanıta Kadar Geçen Süre ve Yanıt Süresi tablosu atlandı."
 
 #: swimmerplot/options/timeUnit.title
-msgid "Time Unit for Display"
-msgstr "Gösterim için Zaman Birimi"
+msgid "Time unit for display"
+msgstr "Gösterim için zaman birimi"
 
 #: R/swimmerplot.b.R
 msgid "Time units"
@@ -9659,8 +11355,8 @@ msgid "Time Variable (if needed)"
 msgstr "Zaman Değişkeni (gerekirse)"
 
 #: waterfall/ui[0][2].label
-msgid "Time Variable (raw input, visits, spider plot)"
-msgstr "Zaman Değişkeni (ham giriş, vizitler, örümcek grafiği)"
+msgid "Time variable (raw input, visits, spider plot)"
+msgstr "Zaman değişkeni (ham girdi, ziyaretler, örümcek grafiği)"
 
 #: waterfall/options/timeVar.title
 msgid "Time variable (required for raw input and spider plot)"
@@ -9708,7 +11404,7 @@ msgstr "Zaman çizelgesi verisi"
 
 #: R/swimmerplot.b.R
 msgid "Timeline Data:"
-msgstr ""
+msgstr "Zaman çizelgesi verisi:"
 
 #: R/swimmerplot-html.R
 msgid "Timeline display options"
@@ -9786,6 +11482,8 @@ msgid ""
 "Total follow-up exceeds 10 years for %d of %d patients. Consider checking "
 "data accuracy or using different time units."
 msgstr ""
+"%d/%d hastada toplam izlem 10 yılı aşmaktadır. Veri doğruluğunu veya farklı "
+"zaman birimi kullanımını kontrol edin."
 
 #: R/swimmerplot.b.R
 msgid "Total observation time across all patients"
@@ -9889,29 +11587,41 @@ msgstr "Tedavi/gözlem bitiş zamanı"
 msgid "Treatment/observation start time"
 msgstr "Tedavi/gözlem başlangıç zamanı"
 
+#: R/diagnosticmeta.b.R
+msgid "Triangle position shows where your pooled test performance lies"
+msgstr "Üçgenin konumu birleştirilmiş test performansınızı gösterir"
+
 #: diagnosticmeta/ui[0][4][0].label
-msgid "True Negatives (Disease-, Test-)"
-msgstr "Doğru Negatifler (Hastalık-, Test-)"
+msgid "True negatives (disease-, test-)"
+msgstr "Gerçek negatifler (hastalık-, test-)"
 
 #: diagnosticmeta/options/true_negatives.title
-msgid "True Negatives (TN)"
-msgstr "Doğru Negatifler (DN)"
+msgid "True negatives (TN)"
+msgstr "Gerçek negatifler (TN)"
 
 #: R/diagnosticmeta.b.R
 msgid "True negatives is still empty."
-msgstr ""
+msgstr "Gerçek negatifler henüz seçilmedi."
 
 #: diagnosticmeta/ui[0][1][0].label
-msgid "True Positives (Disease+, Test+)"
-msgstr "Doğru Pozitifler (Hastalık+, Test+)"
+msgid "True positives (disease+, test+)"
+msgstr "Gerçek pozitifler (hastalık+, test+)"
 
 #: diagnosticmeta/options/true_positives.title
-msgid "True Positives (TP)"
-msgstr "Doğru Pozitifler (DP)"
+msgid "True positives (TP)"
+msgstr "Gerçek pozitifler (TP)"
 
 #: R/diagnosticmeta.b.R
 msgid "True positives is still empty."
-msgstr ""
+msgstr "Gerçek pozitifler henüz seçilmedi."
+
+#: R/diagnosticmeta.b.R
+msgid "true_negatives"
+msgstr "true_negatives"
+
+#: R/diagnosticmeta.b.R
+msgid "true_positives"
+msgstr "true_positives"
 
 #: R/waterfall.b.R
 msgid "Tumor response monitoring"
@@ -9979,6 +11689,10 @@ msgstr ""
 "değerlendirilemedi; nedeni Tekrarlanabilirlik Değerlendirmesi tablosunun "
 "altındaki notlarda belirtilmiştir."
 
+#: R/diagnosticmeta.b.R
+msgid "Understanding Bivariate and Proportional-Hazards SROC Models"
+msgstr "İki değişkenli ve orantılı tehlikeler SROC modellerini anlama"
+
 #: R/swimmerplot-html.R
 #: R/waterfall.b.R
 msgid "Unique identifier for each patient"
@@ -10002,7 +11716,7 @@ msgstr "Bilinmeyen / değerlendirilemez: n = %d (yüzdelerden hariç tutuldu)"
 
 #: R/diagnosticmeta.b.R
 msgid "Unnamed study"
-msgstr ""
+msgstr "Adsız çalışma"
 
 #: R/waterfall.b.R
 msgid "Unusually Large Growth Values Detected:"
@@ -10055,6 +11769,12 @@ msgid ""
 "Use the prediction interval and the SROC prediction region for a "
 "model-consistent statement of between-study variability."
 msgstr ""
+"Çalışmalar arası değişkenliği modelle uyumlu açıklamak için öngörü aralığını "
+"ve SROC öngörü bölgesini kullanın."
+
+#: R/diagnosticmeta.b.R
+msgid "Use this plot to identify studies for sensitivity analysis"
+msgstr "Duyarlılık analizi için çalışmaları belirlemekte bu grafiği kullanın"
 
 #: package/analyses/waterfall.description
 #: waterfall/options.description.main
@@ -10095,6 +11815,14 @@ msgstr ""
 "listeliyorsa lezyon düzeyinde RECIST v1.1 analizini kullanın. Gelecek "
 "sürümlerde kullanıma sunulacaktır."
 
+#: R/diagnosticmeta.b.R
+msgid ""
+"Uses adjusted profile maximum likelihood and is suitable for smaller study "
+"sets"
+msgstr ""
+"Düzeltilmiş profil en çok olabilirlik kullanır; küçük çalışma kümeleri için "
+"uygundur"
+
 #: waterfall/results/todo2.title
 msgid "Validation Messages"
 msgstr "Doğrulama Mesajları"
@@ -10116,7 +11844,7 @@ msgstr "Değer"
 
 #: diagnosticmeta/results/likelihoodRatioGuide.columns.title
 msgid "Value Range"
-msgstr ""
+msgstr "Değer aralığı"
 
 #: R/waterfall.b.R
 msgid "VALUES LOOK LIKE RAW MEASUREMENTS"
@@ -10124,7 +11852,7 @@ msgstr "DEĞERLER HAM ÖLÇÜM GİBİ GÖRÜNÜYOR"
 
 #: R/swimmerplot.b.R
 msgid "Values that are not numbers"
-msgstr ""
+msgstr "Sayısal olmayan değerler"
 
 #: R/waterfall.b.R
 msgid "Values will be automatically capped at -100% for analysis"
@@ -10249,7 +11977,7 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid "Very few studies"
-msgstr ""
+msgstr "Çok az çalışma"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -10295,8 +12023,8 @@ msgid "VERY WIDE CONFIDENCE INTERVAL"
 msgstr "ÇOK GENİŞ GÜVEN ARALIĞI"
 
 #: diagnosticmeta/options/color_palette/viridis.title
-msgid "Viridis (Blue-Purple)"
-msgstr "Viridis (Mavi-Mor)"
+msgid "Viridis (blue-purple)"
+msgstr "Viridis (mavi-mor)"
 
 #: waterfall/ui[2][1][0].label
 msgid "Visualization"
@@ -10317,7 +12045,7 @@ msgstr "Görselleştirme Türleri:"
 
 #: waterfall/options/spiderColorScheme/vivid.title
 msgid "Vivid (orange/purple)"
-msgstr ""
+msgstr "Canlı (turuncu/mor)"
 
 #: R/swimmerplot.b.R
 msgid "WARNING"
@@ -10374,7 +12102,7 @@ msgstr ""
 #: package/analyses/waterfall.menuSubtitle
 #: waterfall/options.menuSubtitle
 msgid "Waterfall and SpiderPlot: One burden value per patient or visit"
-msgstr ""
+msgstr "Şelale ve örümcek grafiği: hasta veya ziyaret başına bir yük değeri"
 
 #: R/waterfall.b.R
 #: package/datasets/WaterfallPlot.name
@@ -10451,13 +12179,26 @@ msgstr "Tedavi Yanıtı Analizine Hoş Geldiniz"
 msgid "What is a Swimmer Plot?"
 msgstr "Yüzücü Grafiği Nedir?"
 
+#: R/diagnosticmeta.b.R
 #: R/waterfall.b.R
 msgid "What This Analysis Does"
 msgstr "Bu Analiz Ne Yapar"
 
+#: R/diagnosticmeta.b.R
+msgid "What This Plot Shows"
+msgstr "Bu grafiğin gösterdikleri"
+
+#: R/diagnosticmeta.b.R
+msgid "When reporting your meta-analysis results, include:"
+msgstr "Meta-analiz sonuçlarını bildirirken şunları dahil edin:"
+
 #: R/swimmerplot-html.R
 msgid "When to Use Swimmer Plots"
 msgstr "Yüzücü Grafikleri Ne Zaman Kullanılır"
+
+#: R/diagnosticmeta.b.R
+msgid "When to Use This Analysis"
+msgstr "Bu Analiz Ne Zaman Kullanılır"
 
 #: R/waterfall.b.R
 msgid "When to Use This Analysis:"
@@ -10537,6 +12278,10 @@ msgstr "Bu kadar büyük artışlar mümkün olsa da lütfen doğrulayın:"
 msgid "Why this matters:"
 msgstr "Bu neden önemlidir:"
 
+#: R/diagnosticmeta.b.R
+msgid "Wide scatter of points = substantial between-study heterogeneity"
+msgstr "Noktaların geniş dağılımı = belirgin çalışmalar arası heterojenlik"
+
 #: ihcheterogeneity/results/samplesizetable.columns.title
 msgid "Width 0.10"
 msgstr "Genişlik 0.10"
@@ -10612,6 +12357,8 @@ msgid ""
 "With only %d patients these estimates are exploratory: the confidence "
 "intervals are wide and the rates should not be read as precise."
 msgstr ""
+"Yalnızca %d hastada bu tahminler keşifseldir; güven aralıkları geniştir ve "
+"oranlar kesin kabul edilmemelidir."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -10619,6 +12366,9 @@ msgid ""
 "slope, so confirm the asymmetry visually on the funnel plot before acting on "
 "it."
 msgstr ""
+"Yalnızca %d çalışmada test kırılgandır: tek küçük çalışma eğimi "
+"belirleyebilir. Karar vermeden önce asimetriyi huni grafiğinde görsel olarak "
+"doğrulayın."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -10639,6 +12389,19 @@ msgstr ""
 "Yüzde girişiyle örümcek grafiği her vizitteki önceden hesaplanmış yüzde "
 "değişimlerini bağlar. Ham vizit başına ölçümleriniz varsa ham giriş türü "
 "zaman = 0 başlangıcına göre hesaplanan gidişatları verir."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"With the default zero-cell setting (no correction), where more than a "
+"quarter of the studies have a zero cell, no verdict is reported at all: the "
+"continuity correction the test needs produces asymmetry by itself. Choosing "
+"any Zero-Cell Correction leaves no zero cell for this test, so a verdict is "
+"always given"
+msgstr ""
+"Varsayılan sıfır hücre ayarında (düzeltme yok), çalışmaların dörtte birinden "
+"fazlası sıfır hücre içeriyorsa karar bildirilmez: testin gerektirdiği "
+"süreklilik düzeltmesi kendi başına asimetri üretir. Herhangi bir sıfır hücre "
+"düzeltmesi seçilirse testte sıfır hücre kalmaz ve daima karar verilir"
 
 #: R/ihcheterogeneity.b.R
 msgid "Within-case CV (%)"
@@ -10727,6 +12490,8 @@ msgid ""
 "Zero follow-up time for %d of %d patients. These may represent same-day "
 "events."
 msgstr ""
+"%d/%d hastada izlem süresi sıfırdır. Bunlar aynı gün olaylarını temsil "
+"edebilir."
 
 #: diagnosticmeta/ui[1][1][0]/zero_cell_correction.label
 msgid "Zero-cell correction"
