@@ -168,96 +168,104 @@ Investigates heterogeneity sources:
 
 ## Running It From R
 
-Everything above describes the method; this section runs it. The article previously never called
-`diagnosticmeta()` at all, so the argument names and the scales they use were nowhere to be found.
-The call below was executed against the bundled `diagnostic_studies` dataset and the numbers shown
-are the ones it returned.
+The call below uses the bundled `diagnosticmeta_test_categorical` dataset (20 synthetic studies,
+the same data as the jamovi example) and shows the numbers OncoPath 1.1.0 returns for it.
 
 ```{r worked-example, eval=FALSE}
-data(diagnostic_studies, package = "OncoPath")
-head(diagnostic_studies)
-#>   study_name tp fp fn tn
+library(OncoPath)
+data(diagnosticmeta_test_categorical, package = "OncoPath")
+head(diagnosticmeta_test_categorical, 3)
+#>     study true_positives false_positives false_negatives true_negatives year quality_score imaging_modality
+#> 1 Study_1             81              10              30            153 2015             5               CT
+#> 2 Study_2             56               6               6            120 2019             7       Ultrasound
+#> 3 Study_3             84               4              11            100 2015             7               CT
 
 res <- diagnosticmeta(
-  data            = diagnostic_studies,
-  study           = "study_name",
-  true_positives  = "tp",
-  false_positives = "fp",
-  false_negatives = "fn",
-  true_negatives  = "tn",
+  data            = diagnosticmeta_test_categorical,
+  study           = "study",
+  true_positives  = "true_positives",
+  false_positives = "false_positives",
+  false_negatives = "false_negatives",
+  true_negatives  = "true_negatives",
+  covariate       = "imaging_modality",   # CT 5, MRI 9, ultrasound 6 studies
 
   bivariate_analysis      = TRUE,   # Reitsma bivariate random-effects model
   hsroc_analysis          = TRUE,   # Holling proportional-hazards SROC
   heterogeneity_analysis  = TRUE,   # Q, I-squared, tau-squared
+  meta_regression         = TRUE,   # needs `covariate`
   publication_bias        = TRUE,   # Deeks' funnel plot asymmetry test
-  meta_regression         = FALSE,  # needs `covariate` to be set
   confidence_level        = 95,     # PERCENT, 50-99. Not 0.95 - that is rejected.
-  zero_cell_correction    = "constant",  # none | constant | treatment_arm | empirical
+  zero_cell_correction    = "none", # none | constant | zero_cells | reciprocal_n
   forest_plot             = TRUE,
-  sroc_plot               = TRUE,
-  funnel_plot             = TRUE,
-  show_individual_studies = TRUE,
-  show_methodology        = TRUE,
-  show_analysis_summary   = TRUE
+  sroc_plot               = TRUE
 )
 ```
 
 Two argument details are easy to get wrong and both raise an error rather than silently
 misbehaving:
 
-- **`confidence_level` is a percentage on a 50-99 scale.** Passing the more usual `0.95` fails with
-  `confidence_level must be between 50 and 99 (is 0.95)`.
-- **`zero_cell_correction` does not have a level called `continuity`.** The four accepted values are
-  `none`, `constant`, `treatment_arm` and `empirical`.
+- **`confidence_level` is a percentage on a 50-99 scale.** Passing the more usual `0.95` fails.
+- **`zero_cell_correction` accepts `none`, `constant`, `zero_cells` and `reciprocal_n`.** Under
+  the default `none` every model adds 0.5 to all four cells of a study with a zero cell when it is
+  fitted, so every model uses every study. The former keys `treatment_arm` and `empirical` were
+  renamed and are rejected. Deeks' test always uses the raw counts, whatever this setting.
 
 ### What Comes Back
 
 ```
 bivariateresults
-                 parameter estimate ci_lower ci_upper      p_value
-        Pooled Sensitivity    75.50    69.10    80.94    6.09e-12
-        Pooled Specificity    89.77    85.66    92.81    0.00e+00
- Positive Likelihood Ratio     7.38     5.18    10.52          NA
+                 parameter estimate ci_lower ci_upper
+        Pooled Sensitivity    81.67    76.63    85.83
+        Pooled Specificity    89.19    85.73    91.90
+ Positive Likelihood Ratio     7.56     5.60    10.21
+ Negative Likelihood Ratio     0.21     0.16     0.27
+     Diagnostic Odds Ratio    36.77    22.59    59.85
 
-hsrocresults
-                              parameter  estimate std_error z_value  p_value
-  Diagnostic accuracy parameter (theta)  1.08e-01  2.19e-02   4.924 8.50e-07
-         Between-study variance (tau^2)  2.48e-05  1.70e-03   0.015 9.88e-01
+hsrocresults (proportional-hazards SROC)
+                              parameter estimate std_error z_value p_value
+  Diagnostic accuracy parameter (theta)   0.0897    0.0163  -56.00  <0.001
+         Between-study variance (tau^2)   0.0027    0.0018
+                                    AUC   0.918     0.014
 
 heterogeneity
-     measure q_statistic df p_value i_squared tau_squared
- Sensitivity        3.49  4   0.480         0           0
- Specificity        1.86  4   0.762         0           0
+     measure q_statistic df  p_value i_squared tau_squared
+ Sensitivity       88.37 19   <0.001      79.1        0.36
+ Specificity       95.33 19   <0.001      81.0        0.39
 
 publicationbias
-                              test statistic p_value                  interpretation
- Deeks' Funnel Plot Asymmetry Test    -3.993  0.0281  Significant asymmetry detected
+                              test statistic p_value interpretation
+ Deeks' Funnel Plot Asymmetry Test    -0.49    0.63 No asymmetry detected (p >= 0.05)
 ```
 
-Read these together rather than in isolation. Heterogeneity is negligible here (I-squared 0 for
-both measures, tau-squared essentially zero in the HSROC fit), so the pooled estimates are
-describing a consistent set of studies. But Deeks' test flags significant funnel asymmetry
-(p = 0.028) — on five studies, which is below the ten that Deeks' test is generally considered to
-need. That is a caveat to state, not a finding to report: with this few studies the asymmetry test
-is underpowered *and* prone to false positives, and the honest reading is that publication bias
-cannot be assessed here.
+The theta test is against theta = 1, the value at which the SROC curve is the chance diagonal, so
+a large negative z means accuracy well above chance. It does not test a clinical threshold.
+
+Read these together rather than in isolation. Heterogeneity is substantial (I-squared about 80%
+for both measures), and the analysis warns that the 95% prediction interval for a new study is
+wide (sensitivity 55%-94%, specificity 68%-97%). The pooled pair is therefore an average over
+studies that differ more than sampling error explains; the SROC curve and the prediction region
+describe this body of evidence better than the pooled point. A non-significant Deeks' test is not
+evidence of absent publication bias.
 
 ### Meta-Regression
 
-`meta_regression = TRUE` requires a `covariate` column naming a study-level characteristic:
+`meta_regression = TRUE` requires a `covariate` column naming a study-level characteristic. With
+`imaging_modality` the model estimates two contrasts (MRI and ultrasound against CT) for each of
+sensitivity and specificity, on the logit scale:
 
-```{r meta-regression-run, eval=FALSE}
-res_mr <- diagnosticmeta(
-  data = diagnostic_studies,
-  study = "study_name", true_positives = "tp", false_positives = "fp",
-  false_negatives = "fn", true_negatives = "tn",
-  meta_regression = TRUE,
-  covariate = "population_type"    # a column in your data
-)
+```
+              parameter estimate    SE p_value
+Sensitivity   Intercept     1.62  0.32  <0.001
+              MRI          -0.04  0.41   0.93
+              Ultrasound   -0.32  0.45   0.48
+Specificity   Intercept     2.54  0.32  <0.001
+              MRI          -0.40  0.40   0.33
+              Ultrasound   -0.84  0.42   0.059
 ```
 
-With five studies a meta-regression is fitting a slope through five points; it will produce a
-number, and that number will not mean much. Ten studies per covariate is a common minimum.
+No contrast reaches p < 0.05. Twenty studies for two parameters is the minimum the Cochrane DTA
+Handbook suggests (about ten studies per covariate parameter), so treat a meta-regression of this
+size as exploratory: it can suggest a source of heterogeneity, not establish one.
 
 ### Presentation Options
 
@@ -273,7 +281,7 @@ keeping — a pooled estimate without the studies behind it is hard to sanity-ch
 1. **Import Data**: Load your diagnostic test dataset into jamovi
 
 2. **Access Function**: 
-   - Navigate to **Analyses → ClinicoPath → Diagnostic Test Meta-Analysis for Pathology**
+   - Navigate to **Analyses → OncoPath → Meta-Analysis → Diagnostic Test Meta-Analysis for Pathology**
 
 3. **Variable Assignment**:
    - **Study Identifier**: Select study name/ID variable
@@ -532,7 +540,7 @@ Diagnostic test meta-analysis provides robust evidence synthesis for clinical de
 4. **Consider clinical context** when interpreting pooled results
 5. **Follow reporting guidelines** for transparent communication
 
-The ClinicoPath implementation follows current methodological standards and provides comprehensive analysis capabilities for pathology research applications.
+The pooled estimates are only as good as the studies behind them: assess each study's risk of bias (QUADAS-2) and report the review following PRISMA-DTA.
 
 ## References
 

@@ -12,7 +12,12 @@ OncoPath_1.0.0.tar.gz
 temp/
 temp*/
 backups/
+# internal review reports: never part of the published site (docs/ is the pkgdown site)
 docs/audit/
 Rplots.pdf
 i18n-plans/
 
+# build output and local files (jamovi library requirement: dist/ is never committed)
+dist/
+README.html
+.claude/settings.local.json

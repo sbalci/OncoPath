@@ -5,12 +5,28 @@
 \alias{swimmerplot_sample}
 \title{Swimmer Plot Sample Dataset}
 \format{
-A data frame.
+A data frame with 20 rows and 10 variables:
+\describe{
+\item{PatientID}{Patient identifier, PT001 to PT020}
+\item{StartTime}{Start of follow-up (months; 0 for every patient)}
+\item{EndTime}{End of follow-up (months, 11 to 28)}
+\item{Response}{Best response: CR, PR, SD or PD}
+\item{Surgery}{Time of surgery (months)}
+\item{TreatmentStart}{Time treatment started (months)}
+\item{ResponseAssessment}{Time of the response assessment (months)}
+\item{Progression}{Time of progression (months); NA if none}
+\item{EventType}{Name of a clinical event ("Treatment Start")}
+\item{EventTime}{Time of that event (months)}
+}
+}
+\source{
+Synthetic data generated for the ClinicoPath project.
 }
 \usage{
 swimmerplot_sample
 }
 \description{
-A sample dataset for creating swimmer plots showing patient timelines.
+Twenty synthetic patients for the \code{swimmerplot} analysis. Times are in
+months from the start of treatment. The data have no censoring status column.
 }
 \keyword{datasets}

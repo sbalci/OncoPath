@@ -7,17 +7,22 @@
 \format{
 A data frame with 5 rows and 5 variables:
 \describe{
-\item{study_name}{Factor with unique study identifiers}
+\item{study_name}{Study identifier}
 \item{tp}{Number of true positive results}
 \item{fp}{Number of false positive results}
 \item{fn}{Number of false negative results}
 \item{tn}{Number of true negative results}
 }
 }
+\source{
+Synthetic data generated for the ClinicoPath project.
+}
 \usage{
 diagnostic_studies
 }
 \description{
-A sample dataset containing diagnostic test accuracy data for meta-analysis.
+Five synthetic diagnostic accuracy studies (2x2 tables) for the
+\code{diagnosticmeta} analysis. Five studies are too few for heterogeneity
+or meta-regression; use \code{diagnosticmeta_test_categorical} for those.
 }
 \keyword{datasets}

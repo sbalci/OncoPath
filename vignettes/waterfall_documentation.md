@@ -8,13 +8,13 @@ This document provides a comprehensive overview of the Treatment Response Analys
 
 ## Feature Summary
 
-The Treatment Response Analysis module creates waterfall and spider plots to visualize tumor response data, typically following RECIST (Response Evaluation Criteria in Solid Tumors) criteria. It supports both raw tumor measurements and pre-calculated percentage changes, providing a comprehensive analysis of patient response to treatment.
+The Treatment Response Analysis module creates waterfall and spider plots to visualize tumor response data, with response thresholds adapted from RECIST (Response Evaluation Criteria in Solid Tumors) v1.1. It supports both raw tumor measurements and pre-calculated percentage changes, providing a comprehensive analysis of patient response to treatment.
 
 The module's features can be broadly categorized as follows:
 
 *   **Plotting:** Generates waterfall plots (best response per patient) and spider plots (response trajectories over time).
 *   **Data Handling:** Processes raw tumor measurements to calculate percentage changes or uses pre-calculated percentages. Handles missing data and validates input.
-*   **RECIST Analysis:** Automatically categorizes responses into CR, PR, SD, PD based on RECIST criteria.
+*   **Response categories:** Assigns CR, PR, SD and PD from percent-change thresholds adapted from RECIST v1.1. This is not a RECIST v1.1 assessment: one burden value per patient and visit, no target-lesion summation, no new-lesion or non-target assessment, no confirmation.
 *   **Group Analysis:** Advanced group-based coloring system for comparing treatment arms, disease subtypes, or other patient groupings.
 *   **Clinical Metrics:** Calculates Objective Response Rate (ORR), Disease Control Rate (DCR), and person-time metrics.
 *   **Customization:** Options for sorting, thresholds, labeling, color schemes, and plot aesthetics with dual coloring strategies.

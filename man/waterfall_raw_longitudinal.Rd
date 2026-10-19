@@ -5,12 +5,24 @@
 \alias{waterfall_raw_longitudinal}
 \title{Waterfall Plot Raw Longitudinal Dataset}
 \format{
-A data frame.
+A data frame with 60 rows and 3 variables:
+\describe{
+\item{PatientID}{Patient identifier, PT01 to PT15}
+\item{Time}{Visit time in months (0 = baseline, then 2, 4 and 6)}
+\item{Measurement}{Tumour burden at that visit, in mm (for example a sum
+of diameters), 0 to 90}
+}
+}
+\source{
+Synthetic data generated for the ClinicoPath project
+(\code{data-raw/waterfall_comprehensive_test_data.R}).
 }
 \usage{
 waterfall_raw_longitudinal
 }
 \description{
-A sample dataset with raw longitudinal data for creating waterfall plots.
+Fifteen synthetic patients for the \code{waterfall} analysis with raw
+input and the spider plot: one row per patient per visit. The values are
+the same as in the jamovi example \code{waterfall_raw_longitudinal.omv}.
 }
 \keyword{datasets}

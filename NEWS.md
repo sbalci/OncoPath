@@ -1,6 +1,151 @@
-# OncoPath 1.1.0 (2026-10-18)
+# OncoPath 1.1.0 (2026-10-19)
 
-## Release-review corrections
+Version 1.1.0 was not released before 2026-10-19; this entry covers every change since 1.0.9.
+**Saved analyses can give different results.** jamovi shows the results stored in a saved file
+until an option is changed, so re-run a saved analysis (change any option and change it back)
+before you rely on it.
+
+## Results change by design
+
+### Swimmer Plot
+
+- **Censoring columns are read only the way you say.** A new **Censoring coding** option sets how
+  a Yes/No, TRUE/FALSE or 1/2 status column is read. These columns used to be read in a fixed,
+  unstated direction, so a "Censored: Yes/No" column put the status arrows on the patients who had
+  stopped and halved the reverse Kaplan-Meier follow-up. Numeric 0/1 (1 = event) and the words
+  alive/censored/dead/event are still read automatically, and every reading is stated in a notice.
+  Words such as "Completed", "Progressed" or "Active" describe treatment, not follow-up status;
+  the analysis asks for such a column to be recoded. Two explicit 0/1 codings are offered:
+  "1 = event, 0 = censored" and "1 = censored, 0 = event" (a column named "Censored" is usually
+  coded the second way, and a 0/1 column whose name contains "cens", "alive" or "ongoing" now
+  raises a warning to check). A column with a single value (all 0 or all 1) is no longer
+  classified under Automatic: it can mean all events or all censored, so the analysis asks.
+- **ORR and DCR need every response value to be a RECIST category** (CR, PR, SD, PD or NE;
+  "complete/partial remission" are read as CR/PR). A coding such as Response / Stable /
+  Progression used to give ORR 0.0% beside a "Response Rate 41.7%"; now the rates are withheld and
+  a notice names the value.
+- **Best response over several rows is called unconfirmed.** With more than one response row per
+  patient, the category behind ORR and DCR is the best response up to the first PD, without
+  confirmation of CR/PR or a minimum duration for SD; a warning, a table note and the copy-ready
+  text say so. Rows sharing a start time are ordered by end time, so row order no longer matters.
+- The observed-median follow-up fallback uses every patient. When the reverse Kaplan-Meier median
+  cannot be estimated, the copy-ready text calls the fallback "median observed time" and says it
+  is not the length of follow-up.
+- **Sort by response ranks a patient by best response**, not by whichever row comes first; a PD
+  row after a CR no longer sends the patient to the bottom.
+- **Reference lines on an absolute time axis** with a common non-zero start are no longer drawn
+  at bare durations, off the patient lanes.
+- Duplicated episode rows no longer add up to a false "follow-up exceeds 10 years" warning.
+
+### Treatment Response: Patient-Level Burden (`waterfall`)
+
+- **New option: Unit of raw measurements (mm or cm).** With a unit, progression also requires the
+  RECIST v1.1 absolute increase of at least 5 mm over the nadir. The default, "Not stated", keeps
+  the earlier results; the notices say that without the rule progression is called more often than
+  RECIST would.
+- **With a time variable, best response stops at the first progression.**
+- **A scan with a measurement but no time is reported**, not dropped in silence: a warning counts
+  these scans and names the patients.
+- **Rows at the same visit give the same answer in any row order.**
+- **A patient with no measured value but a supplied CR/PR/SD/PD category is evaluable** (for
+  example PD for clinical progression or death before the first scan). Such patients used to be
+  dropped: six patients gave DCR 100% (4/4) with one row per patient and 66.7% (4/6) in long
+  format. They have no bar, and the plot caption counts them.
+- **A supplied "NE" (or "Not evaluable", "UNK") category makes the patient not evaluable**; it
+  used to be rejected, so the patient kept the category computed from the measurement.
+- **Raw measurements entered as percentage changes stop the run** with the reason (the time = 0
+  values are not 0%). A warning beside ORR 0% was not enough.
+- When some patients could not be analysed, the metrics table adds a Disease Control Rate over all
+  patients (not evaluable counted as without disease control), and the summary table says how many
+  patients are in none of its rows.
+
+### IHC Heterogeneity Analysis
+
+- **Without a reference, every pair of regions is compared.** Each region used to be compared with
+  the mean of the others, which spread one region's offset onto the rest.
+- **Percentage CIs allow for the uncertainty in the comparison mean** (Fieller intervals). The old
+  interval treated that mean as known and ruled out differences too often.
+- **Proportional bias is flagged only when the slope of the difference is significant in the same
+  direction on the reference value, the region value and their mean** (Krouwer 2008). Measurement
+  error alone tilts a slope on any single one of them, so an unbiased region could read "changes
+  with the level". A small proportional bias (about 10%) cannot be told apart from error in a
+  noisy reference with one reading per case; such a region still fails the margin, so the verdict
+  still blocks it.
+- **A region whose correlation with the reference is below your threshold as a point estimate**
+  (or, without a reference, such a pair of regions) now gives "met, not confirmed" and is named.
+  "Agreement thresholds met" used to be reported beside r = 0.74.
+- **Ordinal scores are not graded.** When every measurement takes at most 5 whole-number values
+  (HER2 0-3+, for example), the CV verdicts are replaced by "Not graded: ordinal score" with
+  advice to use weighted kappa; a CV of 93% used to give "INADEQUATE" for scores with weighted
+  kappa 0.88.
+- A warning says when near-zero cases (low Ki-67, for example) carry most of the within-case CV.
+  When compartments differ in mean level as well as CV, the CV comparison says the difference may
+  reflect the level.
+- **Identical differences in every case are never ruled out** (binned scores used to get a
+  zero-width CI and "agreement thresholds met").
+- **The compartment CV tests use complete cases only**, so lost cores no longer make a compartment
+  look less heterogeneous.
+- Precision planning for the ICC integrates the exact F-interval width (two measurements, ICC 0.90,
+  target width 0.20: 21 cases instead of 15).
+
+### Diagnostic Test Meta-Analysis for Pathology
+
+- **Zero-cell studies are kept everywhere under the default setting.** Heterogeneity and
+  meta-regression now add 0.5 to all four cells of a study with a zero cell, as the bivariate and
+  proportional-hazards models always did; they used to drop those studies.
+- **Deeks' funnel-plot test always uses the raw counts**, whatever the Zero-cell correction, and
+  gives no verdict when more than a quarter of the studies have a zero cell.
+- **A model that does not converge reports no numbers.** The bivariate model is refitted with up to
+  5000 iterations; an unconverged fit is no longer shown as final.
+- Meta-regression interpretation uses the actual fitted design for each outcome (see the
+  corrections below).
+- **Small cells are disclosed.** When a quarter or more of the studies have a cell smaller than 5,
+  a warning says the confidence interval of the pooled value is too narrow (about 80% coverage in
+  simulations; about 70% or less when the cells are 0 or 1).
+- **When three quarters or more of the studies have no false positives (or no false negatives)**,
+  a strong warning says specificity (or sensitivity), its interval, LR+ (or LR-) and the DOR are
+  set by the continuity correction, and gives the raw counts with an exact confidence bound. That
+  likelihood ratio is shown but not graded.
+- The "+1/N" zero-cell correction carries a warning: it gives zero-cell studies almost no weight
+  and covered the true sensitivity in only 31-55% of simulated meta-analyses.
+- Values above 99% are explained per 1,000 ("995 out of 1,000", not "100 out of 100"), and
+  between-study variances print with significant digits instead of 0.000.
+
+## Other fixes
+
+- **Swimmer Plot:** unreadable milestone values are counted and named; milestone names default to
+  the variable's own name; compact dates (20230115) are read under Date/Time; numeric patient IDs
+  stay distinct; follow-up over 10 years is a warning; syntax mode quotes milestone names and the
+  censoring coding.
+- **Treatment Response:** the notices sit at the top, ordered by severity; the Annotation tracks
+  box accepts variables; not-evaluable patients no longer leave empty bars; the spider plot labels
+  each point by its own change; group colours match between plots; a run with no evaluable patient
+  stops with the reason; patient keys stay distinct when printed numeric IDs coincide.
+- **IHC Heterogeneity:** an always-visible scope note; the variance table grades shares of the
+  total variance; ICCs state the complete cases they rest on; the pooled-value outlier warning that
+  flagged ER-negative cases is removed.
+- **Diagnostic Test Meta-Analysis:** repeated study identifiers raise a strong warning; the
+  participant total counts people, not correction pseudo-counts; a meta-regression that fits the
+  data exactly shows blank cells instead of SE 0 and z = Inf; study names such as "Smith [2020]"
+  no longer cut a note short.
+- **All analyses:** a value that cannot be computed shows an empty cell, never "NaN"; a dataset
+  with no rows (for example after a filter) says so; infinite inputs are rejected with the variable
+  and row.
+
+## Example data and documentation
+
+- **`waterfall_raw_longitudinal` in R now holds the same values as the jamovi example** (PT01: 50,
+  30, 25, 20 mm). The R copy used to be a different random draw, so R and jamovi users got
+  different categories from "the same" example. With raw input and mm it gives CR 1, PR 10, SD 4,
+  PD 0 (ORR 73.3%).
+- The five bundled example analyses were re-run and saved with this version. The raw longitudinal
+  example now uses Raw measurements in mm (it was saved as percentage input, which showed ORR 0%);
+  the percentage example compares Drug A and Drug B; the meta-analysis example uses imaging
+  modality as its covariate.
+- README, vignettes and dataset descriptions were rewritten to describe only what the four
+  analyses do, with Quick Start code that runs. The example data are synthetic.
+
+## Release-review corrections (2026-10-18)
 
 - Diagnostic meta-regression interpretation uses the actual fitted design for each outcome.
   Sensitivity and specificity may retain different reference levels after study exclusions.
@@ -21,10 +166,6 @@
   cells rather than displaying `NaN`; existing estimates and uncertainty remain unchanged.
 - Version 1.1.0 sorts above both 1.0.9 and the earlier 1.0.83 development builds, restoring
   monotonic upgrade ordering.
-
-Saved analyses should be recalculated with this version. All five bundled examples have been
-recalculated, saved and cold reopened in jamovi 28.13; diagnostic and IHC PDF exports were
-checked for the corrected reference notes and native empty cells.
 
 # OncoPath 1.0.9 (2026-10-17)
 

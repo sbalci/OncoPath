@@ -1,480 +1,171 @@
 ---
-title: "Swimmer Plot: Comprehensive Clinical Timeline Visualization"
-author: "ClinicoPath Development Team"
+title: "Swimmer Plot: Patient Timelines, Response and Follow-up"
+author: "Serdar Balci"
 date: "`r Sys.Date()`"
-output: 
+output:
   rmarkdown::html_vignette:
     toc: true
-    toc_depth: 3
-    fig_width: 8
-    fig_height: 6
+    toc_depth: 2
 vignette: >
-  %\VignetteIndexEntry{Swimmer Plot: Comprehensive Clinical Timeline Visualization}
+  %\VignetteIndexEntry{Swimmer Plot: Patient Timelines, Response and Follow-up}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
-ggswim_available <- FALSE
-
-
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.width = 8,
-  fig.height = 6,
-  warning = FALSE,
-  message = FALSE,
-  eval = FALSE
-)
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
 ```
 
+## What a Swimmer Plot Is For
 
-```{r setup 2, include = FALSE}
-# Load required packages
-library(ClinicoPath)
-library(ggplot2)
-library(dplyr)
+A swimmer plot draws one horizontal lane per patient, from the start to the end of their time on
+study, so a reader can see at once who stayed on treatment, for how long, and what happened along
+the way. In jamovi the analysis is under **OncoPath → Patient Follow-Up Plots → Swimmer Plot**; in
+R it is `swimmerplot()`.
 
-# Check if ggswim is available
-ggswim_available <- requireNamespace("ggswim", quietly = TRUE)
-if (!ggswim_available) {
-  knitr::opts_chunk$set(eval = FALSE)
-  message("Note: ggswim package not available. Code examples shown but not executed.")
-}
-```
+Besides the plot, the analysis reports:
 
-# Introduction
+- the objective response rate (ORR, CR + PR) and disease control rate (DCR, CR + PR + SD) with
+  exact (Clopper-Pearson) 95% confidence intervals, over every patient in the analysis;
+- median follow-up: the reverse Kaplan-Meier estimate (Schemper and Smith 1996) when you supply a
+  censoring status, otherwise the plain median of the observed durations, labelled as such;
+- person-time by best response, a milestone summary and an event-marker summary.
 
-The Swimmer Plot function in ClinicoPath provides comprehensive clinical timeline visualization with complete integration of the powerful ggswim R package. This comprehensive tool is designed for clinical researchers, biostatisticians, and regulatory professionals who need to visualize patient timelines, treatment responses, and clinical events.
+The swimmer plot is descriptive. Response rates are only as good as the response categories you
+supply, and person-time split by best response is biased by construction (a patient must live long
+enough to be assessed as a responder).
 
-## Why Use the Swimmer Plot?
+## The Example Data
 
-- **🏊 Complete ggswim Integration**: Leverages all ggswim functions for professional clinical visualization
-- **🔧 Enhanced Data Validation**: Robust error handling for real-world clinical data
-- **📊 Comprehensive Analysis**: Person-time metrics, response analysis, and clinical interpretation
-- **⏰ Flexible Time Handling**: Support for raw numeric and datetime data with multiple formats
-- **🎯 Clinical Focus**: Designed specifically for clinical research and regulatory submissions
-- **📈 Publication Ready**: Professional themes and styling for manuscripts and presentations
+`swimmerplot_sample` is a synthetic dataset of 20 patients. Times are in months from the start of
+treatment.
 
-# Getting Started
-
-## Basic Usage
-
-The minimal requirements for a swimmer plot are patient IDs, start times, and end times:
-
-```{r basic-example, eval=ggswim_available}
-# Create basic clinical trial data
-basic_data <- data.frame(
-  PatientID = paste0("PT", sprintf("%03d", 1:12)),
-  StartTime = rep(0, 12),
-  EndTime = sample(6:24, 12, replace = TRUE),
-  Response = sample(c("CR", "PR", "SD", "PD"), 12, replace = TRUE)
-)
-
-# Basic swimmer plot
-basic_plot <- swimmerplot(
-  data = basic_data,
-  patientID = "PatientID",
-  startTime = "StartTime",
-  endTime = "EndTime",
-  responseVar = "Response",
-  timeUnit = "months",
-  plotTheme = "ggswim"
-)
-
-print(basic_plot)
-```
-
-## Understanding the Output
-
-The swimmer plot provides several key visualizations:
-
-1. **Swim Lanes**: Horizontal bars showing patient timelines colored by response
-2. **Summary Statistics**: Comprehensive timeline metrics
-3. **Clinical Interpretation**: Automated insights for research context
-
-# Advanced Features
-
-## Milestone Events
-
-Track important clinical events throughout patient journeys:
-
-```{r milestones-example, eval=ggswim_available}
-# Create data with clinical milestones
-milestone_data <- data.frame(
-  PatientID = paste0("PT", sprintf("%03d", 1:15)),
-  StartTime = rep(0, 15),
-  EndTime = sample(12:36, 15, replace = TRUE),
-  Response = sample(c("CR", "PR", "SD", "PD"), 15, replace = TRUE),
-  Surgery = sample(c(1, 2, 3, NA), 15, replace = TRUE),
-  FirstResponse = sample(c(3, 6, 9, NA), 15, replace = TRUE),
-  Progression = sample(c(12, 18, 24, NA), 15, replace = TRUE)
-)
-
-# Comprehensive milestone plot
-milestone_plot <- swimmerplot(
-  data = milestone_data,
-  patientID = "PatientID",
-  startTime = "StartTime",
-  endTime = "EndTime",
-  responseVar = "Response",
-  milestone1Name = "Surgery",
-  milestone1Date = "Surgery",
-  milestone2Name = "First Response",
-  milestone2Date = "FirstResponse",
-  milestone3Name = "Progression",
-  milestone3Date = "Progression",
-  referenceLines = "median",
-  showInterpretation = TRUE,
-  personTimeAnalysis = TRUE
-)
-
-print(milestone_plot)
-```
-
-## Event Markers
-
-Display specific clinical events along patient timelines:
-
-```{r events-example, eval=ggswim_available}
-# Create longitudinal event data
-event_data <- data.frame(
-  PatientID = rep(paste0("PT", 1:8), each = 4),
-  StartTime = rep(c(0, 3, 6, 9), 8),
-  EndTime = rep(c(3, 6, 9, 12), 8),
-  Response = rep(c("PR", "PR", "CR", "CR"), 8),
-  EventType = rep(c("Treatment Start", "Dose Escalation", "Response Assessment", "Maintenance"), 8),
-  Severity = rep(c("Mild", "Moderate", "Mild", "None"), 8)
-)
-
-# Event marker plot
-event_plot <- swimmerplot(
-  data = event_data,
-  patientID = "PatientID",
-  startTime = "StartTime",
-  endTime = "EndTime",
-  responseVar = "Response",
-  showEventMarkers = TRUE,
-  eventVar = "EventType",
-  eventTimeVar = "StartTime",
-  plotTheme = "ggswim",
-  markerSize = 6,
-  laneWidth = 4
-)
-
-print(event_plot)
-```
-
-## Date/Time Data Handling
-
-Work with actual calendar dates in your clinical data:
-
-```{r datetime-example, eval=ggswim_available}
-# Create realistic datetime data
-datetime_data <- data.frame(
-  PatientID = paste0("PT", 1:10),
-  StartDate = seq(as.Date("2023-01-01"), as.Date("2023-03-01"), length.out = 10),
-  EndDate = seq(as.Date("2023-08-01"), as.Date("2024-02-01"), length.out = 10),
-  Response = sample(c("CR", "PR", "SD", "PD"), 10, replace = TRUE),
-  Surgery = seq(as.Date("2023-02-01"), as.Date("2023-04-01"), length.out = 10)
-)
-
-# Convert dates to character for demonstration
-datetime_data$StartDate <- as.character(datetime_data$StartDate)
-datetime_data$EndDate <- as.character(datetime_data$EndDate)
-datetime_data$Surgery <- as.character(datetime_data$Surgery)
-
-# Datetime plot with relative display
-datetime_plot <- swimmerplot(
-  data = datetime_data,
-  patientID = "PatientID",
-  startTime = "StartDate",
-  endTime = "EndDate",
-  responseVar = "Response",
-  timeType = "datetime",
-  dateFormat = "ymd",
-  timeUnit = "months",
-  timeDisplay = "relative",
-  milestone1Name = "Surgery",
-  milestone1Date = "Surgery",
-  referenceLines = "protocol"
-)
-
-print(datetime_plot)
-```
-
-# Clinical Research Applications
-
-## Oncology Trial Visualization
-
-Swimmer plots are particularly valuable in oncology for showing treatment response patterns:
-
-```{r oncology-example, eval=ggswim_available}
-# Realistic oncology trial data
-oncology_trial <- data.frame(
-  PatientID = paste0("PT", sprintf("%03d", 1:20)),
-  StartTime = rep(0, 20),
-  EndTime = sample(6:48, 20, replace = TRUE),
-  BestResponse = sample(c("CR", "PR", "SD", "PD"), 20, 
-                       replace = TRUE, prob = c(0.15, 0.35, 0.35, 0.15)),
-  Surgery = sample(c(1, 2, 3, NA), 20, replace = TRUE, prob = c(0.3, 0.3, 0.2, 0.2)),
-  FirstResponse = sample(c(3, 6, 9, 12, NA), 20, replace = TRUE),
-  Progression = sample(c(12, 18, 24, 36, NA), 20, replace = TRUE, prob = c(0.2, 0.3, 0.3, 0.1, 0.1)),
-  DeathOrLastFU = sample(c(24, 36, 48, 60, NA), 20, replace = TRUE)
-)
-
-# Comprehensive oncology swimmer plot
-oncology_plot <- swimmerplot(
-  data = oncology_trial,
-  patientID = "PatientID",
-  startTime = "StartTime",
-  endTime = "EndTime",
-  responseVar = "BestResponse",
-  milestone1Name = "Surgery",
-  milestone1Date = "Surgery",
-  milestone2Name = "First Response",
-  milestone2Date = "FirstResponse",
-  milestone3Name = "Progression",
-  milestone3Date = "Progression",
-  milestone4Name = "Death/Last FU",
-  milestone4Date = "DeathOrLastFU",
-  referenceLines = "protocol",
-  showInterpretation = TRUE,
-  personTimeAnalysis = TRUE,
-  responseAnalysis = TRUE,
-  plotTheme = "ggswim",
-  sortOrder = "duration_desc"
-)
-
-print(oncology_plot)
-```
-
-## Person-Time Analysis
-
-The function provides comprehensive epidemiological analysis:
-
-```{r person-time, eval=ggswim_available}
-# Display person-time analysis results
-if (exists("oncology_plot")) {
-  # The person-time table shows incidence rates and follow-up metrics
-  # This is automatically calculated when personTimeAnalysis = TRUE
-  cat("Person-time analysis includes:\n")
-  cat("- Total person-time of follow-up\n")
-  cat("- Mean follow-up time per patient\n")
-  cat("- Incidence rates by response type\n")
-  cat("- Advanced clinical metrics\n")
-}
-```
-
-# Customization Options
-
-## Visual Themes
-
-Choose from professional themes designed for clinical presentations:
-
-```{r themes-comparison, eval=ggswim_available}
-# Create small dataset for theme comparison
-theme_data <- data.frame(
-  PatientID = paste0("PT", 1:6),
-  StartTime = rep(0, 6),
-  EndTime = c(12, 8, 15, 10, 14, 9),
-  Response = c("CR", "PR", "SD", "PD", "CR", "PR")
-)
-
-# Light theme (default)
-light_plot <- swimmerplot(
-  data = theme_data,
-  patientID = "PatientID",
-  startTime = "StartTime",
-  endTime = "EndTime",
-  responseVar = "Response",
-  plotTheme = "ggswim",
-  showLegend = TRUE
-)
-
-# Dark theme for presentations
-dark_plot <- swimmerplot(
-  data = theme_data,
-  patientID = "PatientID",
-  startTime = "StartTime",
-  endTime = "EndTime",
-  responseVar = "Response",
-  plotTheme = "ggswim_dark",
-  showLegend = TRUE
-)
-
-print(light_plot)
-print(dark_plot)
-```
-
-## Reference Lines
-
-Add clinical context with reference lines:
-
-```{r reference-lines, eval=ggswim_available}
-# Median reference line
-median_plot <- swimmerplot(
-  data = basic_data,
-  patientID = "PatientID",
-  startTime = "StartTime",
-  endTime = "EndTime",
-  responseVar = "Response",
-  referenceLines = "median"
-)
-
-# Protocol timepoints (6, 12, 24, 36 months)
-protocol_plot <- swimmerplot(
-  data = basic_data,
-  patientID = "PatientID",
-  startTime = "StartTime",
-  endTime = "EndTime",
-  responseVar = "Response",
-  referenceLines = "protocol"
-)
-
-# Custom reference line
-custom_plot <- swimmerplot(
-  data = basic_data,
-  patientID = "PatientID",
-  startTime = "StartTime",
-  endTime = "EndTime",
-  responseVar = "Response",
-  referenceLines = "custom",
-  customReferenceTime = 18
-)
-
-print(protocol_plot)
-```
-
-# Data Export and Regulatory Submissions
-
-## Export Functionality
-
-Generate data exports suitable for regulatory submissions:
-
-```{r export-example, eval=ggswim_available}
-# Comprehensive analysis with export
-export_plot <- swimmerplot(
-  data = oncology_trial,
-  patientID = "PatientID",
-  startTime = "StartTime",
-  endTime = "EndTime",
-  responseVar = "BestResponse",
-  milestone1Name = "Surgery",
-  milestone1Date = "Surgery",
-  milestone2Name = "Progression",
-  milestone2Date = "Progression",
-  exportTimeline = TRUE,
-  exportSummary = TRUE,
-  personTimeAnalysis = TRUE,
-  responseAnalysis = TRUE,
-  showInterpretation = TRUE
-)
-
-# The exported data includes:
-# - Processed timeline data for external analysis
-# - Comprehensive summary statistics
-# - Clinical metrics suitable for regulatory documents
-# - Person-time analysis for epidemiological reporting
-
-print(export_plot)
-```
-
-## Clinical Interpretation
-
-Automated insights help with research interpretation:
-
-```{r interpretation-example, eval=ggswim_available}
-# The clinical interpretation includes:
-cat("Clinical Interpretation Features:\n")
-cat("✓ Timeline analysis summary\n")
-cat("✓ Person-time metrics interpretation\n") 
-cat("✓ Response pattern analysis\n")
-cat("✓ Clinical recommendations\n")
-cat("✓ Study design insights\n")
-```
-
-# Best Practices
-
-## Data Preparation
-
-1. **Clean Your Data**: Ensure end times are >= start times
-2. **Handle Missing Values**: Use NA for missing milestone dates
-3. **Consistent Formatting**: Use consistent date formats throughout
-4. **Patient ID Uniqueness**: Ensure patient IDs are unique identifiers
-
-## Visualization Guidelines
-
-1. **Response Coding**: Use standard clinical response codes (CR, PR, SD, PD)
-2. **Timeline Units**: Choose appropriate time units for your study duration
-3. **Color Accessibility**: Test plots for color-blind accessibility
-4. **Legend Clarity**: Ensure legends are clear and informative
-
-## Clinical Applications
-
-1. **Protocol Development**: Use for planning study timelines
-2. **Data Monitoring**: Track patient progress during trials
-3. **Regulatory Submissions**: Include in clinical study reports
-4. **Publications**: Use in manuscripts and presentations
-5. **Clinical Decision Making**: Support treatment planning
-
-# Troubleshooting
-
-## Options Not Covered Above
-
-Five options had no coverage anywhere in the documentation. All were run against the bundled
-`swimmerplot_sample` dataset.
-
-```{r extra-options, eval=FALSE}
+```{r data}
+library(OncoPath)
 data(swimmerplot_sample, package = "OncoPath")
+head(swimmerplot_sample, 4)
+#>   PatientID StartTime EndTime Response Surgery TreatmentStart ResponseAssessment Progression       EventType EventTime
+#> 1     PT001         0      24       CR       1              2                  6          NA Treatment Start         2
+#> 2     PT002         0      18       PR       2              3                  6          12 Treatment Start         3
+#> 3     PT003         0      22       SD       1              2                  6          16 Treatment Start         2
+#> 4     PT004         0      15       PD       3              4                  8          10 Treatment Start         4
+```
 
+## A Basic Swimmer Plot
+
+```{r basic}
 res <- swimmerplot(
   data        = swimmerplot_sample,
   patientID   = "PatientID",
   startTime   = "StartTime",
   endTime     = "EndTime",
   responseVar = "Response",
-
-  censorVar           = "EventType",   # who was censored vs who had the event
-  customReferenceDate = "",            # anchor date for absolute-date input
-  showGlossary        = TRUE,          # clinical glossary alongside the plot
-  showCopyReady       = TRUE,          # paste-ready manuscript text
-  showAbout           = TRUE           # what the analysis does and its assumptions
+  timeUnit    = "months"
 )
+res$advancedMetrics$asDF[, c("metric_name", "metric_value", "confidence_interval")]
 ```
 
-| Option | What it does |
+With these data the analysis reports 5 CR, 6 PR, 6 SD and 3 PD among 20 patients:
+
+```
+                                                         metric_name metric_value confidence_interval
+Median Follow-up Time (observed durations; no censoring information)       19.5
+                            Interquartile Range (observed durations)        7.5
+                                             Total Study Person-Time      391.0
+                                       Objective Response Rate (ORR)       55.0         31.5 - 76.9
+                                          Disease Control Rate (DCR)       85.0         62.1 - 96.8
+```
+
+ORR and DCR are shown only when **every** response value is a RECIST category (CR, PR, SD, PD or
+NE; "complete/partial remission" are read as CR/PR). A coding such as Response / Stable /
+Progression withholds them, and a notice names the value that could not be read. When a patient
+has several response rows, the category used is the best response recorded up to the first PD; it
+carries no confirmation of CR/PR and no minimum duration for SD, and the output says so.
+
+## Milestones and Events
+
+Up to five milestone variables can be added; each holds the time (or date) at which that milestone
+happened for each patient. The milestone name defaults to the variable's own name.
+
+```{r milestones}
+res_ms <- swimmerplot(
+  data        = swimmerplot_sample,
+  patientID   = "PatientID",
+  startTime   = "StartTime",
+  endTime     = "EndTime",
+  responseVar = "Response",
+  milestone1Name = "Surgery",             milestone1Date = "Surgery",
+  milestone2Name = "Treatment start",     milestone2Date = "TreatmentStart",
+  milestone3Name = "Response assessment", milestone3Date = "ResponseAssessment",
+  milestone4Name = "Progression",         milestone4Date = "Progression"
+)
+res_ms$milestoneTable$asDF
+#>        milestone_name n_events median_time    time_range
+#> 1         Progression        9          14 9 - 18 months
+#> 2 Response assessment       20           6  6 - 8 months
+#> 3             Surgery       20           2  1 - 3 months
+#> 4     Treatment start       20           3  2 - 4 months
+```
+
+Event markers (`showEventMarkers = TRUE`, with `eventVar` for the event type and `eventTimeVar`
+for its time) add a point per event to the lanes.
+
+## Censoring and Follow-up
+
+Without a censoring status, a lane that ends because follow-up ended looks the same as one that
+ends because the event occurred, and median follow-up can only be the median of the observed
+durations, which understates follow-up when events are common. Supply a status column with
+`censorVar` to draw status arrows on the patients still at risk and to estimate follow-up by the
+reverse Kaplan-Meier method.
+
+How the status column is read is set with `censorCoding`:
+
+| `censorCoding` | Reads |
 |---|---|
-| `censorVar` | Names the column distinguishing an event from censoring. Without it a bar that ends because follow-up ended looks the same as one that ends because the event occurred — the single most common way a swimmer plot misleads. |
-| `customReferenceDate` | When times are supplied as absolute dates, this sets the anchor they are measured from. Leave empty to use each patient's own start. |
-| `showGlossary`, `showCopyReady`, `showAbout` | Presentation aids: a glossary for non-statistician readers, a paste-ready results paragraph, and a description of the analysis and its assumptions. |
+| `"auto"` (default) | numeric 0/1 (1 = event) and the words alive/censored/dead/event |
+| `"yes_event"` / `"yes_censored"` | Yes/TRUE = event, or Yes/TRUE = censored |
+| `"one_censored"` | 0/1 with 1 = censored |
+| `"two_event"` / `"one_event"` | 1/2 with 2 = event, or 1 = event |
 
-## Common Issues
+Yes/No, TRUE/FALSE and 1/2 columns are never read in a guessed direction: until you choose a
+coding, no arrows are drawn. Words such as "Completed", "Progressed" or "Active" describe treatment
+or disease, not follow-up status; recode such a column first. Every reading is stated in a notice.
 
-1. **Date Parsing Errors**: Check date format specification
-2. **Missing ggswim Package**: Install with `install.packages("ggswim")`
-3. **Large Datasets**: Consider data filtering for better performance
-4. **Overlapping Markers**: Adjust marker size and lane width
+`swimmerplot_sample` has no status column. The example below adds one for illustration only
+(1 = died, 0 = alive at the data cut-off):
 
-## Performance Tips
+```{r censoring}
+sw <- swimmerplot_sample
+sw$Status <- as.integer(sw$PatientID %in% c("PT003", "PT004", "PT010", "PT011", "PT015", "PT019"))
 
-1. **Data Size**: Function tested with up to 1000 patients
-2. **Memory Usage**: Large datasets may require more RAM
-3. **Rendering Time**: Complex plots may take longer to render
-4. **Export Size**: Consider file size for large exports
+res_cens <- swimmerplot(
+  data        = sw,
+  patientID   = "PatientID",
+  startTime   = "StartTime",
+  endTime     = "EndTime",
+  responseVar = "Response",
+  censorVar   = "Status"          # 0/1, read automatically with 1 = event
+)
+# Median Follow-up Time (reverse Kaplan-Meier): 23.0 months (95% CI 20.0 - not reached)
+```
 
-# Conclusion
+## Groups, Dates and Display
 
-The Unified Swimmer Plot function represents a comprehensive solution for clinical timeline visualization, combining the power of ggswim with robust data handling and clinical interpretation. Whether you're conducting oncology trials, analyzing patient journeys, or preparing regulatory submissions, this tool provides the flexibility and professional quality needed for modern clinical research.
+- `groupVar` names one fixed patient-level grouping variable (for example the treatment arm) for
+  between-group comparisons. A patient whose episodes carry different groups stops the comparison,
+  because episode-specific treatments cannot define independent patient groups.
+- `timeType = "datetime"` reads start, end and milestone columns as dates, using `dateFormat`
+  (for example `"ymd"`); `timeUnit` then sets the unit the durations are shown in.
+- `timeDisplay` switches between time from each patient's own start (`"relative"`) and calendar
+  time (`"absolute"`).
+- `referenceLines` adds the median duration, protocol times (3/6/9/12/18/24/36 months) or a custom
+  time (`customReferenceTime`).
+- `sortVariable` and `sortOrder` order the lanes; `laneWidth`, `markerSize`, `plotTheme`,
+  `colorPalette` and `showLegend` control the look.
+- `showGlossary`, `showCopyReady` and `showAbout` add a glossary, paste-ready sentences and a
+  description of the method; `exportTimeline` and `exportSummary` add exportable tables.
 
-## Next Steps
+## Reference
 
-- Explore the comprehensive test suite for usage examples
-- Check the package documentation for additional features
-- Consider contributing improvements via GitHub
-- Share feedback with the development team
-
----
-
-*For more information about ClinicoPath and swimmer plot functionality, visit the package documentation or contact the development team.*
+Schemper M, Smith TL. A note on quantifying follow-up in studies of failure time. *Control Clin
+Trials*. 1996;17(4):343-346.

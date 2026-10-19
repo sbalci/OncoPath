@@ -12,21 +12,23 @@ authors:
     family-names: Balci
     email: serdarbalci@serdarbalci.com
     orcid: 'https://orcid.org/0000-0002-7852-3851'
-date-released: '2026-10-18'
+date-released: '2026-10-19'
 version: "1.1.0"
 identifiers:
   - type: doi
     value: 10.5281/zenodo.3997188
-    description: zenodo
+    description: >-
+      Zenodo archive of the ClinicoPath project, from which OncoPath is
+      distributed (OncoPath has no DOI of its own)
   - type: doi
     value: 10.17605/OSF.IO/9SZUD
-    description: OSF
+    description: OSF project page of the ClinicoPath project
   - type: url
     value: 'https://github.com/sbalci/ClinicoPathJamoviModule/'
-    description: GitHub
+    description: ClinicoPath project source code
   - type: url
     value: 'https://sbalci.github.io/ClinicoPathJamoviModule/'
-    description: webpage
+    description: ClinicoPath project webpage
   - type: url
     value: >-
       https://github.com/sbalci/OncoPath/issues/

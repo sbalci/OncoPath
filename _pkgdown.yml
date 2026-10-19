@@ -11,10 +11,9 @@ template:
 home:
   title: "OncoPath • Specialized Oncological and Pathological Research Tools"
   description: >
-    OncoPath is a specialized jamovi module for oncological and pathological
-    research. It provides comprehensive patient follow-up visualization tools
-    including swimmer plots, waterfall plots, IHC heterogeneity analysis, and
-    diagnostic test meta-analysis.
+    OncoPath is a jamovi module and R package for oncology and pathology
+    research: swimmer plots, treatment response (waterfall and spider) plots,
+    diagnostic test accuracy meta-analysis and IHC heterogeneity analysis.
 
 navbar:
   structure:
@@ -30,21 +29,14 @@ navbar:
     articles:
       text: Articles
       menu:
-      - text: "Getting Started"
-      - text: "Swimmer Plot Guide"
+      - text: "Swimmer Plot"
         href: articles/swimmerplot-unified-comprehensive.html
-      - text: "Waterfall Plot Guide"
+      - text: "Treatment Response (Waterfall)"
         href: articles/06-function-waterfall.html
-      - text: "---"
-      - text: "Advanced Topics"
-      - text: "Diagnostic Meta-Analysis"
+      - text: "Diagnostic Test Meta-Analysis"
         href: articles/diagnosticmeta-comprehensive.html
-      - text: "Clinical Heatmap"
-        href: articles/clinicalheatmap_comprehensive.html
-      - text: "---"
-      - text: "Legacy Documentation"
-      - text: "Waterfall Legacy"
-        href: articles/09-waterfall-legacy.html
+      - text: "IHC Heterogeneity"
+        href: articles/ihcheterogeneity-comprehensive.html
     news:
       text: News
       href: news/index.html
@@ -81,7 +73,9 @@ reference:
     desc: "Bundled example datasets"
     contents:
     - diagnostic_studies
+    - diagnosticmeta_test_categorical
     - histopathology
+    - ihcheterogeneity_test
     - swimmerplot_sample
     - waterfall_percentage_basic
     - waterfall_raw_longitudinal
