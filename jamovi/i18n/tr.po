@@ -14182,3 +14182,246 @@ msgstr "Sıfır hücre düzeltme yöntemi"
 #: diagnosticmeta/results/heterogeneity.columns.title
 msgid "τ²"
 msgstr "τ²"
+
+#~ msgid ""
+#~ "%.0f%% confidence interval via the irr::kappa2 fallback (approximate, built "
+#~ "from the null-hypothesis standard error): vcd::Kappa could not return a "
+#~ "finite SE for this (near-degenerate) table. A null-SE interval is too narrow "
+#~ "when kappa is high, so treat it as optimistic."
+#~ msgstr ""
+#~ "irr::kappa2 yedek yöntemiyle elde edilen %%%.0f güven aralığı (yaklaşık; "
+#~ "sıfır hipotezi standart hatasından oluşturulmuştur): vcd::Kappa bu "
+#~ "(neredeyse dejenere) tablo için sonlu bir SH döndüremedi. Sıfır-SH aralığı "
+#~ "kappa yüksek olduğunda fazla dardır; bu nedenle onu iyimser kabul edin."
+
+#~ msgid ""
+#~ "%.0f%% confidence interval via the irr::kappa2 fallback (approximate, built "
+#~ "from the null-hypothesis standard error). Install the 'vcd' package to "
+#~ "enable the more accurate ASE-based interval. A null-SE interval is too "
+#~ "narrow when kappa is high, so treat it as optimistic."
+#~ msgstr ""
+#~ "irr::kappa2 yedek yöntemiyle elde edilen %%%.0f güven aralığı (yaklaşık; "
+#~ "sıfır hipotezi standart hatasından oluşturulmuştur). Daha doğru olan ASE "
+#~ "tabanlı aralığı etkinleştirmek için 'vcd' paketini kurun. Sıfır-SH aralığı "
+#~ "kappa yüksek olduğunda fazla dardır; bu nedenle onu iyimser kabul edin."
+
+#~ msgid "Alpha for Confidence Intervals"
+#~ msgstr "Güven Aralıkları İçin Alfa"
+
+#~ msgid ""
+#~ "At least one interval in this table was built from the null-hypothesis "
+#~ "standard error (kappa divided by its H0 test statistic) because the non-null "
+#~ "asymptotic standard error from vcd::Kappa was unavailable for that rater, "
+#~ "most often because a rating category is unused at one time point and the "
+#~ "agreement table is near-degenerate. Null-SE intervals are too narrow when "
+#~ "kappa is high, so treat them as optimistic."
+#~ msgstr ""
+#~ "Bu tablodaki en az bir aralık, o değerlendirici için vcd::Kappa'dan "
+#~ "sıfır-dışı asimptotik standart hata elde edilemediğinden sıfır hipotezi "
+#~ "standart hatasından (kappanın H0 test istatistiğine bölümü) oluşturulmuştur; "
+#~ "bunun en sık nedeni, bir değerlendirme kategorisinin bir zaman noktasında "
+#~ "kullanılmamış olması ve uyum tablosunun neredeyse dejenere olmasıdır. "
+#~ "Sıfır-SH aralıkları kappa yüksek olduğunda fazla dardır; bu nedenle bunları "
+#~ "iyimser kabul edin."
+
+#~ msgid ""
+#~ "At least one interval in this table was built from the null-hypothesis "
+#~ "standard error (kappa divided by its H0 test statistic) because the non-null "
+#~ "asymptotic standard error from vcd::Kappa was unavailable for that subgroup. "
+#~ "Null-SE intervals are too narrow when kappa is high, so treat them as "
+#~ "optimistic; three or more raters always use this fallback."
+#~ msgstr ""
+#~ "Bu tablodaki en az bir aralık, o alt grup için vcd::Kappa'dan sıfır-dışı "
+#~ "asimptotik standart hata elde edilemediğinden sıfır hipotezi standart "
+#~ "hatasından (kappanın H0 test istatistiğine bölümü) oluşturulmuştur. Sıfır-SH "
+#~ "aralıkları kappa yüksek olduğunda fazla dardır, bu nedenle bunları iyimser "
+#~ "kabul edin; üç veya daha fazla değerlendirici olduğunda her zaman bu yedek "
+#~ "yöntem kullanılır."
+
+#~ msgid ""
+#~ "At least one interval was built from the null-hypothesis standard error, "
+#~ "because vcd::Kappa returned no finite asymptotic standard error for that "
+#~ "institution (most often a category unused there). Such intervals are too "
+#~ "narrow when kappa is high, so treat them as optimistic."
+#~ msgstr ""
+#~ "En az bir aralık sıfır hipotezi standart hatasından oluşturulmuştur, çünkü "
+#~ "vcd::Kappa o kurum için sonlu bir asimptotik standart hata döndürmemiştir "
+#~ "(en sık nedeni, o kurumda bir kategorinin kullanılmamış olmasıdır). Bu tür "
+#~ "aralıklar kappa yüksek olduğunda fazla dardır; bu nedenle bunları iyimser "
+#~ "kabul edin."
+
+#~ msgid "Average Net Benefit Over the Threshold Range"
+#~ msgstr "Eşik Aralığında Ortalama Net Fayda"
+
+#~ msgid "CI Method for Agreement"
+#~ msgstr "Uyum için GA Yöntemi"
+
+#~ msgid "Class Variable (Gold Standard)"
+#~ msgstr "Sınıf Değişkeni (Altın Standart)"
+
+#~ msgid "Clinical Decision Rule (binary)"
+#~ msgstr "Klinik Karar Kuralı (ikili)"
+
+#~ msgid "Clinical Decision Rule Integration"
+#~ msgstr "Klinik Karar Kuralı Entegrasyonu"
+
+#~ msgid "Clinical Range Highlight"
+#~ msgstr "Klinik Aralık Vurgulama"
+
+#~ msgid "Cost Ratio (FP:FN)"
+#~ msgstr "Maliyet Oranı (YP:YN)"
+
+#~ msgid "Decision Consequences Table"
+#~ msgstr "Karar Sonuçları Tablosu"
+
+#~ msgid "Decision Curve Plot"
+#~ msgstr "Karar Eğrisi Grafiği"
+
+#~ msgid "Decision Rule Label"
+#~ msgstr "Karar Kuralı Etiketi"
+
+#~ msgid "Decision Rule Positive Level"
+#~ msgstr "Karar Kuralı Pozitif Düzeyi"
+
+#~ msgid "Enhanced Multi-Model Comparison"
+#~ msgstr "Gelişmiş Çoklu Model Karşılaştırması"
+
+#~ msgid "Exclude other observed levels"
+#~ msgstr "Gözlenen diğer düzeyleri dışla"
+
+#~ msgid "Fixed Analysis Type"
+#~ msgstr "Sabit Analiz Türü"
+
+#~ msgid "Fixed sensitivity/Specificity analysis"
+#~ msgstr "Sabit duyarlılık/özgüllük analizi"
+
+#~ msgid "Harm-to-Benefit Ratio"
+#~ msgstr "Zarar-Fayda Oranı"
+
+#~ msgid "Highlight Range Maximum"
+#~ msgstr "Aralık Maksimumunu Vurgula"
+
+#~ msgid "Highlight Range Minimum"
+#~ msgstr "Aralık Minimumunu Vurgula"
+
+#~ msgid "IDI/NRI Bootstrap Iterations"
+#~ msgstr "IDI/NRI Bootstrap Yinelemeleri"
+
+#~ msgid "Illustrative Scenario Example"
+#~ msgstr "Açıklayıcı Senaryo Örneği"
+
+#~ msgid "Interval Type"
+#~ msgstr "Aralık Türü"
+
+#~ msgid "Maximum Thresholds to Display"
+#~ msgstr "Görüntülenecek Maksimum Eşikler"
+
+#~ msgid "Monetary Cost per Test/Screening"
+#~ msgstr "Test/Tarama Başına Parasal Maliyet"
+
+#~ msgid "Monetary Cost per Treatment"
+#~ msgstr "Tedavi Başına Parasal Maliyet"
+
+#~ msgid "Monetary Harm Assigned to a False Positive"
+#~ msgstr "Yanlış Pozitife Atanan Parasal Zarar"
+
+#~ msgid "Monetary Value Assigned to a True Positive"
+#~ msgstr "Gerçek Pozitife Atanan Parasal Değer"
+
+#~ msgid "Net Interventions Avoided"
+#~ msgstr "Net Önlenen Girişimler"
+
+#~ msgid ""
+#~ "No confidence interval is shown: across three or more rater × time-point "
+#~ "columns this row reports Fleiss' kappa, for which only the null-hypothesis "
+#~ "test statistic is available here. An interval built from that null standard "
+#~ "error would be too narrow at high kappa. The per-rater rows above carry "
+#~ "non-null intervals."
+#~ msgstr ""
+#~ "Güven aralığı gösterilmemiştir: üç veya daha fazla değerlendirici × zaman "
+#~ "noktası sütunu boyunca bu satır Fleiss kappasını raporlar ve bunun için "
+#~ "burada yalnızca sıfır hipotezi test istatistiği mevcuttur. Bu sıfır hipotezi "
+#~ "standart hatasından oluşturulan bir aralık, yüksek kappa değerlerinde fazla "
+#~ "dar olur. Yukarıdaki değerlendirici başına satırlar sıfır-dışı aralıklar "
+#~ "içerir."
+
+#~ msgid "NRI Risk Categories"
+#~ msgstr "NRI Risk Kategorileri"
+
+#~ msgid "Partial AUC From (Specificity)"
+#~ msgstr "Kısmi EAA Başlangıcı (Özgüllük)"
+
+#~ msgid "Partial AUC To (Specificity)"
+#~ msgstr "Kısmi EAA Bitişi (Özgüllük)"
+
+#~ msgid "Population Size for Projections"
+#~ msgstr "Projeksiyonlar İçin Popülasyon Boyutu"
+
+#~ msgid "Power Analysis Type"
+#~ msgstr "Güç Analizi Türü"
+
+#~ msgid "Prediction Variables/Models"
+#~ msgstr "Tahmin Değişkenleri/Modelleri"
+
+#~ msgid "Prior AUC Belief"
+#~ msgstr "Öncül EAA İnancı"
+
+#~ msgid "Prior Precision"
+#~ msgstr "Öncül Kesinliği"
+
+#~ msgid "Prior Prevalence Value"
+#~ msgstr "Öncül Prevalans Değeri"
+
+#~ msgid "Quantile Positions"
+#~ msgstr "Kantil Konumları"
+
+#~ msgid "Reference Line Labels"
+#~ msgstr "Referans Çizgisi Etiketleri"
+
+#~ msgid "Reference Test for IDI/NRI"
+#~ msgstr "IDI/NRI için Referans Test"
+
+#~ msgid "Resource Utilization Analysis"
+#~ msgstr "Kaynak Kullanımı Analizi"
+
+#~ msgid "Results Table"
+#~ msgstr "Sonuç Tablosu"
+
+#~ msgid "ROC Smoothing Method"
+#~ msgstr "ROC Düzeltme Yöntemi"
+
+#~ msgid "Selected Thresholds for Table"
+#~ msgstr "Tablo İçin Seçilen Eşikler"
+
+#~ msgid "Sensitivity/Specificity vs threshold"
+#~ msgstr "Duyarlılık/Özgüllük - eşik"
+
+#~ msgid "Test 1 Negative Level"
+#~ msgstr "Test 1 Negatif Düzey"
+
+#~ msgid "Test 1 Positive Level"
+#~ msgstr "Test 1 Pozitif Düzey"
+
+#~ msgid "Test 2 (Required for Comparison)"
+#~ msgstr "Test 2 (Karşılaştırma İçin Zorunlu)"
+
+#~ msgid "Test 2 Negative Level"
+#~ msgstr "Test 2 Negatif Düzey"
+
+#~ msgid "Test 2 Positive Level"
+#~ msgstr "Test 2 Pozitif Düzey"
+
+#~ msgid "Test 3 Negative Level"
+#~ msgstr "Test 3 Negatif Düzey"
+
+#~ msgid "Test 3 Positive Level"
+#~ msgstr "Test 3 Pozitif Düzey"
+
+#~ msgid "Test Variables"
+#~ msgstr "Test Değişkenleri"
+
+#~ msgid "Threshold Step Size"
+#~ msgstr "Eşik Adım Boyutu"
+
+#~ msgid "Treatment Threshold Range"
+#~ msgstr "Tedavi Eşik Aralığı"

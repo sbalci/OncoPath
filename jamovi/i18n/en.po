@@ -11769,3 +11769,214 @@ msgstr ""
 #: diagnosticmeta/results/heterogeneity.columns.title
 msgid "τ²"
 msgstr ""
+
+#~ msgid ""
+#~ "%.0f%% confidence interval via the irr::kappa2 fallback (approximate, built "
+#~ "from the null-hypothesis standard error): vcd::Kappa could not return a "
+#~ "finite SE for this (near-degenerate) table. A null-SE interval is too narrow "
+#~ "when kappa is high, so treat it as optimistic."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "%.0f%% confidence interval via the irr::kappa2 fallback (approximate, built "
+#~ "from the null-hypothesis standard error). Install the 'vcd' package to "
+#~ "enable the more accurate ASE-based interval. A null-SE interval is too "
+#~ "narrow when kappa is high, so treat it as optimistic."
+#~ msgstr ""
+
+#~ msgid "Alpha for Confidence Intervals"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "At least one interval in this table was built from the null-hypothesis "
+#~ "standard error (kappa divided by its H0 test statistic) because the non-null "
+#~ "asymptotic standard error from vcd::Kappa was unavailable for that rater, "
+#~ "most often because a rating category is unused at one time point and the "
+#~ "agreement table is near-degenerate. Null-SE intervals are too narrow when "
+#~ "kappa is high, so treat them as optimistic."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "At least one interval in this table was built from the null-hypothesis "
+#~ "standard error (kappa divided by its H0 test statistic) because the non-null "
+#~ "asymptotic standard error from vcd::Kappa was unavailable for that subgroup. "
+#~ "Null-SE intervals are too narrow when kappa is high, so treat them as "
+#~ "optimistic; three or more raters always use this fallback."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "At least one interval was built from the null-hypothesis standard error, "
+#~ "because vcd::Kappa returned no finite asymptotic standard error for that "
+#~ "institution (most often a category unused there). Such intervals are too "
+#~ "narrow when kappa is high, so treat them as optimistic."
+#~ msgstr ""
+
+#~ msgid "Average Net Benefit Over the Threshold Range"
+#~ msgstr ""
+
+#~ msgid "CI Method for Agreement"
+#~ msgstr ""
+
+#~ msgid "Class Variable (Gold Standard)"
+#~ msgstr ""
+
+#~ msgid "Clinical Decision Rule (binary)"
+#~ msgstr ""
+
+#~ msgid "Clinical Decision Rule Integration"
+#~ msgstr ""
+
+#~ msgid "Clinical Range Highlight"
+#~ msgstr ""
+
+#~ msgid "Cost Ratio (FP:FN)"
+#~ msgstr ""
+
+#~ msgid "Decision Consequences Table"
+#~ msgstr ""
+
+#~ msgid "Decision Curve Plot"
+#~ msgstr ""
+
+#~ msgid "Decision Rule Label"
+#~ msgstr ""
+
+#~ msgid "Decision Rule Positive Level"
+#~ msgstr ""
+
+#~ msgid "Enhanced Multi-Model Comparison"
+#~ msgstr ""
+
+#~ msgid "Exclude other observed levels"
+#~ msgstr ""
+
+#~ msgid "Fixed Analysis Type"
+#~ msgstr ""
+
+#~ msgid "Fixed sensitivity/Specificity analysis"
+#~ msgstr ""
+
+#~ msgid "Harm-to-Benefit Ratio"
+#~ msgstr ""
+
+#~ msgid "Highlight Range Maximum"
+#~ msgstr ""
+
+#~ msgid "Highlight Range Minimum"
+#~ msgstr ""
+
+#~ msgid "IDI/NRI Bootstrap Iterations"
+#~ msgstr ""
+
+#~ msgid "Illustrative Scenario Example"
+#~ msgstr ""
+
+#~ msgid "Interval Type"
+#~ msgstr ""
+
+#~ msgid "Maximum Thresholds to Display"
+#~ msgstr ""
+
+#~ msgid "Monetary Cost per Test/Screening"
+#~ msgstr ""
+
+#~ msgid "Monetary Cost per Treatment"
+#~ msgstr ""
+
+#~ msgid "Monetary Harm Assigned to a False Positive"
+#~ msgstr ""
+
+#~ msgid "Monetary Value Assigned to a True Positive"
+#~ msgstr ""
+
+#~ msgid "Net Interventions Avoided"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "No confidence interval is shown: across three or more rater × time-point "
+#~ "columns this row reports Fleiss' kappa, for which only the null-hypothesis "
+#~ "test statistic is available here. An interval built from that null standard "
+#~ "error would be too narrow at high kappa. The per-rater rows above carry "
+#~ "non-null intervals."
+#~ msgstr ""
+
+#~ msgid "NRI Risk Categories"
+#~ msgstr ""
+
+#~ msgid "Partial AUC From (Specificity)"
+#~ msgstr ""
+
+#~ msgid "Partial AUC To (Specificity)"
+#~ msgstr ""
+
+#~ msgid "Population Size for Projections"
+#~ msgstr ""
+
+#~ msgid "Power Analysis Type"
+#~ msgstr ""
+
+#~ msgid "Prediction Variables/Models"
+#~ msgstr ""
+
+#~ msgid "Prior AUC Belief"
+#~ msgstr ""
+
+#~ msgid "Prior Precision"
+#~ msgstr ""
+
+#~ msgid "Prior Prevalence Value"
+#~ msgstr ""
+
+#~ msgid "Quantile Positions"
+#~ msgstr ""
+
+#~ msgid "Reference Line Labels"
+#~ msgstr ""
+
+#~ msgid "Reference Test for IDI/NRI"
+#~ msgstr ""
+
+#~ msgid "Resource Utilization Analysis"
+#~ msgstr ""
+
+#~ msgid "Results Table"
+#~ msgstr ""
+
+#~ msgid "ROC Smoothing Method"
+#~ msgstr ""
+
+#~ msgid "Selected Thresholds for Table"
+#~ msgstr ""
+
+#~ msgid "Sensitivity/Specificity vs threshold"
+#~ msgstr ""
+
+#~ msgid "Test 1 Negative Level"
+#~ msgstr ""
+
+#~ msgid "Test 1 Positive Level"
+#~ msgstr ""
+
+#~ msgid "Test 2 (Required for Comparison)"
+#~ msgstr ""
+
+#~ msgid "Test 2 Negative Level"
+#~ msgstr ""
+
+#~ msgid "Test 2 Positive Level"
+#~ msgstr ""
+
+#~ msgid "Test 3 Negative Level"
+#~ msgstr ""
+
+#~ msgid "Test 3 Positive Level"
+#~ msgstr ""
+
+#~ msgid "Test Variables"
+#~ msgstr ""
+
+#~ msgid "Threshold Step Size"
+#~ msgstr ""
+
+#~ msgid "Treatment Threshold Range"
+#~ msgstr ""
