@@ -286,7 +286,7 @@ methodological considerations</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'ihcheterogeneity_test'</span>, package <span class="op">=</span> <span class="st">'OncoPath'</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Three regional Ki67 scores against the whole-section score</span></span></span>
@@ -297,7 +297,87 @@ methodological considerations</p></dd>
 <span class="r-in"><span>    biopsy2 <span class="op">=</span> <span class="st">'biopsy2'</span>,</span></span>
 <span class="r-in"><span>    biopsy3 <span class="op">=</span> <span class="st">'biopsy3'</span>,</span></span>
 <span class="r-in"><span>    bias_margin <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  IHC HETEROGENEITY ANALYSIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Reproducibility Assessment                                                                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Reproducibility Metric                        Value      95% CI Lower    95% CI Upper    Clinical Interpretation                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Mean Regional-Reference Correlation            0.9165          0.8414          0.9568    Meets your threshold (≥ 0.8)                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Spearman correlation: biopsy1 vs reference     0.9216          0.8505          0.9596    Meets your threshold (≥ 0.8)                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Spearman correlation: biopsy2 vs reference     0.8876          0.7906          0.9412    Meets your threshold (≥ 0.8)                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Spearman correlation: biopsy3 vs reference     0.9402          0.8847          0.9695    Meets your threshold (≥ 0.8)                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    ICC(2,1) - absolute agreement                  0.8992          0.8505          0.9363    Good reliability                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    ICC(3,1) - consistency (bias-blind)            0.8975          0.8481          0.9352    Ignores systematic offset; compare with absolute agreement above   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Mean Inter-Regional Correlation                0.8497               .               .    Meets your threshold (≥ 0.8)                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Within-case CV (%) - region vs reference      12.6092               .               .    Moderate variability                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Median per-case CV (%)                         9.9754               .               .    Descriptive, robust to a few extreme cases; not graded             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. These statistics describe agreement in this dataset only: they are not an assay or external validation, and they do not describe agreement at the</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    score cut-offs used to classify cases. Each row must be a different patient.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. Correlation CIs use the Fisher z transformation with the Spearman variance of Bonett &amp; Wright (2000); the CI of the mean correlation uses the</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    smallest number of pairs and is conservative. Coverage falls below 95% when r is above about 0.97.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. Reliability bands follow Koo &amp; Li (2016): below 0.50 poor, 0.50 to 0.75 moderate, 0.75 to 0.90 good, above 0.90 excellent. Judge the band from</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    the 95% CI as well as from the point estimate.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. Per-case CV = SD / mean of that case's measurements. The within-case CV is their root mean square, which unlike their plain average does not fall</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    when a case has fewer measurements; the median is descriptive and not graded.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Sampling Bias Analysis                                                                                                                                                                                                                                                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Comparison                          N     Mean Difference (Region - Reference)    Lower      Upper     Lower       Upper      Lower       Upper       Lower      Upper      p-value    Hedges' g (paired)    Slope     p-value    Clinical Impact                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    biopsy1 vs reference                50                                 -0.7618    -3.3857    1.8621    -18.8579    17.3344    -23.3723    -14.3436    12.8200    21.8487       .562               -0.0812    0.0784       .052    -1.3% (90% CI -5.1% to 2.5%): inconclusive at the 5% margin     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    biopsy2 vs reference                50                                 -0.6782    -3.4892    2.1328    -20.0646    18.7081    -24.9008    -15.2284    13.8719    23.5443       .630               -0.0675    0.0090       .855    -1.2% (90% CI -5.2% to 2.9%): inconclusive at the 5% margin     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    biopsy3 vs reference                50                                 -0.3488    -2.5170    1.8195    -15.3025    14.6050    -19.0329    -11.5721    10.8745    18.3354       .748               -0.0450    0.0797       .055    -0.6% (90% CI -3.8% to 2.5%): ruled out, within the 5% margin   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Mean of all regions vs reference    50                                 -0.5963    -1.8533    0.6608     -9.2657     8.0732    -11.4285     -7.1030     5.9105    10.2359       .345               -0.1327    0.0068       .792    -1.0% (90% CI -2.8% to 0.8%): ruled out, within the 5% margin   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. 4 paired comparisons are reported; the p-values test against zero and are unadjusted. With a margin of 5% of the comparison mean, a difference is ruled out when its 90% CI lies within the margin (two one-sided tests) and shown to be material when its Bonferroni-adjusted 97.5% CI</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    lies entirely beyond the margin; otherwise it is inconclusive.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. The CIs of the percentage difference are Fieller intervals for the ratio of means, which allow for the uncertainty in the comparison mean.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. The CIs of the limits of agreement use the approximate standard error of Bland &amp; Altman (1999), SD x sqrt(1/n + 1.96^2 / (2(n - 1))); they are wide in small samples.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. Mean difference = region minus reference. Limits of agreement (Bland &amp; Altman 1986): 95% of individual differences are expected between these bounds if the differences are roughly normal.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. Proportional bias: Slope of the difference on the mean of the two measurements (the region and the reference), with heteroscedasticity-robust (HC3) standard errors; p is unadjusted. Measurement error alone tilts a slope on the reference value downwards and a slope on the region</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    value upwards, so a difference is treated as changing with the level only when its slope differs from zero (p below 0.05 divided by the number of comparisons) in the same direction on all three: the reference value, the region value and their mean (Krouwer 2008). Such a difference is</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    judged at the 5th and 95th percentiles of the mean, against the margin at the comparison mean taken as fixed; it can stop a difference from being ruled out but never shows it to be material (Bland &amp; Altman 1995, 1999).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Variance Component Analysis                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Variance Component                 Variance    Percentage (%)    Contribution to Total Variance   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Between-Case Variance              576.0006           89.7540    Major contributor                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Within-Case Variance (Sampling)     65.7544           10.2460    Small share of total variance    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Method Variance                      0.0000            0.0000    Small share of total variance    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Total Variance                     641.7550          100.0000    Sum of all variance components   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. Two-way random-effects decomposition (value = case + method + error) on 50 cases</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    measured by 4 methods; components sum to the total variance. The method variance estimate was</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    negative and has been truncated to zero. Every share depends on how much the cases differ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    from one another, and the share labels are descriptive cut-offs, not clinical sizes: judge</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    how much the measurements disagree from the within-case CV, and a systematic offset from the</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Sampling Bias Analysis table.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample Size for ICC Precision                                                                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Scenario                                                    Planning ICC    Expected CI Width (current n)    Width 0.20    Width 0.10   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Planning ICC 0.75 (lower limit of good reliability)               0.7500                           0.1868            44           171   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Planning ICC 0.90 (lower limit of excellent reliability)          0.9000                           0.0875            13            40   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Observed ICC(3,1), consistency                                    0.8975                           0.0894            13            41   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. Planning for the consistency ICC, ICC(3,1), with k = 4 measurements per case and a 95% confidence interval; this analysis has</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    50 complete cases. Bonett (2002) provides the starting approximation, refined here by numerical integration of the exact F-interval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    width under a balanced normal ANOVA model. The required size is the smallest number of cases, at least 5, whose expected interval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    width meets the target. Some studies will obtain wider intervals: this is expected-width planning, not an assurance calculation or</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    a hypothesis test. Systematic offsets affect the absolute-agreement ICC(2,1), whose precision needs separate planning. In these</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    data the 95% CI of ICC(2,1) has width 0.086.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-plt img"><img src="ihcheterogeneity-1.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ihcheterogeneity-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
