@@ -11,13 +11,13 @@ Source:
 [`DESCRIPTION`](https://github.com/sbalci/OncoPath/blob/master/DESCRIPTION)
 
 Balci S (2026). *OncoPath: OncoPath Functions for Clinicopathological
-Research*. R package version 1.0.83,
+Research*. R package version 1.1.1,
 <https://www.serdarbalci.com/OncoPath/>.
 
     @Manual{,
       title = {OncoPath: OncoPath Functions for Clinicopathological Research},
       author = {Serdar Balci},
       year = {2026},
-      note = {R package version 1.0.83},
+      note = {R package version 1.1.1},
       url = {https://www.serdarbalci.com/OncoPath/},
     }

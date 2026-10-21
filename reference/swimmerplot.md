@@ -15,21 +15,22 @@ swimmerplot(
   endTime,
   responseVar = NULL,
   censorVar = NULL,
+  censorCoding = "auto",
   groupVar = NULL,
   timeType = "raw",
   dateFormat = "ymd",
   timeUnit = "months",
   timeDisplay = "relative",
   maxMilestones = 5,
-  milestone1Name = "Surgery",
+  milestone1Name = "",
   milestone1Date = NULL,
-  milestone2Name = "Treatment Start",
+  milestone2Name = "",
   milestone2Date = NULL,
-  milestone3Name = "Response Assessment",
+  milestone3Name = "",
   milestone3Date = NULL,
-  milestone4Name = "Progression",
+  milestone4Name = "",
   milestone4Date = NULL,
-  milestone5Name = "Death/Last Follow-up",
+  milestone5Name = "",
   milestone5Date = NULL,
   showEventMarkers = FALSE,
   eventVar = NULL,
@@ -83,10 +84,23 @@ swimmerplot(
   Optional variable giving each patient's status. A censored /
   still-at-risk value draws a status arrow at the end of that patient's
   lane and is also what the reverse Kaplan-Meier median follow-up uses.
-  Use 0/FALSE/"censored"/"alive" for ongoing patients (shows arrow), or
-  1/TRUE/"event"/"dead" for completed follow-up (no arrow). Without a
-  censoring variable no arrows are drawn and an information notice says
-  so.
+  Numeric 0/1 is read as 0 = censored (arrow), 1 = event (follow-up
+  completed), and the words "censored"/"alive"/"ongoing" and
+  "event"/"dead"/"died"/"death" are read as named. Any other coding,
+  such as Yes/No, TRUE/FALSE or 1/2, is not guessed: choose it in
+  censorCoding. Without a censoring variable no arrows are drawn and an
+  information notice says so.
+
+- censorCoding:
+
+  How the censoring variable is read. Automatic reads numeric 0/1 as 0 =
+  censored, 1 = event (choose "0/1: 1 = censored" for a column such as
+  Censored = 1), and the words censored/alive/ongoing and
+  event/dead/died/death as named. Yes/No, TRUE/FALSE, 1/2 and a column
+  with a single value (all 0 or all 1) are never guessed: choose the
+  coding that matches the data. While a column cannot be read, no status
+  arrows are drawn and median follow-up is the plain median of observed
+  durations.
 
 - groupVar:
 
@@ -106,7 +120,9 @@ swimmerplot(
 
 - timeUnit:
 
-  Time unit to use for display and calculations.
+  With Raw Values input, the unit your start and end times are already
+  recorded in; the values are not rescaled. With Date/Time input, the
+  unit durations are calculated in.
 
 - timeDisplay:
 
@@ -121,6 +137,7 @@ swimmerplot(
 - milestone1Name:
 
   Name for the first milestone event (e.g., Surgery, Treatment Start).
+  Leave blank to use the variable's name.
 
 - milestone1Date:
 
@@ -128,7 +145,8 @@ swimmerplot(
 
 - milestone2Name:
 
-  Name for the second milestone event.
+  Name for the second milestone event. Leave blank to use the variable's
+  name.
 
 - milestone2Date:
 
@@ -136,7 +154,8 @@ swimmerplot(
 
 - milestone3Name:
 
-  Name for the third milestone event.
+  Name for the third milestone event. Leave blank to use the variable's
+  name.
 
 - milestone3Date:
 
@@ -144,7 +163,8 @@ swimmerplot(
 
 - milestone4Name:
 
-  Name for the fourth milestone event.
+  Name for the fourth milestone event. Leave blank to use the variable's
+  name.
 
 - milestone4Date:
 
@@ -152,7 +172,8 @@ swimmerplot(
 
 - milestone5Name:
 
-  Name for the fifth milestone event.
+  Name for the fifth milestone event. Leave blank to use the variable's
+  name.
 
 - milestone5Date:
 

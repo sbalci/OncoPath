@@ -40,7 +40,8 @@ res <- waterfall(
   inputType   = "percentage",
   sortBy      = "response",
 
-  showThresholds           = TRUE,   # the -30% and +20% RECIST lines
+  groupVar                 = "Treatment",  # ORR/DCR by arm, with Fisher's exact test
+  showThresholds           = TRUE,   # the -30% and +20% threshold lines
   showMedian               = TRUE,
   labelOutliers            = TRUE,
   showCategoryLabels       = TRUE,   # CR/PR/SD/PD above each bar
@@ -49,7 +50,7 @@ res <- waterfall(
 )
 ```
 
-### RECIST Categories
+### Response Categories (thresholds adapted from RECIST v1.1)
 
      category n percent
            CR 1    0.05
@@ -69,9 +70,21 @@ point estimate alone invites a confidence the data do not support, and
 this is exactly the figure that ends up in a slide deck.
 
 The interpretation text that accompanies these figures is deliberately
-hedged (“general benchmark; verify against tumor-specific thresholds”).
-A 35% ORR means something different in pancreatic cancer than in
-melanoma, and the analysis has no way to know which you are looking at.
+hedged (“There is no universal benchmark: compare them with the response
+rate expected in your tumour type and treatment setting”). A 35% ORR
+means something different in pancreatic cancer than in melanoma, and the
+analysis has no way to know which you are looking at.
+
+With `groupVar = "Treatment"` the rates are also given per arm: Drug A
+ORR 70% (95% CI 34.8-93.3%) and DCR 100%, Drug B ORR 0% (0.0-30.8%) and
+DCR 60%; Fisher’s exact test gives p = 0.003 for ORR and p = 0.087 for
+DCR. Ten patients per arm is small, and the odds ratio is not estimable
+when one arm has no responder.
+
+These categories come from one percent change per patient. They are not
+a RECIST v1.1 assessment: there is no target-lesion summation,
+new-lesion or non-target assessment, or confirmation of response, so ORR
+and DCR here are unconfirmed and exploratory.
 
 ## Raw Longitudinal Input and the Spider Plot
 
@@ -83,8 +96,12 @@ trajectories alongside the waterfall.
 ``` r
 
 data(waterfall_raw_longitudinal, package = "OncoPath")
-head(waterfall_raw_longitudinal)
+head(waterfall_raw_longitudinal, 4)
 #>   PatientID Time Measurement
+#> 1      PT01    0          50
+#> 2      PT01    2          30
+#> 3      PT01    4          25
+#> 4      PT01    6          20
 
 res_spider <- waterfall(
   data        = waterfall_raw_longitudinal,
@@ -92,6 +109,7 @@ res_spider <- waterfall(
   responseVar = "Measurement",
   timeVar     = "Time",
   inputType   = "raw",
+  measurementUnit = "mm",           # unspecified | mm | cm; enables the 5 mm rule
 
   showWaterfallPlot    = TRUE,
   showSpiderPlot       = TRUE,
@@ -101,10 +119,22 @@ res_spider <- waterfall(
 )
 ```
 
-`showResponseDuration` needs the time variable, so it is only available
-on raw input. Duration of response is often the more clinically
-meaningful endpoint of the two: a 40% shrinkage that lasts three months
-and one that lasts two years produce the same waterfall bar.
+With these data: CR 1, PR 10, SD 4, PD 0, so ORR 73.3% (95% CI
+44.9-92.2%) and DCR 100% (78.2-100%); median time to first response 4
+months; the Kaplan-Meier median duration of response is not reached (no
+responder progressed by month 6).
+
+With a time variable, best response is the smallest change up to and
+including the first progression, and progression is measured against the
+nadir (the smallest burden so far). Stating `measurementUnit` adds the
+RECIST v1.1 requirement of an absolute increase of at least 5 mm over
+the nadir; without a unit, small tumours are called progressive more
+often than RECIST would.
+
+`showResponseDuration` needs the time variable. Duration of response is
+often the more clinically meaningful endpoint of the two: a 40%
+shrinkage that lasts three months and one that lasts two years produce
+the same waterfall bar.
 
 ## Options Worth Knowing About
 
@@ -114,14 +144,14 @@ Several of these were undocumented until now.
 |----|----|----|
 | `sortDirection` | `"conventional"` | `"conventional"` puts the best responses on the left, as in published figures. `"reverse"` flips it. (Not `"decreasing"` — that value is rejected.) |
 | `showBaseline` | `TRUE` | The Y = 0 reference line |
-| `showCategoryLabels` | `FALSE` | RECIST category above each bar |
+| `showCategoryLabels` | `FALSE` | Response category above each bar |
 | `confirmationVar` | — | A column marking which responses were confirmed on a later scan. Unconfirmed responses overstate activity |
-| `ongoingVar` | — | A column marking patients still on treatment, whose responses may deepen |
-| `responseCategoryVar` | — | Override the computed RECIST category with an investigator-assigned one |
+| `ongoingVar` | — | A yes/no column marking patients still on treatment (TRUE, non-zero, or yes/y/true/on/ongoing/1; the last recorded value is used). Any other value counts as not ongoing, so do not put a treatment-arm column here |
+| `responseCategoryVar` | — | Override the computed category with an investigator-assigned CR/PR/SD/PD, for example confirmed responses or PD from clinical progression |
 | `annotationVars` | — | Extra tracks drawn below the bars (mutation status, prior lines, and so on) |
 | `showResponseDuration` | `FALSE` | Time-to-response and duration-of-response; needs `timeVar` |
 | `showSpiderLabels` | `FALSE` | Patient ID on each spider line |
-| `timeUnitLabel` | `"generic"` | Axis label for the spider plot |
+| `timeUnitLabel` | `"generic"` | The unit of the time variable, used in labels and in time-to-response results |
 | `showClinicalSignificance` | `FALSE` | Clinical-significance threshold annotations |
 | `showConfidenceIntervals` | `TRUE` | Confidence intervals on ORR and DCR |
 | `generateCopyReadyReport` | `FALSE` | A paste-ready results paragraph |

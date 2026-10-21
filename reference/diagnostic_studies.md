@@ -1,7 +1,8 @@
 # Diagnostic Studies Sample Dataset
 
-A sample dataset containing diagnostic test accuracy data for
-meta-analysis.
+Five synthetic diagnostic accuracy studies (2x2 tables) for the
+`diagnosticmeta` analysis. Five studies are too few for heterogeneity or
+meta-regression; use `diagnosticmeta_test_categorical` for those.
 
 ## Usage
 
@@ -15,7 +16,7 @@ A data frame with 5 rows and 5 variables:
 
 - study_name:
 
-  Factor with unique study identifiers
+  Study identifier
 
 - tp:
 
@@ -32,3 +33,7 @@ A data frame with 5 rows and 5 variables:
 - tn:
 
   Number of true negative results
+
+## Source
+
+Synthetic data generated for the ClinicoPath project.

@@ -37,6 +37,7 @@ ihcheterogeneity(
   variance_components = FALSE,
   sample_size_planning = FALSE,
   generate_recommendations = FALSE,
+  showInterpretation = FALSE,
   showSummary = FALSE,
   showGlossary = FALSE,
   showReportSentences = FALSE,
@@ -118,8 +119,8 @@ ihcheterogeneity(
 - sampling_strategy:
 
   How the regions were chosen. Recorded for reporting only: it changes
-  no computation, and systematic or stratified sampling adds a note on
-  how to read the estimates.
+  no computation. Random, systematic or stratified sampling adds a
+  notice on how to read the estimates; 'Not specified' adds nothing.
 
 - cv_threshold:
 
@@ -140,14 +141,17 @@ ihcheterogeneity(
 - bias_margin:
 
   Largest systematic difference, as a percentage of the comparison mean
-  (the reference, or the other regions), that is still clinically
-  acceptable. A difference is ruled out when its 90 percent CI lies
-  inside the margin (two one-sided tests), and shown to be material when
-  a Bonferroni-adjusted CI lies entirely beyond it; otherwise it is
-  inconclusive. A difference shown to change with the level
-  (proportional bias) is also judged at the 5th and 95th percentiles of
-  the level, and is ruled out only when both ends lie inside the margin.
-  Choose it before looking at the results.
+  (the reference, or without one the mean of the two regions of each
+  pair), that is still clinically acceptable. A difference is ruled out
+  when its 90 percent CI (a Fieller interval for the ratio) lies inside
+  the margin (two one-sided tests), and shown to be material when a
+  Bonferroni-adjusted CI lies entirely beyond it; otherwise it is
+  inconclusive. Without a reference every pair of regions is compared,
+  and the regions agree only when every pair is ruled out. A difference
+  shown to change with the level (proportional bias) is also judged at
+  the 5th and 95th percentiles of the level, and is ruled out only when
+  both ends lie inside the margin. Choose it before looking at the
+  results.
 
 - show_variability_plots:
 
@@ -166,15 +170,25 @@ ihcheterogeneity(
 - sample_size_planning:
 
   Number of cases needed to estimate the ICC with a 95 percent CI of
-  width 0.20 or 0.10 (Bonett 2002), at planning ICCs of 0.75 and 0.90
-  and at the observed ICC, for the number of measurements per case in
-  this analysis. Always shown under the Comprehensive focus.
+  width 0.20 or 0.10 at planning ICCs of 0.75 and 0.90 and at the
+  observed consistency ICC, for the number of measurements per case in
+  this analysis. Refines the Bonett (2002) approximation by integrating
+  the exact F-interval width under a balanced normal ANOVA model.
+  Controls expected width, not assurance that every interval meets the
+  target. Always shown under the Comprehensive focus.
 
 - generate_recommendations:
 
   Recommendations on regions per case, calibration of systematic
   differences and quality control, derived from the results of this
-  analysis.
+  analysis. They are shown inside the clinical interpretation, so they
+  need showInterpretation = TRUE.
+
+- showInterpretation:
+
+  Display the clinical interpretation report: study design, key findings
+  and the overall verdict (and the recommendations, when
+  generate_recommendations is TRUE).
 
 - showSummary:
 

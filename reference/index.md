@@ -25,8 +25,13 @@ Bundled example datasets
 
 - [`diagnostic_studies`](https://www.serdarbalci.com/OncoPath/reference/diagnostic_studies.md)
   : Diagnostic Studies Sample Dataset
+- [`diagnosticmeta_test_categorical`](https://www.serdarbalci.com/OncoPath/reference/diagnosticmeta_test_categorical.md)
+  : diagnosticmeta_test_categorical: example dataset for the OncoPath
+  module
 - [`histopathology`](https://www.serdarbalci.com/OncoPath/reference/histopathology.md)
   : Histopathology Sample Dataset
+- [`ihcheterogeneity_test`](https://www.serdarbalci.com/OncoPath/reference/ihcheterogeneity_test.md)
+  : ihcheterogeneity_test: example dataset for the OncoPath module
 - [`swimmerplot_sample`](https://www.serdarbalci.com/OncoPath/reference/swimmerplot_sample.md)
   : Swimmer Plot Sample Dataset
 - [`waterfall_percentage_basic`](https://www.serdarbalci.com/OncoPath/reference/waterfall_percentage_basic.md)
