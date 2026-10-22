@@ -21,3 +21,5 @@ i18n-plans/
 dist/
 README.html
 .claude/settings.local.json
+.Rproj.user
+.Rproj.user
