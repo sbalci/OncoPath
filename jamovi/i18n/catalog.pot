@@ -2601,6 +2601,10 @@ msgstr ""
 msgid "Category"
 msgstr ""
 
+#: waterfall/ui[0][6].label
+msgid "Category override (optional)"
+msgstr ""
+
 #: R/diagnosticmeta.b.R
 msgid ""
 "Cell counts must be whole numbers, and {n} study/studies have fractional "
@@ -4162,7 +4166,7 @@ msgstr ""
 msgid "EXTREME VALUES DETECTED"
 msgstr ""
 
-#: diagnosticmeta/ui[0][3][0].label
+#: diagnosticmeta/ui[0][3].label
 msgid "False negatives (disease+, test-)"
 msgstr ""
 
@@ -4178,7 +4182,7 @@ msgstr ""
 msgid "False Positive Rate (1 - Specificity)"
 msgstr ""
 
-#: diagnosticmeta/ui[0][2][0].label
+#: diagnosticmeta/ui[0][2].label
 msgid "False positives (disease-, test+)"
 msgstr ""
 
@@ -4893,6 +4897,14 @@ msgstr ""
 msgid "INFO"
 msgstr ""
 
+#: waterfall/ui[1][0].label
+msgid "Input Settings"
+msgstr ""
+
+#: waterfall/ui[1][0]/inputType.label
+msgid "Input type"
+msgstr ""
+
 #: swimmerplot/results/instructions.title
 msgid "Instructions"
 msgstr ""
@@ -5466,7 +5478,7 @@ msgstr ""
 msgid "Meta-regression covariate"
 msgstr ""
 
-#: diagnosticmeta/ui[0][5][0].label
+#: diagnosticmeta/ui[0][5].label
 msgid "Meta-regression covariate (optional)"
 msgstr ""
 
@@ -6567,7 +6579,6 @@ msgid ""
 msgstr ""
 
 #: waterfall/options/ongoingVar.title
-#: waterfall/ui[0][5].label
 msgid "On-Treatment / ongoing (optional)"
 msgstr ""
 
@@ -6628,6 +6639,10 @@ msgstr ""
 msgid ""
 "one row per patient with the plotted start, end, duration and response, for "
 "the first 500 patients in plot order"
+msgstr ""
+
+#: waterfall/ui[0][5].label
+msgid "Ongoing status (optional)"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -7684,6 +7699,10 @@ msgid ""
 "lets the test and the rate above it be read together."
 msgstr ""
 
+#: waterfall/ui[1][0]/measurementUnit.label
+msgid "Raw measurement unit"
+msgstr ""
+
 #: waterfall/options/inputType/raw.title
 msgid "Raw Measurements"
 msgstr ""
@@ -8169,7 +8188,6 @@ msgid "Response category column"
 msgstr ""
 
 #: waterfall/options/responseCategoryVar.title
-#: waterfall/ui[0][6].label
 msgid "Response category override (optional)"
 msgstr ""
 
@@ -8195,6 +8213,10 @@ msgid ""
 "patients%s) and a disease control rate (DCR) of %.1f%% (%d/%d patients%s). "
 "Rates are over all patients analysed, with not-evaluable and unrecorded "
 "responses counted as non-responders (RECIST 1.1 section 4.9.1)."
+msgstr ""
+
+#: waterfall/ui[0][1].label
+msgid "Response measurement"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -8227,10 +8249,6 @@ msgstr ""
 #: swimmerplot/options/sortOrder/response.title
 #: swimmerplot/results/personTimeTable.columns.title
 msgid "Response Type"
-msgstr ""
-
-#: waterfall/ui[0][1].label
-msgid "Response value (raw or percentage measurement)"
 msgstr ""
 
 #: waterfall/options/responseVar.title
@@ -9257,7 +9275,7 @@ msgstr ""
 msgid "Study identifier"
 msgstr ""
 
-#: diagnosticmeta/ui[0][0][0].label
+#: diagnosticmeta/ui[0][0].label
 msgid "Study identifier (required)"
 msgstr ""
 
@@ -10656,6 +10674,7 @@ msgstr ""
 
 #: swimmerplot/options/timeUnit.title
 #: waterfall/options/timeUnitLabel.title
+#: waterfall/ui[1][0]/timeUnitLabel.label
 msgid "Time unit"
 msgstr ""
 
@@ -10678,7 +10697,7 @@ msgid "Time Variable (if needed)"
 msgstr ""
 
 #: waterfall/ui[0][2].label
-msgid "Time variable (raw input, visits, spider plot)"
+msgid "Time variable (if used)"
 msgstr ""
 
 #: waterfall/options/timeVar.title
@@ -10904,7 +10923,7 @@ msgstr ""
 msgid "Triangle position shows where your pooled test performance lies"
 msgstr ""
 
-#: diagnosticmeta/ui[0][4][0].label
+#: diagnosticmeta/ui[0][4].label
 msgid "True negatives (disease-, test-)"
 msgstr ""
 
@@ -10916,7 +10935,7 @@ msgstr ""
 msgid "True negatives is still empty."
 msgstr ""
 
-#: diagnosticmeta/ui[0][1][0].label
+#: diagnosticmeta/ui[0][1].label
 msgid "True positives (disease+, test+)"
 msgstr ""
 

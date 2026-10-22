@@ -1426,6 +1426,9 @@
             "Category": [
                 ""
             ],
+            "Category override (optional)": [
+                ""
+            ],
             "Cell counts must be whole numbers, and {n} study/studies have fractional counts, which leaves too few studies. Enter the number of participants in each cell of the 2x2 table (TP, FP, FN, TN).": [
                 ""
             ],
@@ -2863,6 +2866,12 @@
             "INFO": [
                 ""
             ],
+            "Input Settings": [
+                ""
+            ],
+            "Input type": [
+                ""
+            ],
             "Instructions": [
                 ""
             ],
@@ -3940,6 +3949,9 @@
             "one row per patient with the plotted start, end, duration and response, for the first 500 patients in plot order": [
                 ""
             ],
+            "Ongoing status (optional)": [
+                ""
+            ],
             "Only %d cases are available. Reliability and variance estimates from fewer than 10 cases are imprecise; treat every coefficient below as provisional.": [
                 ""
             ],
@@ -4549,6 +4561,9 @@
             "Rates are over all %d patients in the comparison who have a group value, split by group below: not-evaluable and unrecorded responses count as non-responders, the same rule the Objective Response Rate uses. This is what lets the test and the rate above it be read together.": [
                 ""
             ],
+            "Raw measurement unit": [
+                ""
+            ],
             "Raw Measurements": [
                 ""
             ],
@@ -4873,6 +4888,9 @@
             "Response evaluation showed an objective response rate (ORR) of %.1f%% (%d/%d patients%s) and a disease control rate (DCR) of %.1f%% (%d/%d patients%s). Rates are over all patients analysed, with not-evaluable and unrecorded responses counted as non-responders (RECIST 1.1 section 4.9.1).": [
                 ""
             ],
+            "Response measurement": [
+                ""
+            ],
             "Response Metrics": [
                 ""
             ],
@@ -4892,9 +4910,6 @@
                 ""
             ],
             "Response Type": [
-                ""
-            ],
-            "Response value (raw or percentage measurement)": [
                 ""
             ],
             "Response value (raw or percentage)": [
@@ -6199,7 +6214,7 @@
             "Time Variable (if needed)": [
                 ""
             ],
-            "Time variable (raw input, visits, spider plot)": [
+            "Time variable (if used)": [
                 ""
             ],
             "Time variable (required for raw input and spider plot)": [

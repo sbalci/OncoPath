@@ -1,12 +1,12 @@
 ---
 title: OncoPath Functions for Clinicopathological Research
 name: OncoPath
-version: 1.1.1
+version: 1.1.1.01
 jms: '1.0'
 authors:
   - Serdar Balci
 maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
-date: '2026-10-21'
+date: '2026-10-22'
 type: R
 description: >-
   Oncology and pathology analyses from the ClinicoPath project: swimmer plots of

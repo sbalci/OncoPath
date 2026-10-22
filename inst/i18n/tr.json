@@ -1426,6 +1426,9 @@
             "Category": [
                 "Kategori"
             ],
+            "Category override (optional)": [
+                ""
+            ],
             "Cell counts must be whole numbers, and {n} study/studies have fractional counts, which leaves too few studies. Enter the number of participants in each cell of the 2x2 table (TP, FP, FN, TN).": [
                 "Hücre sayımları tam sayı olmalıdır; {n} çalışmada kesirli sayımlar bulunduğundan yeterli çalışma kalmamaktadır. 2x2 tablonun her hücresine katılımcı sayısını girin (TP, FP, FN, TN)."
             ],
@@ -2863,6 +2866,12 @@
             "INFO": [
                 "BİLGİ"
             ],
+            "Input Settings": [
+                ""
+            ],
+            "Input type": [
+                ""
+            ],
             "Instructions": [
                 "Yönergeler"
             ],
@@ -3940,6 +3949,9 @@
             "one row per patient with the plotted start, end, duration and response, for the first 500 patients in plot order": [
                 "çizim sırasındaki ilk 500 hasta için, çizilen başlangıç, bitiş, süre ve yanıtla hasta başına bir satır"
             ],
+            "Ongoing status (optional)": [
+                ""
+            ],
             "Only %d cases are available. Reliability and variance estimates from fewer than 10 cases are imprecise; treat every coefficient below as provisional.": [
                 "Yalnızca %d vaka mevcut. 10'dan az vakadan elde edilen güvenilirlik ve varyans tahminleri kesin değildir; aşağıdaki her katsayıyı geçici olarak değerlendirin."
             ],
@@ -4549,6 +4561,9 @@
             "Rates are over all %d patients in the comparison who have a group value, split by group below: not-evaluable and unrecorded responses count as non-responders, the same rule the Objective Response Rate uses. This is what lets the test and the rate above it be read together.": [
                 "Oranlar, karşılaştırmada grup değeri olan tüm %d hasta üzerindendir ve aşağıda gruplara ayrılmıştır: değerlendirilemeyen ve kaydedilmemiş yanıtlar, Objektif Yanıt Oranı'ndaki kuralla aynı şekilde yanıt vermeyen olarak sayılır. Testin ve üstündeki oranın birlikte okunabilmesini sağlayan budur."
             ],
+            "Raw measurement unit": [
+                ""
+            ],
             "Raw Measurements": [
                 "Ham Ölçümler"
             ],
@@ -4873,6 +4888,9 @@
             "Response evaluation showed an objective response rate (ORR) of %.1f%% (%d/%d patients%s) and a disease control rate (DCR) of %.1f%% (%d/%d patients%s). Rates are over all patients analysed, with not-evaluable and unrecorded responses counted as non-responders (RECIST 1.1 section 4.9.1).": [
                 "Yanıt değerlendirmesinde objektif yanıt oranı (ORR) %%%.1f (%d/%d hasta%s), hastalık kontrol oranı (DCR) %%%.1f (%d/%d hasta%s) olarak bulundu. Oranlar, değerlendirilemeyen ve kayıtsız yanıtlar yanıt vermemiş sayılarak analiz edilen tüm hastalar üzerinden hesaplanır (RECIST 1.1 bölüm 4.9.1)."
             ],
+            "Response measurement": [
+                ""
+            ],
             "Response Metrics": [
                 "Yanıt Metrikleri"
             ],
@@ -4893,9 +4911,6 @@
             ],
             "Response Type": [
                 "Yanıt Türü"
-            ],
-            "Response value (raw or percentage measurement)": [
-                "Yanıt değeri (ham ölçüm veya yüzde)"
             ],
             "Response value (raw or percentage)": [
                 "Yanıt değeri (ham veya yüzde)"
@@ -6199,8 +6214,8 @@
             "Time Variable (if needed)": [
                 "Zaman Değişkeni (gerekirse)"
             ],
-            "Time variable (raw input, visits, spider plot)": [
-                "Zaman değişkeni (ham girdi, ziyaretler, örümcek grafiği)"
+            "Time variable (if used)": [
+                ""
             ],
             "Time variable (required for raw input and spider plot)": [
                 "Zaman değişkeni (ham giriş ve örümcek grafiği için gerekli)"

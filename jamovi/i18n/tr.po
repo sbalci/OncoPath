@@ -3304,6 +3304,10 @@ msgstr ""
 msgid "Category"
 msgstr "Kategori"
 
+#: waterfall/ui[0][6].label
+msgid "Category override (optional)"
+msgstr ""
+
 #: R/diagnosticmeta.b.R
 msgid ""
 "Cell counts must be whole numbers, and {n} study/studies have fractional "
@@ -5083,7 +5087,7 @@ msgstr "Zaman Çizelgesi Verisini Dışa Aktar"
 msgid "EXTREME VALUES DETECTED"
 msgstr "UÇ DEĞERLER TESPİT EDİLDİ"
 
-#: diagnosticmeta/ui[0][3][0].label
+#: diagnosticmeta/ui[0][3].label
 msgid "False negatives (disease+, test-)"
 msgstr "Yanlış negatifler (hastalık+, test-)"
 
@@ -5099,7 +5103,7 @@ msgstr "Yanlış negatifler henüz seçilmedi."
 msgid "False Positive Rate (1 - Specificity)"
 msgstr "Yanlış Pozitiflik Oranı (1 - Özgüllük)"
 
-#: diagnosticmeta/ui[0][2][0].label
+#: diagnosticmeta/ui[0][2].label
 msgid "False positives (disease-, test+)"
 msgstr "Yanlış pozitifler (hastalık-, test+)"
 
@@ -5913,6 +5917,14 @@ msgstr ""
 msgid "INFO"
 msgstr "BİLGİ"
 
+#: waterfall/ui[1][0].label
+msgid "Input Settings"
+msgstr ""
+
+#: waterfall/ui[1][0]/inputType.label
+msgid "Input type"
+msgstr ""
+
 #: swimmerplot/results/instructions.title
 msgid "Instructions"
 msgstr "Yönergeler"
@@ -6542,7 +6554,7 @@ msgstr "Meta-regresyon (ortak değişken etkileri)"
 msgid "Meta-regression covariate"
 msgstr "Meta-regresyon ortak değişkeni"
 
-#: diagnosticmeta/ui[0][5][0].label
+#: diagnosticmeta/ui[0][5].label
 msgid "Meta-regression covariate (optional)"
 msgstr "Meta-regresyon ortak değişkeni (isteğe bağlı)"
 
@@ -7834,7 +7846,6 @@ msgstr ""
 "vermektedir."
 
 #: waterfall/options/ongoingVar.title
-#: waterfall/ui[0][5].label
 msgid "On-Treatment / ongoing (optional)"
 msgstr "Tedavi devam ediyor (isteğe bağlı)"
 
@@ -7907,6 +7918,10 @@ msgid ""
 msgstr ""
 "çizim sırasındaki ilk 500 hasta için, çizilen başlangıç, bitiş, süre ve "
 "yanıtla hasta başına bir satır"
+
+#: waterfall/ui[0][5].label
+msgid "Ongoing status (optional)"
+msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -9168,6 +9183,10 @@ msgstr ""
 "Objektif Yanıt Oranı'ndaki kuralla aynı şekilde yanıt vermeyen olarak "
 "sayılır. Testin ve üstündeki oranın birlikte okunabilmesini sağlayan budur."
 
+#: waterfall/ui[1][0]/measurementUnit.label
+msgid "Raw measurement unit"
+msgstr ""
+
 #: waterfall/options/inputType/raw.title
 msgid "Raw Measurements"
 msgstr "Ham Ölçümler"
@@ -9725,7 +9744,6 @@ msgid "Response category column"
 msgstr "Yanıt kategorisi sütunu"
 
 #: waterfall/options/responseCategoryVar.title
-#: waterfall/ui[0][6].label
 msgid "Response category override (optional)"
 msgstr "Yanıt kategorisi geçersiz kılma (isteğe bağlı)"
 
@@ -9756,6 +9774,10 @@ msgstr ""
 "hastalık kontrol oranı (DCR) %%%.1f (%d/%d hasta%s) olarak bulundu. Oranlar, "
 "değerlendirilemeyen ve kayıtsız yanıtlar yanıt vermemiş sayılarak analiz "
 "edilen tüm hastalar üzerinden hesaplanır (RECIST 1.1 bölüm 4.9.1)."
+
+#: waterfall/ui[0][1].label
+msgid "Response measurement"
+msgstr ""
 
 #: R/waterfall.b.R
 msgid "Response Metrics"
@@ -9791,10 +9813,6 @@ msgstr "Yanıt sıralaması kullanılamıyor"
 #: swimmerplot/results/personTimeTable.columns.title
 msgid "Response Type"
 msgstr "Yanıt Türü"
-
-#: waterfall/ui[0][1].label
-msgid "Response value (raw or percentage measurement)"
-msgstr "Yanıt değeri (ham ölçüm veya yüzde)"
 
 #: waterfall/options/responseVar.title
 msgid "Response value (raw or percentage)"
@@ -11003,7 +11021,7 @@ msgstr "Çalışma Tasarımı:"
 msgid "Study identifier"
 msgstr "Çalışma tanımlayıcısı"
 
-#: diagnosticmeta/ui[0][0][0].label
+#: diagnosticmeta/ui[0][0].label
 msgid "Study identifier (required)"
 msgstr "Çalışma tanımlayıcısı (zorunlu)"
 
@@ -12896,6 +12914,7 @@ msgstr "Yanıta kadar geçen süre ve yanıt süresi hesaplanamadı; nedeni bild
 
 #: swimmerplot/options/timeUnit.title
 #: waterfall/options/timeUnitLabel.title
+#: waterfall/ui[1][0]/timeUnitLabel.label
 msgid "Time unit"
 msgstr "Zaman birimi"
 
@@ -12920,8 +12939,8 @@ msgid "Time Variable (if needed)"
 msgstr "Zaman Değişkeni (gerekirse)"
 
 #: waterfall/ui[0][2].label
-msgid "Time variable (raw input, visits, spider plot)"
-msgstr "Zaman değişkeni (ham girdi, ziyaretler, örümcek grafiği)"
+msgid "Time variable (if used)"
+msgstr ""
 
 #: waterfall/options/timeVar.title
 msgid "Time variable (required for raw input and spider plot)"
@@ -13162,7 +13181,7 @@ msgstr "Tedavi/gözlem başlangıç zamanı"
 msgid "Triangle position shows where your pooled test performance lies"
 msgstr "Üçgenin konumu birleştirilmiş test performansınızı gösterir"
 
-#: diagnosticmeta/ui[0][4][0].label
+#: diagnosticmeta/ui[0][4].label
 msgid "True negatives (disease-, test-)"
 msgstr "Gerçek negatifler (hastalık-, test-)"
 
@@ -13174,7 +13193,7 @@ msgstr "Gerçek negatifler (TN)"
 msgid "True negatives is still empty."
 msgstr "Gerçek negatifler henüz seçilmedi."
 
-#: diagnosticmeta/ui[0][1][0].label
+#: diagnosticmeta/ui[0][1].label
 msgid "True positives (disease+, test+)"
 msgstr "Gerçek pozitifler (hastalık+, test+)"
 
