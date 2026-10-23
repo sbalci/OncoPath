@@ -298,24 +298,24 @@ swimmerplot(
 
 A results object containing:
 
-|                               |     |     |     |     |                |
-|-------------------------------|-----|-----|-----|-----|----------------|
-| `results$notices`             |     |     |     |     | a preformatted |
-| `results$instructions`        |     |     |     |     | a html         |
-| `results$plot`                |     |     |     |     | an image       |
-| `results$summary`             |     |     |     |     | a table        |
-| `results$interpretation`      |     |     |     |     | a html         |
-| `results$personTimeTable`     |     |     |     |     | a table        |
-| `results$milestoneTable`      |     |     |     |     | a table        |
-| `results$eventMarkerTable`    |     |     |     |     | a table        |
-| `results$timelineData`        |     |     |     |     | a table        |
-| `results$summaryData`         |     |     |     |     | a table        |
-| `results$exportInfo`          |     |     |     |     | a html         |
-| `results$advancedMetrics`     |     |     |     |     | a table        |
-| `results$groupComparisonTest` |     |     |     |     | a table        |
-| `results$clinicalGlossary`    |     |     |     |     | a html         |
-| `results$copyReadyReport`     |     |     |     |     | a html         |
-| `results$aboutAnalysis`       |     |     |     |     | a html         |
+|                               |     |     |     |     |          |
+|-------------------------------|-----|-----|-----|-----|----------|
+| `results$notices`             |     |     |     |     | a html   |
+| `results$instructions`        |     |     |     |     | a html   |
+| `results$plot`                |     |     |     |     | an image |
+| `results$summary`             |     |     |     |     | a table  |
+| `results$interpretation`      |     |     |     |     | a html   |
+| `results$personTimeTable`     |     |     |     |     | a table  |
+| `results$milestoneTable`      |     |     |     |     | a table  |
+| `results$eventMarkerTable`    |     |     |     |     | a table  |
+| `results$timelineData`        |     |     |     |     | a table  |
+| `results$summaryData`         |     |     |     |     | a table  |
+| `results$exportInfo`          |     |     |     |     | a html   |
+| `results$advancedMetrics`     |     |     |     |     | a table  |
+| `results$groupComparisonTest` |     |     |     |     | a table  |
+| `results$clinicalGlossary`    |     |     |     |     | a html   |
+| `results$copyReadyReport`     |     |     |     |     | a html   |
+| `results$aboutAnalysis`       |     |     |     |     | a html   |
 
 Tables can be converted to data frames with `asDF` or
 [`as.data.frame`](https://rdrr.io/r/base/as.data.frame.html). For
