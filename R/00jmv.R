@@ -206,13 +206,6 @@
         `title`="Categorical Data Analysis", 
         `publisher`="Wiley, Hoboken, NJ (3rd edition)", 
         `url`="https://www.wiley.com/en-us/Categorical+Data+Analysis%2C+3rd+Edition-p-9780470463635"), 
-    `data.table`=list(
-        `type`="software", 
-        `author`="Tyson Barrett (ORCID: ), Matt Dowle , Arun Srinivasan , Jan Gorecki , Michael Chirico (ORCID: ), Toby Hocking (ORCID: ), Benjamin Schwendinger (ORCID: ), Ivan Krylov (ORCID: ), Pasha Stetsenko , Tom Short , Steve Lianoglou , Eduard Antonyan , Markus Bonsch , Hugh Parsonage , Scott Ritchie , Kun Ren , Xianying Tan , Rick Saporta , Otto Seiskari , Xianghui Dong , Michel Lang , Watal Iwasaki , Seth Wenchel , Karl Broman , Tobias Schmidt , David Arenburg , Ethan Smith , Francois Cocquemas , Matthieu Gomez , Philippe Chataignon , Nello Blaser , Dmitry Selivanov , Andrey Riabushenko , Cheng Lee , Declan Groves , Daniel Possenriede , Felipe Parages , Denes Toth , Mus Yaramaz-David , Ayappan Perumal , James Sams , Martin Morgan , Michael Quinn , @javrucebo (GitHub user), Marc Halperin , Roy Storey , Manish Saraswat , Morgan Jacob , Michael Schubmehl , Davis Vaughan , Leonardo Silvestri , Jim Hester , Anthony Damico , Sebastian Freundt , David Simons , Elliott Sales de Andrade , Cole Miller , Jens Peder Meldgaard , Vaclav Tlapak , Kevin Ushey , Dirk Eddelbuettel , Tony Fischetti , Ofek Shilon , Vadim Khotilovich , Hadley Wickham , Bennet Becker , Kyle Haynes , Boniface Christian Kamgang , Olivier Delmarcell , Josh O'Brien , Dereck Mezquita (ORCID: ), Michael Czekanski , Dmitry Shemetov , Nitish Jha , Joshua Wu , Iago Gin\u00E9-V\u00E1zquez , Anirban Chetia , Doris Amoakohene , Angel Feliz , Michael Young , Mark Seeto , Philippe Grosjean , Vincent Runge , Christian Wia , Elise Maign\u00E9 , Vincent Rocher , Vijay Lulla , Alja\u017E Sluga , Bill Evans , Reino Bruner , @badasahog (GitHub user), Vinit Thakur , Mukul Kumar , Ildik\u00F3 Czeller , Manmita Das , Tarun Thammisetty , Marco Colombo (ORCID: ), Tim Taylor (ORCID: )", 
-        `year`=2026, 
-        `title`="data.table: Extension of `data.frame`", 
-        `publisher`="[R package version 1.18.6.1]. Retrieved from https://CRAN.R-project.org/package=data.table", 
-        `url`="https://CRAN.R-project.org/package=data.table"), 
     `ggrepel`=list(
         `type`="software", 
         `author`="Kamil Slowikowski", 
@@ -227,13 +220,6 @@
         `title`="ggswim: Create Swimmer Plots with ggplot2", 
         `publisher`="[R package]. Retrieved from https://github.com/CHOP-CGTInformatics/ggswim", 
         `url`="https://github.com/CHOP-CGTInformatics/ggswim"), 
-    `lubridate`=list(
-        `type`="software", 
-        `author`="Garrett Grolemund and Hadley Wickham", 
-        `year`=2011, 
-        `title`="lubridate: Make Dealing with Dates a Little Easier", 
-        `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=lubridate", 
-        `url`="https://CRAN.R-project.org/package=lubridate"), 
     `mada`=list(
         `type`="software", 
         `author`="Philipp Doebler", 
