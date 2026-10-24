@@ -51,7 +51,7 @@ msgstr ""
 msgid "{response} Rate ({n}/{N})"
 msgstr "{response} oranı ({n}/{N})"
 
-#: diagnosticmeta/ui[1][1][0]/confidence_level.suffix
+#: diagnosticmeta/ui[2][0]/confidence_level.suffix
 msgid "%"
 msgstr "%"
 
@@ -165,7 +165,7 @@ msgstr "%d işaret hastanın ilk başlangıcından önce."
 
 #: R/waterfall.b.R
 msgid ""
-"%d further patient(s) could not be analysed (no usable value or baseline) "
+"%d further patient(s) could not be analyzed (no usable value or baseline) "
 "and are in no row of this table; the notices name them."
 msgstr ""
 "%d hasta daha analiz edilemedi (kullanılabilir değer veya başlangıç değeri "
@@ -324,13 +324,13 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"%d of %d rows were not analysed because they have fewer than 2 regional "
+"%d of %d rows were not analyzed because they have fewer than 2 regional "
 "measurements."
 msgstr "%d / %d satır, 2'den az bölgesel ölçüme sahip olduğu için analiz edilmedi."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"%d of %d rows were not analysed because they lack a reference value or any "
+"%d of %d rows were not analyzed because they lack a reference value or any "
 "regional measurement."
 msgstr ""
 "%d / %d satır, referans değeri veya herhangi bir bölgesel ölçümü olmadığı "
@@ -489,7 +489,7 @@ msgstr ""
 #: R/waterfall.b.R
 msgid ""
 "%d patient(s) had a change below -100%%, which is not physically possible: "
-"-100%% already means the tumour has disappeared completely. The most extreme "
+"-100%% already means the tumor has disappeared completely. The most extreme "
 "was %.1f%%. These values were capped at -100%% in the analysis and the plot; "
 "such a patient counts as a complete response only when a capped value is "
 "their best response: %s. Check the response column for data-entry errors."
@@ -515,11 +515,11 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"%d patient(s) have a negative raw measurement, which is not a possible "
-"tumour size: %s. A negative baseline inverts the sign of the percent change, "
-"so a growing tumour would be reported as a response. These patients are "
-"reported as \"Unknown\" rather than guessed at. Check the measurement column "
-"for data-entry errors."
+"%d patient(s) have a negative raw measurement, which is not a possible tumor "
+"size: %s. A negative baseline inverts the sign of the percent change, so a "
+"growing tumor would be reported as a response. These patients are reported "
+"as \"Unknown\" rather than guessed at. Check the measurement column for "
+"data-entry errors."
 msgstr ""
 "%d hastada olası bir tümör boyutu olmayan negatif bir ham ölçüm var: %s. "
 "Negatif bir başlangıç değeri yüzde değişimin işaretini tersine çevirir, "
@@ -572,7 +572,7 @@ msgstr ""
 msgid ""
 "%d patient(s) have more than one row but no time variable is selected: %s. "
 "The smallest value was used as each patient's best response. If the rows are "
-"visits, a 0%% baseline row takes part in that minimum, so a tumour that only "
+"visits, a 0%% baseline row takes part in that minimum, so a tumor that only "
 "grew is scored SD instead of PD. Select the visit time as the Time Variable."
 msgstr ""
 "%d hastada birden fazla satır var ancak zaman değişkeni seçilmedi: %s. Her "
@@ -669,8 +669,8 @@ msgstr ""
 #: R/swimmerplot.b.R
 msgid ""
 "%d start/end values are not numbers (for example '%s') and those rows are "
-"excluded. Time Input Type is set to Raw Values; if these are calendar dates, "
-"switch it to Date/Time."
+"excluded. Time Input Type is set to Raw values; if these are calendar dates, "
+"switch it to Date/time."
 msgstr ""
 "%d başlangıç/bitiş değeri sayısal değil (örneğin '%s'); bu satırlar "
 "dışlanır. Zaman girdisi türü ham değer olarak seçilmiştir; değerler takvim "
@@ -719,8 +719,8 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"%d study/studies have no identifier; they are labelled 'Unnamed study' in "
-"the tables and the forest plot."
+"%d study/studies have no identifier; they are labeled 'Unnamed study' in the "
+"tables and the forest plot."
 msgstr ""
 "%d çalışmanın tanımlayıcısı yok; tablolarda ve orman grafiğinde 'Adsız "
 "çalışma' olarak etiketlenmiştir."
@@ -779,7 +779,7 @@ msgstr ""
 #: R/ihcheterogeneity.b.R
 msgid ""
 "%s is the reference measurement and was also selected as a regional "
-"measurement; it is analysed as the reference only."
+"measurement; it is analyzed as the reference only."
 msgstr ""
 "%s referans ölçümüdür ve ayrıca bölgesel ölçüm olarak da seçilmiştir; "
 "yalnızca referans olarak analiz edilir."
@@ -818,7 +818,7 @@ msgstr "%s ve referans"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"%s was selected more than once as a regional measurement and is analysed "
+"%s was selected more than once as a regional measurement and is analyzed "
 "once."
 msgstr ""
 "%s bölgesel ölçüm olarak birden fazla kez seçildi ve yalnızca bir kez analiz "
@@ -1616,7 +1616,7 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Not external validation:</strong> a meta-analysis summarises "
+"<strong>Not external validation:</strong> a meta-analysis summarizes "
 "existing published evidence and inherits any publication, spectrum or "
 "reference-standard bias of the included studies; it is not a prospective "
 "evaluation in an intended-use population with a pre-specified threshold"
@@ -2042,7 +2042,7 @@ msgid ""
 "<strong>Use this plot to:</strong> Compare the studies' operating points, "
 "see the trade-off between sensitivity and specificity across them, and "
 "assess consistency across study populations and settings. The curve "
-"summarises studies with unknown and differing positivity thresholds and "
+"summarizes studies with unknown and differing positivity thresholds and "
 "carries no threshold values, so it does not identify a cut-off for a "
 "laboratory to adopt."
 msgstr ""
@@ -2701,7 +2701,7 @@ msgstr ""
 msgid "Advanced Clinical Metrics"
 msgstr "Gelişmiş Klinik Metrikler"
 
-#: diagnosticmeta/ui[1][1].label
+#: diagnosticmeta/ui[2].label
 msgid "Advanced Options"
 msgstr "Gelişmiş Seçenekler"
 
@@ -2710,12 +2710,8 @@ msgid "Agreement Level:"
 msgstr "Uyum Düzeyi:"
 
 #: R/ihcheterogeneity.b.R
-msgid "AGREEMENT THRESHOLDS MET, NOT CONFIRMED:"
-msgstr "UYUM EŞİKLERİ KARŞILANDI, DOĞRULANMADI:"
-
-#: R/ihcheterogeneity.b.R
-msgid "AGREEMENT THRESHOLDS MET:"
-msgstr "UYUM EŞİKLERİ KARŞILANDI:"
+msgid "Agreement thresholds met, not confirmed:"
+msgstr "Uyum eşikleri karşılandı, doğrulanmadı:"
 
 #: R/ihcheterogeneity.b.R
 msgid "Agreement thresholds met:"
@@ -2845,7 +2841,7 @@ msgstr "Analiz Bilgisi"
 msgid "Analysis Methods"
 msgstr "Analiz yöntemleri"
 
-#: diagnosticmeta/ui[1][0].label
+#: diagnosticmeta/ui[1].label
 msgid "Analysis Options"
 msgstr "Analiz Seçenekleri"
 
@@ -2858,7 +2854,7 @@ msgid "Analysis Summary"
 msgstr "Analiz Özeti"
 
 #: diagnosticmeta/options/show_analysis_summary.title
-#: diagnosticmeta/ui[1][3][0]/show_analysis_summary.label
+#: diagnosticmeta/ui[4][0]/show_analysis_summary.label
 msgid "Analysis summary"
 msgstr "Analiz özeti"
 
@@ -2925,8 +2921,8 @@ msgstr ""
 "değerlendirilmesi"
 
 #: R/waterfall.b.R
-msgid "ASSESSMENTS WITHOUT A TIME"
-msgstr "ZAMANI OLMAYAN DEĞERLENDİRMELER"
+msgid "Assessments without a time"
+msgstr "Zamanı olmayan değerlendirmeler"
 
 #: R/diagnosticmeta.b.R
 msgid "Asymmetry detected (p < 0.05)"
@@ -2943,7 +2939,7 @@ msgid ""
 msgstr "Tam tanısal test verisine sahip en az 3 çalışma gereklidir ({n} bulundu)."
 
 #: R/ihcheterogeneity.b.R
-msgid "At least 5 cases are required; this run analysed %d cases."
+msgid "At least 5 cases are required; this run analyzed %d cases."
 msgstr "En az 5 vaka gereklidir; bu çalıştırmada %d vaka analiz edildi."
 
 #: R/diagnosticmeta.b.R
@@ -2995,16 +2991,16 @@ msgid "Baseline assumed at Time = 0"
 msgstr "Zaman = 0 noktasında başlangıç varsayılır"
 
 #: R/waterfall.b.R
-msgid "BASELINE ASSUMPTION"
-msgstr "BAŞLANGIÇ VARSAYIMI"
+msgid "Baseline assumption"
+msgstr "Başlangıç varsayımı"
 
 #: R/waterfall.b.R
 msgid "Baseline measurements are the reference point for calculating changes"
 msgstr "Başlangıç ölçümleri, değişimleri hesaplamak için referans noktasıdır"
 
 #: R/waterfall.b.R
-msgid "BASELINE NOT AT TIME 0"
-msgstr "BAŞLANGIÇ ZAMAN 0 NOKTASINDA DEĞİL"
+msgid "Baseline not at time 0"
+msgstr "Başlangıç zaman 0 noktasında değil"
 
 #: R/ihcheterogeneity.b.R
 msgid "Below the threshold as a point estimate only: %s."
@@ -3024,12 +3020,12 @@ msgstr "İzlemsel takip verileri için en iyisi"
 
 #: swimmerplot/results/timelineData.columns.title
 #: waterfall/options/sortBy/response.title
-msgid "Best Response"
-msgstr "En İyi Yanıt"
+msgid "Best response"
+msgstr "En iyi yanıt"
 
 #: R/waterfall.b.R
-msgid "Best Response (Simplified):"
-msgstr "En İyi Yanıt (Basitleştirilmiş):"
+msgid "Best response (simplified):"
+msgstr "En iyi yanıt (basitleştirilmiş):"
 
 #: R/waterfall.b.R
 msgid ""
@@ -3047,7 +3043,7 @@ msgstr "En iyi yanıt, en küçük başlangıç sonrası değişimdir."
 
 #: R/waterfall.b.R
 msgid ""
-"Best response was the smallest percent change in tumour burden from baseline "
+"Best response was the smallest percent change in tumor burden from baseline "
 "over the post-baseline assessments up to and including the first progression "
 "(at least 20% over the nadir, or regrowth after a complete response); later "
 "assessments were not used."
@@ -3059,7 +3055,7 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"Best response was the smallest percent change in tumour burden from baseline "
+"Best response was the smallest percent change in tumor burden from baseline "
 "over the post-baseline assessments."
 msgstr ""
 "En iyi yanıt, başlangıç sonrası değerlendirmelerde tümör yükünün başlangıca "
@@ -3166,7 +3162,7 @@ msgid "Bivariate output missing"
 msgstr "İki değişkenli çıktı eksik"
 
 #: diagnosticmeta/options/bivariate_analysis.title
-#: diagnosticmeta/ui[1][0][0]/bivariate_analysis.label
+#: diagnosticmeta/ui[1][0]/bivariate_analysis.label
 msgid "Bivariate random-effects model"
 msgstr "İki değişkenli rastgele etkiler modeli"
 
@@ -3179,8 +3175,8 @@ msgid "Bootstrap CI of the median"
 msgstr "Medyanın bootstrap güven aralığı"
 
 #: R/waterfall.b.R
-msgid "BOOTSTRAP CI STABILITY"
-msgstr "BOOTSTRAP GA KARARLILIĞI"
+msgid "Bootstrap CI stability"
+msgstr "Bootstrap GA kararlılığı"
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -3251,7 +3247,7 @@ msgstr ""
 "sayısı (Bonett 2002)"
 
 #: R/ihcheterogeneity.b.R
-msgid "Cases not analysed"
+msgid "Cases not analyzed"
 msgstr "Analiz edilmeyen vakalar"
 
 #: R/waterfall.b.R
@@ -3267,7 +3263,7 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"Categories are thresholds applied to one tumour burden value per patient and "
+"Categories are thresholds applied to one tumor burden value per patient and "
 "visit (CR -100%, PR at least -30%, PD at least +20%)."
 msgstr ""
 "Kategoriler, hasta ve vizit başına tek bir tümör yükü değerine uygulanan "
@@ -3356,16 +3352,16 @@ msgid "Censoring/Event status variable"
 msgstr "Sansür/olay durumu değişkeni"
 
 #: waterfall/options/measurementUnit/cm.title
-msgid "Centimetres (cm)"
+msgid "Centimeters (cm)"
 msgstr "Santimetre (cm)"
 
 #: R/swimmerplot-html.R
-msgid "Change 'Time Input Type' from 'Date/Time' to 'Raw Values'"
-msgstr "'Zaman Giriş Türü'nü 'Tarih/Saat'ten 'Ham Değerler'e değiştirin"
+msgid "Change 'Time Input Type' from 'Date/time' to 'Raw values'"
+msgstr "'Zaman Giriş Türü'nü 'Tarih/saat'ten 'Ham değerler'e değiştirin"
 
 #: R/swimmerplot-html.R
-msgid "Change 'Time Input Type' from 'Raw Values' to 'Date/Time'"
-msgstr "'Zaman Giriş Türü'nü 'Ham Değerler'den 'Tarih/Saat'e değiştirin"
+msgid "Change 'Time Input Type' from 'Raw values' to 'Date/time'"
+msgstr "'Zaman Giriş Türü'nü 'Ham değerler'den 'Tarih/saat'e değiştirin"
 
 #: R/waterfall.b.R
 msgid "Change in Tumor Size (%)"
@@ -3516,7 +3512,7 @@ msgid "Clinical Interpretation"
 msgstr "Klinik Yorum"
 
 #: diagnosticmeta/options/show_interpretation.title
-#: diagnosticmeta/ui[1][3][0]/show_interpretation.label
+#: diagnosticmeta/ui[4][0]/show_interpretation.label
 #: ihcheterogeneity/options/showInterpretation.title
 #: swimmerplot/options/showInterpretation.title
 msgid "Clinical interpretation"
@@ -3648,7 +3644,7 @@ msgstr "Örümcek grafiği çizgileri ve noktaları için renk şeması."
 #: waterfall/options/colorScheme.description.jamovi
 msgid ""
 "Color scheme for waterfall plot. 'Colorful' provides distinct colors for "
-"group-based coloring; 'jamovi (follow global)' takes its colours from the "
+"group-based coloring; 'jamovi (follow global)' takes its colors from the "
 "palette set in jamovi's preferences, so the figure matches every other plot "
 "in the document."
 msgstr ""
@@ -3660,22 +3656,28 @@ msgstr ""
 msgid "Color-blind safe"
 msgstr "Renk körü için güvenli"
 
-#: swimmerplot/options/colorPalette/viridis.title
-msgid "Colorblind Safe (Viridis)"
-msgstr "Renk Körü Güvenli (Viridis)"
-
 #: waterfall/options/colorScheme/colorblind.title
 #: waterfall/options/spiderColorScheme/colorblind.title
-msgid "Colorblind-Safe (Okabe-Ito)"
-msgstr "Renk Körü Güvenli (Okabe-Ito)"
+msgid "Color-blind safe (Okabe-Ito)"
+msgstr "Renk körü güvenli (Okabe-Ito)"
+
+#: swimmerplot/options/colorPalette/viridis.title
+msgid "Color-blind safe (viridis)"
+msgstr "Renk körü güvenli (viridis)"
 
 #: waterfall/options/spiderColorScheme/colorful.title
 msgid "Colorful (for groups)"
 msgstr "Renkli (gruplar için)"
 
 #: waterfall/options/colorScheme/colorful.title
-msgid "Colorful (Group Colors)"
-msgstr "Renkli (Grup Renkleri)"
+msgid "Colorful (group colors)"
+msgstr "Renkli (grup renkleri)"
+
+#: waterfall/options/spiderColorBy.description.jamovi
+msgid ""
+"Coloring for the spider plot: each point by its own change from baseline "
+"(-30 percent or less vs above -30 percent), or each patient by group."
+msgstr ""
 
 #: waterfall/options/colorBy.description.jamovi
 msgid ""
@@ -3690,12 +3692,6 @@ msgid "Colors bars by RECIST categories (CR/PR/SD/PD) or patient groups"
 msgstr ""
 "Çubukları RECIST kategorilerine (CR/PR/SD/PD) veya hasta gruplarına göre "
 "renklendirir"
-
-#: waterfall/options/spiderColorBy.description.jamovi
-msgid ""
-"Colouring for the spider plot: each point by its own change from baseline "
-"(-30 percent or less vs above -30 percent), or each patient by group."
-msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -3765,7 +3761,7 @@ msgid "Compartment Heterogeneity Comparison"
 msgstr "Kompartman Heterojenlik Karşılaştırması"
 
 #: R/ihcheterogeneity.b.R
-msgid "Compartments with fewer than %d cases are not analysed: %s."
+msgid "Compartments with fewer than %d cases are not analyzed: %s."
 msgstr "%d vakadan az olan kompartmanlar analiz edilmez: %s."
 
 #: R/ihcheterogeneity.b.R
@@ -3849,7 +3845,7 @@ msgstr ""
 msgid "Confidence level"
 msgstr "Güven düzeyi"
 
-#: diagnosticmeta/ui[1][1][0]/confidence_level.label
+#: diagnosticmeta/ui[2][0]/confidence_level.label
 msgid "Confidence level (%)"
 msgstr "Güven düzeyi (%)"
 
@@ -3889,16 +3885,16 @@ msgstr ""
 "sonra şekilleri yeniden kullanır."
 
 #: R/waterfall.b.R
-msgid "CONFLICTING ANNOTATION VALUES"
-msgstr "ÇELİŞKİLİ EK AÇIKLAMA DEĞERLERİ"
+msgid "Conflicting annotation values"
+msgstr "Çelişkili ek açıklama değerleri"
 
 #: R/waterfall.b.R
-msgid "CONFLICTING CATEGORY OVERRIDES"
-msgstr "ÇELİŞKİLİ KATEGORİ GEÇERSİZ KILMALARI"
+msgid "Conflicting category overrides"
+msgstr "Çelişkili kategori geçersiz kılmaları"
 
 #: R/waterfall.b.R
-msgid "CONFLICTING CONFIRMATION VALUES"
-msgstr "ÇELİŞKİLİ DOĞRULAMA DEĞERLERİ"
+msgid "Conflicting confirmation values"
+msgstr "Çelişkili doğrulama değerleri"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -4132,8 +4128,8 @@ msgid "Custom reference time"
 msgstr "Özel referans zamanı"
 
 #: swimmerplot/options/referenceLines/custom.title
-msgid "Custom Time"
-msgstr "Özel Zaman"
+msgid "Custom time"
+msgstr "Özel zaman"
 
 #: ihcheterogeneity/results/spatialanalysistable.columns.title
 msgid "CV (%)"
@@ -4233,8 +4229,8 @@ msgid "Data validation failed."
 msgstr "Veri doğrulaması başarısız oldu."
 
 #: R/waterfall.b.R
-msgid "DATA VALIDATION WARNINGS"
-msgstr "VERİ DOĞRULAMA UYARILARI"
+msgid "Data validation warnings"
+msgstr "Veri doğrulama uyarıları"
 
 #: R/ihcheterogeneity.b.R
 msgid "Data were insufficient to characterize sampling reliability."
@@ -4261,22 +4257,22 @@ msgid "Date format in data"
 msgstr "Verideki Tarih Formatı"
 
 #: swimmerplot/options/timeType/datetime.title
-msgid "Date/Time"
-msgstr "Tarih/Saat"
+msgid "Date/time"
+msgstr "Tarih/saat"
 
 #: R/swimmerplot.b.R
 msgid ""
-"Date/Time input type was selected but the time variables contain numeric "
-"values. Switch Time Input Type to Raw Values (or correct the data) and "
+"Date/time input type was selected but the time variables contain numeric "
+"values. Switch Time Input Type to Raw values (or correct the data) and "
 "re-run."
 msgstr ""
-"Tarih/Saat giriş türü seçildi ancak zaman değişkenleri sayısal değerler "
-"içeriyor. Zaman Giriş Türü'nü Ham Değerler'e geçirin (veya veriyi düzeltin) "
+"Tarih/saat giriş türü seçildi ancak zaman değişkenleri sayısal değerler "
+"içeriyor. Zaman Giriş Türü'nü Ham değerler'e geçirin (veya veriyi düzeltin) "
 "ve yeniden çalıştırın."
 
 #: R/swimmerplot-html.R
-msgid "Date/Time:"
-msgstr "Tarih/Saat:"
+msgid "Date/time:"
+msgstr "Tarih/saat:"
 
 #: swimmerplot/options/timeUnit/days.title
 #: waterfall/options/timeUnitLabel/days.title
@@ -4630,12 +4626,12 @@ msgid "Duration"
 msgstr "Süre"
 
 #: swimmerplot/options/sortOrder/duration_desc.title
-msgid "Duration (Longest First)"
-msgstr "Süre (En Uzun İlk)"
+msgid "Duration (longest first)"
+msgstr "Süre (en uzun ilk)"
 
 #: swimmerplot/options/sortOrder/duration_asc.title
-msgid "Duration (Shortest First)"
-msgstr "Süre (En Kısa İlk)"
+msgid "Duration (shortest first)"
+msgstr "Süre (en kısa ilk)"
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -4798,9 +4794,9 @@ msgstr "Tüm gerekli değişkenlerin seçildiğinden emin olun"
 msgid "Epidemiological metrics and follow-up analysis"
 msgstr "Epidemiyolojik metrikler ve takip analizi"
 
-#: R/swimmerplot.b.R
-msgid "ERROR"
-msgstr "HATA"
+#: R/utils-notices.R
+msgid "Error"
+msgstr "Hata"
 
 #: R/swimmerplot.b.R
 msgid "Error in enhanced plot: %s"
@@ -4851,7 +4847,7 @@ msgstr ""
 "sonuçların yüzde ölçeğinde değil LOGİT ölçeğindedir: 0 katsayısı ilişki "
 "olmadığını gösterir."
 
-#: diagnosticmeta/ui[1][1][0]/method.label
+#: diagnosticmeta/ui[2][0]/method.label
 msgid "Estimation method"
 msgstr "Tahmin yöntemi"
 
@@ -4969,12 +4965,12 @@ msgstr "Her bölgesel ölçüm, her vakada karşılaştırıldığı değere eş
 #: R/waterfall.b.R
 msgid ""
 "Every response value is positive, so no patient shrank at all. If these are "
-"raw tumour sizes rather than percent changes, set Data Input Type to Raw "
-"Measurements and add a time variable."
+"raw tumor sizes rather than percent changes, set Data Input Type to Raw "
+"measurements and add a time variable."
 msgstr ""
 "Tüm yanıt değerleri pozitiftir, dolayısıyla hiçbir hastada küçülme "
 "olmamıştır. Bunlar yüzde değişimleri değil ham tümör boyutlarıysa, Veri "
-"Giriş Türünü Ham Ölçümler olarak ayarlayın ve bir zaman değişkeni ekleyin."
+"Giriş Türünü Ham ölçümler olarak ayarlayın ve bir zaman değişkeni ekleyin."
 
 #: R/waterfall.b.R
 msgid ""
@@ -5063,8 +5059,8 @@ msgid "Expected CI Width (current n)"
 msgstr "Beklenen GA Genişliği (mevcut n)"
 
 #: R/waterfall.b.R
-msgid "EXPLORATORY RESPONSE CATEGORIES"
-msgstr "KEŞİF AMAÇLI YANIT KATEGORİLERİ"
+msgid "Exploratory response categories"
+msgstr "Keşif amaçlı yanıt kategorileri"
 
 #: R/swimmerplot.b.R
 #: swimmerplot/results/exportInfo.title
@@ -5084,8 +5080,8 @@ msgid "Export Timeline Data"
 msgstr "Zaman Çizelgesi Verisini Dışa Aktar"
 
 #: R/waterfall.b.R
-msgid "EXTREME VALUES DETECTED"
-msgstr "UÇ DEĞERLER TESPİT EDİLDİ"
+msgid "Extreme values detected"
+msgstr "Uç değerler tespit edildi"
 
 #: diagnosticmeta/ui[0][3].label
 msgid "False negatives (disease+, test-)"
@@ -5299,7 +5295,7 @@ msgstr "Orman Grafiği (Forest Plot)"
 msgid "Forest plot"
 msgstr "Orman grafiği"
 
-#: diagnosticmeta/ui[1][2][0]/forest_plot.label
+#: diagnosticmeta/ui[3][0]/forest_plot.label
 msgid "Forest plot (sensitivity & specificity)"
 msgstr "Orman grafiği (duyarlılık ve özgüllük)"
 
@@ -5341,7 +5337,7 @@ msgstr "Huni asimetrisi göstergeleri"
 msgid "Funnel plot"
 msgstr "Huni grafiği"
 
-#: diagnosticmeta/ui[1][2][0]/funnel_plot.label
+#: diagnosticmeta/ui[3][0]/funnel_plot.label
 msgid "Funnel plot (publication bias)"
 msgstr "Huni grafiği (yayın yanlılığı)"
 
@@ -5370,8 +5366,8 @@ msgstr ""
 "kopyalama Yayın veya klinik belgeleme için önerilir"
 
 #: waterfall/options/timeUnitLabel/generic.title
-msgid "Generic (Time)"
-msgstr "Genel (Zaman)"
+msgid "Generic (time)"
+msgstr "Genel (zaman)"
 
 #: R/ihcheterogeneity.b.R
 msgid "Get started:"
@@ -5382,12 +5378,12 @@ msgid "Getting Started"
 msgstr "Başlarken"
 
 #: swimmerplot/options/plotTheme/ggswim_dark.title
-msgid "ggswim (Dark)"
-msgstr "ggswim (Koyu)"
+msgid "ggswim (dark)"
+msgstr "ggswim (koyu)"
 
 #: swimmerplot/options/plotTheme/ggswim.title
-msgid "ggswim (Light)"
-msgstr "ggswim (Açık)"
+msgid "ggswim (light)"
+msgstr "ggswim (açık)"
 
 #: R/swimmerplot-html.R
 msgid "Go to the 'Time & Date Settings' section (click to expand)"
@@ -5420,7 +5416,7 @@ msgid "Good specificity (80-89%): some false positives"
 msgstr "İyi özgüllük (%80-89): bazı yanlış pozitifler"
 
 #: ihcheterogeneity/ui[4][0].label
-msgid "Greyed out when the analysis focus above already includes them."
+msgid "Grayed out when the analysis focus above already includes them."
 msgstr "Yukarıdaki analizler bunları içerdiğinden devre dışıdır."
 
 #: waterfall/results/groupComparisonTable.columns.title
@@ -5428,8 +5424,8 @@ msgid "Group"
 msgstr "Grup"
 
 #: R/waterfall.b.R
-msgid "GROUP CHANGES WITHIN PATIENT"
-msgstr "AYNI HASTADA DEĞİŞEN GRUP DEĞERİ"
+msgid "Group changes within patient"
+msgstr "Aynı hastada değişen grup değeri"
 
 #: waterfall/results/groupComparisonTable.title
 msgid "Group Comparison Analysis"
@@ -5510,7 +5506,7 @@ msgstr "Heterojenlik analizi hatası: %s"
 msgid "Heterogeneity Assessment"
 msgstr "Heterojenlik Değerlendirmesi"
 
-#: diagnosticmeta/ui[1][0][0]/heterogeneity_analysis.label
+#: diagnosticmeta/ui[1][0]/heterogeneity_analysis.label
 msgid "Heterogeneity assessment (study variability)"
 msgstr "Heterojenlik değerlendirmesi (çalışma değişkenliği)"
 
@@ -5548,11 +5544,8 @@ msgstr ""
 "Yüksek (CV = %%%.1f, %%%s eşiğinize göre derecelendirildi) - aynı vakanın "
 "ölçümleri belirgin şekilde farklılık gösterdi."
 
-#: swimmerplot/options/colorPalette/contrast.title
-msgid "High Contrast"
-msgstr "Yüksek Kontrast"
-
 #: diagnosticmeta/options/color_palette/high_contrast.title
+#: swimmerplot/options/colorPalette/contrast.title
 msgid "High contrast"
 msgstr "Yüksek kontrast"
 
@@ -5757,8 +5750,8 @@ msgid "Important Note"
 msgstr "Önemli Not"
 
 #: R/waterfall.b.R
-msgid "IMPOSSIBLE SHRINKAGE CAPPED"
-msgstr "İMKANSIZ KÜÇÜLME SINIRLANDIRILDI"
+msgid "Impossible shrinkage capped"
+msgstr "İmkansız küçülme sınırlandırıldı"
 
 #: R/ihcheterogeneity.b.R
 msgid "In these data the 95%% CI of ICC(2,1) has width %s."
@@ -5846,8 +5839,8 @@ msgid ""
 msgstr "Bu veri setinde, mevcut veriler ölçüm değişkenliğini ölçmek için yetersizdi."
 
 #: R/ihcheterogeneity.b.R
-msgid "INADEQUATE SAMPLING:"
-msgstr "YETERSİZ ÖRNEKLEME:"
+msgid "Inadequate sampling:"
+msgstr "Yetersiz örnekleme:"
 
 #: R/ihcheterogeneity.b.R
 msgid "Independence:"
@@ -5866,7 +5859,7 @@ msgid "Individual Study Results"
 msgstr "Bireysel Çalışma Sonuçları"
 
 #: diagnosticmeta/options/show_individual_studies.title
-#: diagnosticmeta/ui[1][0][0]/show_individual_studies.label
+#: diagnosticmeta/ui[1][0]/show_individual_studies.label
 msgid "Individual study results"
 msgstr "Bireysel çalışma sonuçları"
 
@@ -5914,8 +5907,8 @@ msgstr ""
 "işaretleyin."
 
 #: R/waterfall.b.R
-msgid "INFO"
-msgstr "BİLGİ"
+msgid "Info"
+msgstr "Bilgi"
 
 #: waterfall/ui[1][0].label
 msgid "Input Settings"
@@ -5962,8 +5955,8 @@ msgstr ""
 "bu koşulu sağlıyor."
 
 #: R/ihcheterogeneity.b.R
-msgid "INSUFFICIENT DATA:"
-msgstr "YETERSİZ VERİ:"
+msgid "Insufficient data:"
+msgstr "Yetersiz veri:"
 
 #: R/ihcheterogeneity.b.R
 msgid "Inter- and intra-observer variation is not separated from regional variation."
@@ -6059,7 +6052,7 @@ msgstr "jamovi (genel ayarı izle)"
 #: R/waterfall.b.R
 msgid ""
 "Judge the response rate against the rate expected without benefit in your "
-"tumour type and line of therapy (the null rate of your study design), using "
+"tumor type and line of therapy (the null rate of your study design), using "
 "the confidence interval above, rather than against generic cut-offs."
 msgstr ""
 "Yanıt oranını genel kesme değerlerine göre değil, yukarıdaki güven aralığını "
@@ -6226,8 +6219,8 @@ msgstr ""
 "tarihinde sağ ya da izlemden çıkmış)"
 
 #: R/waterfall.b.R
-msgid "MARKER SHAPES REUSED"
-msgstr "İŞARETÇİ ŞEKİLLERİ YENİDEN KULLANILDI"
+msgid "Marker shapes reused"
+msgstr "İşaretçi şekilleri yeniden kullanıldı"
 
 #: swimmerplot/options/markerSize.title
 msgid "Marker size"
@@ -6385,28 +6378,24 @@ msgid "Measurement scale:"
 msgstr "Ölçüm ölçeği:"
 
 #: R/waterfall.b.R
-msgid "MEDIAN CI NOT DRAWN"
-msgstr "MEDYAN GA ÇİZİLMEDİ"
+msgid "Median CI not drawn"
+msgstr "Medyan GA çizilmedi"
 
 #: waterfall/results/personTimeTable.columns.title
 msgid "Median DoR (Kaplan-Meier)"
 msgstr "Medyan DoR (Kaplan-Meier)"
 
 #: swimmerplot/options/referenceLines/median.title
-msgid "Median Duration"
-msgstr "Medyan Süre"
+msgid "Median duration"
+msgstr "Medyan süre"
 
 #: R/swimmerplot.b.R
-msgid "Median Duration (observed)"
-msgstr "Medyan Süre (gözlenen)"
+msgid "Median duration (observed)"
+msgstr "Medyan süre (gözlenen)"
 
 #: R/waterfall.b.R
 msgid "Median duration of response (Kaplan-Meier)"
 msgstr "Medyan yanıt süresi (Kaplan-Meier)"
-
-#: R/waterfall.b.R
-msgid "Median Duration of Response (Kaplan-Meier)"
-msgstr "Medyan Yanıt Süresi (Kaplan-Meier)"
 
 #: R/waterfall.b.R
 msgid "Median duration of response (naive)"
@@ -6546,7 +6535,7 @@ msgstr "Meta-Analiz Özeti"
 msgid "Meta-regression"
 msgstr "Meta-regresyon"
 
-#: diagnosticmeta/ui[1][0][0]/meta_regression.label
+#: diagnosticmeta/ui[1][0]/meta_regression.label
 msgid "Meta-regression (covariate effects)"
 msgstr "Meta-regresyon (ortak değişken etkileri)"
 
@@ -6617,7 +6606,7 @@ msgid "Methodology & assumptions"
 msgstr "Metodoloji ve varsayımlar"
 
 #: diagnosticmeta/options/show_methodology.title
-#: diagnosticmeta/ui[1][3][0]/show_methodology.label
+#: diagnosticmeta/ui[4][0]/show_methodology.label
 msgid "Methodology information"
 msgstr "Metodoloji bilgisi"
 
@@ -6658,13 +6647,13 @@ msgstr "Kilometre Taşı"
 msgid ""
 "Milestone '%s' contains calendar dates, but the timeline uses raw numeric "
 "times, so these dates cannot be placed on the time axis. The milestone was "
-"skipped. Switch Time Input Type to Date/Time (or supply numeric milestone "
+"skipped. Switch Time Input Type to Date/time (or supply numeric milestone "
 "times) to show it."
 msgstr ""
 "'%s' kilometre taşı takvim tarihleri içeriyor ancak zaman çizelgesi ham "
 "sayısal zamanları kullanıyor, bu nedenle bu tarihler zaman eksenine "
 "yerleştirilemez. Kilometre taşı atlandı. Göstermek için Zaman Giriş Türü'nü "
-"Tarih/Saat'e geçirin (veya sayısal kilometre taşı zamanları sağlayın)."
+"Tarih/saat'e geçirin (veya sayısal kilometre taşı zamanları sağlayın)."
 
 #: R/swimmerplot.b.R
 msgid "Milestone '%s' was skipped. %s"
@@ -6767,7 +6756,7 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"Milestone slot(s) %s share a name, so each is labelled with the variable it "
+"Milestone slot(s) %s share a name, so each is labeled with the variable it "
 "came from to keep them apart in the summary."
 msgstr ""
 "%s dönüm noktası alan(lar)ı aynı adı paylaşır; özette ayırt etmek için her "
@@ -6806,7 +6795,7 @@ msgid "Milestones:"
 msgstr "Kilometre Taşları:"
 
 #: waterfall/options/measurementUnit/mm.title
-msgid "Millimetres (mm)"
+msgid "Millimeters (mm)"
 msgstr "Milimetre (mm)"
 
 #: swimmerplot/options/plotTheme/minimal.title
@@ -6920,10 +6909,6 @@ msgid ""
 msgstr "Orta örneklem büyüklüğü: Sonuçlar ön sonuçlar için makul kanıt sağlar."
 
 #: R/ihcheterogeneity.b.R
-msgid "MODERATE SAMPLING:"
-msgstr "ORTA DÜZEYDE ÖRNEKLEME:"
-
-#: R/ihcheterogeneity.b.R
 msgid "Moderate sampling:"
 msgstr "Orta düzeyde örnekleme:"
 
@@ -6980,8 +6965,8 @@ msgstr ""
 "görüldü."
 
 #: R/waterfall.b.R
-msgid "Most studies use 'Percentage Changes' format"
-msgstr "Çoğu çalışma 'Yüzde Değişimleri' formatını kullanır"
+msgid "Most studies use 'Percentage changes' format"
+msgstr "Çoğu çalışma 'Yüzde değişimleri' formatını kullanır"
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -7040,8 +7025,8 @@ msgid "Negative LR"
 msgstr "Negatif LR"
 
 #: R/waterfall.b.R
-msgid "NEGATIVE TUMOUR MEASUREMENTS"
-msgstr "NEGATİF TÜMÖR ÖLÇÜMLERİ"
+msgid "Negative tumor measurements"
+msgstr "Negatif tümör ölçümleri"
 
 #: R/waterfall.b.R
 msgid "Negative values = tumor shrinkage (improvement)"
@@ -7182,7 +7167,7 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"No event markers to summarise: none of the event times could be converted to "
+"No event markers to summarize: none of the event times could be converted to "
 "a time on this timeline."
 msgstr ""
 "Özetlenecek olay işareti yok: olay zamanlarından hiçbiri bu çizelgede bir "
@@ -7190,7 +7175,7 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"No event markers to summarise. Either no event type/time variable is "
+"No event markers to summarize. Either no event type/time variable is "
 "selected, or none of the events falls inside a patient's timeline - see the "
 "notices above."
 msgstr ""
@@ -7199,8 +7184,8 @@ msgstr ""
 "bildirimlere bakın."
 
 #: R/waterfall.b.R
-msgid "NO GROUP COMPARISON"
-msgstr "GRUP KARŞILAŞTIRMASI YOK"
+msgid "No group comparison"
+msgstr "Grup karşılaştırması yok"
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -7229,7 +7214,7 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"No milestones to summarise: none of the milestone values could be converted "
+"No milestones to summarize: none of the milestone values could be converted "
 "to a time on this timeline."
 msgstr ""
 "Özetlenecek dönüm noktası yok: dönüm noktası değerlerinden hiçbiri bu "
@@ -7237,7 +7222,7 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"No milestones to summarise. The milestone variable has no usable value for "
+"No milestones to summarize. The milestone variable has no usable value for "
 "any patient in the analysis, or every milestone slot was skipped - see the "
 "notices above."
 msgstr ""
@@ -7250,8 +7235,8 @@ msgid "No missing values in TP, FP, FN, TN columns"
 msgstr "TP, FP, FN, TN sütunlarında eksik değer yok"
 
 #: R/waterfall.b.R
-msgid "NO NEGATIVE CHANGES"
-msgstr "NEGATİF DEĞİŞİM YOK"
+msgid "No negative changes"
+msgstr "Negatif değişim yok"
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -7469,7 +7454,7 @@ msgstr ""
 #: R/waterfall.b.R
 msgid ""
 "No universal benchmark: compare the rate with the rate expected in your "
-"tumour type and treatment setting."
+"tumor type and treatment setting."
 msgstr ""
 "Evrensel bir referans değer yoktur: oranı, tümör türünüzde ve tedavi "
 "ortamınızda beklenen oranla karşılaştırın."
@@ -7532,8 +7517,8 @@ msgstr ""
 #: R/swimmerplot.b.R
 msgid ""
 "None of the start/end values are numbers (for example '%s'). Time Input Type "
-"is set to Raw Values, which expects a number of %s. If these are calendar "
-"dates, switch Time Input Type to Date/Time and choose the matching Date "
+"is set to Raw values, which expects a number of %s. If these are calendar "
+"dates, switch Time Input Type to Date/time and choose the matching Date "
 "Format."
 msgstr ""
 "Başlangıç/bitiş değerlerinden hiçbiri sayısal değil (örneğin '%s'). Zaman "
@@ -7554,10 +7539,6 @@ msgstr ""
 #: R/ihcheterogeneity.b.R
 msgid "Normality:"
 msgstr "Normallik:"
-
-#: R/ihcheterogeneity.b.R
-msgid "NOT ADEQUATE FOR SUBSTITUTION:"
-msgstr "BİRBİRİNİN YERİNE KULLANILMAYA UYGUN DEĞİL:"
 
 #: R/ihcheterogeneity.b.R
 msgid "Not adequate for substitution:"
@@ -7671,8 +7652,8 @@ msgstr ""
 "yüzden objektif yanıt ve hastalık kontrol oranları hesaplanmadı."
 
 #: R/ihcheterogeneity.b.R
-msgid "NOT GRADED:"
-msgstr "DERECELENDİRİLMEDİ:"
+msgid "Not graded:"
+msgstr "Derecelendirilmedi:"
 
 #: R/ihcheterogeneity.b.R
 msgid "Not graded: ordinal score"
@@ -7697,8 +7678,8 @@ msgstr ""
 "progresyon gelişti)"
 
 #: R/waterfall.b.R
-msgid "NOT RESPONSE-EVALUABLE"
-msgstr "YANIT AÇISINDAN DEĞERLENDİRİLEMEZ"
+msgid "Not response-evaluable"
+msgstr "Yanıt açısından değerlendirilemez"
 
 #: ihcheterogeneity/options/sampling_strategy/unknown.title
 msgid "Not specified"
@@ -7708,9 +7689,9 @@ msgstr "Belirtilmedi"
 msgid "Not stated (5 mm rule not applied)"
 msgstr "Belirtilmedi (5 mm kuralı uygulanmaz)"
 
-#: R/swimmerplot.b.R
-msgid "NOTE"
-msgstr "NOT"
+#: R/utils-notices.R
+msgid "Note"
+msgstr "Not"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -8002,8 +7983,8 @@ msgstr "Yüzde verileri için isteğe bağlı"
 #: waterfall/options/groupVar.description.jamovi
 msgid ""
 "Optional grouping variable for coloring bars by patient groups (e.g., "
-"treatment arms, disease subtypes). Bars are coloured by group when Color by "
-"is set to Patient Groups (jamovi sets it when a group is chosen; from R, set "
+"treatment arms, disease subtypes). Bars are colored by group when Color by "
+"is set to Patient groups (jamovi sets it when a group is chosen; from R, set "
 "colorBy = \"group\")."
 msgstr ""
 
@@ -8026,7 +8007,7 @@ msgstr ""
 
 #: waterfall/options/annotationVars.description.jamovi
 msgid ""
-"Optional. Variables shown as coloured annotation rows under the waterfall, "
+"Optional. Variables shown as colored annotation rows under the waterfall, "
 "aligned with each patient's bar."
 msgstr ""
 "İsteğe bağlı. Şelalenin altında her hastanın çubuğuyla hizalanmış renkli ek "
@@ -8309,8 +8290,8 @@ msgstr "Hasta Grubu"
 
 #: waterfall/options/colorBy/group.title
 #: waterfall/options/spiderColorBy/group.title
-msgid "Patient Groups"
-msgstr "Hasta Grupları"
+msgid "Patient groups"
+msgstr "Hasta grupları"
 
 #: R/swimmerplot.b.R
 #: swimmerplot/options/patientID.title
@@ -8396,8 +8377,8 @@ msgstr ""
 "göre sıralamak için değişkeni temizleyin."
 
 #: R/waterfall.b.R
-msgid "PATIENTS EXCLUDED"
-msgstr "HARİÇ TUTULAN HASTALAR"
+msgid "Patients excluded"
+msgstr "Hariç tutulan hastalar"
 
 #: R/swimmerplot.b.R
 msgid "Patients excluded from the group comparison"
@@ -8502,12 +8483,12 @@ msgid "percent"
 msgstr "yüzde"
 
 #: R/waterfall.b.R
-msgid "PERCENT CHANGE LOOKS LIKE PROPORTIONS"
-msgstr "YÜZDE DEĞİŞİM ORAN GİBİ GÖRÜNÜYOR"
+msgid "Percent change looks like proportions"
+msgstr "Yüzde değişim oran gibi görünüyor"
 
 #: R/waterfall.b.R
-msgid "PERCENT CHANGE LOOKS MULTIPLIED BY 100"
-msgstr "YÜZDE DEĞİŞİM 100 İLE ÇARPILMIŞ GİBİ GÖRÜNÜYOR"
+msgid "Percent change looks multiplied by 100"
+msgstr "Yüzde değişim 100 ile çarpılmış gibi görünüyor"
 
 #: R/waterfall.b.R
 msgid ""
@@ -8543,16 +8524,16 @@ msgstr ""
 "elde edenlerin yüzdesi. Yalnızca keşif amaçlı bir sonlanım noktasıdır."
 
 #: waterfall/options/inputType/percentage.title
-msgid "Percentage Changes"
-msgstr "Yüzde Değişimleri"
+msgid "Percentage changes"
+msgstr "Yüzde değişimleri"
 
 #: R/waterfall.b.R
-msgid "Percentage Changes selected - good for most analyses"
-msgstr "Yüzde Değişimleri seçildi - çoğu analiz için uygundur"
+msgid "Percentage changes selected - good for most analyses"
+msgstr "Yüzde değişimleri seçildi - çoğu analiz için uygundur"
 
 #: R/waterfall.b.R
-msgid "Percentage Changes:"
-msgstr "Yüzde Değişimleri:"
+msgid "Percentage changes:"
+msgstr "Yüzde değişimleri:"
 
 #: R/waterfall.b.R
 msgid ""
@@ -8566,7 +8547,7 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"Percentage of tumour cells staining positive (for example Ki67); range 0 to "
+"Percentage of tumor cells staining positive (for example Ki67); range 0 to "
 "100."
 msgstr ""
 "Pozitif boyanan tümör hücrelerinin yüzdesi (örneğin Ki67); 0 ile 100 "
@@ -8610,8 +8591,8 @@ msgid "Person-time analysis"
 msgstr "Kişi-zamanı analizi"
 
 #: R/waterfall.b.R
-msgid "PERSON-TIME ANALYSIS FAILED"
-msgstr "KİŞİ-ZAMANI ANALİZİ BAŞARISIZ OLDU"
+msgid "Person-time analysis failed"
+msgstr "Kişi-zamanı analizi başarısız oldu"
 
 #: R/swimmerplot.b.R
 msgid "Person-Time Analysis:"
@@ -8719,7 +8700,7 @@ msgstr "Grafik Görünümü"
 msgid "Plot color palette"
 msgstr "Grafik renk paleti"
 
-#: diagnosticmeta/ui[1][2][0]/color_palette.label
+#: diagnosticmeta/ui[3][0]/color_palette.label
 msgid "Plot colors (accessibility)"
 msgstr "Grafik renkleri (erişilebilirlik)"
 
@@ -8731,7 +8712,7 @@ msgstr "Grafik Özelleştirme"
 msgid "Plot explanations"
 msgstr "Grafik açıklamaları"
 
-#: diagnosticmeta/ui[1][2][0]/show_plot_explanations.label
+#: diagnosticmeta/ui[3][0]/show_plot_explanations.label
 msgid "Plot explanations & interpretation"
 msgstr "Grafik açıklamaları ve yorumu"
 
@@ -8740,8 +8721,8 @@ msgid "Plot theme"
 msgstr "Grafik teması"
 
 #: R/diagnosticmeta.b.R
-msgid "POOLED ESTIMATE"
-msgstr "HAVUZLANMIŞ TAHMİN"
+msgid "Pooled estimate"
+msgstr "Havuzlanmış tahmin"
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -8953,7 +8934,7 @@ msgid "Proportional bias:"
 msgstr "Orantısal yanlılık:"
 
 #: diagnosticmeta/options/hsroc_analysis.title
-#: diagnosticmeta/ui[1][0][0]/hsroc_analysis.label
+#: diagnosticmeta/ui[1][0]/hsroc_analysis.label
 msgid "Proportional-hazards SROC analysis"
 msgstr "Orantılı tehlikeler SROC analizi"
 
@@ -9060,7 +9041,7 @@ msgstr "Yayın Yanlılığı Değerlendirmesi"
 msgid "Publication bias assessment"
 msgstr "Yayın yanlılığı değerlendirmesi"
 
-#: diagnosticmeta/ui[1][0][0]/publication_bias.label
+#: diagnosticmeta/ui[1][0]/publication_bias.label
 msgid "Publication bias assessment (Deeks' test)"
 msgstr "Yayın yanlılığı değerlendirmesi (Deeks testi)"
 
@@ -9188,8 +9169,8 @@ msgid "Raw measurement unit"
 msgstr ""
 
 #: waterfall/options/inputType/raw.title
-msgid "Raw Measurements"
-msgstr "Ham Ölçümler"
+msgid "Raw measurements"
+msgstr "Ham ölçümler"
 
 #: R/waterfall.b.R
 msgid ""
@@ -9197,7 +9178,7 @@ msgid ""
 "data contains multiple lesions, percent changes will be INCORRECT. RECIST "
 "v1.1 requires summing diameters of up to 5 target lesions (max 2 per organ). "
 "Pre-process your data to sum target lesions before using this analysis, or "
-"switch to 'Percentage Changes' input with pre-calculated RECIST-compliant "
+"switch to 'Percentage changes' input with pre-calculated RECIST-compliant "
 "values."
 msgstr ""
 "Ham ölçümler, hasta zaman noktası başına bir hedef lezyon varsayar. "
@@ -9205,15 +9186,15 @@ msgstr ""
 "olacaktır. RECIST v1.1 en fazla 5 hedef lezyonun (organ başına en fazla 2) "
 "çaplarının toplanmasını gerektirir. Bu analizi kullanmadan önce hedef "
 "lezyonları toplamak için verilerinizi önceden işleyin veya önceden "
-"hesaplanmış RECIST uyumlu değerlerle 'Yüzde Değişimleri' girişine geçin."
+"hesaplanmış RECIST uyumlu değerlerle 'Yüzde değişimleri' girişine geçin."
 
 #: R/waterfall.b.R
-msgid "Raw Measurements selected - make sure you have a time variable"
-msgstr "Ham Ölçümler seçildi - bir zaman değişkeniniz olduğundan emin olun"
+msgid "Raw measurements selected - make sure you have a time variable"
+msgstr "Ham ölçümler seçildi - bir zaman değişkeniniz olduğundan emin olun"
 
 #: R/waterfall.b.R
-msgid "Raw Measurements:"
-msgstr "Ham Ölçümler:"
+msgid "Raw measurements:"
+msgstr "Ham ölçümler:"
 
 #: R/swimmerplot-html.R
 msgid "Raw Numeric:"
@@ -9228,8 +9209,8 @@ msgstr ""
 "alınır; hiçbir dönüştürme uygulanmaz."
 
 #: swimmerplot/options/timeType/raw.title
-msgid "Raw Values (numeric)"
-msgstr "Ham Değerler (sayısal)"
+msgid "Raw values (numeric)"
+msgstr "Ham değerler (sayısal)"
 
 #: R/swimmerplot-html.R
 msgid "Re-run the analysis"
@@ -9248,7 +9229,7 @@ msgid "RECIST (teal/purple/magenta/orange)"
 msgstr "RECIST (petrol mavisi/mor/macenta/turuncu)"
 
 #: waterfall/options/colorBy/recist.title
-msgid "RECIST Categories (CR/PR/SD/PD)"
+msgid "RECIST categories (CR/PR/SD/PD)"
 msgstr "RECIST Kategorileri (CR/PR/SD/PD)"
 
 #: R/waterfall.b.R
@@ -9603,8 +9584,8 @@ msgid "Repeated study identifiers"
 msgstr "Tekrarlanan çalışma tanımlayıcıları"
 
 #: R/waterfall.b.R
-msgid "REPEATED VISIT TIMES"
-msgstr "YİNELENEN VİZİT ZAMANLARI"
+msgid "Repeated visit times"
+msgstr "Yinelenen vizit zamanları"
 
 #: R/waterfall.b.R
 msgid ""
@@ -9618,7 +9599,7 @@ msgstr ""
 msgid "Report the asymmetry as a limitation and interpret results cautiously"
 msgstr "Asimetriyi sınırlılık olarak raporlayın ve sonuçları dikkatle yorumlayın"
 
-#: diagnosticmeta/ui[1][3].label
+#: diagnosticmeta/ui[4].label
 msgid "Reporting Options"
 msgstr "Raporlama Seçenekleri"
 
@@ -9748,8 +9729,8 @@ msgid "Response category override (optional)"
 msgstr "Yanıt kategorisi geçersiz kılma (isteğe bağlı)"
 
 #: R/waterfall.b.R
-msgid "RESPONSE CATEGORY OVERRIDE IGNORED"
-msgstr "YANIT KATEGORİSİ GEÇERSİZ KILMA YOK SAYILDI"
+msgid "Response category override ignored"
+msgstr "Yanıt kategorisi geçersiz kılma yok sayıldı"
 
 #: R/waterfall.b.R
 msgid "Response Data:"
@@ -9760,14 +9741,14 @@ msgid "Response Distribution:"
 msgstr "Yanıt Dağılımı:"
 
 #: R/waterfall.b.R
-msgid "RESPONSE DURATION NEEDS A TIME VARIABLE"
-msgstr "YANIT SÜRESİ BİR ZAMAN DEĞİŞKENİ GEREKTİRİR"
+msgid "Response duration needs a time variable"
+msgstr "Yanıt süresi bir zaman değişkeni gerektirir"
 
 #: R/swimmerplot.b.R
 msgid ""
 "Response evaluation showed an objective response rate (ORR) of %.1f%% (%d/%d "
 "patients%s) and a disease control rate (DCR) of %.1f%% (%d/%d patients%s). "
-"Rates are over all patients analysed, with not-evaluable and unrecorded "
+"Rates are over all patients analyzed, with not-evaluable and unrecorded "
 "responses counted as non-responders (RECIST 1.1 section 4.9.1)."
 msgstr ""
 "Yanıt değerlendirmesinde objektif yanıt oranı (ORR) %%%.1f (%d/%d hasta%s), "
@@ -9795,7 +9776,7 @@ msgstr "Yanıt Oranı Yorumu:"
 msgid ""
 "Response rates from %.1f%% to %.1f%% are compatible with these data (exact "
 "95%% CI). There is no universal benchmark: compare them with the response "
-"rate expected in your tumour type and treatment setting."
+"rate expected in your tumor type and treatment setting."
 msgstr ""
 "%%%.1f ile %%%.1f arasındaki yanıt oranları bu verilerle uyumludur (kesin "
 "%%95 GA). Evrensel bir referans değer yoktur: bunları tümör türünüzde ve "
@@ -9811,8 +9792,8 @@ msgstr "Yanıt sıralaması kullanılamıyor"
 
 #: swimmerplot/options/sortOrder/response.title
 #: swimmerplot/results/personTimeTable.columns.title
-msgid "Response Type"
-msgstr "Yanıt Türü"
+msgid "Response type"
+msgstr "Yanıt türü"
 
 #: waterfall/options/responseVar.title
 msgid "Response value (raw or percentage)"
@@ -9948,8 +9929,8 @@ msgstr ""
 "çıkarılır ve bir bildirim kaç tane olduğunu söyler."
 
 #: R/waterfall.b.R
-msgid "ROWS WITHOUT PATIENT ID"
-msgstr "HASTA KİMLİĞİ OLMAYAN SATIRLAR"
+msgid "Rows without patient ID"
+msgstr "Hasta kimliği olmayan satırlar"
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -10151,7 +10132,7 @@ msgid ""
 "Sampling strategy recorded as systematic. The analysis treats the regions as "
 "exchangeable measurements of each case and applies no design-based "
 "adjustment; if the sampling pattern follows tissue architecture, the CV and "
-"ICC describe that pattern rather than the tumour as a whole."
+"ICC describe that pattern rather than the tumor as a whole."
 msgstr ""
 "Örnekleme stratejisi sistematik olarak kaydedildi. Analiz, bölgeleri her "
 "vakanın değiştirilebilir ölçümleri olarak ele alır ve tasarıma dayalı hiçbir "
@@ -10357,8 +10338,8 @@ msgstr ""
 "marjını belirleyiniz."
 
 #: R/waterfall.b.R
-msgid "SEVERAL ROWS PER PATIENT"
-msgstr "HASTA BAŞINA BİRDEN FAZLA SATIR"
+msgid "Several rows per patient"
+msgstr "Hasta başına birden fazla satır"
 
 #: waterfall/options/showCI.description.jamovi
 msgid ""
@@ -10459,8 +10440,8 @@ msgstr ""
 "alınması bu değeri yaklaşık olarak bölge sayısının kareköküne böler."
 
 #: R/waterfall.b.R
-msgid "SINGLE-LESION ASSUMPTION"
-msgstr "TEK LEZYON VARSAYIMI"
+msgid "Single-lesion assumption"
+msgstr "Tek lezyon varsayımı"
 
 #: ihcheterogeneity/results/samplingbiastable.columns.title
 msgid "Slope"
@@ -10513,11 +10494,8 @@ msgstr ""
 msgid "Small cell counts in Fisher's exact test"
 msgstr "Fisher kesin testinde küçük hücre sayıları"
 
-#: R/waterfall.b.R
-msgid "SMALL SAMPLE"
-msgstr "KÜÇÜK ÖRNEKLEM"
-
 #: R/ihcheterogeneity.b.R
+#: R/waterfall.b.R
 msgid "Small sample"
 msgstr "Küçük örneklem"
 
@@ -10562,8 +10540,8 @@ msgstr ""
 "gruplandırmayı değerlendirin."
 
 #: R/waterfall.b.R
-msgid "SOME VALUES LOOK LIKE PROPORTIONS"
-msgstr "BAZI DEĞERLER ORAN GİBİ GÖRÜNÜYOR"
+msgid "Some values look like proportions"
+msgstr "Bazı değerler oran gibi görünüyor"
 
 #: waterfall/options/sortBy.title
 msgid "Sort by"
@@ -10587,10 +10565,10 @@ msgstr "Sıralama düzeni"
 
 #: R/swimmerplot.b.R
 msgid ""
-"Sort order 'Response Type' requires a Response/Status variable; none is "
+"Sort order 'Response type' requires a Response/Status variable; none is "
 "selected, so patients are sorted by duration (longest first)."
 msgstr ""
-"'Yanıt Türü' sıralama düzeni bir Yanıt/Durum değişkeni gerektirir; hiçbiri "
+"'Yanıt türü' sıralama düzeni bir Yanıt/Durum değişkeni gerektirir; hiçbiri "
 "seçilmedi, bu nedenle hastalar süreye göre sıralandı (en uzun ilk)."
 
 #: R/swimmerplot.b.R
@@ -10777,8 +10755,8 @@ msgid "Spider plot color scheme"
 msgstr "Örümcek grafiği renk şeması"
 
 #: R/waterfall.b.R
-msgid "SPIDER PLOT NEEDS A TIME VARIABLE"
-msgstr "ÖRÜMCEK GRAFİĞİ BİR ZAMAN DEĞİŞKENİ GEREKTİRİR"
+msgid "Spider plot needs a time variable"
+msgstr "Örümcek grafiği bir zaman değişkeni gerektirir"
 
 #: R/waterfall.b.R
 msgid "Spider Plot of Tumor Response"
@@ -10797,8 +10775,8 @@ msgid "Spider Plot Visualization"
 msgstr "Örümcek Grafiği Görselleştirmesi"
 
 #: R/waterfall.b.R
-msgid "SPIDER PLOT WITH PERCENTAGE DATA"
-msgstr "YÜZDE VERİLERİYLE ÖRÜMCEK GRAFİĞİ"
+msgid "Spider plot with percentage data"
+msgstr "Yüzde verileriyle örümcek grafiği"
 
 #: R/waterfall.b.R
 msgid "Spider Plot:"
@@ -10988,9 +10966,9 @@ msgstr "Test negatifken hastalık ALEYHİNE güçlü kanıt"
 msgid "Strong evidence FOR disease when test positive"
 msgstr "Test pozitifken hastalık LEHİNE güçlü kanıt"
 
-#: R/swimmerplot.b.R
-msgid "STRONG WARNING"
-msgstr "GÜÇLÜ UYARI"
+#: R/utils-notices.R
+msgid "Strong warning"
+msgstr "Güçlü uyarı"
 
 #: R/diagnosticmeta.b.R
 msgid "Studies (circles), chance line (dot-dash)"
@@ -11067,7 +11045,7 @@ msgid "Summary ROC Plot"
 msgstr "Özet ROC Grafiği"
 
 #: diagnosticmeta/options/sroc_plot.title
-#: diagnosticmeta/ui[1][2][0]/sroc_plot.label
+#: diagnosticmeta/ui[3][0]/sroc_plot.label
 msgid "Summary ROC plot"
 msgstr "Özet ROC grafiği"
 
@@ -11119,15 +11097,15 @@ msgstr ""
 #: R/swimmerplot.b.R
 msgid ""
 "Switch Time Display to 'Relative (all start from 0)' to show them, or use "
-"'Custom Time'."
+"'Custom time'."
 msgstr ""
 "Bunları göstermek için zaman gösterimini 'Göreli (tümü 0'dan başlar)' olarak "
 "seçin veya 'Özel zaman' kullanın."
 
 #: R/waterfall.b.R
-msgid "Switch to 'Percentage Changes' input format if changes are pre-calculated, OR"
+msgid "Switch to 'Percentage changes' input format if changes are pre-calculated, OR"
 msgstr ""
-"Değişimler önceden hesaplanmışsa 'Yüzde Değişimleri' giriş formatına geçin "
+"Değişimler önceden hesaplanmışsa 'Yüzde değişimleri' giriş formatına geçin "
 "VEYA"
 
 #: R/diagnosticmeta.b.R
@@ -11343,7 +11321,7 @@ msgid ""
 "The bivariate (Reitsma) model did not converge, even with an iteration limit "
 "of 5000. No pooled sensitivity, specificity, likelihood ratio, prediction "
 "interval or SROC curve is reported, because they would come from an "
-"unfinished optimisation. Try the method-of-moments estimator (it is not "
+"unfinished optimization. Try the method-of-moments estimator (it is not "
 "iterative), check the studies for an extreme or repeated 2x2 table, or "
 "restrict the study set."
 msgstr ""
@@ -11436,7 +11414,7 @@ msgstr "Vaka varyansı tahmini negatifti ve sıfıra kırpıldı."
 
 #: R/swimmerplot.b.R
 msgid ""
-"The censoring variable '%s' has no value for any analysed row, so no status "
+"The censoring variable '%s' has no value for any analyzed row, so no status "
 "arrows are drawn and median follow-up is the plain median of observed "
 "durations."
 msgstr ""
@@ -11662,14 +11640,14 @@ msgstr "Veri çerçevesi olarak veri."
 
 #: R/waterfall.b.R
 msgid ""
-"The data input type is Percentage Changes, but the time = 0 values are not "
-"0%: these look like raw tumour measurements. Set Data Input Type to Raw "
-"Measurements so percent changes are computed from the baseline."
+"The data input type is Percentage changes, but the time = 0 values are not "
+"0%: these look like raw tumor measurements. Set Data Input Type to Raw "
+"measurements so percent changes are computed from the baseline."
 msgstr ""
-"Veri giriş türü Yüzde Değişimleri olarak ayarlanmış, ancak zaman = 0 "
+"Veri giriş türü Yüzde değişimleri olarak ayarlanmış, ancak zaman = 0 "
 "değerleri sıfır (%0) değil: bunlar ham tümör ölçümleri gibi görünmektedir. "
 "Yüzde değişimlerinin başlangıçtan hesaplanması için Veri Giriş Türünü Ham "
-"Ölçümler olarak ayarlayın."
+"ölçümler olarak ayarlayın."
 
 #: R/diagnosticmeta.b.R
 #: R/ihcheterogeneity.b.R
@@ -11734,20 +11712,20 @@ msgstr ""
 "sonra kaydedilen olaylar, onları kapsayan bir bitiş zamanı gerektirir."
 
 #: R/swimmerplot.b.R
-msgid "The event time values are numbers (%s), but Time Input Type is Date/Time."
+msgid "The event time values are numbers (%s), but Time Input Type is Date/time."
 msgstr ""
-"Olay zamanı değerleri sayıdır (%s), ancak Zaman Girdi Türü Tarih/Saat olarak "
+"Olay zamanı değerleri sayıdır (%s), ancak Zaman Girdi Türü Tarih/saat olarak "
 "seçilmiş."
 
 #: R/swimmerplot.b.R
 msgid ""
 "The event time variable contains calendar dates, but the timeline uses raw "
 "numeric times, so these events cannot be placed on the time axis. Switch "
-"Time Input Type to Date/Time (or supply numeric event times) to show them."
+"Time Input Type to Date/time (or supply numeric event times) to show them."
 msgstr ""
 "Olay zamanı değişkeni takvim tarihleri içeriyor ancak zaman çizelgesi ham "
 "sayısal zamanları kullanıyor, bu nedenle bu olaylar zaman eksenine "
-"yerleştirilemez. Göstermek için Zaman Giriş Türü'nü Tarih/Saat'e geçirin "
+"yerleştirilemez. Göstermek için Zaman Giriş Türü'nü Tarih/saat'e geçirin "
 "(veya sayısal olay zamanları sağlayın)."
 
 #: R/ihcheterogeneity.b.R
@@ -11842,9 +11820,9 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"The High Contrast palette provides 8 colours and the response variable has "
-"%d categories, so the plot uses the Viridis palette instead. Group the "
-"response categories to keep High Contrast."
+"The High contrast palette provides 8 colors and the response variable has %d "
+"categories, so the plot uses the Viridis palette instead. Group the response "
+"categories to keep High contrast."
 msgstr ""
 "Yüksek kontrast paleti 8 renk sağlıyor ancak yanıt değişkeninde %d kategori "
 "var; bu nedenle Viridis kullanılır. Yüksek kontrastı korumak için yanıt "
@@ -11857,7 +11835,7 @@ msgid ""
 "should not be read as an overall heterogeneity figure (Cochrane DTA "
 "Handbook, chapter 10). In diagnostic accuracy meta-analysis a high I-squared "
 "is expected whenever studies used different positivity thresholds - it "
-"signals a threshold effect to be modelled by the SROC curve, not necessarily "
+"signals a threshold effect to be modeled by the SROC curve, not necessarily "
 "a defect."
 msgstr ""
 "I-kare, yalnızca İLGİLİ marjdaki varyansın örnekleme hatasına bağlanamayan "
@@ -11936,7 +11914,7 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"The ICCs rest on only %d cases with every measurement (of %d analysed); "
+"The ICCs rest on only %d cases with every measurement (of %d analyzed); "
 "treat them as provisional."
 msgstr ""
 "ICC'ler tüm ölçümlere sahip yalnızca %d vakaya dayanmaktadır (analiz edilen "
@@ -12069,9 +12047,9 @@ msgid "The milestone dates could not be read with the Date Format %s."
 msgstr "Kilometre taşı tarihleri %s Tarih Biçimiyle okunamadı."
 
 #: R/swimmerplot.b.R
-msgid "The milestone values are numbers (%s), but Time Input Type is Date/Time."
+msgid "The milestone values are numbers (%s), but Time Input Type is Date/time."
 msgstr ""
-"Kilometre taşı değerleri sayıdır (%s), ancak Zaman Girdi Türü Tarih/Saat "
+"Kilometre taşı değerleri sayıdır (%s), ancak Zaman Girdi Türü Tarih/saat "
 "olarak seçilmiş."
 
 #: R/swimmerplot.b.R
@@ -12149,7 +12127,7 @@ msgstr ""
 msgid ""
 "The proportional-hazards SROC model did not converge, so its theta, "
 "tau-squared and area under the curve are not reported: they would be the "
-"last iterate of an unfinished optimisation, and on data like this the "
+"last iterate of an unfinished optimization, and on data like this the "
 "unconverged value and the converged one have differed by an order of "
 "magnitude."
 msgstr ""
@@ -12171,7 +12149,7 @@ msgstr ""
 #: R/ihcheterogeneity.b.R
 msgid ""
 "The quality thresholds (correlation %s, CV %s%%) are set in the analysis "
-"options; results describe the cases analysed and are not an external "
+"options; results describe the cases analyzed and are not an external "
 "validation."
 msgstr ""
 "Kalite eşikleri (korelasyon %s, CV %%%s) analiz seçeneklerinde belirlenir; "
@@ -12180,7 +12158,7 @@ msgstr ""
 #: R/waterfall.b.R
 msgid ""
 "The RECIST v1.1 requirement of an absolute increase of at least 5 mm is not "
-"applied, so with small tumour sums or after deep responses progression is "
+"applied, so with small tumor sums or after deep responses progression is "
 "called more often than RECIST v1.1 would; unseen new or non-target lesions "
 "push the other way."
 msgstr ""
@@ -12192,7 +12170,7 @@ msgstr ""
 #: R/ihcheterogeneity.b.R
 msgid ""
 "The reference (whole section, hotspot or overall score) is treated as the "
-"comparison standard; its own measurement error is not modelled."
+"comparison standard; its own measurement error is not modeled."
 msgstr ""
 "Referans (bütün kesit, hotspot veya genel skor) karşılaştırma standardı "
 "olarak ele alınır; referansın kendi ölçüm hatası modellenmez."
@@ -12224,7 +12202,7 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"The reference variable '%s' is constant (the same value in every analysed "
+"The reference variable '%s' is constant (the same value in every analyzed "
 "case), so no correlation with it can be estimated. Check the data."
 msgstr ""
 "'%s' referans değişkeni sabittir (analiz edilen her vakada aynı değer), bu "
@@ -12421,7 +12399,7 @@ msgstr "Örümcek grafiği çizilemedi: %s"
 
 #: R/waterfall.b.R
 msgid ""
-"The spider plot draws each patient's tumour trajectory over time, so it "
+"The spider plot draws each patient's tumor trajectory over time, so it "
 "requires a Time Variable. None is selected, so no spider plot can be "
 "produced. Assign the visit/assessment time column to \"Time Variable\" to "
 "enable it."
@@ -12446,16 +12424,16 @@ msgid "The start or end dates could not be read with the Date Format %s."
 msgstr "Başlangıç veya bitiş tarihleri %s Tarih Biçimiyle okunamadı."
 
 #: R/swimmerplot.b.R
-msgid "The start or end values are numbers (%s), but Time Input Type is Date/Time."
+msgid "The start or end values are numbers (%s), but Time Input Type is Date/time."
 msgstr ""
 "Başlangıç veya bitiş değerleri sayıdır (%s), ancak Zaman Girdi Türü "
-"Tarih/Saat olarak seçilmiş."
+"Tarih/saat olarak seçilmiş."
 
 #: R/swimmerplot.b.R
 msgid ""
 "The start/end variables look like calendar dates (%s), but Time Input Type "
-"is set to Raw Values, so no timeline could be built. Switch Time Input Type "
-"to Date/Time and choose the matching Date Format."
+"is set to Raw values, so no timeline could be built. Switch Time Input Type "
+"to Date/time and choose the matching Date Format."
 msgstr ""
 "Başlangıç/bitiş değişkenleri takvim tarihi gibi görünmektedir (%s) ancak "
 "zaman girdisi türü ham değerdir; bu nedenle çizelge oluşturulamadı. "
@@ -12527,7 +12505,7 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"The typical absolute response value is %.0f, and a tumour cannot shrink by "
+"The typical absolute response value is %.0f, and a tumor cannot shrink by "
 "more than 100%%. The values look multiplied by 100 (for example -3500 for "
 "-35%%); values below -100 are capped to -100%% and counted as complete "
 "responses. Check the scale of the response column."
@@ -12786,22 +12764,20 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"This tool creates waterfall and spider plots from ONE tumour burden value "
-"per patient (or per visit). Response categories use percent-change "
-"thresholds adapted from RECIST v1.1, but this is not a RECIST v1.1 "
-"implementation: it never sees individual lesions, so it cannot sum target "
-"lesions, detect new lesions, or judge non-target progression. If your data "
-"list each lesion separately, use the lesion-level RECIST v1.1 analysis. It "
-"will be available in upcoming releases."
+"This tool creates waterfall and spider plots from ONE tumor burden value per "
+"patient (or per visit). Response categories use percent-change thresholds "
+"adapted from RECIST v1.1, but this is not a RECIST v1.1 implementation: it "
+"never sees individual lesions, so it cannot sum target lesions, detect new "
+"lesions, or judge non-target progression. If your data list each lesion "
+"separately, sum the target lesions per patient and visit first."
 msgstr ""
 "Bu araç, hasta (veya vizit) başına BİR tümör yükü değerinden şelale ve "
 "örümcek grafikleri oluşturur. Yanıt kategorileri RECIST v1.1'den uyarlanan "
 "yüzde değişim eşiklerini kullanır, ancak bu bir RECIST v1.1 uygulaması "
 "değildir: tek tek lezyonları asla görmez, bu nedenle hedef lezyonları "
 "toplayamaz, yeni lezyonları tespit edemez veya hedef dışı progresyonu "
-"değerlendiremez. Verileriniz her bir lezyonu ayrı ayrı listeliyorsa lezyon "
-"düzeyinde RECIST v1.1 analizini kullanın. Gelecek sürümlerde kullanıma "
-"sunulacaktır."
+"değerlendiremez. Verileriniz her bir lezyonu ayrı ayrı listeliyorsa, önce "
+"hedef lezyonları hasta ve vizit başına toplayın."
 
 #: R/waterfall.b.R
 msgid ""
@@ -12947,8 +12923,8 @@ msgid "Time variable (required for raw input and spider plot)"
 msgstr "Zaman değişkeni (ham giriş ve örümcek grafiği için gerekli)"
 
 #: R/waterfall.b.R
-msgid "Time Variable Required for Raw Measurements:"
-msgstr "Ham Ölçümler için Gerekli Zaman Değişkeni:"
+msgid "Time variable required for raw measurements:"
+msgstr "Ham ölçümler için gerekli zaman değişkeni:"
 
 #: R/waterfall.b.R
 msgid "Time variable selected - enables spider plots"
@@ -12963,12 +12939,12 @@ msgid "Time variables are either numeric (days/months) or valid date formats"
 msgstr "Zaman değişkenleri ya sayısaldır (gün/ay) ya da geçerli tarih formatlarıdır"
 
 #: R/waterfall.b.R
-msgid "TIME-TO-EVENT CALCULATION FAILED"
-msgstr "OLAYA KADAR GEÇEN SÜRE HESAPLAMASI BAŞARISIZ OLDU"
+msgid "Time-to-event calculation failed"
+msgstr "Olaya kadar geçen süre hesaplaması başarısız oldu"
 
 #: R/waterfall.b.R
-msgid "TIME-TO-EVENT LIMITATIONS"
-msgstr "OLAYA KADAR GEÇEN SÜRE SINIRLILIKLARI"
+msgid "Time-to-event limitations"
+msgstr "Olaya kadar geçen süre sınırlılıkları"
 
 #: waterfall/results/responseDurationTable.title
 msgid "Time-to-Response & Duration of Response"
@@ -13331,9 +13307,9 @@ msgid "Usage:"
 msgstr "Kullanım:"
 
 #: R/swimmerplot.b.R
-msgid "Use 'Custom Time' with 'Custom Reference Date' or a time offset instead."
+msgid "Use 'Custom time' with 'Custom Reference Date' or a time offset instead."
 msgstr ""
-"Bunun yerine 'Özel Referans Tarihi' veya bir zaman kayması ile 'Özel Zaman' "
+"Bunun yerine 'Özel Referans Tarihi' veya bir zaman kayması ile 'Özel zaman' "
 "kullanın."
 
 #: R/waterfall.b.R
@@ -13343,12 +13319,12 @@ msgstr ""
 "kullanın"
 
 #: R/swimmerplot-html.R
-msgid "Use Date/Time for:"
-msgstr "Tarih/Saat'i şu durumlar için kullanın:"
+msgid "Use Date/time for:"
+msgstr "Tarih/saat'i şu durumlar için kullanın:"
 
 #: R/swimmerplot-html.R
-msgid "Use Raw Values for:"
-msgstr "Ham Değerler'i şu durumlar için kullanın:"
+msgid "Use Raw values for:"
+msgstr "Ham değerler'i şu durumlar için kullanın:"
 
 #: R/swimmerplot-html.R
 msgid ""
@@ -13381,23 +13357,23 @@ msgstr "Duyarlılık analizi için çalışmaları belirlemekte bu grafiği kull
 #: package/analyses/waterfall.description
 #: waterfall/options.description.main
 msgid ""
-"Use this when you have one tumour burden number per patient: either a "
-"percent change from baseline you have already calculated (one row per "
-"patient), or a single measurement recorded at each visit (one row per "
-"patient per visit). It draws waterfall and spider plots, assigns each "
-"patient a best response from their largest shrinkage from baseline (with a "
-"time variable, up to the first progression), and reports ORR and DCR with "
-"exact binomial confidence intervals, group comparison, time to response and "
-"duration of response. When a time variable is supplied, progression is "
-"measured against the patient's smallest recorded burden (nadir), not against "
-"baseline. Categories are named CR, PR, SD and PD and the thresholds are "
-"adapted from RECIST v1.1, but this is NOT a RECIST v1.1 implementation: "
-"because it never sees individual lesions it cannot sum target lesions, "
-"detect a new lesion, or judge non-target progression, and it cannot apply "
-"the 4-week confirmation rule (a confirmation column only adds markers to the "
-"plot; to count confirmed responses, supply confirmed categories through the "
-"category override). If your data list each lesion separately, use the "
-"lesion-level RECIST v1.1 analysis. It will be available in upcoming releases."
+"Use this when you have one tumor burden number per patient: either a percent "
+"change from baseline you have already calculated (one row per patient), or a "
+"single measurement recorded at each visit (one row per patient per visit). "
+"It draws waterfall and spider plots, assigns each patient a best response "
+"from their largest shrinkage from baseline (with a time variable, up to the "
+"first progression), and reports ORR and DCR with exact binomial confidence "
+"intervals, group comparison, time to response and duration of response. When "
+"a time variable is supplied, progression is measured against the patient's "
+"smallest recorded burden (nadir), not against baseline. Categories are named "
+"CR, PR, SD and PD and the thresholds are adapted from RECIST v1.1, but this "
+"is NOT a RECIST v1.1 implementation: because it never sees individual "
+"lesions it cannot sum target lesions, detect a new lesion, or judge "
+"non-target progression, and it cannot apply the 4-week confirmation rule (a "
+"confirmation column only adds markers to the plot; to count confirmed "
+"responses, supply confirmed categories through the category override). If "
+"your data list each lesion separately, sum the target lesions per patient "
+"and visit first."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -13547,7 +13523,7 @@ msgid "variance-components"
 msgstr "varyans-bileşenleri"
 
 #: R/ihcheterogeneity.b.R
-msgid "Variation in biomarker expression across regions of the same tumour."
+msgid "Variation in biomarker expression across regions of the same tumor."
 msgstr "Aynı tümörün bölgeleri arasında biyobelirteç ekspresyonundaki değişkenlik."
 
 #: R/ihcheterogeneity.b.R
@@ -13583,8 +13559,8 @@ msgstr ""
 "tutarsızlıklarına veya yüksek biyolojik heterojenliğe işaret edebilir."
 
 #: R/waterfall.b.R
-msgid "VERY SMALL SAMPLE"
-msgstr "ÇOK KÜÇÜK ÖRNEKLEM"
+msgid "Very small sample"
+msgstr "Çok küçük örneklem"
 
 #: R/waterfall.b.R
 msgid ""
@@ -13604,8 +13580,8 @@ msgstr ""
 "yorumlamayı değerlendirin."
 
 #: R/waterfall.b.R
-msgid "VERY WIDE CONFIDENCE INTERVAL"
-msgstr "ÇOK GENİŞ GÜVEN ARALIĞI"
+msgid "Very wide confidence interval"
+msgstr "Çok geniş güven aralığı"
 
 #: diagnosticmeta/options/color_palette/viridis.title
 msgid "Viridis (blue-purple)"
@@ -13615,7 +13591,7 @@ msgstr "Viridis (mavi-mor)"
 msgid "Visualization"
 msgstr "Görselleştirme"
 
-#: diagnosticmeta/ui[1][2].label
+#: diagnosticmeta/ui[3].label
 #: swimmerplot/ui[4].label
 msgid "Visualization Options"
 msgstr "Görselleştirme Seçenekleri"
@@ -13636,9 +13612,9 @@ msgstr "Canlı (turuncu/mor)"
 msgid "WAITING"
 msgstr "BEKLİYOR"
 
-#: R/swimmerplot.b.R
-msgid "WARNING"
-msgstr "UYARI"
+#: R/utils-notices.R
+msgid "Warning"
+msgstr "Uyarı"
 
 #: R/waterfall.b.R
 msgid ""
@@ -13670,8 +13646,8 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"Warning: Some measurements are negative, which is not a possible tumour "
-"size. Please verify these values."
+"Warning: Some measurements are negative, which is not a possible tumor size. "
+"Please verify these values."
 msgstr ""
 "Uyarı: Bazı ölçümler negatiftir, bu olası bir tümör boyutu değildir. Lütfen "
 "bu değerleri doğrulayın."
@@ -13721,7 +13697,7 @@ msgstr "Şelale Grafiği:"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"We analysed %d cases, each measured in one region and by a reference "
+"We analyzed %d cases, each measured in one region and by a reference "
 "measurement, to see how well the regional measurement represents the "
 "biomarker expression of a case."
 msgstr ""
@@ -13731,7 +13707,7 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"We analysed %d cases, each measured in up to %d regions, to see how well "
+"We analyzed %d cases, each measured in up to %d regions, to see how well "
 "regional measurements represent the biomarker expression of a case."
 msgstr ""
 "Bölgesel ölçümlerin bir vakanın biyobelirteç ekspresyonunu ne kadar iyi "
@@ -14129,9 +14105,9 @@ msgid "Yes/TRUE = event, No/FALSE = censored"
 msgstr "Yes/TRUE = olay, No/FALSE = sansürlü"
 
 #: R/swimmerplot-html.R
-msgid "You selected Date/Time input type, but your data contains numeric values."
+msgid "You selected Date/time input type, but your data contains numeric values."
 msgstr ""
-"Tarih/Saat giriş türünü seçtiniz, ancak verileriniz sayısal değerler "
+"Tarih/saat giriş türünü seçtiniz, ancak verileriniz sayısal değerler "
 "içeriyor."
 
 #: swimmerplot/options/dateFormat/ydm.title
@@ -14172,7 +14148,7 @@ msgstr ""
 "%d/%d hastada izlem süresi sıfırdır. Bunlar aynı gün olaylarını temsil "
 "edebilir."
 
-#: diagnosticmeta/ui[1][1][0]/zero_cell_correction.label
+#: diagnosticmeta/ui[2][0]/zero_cell_correction.label
 msgid "Zero-cell correction"
 msgstr "Sıfır hücre düzeltmesi"
 

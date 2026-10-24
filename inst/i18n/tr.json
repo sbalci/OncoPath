@@ -100,7 +100,7 @@
             "%d fall before the patient's first start.": [
                 "%d işaret hastanın ilk başlangıcından önce."
             ],
-            "%d further patient(s) could not be analysed (no usable value or baseline) and are in no row of this table; the notices name them.": [
+            "%d further patient(s) could not be analyzed (no usable value or baseline) and are in no row of this table; the notices name them.": [
                 "%d hasta daha analiz edilemedi (kullanılabilir değer veya başlangıç değeri yok) ve bu tablonun hiçbir satırında yer almıyor; bildirimler bu hastaları adlarıyla belirtiyor."
             ],
             "%d had a start or end that could not be read with the selected Date Format (%s).": [
@@ -157,10 +157,10 @@
             "%d of %d rows were excluded before analysis. All counts, rates and person-time below are based on the remaining %d rows.": [
                 "Analizden önce %d/%d satır dışlandı. Aşağıdaki tüm sayılar, oranlar ve kişi-zaman kalan %d satıra dayanır."
             ],
-            "%d of %d rows were not analysed because they have fewer than 2 regional measurements.": [
+            "%d of %d rows were not analyzed because they have fewer than 2 regional measurements.": [
                 "%d / %d satır, 2'den az bölgesel ölçüme sahip olduğu için analiz edilmedi."
             ],
-            "%d of %d rows were not analysed because they lack a reference value or any regional measurement.": [
+            "%d of %d rows were not analyzed because they lack a reference value or any regional measurement.": [
                 "%d / %d satır, referans değeri veya herhangi bir bölgesel ölçümü olmadığı için analiz edilmedi."
             ],
             "%d of %d studies have a cell of 0 or 1. The bivariate model used here approximates the logit sensitivity and specificity as normal, which is biased when cells are that small, and any zero cell additionally needs a continuity correction. In simulations of high-accuracy tests with cells this small, the nominal 95%% confidence interval for the pooled value on the sparse margin covered the true value in only about 70%% of meta-analyses, or fewer, and the pooled value was biased toward lower accuracy. Treat the pooled pair and its interval as approximate, and confirm them in software offering a binomial bivariate (generalised linear mixed) model before relying on them.": [
@@ -193,13 +193,13 @@
             "%d paired comparisons are reported; the p-values test against zero and are unadjusted. With a margin of %s%% of the comparison mean, a difference is ruled out when its 90%% CI lies within the margin (two one-sided tests) and shown to be material when its Bonferroni-adjusted %s%% CI lies entirely beyond the margin; otherwise it is inconclusive.": [
                 "%d eşleştirilmiş karşılaştırma raporlanmıştır; p-değerleri sıfıra karşı test eder ve düzeltilmemiştir. Karşılaştırma ortalamasının %%%s kadarı olan bir marj ile, bir fark %%90 GA'sı marjın içinde kaldığında dışlanır (iki tek yönlü test) ve Bonferroni düzeltmeli %%%s GA'sı tamamen marjın ötesinde kaldığında önemli olduğu gösterilmiş olur; aksi halde sonuç belirsizdir."
             ],
-            "%d patient(s) had a change below -100%%, which is not physically possible: -100%% already means the tumour has disappeared completely. The most extreme was %.1f%%. These values were capped at -100%% in the analysis and the plot; such a patient counts as a complete response only when a capped value is their best response: %s. Check the response column for data-entry errors.": [
+            "%d patient(s) had a change below -100%%, which is not physically possible: -100%% already means the tumor has disappeared completely. The most extreme was %.1f%%. These values were capped at -100%% in the analysis and the plot; such a patient counts as a complete response only when a capped value is their best response: %s. Check the response column for data-entry errors.": [
                 "%d hastada fiziksel olarak mümkün olmayan -%%100'ün altında bir değişim vardı: -%%100 zaten tümörün tamamen kaybolduğu anlamına gelir. En uç değer %%%.1f idi. Bu değerler analizde ve grafikte -%%100 ile sınırlandı; böyle bir hasta yalnızca sınırlandırılmış değer en iyi yanıtı olduğunda tam yanıt sayılır: %s. Yanıt sütununda veri girişi hatası olup olmadığını kontrol edin."
             ],
             "%d patient(s) have a baseline but no post-baseline measurement (no later row, or the later measurements are missing) and are therefore not response-evaluable: %s. They are reported as \"Unknown\" rather than as stable disease, so they do not inflate the disease control rate.": [
                 "%d hastada başlangıç değeri var ancak başlangıç sonrası ölçüm yok (sonraki satır yok veya sonraki ölçümler eksik) ve bu nedenle bu hastalar yanıt açısından değerlendirilemez: %s. Bu hastalar kararlı hastalık olarak değil \"Bilinmeyen\" olarak raporlanır, böylece hastalık kontrol oranını şişirmezler."
             ],
-            "%d patient(s) have a negative raw measurement, which is not a possible tumour size: %s. A negative baseline inverts the sign of the percent change, so a growing tumour would be reported as a response. These patients are reported as \"Unknown\" rather than guessed at. Check the measurement column for data-entry errors.": [
+            "%d patient(s) have a negative raw measurement, which is not a possible tumor size: %s. A negative baseline inverts the sign of the percent change, so a growing tumor would be reported as a response. These patients are reported as \"Unknown\" rather than guessed at. Check the measurement column for data-entry errors.": [
                 "%d hastada olası bir tümör boyutu olmayan negatif bir ham ölçüm var: %s. Negatif bir başlangıç değeri yüzde değişimin işaretini tersine çevirir, böylece büyüyen bir tümör yanıt olarak raporlanabilir. Bu hastalar tahmin edilmek yerine \"Bilinmeyen\" olarak raporlanır. Veri girişi hataları için ölçüm sütununu kontrol edin."
             ],
             "%d patient(s) have conflicting non-missing group values. Group comparisons require one fixed group per patient. Select a patient-level grouping variable or remove the grouping selection; episode-specific groups cannot define independent patient groups.": [
@@ -214,7 +214,7 @@
             "%d patient(s) have more than one response category override across their rows: %s. The first recorded value is used. Enter one category per patient.": [
                 "%d hastada satırlar arasında birden fazla yanıt kategorisi geçersiz kılma değeri var: %s. İlk kaydedilen değer kullanılır. Hasta başına bir kategori girin."
             ],
-            "%d patient(s) have more than one row but no time variable is selected: %s. The smallest value was used as each patient's best response. If the rows are visits, a 0%% baseline row takes part in that minimum, so a tumour that only grew is scored SD instead of PD. Select the visit time as the Time Variable.": [
+            "%d patient(s) have more than one row but no time variable is selected: %s. The smallest value was used as each patient's best response. If the rows are visits, a 0%% baseline row takes part in that minimum, so a tumor that only grew is scored SD instead of PD. Select the visit time as the Time Variable.": [
                 "%d hastada birden fazla satır var ancak zaman değişkeni seçilmedi: %s. Her hastanın en iyi yanıtı olarak en küçük değer kullanıldı. Satırlar vizit ise %%0 değerindeki başlangıç satırı bu minimuma katılır, böylece yalnızca büyüyen bir tümör PD yerine SD olarak sınıflandırılır. Vizit zamanını Zaman Değişkeni olarak seçin."
             ],
             "%d patient(s) have more than one value of the group variable across their rows: %s. Each patient is counted once, in the group of their first recorded value. Check the group column.": [
@@ -250,7 +250,7 @@
             "%d rows share %d study identifier(s) (%s). Rows that share an identifier usually describe one cohort read several times - by several pathologists, at several cut-offs or by several algorithms - and so share participants. They are pooled here as separate studies, which counts those participants more than once and makes the confidence intervals too narrow. Keep one pre-specified 2x2 table per independent study, for example the primary reader or the pre-specified threshold.": [
                 "%d satır %d çalışma tanımlayıcısını paylaşıyor (%s). Aynı tanımlayıcıyı paylaşan satırlar genellikle birkaç kez okunmuş tek bir kohortu tanımlar - birkaç patolog, birkaç eşik değeri veya birkaç algoritma ile - ve bu nedenle aynı katılımcıları içerir. Burada ayrı çalışmalar olarak birleştirilirler; bu, söz konusu katılımcıları birden fazla kez sayar ve güven aralıklarını gereğinden dar yapar. Her bağımsız çalışma için önceden belirlenmiş tek bir 2x2 tablo tutun; örneğin birincil okuyucu veya önceden belirlenmiş eşik."
             ],
-            "%d start/end values are not numbers (for example '%s') and those rows are excluded. Time Input Type is set to Raw Values; if these are calendar dates, switch it to Date/Time.": [
+            "%d start/end values are not numbers (for example '%s') and those rows are excluded. Time Input Type is set to Raw values; if these are calendar dates, switch it to Date/time.": [
                 "%d başlangıç/bitiş değeri sayısal değil (örneğin '%s'); bu satırlar dışlanır. Zaman girdisi türü ham değer olarak seçilmiştir; değerler takvim tarihiyse tarih/saat türüne geçin."
             ],
             "%d studies were read successfully, but every analysis and display option is switched off, so there is nothing to show. Tick Bivariate random-effects model for the pooled sensitivity and specificity, or any other option under Analysis, Visualization or Reporting.": [
@@ -262,7 +262,7 @@
             "%d study/studies contain a zero cell. No correction is applied to the data: every model (bivariate, proportional-hazards SROC, heterogeneity and meta-regression) adds 0.5 to all four cells of those studies, so each model uses every study. Deeks' test and the funnel plot use the raw counts and add 0.5 to every study.": [
                 "%d çalışmada sıfır hücre bulunur. Verilere düzeltme uygulanmaz: her model (iki değişkenli, orantılı tehlikeler SROC, heterojenlik ve meta-regresyon) bu çalışmaların dört hücresinin tümüne 0,5 ekler; böylece her model tüm çalışmaları kullanır. Deeks testi ve huni grafiği ham sayımları kullanır ve her çalışmaya 0,5 ekler."
             ],
-            "%d study/studies have no identifier; they are labelled 'Unnamed study' in the tables and the forest plot.": [
+            "%d study/studies have no identifier; they are labeled 'Unnamed study' in the tables and the forest plot.": [
                 "%d çalışmanın tanımlayıcısı yok; tablolarda ve orman grafiğinde 'Adsız çalışma' olarak etiketlenmiştir."
             ],
             "%d study/studies with a zero cell were corrected by adding 1/N to every cell, where N is the study size. A cell of 1/N gives such a study a logit variance of about N, so the models give it almost no weight, and these are the studies with 100%% sensitivity or specificity: the pooled accuracy is pulled toward lower values. In simulations of high-accuracy tests the 95%% confidence interval for pooled sensitivity covered the true value in only 31-55%% of meta-analyses under this option, against 58-69%% under the default. This is not a published correction; use the default unless you are deliberately running a sensitivity analysis.": [
@@ -283,7 +283,7 @@
             "%s A new study is predicted to fall between %.1f%% and %.1f%% for sensitivity and between %.1f%% and %.1f%% for specificity.": [
                 "%s Yeni bir çalışmanın duyarlılığı için %%%.1f ile %%%.1f, özgüllüğü için %%%.1f ile %%%.1f arasında bir değer öngörülür."
             ],
-            "%s is the reference measurement and was also selected as a regional measurement; it is analysed as the reference only.": [
+            "%s is the reference measurement and was also selected as a regional measurement; it is analyzed as the reference only.": [
                 "%s referans ölçümüdür ve ayrıca bölgesel ölçüm olarak da seçilmiştir; yalnızca referans olarak analiz edilir."
             ],
             "%s meta-regression on %d studies with a covariate contributing %d model parameter(s) (%d residual degrees of freedom). The usual recommendation is at least 10 studies per covariate, so estimates may be unstable and confidence intervals unreliable. Report this as exploratory only.": [
@@ -301,7 +301,7 @@
             "%s vs reference": [
                 "%s ve referans"
             ],
-            "%s was selected more than once as a regional measurement and is analysed once.": [
+            "%s was selected more than once as a regional measurement and is analyzed once.": [
                 "%s bölgesel ölçüm olarak birden fazla kez seçildi ve yalnızca bir kez analiz edilir."
             ],
             "%s: %d of %d responded (%.1f%%)": [
@@ -631,7 +631,7 @@
             "<strong>Negative Likelihood Ratio:</strong> Not estimable with the current data. LR- is (1 - sensitivity) / specificity, so it needs a pooled specificity above zero and finite pooled estimates; here the pooled specificity is 0 or an estimate did not converge. Read the pooled specificity and its confidence interval in the summary above to see which.": [
                 "<strong>Negatif Olabilirlik Oranı:</strong> Mevcut verilerle tahmin edilemiyor. NOO = (1 - duyarlılık) / özgüllük formülüyle hesaplandığından, sıfırdan büyük havuzlanmış özgüllük ve sonlu havuzlanmış tahminler gerektirir; burada havuzlanmış özgüllük 0'dır veya bir tahmin yakınsamamıştır. Hangisinin geçerli olduğunu görmek için yukarıdaki özette havuzlanmış özgüllüğü ve güven aralığını inceleyin."
             ],
-            "<strong>Not external validation:</strong> a meta-analysis summarises existing published evidence and inherits any publication, spectrum or reference-standard bias of the included studies; it is not a prospective evaluation in an intended-use population with a pre-specified threshold": [
+            "<strong>Not external validation:</strong> a meta-analysis summarizes existing published evidence and inherits any publication, spectrum or reference-standard bias of the included studies; it is not a prospective evaluation in an intended-use population with a pre-specified threshold": [
                 "<strong>Dış doğrulama değildir:</strong> Meta-analiz mevcut yayımlanmış kanıtları özetler ve dahil edilen çalışmaların yayın, spektrum veya referans standardı yanlılıklarını devralır; önceden belirlenmiş eşikle hedef kullanım topluluğunda ileriye dönük değerlendirme değildir"
             ],
             "<strong>Note:</strong> its confidence interval (%.2f-%.2f) spans more than one evidence category, so this grading is not firmly established by the pooled data.": [
@@ -802,7 +802,7 @@
             "<strong>Upper Left Corner:</strong> Ideal performance (high sensitivity, low false positive rate)": [
                 "<strong>Sol üst köşe:</strong> İdeal performans (yüksek duyarlılık, düşük yanlış pozitif oranı)"
             ],
-            "<strong>Use this plot to:</strong> Compare the studies' operating points, see the trade-off between sensitivity and specificity across them, and assess consistency across study populations and settings. The curve summarises studies with unknown and differing positivity thresholds and carries no threshold values, so it does not identify a cut-off for a laboratory to adopt.": [
+            "<strong>Use this plot to:</strong> Compare the studies' operating points, see the trade-off between sensitivity and specificity across them, and assess consistency across study populations and settings. The curve summarizes studies with unknown and differing positivity thresholds and carries no threshold values, so it does not identify a cut-off for a laboratory to adopt.": [
                 "<strong>Bu grafiği şu amaçlarla kullanın:</strong> Çalışmaların çalışma noktalarını karşılaştırmak, aralarında duyarlılık ile özgüllük arasındaki dengeyi görmek ve çalışma toplulukları ile ortamlar arasındaki tutarlılığı değerlendirmek. Eğri, pozitiflik eşikleri bilinmeyen ve farklı olan çalışmaları özetler ve eşik değeri taşımaz; bu nedenle bir laboratuvarın benimseyeceği bir kesim noktasını belirlemez."
             ],
             "<strong>Use this when:</strong> Studies use the same diagnostic threshold": [
@@ -1078,11 +1078,8 @@
             "Agreement Level:": [
                 "Uyum Düzeyi:"
             ],
-            "AGREEMENT THRESHOLDS MET, NOT CONFIRMED:": [
-                "UYUM EŞİKLERİ KARŞILANDI, DOĞRULANMADI:"
-            ],
-            "AGREEMENT THRESHOLDS MET:": [
-                "UYUM EŞİKLERİ KARŞILANDI:"
+            "Agreement thresholds met, not confirmed:": [
+                "Uyum eşikleri karşılandı, doğrulanmadı:"
             ],
             "Agreement thresholds met:": [
                 "Uyum eşikleri karşılandı:"
@@ -1210,8 +1207,8 @@
             "Assessment of test performance heterogeneity and variation sources": [
                 "Test performansı heterojenliğinin ve değişkenlik kaynaklarının değerlendirilmesi"
             ],
-            "ASSESSMENTS WITHOUT A TIME": [
-                "ZAMANI OLMAYAN DEĞERLENDİRMELER"
+            "Assessments without a time": [
+                "Zamanı olmayan değerlendirmeler"
             ],
             "Asymmetry detected (p < 0.05)": [
                 "Asimetri saptandı (p < 0,05)"
@@ -1222,7 +1219,7 @@
             "At least 3 studies with complete diagnostic test data are required ({n} found).": [
                 "Tam tanısal test verisine sahip en az 3 çalışma gereklidir ({n} bulundu)."
             ],
-            "At least 5 cases are required; this run analysed %d cases.": [
+            "At least 5 cases are required; this run analyzed %d cases.": [
                 "En az 5 vaka gereklidir; bu çalıştırmada %d vaka analiz edildi."
             ],
             "At least three finite studies are required for %s meta-regression.": [
@@ -1261,14 +1258,14 @@
             "Baseline assumed at Time = 0": [
                 "Zaman = 0 noktasında başlangıç varsayılır"
             ],
-            "BASELINE ASSUMPTION": [
-                "BAŞLANGIÇ VARSAYIMI"
+            "Baseline assumption": [
+                "Başlangıç varsayımı"
             ],
             "Baseline measurements are the reference point for calculating changes": [
                 "Başlangıç ölçümleri, değişimleri hesaplamak için referans noktasıdır"
             ],
-            "BASELINE NOT AT TIME 0": [
-                "BAŞLANGIÇ ZAMAN 0 NOKTASINDA DEĞİL"
+            "Baseline not at time 0": [
+                "Başlangıç zaman 0 noktasında değil"
             ],
             "Below the threshold as a point estimate only: %s.": [
                 "Yalnızca nokta tahmini olarak eşiğin altında: %s."
@@ -1282,11 +1279,11 @@
             "Best for longitudinal follow-up data": [
                 "İzlemsel takip verileri için en iyisi"
             ],
-            "Best Response": [
-                "En İyi Yanıt"
+            "Best response": [
+                "En iyi yanıt"
             ],
-            "Best Response (Simplified):": [
-                "En İyi Yanıt (Basitleştirilmiş):"
+            "Best response (simplified):": [
+                "En iyi yanıt (basitleştirilmiş):"
             ],
             "Best response is the smallest post-baseline change up to and including the first progression (at least 20% over the nadir, or regrowth after a complete response); later assessments are not used.": [
                 "En iyi yanıt, ilk progresyon dahil o ana kadarki (en düşük değerin en az %20 üzerinde ya da tam yanıttan sonra yeniden büyüme) en küçük başlangıç sonrası değişimdir; sonraki değerlendirmeler kullanılmaz."
@@ -1294,10 +1291,10 @@
             "Best response is the smallest post-baseline change.": [
                 "En iyi yanıt, en küçük başlangıç sonrası değişimdir."
             ],
-            "Best response was the smallest percent change in tumour burden from baseline over the post-baseline assessments up to and including the first progression (at least 20% over the nadir, or regrowth after a complete response); later assessments were not used.": [
+            "Best response was the smallest percent change in tumor burden from baseline over the post-baseline assessments up to and including the first progression (at least 20% over the nadir, or regrowth after a complete response); later assessments were not used.": [
                 "En iyi yanıt, ilk progresyon dahil o ana kadarki (en düşük değerin en az %20 üzerinde ya da tam yanıttan sonra yeniden büyüme) başlangıç sonrası değerlendirmelerde tümör yükünün başlangıca göre en küçük yüzde değişimiydi; sonraki değerlendirmeler kullanılmadı."
             ],
-            "Best response was the smallest percent change in tumour burden from baseline over the post-baseline assessments.": [
+            "Best response was the smallest percent change in tumor burden from baseline over the post-baseline assessments.": [
                 "En iyi yanıt, başlangıç sonrası değerlendirmelerde tümör yükünün başlangıca göre en küçük yüzde değişimiydi."
             ],
             "Between -30% and +20% change (simplified criterion)": [
@@ -1366,8 +1363,8 @@
             "Bootstrap CI of the median": [
                 "Medyanın bootstrap güven aralığı"
             ],
-            "BOOTSTRAP CI STABILITY": [
-                "BOOTSTRAP GA KARARLILIĞI"
+            "Bootstrap CI stability": [
+                "Bootstrap GA kararlılığı"
             ],
             "Both are effectively zero, so the studies are consistent with a single common sensitivity and specificity and the correlation between them is not identifiable - no threshold effect can be assessed from this fit.": [
                 "Her ikisi de pratik olarak sıfırdır; çalışmalar tek bir ortak duyarlılık ve özgüllükle uyumludur ve aralarındaki korelasyon tanımlanamaz. Bu uyumdan eşik etkisi değerlendirilemez."
@@ -1405,13 +1402,13 @@
             "Cases needed to estimate the ICC with a chosen 95 percent CI width (Bonett 2002)": [
                 "ICC'yi seçilen yüzde 95 GA genişliğiyle tahmin etmek için gereken vaka sayısı (Bonett 2002)"
             ],
-            "Cases not analysed": [
+            "Cases not analyzed": [
                 "Analiz edilmeyen vakalar"
             ],
             "Categories are the final response categories (same as the Response Categories table). Person-time is follow-up to the last measured assessment. The DoR column is the Kaplan-Meier median duration of response within the category.": [
                 "Kategoriler nihai yanıt kategorileridir (Yanıt Kategorileri tablosuyla aynı). Kişi-zaman, son ölçülen değerlendirmeye kadar olan takiptir. DoR sütunu, kategori içindeki Kaplan-Meier medyan yanıt süresidir."
             ],
-            "Categories are thresholds applied to one tumour burden value per patient and visit (CR -100%, PR at least -30%, PD at least +20%).": [
+            "Categories are thresholds applied to one tumor burden value per patient and visit (CR -100%, PR at least -30%, PD at least +20%).": [
                 "Kategoriler, hasta ve vizit başına tek bir tümör yükü değerine uygulanan eşiklerdir (CR -%100, PR en az -%30, PD en az +%20)."
             ],
             "Categories for %d patient(s) were taken from the response-category variable, not derived from the thresholds.": [
@@ -1459,14 +1456,14 @@
             "Censoring/Event status variable": [
                 "Sansür/olay durumu değişkeni"
             ],
-            "Centimetres (cm)": [
+            "Centimeters (cm)": [
                 "Santimetre (cm)"
             ],
-            "Change 'Time Input Type' from 'Date/Time' to 'Raw Values'": [
-                "'Zaman Giriş Türü'nü 'Tarih/Saat'ten 'Ham Değerler'e değiştirin"
+            "Change 'Time Input Type' from 'Date/time' to 'Raw values'": [
+                "'Zaman Giriş Türü'nü 'Tarih/saat'ten 'Ham değerler'e değiştirin"
             ],
-            "Change 'Time Input Type' from 'Raw Values' to 'Date/Time'": [
-                "'Zaman Giriş Türü'nü 'Ham Değerler'den 'Tarih/Saat'e değiştirin"
+            "Change 'Time Input Type' from 'Raw values' to 'Date/time'": [
+                "'Zaman Giriş Türü'nü 'Ham değerler'den 'Tarih/saat'e değiştirin"
             ],
             "Change in Tumor Size (%)": [
                 "Tümör Boyutundaki Değişim (%)"
@@ -1639,32 +1636,32 @@
             "Color scheme for spider plot lines and points.": [
                 "Örümcek grafiği çizgileri ve noktaları için renk şeması."
             ],
-            "Color scheme for waterfall plot. 'Colorful' provides distinct colors for group-based coloring; 'jamovi (follow global)' takes its colours from the palette set in jamovi's preferences, so the figure matches every other plot in the document.": [
+            "Color scheme for waterfall plot. 'Colorful' provides distinct colors for group-based coloring; 'jamovi (follow global)' takes its colors from the palette set in jamovi's preferences, so the figure matches every other plot in the document.": [
                 "Şelale grafiğinin renk şeması. 'Renkli', gruplara farklı renkler verir; 'jamovi (genel ayarı izle)', jamovi tercihlerindeki paleti kullanarak grafiğin belgedeki diğer grafiklerle uyumlu olmasını sağlar."
             ],
             "Color-blind safe": [
                 "Renk körü için güvenli"
             ],
-            "Colorblind Safe (Viridis)": [
-                "Renk Körü Güvenli (Viridis)"
+            "Color-blind safe (Okabe-Ito)": [
+                "Renk körü güvenli (Okabe-Ito)"
             ],
-            "Colorblind-Safe (Okabe-Ito)": [
-                "Renk Körü Güvenli (Okabe-Ito)"
+            "Color-blind safe (viridis)": [
+                "Renk körü güvenli (viridis)"
             ],
             "Colorful (for groups)": [
                 "Renkli (gruplar için)"
             ],
-            "Colorful (Group Colors)": [
-                "Renkli (Grup Renkleri)"
+            "Colorful (group colors)": [
+                "Renkli (grup renkleri)"
+            ],
+            "Coloring for the spider plot: each point by its own change from baseline (-30 percent or less vs above -30 percent), or each patient by group.": [
+                ""
             ],
             "Coloring method: RECIST categories or patient groups (requires Group Variable).": [
                 "Renklendirme yöntemi: RECIST kategorileri veya hasta grupları (Grup Değişkeni gerektirir)."
             ],
             "Colors bars by RECIST categories (CR/PR/SD/PD) or patient groups": [
                 "Çubukları RECIST kategorilerine (CR/PR/SD/PD) veya hasta gruplarına göre renklendirir"
-            ],
-            "Colouring for the spider plot: each point by its own change from baseline (-30 percent or less vs above -30 percent), or each patient by group.": [
-                ""
             ],
             "Combines results from multiple diagnostic accuracy studies to estimate overall test performance through:": [
                 "Genel test performansını tahmin etmek için birden çok tanısal doğruluk çalışmasının sonuçlarını şu yollarla birleştirir:"
@@ -1702,7 +1699,7 @@
             "Compartment Heterogeneity Comparison": [
                 "Kompartman Heterojenlik Karşılaştırması"
             ],
-            "Compartments with fewer than %d cases are not analysed: %s.": [
+            "Compartments with fewer than %d cases are not analyzed: %s.": [
                 "%d vakadan az olan kompartmanlar analiz edilmez: %s."
             ],
             "Compartments with fewer than %d cases are not compared: %s.": [
@@ -1768,14 +1765,14 @@
             "Confirmation variable has %d levels; markers reuse shapes beyond %d distinct symbols.": [
                 "Doğrulama değişkeni %d düzeye sahiptir; işaretçiler %d belirgin sembolden sonra şekilleri yeniden kullanır."
             ],
-            "CONFLICTING ANNOTATION VALUES": [
-                "ÇELİŞKİLİ EK AÇIKLAMA DEĞERLERİ"
+            "Conflicting annotation values": [
+                "Çelişkili ek açıklama değerleri"
             ],
-            "CONFLICTING CATEGORY OVERRIDES": [
-                "ÇELİŞKİLİ KATEGORİ GEÇERSİZ KILMALARI"
+            "Conflicting category overrides": [
+                "Çelişkili kategori geçersiz kılmaları"
             ],
-            "CONFLICTING CONFIRMATION VALUES": [
-                "ÇELİŞKİLİ DOĞRULAMA DEĞERLERİ"
+            "Conflicting confirmation values": [
+                "Çelişkili doğrulama değerleri"
             ],
             "Consider averaging more than one region per case or revising the sampling protocol.": [
                 "Vaka başına birden fazla bölgenin ortalamasını almayı veya örnekleme protokolünü gözden geçirmeyi değerlendirin."
@@ -1903,8 +1900,8 @@
             "Custom reference time": [
                 "Özel referans zamanı"
             ],
-            "Custom Time": [
-                "Özel Zaman"
+            "Custom time": [
+                "Özel zaman"
             ],
             "CV (%)": [
                 "CV (%)"
@@ -1972,8 +1969,8 @@
             "Data validation failed.": [
                 "Veri doğrulaması başarısız oldu."
             ],
-            "DATA VALIDATION WARNINGS": [
-                "VERİ DOĞRULAMA UYARILARI"
+            "Data validation warnings": [
+                "Veri doğrulama uyarıları"
             ],
             "Data were insufficient to characterize sampling reliability.": [
                 "Veriler örnekleme güvenilirliğini karakterize etmek için yetersizdi."
@@ -1990,14 +1987,14 @@
             "Date format in data": [
                 "Verideki Tarih Formatı"
             ],
-            "Date/Time": [
-                "Tarih/Saat"
+            "Date/time": [
+                "Tarih/saat"
             ],
-            "Date/Time input type was selected but the time variables contain numeric values. Switch Time Input Type to Raw Values (or correct the data) and re-run.": [
-                "Tarih/Saat giriş türü seçildi ancak zaman değişkenleri sayısal değerler içeriyor. Zaman Giriş Türü'nü Ham Değerler'e geçirin (veya veriyi düzeltin) ve yeniden çalıştırın."
+            "Date/time input type was selected but the time variables contain numeric values. Switch Time Input Type to Raw values (or correct the data) and re-run.": [
+                "Tarih/saat giriş türü seçildi ancak zaman değişkenleri sayısal değerler içeriyor. Zaman Giriş Türü'nü Ham değerler'e geçirin (veya veriyi düzeltin) ve yeniden çalıştırın."
             ],
-            "Date/Time:": [
-                "Tarih/Saat:"
+            "Date/time:": [
+                "Tarih/saat:"
             ],
             "Days": [
                 "Gün"
@@ -2167,11 +2164,11 @@
             "Duration": [
                 "Süre"
             ],
-            "Duration (Longest First)": [
-                "Süre (En Uzun İlk)"
+            "Duration (longest first)": [
+                "Süre (en uzun ilk)"
             ],
-            "Duration (Shortest First)": [
-                "Süre (En Kısa İlk)"
+            "Duration (shortest first)": [
+                "Süre (en kısa ilk)"
             ],
             "Durations and person-time are in {unit}; rate rows are percentages. Mean Duration spans each patient's first start to last end, so it includes any gaps between episodes, while Total Person-Time is the union of the episodes themselves and excludes them - the two therefore differ whenever a patient has a treatment gap.": [
                 "Süreler ve kişi-zaman {unit} birimindedir; oran satırları yüzdedir. Ortalama süre, hastanın ilk başlangıcından son bitişine uzanır ve dönemler arasındaki boşlukları içerir. Toplam kişi-zaman ise dönemlerin birleşimidir ve boşlukları dışlar; tedavi arası boşluk olduğunda bu iki değer farklılaşır."
@@ -2245,8 +2242,8 @@
             "Epidemiological metrics and follow-up analysis": [
                 "Epidemiyolojik metrikler ve takip analizi"
             ],
-            "ERROR": [
-                "HATA"
+            "Error": [
+                "Hata"
             ],
             "Error in enhanced plot: %s": [
                 "Gelişmiş grafikte hata: %s"
@@ -2338,8 +2335,8 @@
             "Every regional measurement equalled its comparison in every case.": [
                 "Her bölgesel ölçüm, her vakada karşılaştırıldığı değere eşitti."
             ],
-            "Every response value is positive, so no patient shrank at all. If these are raw tumour sizes rather than percent changes, set Data Input Type to Raw Measurements and add a time variable.": [
-                "Tüm yanıt değerleri pozitiftir, dolayısıyla hiçbir hastada küçülme olmamıştır. Bunlar yüzde değişimleri değil ham tümör boyutlarıysa, Veri Giriş Türünü Ham Ölçümler olarak ayarlayın ve bir zaman değişkeni ekleyin."
+            "Every response value is positive, so no patient shrank at all. If these are raw tumor sizes rather than percent changes, set Data Input Type to Raw measurements and add a time variable.": [
+                "Tüm yanıt değerleri pozitiftir, dolayısıyla hiçbir hastada küçülme olmamıştır. Bunlar yüzde değişimleri değil ham tümör boyutlarıysa, Veri Giriş Türünü Ham ölçümler olarak ayarlayın ve bir zaman değişkeni ekleyin."
             ],
             "Every response value lies between -1 and 1. Percent change must be entered as -35 for a 35% decrease; these look like proportions (for example from a spreadsheet percent format), which makes every patient stable disease. Multiply the values by 100.": [
                 "Tüm yanıt değerleri -1 ile 1 arasındadır. Yüzde değişim, %35 azalma için -35 olarak girilmelidir; bu değerler oran gibi görünmektedir (örneğin bir elektronik tablo yüzde formatından) ve bu durum her hastayı kararlı hastalık olarak sınıflandırır. Değerleri 100 ile çarpın."
@@ -2383,8 +2380,8 @@
             "Expected CI Width (current n)": [
                 "Beklenen GA Genişliği (mevcut n)"
             ],
-            "EXPLORATORY RESPONSE CATEGORIES": [
-                "KEŞİF AMAÇLI YANIT KATEGORİLERİ"
+            "Exploratory response categories": [
+                "Keşif amaçlı yanıt kategorileri"
             ],
             "Export Information": [
                 "Dışa Aktarma Bilgisi"
@@ -2398,8 +2395,8 @@
             "Export Timeline Data": [
                 "Zaman Çizelgesi Verisini Dışa Aktar"
             ],
-            "EXTREME VALUES DETECTED": [
-                "UÇ DEĞERLER TESPİT EDİLDİ"
+            "Extreme values detected": [
+                "Uç değerler tespit edildi"
             ],
             "False negatives (disease+, test-)": [
                 "Yanlış negatifler (hastalık+, test-)"
@@ -2563,8 +2560,8 @@
             "Generate copy-ready sentences for manuscripts and reports: - Auto-filled with your results (ORR, DCR, confidence intervals) - Publication-ready language following oncology standards - Copy-paste directly into manuscripts or clinical reports Recommended for publication or clinical documentation": [
                 "Makaleler ve raporlar için kopyalanabilir cümleler oluşturur: - Sonuçlarınızla otomatik doldurulur (ORR, DCR, güven aralıkları) - Onkoloji standartlarına uygun yayıma hazır dil - Makaleye veya klinik rapora doğrudan kopyalama Yayın veya klinik belgeleme için önerilir"
             ],
-            "Generic (Time)": [
-                "Genel (Zaman)"
+            "Generic (time)": [
+                "Genel (zaman)"
             ],
             "Get started:": [
                 "Başlarken:"
@@ -2572,11 +2569,11 @@
             "Getting Started": [
                 "Başlarken"
             ],
-            "ggswim (Dark)": [
-                "ggswim (Koyu)"
+            "ggswim (dark)": [
+                "ggswim (koyu)"
             ],
-            "ggswim (Light)": [
-                "ggswim (Açık)"
+            "ggswim (light)": [
+                "ggswim (açık)"
             ],
             "Go to the 'Time & Date Settings' section (click to expand)": [
                 "'Zaman ve Tarih Ayarları' bölümüne gidin (genişletmek için tıklayın)"
@@ -2596,14 +2593,14 @@
             "Good specificity (80-89%): some false positives": [
                 "İyi özgüllük (%80-89): bazı yanlış pozitifler"
             ],
-            "Greyed out when the analysis focus above already includes them.": [
+            "Grayed out when the analysis focus above already includes them.": [
                 "Yukarıdaki analizler bunları içerdiğinden devre dışıdır."
             ],
             "Group": [
                 "Grup"
             ],
-            "GROUP CHANGES WITHIN PATIENT": [
-                "AYNI HASTADA DEĞİŞEN GRUP DEĞERİ"
+            "Group changes within patient": [
+                "Aynı hastada değişen grup değeri"
             ],
             "Group Comparison Analysis": [
                 "Grup Karşılaştırma Analizi"
@@ -2679,9 +2676,6 @@
             ],
             "High (CV = %.1f%%, graded against your %s%% threshold) - measurements of the same case varied substantially.": [
                 "Yüksek (CV = %%%.1f, %%%s eşiğinize göre derecelendirildi) - aynı vakanın ölçümleri belirgin şekilde farklılık gösterdi."
-            ],
-            "High Contrast": [
-                "Yüksek Kontrast"
             ],
             "High contrast": [
                 "Yüksek kontrast"
@@ -2794,8 +2788,8 @@
             "Important Note": [
                 "Önemli Not"
             ],
-            "IMPOSSIBLE SHRINKAGE CAPPED": [
-                "İMKANSIZ KÜÇÜLME SINIRLANDIRILDI"
+            "Impossible shrinkage capped": [
+                "İmkansız küçülme sınırlandırıldı"
             ],
             "In these data the 95%% CI of ICC(2,1) has width %s.": [
                 "Bu verilerde ICC(2,1) için %%95 GA genişliği: %s."
@@ -2830,8 +2824,8 @@
             "In this dataset, the available data were insufficient to quantify measurement variability.": [
                 "Bu veri setinde, mevcut veriler ölçüm değişkenliğini ölçmek için yetersizdi."
             ],
-            "INADEQUATE SAMPLING:": [
-                "YETERSİZ ÖRNEKLEME:"
+            "Inadequate sampling:": [
+                "Yetersiz örnekleme:"
             ],
             "Independence:": [
                 "Bağımsızlık:"
@@ -2863,8 +2857,8 @@
             "Infinite time values in variable '%s', analysis row(s) %s. Enter finite start and end times or mark unavailable values as missing.": [
                 "'%s' değişkeninde, %s analiz satır(lar)ında sonsuz zaman değeri var. Sonlu başlangıç ve bitiş zamanı girin veya mevcut olmayan değerleri eksik olarak işaretleyin."
             ],
-            "INFO": [
-                "BİLGİ"
+            "Info": [
+                "Bilgi"
             ],
             "Input Settings": [
                 ""
@@ -2890,8 +2884,8 @@
             "Insufficient data for reference-based heterogeneity analysis. At least 5 complete cases (a reference value and at least one regional measurement) are required; %d case(s) qualify.": [
                 "Referansa dayalı heterojenlik analizi için yetersiz veri. En az 5 eksiksiz vaka (bir referans değeri ve en az bir bölgesel ölçüm) gereklidir; %d vaka bu koşulu sağlıyor."
             ],
-            "INSUFFICIENT DATA:": [
-                "YETERSİZ VERİ:"
+            "Insufficient data:": [
+                "Yetersiz veri:"
             ],
             "Inter- and intra-observer variation is not separated from regional variation.": [
                 "Gözlemciler arası ve gözlemci içi değişkenlik, bölgesel değişkenlikten ayrılmamıştır."
@@ -2944,7 +2938,7 @@
             "jamovi (follow global)": [
                 "jamovi (genel ayarı izle)"
             ],
-            "Judge the response rate against the rate expected without benefit in your tumour type and line of therapy (the null rate of your study design), using the confidence interval above, rather than against generic cut-offs.": [
+            "Judge the response rate against the rate expected without benefit in your tumor type and line of therapy (the null rate of your study design), using the confidence interval above, rather than against generic cut-offs.": [
                 "Yanıt oranını genel kesme değerlerine göre değil, yukarıdaki güven aralığını kullanarak tümör türünüzde ve tedavi basamağınızda fayda olmaksızın beklenen orana (çalışma tasarımınızın sıfır hipotezi oranı) göre değerlendirin."
             ],
             "Keep 'RECIST thresholds' on to see the -30% and +20% lines on the plots": [
@@ -3055,8 +3049,8 @@
             "Mark censored patients: follow-up ended without the event (alive at the data cutoff, or lost to follow-up)": [
                 "Sansürlü hastaları işaretle: izlem olay olmadan sona erdi (veri kesim tarihinde sağ ya da izlemden çıkmış)"
             ],
-            "MARKER SHAPES REUSED": [
-                "İŞARETÇİ ŞEKİLLERİ YENİDEN KULLANILDI"
+            "Marker shapes reused": [
+                "İşaretçi şekilleri yeniden kullanıldı"
             ],
             "Marker size": [
                 "İşaretçi boyutu"
@@ -3142,23 +3136,20 @@
             "Measurement scale:": [
                 "Ölçüm ölçeği:"
             ],
-            "MEDIAN CI NOT DRAWN": [
-                "MEDYAN GA ÇİZİLMEDİ"
+            "Median CI not drawn": [
+                "Medyan GA çizilmedi"
             ],
             "Median DoR (Kaplan-Meier)": [
                 "Medyan DoR (Kaplan-Meier)"
             ],
-            "Median Duration": [
-                "Medyan Süre"
+            "Median duration": [
+                "Medyan süre"
             ],
-            "Median Duration (observed)": [
-                "Medyan Süre (gözlenen)"
+            "Median duration (observed)": [
+                "Medyan süre (gözlenen)"
             ],
             "Median duration of response (Kaplan-Meier)": [
                 "Medyan yanıt süresi (Kaplan-Meier)"
-            ],
-            "Median Duration of Response (Kaplan-Meier)": [
-                "Medyan Yanıt Süresi (Kaplan-Meier)"
             ],
             "Median duration of response (naive)": [
                 "Medyan yanıt süresi (ham)"
@@ -3313,8 +3304,8 @@
             "Milestone": [
                 "Kilometre Taşı"
             ],
-            "Milestone '%s' contains calendar dates, but the timeline uses raw numeric times, so these dates cannot be placed on the time axis. The milestone was skipped. Switch Time Input Type to Date/Time (or supply numeric milestone times) to show it.": [
-                "'%s' kilometre taşı takvim tarihleri içeriyor ancak zaman çizelgesi ham sayısal zamanları kullanıyor, bu nedenle bu tarihler zaman eksenine yerleştirilemez. Kilometre taşı atlandı. Göstermek için Zaman Giriş Türü'nü Tarih/Saat'e geçirin (veya sayısal kilometre taşı zamanları sağlayın)."
+            "Milestone '%s' contains calendar dates, but the timeline uses raw numeric times, so these dates cannot be placed on the time axis. The milestone was skipped. Switch Time Input Type to Date/time (or supply numeric milestone times) to show it.": [
+                "'%s' kilometre taşı takvim tarihleri içeriyor ancak zaman çizelgesi ham sayısal zamanları kullanıyor, bu nedenle bu tarihler zaman eksenine yerleştirilemez. Kilometre taşı atlandı. Göstermek için Zaman Giriş Türü'nü Tarih/saat'e geçirin (veya sayısal kilometre taşı zamanları sağlayın)."
             ],
             "Milestone '%s' was skipped. %s": [
                 "'%s' kilometre taşı atlandı. %s"
@@ -3376,7 +3367,7 @@
             "Milestone slot(s) %s have a variable assigned but 'Maximum milestones' is set to %d, so they are not shown. Raise it to include them.": [
                 "%s dönüm noktası alan(lar)ına değişken atanmış ancak azami dönüm noktası sayısı %d olduğundan gösterilmez. Dahil etmek için sınırı yükseltin."
             ],
-            "Milestone slot(s) %s share a name, so each is labelled with the variable it came from to keep them apart in the summary.": [
+            "Milestone slot(s) %s share a name, so each is labeled with the variable it came from to keep them apart in the summary.": [
                 "%s dönüm noktası alan(lar)ı aynı adı paylaşır; özette ayırt etmek için her biri kaynak değişkenle etiketlenir."
             ],
             "Milestone slots not shown": [
@@ -3403,7 +3394,7 @@
             "Milestones:": [
                 "Kilometre Taşları:"
             ],
-            "Millimetres (mm)": [
+            "Millimeters (mm)": [
                 "Milimetre (mm)"
             ],
             "Minimal": [
@@ -3481,9 +3472,6 @@
             "Moderate sample size: Results provide reasonable evidence for preliminary conclusions.": [
                 "Orta örneklem büyüklüğü: Sonuçlar ön sonuçlar için makul kanıt sağlar."
             ],
-            "MODERATE SAMPLING:": [
-                "ORTA DÜZEYDE ÖRNEKLEME:"
-            ],
             "Moderate sampling:": [
                 "Orta düzeyde örnekleme:"
             ],
@@ -3523,8 +3511,8 @@
             "Most common response was a tie between %s, each in %.1f%% of patients.": [
                 "En sık yanıt %s arasında eşitti; her biri hastaların %%%.1f kadarında görüldü."
             ],
-            "Most studies use 'Percentage Changes' format": [
-                "Çoğu çalışma 'Yüzde Değişimleri' formatını kullanır"
+            "Most studies use 'Percentage changes' format": [
+                "Çoğu çalışma 'Yüzde değişimleri' formatını kullanır"
             ],
             "Multiple episodes recorded for %d of %d patients. This is normal for longitudinal data.": [
                 "%d/%d hastada birden çok dönem kaydedildi. Boylamsal veride bu normaldir."
@@ -3559,8 +3547,8 @@
             "Negative LR": [
                 "Negatif LR"
             ],
-            "NEGATIVE TUMOUR MEASUREMENTS": [
-                "NEGATİF TÜMÖR ÖLÇÜMLERİ"
+            "Negative tumor measurements": [
+                "Negatif tümör ölçümleri"
             ],
             "Negative values = tumor shrinkage (improvement)": [
                 "Negatif değerler = tümör küçülmesi (iyileşme)"
@@ -3622,14 +3610,14 @@
             "No evaluable patients: response rates cannot be reported. See the Important Information panel for why patients were not evaluable.": [
                 "Değerlendirilebilir hasta yok: yanıt oranları raporlanamaz. Hastaların neden değerlendirilemediğini görmek için Önemli Bilgiler paneline bakın."
             ],
-            "No event markers to summarise: none of the event times could be converted to a time on this timeline.": [
+            "No event markers to summarize: none of the event times could be converted to a time on this timeline.": [
                 "Özetlenecek olay işareti yok: olay zamanlarından hiçbiri bu çizelgede bir zamana dönüştürülemedi."
             ],
-            "No event markers to summarise. Either no event type/time variable is selected, or none of the events falls inside a patient's timeline - see the notices above.": [
+            "No event markers to summarize. Either no event type/time variable is selected, or none of the events falls inside a patient's timeline - see the notices above.": [
                 "Özetlenecek olay işareti yok. Olay türü/zaman değişkeni seçilmemiş veya hiçbir olay hastanın zaman çizelgesi içine düşmemiştir; yukarıdaki bildirimlere bakın."
             ],
-            "NO GROUP COMPARISON": [
-                "GRUP KARŞILAŞTIRMASI YOK"
+            "No group comparison": [
+                "Grup karşılaştırması yok"
             ],
             "No group comparison could be run. Fisher's exact test needs at least two groups and both outcomes present: here every patient in the comparison had the same outcome (all responders or none, and likewise for disease control), so there is nothing to compare. The per-group counts are in the note above.": [
                 "Grup karşılaştırması yapılamadı. Fisher kesin testi en az iki grup ve her iki sonucun da varlığını gerektirir: burada karşılaştırmadaki tüm hastalar aynı sonuca sahiptir (yanıt verenlerin tümü veya hiçbiri; hastalık kontrolü için de aynı durum); karşılaştırılacak fark yoktur. Grup bazında sayımlar yukarıdaki nottadır."
@@ -3640,17 +3628,17 @@
             "No material systematic difference: every 90%% CI lies within the %s%% margin (largest estimated difference %s%%).": [
                 "Önemli bir sistematik fark yok: her %%90 GA %%%s marjı içinde kalıyor (tahmin edilen en büyük fark %%%s)."
             ],
-            "No milestones to summarise: none of the milestone values could be converted to a time on this timeline.": [
+            "No milestones to summarize: none of the milestone values could be converted to a time on this timeline.": [
                 "Özetlenecek dönüm noktası yok: dönüm noktası değerlerinden hiçbiri bu çizelgede bir zamana dönüştürülemedi."
             ],
-            "No milestones to summarise. The milestone variable has no usable value for any patient in the analysis, or every milestone slot was skipped - see the notices above.": [
+            "No milestones to summarize. The milestone variable has no usable value for any patient in the analysis, or every milestone slot was skipped - see the notices above.": [
                 "Özetlenecek dönüm noktası yok. Analizdeki hiçbir hastada kullanılabilir değer bulunmuyor veya tüm dönüm noktası alanları atlandı; yukarıdaki bildirimlere bakın."
             ],
             "No missing values in TP, FP, FN, TN columns": [
                 "TP, FP, FN, TN sütunlarında eksik değer yok"
             ],
-            "NO NEGATIVE CHANGES": [
-                "NEGATİF DEĞİŞİM YOK"
+            "No negative changes": [
+                "Negatif değişim yok"
             ],
             "No patient had a CR, PR, SD or PD response, so objective response and disease control rates were not calculated.": [
                 "Hiçbir hastada CR, PR, SD veya PD yanıtı yoktu; bu yüzden objektif yanıt ve hastalık kontrol oranları hesaplanmadı."
@@ -3727,7 +3715,7 @@
             "No summary point or SROC curve: they come from the bivariate model, which is switched off. Tick 'Bivariate random-effects model' to add them; only the individual studies are shown.": [
                 "Özet nokta veya SROC eğrisi yok: bunlar kapalı olan iki değişkenli modelden gelir. Eklemek için 'İki değişkenli rastgele etkiler modeli' seçeneğini işaretleyin; yalnızca bireysel çalışmalar gösterilmektedir."
             ],
-            "No universal benchmark: compare the rate with the rate expected in your tumour type and treatment setting.": [
+            "No universal benchmark: compare the rate with the rate expected in your tumor type and treatment setting.": [
                 "Evrensel bir referans değer yoktur: oranı, tümör türünüzde ve tedavi ortamınızda beklenen oranla karşılaştırın."
             ],
             "No valid data rows after validation. Check that end times are >= start times and all required data is present.": [
@@ -3748,7 +3736,7 @@
             "None of the %d patients supplied could be evaluated for response. Every response value was missing, non-numeric, lacked a usable baseline, or had no post-baseline assessment, so no rates or categories can be produced. Check that the response variable holds numeric values and, for raw measurements, that each patient has a time = 0 baseline and at least one later measurement.": [
                 "Sağlanan %d hastanın hiçbiri yanıt açısından değerlendirilemedi. Her yanıt değeri ya eksikti, ya sayısal değildi, ya kullanılabilir bir başlangıç değerinden yoksundu ya da başlangıç sonrası değerlendirmesi yoktu; bu nedenle hiçbir oran veya kategori üretilemez. Yanıt değişkeninin sayısal değerler içerdiğini ve ham ölçümler için her hastanın zaman = 0 başlangıç değerine ve en az bir sonraki ölçüme sahip olduğunu kontrol edin."
             ],
-            "None of the start/end values are numbers (for example '%s'). Time Input Type is set to Raw Values, which expects a number of %s. If these are calendar dates, switch Time Input Type to Date/Time and choose the matching Date Format.": [
+            "None of the start/end values are numbers (for example '%s'). Time Input Type is set to Raw values, which expects a number of %s. If these are calendar dates, switch Time Input Type to Date/time and choose the matching Date Format.": [
                 "Başlangıç/bitiş değerlerinden hiçbiri sayısal değil (örneğin '%s'). Zaman girdisi türü ham değer olarak seçilmiştir ve %s cinsinden sayı beklenir. Bunlar takvim tarihiyse tarih/saat türüne geçin ve uygun tarih biçimini seçin."
             ],
             "None of the start/end values could be parsed as dates with the selected Date Format ({fmt}). Choose the format that matches how your dates are written (e.g. 2023-01-15 needs YYYY-MM-DD).": [
@@ -3756,9 +3744,6 @@
             ],
             "Normality:": [
                 "Normallik:"
-            ],
-            "NOT ADEQUATE FOR SUBSTITUTION:": [
-                "BİRBİRİNİN YERİNE KULLANILMAYA UYGUN DEĞİL:"
             ],
             "Not adequate for substitution:": [
                 "Birbirinin yerine kullanılmaya uygun değil:"
@@ -3829,8 +3814,8 @@
             "Not every response value was a RECIST category (CR, PR, SD, PD, NE), so objective response and disease control rates were not calculated.": [
                 "Yanıt değerlerinin hepsi RECIST kategorisi (CR, PR, SD, PD, NE) değildi; bu yüzden objektif yanıt ve hastalık kontrol oranları hesaplanmadı."
             ],
-            "NOT GRADED:": [
-                "DERECELENDİRİLMEDİ:"
+            "Not graded:": [
+                "Derecelendirilmedi:"
             ],
             "Not graded: ordinal score": [
                 "Derecelendirilmedi: sıralı skor"
@@ -3847,8 +3832,8 @@
             "not reached (95%% CI lower limit %.1f %s; %d of %d responders progressed)": [
                 "ulaşılamadı (%%95 GA alt sınırı %.1f %s; %d / %d yanıt veren hastada progresyon gelişti)"
             ],
-            "NOT RESPONSE-EVALUABLE": [
-                "YANIT AÇISINDAN DEĞERLENDİRİLEMEZ"
+            "Not response-evaluable": [
+                "Yanıt açısından değerlendirilemez"
             ],
             "Not specified": [
                 "Belirtilmedi"
@@ -3856,8 +3841,8 @@
             "Not stated (5 mm rule not applied)": [
                 "Belirtilmedi (5 mm kuralı uygulanmaz)"
             ],
-            "NOTE": [
-                "NOT"
+            "Note": [
+                "Not"
             ],
             "Note: Stratified sampling was reported. This analysis applies NO design-based adjustment: all estimates treat the measurements as a simple sample, so stratification effects (if any) remain in the results.": [
                 "Not: Tabakalı örnekleme bildirildi. Bu analiz tasarıma dayalı HİÇBİR ayarlama uygulamaz: tüm tahminler ölçümleri basit bir örneklem olarak ele alır, bu nedenle tabakalama etkileri (varsa) sonuçlarda kalır."
@@ -3979,7 +3964,7 @@
             "Optional for percentage data": [
                 "Yüzde verileri için isteğe bağlı"
             ],
-            "Optional grouping variable for coloring bars by patient groups (e.g., treatment arms, disease subtypes). Bars are coloured by group when Color by is set to Patient Groups (jamovi sets it when a group is chosen; from R, set colorBy = \"group\").": [
+            "Optional grouping variable for coloring bars by patient groups (e.g., treatment arms, disease subtypes). Bars are colored by group when Color by is set to Patient groups (jamovi sets it when a group is chosen; from R, set colorBy = \"group\").": [
                 ""
             ],
             "Optional per-patient RECIST category (CR/PR/SD/PD, or NE for not evaluable). It overrides the computed category, and counts a patient with no measured value (e.g. PD before the first scan). Affects coloring and metrics.": [
@@ -3988,7 +3973,7 @@
             "Optional variable indicating confirmation status (e.g., Confirmed vs Unconfirmed). A distinct marker is drawn at each bar tip per level; ORR and DCR are not changed (use the category override for that).": [
                 "Doğrulama durumunu belirten isteğe bağlı değişken (örn. Doğrulanmış / Doğrulanmamış). Her düzey için çubuk ucuna ayrı bir işaretçi çizilir; ORR ve DCR değişmez (bunun için kategori geçersiz kılmayı kullanın)."
             ],
-            "Optional. Variables shown as coloured annotation rows under the waterfall, aligned with each patient's bar.": [
+            "Optional. Variables shown as colored annotation rows under the waterfall, aligned with each patient's bar.": [
                 "İsteğe bağlı. Şelalenin altında her hastanın çubuğuyla hizalanmış renkli ek açıklama satırları olarak gösterilen değişkenler."
             ],
             "Optionally add a reference measurement (whole slide, hotspot or overall score); without one, select at least two regional measurements.": [
@@ -4105,8 +4090,8 @@
             "Patient Group": [
                 "Hasta Grubu"
             ],
-            "Patient Groups": [
-                "Hasta Grupları"
+            "Patient groups": [
+                "Hasta grupları"
             ],
             "Patient ID": [
                 "Hasta Kimliği"
@@ -4153,8 +4138,8 @@
             "Patients are ordered by the Sort Variable '%s'. The Sort Order setting is not applied while a Sort Variable is selected; clear it to sort by duration, patient ID or response.": [
                 "Hastalar '%s' sıralama değişkenine göre sıralanır. Sıralama değişkeni seçiliyken sıralama düzeni ayarı uygulanmaz; süre, hasta kimliği veya yanıta göre sıralamak için değişkeni temizleyin."
             ],
-            "PATIENTS EXCLUDED": [
-                "HARİÇ TUTULAN HASTALAR"
+            "Patients excluded": [
+                "Hariç tutulan hastalar"
             ],
             "Patients excluded from the group comparison": [
                 "Grup karşılaştırmasından dışlanan hastalar"
@@ -4198,11 +4183,11 @@
             "percent": [
                 "yüzde"
             ],
-            "PERCENT CHANGE LOOKS LIKE PROPORTIONS": [
-                "YÜZDE DEĞİŞİM ORAN GİBİ GÖRÜNÜYOR"
+            "Percent change looks like proportions": [
+                "Yüzde değişim oran gibi görünüyor"
             ],
-            "PERCENT CHANGE LOOKS MULTIPLIED BY 100": [
-                "YÜZDE DEĞİŞİM 100 İLE ÇARPILMIŞ GİBİ GÖRÜNÜYOR"
+            "Percent change looks multiplied by 100": [
+                "Yüzde değişim 100 ile çarpılmış gibi görünüyor"
             ],
             "Percent changes calculated assuming time=0 is baseline for each patient. Duplicate time=0 rows are rejected during validation. Verify: (1) No measurements before time=0; (2) time=0 is the pre-treatment baseline (not post-treatment). A patient with no time=0 row stops the analysis; a patient whose time=0 value is missing, zero or non-numeric is excluded and listed in a notice.": [
                 "Yüzde değişimler her hasta için zaman=0'ın başlangıç olduğu varsayılarak hesaplanır. Yinelenen zaman=0 satırları doğrulama sırasında reddedilir. Doğrulayın: (1) zaman=0'dan önce ölçüm yok; (2) zaman=0 tedavi öncesi başlangıçtır (tedavi sonrası değil). Zaman=0 satırı olmayan bir hasta analizi durdurur; zaman=0 değeri eksik, sıfır veya sayısal olmayan bir hasta çıkarılır ve bir bildirimde listelenir."
@@ -4216,19 +4201,19 @@
             "Percentage achieving threshold-based response or stable disease (CR + PR + SD) without confirmation. Exploratory endpoint only.": [
                 "Doğrulama olmaksızın eşik tabanlı yanıt veya kararlı hastalık (CR + PR + SD) elde edenlerin yüzdesi. Yalnızca keşif amaçlı bir sonlanım noktasıdır."
             ],
-            "Percentage Changes": [
-                "Yüzde Değişimleri"
+            "Percentage changes": [
+                "Yüzde değişimleri"
             ],
-            "Percentage Changes selected - good for most analyses": [
-                "Yüzde Değişimleri seçildi - çoğu analiz için uygundur"
+            "Percentage changes selected - good for most analyses": [
+                "Yüzde değişimleri seçildi - çoğu analiz için uygundur"
             ],
-            "Percentage Changes:": [
-                "Yüzde Değişimleri:"
+            "Percentage changes:": [
+                "Yüzde değişimleri:"
             ],
             "Percentage of patients achieving threshold-based CR (≤-100%) or PR (≤-30%) without RECIST v1.1 confirmation requirement. May overestimate true confirmed ORR.": [
                 "RECIST v1.1 doğrulama gereksinimi olmaksızın eşik tabanlı CR (≤-%100) veya PR (≤-%30) elde eden hastaların yüzdesi. Gerçek doğrulanmış ORR'yi olduğundan yüksek tahmin edebilir."
             ],
-            "Percentage of tumour cells staining positive (for example Ki67); range 0 to 100.": [
+            "Percentage of tumor cells staining positive (for example Ki67); range 0 to 100.": [
                 "Pozitif boyanan tümör hücrelerinin yüzdesi (örneğin Ki67); 0 ile 100 arasında değişir."
             ],
             "Percentages and the response rates below are computed over evaluable patients only (CR/PR/SD/PD), except the all-patients ORR row, which counts patients with an unknown category as non-responders. See the Important Information panel for who was excluded and why.": [
@@ -4246,8 +4231,8 @@
             "Person-time analysis": [
                 "Kişi-zamanı analizi"
             ],
-            "PERSON-TIME ANALYSIS FAILED": [
-                "KİŞİ-ZAMANI ANALİZİ BAŞARISIZ OLDU"
+            "Person-time analysis failed": [
+                "Kişi-zamanı analizi başarısız oldu"
             ],
             "Person-Time Analysis:": [
                 "Kişi-Zamanı Analizi:"
@@ -4315,8 +4300,8 @@
             "Plot theme": [
                 "Grafik teması"
             ],
-            "POOLED ESTIMATE": [
-                "HAVUZLANMIŞ TAHMİN"
+            "Pooled estimate": [
+                "Havuzlanmış tahmin"
             ],
             "Pooled from %d studies comprising %s participants (%s with the target condition, %s without). Intervals are %d%% confidence intervals; sensitivity and specificity are percentages, the likelihood ratios and the diagnostic odds ratio are ratios.": [
                 "%d çalışmadaki %s katılımcıdan birleştirildi (%s hedef durumlu, %s hedef durumsuz). Aralıklar %%%d güven aralıklarıdır; duyarlılık ve özgüllük yüzde, olabilirlik oranları ve tanısal odds oranı ise oran olarak verilir."
@@ -4564,17 +4549,17 @@
             "Raw measurement unit": [
                 ""
             ],
-            "Raw Measurements": [
-                "Ham Ölçümler"
+            "Raw measurements": [
+                "Ham ölçümler"
             ],
-            "Raw measurements assume one target lesion per patient timepoint. If your data contains multiple lesions, percent changes will be INCORRECT. RECIST v1.1 requires summing diameters of up to 5 target lesions (max 2 per organ). Pre-process your data to sum target lesions before using this analysis, or switch to 'Percentage Changes' input with pre-calculated RECIST-compliant values.": [
-                "Ham ölçümler, hasta zaman noktası başına bir hedef lezyon varsayar. Verileriniz birden fazla lezyon içeriyorsa yüzde değişimleri YANLIŞ olacaktır. RECIST v1.1 en fazla 5 hedef lezyonun (organ başına en fazla 2) çaplarının toplanmasını gerektirir. Bu analizi kullanmadan önce hedef lezyonları toplamak için verilerinizi önceden işleyin veya önceden hesaplanmış RECIST uyumlu değerlerle 'Yüzde Değişimleri' girişine geçin."
+            "Raw measurements assume one target lesion per patient timepoint. If your data contains multiple lesions, percent changes will be INCORRECT. RECIST v1.1 requires summing diameters of up to 5 target lesions (max 2 per organ). Pre-process your data to sum target lesions before using this analysis, or switch to 'Percentage changes' input with pre-calculated RECIST-compliant values.": [
+                "Ham ölçümler, hasta zaman noktası başına bir hedef lezyon varsayar. Verileriniz birden fazla lezyon içeriyorsa yüzde değişimleri YANLIŞ olacaktır. RECIST v1.1 en fazla 5 hedef lezyonun (organ başına en fazla 2) çaplarının toplanmasını gerektirir. Bu analizi kullanmadan önce hedef lezyonları toplamak için verilerinizi önceden işleyin veya önceden hesaplanmış RECIST uyumlu değerlerle 'Yüzde değişimleri' girişine geçin."
             ],
-            "Raw Measurements selected - make sure you have a time variable": [
-                "Ham Ölçümler seçildi - bir zaman değişkeniniz olduğundan emin olun"
+            "Raw measurements selected - make sure you have a time variable": [
+                "Ham ölçümler seçildi - bir zaman değişkeniniz olduğundan emin olun"
             ],
-            "Raw Measurements:": [
-                "Ham Ölçümler:"
+            "Raw measurements:": [
+                "Ham ölçümler:"
             ],
             "Raw Numeric:": [
                 "Ham Sayısal:"
@@ -4582,8 +4567,8 @@
             "Raw start and end values are taken as already expressed in %s; no conversion is applied.": [
                 "Ham başlangıç ve bitiş değerleri zaten %s cinsinden ifade edilmiş olarak alınır; hiçbir dönüştürme uygulanmaz."
             ],
-            "Raw Values (numeric)": [
-                "Ham Değerler (sayısal)"
+            "Raw values (numeric)": [
+                "Ham değerler (sayısal)"
             ],
             "Re-run the analysis": [
                 "Analizi yeniden çalıştırın"
@@ -4597,7 +4582,7 @@
             "RECIST (teal/purple/magenta/orange)": [
                 "RECIST (petrol mavisi/mor/macenta/turuncu)"
             ],
-            "RECIST Categories (CR/PR/SD/PD)": [
+            "RECIST categories (CR/PR/SD/PD)": [
                 "RECIST Kategorileri (CR/PR/SD/PD)"
             ],
             "RECIST PR or better; n=%d responders": [
@@ -4777,8 +4762,8 @@
             "Repeated study identifiers": [
                 "Tekrarlanan çalışma tanımlayıcıları"
             ],
-            "REPEATED VISIT TIMES": [
-                "YİNELENEN VİZİT ZAMANLARI"
+            "Repeated visit times": [
+                "Yinelenen vizit zamanları"
             ],
             "Report each response rate with the confidence interval shown in Clinical Response Metrics": [
                 "Her yanıt oranını Klinik Yanıt Ölçütleri'nde gösterilen güven aralığıyla birlikte raporlayın"
@@ -4873,8 +4858,8 @@
             "Response category override (optional)": [
                 "Yanıt kategorisi geçersiz kılma (isteğe bağlı)"
             ],
-            "RESPONSE CATEGORY OVERRIDE IGNORED": [
-                "YANIT KATEGORİSİ GEÇERSİZ KILMA YOK SAYILDI"
+            "Response category override ignored": [
+                "Yanıt kategorisi geçersiz kılma yok sayıldı"
             ],
             "Response Data:": [
                 "Yanıt Verisi:"
@@ -4882,10 +4867,10 @@
             "Response Distribution:": [
                 "Yanıt Dağılımı:"
             ],
-            "RESPONSE DURATION NEEDS A TIME VARIABLE": [
-                "YANIT SÜRESİ BİR ZAMAN DEĞİŞKENİ GEREKTİRİR"
+            "Response duration needs a time variable": [
+                "Yanıt süresi bir zaman değişkeni gerektirir"
             ],
-            "Response evaluation showed an objective response rate (ORR) of %.1f%% (%d/%d patients%s) and a disease control rate (DCR) of %.1f%% (%d/%d patients%s). Rates are over all patients analysed, with not-evaluable and unrecorded responses counted as non-responders (RECIST 1.1 section 4.9.1).": [
+            "Response evaluation showed an objective response rate (ORR) of %.1f%% (%d/%d patients%s) and a disease control rate (DCR) of %.1f%% (%d/%d patients%s). Rates are over all patients analyzed, with not-evaluable and unrecorded responses counted as non-responders (RECIST 1.1 section 4.9.1).": [
                 "Yanıt değerlendirmesinde objektif yanıt oranı (ORR) %%%.1f (%d/%d hasta%s), hastalık kontrol oranı (DCR) %%%.1f (%d/%d hasta%s) olarak bulundu. Oranlar, değerlendirilemeyen ve kayıtsız yanıtlar yanıt vermemiş sayılarak analiz edilen tüm hastalar üzerinden hesaplanır (RECIST 1.1 bölüm 4.9.1)."
             ],
             "Response measurement": [
@@ -4900,7 +4885,7 @@
             "Response Rate Interpretation:": [
                 "Yanıt Oranı Yorumu:"
             ],
-            "Response rates from %.1f%% to %.1f%% are compatible with these data (exact 95%% CI). There is no universal benchmark: compare them with the response rate expected in your tumour type and treatment setting.": [
+            "Response rates from %.1f%% to %.1f%% are compatible with these data (exact 95%% CI). There is no universal benchmark: compare them with the response rate expected in your tumor type and treatment setting.": [
                 "%%%.1f ile %%%.1f arasındaki yanıt oranları bu verilerle uyumludur (kesin %%95 GA). Evrensel bir referans değer yoktur: bunları tümör türünüzde ve tedavi ortamınızda beklenen yanıt oranıyla karşılaştırın."
             ],
             "Response rates not calculated": [
@@ -4909,8 +4894,8 @@
             "Response sorting unavailable": [
                 "Yanıt sıralaması kullanılamıyor"
             ],
-            "Response Type": [
-                "Yanıt Türü"
+            "Response type": [
+                "Yanıt türü"
             ],
             "Response value (raw or percentage)": [
                 "Yanıt değeri (ham veya yüzde)"
@@ -4972,8 +4957,8 @@
             "Rows with a missing or unreadable patient ID, start or end time are excluded, and a notice says how many.": [
                 "Hasta kimliği, başlangıç veya bitiş zamanı eksik ya da okunamayan satırlar çıkarılır ve bir bildirim kaç tane olduğunu söyler."
             ],
-            "ROWS WITHOUT PATIENT ID": [
-                "HASTA KİMLİĞİ OLMAYAN SATIRLAR"
+            "Rows without patient ID": [
+                "Hasta kimliği olmayan satırlar"
             ],
             "Rule-in power is governed by the positive likelihood ratio rather than by specificity alone, and LR+ is not estimable here.": [
                 "Kural koyma (doğrulama) gücü yalnızca özgüllükle değil pozitif olabilirlik oranıyla belirlenir ve POO burada tahmin edilememektedir."
@@ -5059,7 +5044,7 @@
             "Sampling strategy recorded as random, which matches the analysis's assumption that the regions are exchangeable samples of each case.": [
                 "Örnekleme stratejisi rastgele olarak kaydedildi; bu, analizin bölgeleri her vakanın değiştirilebilir örnekleri olarak kabul eden varsayımıyla uyumludur."
             ],
-            "Sampling strategy recorded as systematic. The analysis treats the regions as exchangeable measurements of each case and applies no design-based adjustment; if the sampling pattern follows tissue architecture, the CV and ICC describe that pattern rather than the tumour as a whole.": [
+            "Sampling strategy recorded as systematic. The analysis treats the regions as exchangeable measurements of each case and applies no design-based adjustment; if the sampling pattern follows tissue architecture, the CV and ICC describe that pattern rather than the tumor as a whole.": [
                 "Örnekleme stratejisi sistematik olarak kaydedildi. Analiz, bölgeleri her vakanın değiştirilebilir ölçümleri olarak ele alır ve tasarıma dayalı hiçbir ayarlama uygulamaz; örnekleme düzeni doku mimarisini izliyorsa, CV ve ICC tümörün bütününü değil o düzeni tanımlar."
             ],
             "Sampling Variability Analysis": [
@@ -5164,8 +5149,8 @@
             "Set the CV and correlation thresholds and the systematic difference margin before looking at the results.": [
                 "Sonuçlara bakmadan önce CV ve korelasyon eşiklerini ve sistematik fark marjını belirleyiniz."
             ],
-            "SEVERAL ROWS PER PATIENT": [
-                "HASTA BAŞINA BİRDEN FAZLA SATIR"
+            "Several rows per patient": [
+                "Hasta başına birden fazla satır"
             ],
             "Show a bootstrap confidence interval around the median best response on the waterfall plot.": [
                 ""
@@ -5212,8 +5197,8 @@
             "Single regions of a case differ by about %s%% (root-mean-square within-case CV). Averaging several regions per case reduces this by about the square root of their number.": [
                 "Bir vakanın tek tek bölgeleri yaklaşık %%%s farklılık gösterir (vaka içi CV'nin karesel ortalaması). Vaka başına birkaç bölgenin ortalamasının alınması bu değeri yaklaşık olarak bölge sayısının kareköküne böler."
             ],
-            "SINGLE-LESION ASSUMPTION": [
-                "TEK LEZYON VARSAYIMI"
+            "Single-lesion assumption": [
+                "Tek lezyon varsayımı"
             ],
             "Slope": [
                 "Eğim"
@@ -5226,9 +5211,6 @@
             ],
             "Small cell counts in Fisher's exact test": [
                 "Fisher kesin testinde küçük hücre sayıları"
-            ],
-            "SMALL SAMPLE": [
-                "KÜÇÜK ÖRNEKLEM"
             ],
             "Small sample": [
                 "Küçük örneklem"
@@ -5254,8 +5236,8 @@
             "Some response categories have <3 patients. Consider grouping categories for meaningful analysis.": [
                 "Bazı yanıt kategorilerinde <3 hasta var. Anlamlı analiz için kategorileri gruplandırmayı değerlendirin."
             ],
-            "SOME VALUES LOOK LIKE PROPORTIONS": [
-                "BAZI DEĞERLER ORAN GİBİ GÖRÜNÜYOR"
+            "Some values look like proportions": [
+                "Bazı değerler oran gibi görünüyor"
             ],
             "Sort by": [
                 "Sıralama ölçütü"
@@ -5272,8 +5254,8 @@
             "Sort order": [
                 "Sıralama düzeni"
             ],
-            "Sort order 'Response Type' requires a Response/Status variable; none is selected, so patients are sorted by duration (longest first).": [
-                "'Yanıt Türü' sıralama düzeni bir Yanıt/Durum değişkeni gerektirir; hiçbiri seçilmedi, bu nedenle hastalar süreye göre sıralandı (en uzun ilk)."
+            "Sort order 'Response type' requires a Response/Status variable; none is selected, so patients are sorted by duration (longest first).": [
+                "'Yanıt türü' sıralama düzeni bir Yanıt/Durum değişkeni gerektirir; hiçbiri seçilmedi, bu nedenle hastalar süreye göre sıralandı (en uzun ilk)."
             ],
             "Sort order overridden": [
                 "Sıralama düzeni geçersiz kılındı"
@@ -5383,8 +5365,8 @@
             "Spider plot color scheme": [
                 "Örümcek grafiği renk şeması"
             ],
-            "SPIDER PLOT NEEDS A TIME VARIABLE": [
-                "ÖRÜMCEK GRAFİĞİ BİR ZAMAN DEĞİŞKENİ GEREKTİRİR"
+            "Spider plot needs a time variable": [
+                "Örümcek grafiği bir zaman değişkeni gerektirir"
             ],
             "Spider Plot of Tumor Response": [
                 "Tümör Yanıtının Örümcek Grafiği"
@@ -5398,8 +5380,8 @@
             "Spider Plot Visualization": [
                 "Örümcek Grafiği Görselleştirmesi"
             ],
-            "SPIDER PLOT WITH PERCENTAGE DATA": [
-                "YÜZDE VERİLERİYLE ÖRÜMCEK GRAFİĞİ"
+            "Spider plot with percentage data": [
+                "Yüzde verileriyle örümcek grafiği"
             ],
             "Spider Plot:": [
                 "Örümcek Grafiği:"
@@ -5512,8 +5494,8 @@
             "Strong evidence FOR disease when test positive": [
                 "Test pozitifken hastalık LEHİNE güçlü kanıt"
             ],
-            "STRONG WARNING": [
-                "GÜÇLÜ UYARI"
+            "Strong warning": [
+                "Güçlü uyarı"
             ],
             "Studies (circles), chance line (dot-dash)": [
                 "Çalışmalar (daire), şans çizgisi (nokta-çizgi)"
@@ -5593,11 +5575,11 @@
             "Swimmer plots are timeline visualizations that display individual patient treatment courses, clinical events, and outcomes in a single comprehensive graph. Each horizontal 'swim lane' represents one patient's journey through treatment.": [
                 "Yüzücü grafikleri, bireysel hasta tedavi süreçlerini, klinik olayları ve sonuçları tek bir kapsamlı grafikte gösteren zaman çizelgesi görselleştirmeleridir. Her yatay 'yüzme kulvarı', bir hastanın tedavi yolculuğunu temsil eder."
             ],
-            "Switch Time Display to 'Relative (all start from 0)' to show them, or use 'Custom Time'.": [
+            "Switch Time Display to 'Relative (all start from 0)' to show them, or use 'Custom time'.": [
                 "Bunları göstermek için zaman gösterimini 'Göreli (tümü 0'dan başlar)' olarak seçin veya 'Özel zaman' kullanın."
             ],
-            "Switch to 'Percentage Changes' input format if changes are pre-calculated, OR": [
-                "Değişimler önceden hesaplanmışsa 'Yüzde Değişimleri' giriş formatına geçin VEYA"
+            "Switch to 'Percentage changes' input format if changes are pre-calculated, OR": [
+                "Değişimler önceden hesaplanmışsa 'Yüzde değişimleri' giriş formatına geçin VEYA"
             ],
             "Synthesizing evidence for clinical guidelines": [
                 "Klinik kılavuzlar için kanıt sentezi"
@@ -5683,7 +5665,7 @@
             "The analysis will be re-run with your settings.": [
                 "Analiz ayarlarınızla yeniden çalıştırılacaktır."
             ],
-            "The bivariate (Reitsma) model did not converge, even with an iteration limit of 5000. No pooled sensitivity, specificity, likelihood ratio, prediction interval or SROC curve is reported, because they would come from an unfinished optimisation. Try the method-of-moments estimator (it is not iterative), check the studies for an extreme or repeated 2x2 table, or restrict the study set.": [
+            "The bivariate (Reitsma) model did not converge, even with an iteration limit of 5000. No pooled sensitivity, specificity, likelihood ratio, prediction interval or SROC curve is reported, because they would come from an unfinished optimization. Try the method-of-moments estimator (it is not iterative), check the studies for an extreme or repeated 2x2 table, or restrict the study set.": [
                 "İki değişkenli (Reitsma) model 5000 yineleme sınırıyla bile yakınsamadı. Tamamlanmamış bir optimizasyondan gelecekleri için birleştirilmiş duyarlılık, özgüllük, olabilirlik oranı, tahmin aralığı veya SROC eğrisi raporlanmaz. Momentler yöntemi kestiricisini deneyin (yinelemeli değildir), çalışmalarda aşırı veya tekrarlanan bir 2x2 tablo olup olmadığını kontrol edin ya da çalışma kümesini kısıtlayın."
             ],
             "The bivariate model did NOT converge within 5000 iterations, so no estimates are reported: the last iterate is not the estimator's solution, and it changes with the iteration limit.": [
@@ -5716,7 +5698,7 @@
             "The case variance estimate was negative and has been truncated to zero.": [
                 "Vaka varyansı tahmini negatifti ve sıfıra kırpıldı."
             ],
-            "The censoring variable '%s' has no value for any analysed row, so no status arrows are drawn and median follow-up is the plain median of observed durations.": [
+            "The censoring variable '%s' has no value for any analyzed row, so no status arrows are drawn and median follow-up is the plain median of observed durations.": [
                 "'%s' sansür değişkeninde analiz edilen hiçbir satır için değer yok; bu yüzden durum oku çizilmez ve medyan takip süresi gözlenen sürelerin düz medyanıdır."
             ],
             "The censoring variable '%s' has only the value %s, which can mean that every patient had the event or that every patient was censored. Choose which under Censoring coding. Until then no status arrows are drawn and median follow-up is the plain median of observed durations.": [
@@ -5785,8 +5767,8 @@
             "The data as a data frame.": [
                 "Veri çerçevesi olarak veri."
             ],
-            "The data input type is Percentage Changes, but the time = 0 values are not 0%: these look like raw tumour measurements. Set Data Input Type to Raw Measurements so percent changes are computed from the baseline.": [
-                "Veri giriş türü Yüzde Değişimleri olarak ayarlanmış, ancak zaman = 0 değerleri sıfır (%0) değil: bunlar ham tümör ölçümleri gibi görünmektedir. Yüzde değişimlerinin başlangıçtan hesaplanması için Veri Giriş Türünü Ham Ölçümler olarak ayarlayın."
+            "The data input type is Percentage changes, but the time = 0 values are not 0%: these look like raw tumor measurements. Set Data Input Type to Raw measurements so percent changes are computed from the baseline.": [
+                "Veri giriş türü Yüzde değişimleri olarak ayarlanmış, ancak zaman = 0 değerleri sıfır (%0) değil: bunlar ham tümör ölçümleri gibi görünmektedir. Yüzde değişimlerinin başlangıçtan hesaplanması için Veri Giriş Türünü Ham ölçümler olarak ayarlayın."
             ],
             "The dataset contains no rows. Add data (or clear the active filter) and re-run.": [
                 "Veri seti satır içermiyor. Veri ekleyin (veya etkin filtreyi temizleyin) ve yeniden çalıştırın."
@@ -5806,11 +5788,11 @@
             "The Event Marker Summary counts and percentages below describe only the %d markers that fall inside a patient's timeline. Events recorded after follow-up ends, such as death, need an end time that covers them.": [
                 "Aşağıdaki Olay İşaretçisi Özeti sayıları ve yüzdeleri yalnızca bir hastanın zaman çizelgesi içinde kalan %d işareti tanımlar. Ölüm gibi takip bittikten sonra kaydedilen olaylar, onları kapsayan bir bitiş zamanı gerektirir."
             ],
-            "The event time values are numbers (%s), but Time Input Type is Date/Time.": [
-                "Olay zamanı değerleri sayıdır (%s), ancak Zaman Girdi Türü Tarih/Saat olarak seçilmiş."
+            "The event time values are numbers (%s), but Time Input Type is Date/time.": [
+                "Olay zamanı değerleri sayıdır (%s), ancak Zaman Girdi Türü Tarih/saat olarak seçilmiş."
             ],
-            "The event time variable contains calendar dates, but the timeline uses raw numeric times, so these events cannot be placed on the time axis. Switch Time Input Type to Date/Time (or supply numeric event times) to show them.": [
-                "Olay zamanı değişkeni takvim tarihleri içeriyor ancak zaman çizelgesi ham sayısal zamanları kullanıyor, bu nedenle bu olaylar zaman eksenine yerleştirilemez. Göstermek için Zaman Giriş Türü'nü Tarih/Saat'e geçirin (veya sayısal olay zamanları sağlayın)."
+            "The event time variable contains calendar dates, but the timeline uses raw numeric times, so these events cannot be placed on the time axis. Switch Time Input Type to Date/time (or supply numeric event times) to show them.": [
+                "Olay zamanı değişkeni takvim tarihleri içeriyor ancak zaman çizelgesi ham sayısal zamanları kullanıyor, bu nedenle bu olaylar zaman eksenine yerleştirilemez. Göstermek için Zaman Giriş Türü'nü Tarih/saat'e geçirin (veya sayısal olay zamanları sağlayın)."
             ],
             "The expected width at the current size is blank because fewer than 2 cases have every measurement.": [
                 "Tüm ölçümlere sahip vaka sayısı 2'den az olduğundan mevcut büyüklükteki beklenen genişlik boş bırakılmıştır."
@@ -5836,10 +5818,10 @@
             "The headline duration of response is the censoring-aware Kaplan-Meier median; the crude median in the Time-to-Response table ignores censoring and understates DoR. Progression is detected as a >=20% increase over the NADIR (the smallest burden recorded so far), or any reappearance after a complete response, following RECIST v1.1. Two limitations remain. (1) The >=5 mm absolute increase that RECIST v1.1 also requires is applied only to raw measurements with a stated unit; without it small sums are called progression more often than RECIST would, which shortens DoR, while unseen new-lesion or non-target progression pushes the other way. (2) No log-rank test or Cox regression for covariates is provided. For formal progression-free survival (PFS) or duration of response analysis, use dedicated survival analysis functions. Current calculations are exploratory only.": [
                 "Başlıca yanıt süresi, sansürlemeyi hesaba katan Kaplan-Meier medyanıdır; Yanıta Kadar Geçen Süre tablosundaki kaba medyan sansürlemeyi yok sayar ve DoR'yi olduğundan kısa gösterir. Progresyon, RECIST v1.1'e uygun olarak, EN DÜŞÜK DEĞERE (o ana kadar kaydedilen en küçük tümör yükü) göre >=%20 artış ya da tam yanıttan sonra herhangi bir yeniden ortaya çıkış olarak saptanır. İki sınırlılık kalır. (1) RECIST v1.1'in ayrıca gerektirdiği >=5 mm mutlak artış yalnızca birimi belirtilmiş ham ölçümlere uygulanır; bu olmadan küçük toplamlar RECIST'e göre daha sık progresyon olarak çağrılır ve bu DoR'yi kısaltır, görülmeyen yeni lezyon veya hedef dışı progresyon ise ters yönde etki eder. (2) Ortak değişkenler için log-rank testi veya Cox regresyonu sağlanmaz. Resmi progresyonsuz sağkalım (PFS) veya yanıt süresi analizi için özel sağkalım analizi işlevlerini kullanın. Mevcut hesaplamalar yalnızca keşif amaçlıdır."
             ],
-            "The High Contrast palette provides 8 colours and the response variable has %d categories, so the plot uses the Viridis palette instead. Group the response categories to keep High Contrast.": [
+            "The High contrast palette provides 8 colors and the response variable has %d categories, so the plot uses the Viridis palette instead. Group the response categories to keep High contrast.": [
                 "Yüksek kontrast paleti 8 renk sağlıyor ancak yanıt değişkeninde %d kategori var; bu nedenle Viridis kullanılır. Yüksek kontrastı korumak için yanıt kategorilerini gruplayın."
             ],
-            "The I-squared is the proportion of variance in THAT margin alone that is not attributable to sampling error; it does not describe the bivariate model and should not be read as an overall heterogeneity figure (Cochrane DTA Handbook, chapter 10). In diagnostic accuracy meta-analysis a high I-squared is expected whenever studies used different positivity thresholds - it signals a threshold effect to be modelled by the SROC curve, not necessarily a defect.": [
+            "The I-squared is the proportion of variance in THAT margin alone that is not attributable to sampling error; it does not describe the bivariate model and should not be read as an overall heterogeneity figure (Cochrane DTA Handbook, chapter 10). In diagnostic accuracy meta-analysis a high I-squared is expected whenever studies used different positivity thresholds - it signals a threshold effect to be modeled by the SROC curve, not necessarily a defect.": [
                 "I-kare, yalnızca İLGİLİ marjdaki varyansın örnekleme hatasına bağlanamayan oranıdır; iki değişkenli modeli tanımlamaz ve genel heterojenlik olarak okunmamalıdır (Cochrane DTA El Kitabı, bölüm 10). Tanısal doğruluk meta-analizinde farklı pozitiflik eşikleri kullanıldığında yüksek I-kare beklenir; mutlaka kusur değil, SROC eğrisiyle modellenecek eşik etkisi işaretidir."
             ],
             "The ICC reported here is the absolute-agreement form: it is the share of the total variation in scores that comes from genuine differences between cases rather than from which region was measured, and a consistent offset between regions counts against it. It is not the proportion of cases whose scores matched, and it depends on how spread out your cohort is - the same measurement error yields a lower ICC when the cases have a narrow range of values. Its confidence interval cannot be estimated here, because the measurements of every case differ by exactly the same amounts.": [
@@ -5863,7 +5845,7 @@
             "The ICC(2,1), computed without the regions measured in too few cases (%s), was %s.": [
                 "Çok az vakada ölçülen bölgeler (%s) dışarıda bırakılarak hesaplanan ICC(2,1) değeri %s idi."
             ],
-            "The ICCs rest on only %d cases with every measurement (of %d analysed); treat them as provisional.": [
+            "The ICCs rest on only %d cases with every measurement (of %d analyzed); treat them as provisional.": [
                 "ICC'ler tüm ölçümlere sahip yalnızca %d vakaya dayanmaktadır (analiz edilen %d vakadan); bunları geçici olarak değerlendirin."
             ],
             "The ICCs use the %d cases with every measurement; %d case(s) with an incomplete set were excluded.": [
@@ -5917,8 +5899,8 @@
             "The milestone dates could not be read with the Date Format %s.": [
                 "Kilometre taşı tarihleri %s Tarih Biçimiyle okunamadı."
             ],
-            "The milestone values are numbers (%s), but Time Input Type is Date/Time.": [
-                "Kilometre taşı değerleri sayıdır (%s), ancak Zaman Girdi Türü Tarih/Saat olarak seçilmiş."
+            "The milestone values are numbers (%s), but Time Input Type is Date/time.": [
+                "Kilometre taşı değerleri sayıdır (%s), ancak Zaman Girdi Türü Tarih/saat olarak seçilmiş."
             ],
             "The objective-response row is absent because every patient in the comparison had the same response status - all responders or none - so Fisher's exact test has nothing to compare on that outcome.": [
                 "Karşılaştırmadaki tüm hastaların yanıt durumu aynı (tümü yanıt veren veya hiçbiri) olduğundan objektif yanıt satırı yoktur; Fisher kesin testinin bu sonuçta karşılaştıracağı fark bulunmaz."
@@ -5938,19 +5920,19 @@
             "The proportional-hazards SROC model did NOT converge within 5000 profile-likelihood iterations, so no estimates are reported: the last iterate is not a maximum-likelihood solution, and it can change substantially with a different iteration limit.": [
                 "Orantılı tehlikeler SROC modeli 5000 profil olabilirlik yinelemesinde YAKINSAMADI, bu nedenle tahmin raporlanmaz: son yineleme bir en çok olabilirlik çözümü değildir ve farklı bir yineleme sınırıyla önemli ölçüde değişebilir."
             ],
-            "The proportional-hazards SROC model did not converge, so its theta, tau-squared and area under the curve are not reported: they would be the last iterate of an unfinished optimisation, and on data like this the unconverged value and the converged one have differed by an order of magnitude.": [
+            "The proportional-hazards SROC model did not converge, so its theta, tau-squared and area under the curve are not reported: they would be the last iterate of an unfinished optimization, and on data like this the unconverged value and the converged one have differed by an order of magnitude.": [
                 "Orantılı tehlikeler SROC modeli yakınsamadı, bu nedenle theta, tau-kare ve eğri altı alan raporlanmaz: bunlar tamamlanmamış bir optimizasyonun son yinelemesi olurdu ve benzer veride yakınsamayan ve yakınsayan değerler bir büyüklük mertebesi farklı olabilmiştir."
             ],
             "The proportional-hazards SROC model needed more than mada's default 100 profile-likelihood iterations; it was refitted with a limit of 5000 and converged, and the estimates below come from that converged fit.": [
                 "Orantılı tehlikeler SROC modeli mada'nın varsayılan 100 profil olabilirlik yinelemesinden fazlasını gerektirdi; 5000 sınırıyla yeniden uydurulup yakınsadı. Aşağıdaki tahminler bu yakınsamış uyumdan gelir."
             ],
-            "The quality thresholds (correlation %s, CV %s%%) are set in the analysis options; results describe the cases analysed and are not an external validation.": [
+            "The quality thresholds (correlation %s, CV %s%%) are set in the analysis options; results describe the cases analyzed and are not an external validation.": [
                 "Kalite eşikleri (korelasyon %s, CV %%%s) analiz seçeneklerinde belirlenir; sonuçlar analiz edilen vakaları tanımlar ve harici bir doğrulama değildir."
             ],
-            "The RECIST v1.1 requirement of an absolute increase of at least 5 mm is not applied, so with small tumour sums or after deep responses progression is called more often than RECIST v1.1 would; unseen new or non-target lesions push the other way.": [
+            "The RECIST v1.1 requirement of an absolute increase of at least 5 mm is not applied, so with small tumor sums or after deep responses progression is called more often than RECIST v1.1 would; unseen new or non-target lesions push the other way.": [
                 "RECIST v1.1'in en az 5 mm mutlak artış koşulu uygulanmaz; bu yüzden küçük tümör toplamlarında ya da derin yanıtlardan sonra progresyon RECIST v1.1'e göre daha sık çağrılır; görülmeyen yeni veya hedef dışı lezyonlar ise ters yönde etki eder."
             ],
-            "The reference (whole section, hotspot or overall score) is treated as the comparison standard; its own measurement error is not modelled.": [
+            "The reference (whole section, hotspot or overall score) is treated as the comparison standard; its own measurement error is not modeled.": [
                 "Referans (bütün kesit, hotspot veya genel skor) karşılaştırma standardı olarak ele alınır; referansın kendi ölçüm hatası modellenmez."
             ],
             "The reference has the same value in every case, so these differences compare the regions with one fixed number; none is judged material.": [
@@ -5962,7 +5944,7 @@
             "The reference variable '%s' has the same value in every case, so agreement with it cannot be judged. Check the data.": [
                 "'%s' referans değişkeni her vakada aynı değere sahiptir, bu nedenle bu değişkenle uyum değerlendirilemez. Veriyi kontrol ediniz."
             ],
-            "The reference variable '%s' is constant (the same value in every analysed case), so no correlation with it can be estimated. Check the data.": [
+            "The reference variable '%s' is constant (the same value in every analyzed case), so no correlation with it can be estimated. Check the data.": [
                 "'%s' referans değişkeni sabittir (analiz edilen her vakada aynı değer), bu nedenle bu değişkenle hiçbir korelasyon tahmin edilemez. Veriyi kontrol ediniz."
             ],
             "The regions are offset in opposite directions, so each needs its own calibration.": [
@@ -6031,7 +6013,7 @@
             "The spider plot could not be drawn: %s": [
                 "Örümcek grafiği çizilemedi: %s"
             ],
-            "The spider plot draws each patient's tumour trajectory over time, so it requires a Time Variable. None is selected, so no spider plot can be produced. Assign the visit/assessment time column to \"Time Variable\" to enable it.": [
+            "The spider plot draws each patient's tumor trajectory over time, so it requires a Time Variable. None is selected, so no spider plot can be produced. Assign the visit/assessment time column to \"Time Variable\" to enable it.": [
                 "Örümcek grafiği her hastanın zaman içindeki tümör gidişatını çizer, bu nedenle bir Zaman Değişkeni gerektirir. Hiçbiri seçilmediği için örümcek grafiği oluşturulamaz. Etkinleştirmek için vizit/değerlendirme zamanı sütununu \"Zaman Değişkeni\" alanına atayın."
             ],
             "The spread of per-case CVs differs between compartments (unequal variance of heterogeneity); this does not by itself mean one compartment is more heterogeneous on average": [
@@ -6040,10 +6022,10 @@
             "The start or end dates could not be read with the Date Format %s.": [
                 "Başlangıç veya bitiş tarihleri %s Tarih Biçimiyle okunamadı."
             ],
-            "The start or end values are numbers (%s), but Time Input Type is Date/Time.": [
-                "Başlangıç veya bitiş değerleri sayıdır (%s), ancak Zaman Girdi Türü Tarih/Saat olarak seçilmiş."
+            "The start or end values are numbers (%s), but Time Input Type is Date/time.": [
+                "Başlangıç veya bitiş değerleri sayıdır (%s), ancak Zaman Girdi Türü Tarih/saat olarak seçilmiş."
             ],
-            "The start/end variables look like calendar dates (%s), but Time Input Type is set to Raw Values, so no timeline could be built. Switch Time Input Type to Date/Time and choose the matching Date Format.": [
+            "The start/end variables look like calendar dates (%s), but Time Input Type is set to Raw values, so no timeline could be built. Switch Time Input Type to Date/time and choose the matching Date Format.": [
                 "Başlangıç/bitiş değişkenleri takvim tarihi gibi görünmektedir (%s) ancak zaman girdisi türü ham değerdir; bu nedenle çizelge oluşturulamadı. Tarih/saat türüne geçin ve uygun tarih biçimini seçin."
             ],
             "The swimmer plot displays individual patient timelines with optional color coding for response categories. Milestone markers show key events, and summary statistics provide overall study metrics including person-time analysis and response rates.": [
@@ -6067,7 +6049,7 @@
             "The total variance split into between-case, between-method and residual (within-case) parts.": [
                 "Vakalar arası, yöntemler arası ve artık (vaka içi) bileşenlere ayrılmış toplam varyans."
             ],
-            "The typical absolute response value is %.0f, and a tumour cannot shrink by more than 100%%. The values look multiplied by 100 (for example -3500 for -35%%); values below -100 are capped to -100%% and counted as complete responses. Check the scale of the response column.": [
+            "The typical absolute response value is %.0f, and a tumor cannot shrink by more than 100%%. The values look multiplied by 100 (for example -3500 for -35%%); values below -100 are capped to -100%% and counted as complete responses. Check the scale of the response column.": [
                 "Tipik mutlak yanıt değeri %.0f olup bir tümör %%100'den fazla küçülemez. Değerler 100 ile çarpılmış gibi görünüyor (örneğin -%%35 için -3500); -100'ün altındaki değerler -%%100 ile sınırlandırılır ve tam yanıt olarak sayılır. Yanıt sütununun ölçeğini kontrol edin."
             ],
             "The unit your time variable is recorded in. It labels the spider plot axis and the time to response and duration of response rows; your values are not rescaled.": [
@@ -6145,8 +6127,8 @@
             "This text is formatted for direct use in manuscripts and clinical reports. Copy and paste into your document and adjust as needed for your specific requirements.": [
                 "Bu metin makale ve klinik raporlarda doğrudan kullanılabilecek biçimdedir. Belgenize kopyalayın ve gereksinimlerinize göre düzenleyin."
             ],
-            "This tool creates waterfall and spider plots from ONE tumour burden value per patient (or per visit). Response categories use percent-change thresholds adapted from RECIST v1.1, but this is not a RECIST v1.1 implementation: it never sees individual lesions, so it cannot sum target lesions, detect new lesions, or judge non-target progression. If your data list each lesion separately, use the lesion-level RECIST v1.1 analysis. It will be available in upcoming releases.": [
-                "Bu araç, hasta (veya vizit) başına BİR tümör yükü değerinden şelale ve örümcek grafikleri oluşturur. Yanıt kategorileri RECIST v1.1'den uyarlanan yüzde değişim eşiklerini kullanır, ancak bu bir RECIST v1.1 uygulaması değildir: tek tek lezyonları asla görmez, bu nedenle hedef lezyonları toplayamaz, yeni lezyonları tespit edemez veya hedef dışı progresyonu değerlendiremez. Verileriniz her bir lezyonu ayrı ayrı listeliyorsa lezyon düzeyinde RECIST v1.1 analizini kullanın. Gelecek sürümlerde kullanıma sunulacaktır."
+            "This tool creates waterfall and spider plots from ONE tumor burden value per patient (or per visit). Response categories use percent-change thresholds adapted from RECIST v1.1, but this is not a RECIST v1.1 implementation: it never sees individual lesions, so it cannot sum target lesions, detect new lesions, or judge non-target progression. If your data list each lesion separately, sum the target lesions per patient and visit first.": [
+                "Bu araç, hasta (veya vizit) başına BİR tümör yükü değerinden şelale ve örümcek grafikleri oluşturur. Yanıt kategorileri RECIST v1.1'den uyarlanan yüzde değişim eşiklerini kullanır, ancak bu bir RECIST v1.1 uygulaması değildir: tek tek lezyonları asla görmez, bu nedenle hedef lezyonları toplayamaz, yeni lezyonları tespit edemez veya hedef dışı progresyonu değerlendiremez. Verileriniz her bir lezyonu ayrı ayrı listeliyorsa, önce hedef lezyonları hasta ve vizit başına toplayın."
             ],
             "This visualization requires a time variable (to draw response trajectories) and the 'Spider plot' option to be enabled.": [
                 "Bu görselleştirme bir zaman değişkeni (yanıt gidişatını çizmek için) ve 'Örümcek grafiği' seçeneğinin etkinleştirilmesini gerektirir."
@@ -6220,8 +6202,8 @@
             "Time variable (required for raw input and spider plot)": [
                 "Zaman değişkeni (ham giriş ve örümcek grafiği için gerekli)"
             ],
-            "Time Variable Required for Raw Measurements:": [
-                "Ham Ölçümler için Gerekli Zaman Değişkeni:"
+            "Time variable required for raw measurements:": [
+                "Ham ölçümler için gerekli zaman değişkeni:"
             ],
             "Time variable selected - enables spider plots": [
                 "Zaman değişkeni seçildi - örümcek grafiklerini etkinleştirir"
@@ -6232,11 +6214,11 @@
             "Time variables are either numeric (days/months) or valid date formats": [
                 "Zaman değişkenleri ya sayısaldır (gün/ay) ya da geçerli tarih formatlarıdır"
             ],
-            "TIME-TO-EVENT CALCULATION FAILED": [
-                "OLAYA KADAR GEÇEN SÜRE HESAPLAMASI BAŞARISIZ OLDU"
+            "Time-to-event calculation failed": [
+                "Olaya kadar geçen süre hesaplaması başarısız oldu"
             ],
-            "TIME-TO-EVENT LIMITATIONS": [
-                "OLAYA KADAR GEÇEN SÜRE SINIRLILIKLARI"
+            "Time-to-event limitations": [
+                "Olaya kadar geçen süre sınırlılıkları"
             ],
             "Time-to-Response & Duration of Response": [
                 "Yanıta Kadar Geçen Süre ve Yanıt Süresi"
@@ -6454,17 +6436,17 @@
             "Usage:": [
                 "Kullanım:"
             ],
-            "Use 'Custom Time' with 'Custom Reference Date' or a time offset instead.": [
-                "Bunun yerine 'Özel Referans Tarihi' veya bir zaman kayması ile 'Özel Zaman' kullanın."
+            "Use 'Custom time' with 'Custom Reference Date' or a time offset instead.": [
+                "Bunun yerine 'Özel Referans Tarihi' veya bir zaman kayması ile 'Özel zaman' kullanın."
             ],
             "Use a group variable to compare biomarker-defined cohorts": [
                 "Biyobelirteçle tanımlanmış kohortları karşılaştırmak için bir grup değişkeni kullanın"
             ],
-            "Use Date/Time for:": [
-                "Tarih/Saat'i şu durumlar için kullanın:"
+            "Use Date/time for:": [
+                "Tarih/saat'i şu durumlar için kullanın:"
             ],
-            "Use Raw Values for:": [
-                "Ham Değerler'i şu durumlar için kullanın:"
+            "Use Raw values for:": [
+                "Ham değerler'i şu durumlar için kullanın:"
             ],
             "Use standard abbreviations (CR, PR, SD, PD) for consistency, though case-insensitive matching is supported.": [
                 "Büyük/küçük harf duyarsız eşleme desteklense de tutarlılık için standart kısaltmaları (CR, PR, SD, PD) kullanın."
@@ -6478,7 +6460,7 @@
             "Use this plot to identify studies for sensitivity analysis": [
                 "Duyarlılık analizi için çalışmaları belirlemekte bu grafiği kullanın"
             ],
-            "Use this when you have one tumour burden number per patient: either a percent change from baseline you have already calculated (one row per patient), or a single measurement recorded at each visit (one row per patient per visit). It draws waterfall and spider plots, assigns each patient a best response from their largest shrinkage from baseline (with a time variable, up to the first progression), and reports ORR and DCR with exact binomial confidence intervals, group comparison, time to response and duration of response. When a time variable is supplied, progression is measured against the patient's smallest recorded burden (nadir), not against baseline. Categories are named CR, PR, SD and PD and the thresholds are adapted from RECIST v1.1, but this is NOT a RECIST v1.1 implementation: because it never sees individual lesions it cannot sum target lesions, detect a new lesion, or judge non-target progression, and it cannot apply the 4-week confirmation rule (a confirmation column only adds markers to the plot; to count confirmed responses, supply confirmed categories through the category override). If your data list each lesion separately, use the lesion-level RECIST v1.1 analysis. It will be available in upcoming releases.": [
+            "Use this when you have one tumor burden number per patient: either a percent change from baseline you have already calculated (one row per patient), or a single measurement recorded at each visit (one row per patient per visit). It draws waterfall and spider plots, assigns each patient a best response from their largest shrinkage from baseline (with a time variable, up to the first progression), and reports ORR and DCR with exact binomial confidence intervals, group comparison, time to response and duration of response. When a time variable is supplied, progression is measured against the patient's smallest recorded burden (nadir), not against baseline. Categories are named CR, PR, SD and PD and the thresholds are adapted from RECIST v1.1, but this is NOT a RECIST v1.1 implementation: because it never sees individual lesions it cannot sum target lesions, detect a new lesion, or judge non-target progression, and it cannot apply the 4-week confirmation rule (a confirmation column only adds markers to the plot; to count confirmed responses, supply confirmed categories through the category override). If your data list each lesion separately, sum the target lesions per patient and visit first.": [
                 ""
             ],
             "Uses adjusted profile maximum likelihood and is suitable for smaller study sets": [
@@ -6562,7 +6544,7 @@
             "variance-components": [
                 "varyans-bileşenleri"
             ],
-            "Variation in biomarker expression across regions of the same tumour.": [
+            "Variation in biomarker expression across regions of the same tumor.": [
                 "Aynı tümörün bölgeleri arasında biyobelirteç ekspresyonundaki değişkenlik."
             ],
             "Verdicts": [
@@ -6580,8 +6562,8 @@
             "Very high variability (CV > 50%%) detected in %d cases. This may indicate measurement inconsistencies or high biological heterogeneity.": [
                 "%d vakada çok yüksek değişkenlik (CV > %%50) tespit edildi. Bu durum ölçüm tutarsızlıklarına veya yüksek biyolojik heterojenliğe işaret edebilir."
             ],
-            "VERY SMALL SAMPLE": [
-                "ÇOK KÜÇÜK ÖRNEKLEM"
+            "Very small sample": [
+                "Çok küçük örneklem"
             ],
             "Very small sample (n<10): a single patient changes each rate substantially; the confidence intervals are very wide.": [
                 "Çok küçük örneklem (n<10): tek bir hasta her oranı önemli ölçüde değiştirir; güven aralıkları çok geniştir."
@@ -6589,8 +6571,8 @@
             "Very small sample size (n=%d patients). Results may have limited statistical power and generalizability. Consider interpreting findings as exploratory.": [
                 "Çok küçük örneklem büyüklüğü (n=%d hasta). Sonuçlar sınırlı istatistiksel güce ve genellenebilirliğe sahip olabilir. Bulguları keşif amaçlı olarak yorumlamayı değerlendirin."
             ],
-            "VERY WIDE CONFIDENCE INTERVAL": [
-                "ÇOK GENİŞ GÜVEN ARALIĞI"
+            "Very wide confidence interval": [
+                "Çok geniş güven aralığı"
             ],
             "Viridis (blue-purple)": [
                 "Viridis (mavi-mor)"
@@ -6613,8 +6595,8 @@
             "WAITING": [
                 "BEKLİYOR"
             ],
-            "WARNING": [
-                "UYARI"
+            "Warning": [
+                "Uyarı"
             ],
             "Warning: %d missing response values found. These will be excluded from analysis.": [
                 "Uyarı: %d eksik yanıt değeri bulundu. Bunlar analizden hariç tutulacaktır."
@@ -6628,7 +6610,7 @@
             "Warning: Only %d patient found. Waterfall plots are more meaningful with multiple patients.": [
                 "Uyarı: Yalnızca %d hasta bulundu. Şelale grafikleri birden fazla hasta ile daha anlamlıdır."
             ],
-            "Warning: Some measurements are negative, which is not a possible tumour size. Please verify these values.": [
+            "Warning: Some measurements are negative, which is not a possible tumor size. Please verify these values.": [
                 "Uyarı: Bazı ölçümler negatiftir, bu olası bir tümör boyutu değildir. Lütfen bu değerleri doğrulayın."
             ],
             "Warning: Some percentage changes are outside typical range (%d%% to +500%%). Please verify data.": [
@@ -6655,10 +6637,10 @@
             "Waterfall Plot:": [
                 "Şelale Grafiği:"
             ],
-            "We analysed %d cases, each measured in one region and by a reference measurement, to see how well the regional measurement represents the biomarker expression of a case.": [
+            "We analyzed %d cases, each measured in one region and by a reference measurement, to see how well the regional measurement represents the biomarker expression of a case.": [
                 "Bölgesel ölçümün bir vakanın biyobelirteç ekspresyonunu ne kadar iyi temsil ettiğini görmek için, her biri bir bölgede ve bir referans ölçümüyle ölçülmüş %d vakayı analiz ettik."
             ],
-            "We analysed %d cases, each measured in up to %d regions, to see how well regional measurements represent the biomarker expression of a case.": [
+            "We analyzed %d cases, each measured in up to %d regions, to see how well regional measurements represent the biomarker expression of a case.": [
                 "Bölgesel ölçümlerin bir vakanın biyobelirteç ekspresyonunu ne kadar iyi temsil ettiğini görmek için, her biri en fazla %2$d bölgede ölçülmüş %1$d vakayı analiz ettik."
             ],
             "Weak evidence against disease": [
@@ -6838,8 +6820,8 @@
             "Yes/TRUE = event, No/FALSE = censored": [
                 "Yes/TRUE = olay, No/FALSE = sansürlü"
             ],
-            "You selected Date/Time input type, but your data contains numeric values.": [
-                "Tarih/Saat giriş türünü seçtiniz, ancak verileriniz sayısal değerler içeriyor."
+            "You selected Date/time input type, but your data contains numeric values.": [
+                "Tarih/saat giriş türünü seçtiniz, ancak verileriniz sayısal değerler içeriyor."
             ],
             "YYYY-DD-MM": [
                 "YYYY-GG-AA"

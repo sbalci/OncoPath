@@ -46,7 +46,7 @@ msgstr ""
 msgid "{response} Rate ({n}/{N})"
 msgstr ""
 
-#: diagnosticmeta/ui[1][1][0]/confidence_level.suffix
+#: diagnosticmeta/ui[2][0]/confidence_level.suffix
 msgid "%"
 msgstr ""
 
@@ -150,7 +150,7 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"%d further patient(s) could not be analysed (no usable value or baseline) "
+"%d further patient(s) could not be analyzed (no usable value or baseline) "
 "and are in no row of this table; the notices name them."
 msgstr ""
 
@@ -268,13 +268,13 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"%d of %d rows were not analysed because they have fewer than 2 regional "
+"%d of %d rows were not analyzed because they have fewer than 2 regional "
 "measurements."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"%d of %d rows were not analysed because they lack a reference value or any "
+"%d of %d rows were not analyzed because they lack a reference value or any "
 "regional measurement."
 msgstr ""
 
@@ -374,7 +374,7 @@ msgstr ""
 #: R/waterfall.b.R
 msgid ""
 "%d patient(s) had a change below -100%%, which is not physically possible: "
-"-100%% already means the tumour has disappeared completely. The most extreme "
+"-100%% already means the tumor has disappeared completely. The most extreme "
 "was %.1f%%. These values were capped at -100%% in the analysis and the plot; "
 "such a patient counts as a complete response only when a capped value is "
 "their best response: %s. Check the response column for data-entry errors."
@@ -390,11 +390,11 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"%d patient(s) have a negative raw measurement, which is not a possible "
-"tumour size: %s. A negative baseline inverts the sign of the percent change, "
-"so a growing tumour would be reported as a response. These patients are "
-"reported as \"Unknown\" rather than guessed at. Check the measurement column "
-"for data-entry errors."
+"%d patient(s) have a negative raw measurement, which is not a possible tumor "
+"size: %s. A negative baseline inverts the sign of the percent change, so a "
+"growing tumor would be reported as a response. These patients are reported "
+"as \"Unknown\" rather than guessed at. Check the measurement column for "
+"data-entry errors."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -429,7 +429,7 @@ msgstr ""
 msgid ""
 "%d patient(s) have more than one row but no time variable is selected: %s. "
 "The smallest value was used as each patient's best response. If the rows are "
-"visits, a 0%% baseline row takes part in that minimum, so a tumour that only "
+"visits, a 0%% baseline row takes part in that minimum, so a tumor that only "
 "grew is scored SD instead of PD. Select the visit time as the Time Variable."
 msgstr ""
 
@@ -499,8 +499,8 @@ msgstr ""
 #: R/swimmerplot.b.R
 msgid ""
 "%d start/end values are not numbers (for example '%s') and those rows are "
-"excluded. Time Input Type is set to Raw Values; if these are calendar dates, "
-"switch it to Date/Time."
+"excluded. Time Input Type is set to Raw values; if these are calendar dates, "
+"switch it to Date/time."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -531,8 +531,8 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"%d study/studies have no identifier; they are labelled 'Unnamed study' in "
-"the tables and the forest plot."
+"%d study/studies have no identifier; they are labeled 'Unnamed study' in the "
+"tables and the forest plot."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -575,7 +575,7 @@ msgstr ""
 #: R/ihcheterogeneity.b.R
 msgid ""
 "%s is the reference measurement and was also selected as a regional "
-"measurement; it is analysed as the reference only."
+"measurement; it is analyzed as the reference only."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -606,7 +606,7 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"%s was selected more than once as a regional measurement and is analysed "
+"%s was selected more than once as a regional measurement and is analyzed "
 "once."
 msgstr ""
 
@@ -1228,7 +1228,7 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Not external validation:</strong> a meta-analysis summarises "
+"<strong>Not external validation:</strong> a meta-analysis summarizes "
 "existing published evidence and inherits any publication, spectrum or "
 "reference-standard bias of the included studies; it is not a prospective "
 "evaluation in an intended-use population with a pre-specified threshold"
@@ -1551,7 +1551,7 @@ msgid ""
 "<strong>Use this plot to:</strong> Compare the studies' operating points, "
 "see the trade-off between sensitivity and specificity across them, and "
 "assess consistency across study populations and settings. The curve "
-"summarises studies with unknown and differing positivity thresholds and "
+"summarizes studies with unknown and differing positivity thresholds and "
 "carries no threshold values, so it does not identify a cut-off for a "
 "laboratory to adopt."
 msgstr ""
@@ -2061,7 +2061,7 @@ msgstr ""
 msgid "Advanced Clinical Metrics"
 msgstr ""
 
-#: diagnosticmeta/ui[1][1].label
+#: diagnosticmeta/ui[2].label
 msgid "Advanced Options"
 msgstr ""
 
@@ -2070,11 +2070,7 @@ msgid "Agreement Level:"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
-msgid "AGREEMENT THRESHOLDS MET, NOT CONFIRMED:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "AGREEMENT THRESHOLDS MET:"
+msgid "Agreement thresholds met, not confirmed:"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -2192,7 +2188,7 @@ msgstr ""
 msgid "Analysis Methods"
 msgstr ""
 
-#: diagnosticmeta/ui[1][0].label
+#: diagnosticmeta/ui[1].label
 msgid "Analysis Options"
 msgstr ""
 
@@ -2205,7 +2201,7 @@ msgid "Analysis Summary"
 msgstr ""
 
 #: diagnosticmeta/options/show_analysis_summary.title
-#: diagnosticmeta/ui[1][3][0]/show_analysis_summary.label
+#: diagnosticmeta/ui[4][0]/show_analysis_summary.label
 msgid "Analysis summary"
 msgstr ""
 
@@ -2266,7 +2262,7 @@ msgid "Assessment of test performance heterogeneity and variation sources"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "ASSESSMENTS WITHOUT A TIME"
+msgid "Assessments without a time"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -2284,7 +2280,7 @@ msgid ""
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
-msgid "At least 5 cases are required; this run analysed %d cases."
+msgid "At least 5 cases are required; this run analyzed %d cases."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -2336,7 +2332,7 @@ msgid "Baseline assumed at Time = 0"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "BASELINE ASSUMPTION"
+msgid "Baseline assumption"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -2344,7 +2340,7 @@ msgid "Baseline measurements are the reference point for calculating changes"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "BASELINE NOT AT TIME 0"
+msgid "Baseline not at time 0"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -2365,11 +2361,11 @@ msgstr ""
 
 #: swimmerplot/results/timelineData.columns.title
 #: waterfall/options/sortBy/response.title
-msgid "Best Response"
+msgid "Best response"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "Best Response (Simplified):"
+msgid "Best response (simplified):"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -2385,7 +2381,7 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"Best response was the smallest percent change in tumour burden from baseline "
+"Best response was the smallest percent change in tumor burden from baseline "
 "over the post-baseline assessments up to and including the first progression "
 "(at least 20% over the nadir, or regrowth after a complete response); later "
 "assessments were not used."
@@ -2393,7 +2389,7 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"Best response was the smallest percent change in tumour burden from baseline "
+"Best response was the smallest percent change in tumor burden from baseline "
 "over the post-baseline assessments."
 msgstr ""
 
@@ -2486,7 +2482,7 @@ msgid "Bivariate output missing"
 msgstr ""
 
 #: diagnosticmeta/options/bivariate_analysis.title
-#: diagnosticmeta/ui[1][0][0]/bivariate_analysis.label
+#: diagnosticmeta/ui[1][0]/bivariate_analysis.label
 msgid "Bivariate random-effects model"
 msgstr ""
 
@@ -2499,7 +2495,7 @@ msgid "Bootstrap CI of the median"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "BOOTSTRAP CI STABILITY"
+msgid "Bootstrap CI stability"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -2560,7 +2556,7 @@ msgid ""
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
-msgid "Cases not analysed"
+msgid "Cases not analyzed"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -2573,7 +2569,7 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"Categories are thresholds applied to one tumour burden value per patient and "
+"Categories are thresholds applied to one tumor burden value per patient and "
 "visit (CR -100%, PR at least -30%, PD at least +20%)."
 msgstr ""
 
@@ -2650,15 +2646,15 @@ msgid "Censoring/Event status variable"
 msgstr ""
 
 #: waterfall/options/measurementUnit/cm.title
-msgid "Centimetres (cm)"
+msgid "Centimeters (cm)"
 msgstr ""
 
 #: R/swimmerplot-html.R
-msgid "Change 'Time Input Type' from 'Date/Time' to 'Raw Values'"
+msgid "Change 'Time Input Type' from 'Date/time' to 'Raw values'"
 msgstr ""
 
 #: R/swimmerplot-html.R
-msgid "Change 'Time Input Type' from 'Raw Values' to 'Date/Time'"
+msgid "Change 'Time Input Type' from 'Raw values' to 'Date/time'"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -2797,7 +2793,7 @@ msgid "Clinical Interpretation"
 msgstr ""
 
 #: diagnosticmeta/options/show_interpretation.title
-#: diagnosticmeta/ui[1][3][0]/show_interpretation.label
+#: diagnosticmeta/ui[4][0]/show_interpretation.label
 #: ihcheterogeneity/options/showInterpretation.title
 #: swimmerplot/options/showInterpretation.title
 msgid "Clinical interpretation"
@@ -2924,7 +2920,7 @@ msgstr ""
 #: waterfall/options/colorScheme.description.jamovi
 msgid ""
 "Color scheme for waterfall plot. 'Colorful' provides distinct colors for "
-"group-based coloring; 'jamovi (follow global)' takes its colours from the "
+"group-based coloring; 'jamovi (follow global)' takes its colors from the "
 "palette set in jamovi's preferences, so the figure matches every other plot "
 "in the document."
 msgstr ""
@@ -2933,13 +2929,13 @@ msgstr ""
 msgid "Color-blind safe"
 msgstr ""
 
-#: swimmerplot/options/colorPalette/viridis.title
-msgid "Colorblind Safe (Viridis)"
-msgstr ""
-
 #: waterfall/options/colorScheme/colorblind.title
 #: waterfall/options/spiderColorScheme/colorblind.title
-msgid "Colorblind-Safe (Okabe-Ito)"
+msgid "Color-blind safe (Okabe-Ito)"
+msgstr ""
+
+#: swimmerplot/options/colorPalette/viridis.title
+msgid "Color-blind safe (viridis)"
 msgstr ""
 
 #: waterfall/options/spiderColorScheme/colorful.title
@@ -2947,7 +2943,13 @@ msgid "Colorful (for groups)"
 msgstr ""
 
 #: waterfall/options/colorScheme/colorful.title
-msgid "Colorful (Group Colors)"
+msgid "Colorful (group colors)"
+msgstr ""
+
+#: waterfall/options/spiderColorBy.description.jamovi
+msgid ""
+"Coloring for the spider plot: each point by its own change from baseline "
+"(-30 percent or less vs above -30 percent), or each patient by group."
 msgstr ""
 
 #: waterfall/options/colorBy.description.jamovi
@@ -2958,12 +2960,6 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid "Colors bars by RECIST categories (CR/PR/SD/PD) or patient groups"
-msgstr ""
-
-#: waterfall/options/spiderColorBy.description.jamovi
-msgid ""
-"Colouring for the spider plot: each point by its own change from baseline "
-"(-30 percent or less vs above -30 percent), or each patient by group."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -3026,7 +3022,7 @@ msgid "Compartment Heterogeneity Comparison"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
-msgid "Compartments with fewer than %d cases are not analysed: %s."
+msgid "Compartments with fewer than %d cases are not analyzed: %s."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -3098,7 +3094,7 @@ msgstr ""
 msgid "Confidence level"
 msgstr ""
 
-#: diagnosticmeta/ui[1][1][0]/confidence_level.label
+#: diagnosticmeta/ui[2][0]/confidence_level.label
 msgid "Confidence level (%)"
 msgstr ""
 
@@ -3133,15 +3129,15 @@ msgid ""
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "CONFLICTING ANNOTATION VALUES"
+msgid "Conflicting annotation values"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "CONFLICTING CATEGORY OVERRIDES"
+msgid "Conflicting category overrides"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "CONFLICTING CONFIRMATION VALUES"
+msgid "Conflicting confirmation values"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -3347,7 +3343,7 @@ msgid "Custom reference time"
 msgstr ""
 
 #: swimmerplot/options/referenceLines/custom.title
-msgid "Custom Time"
+msgid "Custom time"
 msgstr ""
 
 #: ihcheterogeneity/results/spatialanalysistable.columns.title
@@ -3444,7 +3440,7 @@ msgid "Data validation failed."
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "DATA VALIDATION WARNINGS"
+msgid "Data validation warnings"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -3470,18 +3466,18 @@ msgid "Date format in data"
 msgstr ""
 
 #: swimmerplot/options/timeType/datetime.title
-msgid "Date/Time"
+msgid "Date/time"
 msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"Date/Time input type was selected but the time variables contain numeric "
-"values. Switch Time Input Type to Raw Values (or correct the data) and "
+"Date/time input type was selected but the time variables contain numeric "
+"values. Switch Time Input Type to Raw values (or correct the data) and "
 "re-run."
 msgstr ""
 
 #: R/swimmerplot-html.R
-msgid "Date/Time:"
+msgid "Date/time:"
 msgstr ""
 
 #: swimmerplot/options/timeUnit/days.title
@@ -3778,11 +3774,11 @@ msgid "Duration"
 msgstr ""
 
 #: swimmerplot/options/sortOrder/duration_desc.title
-msgid "Duration (Longest First)"
+msgid "Duration (longest first)"
 msgstr ""
 
 #: swimmerplot/options/sortOrder/duration_asc.title
-msgid "Duration (Shortest First)"
+msgid "Duration (shortest first)"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -3914,8 +3910,8 @@ msgstr ""
 msgid "Epidemiological metrics and follow-up analysis"
 msgstr ""
 
-#: R/swimmerplot.b.R
-msgid "ERROR"
+#: R/utils-notices.R
+msgid "Error"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -3960,7 +3956,7 @@ msgid ""
 "0 means no association."
 msgstr ""
 
-#: diagnosticmeta/ui[1][1][0]/method.label
+#: diagnosticmeta/ui[2][0]/method.label
 msgid "Estimation method"
 msgstr ""
 
@@ -4065,8 +4061,8 @@ msgstr ""
 #: R/waterfall.b.R
 msgid ""
 "Every response value is positive, so no patient shrank at all. If these are "
-"raw tumour sizes rather than percent changes, set Data Input Type to Raw "
-"Measurements and add a time variable."
+"raw tumor sizes rather than percent changes, set Data Input Type to Raw "
+"measurements and add a time variable."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -4142,7 +4138,7 @@ msgid "Expected CI Width (current n)"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "EXPLORATORY RESPONSE CATEGORIES"
+msgid "Exploratory response categories"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -4163,7 +4159,7 @@ msgid "Export Timeline Data"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "EXTREME VALUES DETECTED"
+msgid "Extreme values detected"
 msgstr ""
 
 #: diagnosticmeta/ui[0][3].label
@@ -4352,7 +4348,7 @@ msgstr ""
 msgid "Forest plot"
 msgstr ""
 
-#: diagnosticmeta/ui[1][2][0]/forest_plot.label
+#: diagnosticmeta/ui[3][0]/forest_plot.label
 msgid "Forest plot (sensitivity & specificity)"
 msgstr ""
 
@@ -4392,7 +4388,7 @@ msgstr ""
 msgid "Funnel plot"
 msgstr ""
 
-#: diagnosticmeta/ui[1][2][0]/funnel_plot.label
+#: diagnosticmeta/ui[3][0]/funnel_plot.label
 msgid "Funnel plot (publication bias)"
 msgstr ""
 
@@ -4417,7 +4413,7 @@ msgid ""
 msgstr ""
 
 #: waterfall/options/timeUnitLabel/generic.title
-msgid "Generic (Time)"
+msgid "Generic (time)"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -4429,11 +4425,11 @@ msgid "Getting Started"
 msgstr ""
 
 #: swimmerplot/options/plotTheme/ggswim_dark.title
-msgid "ggswim (Dark)"
+msgid "ggswim (dark)"
 msgstr ""
 
 #: swimmerplot/options/plotTheme/ggswim.title
-msgid "ggswim (Light)"
+msgid "ggswim (light)"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -4463,7 +4459,7 @@ msgid "Good specificity (80-89%): some false positives"
 msgstr ""
 
 #: ihcheterogeneity/ui[4][0].label
-msgid "Greyed out when the analysis focus above already includes them."
+msgid "Grayed out when the analysis focus above already includes them."
 msgstr ""
 
 #: waterfall/results/groupComparisonTable.columns.title
@@ -4471,7 +4467,7 @@ msgid "Group"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "GROUP CHANGES WITHIN PATIENT"
+msgid "Group changes within patient"
 msgstr ""
 
 #: waterfall/results/groupComparisonTable.title
@@ -4551,7 +4547,7 @@ msgstr ""
 msgid "Heterogeneity Assessment"
 msgstr ""
 
-#: diagnosticmeta/ui[1][0][0]/heterogeneity_analysis.label
+#: diagnosticmeta/ui[1][0]/heterogeneity_analysis.label
 msgid "Heterogeneity assessment (study variability)"
 msgstr ""
 
@@ -4584,11 +4580,8 @@ msgid ""
 "same case varied substantially."
 msgstr ""
 
-#: swimmerplot/options/colorPalette/contrast.title
-msgid "High Contrast"
-msgstr ""
-
 #: diagnosticmeta/options/color_palette/high_contrast.title
+#: swimmerplot/options/colorPalette/contrast.title
 msgid "High contrast"
 msgstr ""
 
@@ -4769,7 +4762,7 @@ msgid "Important Note"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "IMPOSSIBLE SHRINKAGE CAPPED"
+msgid "Impossible shrinkage capped"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -4839,7 +4832,7 @@ msgid ""
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
-msgid "INADEQUATE SAMPLING:"
+msgid "Inadequate sampling:"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -4859,7 +4852,7 @@ msgid "Individual Study Results"
 msgstr ""
 
 #: diagnosticmeta/options/show_individual_studies.title
-#: diagnosticmeta/ui[1][0][0]/show_individual_studies.label
+#: diagnosticmeta/ui[1][0]/show_individual_studies.label
 msgid "Individual study results"
 msgstr ""
 
@@ -4894,7 +4887,7 @@ msgid ""
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "INFO"
+msgid "Info"
 msgstr ""
 
 #: waterfall/ui[1][0].label
@@ -4936,7 +4929,7 @@ msgid ""
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
-msgid "INSUFFICIENT DATA:"
+msgid "Insufficient data:"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -5024,7 +5017,7 @@ msgstr ""
 #: R/waterfall.b.R
 msgid ""
 "Judge the response rate against the rate expected without benefit in your "
-"tumour type and line of therapy (the null rate of your study design), using "
+"tumor type and line of therapy (the null rate of your study design), using "
 "the confidence interval above, rather than against generic cut-offs."
 msgstr ""
 
@@ -5182,7 +5175,7 @@ msgid ""
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "MARKER SHAPES REUSED"
+msgid "Marker shapes reused"
 msgstr ""
 
 #: swimmerplot/options/markerSize.title
@@ -5320,7 +5313,7 @@ msgid "Measurement scale:"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "MEDIAN CI NOT DRAWN"
+msgid "Median CI not drawn"
 msgstr ""
 
 #: waterfall/results/personTimeTable.columns.title
@@ -5328,19 +5321,15 @@ msgid "Median DoR (Kaplan-Meier)"
 msgstr ""
 
 #: swimmerplot/options/referenceLines/median.title
-msgid "Median Duration"
+msgid "Median duration"
 msgstr ""
 
 #: R/swimmerplot.b.R
-msgid "Median Duration (observed)"
+msgid "Median duration (observed)"
 msgstr ""
 
 #: R/waterfall.b.R
 msgid "Median duration of response (Kaplan-Meier)"
-msgstr ""
-
-#: R/waterfall.b.R
-msgid "Median Duration of Response (Kaplan-Meier)"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -5470,7 +5459,7 @@ msgstr ""
 msgid "Meta-regression"
 msgstr ""
 
-#: diagnosticmeta/ui[1][0][0]/meta_regression.label
+#: diagnosticmeta/ui[1][0]/meta_regression.label
 msgid "Meta-regression (covariate effects)"
 msgstr ""
 
@@ -5537,7 +5526,7 @@ msgid "Methodology & assumptions"
 msgstr ""
 
 #: diagnosticmeta/options/show_methodology.title
-#: diagnosticmeta/ui[1][3][0]/show_methodology.label
+#: diagnosticmeta/ui[4][0]/show_methodology.label
 msgid "Methodology information"
 msgstr ""
 
@@ -5578,7 +5567,7 @@ msgstr ""
 msgid ""
 "Milestone '%s' contains calendar dates, but the timeline uses raw numeric "
 "times, so these dates cannot be placed on the time axis. The milestone was "
-"skipped. Switch Time Input Type to Date/Time (or supply numeric milestone "
+"skipped. Switch Time Input Type to Date/time (or supply numeric milestone "
 "times) to show it."
 msgstr ""
 
@@ -5676,7 +5665,7 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"Milestone slot(s) %s share a name, so each is labelled with the variable it "
+"Milestone slot(s) %s share a name, so each is labeled with the variable it "
 "came from to keep them apart in the summary."
 msgstr ""
 
@@ -5713,7 +5702,7 @@ msgid "Milestones:"
 msgstr ""
 
 #: waterfall/options/measurementUnit/mm.title
-msgid "Millimetres (mm)"
+msgid "Millimeters (mm)"
 msgstr ""
 
 #: swimmerplot/options/plotTheme/minimal.title
@@ -5823,10 +5812,6 @@ msgid ""
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
-msgid "MODERATE SAMPLING:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
 msgid "Moderate sampling:"
 msgstr ""
 
@@ -5881,7 +5866,7 @@ msgid "Most common response was a tie between %s, each in %.1f%% of patients."
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "Most studies use 'Percentage Changes' format"
+msgid "Most studies use 'Percentage changes' format"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -5936,7 +5921,7 @@ msgid "Negative LR"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "NEGATIVE TUMOUR MEASUREMENTS"
+msgid "Negative tumor measurements"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -6049,19 +6034,19 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"No event markers to summarise: none of the event times could be converted to "
+"No event markers to summarize: none of the event times could be converted to "
 "a time on this timeline."
 msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"No event markers to summarise. Either no event type/time variable is "
+"No event markers to summarize. Either no event type/time variable is "
 "selected, or none of the events falls inside a patient's timeline - see the "
 "notices above."
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "NO GROUP COMPARISON"
+msgid "No group comparison"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -6084,13 +6069,13 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"No milestones to summarise: none of the milestone values could be converted "
+"No milestones to summarize: none of the milestone values could be converted "
 "to a time on this timeline."
 msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"No milestones to summarise. The milestone variable has no usable value for "
+"No milestones to summarize. The milestone variable has no usable value for "
 "any patient in the analysis, or every milestone slot was skipped - see the "
 "notices above."
 msgstr ""
@@ -6100,7 +6085,7 @@ msgid "No missing values in TP, FP, FN, TN columns"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "NO NEGATIVE CHANGES"
+msgid "No negative changes"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -6264,7 +6249,7 @@ msgstr ""
 #: R/waterfall.b.R
 msgid ""
 "No universal benchmark: compare the rate with the rate expected in your "
-"tumour type and treatment setting."
+"tumor type and treatment setting."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -6308,8 +6293,8 @@ msgstr ""
 #: R/swimmerplot.b.R
 msgid ""
 "None of the start/end values are numbers (for example '%s'). Time Input Type "
-"is set to Raw Values, which expects a number of %s. If these are calendar "
-"dates, switch Time Input Type to Date/Time and choose the matching Date "
+"is set to Raw values, which expects a number of %s. If these are calendar "
+"dates, switch Time Input Type to Date/time and choose the matching Date "
 "Format."
 msgstr ""
 
@@ -6322,10 +6307,6 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid "Normality:"
-msgstr ""
-
-#: R/ihcheterogeneity.b.R
-msgid "NOT ADEQUATE FOR SUBSTITUTION:"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -6430,7 +6411,7 @@ msgid ""
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
-msgid "NOT GRADED:"
+msgid "Not graded:"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -6454,7 +6435,7 @@ msgid "not reached (95%% CI lower limit %.1f %s; %d of %d responders progressed)
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "NOT RESPONSE-EVALUABLE"
+msgid "Not response-evaluable"
 msgstr ""
 
 #: ihcheterogeneity/options/sampling_strategy/unknown.title
@@ -6465,8 +6446,8 @@ msgstr ""
 msgid "Not stated (5 mm rule not applied)"
 msgstr ""
 
-#: R/swimmerplot.b.R
-msgid "NOTE"
+#: R/utils-notices.R
+msgid "Note"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -6704,8 +6685,8 @@ msgstr ""
 #: waterfall/options/groupVar.description.jamovi
 msgid ""
 "Optional grouping variable for coloring bars by patient groups (e.g., "
-"treatment arms, disease subtypes). Bars are coloured by group when Color by "
-"is set to Patient Groups (jamovi sets it when a group is chosen; from R, set "
+"treatment arms, disease subtypes). Bars are colored by group when Color by "
+"is set to Patient groups (jamovi sets it when a group is chosen; from R, set "
 "colorBy = \"group\")."
 msgstr ""
 
@@ -6725,7 +6706,7 @@ msgstr ""
 
 #: waterfall/options/annotationVars.description.jamovi
 msgid ""
-"Optional. Variables shown as coloured annotation rows under the waterfall, "
+"Optional. Variables shown as colored annotation rows under the waterfall, "
 "aligned with each patient's bar."
 msgstr ""
 
@@ -6952,7 +6933,7 @@ msgstr ""
 
 #: waterfall/options/colorBy/group.title
 #: waterfall/options/spiderColorBy/group.title
-msgid "Patient Groups"
+msgid "Patient groups"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -7032,7 +7013,7 @@ msgid ""
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "PATIENTS EXCLUDED"
+msgid "Patients excluded"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -7115,11 +7096,11 @@ msgid "percent"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "PERCENT CHANGE LOOKS LIKE PROPORTIONS"
+msgid "Percent change looks like proportions"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "PERCENT CHANGE LOOKS MULTIPLIED BY 100"
+msgid "Percent change looks multiplied by 100"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -7148,15 +7129,15 @@ msgid ""
 msgstr ""
 
 #: waterfall/options/inputType/percentage.title
-msgid "Percentage Changes"
+msgid "Percentage changes"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "Percentage Changes selected - good for most analyses"
+msgid "Percentage changes selected - good for most analyses"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "Percentage Changes:"
+msgid "Percentage changes:"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -7168,7 +7149,7 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"Percentage of tumour cells staining positive (for example Ki67); range 0 to "
+"Percentage of tumor cells staining positive (for example Ki67); range 0 to "
 "100."
 msgstr ""
 
@@ -7202,7 +7183,7 @@ msgid "Person-time analysis"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "PERSON-TIME ANALYSIS FAILED"
+msgid "Person-time analysis failed"
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -7292,7 +7273,7 @@ msgstr ""
 msgid "Plot color palette"
 msgstr ""
 
-#: diagnosticmeta/ui[1][2][0]/color_palette.label
+#: diagnosticmeta/ui[3][0]/color_palette.label
 msgid "Plot colors (accessibility)"
 msgstr ""
 
@@ -7304,7 +7285,7 @@ msgstr ""
 msgid "Plot explanations"
 msgstr ""
 
-#: diagnosticmeta/ui[1][2][0]/show_plot_explanations.label
+#: diagnosticmeta/ui[3][0]/show_plot_explanations.label
 msgid "Plot explanations & interpretation"
 msgstr ""
 
@@ -7313,7 +7294,7 @@ msgid "Plot theme"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
-msgid "POOLED ESTIMATE"
+msgid "Pooled estimate"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -7502,7 +7483,7 @@ msgid "Proportional bias:"
 msgstr ""
 
 #: diagnosticmeta/options/hsroc_analysis.title
-#: diagnosticmeta/ui[1][0][0]/hsroc_analysis.label
+#: diagnosticmeta/ui[1][0]/hsroc_analysis.label
 msgid "Proportional-hazards SROC analysis"
 msgstr ""
 
@@ -7603,7 +7584,7 @@ msgstr ""
 msgid "Publication bias assessment"
 msgstr ""
 
-#: diagnosticmeta/ui[1][0][0]/publication_bias.label
+#: diagnosticmeta/ui[1][0]/publication_bias.label
 msgid "Publication bias assessment (Deeks' test)"
 msgstr ""
 
@@ -7704,7 +7685,7 @@ msgid "Raw measurement unit"
 msgstr ""
 
 #: waterfall/options/inputType/raw.title
-msgid "Raw Measurements"
+msgid "Raw measurements"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -7713,16 +7694,16 @@ msgid ""
 "data contains multiple lesions, percent changes will be INCORRECT. RECIST "
 "v1.1 requires summing diameters of up to 5 target lesions (max 2 per organ). "
 "Pre-process your data to sum target lesions before using this analysis, or "
-"switch to 'Percentage Changes' input with pre-calculated RECIST-compliant "
+"switch to 'Percentage changes' input with pre-calculated RECIST-compliant "
 "values."
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "Raw Measurements selected - make sure you have a time variable"
+msgid "Raw measurements selected - make sure you have a time variable"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "Raw Measurements:"
+msgid "Raw measurements:"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -7736,7 +7717,7 @@ msgid ""
 msgstr ""
 
 #: swimmerplot/options/timeType/raw.title
-msgid "Raw Values (numeric)"
+msgid "Raw values (numeric)"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -7756,7 +7737,7 @@ msgid "RECIST (teal/purple/magenta/orange)"
 msgstr ""
 
 #: waterfall/options/colorBy/recist.title
-msgid "RECIST Categories (CR/PR/SD/PD)"
+msgid "RECIST categories (CR/PR/SD/PD)"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -8056,7 +8037,7 @@ msgid "Repeated study identifiers"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "REPEATED VISIT TIMES"
+msgid "Repeated visit times"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -8069,7 +8050,7 @@ msgstr ""
 msgid "Report the asymmetry as a limitation and interpret results cautiously"
 msgstr ""
 
-#: diagnosticmeta/ui[1][3].label
+#: diagnosticmeta/ui[4].label
 msgid "Reporting Options"
 msgstr ""
 
@@ -8192,7 +8173,7 @@ msgid "Response category override (optional)"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "RESPONSE CATEGORY OVERRIDE IGNORED"
+msgid "Response category override ignored"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -8204,14 +8185,14 @@ msgid "Response Distribution:"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "RESPONSE DURATION NEEDS A TIME VARIABLE"
+msgid "Response duration needs a time variable"
 msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
 "Response evaluation showed an objective response rate (ORR) of %.1f%% (%d/%d "
 "patients%s) and a disease control rate (DCR) of %.1f%% (%d/%d patients%s). "
-"Rates are over all patients analysed, with not-evaluable and unrecorded "
+"Rates are over all patients analyzed, with not-evaluable and unrecorded "
 "responses counted as non-responders (RECIST 1.1 section 4.9.1)."
 msgstr ""
 
@@ -8235,7 +8216,7 @@ msgstr ""
 msgid ""
 "Response rates from %.1f%% to %.1f%% are compatible with these data (exact "
 "95%% CI). There is no universal benchmark: compare them with the response "
-"rate expected in your tumour type and treatment setting."
+"rate expected in your tumor type and treatment setting."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -8248,7 +8229,7 @@ msgstr ""
 
 #: swimmerplot/options/sortOrder/response.title
 #: swimmerplot/results/personTimeTable.columns.title
-msgid "Response Type"
+msgid "Response type"
 msgstr ""
 
 #: waterfall/options/responseVar.title
@@ -8358,7 +8339,7 @@ msgid ""
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "ROWS WITHOUT PATIENT ID"
+msgid "Rows without patient ID"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -8521,7 +8502,7 @@ msgid ""
 "Sampling strategy recorded as systematic. The analysis treats the regions as "
 "exchangeable measurements of each case and applies no design-based "
 "adjustment; if the sampling pattern follows tissue architecture, the CV and "
-"ICC describe that pattern rather than the tumour as a whole."
+"ICC describe that pattern rather than the tumor as a whole."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -8691,7 +8672,7 @@ msgid ""
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "SEVERAL ROWS PER PATIENT"
+msgid "Several rows per patient"
 msgstr ""
 
 #: waterfall/options/showCI.description.jamovi
@@ -8776,7 +8757,7 @@ msgid ""
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "SINGLE-LESION ASSUMPTION"
+msgid "Single-lesion assumption"
 msgstr ""
 
 #: ihcheterogeneity/results/samplingbiastable.columns.title
@@ -8813,11 +8794,8 @@ msgstr ""
 msgid "Small cell counts in Fisher's exact test"
 msgstr ""
 
-#: R/waterfall.b.R
-msgid "SMALL SAMPLE"
-msgstr ""
-
 #: R/ihcheterogeneity.b.R
+#: R/waterfall.b.R
 msgid "Small sample"
 msgstr ""
 
@@ -8856,7 +8834,7 @@ msgid ""
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "SOME VALUES LOOK LIKE PROPORTIONS"
+msgid "Some values look like proportions"
 msgstr ""
 
 #: waterfall/options/sortBy.title
@@ -8881,7 +8859,7 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"Sort order 'Response Type' requires a Response/Status variable; none is "
+"Sort order 'Response type' requires a Response/Status variable; none is "
 "selected, so patients are sorted by duration (longest first)."
 msgstr ""
 
@@ -9051,7 +9029,7 @@ msgid "Spider plot color scheme"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "SPIDER PLOT NEEDS A TIME VARIABLE"
+msgid "Spider plot needs a time variable"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -9071,7 +9049,7 @@ msgid "Spider Plot Visualization"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "SPIDER PLOT WITH PERCENTAGE DATA"
+msgid "Spider plot with percentage data"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -9242,8 +9220,8 @@ msgstr ""
 msgid "Strong evidence FOR disease when test positive"
 msgstr ""
 
-#: R/swimmerplot.b.R
-msgid "STRONG WARNING"
+#: R/utils-notices.R
+msgid "Strong warning"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -9319,7 +9297,7 @@ msgid "Summary ROC Plot"
 msgstr ""
 
 #: diagnosticmeta/options/sroc_plot.title
-#: diagnosticmeta/ui[1][2][0]/sroc_plot.label
+#: diagnosticmeta/ui[3][0]/sroc_plot.label
 msgid "Summary ROC plot"
 msgstr ""
 
@@ -9367,11 +9345,11 @@ msgstr ""
 #: R/swimmerplot.b.R
 msgid ""
 "Switch Time Display to 'Relative (all start from 0)' to show them, or use "
-"'Custom Time'."
+"'Custom time'."
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "Switch to 'Percentage Changes' input format if changes are pre-calculated, OR"
+msgid "Switch to 'Percentage changes' input format if changes are pre-calculated, OR"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -9548,7 +9526,7 @@ msgid ""
 "The bivariate (Reitsma) model did not converge, even with an iteration limit "
 "of 5000. No pooled sensitivity, specificity, likelihood ratio, prediction "
 "interval or SROC curve is reported, because they would come from an "
-"unfinished optimisation. Try the method-of-moments estimator (it is not "
+"unfinished optimization. Try the method-of-moments estimator (it is not "
 "iterative), check the studies for an extreme or repeated 2x2 table, or "
 "restrict the study set."
 msgstr ""
@@ -9615,7 +9593,7 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"The censoring variable '%s' has no value for any analysed row, so no status "
+"The censoring variable '%s' has no value for any analyzed row, so no status "
 "arrows are drawn and median follow-up is the plain median of observed "
 "durations."
 msgstr ""
@@ -9774,9 +9752,9 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"The data input type is Percentage Changes, but the time = 0 values are not "
-"0%: these look like raw tumour measurements. Set Data Input Type to Raw "
-"Measurements so percent changes are computed from the baseline."
+"The data input type is Percentage changes, but the time = 0 values are not "
+"0%: these look like raw tumor measurements. Set Data Input Type to Raw "
+"measurements so percent changes are computed from the baseline."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -9824,14 +9802,14 @@ msgid ""
 msgstr ""
 
 #: R/swimmerplot.b.R
-msgid "The event time values are numbers (%s), but Time Input Type is Date/Time."
+msgid "The event time values are numbers (%s), but Time Input Type is Date/time."
 msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
 "The event time variable contains calendar dates, but the timeline uses raw "
 "numeric times, so these events cannot be placed on the time axis. Switch "
-"Time Input Type to Date/Time (or supply numeric event times) to show them."
+"Time Input Type to Date/time (or supply numeric event times) to show them."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -9897,9 +9875,9 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"The High Contrast palette provides 8 colours and the response variable has "
-"%d categories, so the plot uses the Viridis palette instead. Group the "
-"response categories to keep High Contrast."
+"The High contrast palette provides 8 colors and the response variable has %d "
+"categories, so the plot uses the Viridis palette instead. Group the response "
+"categories to keep High contrast."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -9909,7 +9887,7 @@ msgid ""
 "should not be read as an overall heterogeneity figure (Cochrane DTA "
 "Handbook, chapter 10). In diagnostic accuracy meta-analysis a high I-squared "
 "is expected whenever studies used different positivity thresholds - it "
-"signals a threshold effect to be modelled by the SROC curve, not necessarily "
+"signals a threshold effect to be modeled by the SROC curve, not necessarily "
 "a defect."
 msgstr ""
 
@@ -9963,7 +9941,7 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"The ICCs rest on only %d cases with every measurement (of %d analysed); "
+"The ICCs rest on only %d cases with every measurement (of %d analyzed); "
 "treat them as provisional."
 msgstr ""
 
@@ -10067,7 +10045,7 @@ msgid "The milestone dates could not be read with the Date Format %s."
 msgstr ""
 
 #: R/swimmerplot.b.R
-msgid "The milestone values are numbers (%s), but Time Input Type is Date/Time."
+msgid "The milestone values are numbers (%s), but Time Input Type is Date/time."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -10121,7 +10099,7 @@ msgstr ""
 msgid ""
 "The proportional-hazards SROC model did not converge, so its theta, "
 "tau-squared and area under the curve are not reported: they would be the "
-"last iterate of an unfinished optimisation, and on data like this the "
+"last iterate of an unfinished optimization, and on data like this the "
 "unconverged value and the converged one have differed by an order of "
 "magnitude."
 msgstr ""
@@ -10136,14 +10114,14 @@ msgstr ""
 #: R/ihcheterogeneity.b.R
 msgid ""
 "The quality thresholds (correlation %s, CV %s%%) are set in the analysis "
-"options; results describe the cases analysed and are not an external "
+"options; results describe the cases analyzed and are not an external "
 "validation."
 msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
 "The RECIST v1.1 requirement of an absolute increase of at least 5 mm is not "
-"applied, so with small tumour sums or after deep responses progression is "
+"applied, so with small tumor sums or after deep responses progression is "
 "called more often than RECIST v1.1 would; unseen new or non-target lesions "
 "push the other way."
 msgstr ""
@@ -10151,7 +10129,7 @@ msgstr ""
 #: R/ihcheterogeneity.b.R
 msgid ""
 "The reference (whole section, hotspot or overall score) is treated as the "
-"comparison standard; its own measurement error is not modelled."
+"comparison standard; its own measurement error is not modeled."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -10174,7 +10152,7 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"The reference variable '%s' is constant (the same value in every analysed "
+"The reference variable '%s' is constant (the same value in every analyzed "
 "case), so no correlation with it can be estimated. Check the data."
 msgstr ""
 
@@ -10318,7 +10296,7 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"The spider plot draws each patient's tumour trajectory over time, so it "
+"The spider plot draws each patient's tumor trajectory over time, so it "
 "requires a Time Variable. None is selected, so no spider plot can be "
 "produced. Assign the visit/assessment time column to \"Time Variable\" to "
 "enable it."
@@ -10336,14 +10314,14 @@ msgid "The start or end dates could not be read with the Date Format %s."
 msgstr ""
 
 #: R/swimmerplot.b.R
-msgid "The start or end values are numbers (%s), but Time Input Type is Date/Time."
+msgid "The start or end values are numbers (%s), but Time Input Type is Date/time."
 msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
 "The start/end variables look like calendar dates (%s), but Time Input Type "
-"is set to Raw Values, so no timeline could be built. Switch Time Input Type "
-"to Date/Time and choose the matching Date Format."
+"is set to Raw values, so no timeline could be built. Switch Time Input Type "
+"to Date/time and choose the matching Date Format."
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -10393,7 +10371,7 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"The typical absolute response value is %.0f, and a tumour cannot shrink by "
+"The typical absolute response value is %.0f, and a tumor cannot shrink by "
 "more than 100%%. The values look multiplied by 100 (for example -3500 for "
 "-35%%); values below -100 are capped to -100%% and counted as complete "
 "responses. Check the scale of the response column."
@@ -10575,13 +10553,12 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"This tool creates waterfall and spider plots from ONE tumour burden value "
-"per patient (or per visit). Response categories use percent-change "
-"thresholds adapted from RECIST v1.1, but this is not a RECIST v1.1 "
-"implementation: it never sees individual lesions, so it cannot sum target "
-"lesions, detect new lesions, or judge non-target progression. If your data "
-"list each lesion separately, use the lesion-level RECIST v1.1 analysis. It "
-"will be available in upcoming releases."
+"This tool creates waterfall and spider plots from ONE tumor burden value per "
+"patient (or per visit). Response categories use percent-change thresholds "
+"adapted from RECIST v1.1, but this is not a RECIST v1.1 implementation: it "
+"never sees individual lesions, so it cannot sum target lesions, detect new "
+"lesions, or judge non-target progression. If your data list each lesion "
+"separately, sum the target lesions per patient and visit first."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -10705,7 +10682,7 @@ msgid "Time variable (required for raw input and spider plot)"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "Time Variable Required for Raw Measurements:"
+msgid "Time variable required for raw measurements:"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -10721,11 +10698,11 @@ msgid "Time variables are either numeric (days/months) or valid date formats"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "TIME-TO-EVENT CALCULATION FAILED"
+msgid "Time-to-event calculation failed"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "TIME-TO-EVENT LIMITATIONS"
+msgid "Time-to-event limitations"
 msgstr ""
 
 #: waterfall/results/responseDurationTable.title
@@ -11056,7 +11033,7 @@ msgid "Usage:"
 msgstr ""
 
 #: R/swimmerplot.b.R
-msgid "Use 'Custom Time' with 'Custom Reference Date' or a time offset instead."
+msgid "Use 'Custom time' with 'Custom Reference Date' or a time offset instead."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -11064,11 +11041,11 @@ msgid "Use a group variable to compare biomarker-defined cohorts"
 msgstr ""
 
 #: R/swimmerplot-html.R
-msgid "Use Date/Time for:"
+msgid "Use Date/time for:"
 msgstr ""
 
 #: R/swimmerplot-html.R
-msgid "Use Raw Values for:"
+msgid "Use Raw values for:"
 msgstr ""
 
 #: R/swimmerplot-html.R
@@ -11096,23 +11073,23 @@ msgstr ""
 #: package/analyses/waterfall.description
 #: waterfall/options.description.main
 msgid ""
-"Use this when you have one tumour burden number per patient: either a "
-"percent change from baseline you have already calculated (one row per "
-"patient), or a single measurement recorded at each visit (one row per "
-"patient per visit). It draws waterfall and spider plots, assigns each "
-"patient a best response from their largest shrinkage from baseline (with a "
-"time variable, up to the first progression), and reports ORR and DCR with "
-"exact binomial confidence intervals, group comparison, time to response and "
-"duration of response. When a time variable is supplied, progression is "
-"measured against the patient's smallest recorded burden (nadir), not against "
-"baseline. Categories are named CR, PR, SD and PD and the thresholds are "
-"adapted from RECIST v1.1, but this is NOT a RECIST v1.1 implementation: "
-"because it never sees individual lesions it cannot sum target lesions, "
-"detect a new lesion, or judge non-target progression, and it cannot apply "
-"the 4-week confirmation rule (a confirmation column only adds markers to the "
-"plot; to count confirmed responses, supply confirmed categories through the "
-"category override). If your data list each lesion separately, use the "
-"lesion-level RECIST v1.1 analysis. It will be available in upcoming releases."
+"Use this when you have one tumor burden number per patient: either a percent "
+"change from baseline you have already calculated (one row per patient), or a "
+"single measurement recorded at each visit (one row per patient per visit). "
+"It draws waterfall and spider plots, assigns each patient a best response "
+"from their largest shrinkage from baseline (with a time variable, up to the "
+"first progression), and reports ORR and DCR with exact binomial confidence "
+"intervals, group comparison, time to response and duration of response. When "
+"a time variable is supplied, progression is measured against the patient's "
+"smallest recorded burden (nadir), not against baseline. Categories are named "
+"CR, PR, SD and PD and the thresholds are adapted from RECIST v1.1, but this "
+"is NOT a RECIST v1.1 implementation: because it never sees individual "
+"lesions it cannot sum target lesions, detect a new lesion, or judge "
+"non-target progression, and it cannot apply the 4-week confirmation rule (a "
+"confirmation column only adds markers to the plot; to count confirmed "
+"responses, supply confirmed categories through the category override). If "
+"your data list each lesion separately, sum the target lesions per patient "
+"and visit first."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -11248,7 +11225,7 @@ msgid "variance-components"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
-msgid "Variation in biomarker expression across regions of the same tumour."
+msgid "Variation in biomarker expression across regions of the same tumor."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -11277,7 +11254,7 @@ msgid ""
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "VERY SMALL SAMPLE"
+msgid "Very small sample"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -11293,7 +11270,7 @@ msgid ""
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "VERY WIDE CONFIDENCE INTERVAL"
+msgid "Very wide confidence interval"
 msgstr ""
 
 #: diagnosticmeta/options/color_palette/viridis.title
@@ -11304,7 +11281,7 @@ msgstr ""
 msgid "Visualization"
 msgstr ""
 
-#: diagnosticmeta/ui[1][2].label
+#: diagnosticmeta/ui[3].label
 #: swimmerplot/ui[4].label
 msgid "Visualization Options"
 msgstr ""
@@ -11325,8 +11302,8 @@ msgstr ""
 msgid "WAITING"
 msgstr ""
 
-#: R/swimmerplot.b.R
-msgid "WARNING"
+#: R/utils-notices.R
+msgid "Warning"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -11353,8 +11330,8 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"Warning: Some measurements are negative, which is not a possible tumour "
-"size. Please verify these values."
+"Warning: Some measurements are negative, which is not a possible tumor size. "
+"Please verify these values."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -11398,14 +11375,14 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"We analysed %d cases, each measured in one region and by a reference "
+"We analyzed %d cases, each measured in one region and by a reference "
 "measurement, to see how well the regional measurement represents the "
 "biomarker expression of a case."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"We analysed %d cases, each measured in up to %d regions, to see how well "
+"We analyzed %d cases, each measured in up to %d regions, to see how well "
 "regional measurements represent the biomarker expression of a case."
 msgstr ""
 
@@ -11726,7 +11703,7 @@ msgid "Yes/TRUE = event, No/FALSE = censored"
 msgstr ""
 
 #: R/swimmerplot-html.R
-msgid "You selected Date/Time input type, but your data contains numeric values."
+msgid "You selected Date/time input type, but your data contains numeric values."
 msgstr ""
 
 #: swimmerplot/options/dateFormat/ydm.title
@@ -11762,7 +11739,7 @@ msgid ""
 "events."
 msgstr ""
 
-#: diagnosticmeta/ui[1][1][0]/zero_cell_correction.label
+#: diagnosticmeta/ui[2][0]/zero_cell_correction.label
 msgid "Zero-cell correction"
 msgstr ""
 

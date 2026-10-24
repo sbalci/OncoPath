@@ -1,6 +1,29 @@
-# OncoPath 1.1.0 (2026-10-19)
+# OncoPath (development version)
 
-Version 1.1.0 was not released before 2026-10-19; this entry covers every change since 1.0.9.
+Fixes from the jamovi library review of 1.1.2 (2026-10-23). No statistics or options changed, and
+saved analyses open as before.
+
+- **Notices look the same in all four analyses** and name their severity in words ("Warning: Small
+  sample"), so they no longer rely on color alone. They are listed most severe first everywhere.
+  Swimmer Plot's plain-text notice block now uses the same panel as the other three.
+- **Treatment Response no longer keeps the previous run's notices on screen.** When a run had nothing
+  to report, the old notices stayed visible.
+- **Sentence case and American spelling.** Notice titles and status labels are no longer in capitals
+  ("Percent change looks like proportions"), choices read in sentence case ("Duration (longest
+  first)"), and the text uses American spelling throughout (tumor, analyzed, color). The
+  color-blind-safe palette has one name in every analysis, "Color-blind safe", with the palette
+  (Okabe-Ito, viridis) in parentheses where it differs. The Turkish translations follow.
+- **Diagnostic Test Meta-Analysis options are grouped:** Analysis Options stays open, and Advanced,
+  Visualization and Reporting options are collapsible sections, as in the other analyses.
+- **The Treatment Response description no longer points to a lesion-level analysis that has not been
+  released.** It says to sum the target lesions per patient and visit first.
+- **Repository:** test-failure output and a personal settings file are no longer tracked, and the
+  module's tests check what the analyses say rather than review notes.
+
+# OncoPath 1.1.2 (2026-10-23)
+
+Versions 1.1.0 (2026-10-19) and 1.1.1 (2026-10-20) were not released to the jamovi library; this
+entry covers every change since 1.0.9.
 **Saved analyses can give different results.** jamovi shows the results stored in a saved file
 until an option is changed, so re-run a saved analysis (change any option and change it back)
 before you rely on it.
@@ -145,6 +168,15 @@ before you rely on it.
 - README, vignettes and dataset descriptions were rewritten to describe only what the four
   analyses do, with Quick Start code that runs. The example data are synthetic.
 
+## Since 1.1.0
+
+- **Swimmer Plot notices wrap long text** to the width of the results and show user-supplied text
+  (variable names, values) literally.
+- **Example data refreshed** for all four analyses.
+- **Unused citations removed** from Swimmer Plot (data.table, lubridate).
+- **Examples are not run during package checks**, because the example datasets are not part of the
+  R package.
+
 ## Release-review corrections (2026-10-18)
 
 - Diagnostic meta-regression interpretation uses the actual fitted design for each outcome.
@@ -210,9 +242,9 @@ released on its own; the previous release was 1.0.83.
 
 - **Citation metadata uses the license identifier GPL-2.0-or-later,** matching DESCRIPTION.
 
-# OncoPath 1.0.83.05 (2026-09-30)
+## Development build 1.0.83.05 (2026-09-30), released in 1.0.9
 
-## Package
+### Package
 
 - **Installable again:** `swimmerplot`, `waterfall`, `diagnosticmeta` and `ihcheterogeneity` are back
   in the module. 1.0.83.04 had removed their sources while `NAMESPACE` still exported `swimmerplot` and
@@ -220,30 +252,28 @@ released on its own; the previous release was 1.0.83.
 - **Continuous validation:** every pull request and push to master now runs R CMD check and the
   source-tree tests on Ubuntu (R release).
 
-# OncoPath 1.0.83.02 (2026-09-22)
+## Development build 1.0.83.02 (2026-09-22), released in 1.0.9
 
 Fixes and quality improvements from the 2026-09-22 jamovi library and module audit.
 
-## Package
+### Package
 
 - **Pruned unused dependencies:** Removed unused `psych` and `stringr` packages from Imports.
 - **Unified bug-report and issue URLs:** Standardized issue tracking links to point consistently to `sbalci/OncoPath/issues`.
 - **Differentiated example dataset descriptions:** Clarified `waterfall_raw_longitudinal` dataset description to distinguish it from the basic percentage dataset in jamovi data picker.
 
-## `diagnosticmeta`
+### `diagnosticmeta`
 
 - **Single-paragraph analysis description:** Folded analysis description into a single paragraph to prevent truncation in jamovi library listings.
 - **Preserved state in forest plot:** Annotated state fallback properties for pooled sensitivity and specificity during legacy state restorations and image exports.
 - **Robust YAML encoding:** Escaped non-ASCII Greek and superscript characters in table titles to avoid locale-dependent parsing warnings.
 
-## `waterfall`
+### `waterfall`
 
 - **Correct table column format:** Changed percentage format token from `percent` to valid jamovi format specifier `pc`.
 - **Cleaned internal variable naming:** Renamed stable-disease count variable in explanations to avoid collision with standard-deviation heuristics.
 
 # OncoPath 1.0.83 (2026-09-21)
-
-<!-- library-audit 2026-09-22 OncoPath [LOW] DONE: retitled 1.0.82.02 section to 1.0.83 (2026-09-21) to match DESCRIPTION version and release workflow (guide section 1) -->
 
 Fixes from the 2026-09-16 jamovi library review. No statistics or options changed.
 
