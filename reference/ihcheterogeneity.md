@@ -80,7 +80,7 @@ ihcheterogeneity(
 
 - biopsies:
 
-  Further regional measurements, any number, analysed like Regional
+  Further regional measurements, any number, analyzed like Regional
   Measurements 1 to 4.
 
 - spatial_id:
@@ -91,7 +91,7 @@ ihcheterogeneity(
   row, as if they were different patients, which overstates the sample
   and narrows every interval. Compartments are listed in the level order
   of the variable; cases without an identifier are left out of the
-  compartment tables. In R, convert a haven-labelled code column with
+  compartment tables. In R, convert a haven-labeled code column with
   haven::as_factor() first, or the codes are shown instead of the
   labels.
 

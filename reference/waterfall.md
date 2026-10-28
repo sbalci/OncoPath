@@ -1,6 +1,6 @@
 # Treatment Response: Patient-Level Burden
 
-Use this when you have one tumour burden number per patient: either a
+Use this when you have one tumor burden number per patient: either a
 percent change from baseline you have already calculated (one row per
 patient), or a single measurement recorded at each visit (one row per
 patient per visit). It draws waterfall and spider plots, assigns each
@@ -16,8 +16,8 @@ cannot sum target lesions, detect a new lesion, or judge non-target
 progression, and it cannot apply the 4-week confirmation rule (a
 confirmation column only adds markers to the plot; to count confirmed
 responses, supply confirmed categories through the category override).
-If your data list each lesion separately, use the lesion-level RECIST
-v1.1 analysis. It will be available in upcoming releases.
+If your data list each lesion separately, sum the target lesions per
+patient and visit first.
 
 ## Usage
 
@@ -95,8 +95,8 @@ waterfall(
 - groupVar:
 
   Optional grouping variable for coloring bars by patient groups (e.g.,
-  treatment arms, disease subtypes). Bars are coloured by group when
-  Color by is set to Patient Groups (jamovi sets it when a group is
+  treatment arms, disease subtypes). Bars are colored by group when
+  Color by is set to Patient groups (jamovi sets it when a group is
   chosen; from R, set colorBy = "group").
 
 - inputType:
@@ -107,7 +107,7 @@ waterfall(
 
 - measurementUnit:
 
-  Unit of the raw tumour measurements (raw input only). When stated,
+  Unit of the raw tumor measurements (raw input only). When stated,
   progression also requires the RECIST v1.1 absolute increase of at
   least 5 mm over the nadir, for the PD category and for progression in
   time to response and duration of response. Without it a small sum can
@@ -163,7 +163,7 @@ waterfall(
 
   Print the response category (CR, PR, SD, PD) above each waterfall bar,
   so the category can be read directly instead of being mapped back from
-  the bar colour.
+  the bar color.
 
 - showSpiderLabels:
 
@@ -173,7 +173,7 @@ waterfall(
 
 - annotationVars:
 
-  Optional patient-level variables drawn as coloured tracks beneath the
+  Optional patient-level variables drawn as colored tracks beneath the
   waterfall bars, aligned to the same patient ordering. One row of tiles
   per variable. Use for biomarker status, mutation, prior therapy,
   treatment arm or any covariate you want read off against each
@@ -211,10 +211,10 @@ waterfall(
 - colorScheme:
 
   Color scheme for waterfall plot. 'Colorful' provides distinct colors
-  for group-based coloring; 'jamovi (follow global)' takes its colours
+  for group-based coloring; 'jamovi (follow global)' takes its colors
   from the palette set in jamovi's preferences, so the figure matches
   every other plot in the document. The former 'jamovi' choice drew the
-  RECIST colours and was identical to 'RECIST'; it was removed in favour
+  RECIST colors and was identical to 'RECIST'; it was removed in favor
   of that name.
 
 - barAlpha:
@@ -236,7 +236,7 @@ waterfall(
 
 - spiderColorBy:
 
-  Colouring for the spider plot: each point by its own change from
+  Coloring for the spider plot: each point by its own change from
   baseline (-30 percent or less vs above -30 percent), or each patient
   by group.
 
@@ -297,7 +297,7 @@ waterfall(
   Random seed for the reproducible bootstrap confidence interval of the
   median response (used when 'Show Confidence Interval' is enabled).
   Change it to draw a different bootstrap sample; the default (123)
-  reproduces the previous fixed behaviour.
+  reproduces the previous fixed behavior.
 
 ## Value
 

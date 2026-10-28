@@ -116,12 +116,12 @@ swimmerplot(
 - dateFormat:
 
   Select the date/time format in your data (only used when Time Input
-  Type is Date/Time).
+  Type is Date/time).
 
 - timeUnit:
 
-  With Raw Values input, the unit your start and end times are already
-  recorded in; the values are not rescaled. With Date/Time input, the
+  With Raw values input, the unit your start and end times are already
+  recorded in; the values are not rescaled. With Date/time input, the
   unit durations are calculated in.
 
 - timeDisplay:
@@ -213,7 +213,7 @@ swimmerplot(
   lanes; it has no effect unless a Response/Status variable is selected,
   and the grouping variable is never used for color. Colorblind Safe
   uses perceptually uniform colors distinguishable by all color vision
-  types. High Contrast is optimized for projectors and printing, and
+  types. High contrast is optimized for projectors and printing, and
   gives way to Colorblind Safe above its eight colors. Monochrome
   ensures clarity in grayscale publications.
 
@@ -236,7 +236,7 @@ swimmerplot(
 
 - customReferenceDate:
 
-  When using Date/Time with Absolute display, provide a calendar date
+  When using Date/time with Absolute display, provide a calendar date
   (e.g., 2023-06-01) to draw a custom reference line. If left blank, the
   Custom Reference Time is used as an offset from the earliest start
   date.
@@ -250,7 +250,7 @@ swimmerplot(
 - sortOrder:
 
   How to order patients in the visualization, read from the top of the
-  plot down. Ignored while a Sort by variable is selected. Response Type
+  plot down. Ignored while a Sort by variable is selected. Response type
   falls back to duration order when no Response/Status variable is
   supplied.
 
