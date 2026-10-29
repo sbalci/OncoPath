@@ -14251,9 +14251,6 @@ msgstr "τ²"
 #~ msgid "CI Method for Agreement"
 #~ msgstr "Uyum için GA Yöntemi"
 
-#~ msgid "Class Variable (Gold Standard)"
-#~ msgstr "Sınıf Değişkeni (Altın Standart)"
-
 #~ msgid "Clinical Decision Rule (binary)"
 #~ msgstr "Klinik Karar Kuralı (ikili)"
 
@@ -14411,9 +14408,6 @@ msgstr "τ²"
 
 #~ msgid "Test 3 Positive Level"
 #~ msgstr "Test 3 Pozitif Düzey"
-
-#~ msgid "Test Variables"
-#~ msgstr "Test Değişkenleri"
 
 #~ msgid "Threshold Step Size"
 #~ msgstr "Eşik Adım Boyutu"
