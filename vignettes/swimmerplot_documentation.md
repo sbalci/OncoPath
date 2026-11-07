@@ -1,57 +1,64 @@
 # Swimmer Plot Analysis Documentation
 
-This document provides a comprehensive overview of the Swimmer Plot Analysis module, detailing its features, user interface elements, and the underlying R functions.
+This document gives an overview of the Swimmer Plot analysis: its features, the user interface elements and the R functions behind them.
 
 ## Feature Summary
 
-The Swimmer Plot Analysis module creates comprehensive swimmer plots using the `ggswim` package to visualize patient timelines, treatments, milestones, and clinical events. It is designed for clinical research, particularly in oncology, to track individual patient journeys, treatment responses, and event occurrences over time. The module offers extensive customization, robust data validation, and integrated clinical interpretation.
+The Swimmer Plot analysis draws one lane per patient with the `ggswim` package, from each patient's start to end time, colored by response, with optional milestones, event markers and status arrows for censored patients. It reports the objective response rate (ORR) and disease control rate (DCR) with exact confidence intervals over every patient in the analysis, median follow-up (reverse Kaplan-Meier when a readable censoring status is supplied, otherwise the plain median of observed durations, labeled as such), person-time by best response, milestone and event-marker summaries, and Fisher's exact tests of ORR and DCR between patient groups.
 
 ## Feature Details
 
-The following table provides a detailed mapping of the module's features, from the user interface to the underlying R functions.
+The table maps each feature from the user interface to the underlying R functions. UI labels are the titles shown in jamovi.
 
-| Feature                          | YAML Argument (`.a.yaml`)      | UI Label                               | Results Section (`.r.yaml`)         | R Function (`.b.R`)                  |
-| -------------------------------- | ------------------------------ | -------------------------------------- | ----------------------------------- | ------------------------------------ |
-| **Core Data Variables**          |                                |                                        |                                     |                                      |
-| Patient ID                       | `patientID`                    | Patient ID                             | `plot`, `summary`, `personTimeTable`, `milestoneTable`, `eventMarkerTable`, `timelineData`, `summaryData`, `advancedMetrics` | `.validateAndProcessData`, `.processMilestones`, `.processOngoingStatus`, `.processEventMarkers`, `.calculateSummaryStats`, `.generateClinicalInterpretation` |
-| Start Time                       | `startTime`                    | Start Time                             | `plot`, `summary`, `personTimeTable`, `milestoneTable`, `eventMarkerTable`, `timelineData`, `summaryData`, `advancedMetrics` | `.validateAndProcessData`, `.processMilestones`, `.processOngoingStatus`, `.processEventMarkers`, `.calculateSummaryStats`, `.generateClinicalInterpretation` |
-| End Time                         | `endTime`                      | End Time                               | `plot`, `summary`, `personTimeTable`, `milestoneTable`, `eventMarkerTable`, `timelineData`, `summaryData`, `advancedMetrics` | `.validateAndProcessData`, `.processMilestones`, `.processOngoingStatus`, `.processEventMarkers`, `.calculateSummaryStats`, `.generateClinicalInterpretation` |
-| Response/Status Variable         | `responseVar`                  | Response/Status Variable               | `plot`, `summary`, `personTimeTable`, `timelineData`, `summaryData`, `advancedMetrics` | `.validateAndProcessData`, `.calculateSummaryStats`, `.generateClinicalInterpretation` |
-| **Time Processing Options**      |                                |                                        |                                     |                                      |
-| Time Input Type                  | `timeType`                     | Time Input Type                        | `plot`, `summary`, `personTimeTable`, `milestoneTable`, `eventMarkerTable`, `timelineData`, `summaryData`, `advancedMetrics` | `.validateAndProcessData`, `.processMilestones`, `.processEventMarkers` |
-| Date Format in Data              | `dateFormat`                   | Date Format in Data                    | `plot`, `summary`, `personTimeTable`, `milestoneTable`, `eventMarkerTable`, `timelineData`, `summaryData`, `advancedMetrics` | `.parseDates`, `.validateAndProcessData`, `.processMilestones`, `.processEventMarkers` |
-| Time Unit for Display            | `timeUnit`                     | Time Unit for Display                  | `plot`, `summary`, `personTimeTable`, `milestoneTable`, `eventMarkerTable`, `timelineData`, `summaryData`, `advancedMetrics` | `.validateAndProcessData`, `.processMilestones`, `.processEventMarkers`, `.calculateSummaryStats`, `.generateClinicalInterpretation` |
-| Time Display Mode                | `timeDisplay`                  | Time Display Mode                      | `plot`, `summary`, `personTimeTable`, `milestoneTable`, `eventMarkerTable`, `timelineData`, `summaryData`, `advancedMetrics` | `.validateAndProcessData`, `.processMilestones`, `.processEventMarkers` |
-| **Milestone Configuration**      |                                |                                        |                                     |                                      |
-| Maximum Milestones               | `maxMilestones`                | Maximum Milestones                     | `milestoneTable`                    | `.processMilestones`                 |
-| Milestone 1 Name                 | `milestone1Name`               | Milestone 1 Name                       | `milestoneTable`                    | `.processMilestones`                 |
-| Milestone 1 Date                 | `milestone1Date`               | Milestone 1 Date                       | `milestoneTable`                    | `.processMilestones`                 |
-| Milestone 2 Name                 | `milestone2Name`               | Milestone 2 Name                       | `milestoneTable`                    | `.processMilestones`                 |
-| Milestone 2 Date                 | `milestone2Date`               | Milestone 2 Date                       | `milestoneTable`                    | `.processMilestones`                 |
-| Milestone 3 Name                 | `milestone3Name`               | Milestone 3 Name                       | `milestoneTable`                    | `.processMilestones`                 |
-| Milestone 3 Date                 | `milestone3Date`               | Milestone 3 Date                       | `milestoneTable`                    | `.processMilestones`                 |
-| Milestone 4 Name                 | `milestone4Name`               | Milestone 4 Name                       | `milestoneTable`                    | `.processMilestones`                 |
-| Milestone 4 Date                 | `milestone4Date`               | Milestone 4 Date                       | `milestoneTable`                    | `.processMilestones`                 |
-| Milestone 5 Name                 | `milestone5Name`               | Milestone 5 Name                       | `milestoneTable`                    | `.processMilestones`                 |
-| Milestone 5 Date                 | `milestone5Date`               | Milestone 5 Date                       | `milestoneTable`                    | `.processMilestones`                 |
-| **Event Markers**                |                                |                                        |                                     |                                      |
-| Show Event Markers               | `showEventMarkers`             | Show Event Markers                     | `plot`, `eventMarkerTable`          | `.processEventMarkers`               |
-| Event Type Variable              | `eventVar`                     | Event Type Variable                    | `eventMarkerTable`                  | `.processEventMarkers`               |
-| Event Time Variable              | `eventTimeVar`                 | Event Time Variable                    | `eventMarkerTable`                  | `.processEventMarkers`               |
-| **Visualization Options**        |                                |                                        |                                     |                                      |
-| Lane Width                       | `laneWidth`                    | Lane Width                             | `plot`                              | `.createGgswimPlot`                  |
-| Marker Size                      | `markerSize`                   | Marker Size                            | `plot`                              | `.createGgswimPlot`                  |
-| Plot Theme                       | `plotTheme`                    | Plot Theme                             | `plot`                              | `.createGgswimPlot`                  |
-| Show Legend                      | `showLegend`                   | Show Legend                            | `plot`                              | `.createGgswimPlot`                  |
-| Reference Lines                  | `referenceLines`               | Reference Lines                        | `plot`                              | `.addReferenceLines`                 |
-| Custom Reference Time            | `customReferenceTime`          | Custom Reference Time                  | `plot`                              | `.addReferenceLines`                 |
-| **Sorting and Display**          |                                |                                        |                                     |                                      |
-| Sort By Variable                 | `sortVariable`                 | Sort By Variable                       | `plot`                              | Not implemented in `.b.R`            |
-| Sort Order                       | `sortOrder`                    | Sort Order                             | `plot`                              | Not implemented in `.b.R`            |
-| **Analysis Options**             |                                |                                        |                                     |                                      |
-| Show Clinical Interpretation     | `showInterpretation`           | Show Clinical Interpretation           | `interpretation`                    | `.generateInterpretationOutput`      |
-| Include Person-Time Analysis     | `personTimeAnalysis`           | Include Person-Time Analysis           | `personTimeTable`, `advancedMetrics`| `.calculateSummaryStats`, `.generateClinicalInterpretation` |
-| Include Response Analysis        | `responseAnalysis`             | Include Response Analysis              | `summary`, `advancedMetrics`        | `.calculateSummaryStats`, `.generateClinicalInterpretation` |
-| **Export Options**               |                                |                                        |                                     |                                      |
-| Export Timeline Data             | `exportTimeline`               | Export Timeline Data                   | `timelineData`                      | `.exportResults`                     |
-| Export Summary Statistics        | `exportSummary`                | Export Summary Statistics              | `summaryData`                       | `.exportResults`                     |
+| Feature | YAML Argument (`.a.yaml`) | UI Label | Results Section (`.r.yaml`) | R Function (`.b.R`) |
+| --- | --- | --- | --- | --- |
+| **Core Data Variables** | | | | |
+| Patient ID | `patientID` | Patient ID | all outputs | `.validateAndProcessData`, `.summarizeByPatient` |
+| Start time | `startTime` | Start time | all outputs | `.validateAndProcessData`, `.calculateFollowUp` |
+| End time | `endTime` | End time | all outputs | `.validateAndProcessData`, `.calculateFollowUp` |
+| Response | `responseVar` | Response/Status variable | `plot`, `summary`, `personTimeTable`, `advancedMetrics`, `groupComparisonTest`, `copyReadyReport` | `.getBestResponse`, `.normalizeResponses`, `.responseRates`, `.calculateSummaryStats` |
+| Censoring status | `censorVar` | Censoring/Event status variable | `plot` (status arrows), `advancedMetrics` (median follow-up) | `.censorCoding`, `.processOngoingStatus`, `.calculateMedianFollowUp` |
+| Censoring coding | `censorCoding` | Censoring coding | `notices`, `plot`, `advancedMetrics` | `.censorCoding`, `.censorCodingNotice` |
+| Grouping variable | `groupVar` | Grouping variable | `groupComparisonTest` | `.updateGroupComparisonTests` |
+| **Time Processing** | | | | |
+| Time input type | `timeType` | Time input type | all outputs | `.validateAndProcessData`, `.parseDatesWithClinicalContext` |
+| Date format | `dateFormat` | Date format in data | all outputs | `.parseDatesWithClinicalContext`, `.parseCustomReferenceDate` |
+| Time unit | `timeUnit` | Time unit | all outputs | `.validateAndProcessData`, `.calculateFollowUp`, `.mergeIntervalsAndSum` |
+| Time display | `timeDisplay` | Time display mode | `plot` | `.validateAndProcessData`, `.processMilestones`, `.processEventMarkers` |
+| **Milestones** | | | | |
+| Maximum milestones | `maxMilestones` | Maximum milestones | `milestoneTable` | `.processMilestones` |
+| Milestone 1-5 name | `milestone1Name` ... `milestone5Name` | Milestone 1 name ... Milestone 5 name | `plot`, `milestoneTable` | `.processMilestones` |
+| Milestone 1-5 time | `milestone1Date` ... `milestone5Date` | Milestone 1 date ... Milestone 5 date | `plot`, `milestoneTable` | `.processMilestones`, `.updateMilestoneTable` |
+| **Event Markers** | | | | |
+| Event markers | `showEventMarkers` | Event markers | `plot`, `eventMarkerTable` | `.processEventMarkers`, `.updateEventMarkerTable` |
+| Event type | `eventVar` | Event type variable | `plot`, `eventMarkerTable` | `.processEventMarkers` |
+| Event time | `eventTimeVar` | Event time variable | `plot`, `eventMarkerTable` | `.processEventMarkers` |
+| **Visualization** | | | | |
+| Lane width | `laneWidth` | Lane width | `plot` | `.createGgswimPlot` |
+| Marker size | `markerSize` | Marker size | `plot` | `.createGgswimPlot` |
+| Plot theme | `plotTheme` | Plot theme | `plot` | `.createGgswimPlot` |
+| Color palette | `colorPalette` | Color palette | `plot` | `.createGgswimPlot` |
+| Legend | `showLegend` | Legend | `plot` | `.createGgswimPlot` |
+| Reference lines | `referenceLines` | Reference lines | `plot` | `.addReferenceLines` |
+| Custom reference time | `customReferenceTime` | Custom reference time | `plot` | `.addReferenceLines` |
+| Custom reference date | `customReferenceDate` | Custom reference date | `plot` | `.addReferenceLines`, `.parseCustomReferenceDate` |
+| **Sorting** | | | | |
+| Sort by variable | `sortVariable` | Sort by variable | `plot`, `timelineData` | `.applySorting` |
+| Sort order | `sortOrder` | Sort order | `plot`, `timelineData` | `.applySorting` |
+| **Analysis Options** | | | | |
+| Clinical interpretation | `showInterpretation` | Clinical interpretation | `interpretation` | `.generateClinicalInterpretation`, `.generateInterpretationOutput` |
+| Person-time analysis | `personTimeAnalysis` | Person-time analysis | `personTimeTable`, `advancedMetrics` | `.updatePersonTimeTable`, `.updateAdvancedMetrics` |
+| Response analysis | `responseAnalysis` | Response analysis | `summary`, `personTimeTable`, `advancedMetrics`, `groupComparisonTest` | `.calculateSummaryStats`, `.updateAdvancedMetrics`, `.updateGroupComparisonTests` |
+| Clinical glossary | `showGlossary` | Clinical glossary | `clinicalGlossary` | `.generateClinicalGlossary` |
+| Copy-ready text | `showCopyReady` | Copy-ready manuscript text | `copyReadyReport` | `.generateCopyReadyReport` |
+| About | `showAbout` | About this analysis | `aboutAnalysis` | `.generateAboutAnalysis` |
+| **Export** | | | | |
+| Timeline data | `exportTimeline` | Timeline data | `timelineData`, `exportInfo` | `.updateExportData` |
+| Summary statistics | `exportSummary` | Summary statistics | `summaryData`, `exportInfo` | `.updateExportData` |
+
+## Notes on Behavior
+
+- ORR and DCR are computed over every patient in the analysis; patients recorded as NE or with no response count as non-responders. They are withheld when any response value is not CR, PR, SD, PD or NE.
+- When a patient has different responses on different rows, the category used is the best response recorded up to and including the first PD, unconfirmed; a value repeated on each of a patient's rows is used as it is.
+- Rows with a missing or unreadable patient ID, start or end time are excluded, and a notice says how many and which responses and censoring values they carried.
+- A grouping variable whose value differs between a patient's rows skips the group comparison only, with a notice.

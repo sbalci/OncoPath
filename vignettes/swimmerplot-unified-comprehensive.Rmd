@@ -68,19 +68,29 @@ res$advancedMetrics$asDF[, c("metric_name", "metric_value", "confidence_interval
 With these data the analysis reports 5 CR, 6 PR, 6 SD and 3 PD among 20 patients:
 
 ```
-                                                         metric_name metric_value confidence_interval
-Median Follow-up Time (observed durations; no censoring information)       19.5
-                            Interquartile Range (observed durations)        7.5
-                                             Total Study Person-Time      391.0
-                                       Objective Response Rate (ORR)       55.0         31.5 - 76.9
-                                          Disease Control Rate (DCR)       85.0         62.1 - 96.8
+                                                                            metric_name
+"median_followup"  Median Follow-up Time (observed durations; no censoring information)
+"iqr"                                          Interquartile Range (observed durations)
+"person_time"                                                   Total Study Person-Time
+"followup_density"                                                    Follow-up Density
+"orr"                                                     Objective Response Rate (ORR)
+"dcr"                                                        Disease Control Rate (DCR)
+                   metric_value confidence_interval
+"median_followup"        19.500                <NA>
+"iqr"                     7.500                <NA>
+"person_time"           391.000                <NA>
+"followup_density"        5.115                <NA>
+"orr"                    55.000         31.5 - 76.9
+"dcr"                    85.000         62.1 - 96.8
 ```
 
 ORR and DCR are shown only when **every** response value is a RECIST category (CR, PR, SD, PD or
 NE; "complete/partial remission" are read as CR/PR). A coding such as Response / Stable /
-Progression withholds them, and a notice names the value that could not be read. When a patient
-has several response rows, the category used is the best response recorded up to the first PD; it
-carries no confirmation of CR/PR and no minimum duration for SD, and the output says so.
+Progression withholds them, and a notice names the value that could not be read. "NA" or "N/A"
+written as text counts as no recorded response. When a patient has different responses on
+different rows, the category used is the best response recorded up to the first PD; it carries no
+confirmation of CR/PR and no minimum duration for SD, and the output says so. A patient-level best
+response repeated on each of the patient's rows is used as it is.
 
 ## Milestones and Events
 
@@ -124,7 +134,7 @@ How the status column is read is set with `censorCoding`:
 |---|---|
 | `"auto"` (default) | numeric 0/1 (1 = event) and the words alive/censored/dead/event |
 | `"yes_event"` / `"yes_censored"` | Yes/TRUE = event, or Yes/TRUE = censored |
-| `"one_censored"` | 0/1 with 1 = censored |
+| `"one_event_01"` / `"one_censored"` | 0/1 with 1 = event, or 1 = censored |
 | `"two_event"` / `"one_event"` | 1/2 with 2 = event, or 1 = event |
 
 Yes/No, TRUE/FALSE and 1/2 columns are never read in a guessed direction: until you choose a
@@ -146,21 +156,28 @@ res_cens <- swimmerplot(
   responseVar = "Response",
   censorVar   = "Status"          # 0/1, read automatically with 1 = event
 )
-# Median Follow-up Time (reverse Kaplan-Meier): 23.0 months (95% CI 20.0 - not reached)
+res_cens$advancedMetrics$asDF[1, c("metric_name", "metric_value", "confidence_interval")]
+#>                                                    metric_name metric_value
+#> "median_followup" Median Follow-up Time (reverse Kaplan-Meier)           23
+#>                   confidence_interval
+#> "median_followup"          20.00 - NR
 ```
 
 ## Groups, Dates and Display
 
 - `groupVar` names one fixed patient-level grouping variable (for example the treatment arm) for
-  between-group comparisons. A patient whose episodes carry different groups stops the comparison,
-  because episode-specific treatments cannot define independent patient groups.
-- `timeType = "datetime"` reads start, end and milestone columns as dates, using `dateFormat`
+  between-group comparisons. If any patient's episodes carry different groups, the comparison is
+  skipped with a notice, because episode-specific treatments cannot define independent patient
+  groups; the plot, follow-up and response rates are still reported.
+- Rows without a start or end time are left out, and a notice lists the responses and censoring
+  values they carried. An ongoing treatment line needs the data cutoff as its end time.
+- `timeType = "datetime"` reads start, end, milestone and event-time columns as dates, using `dateFormat`
   (for example `"ymd"`); `timeUnit` then sets the unit the durations are shown in.
 - `timeDisplay` switches between time from each patient's own start (`"relative"`) and calendar
   time (`"absolute"`).
 - `referenceLines` adds the median duration, protocol times (3/6/9/12/18/24/36 months) or a custom
-  time (`customReferenceTime`).
-- `sortVariable` and `sortOrder` order the lanes; `laneWidth`, `markerSize`, `plotTheme`,
+  time (`customReferenceTime`, or a calendar date in `customReferenceDate` for an absolute date axis).
+- `sortVariable` (smallest value at the top) and `sortOrder` order the lanes; `laneWidth`, `markerSize`, `plotTheme`,
   `colorPalette` and `showLegend` control the look.
 - `showGlossary`, `showCopyReady` and `showAbout` add a glossary, paste-ready sentences and a
   description of the method; `exportTimeline` and `exportSummary` add exportable tables.

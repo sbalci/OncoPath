@@ -94,6 +94,12 @@
             "%d cases without a Spatial Region ID are left out of the compartment analysis.": [
                 "Uzamsal Bölge Kimliği olmayan %d vaka kompartman analizinin dışında bırakıldı."
             ],
+            "%d excluded rows had a censoring/event value that is not used: %s. Follow-up, the reverse Kaplan-Meier estimate and the status arrows for these patients come from their remaining rows only.": [
+                "Hariç tutulan %d satırda kullanılmayan bir sansür/olay değeri vardı: %s. Bu hastaların takip süresi, ters Kaplan-Meier kestirimi ve durum okları yalnızca kalan satırlarından elde edilir."
+            ],
+            "%d excluded rows had a recorded response that is not used: %s. Best response, ORR and DCR for these patients come from their remaining rows only. An ongoing line with a blank end time is a common cause: enter the data cutoff as its end to keep it.": [
+                "Hariç tutulan %d satırda kullanılmayan kayıtlı bir yanıt vardı: %s. Bu hastaların en iyi yanıtı, ORR ve DCR yalnızca kalan satırlarından elde edilir. Bitiş zamanı boş bırakılmış, devam eden bir tedavi basamağı sık bir nedendir: korumak için bitişi olarak veri kesim tarihini girin."
+            ],
             "%d fall after the patient's last end.": [
                 "%d işaret hastanın son bitişinden sonra."
             ],
@@ -139,8 +145,8 @@
             "%d of %d non-zero response values lie strictly between -1 and 1, while the others look like percentages. If some rows were entered as proportions (-0.35 for -35%%), multiply those rows by 100.": [
                 "Sıfır olmayan %d / %d yanıt değeri kesin olarak -1 ile 1 arasındadır, diğerleri ise yüzde gibi görünmektedir. Bazı satırlar oran olarak girildiyse (-%%35 için -0.35), bu satırları 100 ile çarpın."
             ],
-            "%d of %d patients have more than one response row. Their category, and so ORR, DCR and every response row, is the best response recorded up to and including the first PD, in time order: CR and PR are not confirmed, SD has no minimum duration, and rows after the first PD, later treatment lines included, are ignored. These are unconfirmed best responses, not a RECIST 1.1 best overall response; supply one adjudicated response per patient when the endpoint requires it.": [
-                "%d/%d hastanın birden fazla yanıt satırı var. Bu hastaların kategorisi, dolayısıyla ORR, DCR ve her yanıt satırı, zaman sırasına göre ilk PD dahil o ana kadar kaydedilen en iyi yanıttır: CR ve PR doğrulanmamıştır, SD için en kısa süre koşulu yoktur ve ilk PD'den sonraki satırlar, sonraki tedavi basamakları dahil, yok sayılır. Bunlar doğrulanmamış en iyi yanıtlardır, RECIST 1.1 en iyi genel yanıtı değildir; sonlanım noktası gerektiriyorsa hasta başına tek ve karara bağlanmış bir yanıt verin."
+            "%d of %d patients have more than one different response recorded across their rows. Their category, and so ORR, DCR and every response row, is the best response recorded up to and including the first PD, in time order: CR and PR are not confirmed, SD has no minimum duration, and rows after the first PD, later treatment lines included, are ignored. These are unconfirmed best responses, not a RECIST 1.1 best overall response; supply one adjudicated response per patient (the same value on each of the patient's rows is fine) when the endpoint requires it.": [
+                "%d/%d hastanın satırlarında birden fazla farklı yanıt kayıtlı. Bu hastaların kategorisi, dolayısıyla ORR, DCR ve her yanıt satırı, zaman sırasına göre ilk PD dahil o ana kadar kaydedilen en iyi yanıttır: CR ve PR doğrulanmamıştır, SD için en kısa süre koşulu yoktur ve ilk PD'den sonraki satırlar, sonraki tedavi basamakları dahil, yok sayılır. Bunlar doğrulanmamış en iyi yanıtlardır, RECIST 1.1 en iyi genel yanıtı değildir; sonlanım noktası gerektiriyorsa hasta başına tek ve karara bağlanmış bir yanıt verin (hastanın her satırında aynı değerin bulunması sorun değildir)."
             ],
             "%d of %d patients have no censoring/event value. The reverse Kaplan-Meier median follow-up uses only the patients whose status is known; these patients are not counted as either censored or completed. Their timelines are still drawn, without a status arrow.": [
                 "%d/%d hastanın sansür/olay değeri yok. Ters Kaplan-Meier medyan takip süresi yalnızca durumu bilinen hastaları kullanır; bu hastalar ne sansürlü ne de tamamlanmış olarak sayılır. Zaman çizelgeleri yine de durum oku olmadan çizilir."
@@ -175,8 +181,14 @@
             "%d of %d studies have no false negatives. Each of them enters the model only after a continuity correction, so the pooled sensitivity, its confidence interval, its between-study variance, LR- and the diagnostic odds ratio are set largely by the size of that correction rather than by the data: a smaller correction gives a higher sensitivity and a much smaller LR-. The interval is not a data-derived precision. If all studies shared one sensitivity, the raw counts (%s false negatives among %s diseased participants) would give an exact %s%% confidence interval starting at %.2f%%, and LR- would have no lower limit above zero the data can set. Report the raw counts and that bound alongside the pooled value, and do not read the LR- grading as established.": [
                 "%d / %d çalışmada hiç yanlış negatif yok. Bu çalışmaların her biri modele ancak bir süreklilik düzeltmesinden sonra giriyor; bu nedenle birleştirilmiş duyarlılık, güven aralığı, çalışmalar arası varyansı, LR- ve tanısal olasılık oranı verilerden çok bu düzeltmenin büyüklüğüyle belirleniyor: daha küçük bir düzeltme daha yüksek bir duyarlılık ve çok daha küçük bir LR- verir. Aralık verilerden türetilmiş bir kesinlik değildir. Tüm çalışmalar tek bir duyarlılığı paylaşsaydı, ham sayılar (%s yanlış negatif / %s hastalıklı katılımcı) %%%s düzeyinde %.2f%% ile başlayan kesin bir güven aralığı verirdi ve LR- için verilerin belirleyebileceği sıfırdan büyük bir alt sınır olmazdı. Ham sayıları ve bu sınırı birleştirilmiş değerle birlikte raporlayın ve LR- derecelendirmesini kesinleşmiş saymayın."
             ],
+            "%d of %d studies have no false negatives. Each of them enters the model only after a continuity correction, so the pooled sensitivity, its confidence interval, its between-study variance, LR- and the diagnostic odds ratio are set largely by the size of that correction rather than by the data: a smaller correction gives a higher sensitivity and a much smaller LR-. The interval is not a data-derived precision. If all studies shared one sensitivity, the raw counts (%s false negatives among %s diseased participants) would give an exact %s%% confidence interval starting at %.2f%%. Report the raw counts and that bound alongside the pooled value, and do not read the LR- grading as established.": [
+                "%d / %d çalışmada hiç yanlış negatif yok. Bu çalışmaların her biri modele ancak bir süreklilik düzeltmesinden sonra giriyor; bu nedenle birleştirilmiş duyarlılık, güven aralığı, çalışmalar arası varyansı, LR- ve tanısal olasılık oranı verilerden çok bu düzeltmenin büyüklüğüyle belirleniyor: daha küçük bir düzeltme daha yüksek bir duyarlılık ve çok daha küçük bir LR- verir. Aralık verilerden türetilmiş bir kesinlik değildir. Tüm çalışmalar tek bir duyarlılığı paylaşsaydı, ham sayılar (%s yanlış negatif / %s hastalıklı katılımcı) %%%s düzeyinde %.2f%% ile başlayan kesin bir güven aralığı verirdi. Ham sayıları ve bu sınırı birleştirilmiş değerle birlikte raporlayın ve LR- derecelendirmesini kesinleşmiş saymayın."
+            ],
             "%d of %d studies have no false positives. Each of them enters the model only after a continuity correction, so the pooled specificity, its confidence interval, its between-study variance, LR+ and the diagnostic odds ratio are set largely by the size of that correction rather than by the data: a smaller correction gives a higher specificity and a much larger LR+. The interval is not a data-derived precision. If all studies shared one specificity, the raw counts (%s false positives among %s non-diseased participants) would give an exact %s%% confidence interval starting at %.2f%%, and LR+ would have no upper limit the data can set. Report the raw counts and that bound alongside the pooled value, and do not read the LR+ grading as established.": [
                 "%d / %d çalışmada hiç yanlış pozitif yok. Bu çalışmaların her biri modele ancak bir süreklilik düzeltmesinden sonra giriyor; bu nedenle birleştirilmiş özgüllük, güven aralığı, çalışmalar arası varyansı, LR+ ve tanısal olasılık oranı verilerden çok bu düzeltmenin büyüklüğüyle belirleniyor: daha küçük bir düzeltme daha yüksek bir özgüllük ve çok daha büyük bir LR+ verir. Aralık verilerden türetilmiş bir kesinlik değildir. Tüm çalışmalar tek bir özgüllüğü paylaşsaydı, ham sayılar (%s yanlış pozitif / %s hastalıksız katılımcı) %%%s düzeyinde %.2f%% ile başlayan kesin bir güven aralığı verirdi ve LR+ için verilerin belirleyebileceği bir üst sınır olmazdı. Ham sayıları ve bu sınırı birleştirilmiş değerle birlikte raporlayın ve LR+ derecelendirmesini kesinleşmiş saymayın."
+            ],
+            "%d of %d studies have no false positives. Each of them enters the model only after a continuity correction, so the pooled specificity, its confidence interval, its between-study variance, LR+ and the diagnostic odds ratio are set largely by the size of that correction rather than by the data: a smaller correction gives a higher specificity and a much larger LR+. The interval is not a data-derived precision. If all studies shared one specificity, the raw counts (%s false positives among %s non-diseased participants) would give an exact %s%% confidence interval starting at %.2f%%. Report the raw counts and that bound alongside the pooled value, and do not read the LR+ grading as established.": [
+                "%d / %d çalışmada hiç yanlış pozitif yok. Bu çalışmaların her biri modele ancak bir süreklilik düzeltmesinden sonra giriyor; bu nedenle birleştirilmiş özgüllük, güven aralığı, çalışmalar arası varyansı, LR+ ve tanısal olasılık oranı verilerden çok bu düzeltmenin büyüklüğüyle belirleniyor: daha küçük bir düzeltme daha yüksek bir özgüllük ve çok daha büyük bir LR+ verir. Aralık verilerden türetilmiş bir kesinlik değildir. Tüm çalışmalar tek bir özgüllüğü paylaşsaydı, ham sayılar (%s yanlış pozitif / %s hastalıksız katılımcı) %%%s düzeyinde %.2f%% ile başlayan kesin bir güven aralığı verirdi. Ham sayıları ve bu sınırı birleştirilmiş değerle birlikte raporlayın ve LR+ derecelendirmesini kesinleşmiş saymayın."
             ],
             "%d of %d studies were excluded before analysis, leaving %d - too few to pool.": [
                 "%d/%d çalışma analizden önce çıkarıldı; kalan %d çalışma birleştirme için çok az."
@@ -202,8 +214,11 @@
             "%d patient(s) have a negative raw measurement, which is not a possible tumor size: %s. A negative baseline inverts the sign of the percent change, so a growing tumor would be reported as a response. These patients are reported as \"Unknown\" rather than guessed at. Check the measurement column for data-entry errors.": [
                 "%d hastada olası bir tümör boyutu olmayan negatif bir ham ölçüm var: %s. Negatif bir başlangıç değeri yüzde değişimin işaretini tersine çevirir, böylece büyüyen bir tümör yanıt olarak raporlanabilir. Bu hastalar tahmin edilmek yerine \"Bilinmeyen\" olarak raporlanır. Veri girişi hataları için ölçüm sütununu kontrol edin."
             ],
-            "%d patient(s) have conflicting non-missing group values. Group comparisons require one fixed group per patient. Select a patient-level grouping variable or remove the grouping selection; episode-specific groups cannot define independent patient groups.": [
-                "%d hastanın birbiriyle çelişen, eksik olmayan grup değerleri var. Grup karşılaştırmaları her hasta için tek ve sabit bir grup gerektirir. Hasta düzeyinde bir gruplama değişkeni seçin ya da gruplama seçimini kaldırın; döneme göre değişen gruplar bağımsız hasta grupları tanımlayamaz."
+            "%d patient(s) have a supplied category of NE or Unknown and are reported as not evaluable: %s.": [
+                "%d hastanın verilen kategorisi NE veya Bilinmiyor; bu hastalar değerlendirilemez olarak raporlandı: %s."
+            ],
+            "%d patient(s) have conflicting non-missing group values, so the group comparison was not run. Group comparisons require one fixed group per patient. Select a patient-level grouping variable or remove the grouping selection; episode-specific groups cannot define independent patient groups. The rest of the analysis is unaffected.": [
+                "%d hastanın birbiriyle çelişen, eksik olmayan grup değerleri var, bu yüzden grup karşılaştırması yapılmadı. Grup karşılaştırmaları her hasta için tek ve sabit bir grup gerektirir. Hasta düzeyinde bir gruplama değişkeni seçin ya da gruplama seçimini kaldırın; döneme göre değişen gruplar bağımsız hasta grupları tanımlayamaz. Analizin geri kalanı etkilenmez."
             ],
             "%d patient(s) have more than one assessment at the same time point: %s. Rows at one time point are read as one visit, largest value first, so the result does not depend on the row order and a repeated row cannot by itself count as progression. Check for duplicated rows.": [
                 "%d hastanın aynı zaman noktasında birden fazla değerlendirmesi var: %s. Bir zaman noktasındaki satırlar en büyük değer önce olmak üzere tek bir vizit olarak okunur; böylece sonuç satır sırasına bağlı olmaz ve yinelenen bir satır tek başına progresyon sayılamaz. Yinelenen satırları kontrol edin."
@@ -211,11 +226,14 @@
             "%d patient(s) have more than one confirmation value across their rows: %s. The first recorded value is used for the marker.": [
                 "%d hastada satırlar arasında birden fazla doğrulama değeri var: %s. İşaretçi için ilk kaydedilen değer kullanılır."
             ],
-            "%d patient(s) have more than one response category override across their rows: %s. The first recorded value is used. Enter one category per patient.": [
-                "%d hastada satırlar arasında birden fazla yanıt kategorisi geçersiz kılma değeri var: %s. İlk kaydedilen değer kullanılır. Hasta başına bir kategori girin."
-            ],
             "%d patient(s) have more than one row but no time variable is selected: %s. The smallest value was used as each patient's best response. If the rows are visits, a 0%% baseline row takes part in that minimum, so a tumor that only grew is scored SD instead of PD. Select the visit time as the Time Variable.": [
                 "%d hastada birden fazla satır var ancak zaman değişkeni seçilmedi: %s. Her hastanın en iyi yanıtı olarak en küçük değer kullanıldı. Satırlar vizit ise %%0 değerindeki başlangıç satırı bu minimuma katılır, böylece yalnızca büyüyen bir tümör PD yerine SD olarak sınıflandırılır. Vizit zamanını Zaman Değişkeni olarak seçin."
+            ],
+            "%d patient(s) have more than one supplied response category across their rows: %s. They were read as per-visit responses in row order (no time variable is selected): each patient's category is the best one up to and including the first PD (CR, then PR, then SD, then PD); NE or Unknown visits do not count, and responses are not confirmed. Select the time variable, or enter one category per patient.": [
+                "%d hastanın satırlarında birden fazla verilmiş yanıt kategorisi var: %s. Bunlar satır sırasına göre vizit başına yanıtlar olarak okundu (zaman değişkeni seçilmedi): her hastanın kategorisi, ilk PD dahil o ana kadarki en iyi kategoridir (önce CR, sonra PR, sonra SD, sonra PD); NE veya Bilinmiyor vizitleri sayılmaz ve yanıtlar doğrulanmamıştır. Zaman değişkenini seçin veya her hasta için tek bir kategori girin."
+            ],
+            "%d patient(s) have more than one supplied response category across their rows: %s. They were read as per-visit responses: each patient's category is the best one in time order up to and including the first PD (CR, then PR, then SD, then PD); NE or Unknown visits do not count, and responses are not confirmed. If the values are not per-visit responses, enter one category per patient.": [
+                "%d hastanın satırlarında birden fazla verilmiş yanıt kategorisi var: %s. Bunlar vizit başına yanıtlar olarak okundu: her hastanın kategorisi, zaman sırasına göre ilk PD dahil o ana kadarki en iyi kategoridir (önce CR, sonra PR, sonra SD, sonra PD); NE veya Bilinmiyor vizitleri sayılmaz ve yanıtlar doğrulanmamıştır. Değerler vizit başına yanıtlar değilse, her hasta için tek bir kategori girin."
             ],
             "%d patient(s) have more than one value of the group variable across their rows: %s. Each patient is counted once, in the group of their first recorded value. Check the group column.": [
                 "%d hastada satırlar arasında grup değişkeninin birden fazla değeri var: %s. Her hasta, ilk kaydedilen değerinin grubunda bir kez sayılır. Grup sütununu kontrol edin."
@@ -280,8 +298,8 @@
             "%s (reference)": [
                 "%s (referans)"
             ],
-            "%s A new study is predicted to fall between %.1f%% and %.1f%% for sensitivity and between %.1f%% and %.1f%% for specificity.": [
-                "%s Yeni bir çalışmanın duyarlılığı için %%%.1f ile %%%.1f, özgüllüğü için %%%.1f ile %%%.1f arasında bir değer öngörülür."
+            "%s A new study is predicted to fall between %s%% and %s%% for sensitivity and between %s%% and %s%% for specificity.": [
+                "%s Yeni bir çalışmanın duyarlılığı için %%%s ile %%%s, özgüllüğü için %%%s ile %%%s arasında bir değer öngörülür."
             ],
             "%s is the reference measurement and was also selected as a regional measurement; it is analyzed as the reference only.": [
                 "%s referans ölçümüdür ve ayrıca bölgesel ölçüm olarak da seçilmiştir; yalnızca referans olarak analiz edilir."
@@ -289,8 +307,8 @@
             "%s meta-regression on %d studies with a covariate contributing %d model parameter(s) (%d residual degrees of freedom). The usual recommendation is at least 10 studies per covariate, so estimates may be unstable and confidence intervals unreliable. Report this as exploratory only.": [
                 "%s meta-regresyonu %d çalışma ve %d model parametresi ekleyen bir ortak değişkenle hesaplandı (%d artık serbestlik derecesi). Genel öneri ortak değişken başına en az 10 çalışmadır; tahminler kararsız, güven aralıkları güvenilmez olabilir. Yalnızca keşifsel olarak raporlayın."
             ],
-            "%s Positive LR %.2f%s and negative LR %.2f%s.": [
-                "%s Pozitif OO %.2f%s ve negatif OO %.2f%s."
+            "%s Positive LR %s%s and negative LR %s%s.": [
+                "%s Pozitif OO %s%s ve negatif OO %s%s."
             ],
             "%s Rows that share a study identifier were pooled as separate studies, so some participants are counted more than once.": [
                 "%s Aynı çalışma tanımlayıcısını paylaşan satırlar ayrı çalışmalar olarak birleştirildi; bu nedenle bazı katılımcılar birden fazla kez sayıldı."
@@ -379,29 +397,29 @@
             "+1/N to all cells (N = study size)": [
                 "Tüm hücrelere +1/N (N = çalışma büyüklüğü)"
             ],
-            "<br><br><strong>Overall Summary:</strong> performance is <em>asymmetric</em> - pooled sensitivity (%.1f%%) and pooled specificity (%.1f%%) fall in different performance bands.": [
-                "<br><br><strong>Genel Özet:</strong> performans <em>asimetriktir</em> - havuzlanmış duyarlılık (%%%.1f) ve havuzlanmış özgüllük (%%%.1f) farklı performans aralıklarına düşmektedir."
+            "<br><br><strong>Overall Summary:</strong> performance is <em>asymmetric</em> - pooled sensitivity (%s%%) and pooled specificity (%s%%) fall in different performance bands.": [
+                "<br><br><strong>Genel Özet:</strong> performans <em>asimetriktir</em> - havuzlanmış duyarlılık (%%%s) ve havuzlanmış özgüllük (%%%s) farklı performans aralıklarına düşmektedir."
             ],
-            "<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%) and pooled specificity (%.1f%%) both fall in the <em>excellent</em> band.": [
-                "<br><br><strong>Genel Özet:</strong> havuzlanmış duyarlılık (%%%.1f) ve havuzlanmış özgüllük (%%%.1f) her ikisi de <em>mükemmel</em> aralığındadır."
+            "<br><br><strong>Overall Summary:</strong> pooled sensitivity (%s%%) and pooled specificity (%s%%) both fall in the <em>excellent</em> band.": [
+                "<br><br><strong>Genel Özet:</strong> havuzlanmış duyarlılık (%%%s) ve havuzlanmış özgüllük (%%%s) her ikisi de <em>mükemmel</em> aralığındadır."
             ],
-            "<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%) and pooled specificity (%.1f%%) both fall in the <em>good</em> band or above.": [
-                "<br><br><strong>Genel Özet:</strong> havuzlanmış duyarlılık (%%%.1f) ve havuzlanmış özgüllük (%%%.1f) her ikisi de <em>iyi</em> veya üzeri aralıktadır."
+            "<br><br><strong>Overall Summary:</strong> pooled sensitivity (%s%%) and pooled specificity (%s%%) both fall in the <em>good</em> band or above.": [
+                "<br><br><strong>Genel Özet:</strong> havuzlanmış duyarlılık (%%%s) ve havuzlanmış özgüllük (%%%s) her ikisi de <em>iyi</em> veya üzeri aralıktadır."
             ],
-            "<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%) and pooled specificity (%.1f%%) do not both reach the <em>good</em> band.": [
-                "<br><br><strong>Genel Özet:</strong> havuzlanmış duyarlılık (%%%.1f) ve havuzlanmış özgüllük (%%%.1f) her ikisi birden <em>iyi</em> aralığına ulaşmamaktadır."
+            "<br><br><strong>Overall Summary:</strong> pooled sensitivity (%s%%) and pooled specificity (%s%%) do not both reach the <em>good</em> band.": [
+                "<br><br><strong>Genel Özet:</strong> havuzlanmış duyarlılık (%%%s) ve havuzlanmış özgüllük (%%%s) her ikisi birden <em>iyi</em> aralığına ulaşmamaktadır."
             ],
-            "<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the <em>excellent</em> band on the conventional 90/80/70 scale.": [
-                "<br><br><strong>Birleştirilmiş özgüllüğünüz %%%.1f%s</strong>, geleneksel 90/80/70 ölçeğinde <em>mükemmel</em> aralığındadır."
+            "<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the <em>excellent</em> band on the conventional 90/80/70 scale.": [
+                "<br><br><strong>Birleştirilmiş özgüllüğünüz %%%s%s</strong>, geleneksel 90/80/70 ölçeğinde <em>mükemmel</em> aralığındadır."
             ],
-            "<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the <em>good</em> band on the conventional 90/80/70 scale.": [
-                "<br><br><strong>Birleştirilmiş özgüllüğünüz %%%.1f%s</strong>, geleneksel 90/80/70 ölçeğinde <em>iyi</em> aralığındadır."
+            "<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the <em>good</em> band on the conventional 90/80/70 scale.": [
+                "<br><br><strong>Birleştirilmiş özgüllüğünüz %%%s%s</strong>, geleneksel 90/80/70 ölçeğinde <em>iyi</em> aralığındadır."
             ],
-            "<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the <em>limited</em> band on the conventional 90/80/70 scale.": [
-                "<br><br><strong>Birleştirilmiş özgüllüğünüz %%%.1f%s</strong>, geleneksel 90/80/70 ölçeğinde <em>sınırlı</em> aralığındadır."
+            "<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the <em>limited</em> band on the conventional 90/80/70 scale.": [
+                "<br><br><strong>Birleştirilmiş özgüllüğünüz %%%s%s</strong>, geleneksel 90/80/70 ölçeğinde <em>sınırlı</em> aralığındadır."
             ],
-            "<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the <em>moderate</em> band on the conventional 90/80/70 scale.": [
-                "<br><br><strong>Birleştirilmiş özgüllüğünüz %%%.1f%s</strong>, geleneksel 90/80/70 ölçeğinde <em>orta</em> aralığındadır."
+            "<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the <em>moderate</em> band on the conventional 90/80/70 scale.": [
+                "<br><br><strong>Birleştirilmiş özgüllüğünüz %%%s%s</strong>, geleneksel 90/80/70 ölçeğinde <em>orta</em> aralığındadır."
             ],
             "<br><br><strong>Your positive LR of %.2f</strong> provides <em>minimal</em> evidence FOR disease when test is positive.": [
                 "<br><br><strong>Pozitif OO değeriniz olan %.2f</strong>, test pozitif olduğunda hastalık LEHİNE <em>asgari</em> kanıt sağlamaktadır."
@@ -622,11 +640,11 @@
             "<strong>Narrow CIs:</strong> Large studies with precise estimates": [
                 "<strong>Dar güven aralıkları:</strong> Kesin tahminler sağlayan büyük çalışmalar"
             ],
-            "<strong>Negative Likelihood Ratio:</strong> %.2f - A negative test is %.1fx more likely in healthy than disease": [
-                "<strong>Negatif Olabilirlik Oranı:</strong> %.2f - Negatif bir test, sağlıklı bireylerde hastalıklılara göre %.1fx kat daha olasıdır"
+            "<strong>Negative Likelihood Ratio:</strong> %s - A negative test is %.1fx more likely in healthy than disease": [
+                "<strong>Negatif Olabilirlik Oranı:</strong> %s - Negatif bir test, sağlıklı bireylerde hastalıklılara göre %.1fx kat daha olasıdır"
             ],
-            "<strong>Negative Likelihood Ratio:</strong> %.2f - Interpretation unstable (sensitivity ≈ 100%%).": [
-                "<strong>Negatif Olabilirlik Oranı:</strong> %.2f - Yorum kararsız (duyarlılık ≈ %%100)."
+            "<strong>Negative Likelihood Ratio:</strong> %s - Interpretation unstable (sensitivity ≈ 100%%).": [
+                "<strong>Negatif Olabilirlik Oranı:</strong> %s - Yorum kararsız (duyarlılık ≈ %%100)."
             ],
             "<strong>Negative Likelihood Ratio:</strong> Not estimable with the current data. LR- is (1 - sensitivity) / specificity, so it needs a pooled specificity above zero and finite pooled estimates; here the pooled specificity is 0 or an estimate did not converge. Read the pooled specificity and its confidence interval in the summary above to see which.": [
                 "<strong>Negatif Olabilirlik Oranı:</strong> Mevcut verilerle tahmin edilemiyor. NOO = (1 - duyarlılık) / özgüllük formülüyle hesaplandığından, sıfırdan büyük havuzlanmış özgüllük ve sonlu havuzlanmış tahminler gerektirir; burada havuzlanmış özgüllük 0'dır veya bir tahmin yakınsamamıştır. Hangisinin geçerli olduğunu görmek için yukarıdaki özette havuzlanmış özgüllüğü ve güven aralığını inceleyin."
@@ -634,8 +652,8 @@
             "<strong>Not external validation:</strong> a meta-analysis summarizes existing published evidence and inherits any publication, spectrum or reference-standard bias of the included studies; it is not a prospective evaluation in an intended-use population with a pre-specified threshold": [
                 "<strong>Dış doğrulama değildir:</strong> Meta-analiz mevcut yayımlanmış kanıtları özetler ve dahil edilen çalışmaların yayın, spektrum veya referans standardı yanlılıklarını devralır; önceden belirlenmiş eşikle hedef kullanım topluluğunda ileriye dönük değerlendirme değildir"
             ],
-            "<strong>Note:</strong> its confidence interval (%.2f-%.2f) spans more than one evidence category, so this grading is not firmly established by the pooled data.": [
-                "<strong>Not:</strong> Güven aralığı (%.2f-%.2f) birden fazla kanıt kategorisini kapsadığından, bu derecelendirme havuzlanmış verilerle kesin olarak belirlenememiştir."
+            "<strong>Note:</strong> its confidence interval (%s-%s) spans more than one evidence category, so this grading is not firmly established by the pooled data.": [
+                "<strong>Not:</strong> Güven aralığı (%s-%s) birden fazla kanıt kategorisini kapsadığından, bu derecelendirme havuzlanmış verilerle kesin olarak belirlenememiştir."
             ],
             "<strong>Note:</strong> the confidence interval spans more than one performance category, so this classification is not firmly established by the pooled data.": [
                 "<strong>Not:</strong> Güven aralığı birden fazla performans kategorisini kapsadığından, bu sınıflandırma havuzlanmış verilerle kesin olarak belirlenememiştir."
@@ -682,8 +700,8 @@
             "<strong>Positive Likelihood Ratio:</strong> Not estimable with the current data (specificity ≈ 100% or model unstable).": [
                 "<strong>Pozitif Olabilirlik Oranı:</strong> Mevcut verilerle tahmin edilemiyor (özgüllük ≈ %100 veya model kararsız)."
             ],
-            "<strong>Prediction region (dotted):</strong> where the accuracy of a FUTURE study in a new setting is expected to fall. It includes between-study heterogeneity and does NOT shrink with more studies.": [
-                "<strong>Öngörü bölgesi (noktalı):</strong> Yeni bir ortamdaki GELECEK çalışmanın doğruluğunun bulunmasının beklendiği bölge. Çalışmalar arası heterojenliği içerir ve daha fazla çalışmayla daralmaz."
+            "<strong>Prediction region (dotted):</strong> where the accuracy of a FUTURE study in a new setting is expected to fall. It includes between-study heterogeneity, so more studies narrow it only down to the spread between studies, never to a single point.": [
+                "<strong>Öngörü bölgesi (noktalı):</strong> Yeni bir ortamdaki GELECEK çalışmanın doğruluğunun bulunmasının beklendiği bölge. Çalışmalar arası heterojenliği içerir; bu nedenle daha fazla çalışma onu yalnızca çalışmalar arasındaki yayılıma kadar daraltır, asla tek bir noktaya indirmez."
             ],
             "<strong>Proportional-Hazards SROC Analysis:</strong> Holling model estimated by adjusted profile maximum likelihood": [
                 "<strong>Orantılı tehlikeler SROC analizi:</strong> Düzeltilmiş profil en çok olabilirlikle tahmin edilen Holling modeli"
@@ -724,11 +742,14 @@
             "<strong>Screening Applications:</strong> Prioritize sensitivity; the level needed depends on prevalence and on the cost of a missed case, not on a fixed band": [
                 "<strong>Tarama uygulamaları:</strong> Duyarlılığa öncelik verin; gereken düzey sabit bir banda değil, prevalansa ve kaçırılan bir olgunun maliyetine bağlıdır"
             ],
-            "<strong>Sensitivity:</strong> %.1f%% - The test correctly identifies %.0f out of 1,000 patients with disease": [
-                "<strong>Duyarlılık:</strong> %%%.1f - Test, hastalığı olan her 1.000 hastadan %.0f tanesini doğru tanımlar"
+            "<strong>Sensitivity:</strong> %s%% - The test correctly identifies %.0f out of 1,000 patients with disease": [
+                "<strong>Duyarlılık:</strong> %%%s - Test, hastalığı olan her 1.000 hastadan %.0f tanesini doğru tanımlar"
             ],
-            "<strong>Sensitivity:</strong> %.1f%% - The test correctly identifies %.0f out of 100 patients with disease": [
-                "<strong>Duyarlılık:</strong> %%%.1f - Test hastalığı olan her 100 hastanın %.0f'ini doğru tanımlar"
+            "<strong>Sensitivity:</strong> %s%% - The test correctly identifies %.0f out of 100 patients with disease": [
+                "<strong>Duyarlılık:</strong> %%%s - Test hastalığı olan her 100 hastanın %.0f'ini doğru tanımlar"
+            ],
+            "<strong>Sensitivity:</strong> %s%% - The test misses fewer than 1 in 1,000 patients with disease": [
+                "<strong>Duyarlılık:</strong> %%%s - Test, hastalığı olan her 1.000 hastadan 1'inden azını kaçırır"
             ],
             "<strong>Sensitivity:</strong> Mean %.1f%% (Range: %.1f%% - %.1f%%)": [
                 "<strong>Duyarlılık:</strong> Ortalama %%%.1f (Aralık: %%%.1f - %%%.1f)"
@@ -739,11 +760,14 @@
             "<strong>Small Studies Present:</strong> Range of precision levels represented": [
                 "<strong>Küçük çalışmalar mevcut:</strong> Farklı kesinlik düzeyleri temsil edilmiştir"
             ],
-            "<strong>Specificity:</strong> %.1f%% - The test correctly identifies %.0f out of 1,000 healthy individuals": [
-                "<strong>Özgüllük:</strong> %%%.1f - Test, her 1.000 sağlıklı bireyden %.0f tanesini doğru tanımlar"
+            "<strong>Specificity:</strong> %s%% - Fewer than 1 in 1,000 healthy individuals test positive": [
+                "<strong>Özgüllük:</strong> %%%s - Her 1.000 sağlıklı bireyden 1'inden azı pozitif sonuç verir"
             ],
-            "<strong>Specificity:</strong> %.1f%% - The test correctly identifies %.0f out of 100 healthy individuals": [
-                "<strong>Özgüllük:</strong> %%%.1f - Test her 100 sağlıklı bireyin %.0f'ini doğru tanımlar"
+            "<strong>Specificity:</strong> %s%% - The test correctly identifies %.0f out of 1,000 healthy individuals": [
+                "<strong>Özgüllük:</strong> %%%s - Test, her 1.000 sağlıklı bireyden %.0f tanesini doğru tanımlar"
+            ],
+            "<strong>Specificity:</strong> %s%% - The test correctly identifies %.0f out of 100 healthy individuals": [
+                "<strong>Özgüllük:</strong> %%%s - Test her 100 sağlıklı bireyin %.0f'ini doğru tanımlar"
             ],
             "<strong>Specificity:</strong> Mean %.1f%% (Range: %.1f%% - %.1f%%)": [
                 "<strong>Özgüllük:</strong> Ortalama %%%.1f (Aralık: %%%.1f - %%%.1f)"
@@ -838,23 +862,23 @@
             "<strong>Your negative LR of %.2f</strong> provides <em>moderate</em> evidence AGAINST disease when test is negative.": [
                 "<strong>Negatif OO değeriniz olan %.2f</strong>, test negatif olduğunda hastalık ALEYHİNE <em>orta</em> kanıt sağlamaktadır."
             ],
-            "<strong>Your negative LR of %.2f</strong> provides <em>strong</em> evidence AGAINST disease when test is negative.": [
-                "<strong>Negatif OO değeriniz olan %.2f</strong>, test negatif olduğunda hastalık ALEYHİNE <em>güçlü</em> kanıt sağlamaktadır."
-            ],
             "<strong>Your negative LR of %.2f</strong> provides <em>weak</em> evidence AGAINST disease when test is negative.": [
                 "<strong>Negatif OO değeriniz olan %.2f</strong>, test negatif olduğunda hastalık ALEYHİNE <em>zayıf</em> kanıt sağlamaktadır."
             ],
-            "<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the <em>excellent</em> band on the conventional 90/80/70 scale.": [
-                "<strong>Birleştirilmiş duyarlılığınız %%%.1f%s</strong>, geleneksel 90/80/70 ölçeğinde <em>mükemmel</em> aralığındadır."
+            "<strong>Your negative LR of %s</strong> provides <em>strong</em> evidence AGAINST disease when test is negative.": [
+                "<strong>Negatif OO değeriniz olan %s</strong>, test negatif olduğunda hastalık ALEYHİNE <em>güçlü</em> kanıt sağlamaktadır."
             ],
-            "<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the <em>good</em> band on the conventional 90/80/70 scale.": [
-                "<strong>Birleştirilmiş duyarlılığınız %%%.1f%s</strong>, geleneksel 90/80/70 ölçeğinde <em>iyi</em> aralığındadır."
+            "<strong>Your pooled sensitivity of %s%%%s</strong> falls in the <em>excellent</em> band on the conventional 90/80/70 scale.": [
+                "<strong>Birleştirilmiş duyarlılığınız %%%s%s</strong>, geleneksel 90/80/70 ölçeğinde <em>mükemmel</em> aralığındadır."
             ],
-            "<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the <em>limited</em> band on the conventional 90/80/70 scale.": [
-                "<strong>Birleştirilmiş duyarlılığınız %%%.1f%s</strong>, geleneksel 90/80/70 ölçeğinde <em>sınırlı</em> aralığındadır."
+            "<strong>Your pooled sensitivity of %s%%%s</strong> falls in the <em>good</em> band on the conventional 90/80/70 scale.": [
+                "<strong>Birleştirilmiş duyarlılığınız %%%s%s</strong>, geleneksel 90/80/70 ölçeğinde <em>iyi</em> aralığındadır."
             ],
-            "<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the <em>moderate</em> band on the conventional 90/80/70 scale.": [
-                "<strong>Birleştirilmiş duyarlılığınız %%%.1f%s</strong>, geleneksel 90/80/70 ölçeğinde <em>orta</em> aralığındadır."
+            "<strong>Your pooled sensitivity of %s%%%s</strong> falls in the <em>limited</em> band on the conventional 90/80/70 scale.": [
+                "<strong>Birleştirilmiş duyarlılığınız %%%s%s</strong>, geleneksel 90/80/70 ölçeğinde <em>sınırlı</em> aralığındadır."
+            ],
+            "<strong>Your pooled sensitivity of %s%%%s</strong> falls in the <em>moderate</em> band on the conventional 90/80/70 scale.": [
+                "<strong>Birleştirilmiş duyarlılığınız %%%s%s</strong>, geleneksel 90/80/70 ölçeğinde <em>orta</em> aralığındadır."
             ],
             "≤-100% change from baseline (simplified criterion, NOT full RECIST CR which requires disappearance of ALL lesions including non-target)": [
                 "Başlangıca göre ≤-%100 değişim (basitleştirilmiş kriter; hedef dışı lezyonlar dahil TÜM lezyonların kaybolmasını gerektiren tam RECIST CR DEĞİLDİR)"
@@ -943,11 +967,14 @@
             "A CV depends on the level, so compartments with different mean levels can differ in CV with the same absolute scatter.": [
                 "CV düzeye bağlıdır; bu nedenle ortalama düzeyleri farklı kompartmanlar, mutlak saçılım aynı olsa da CV bakımından farklılaşabilir."
             ],
-            "A difference between two measurements that changes with the level of the marker - for example a biopsy that reads higher than the whole section in low cases and lower in high cases. A measurement's own error tilts a slope fitted against it, so with a reference this analysis requires the slopes against the reference, against the region and against their mean to agree in direction, and shows the slope against the mean; without a reference it uses the mean of the two regions. An average difference can hide it, and a fixed correction cannot remove it.": [
-                "İki ölçüm arasındaki, belirtecin düzeyiyle değişen bir fark; örneğin düşük olgularda tüm kesitten yüksek, yüksek olgularda düşük okuyan bir biyopsi. Bir ölçümün kendi hatası, ona karşı kurulan eğimi eğer; bu nedenle referans varken bu analiz referansa, bölgeye ve ikisinin ortalamasına karşı eğimlerin yön bakımından uyuşmasını ister ve ortalamaya karşı eğimi gösterir; referans yoksa iki bölgenin ortalamasını kullanır. Ortalama bir fark bunu gizleyebilir ve sabit bir düzeltme bunu gideremez."
+            "A difference between two measurements that changes with the level of the marker - for example a biopsy that reads higher than the whole section in low cases and lower in high cases. A measurement's own error tilts a slope fitted against it, so this analysis requires the slopes against each of the two measurements compared (a region and the reference, or two regions) and against their mean to agree in direction, and shows the slope against the mean. An average difference can hide it, and a fixed correction cannot remove it.": [
+                "Belirteç düzeyiyle değişen iki ölçüm arasındaki fark; örneğin düşük olgularda tüm kesitten daha yüksek, yüksek olgularda daha düşük okuyan bir biyopsi. Bir ölçümün kendi hatası, ona karşı çizilen eğimi eğer; bu nedenle bu analiz, karşılaştırılan iki ölçümün her birine (bir bölge ve referans ya da iki bölge) ve ortalamalarına karşı eğimlerin aynı yönde olmasını ister ve ortalamaya karşı eğimi gösterir. Ortalama fark bunu gizleyebilir ve sabit bir düzeltme onu ortadan kaldıramaz."
             ],
             "A Fisher's exact test was not run where every patient fell into the same class (e.g. no responders in any group), so there is no contrast to test.": [
                 "Her hastanın aynı sınıfa düştüğü durumlarda (örn. hiçbir grupta yanıt veren olmaması) bir Fisher kesin testi çalıştırılmadı, bu nedenle test edilecek bir karşıtlık yoktur."
+            ],
+            "A margin of %s%% of the comparison mean is ±%s in the measurement's own units, smaller than the smallest non-zero difference recorded between paired measurements (%s). Ruling out a difference that small needs many cases and may be finer than matters clinically; check that the systematic difference margin suits this marker and its level.": [
+                "Karşılaştırma ortalamasının %%%s'i olan sınır, ölçümün kendi biriminde ±%s'dir; bu, eşleştirilmiş ölçümler arasında kaydedilen sıfır olmayan en küçük farktan (%s) küçüktür. Bu kadar küçük bir farkı dışlamak çok sayıda olgu gerektirir ve klinik açıdan önemli olandan daha ince olabilir; sistematik fark sınırının bu belirteç ve düzeyi için uygun olup olmadığını denetleyin."
             ],
             "A material systematic difference between regions was present, so the regions should not be used interchangeably until it is resolved, whatever the correlation and CV.": [
                 "Bölgeler arasında önemli bir sistematik fark vardı; bu nedenle korelasyon ve CV ne olursa olsun, fark giderilene kadar bölgeler birbirinin yerine kullanılmamalıdır."
@@ -1045,8 +1072,8 @@
             "Actual tumor measurements (mm, cm, sum of diameters)": [
                 "Gerçek tümör ölçümleri (mm, cm, çaplar toplamı)"
             ],
-            "Add a dedicated efficacy table with: - Median time to first response (RECIST PR or better) - Kaplan-Meier median duration of response (censoring-aware) - Number of responders and events Requires a time variable and raw (per-visit) input.": [
-                "Şunları içeren ayrı bir etkililik tablosu ekler: - İlk yanıta kadar medyan süre (RECIST PR veya daha iyi) - Kaplan-Meier medyan yanıt süresi (sansürlemeyi dikkate alır) - Yanıt veren ve olay sayısı Zaman değişkeni ve ham (ziyaret bazlı) girdi gerektirir."
+            "Add a dedicated efficacy table with: - Median time to first response (RECIST PR or better) - Kaplan-Meier median duration of response (censoring-aware) - Number of responders and events Requires a time variable (raw measurements or per-visit percentage changes).": [
+                "Şunları içeren ayrı bir etkililik tablosu ekler: - İlk yanıta kadar medyan süre (RECIST PR veya daha iyi) - Kaplan-Meier medyan yanıt süresi (sansürlemeyi dikkate alır) - Yanıt veren ve olay sayısı Zaman değişkeni gerektirir (ham ölçümler veya ziyaret bazlı yüzde değişimler)."
             ],
             "Add clinical significance context to results: - The range of response rates compatible with the data (exact confidence interval) - A reminder to compare with the rate expected in your tumour type and setting - Sample size assessment": [
                 "Sonuçlara klinik anlamlılık bağlamı ekler: - Verilerle uyumlu yanıt oranları aralığı (kesin güven aralığı) - Tümör türü ve ortamında beklenen oranla karşılaştırma hatırlatması - Örneklem büyüklüğü değerlendirmesi"
@@ -1308,6 +1335,9 @@
             ],
             "Between-study heterogeneity is substantial - the prediction interval spans a wide range of accuracy - so this pooled pair does not describe any single population or laboratory. Read the prediction region and the subgroup or meta-regression results rather than the pooled point.": [
                 "Çalışmalar arası heterojenlik belirgindir - tahmin aralığı geniş bir doğruluk aralığını kapsar - bu nedenle havuzlanmış bu çift tek bir popülasyonu veya laboratuvarı tanımlamaz. Havuzlanmış nokta yerine tahmin bölgesini ve alt grup ya da meta-regresyon sonuçlarını inceleyin."
+            ],
+            "Between-study heterogeneity is substantial, so the predictive values in any one setting can differ markedly from these; the prediction interval in the bivariate table shows the range of sensitivity and specificity a new setting may have.": [
+                "Çalışmalar arası heterojenlik belirgindir; bu nedenle herhangi bir ortamdaki prediktif değerler bunlardan belirgin biçimde farklı olabilir. İki değişkenli tablodaki tahmin aralığı, yeni bir ortamın sahip olabileceği duyarlılık ve özgüllük aralığını gösterir."
             ],
             "Between-study variance (tau^2)": [
                 "Çalışmalar arası varyans (tau^2)"
@@ -1768,9 +1798,6 @@
             "Conflicting annotation values": [
                 "Çelişkili ek açıklama değerleri"
             ],
-            "Conflicting category overrides": [
-                "Çelişkili kategori geçersiz kılmaları"
-            ],
             "Conflicting confirmation values": [
                 "Çelişkili doğrulama değerleri"
             ],
@@ -1909,8 +1936,8 @@
             "CV (coefficient of variation):": [
                 "CV (varyasyon katsayısı):"
             ],
-            "CV = %.1f%%, not graded because the measurements are an ordinal score.": [
-                "CV = %%%.1f; ölçümler sıralı bir skor olduğu için derecelendirilmedi."
+            "CV = %.1f%%, not graded because the measurements look like an ordinal score or coarsely binned values.": [
+                "CV = %%%.1f; ölçümler sıralı bir skora ya da kaba aralıklarla kaydedilmiş değerlere benzediği için derecelendirilmedi."
             ],
             "CV bands follow your CV threshold (low up to half of it, moderate up to it, high above it). For a test of whether heterogeneity differs between compartments, use the Kruskal-Wallis test on per-case CV (Compartment comparison tests).": [
                 "CV kategorileri CV eşiğinizi izler (eşiğin yarısına kadar düşük, eşiğe kadar orta, eşiğin üzerinde yüksek). Heterojenliğin kompartmanlar arasında farklı olup olmadığını test etmek için vaka başına CV üzerinde Kruskal-Wallis testini kullanın (Kompartman karşılaştırma testleri)."
@@ -2074,6 +2101,9 @@
             "Descriptive only. Time is split by best recorded response (unconfirmed; see the notices), which a patient can only achieve by living long enough to be assessed, so responders accumulate more follow-up by construction (guarantee-time bias). These rows must not be read as a survival benefit of responding: use a landmark analysis or treat response as a time-dependent covariate.": [
                 "Yalnızca tanımlayıcıdır. Süre, kaydedilen en iyi yanıta (doğrulanmamış; bildirimlere bakın) göre bölünür; bu yanıta ancak değerlendirilecek kadar uzun yaşayan bir hasta ulaşabilir, bu yüzden yanıt verenler yapı gereği daha fazla takip süresi biriktirir (garanti süresi yanlılığı). Bu satırlar yanıt vermenin bir sağkalım yararı olarak okunmamalıdır: bir landmark analizi kullanın ya da yanıtı zamana bağlı bir ortak değişken olarak ele alın."
             ],
+            "Descriptive only. Time is split by best recorded response, which a patient can only achieve by living long enough to be assessed, so responders accumulate more follow-up by construction (guarantee-time bias). These rows must not be read as a survival benefit of responding: use a landmark analysis or treat response as a time-dependent covariate.": [
+                "Yalnızca tanımlayıcıdır. Süre, kaydedilen en iyi yanıta göre bölünür; bu yanıta ancak değerlendirilecek kadar uzun yaşayan bir hasta ulaşabilir, bu yüzden yanıt verenler yapı gereği daha fazla takip süresi biriktirir (garanti süresi yanlılığı). Bu satırlar yanıt vermenin bir sağkalım yararı olarak okunmamalıdır: bir landmark analizi kullanın ya da yanıtı zamana bağlı bir ortak değişken olarak ele alın."
+            ],
             "Descriptive, robust to a few extreme cases; not graded": [
                 "Tanımlayıcı, az sayıda uç vakaya karşı dayanıklı; derecelendirilmez"
             ],
@@ -2200,8 +2230,8 @@
             "Either percentage changes from baseline or raw tumor measurements": [
                 "Ya başlangıca göre yüzde değişimleri ya da ham tümör ölçümleri"
             ],
-            "Enable guided mode with step-by-step instructions: - Walks through variable selection and options - Provides contextual help and best practice recommendations - Includes misuse detection and warnings Recommended for new users or complex analyses": [
-                "Adım adım yönergelerle rehber kipini açar: - Değişken ve seçenek seçiminde yol gösterir - Bağlama özgü yardım ve iyi uygulama önerileri verir - Yanlış kullanım algılama ve uyarıları içerir Yeni kullanıcılar veya karmaşık analizler için önerilir"
+            "Enable guided mode with step-by-step instructions: - Walks through variable selection and options - Provides contextual help and best practice recommendations Recommended for new users or complex analyses": [
+                "Adım adım yönergelerle rehber kipini açar: - Değişken ve seçenek seçiminde yol gösterir - Bağlama özgü yardım ve iyi uygulama önerileri verir Yeni kullanıcılar veya karmaşık analizler için önerilir"
             ],
             "End": [
                 "Bitiş"
@@ -2323,8 +2353,8 @@
             "Events": [
                 "Olaylar"
             ],
-            "Every measurement takes 5 or fewer whole-number values, as an ordinal score does (for example HER2 0 to 3+). The CV, the percentage differences and their grades assume a continuous scale and are not meaningful here, so no sampling verdict is given. Assess agreement of an ordinal score with weighted kappa or the proportion of cases in the same category.": [
-                "Her ölçüm, sıralı bir skorda olduğu gibi en fazla 5 farklı tam sayı değeri alıyor (örneğin HER2 0-3+). CV, yüzde farklar ve dereceleri sürekli bir ölçek varsayar ve burada anlamlı değildir; bu nedenle örnekleme kararı verilmedi. Sıralı bir skorun uyumunu ağırlıklı kappa ya da aynı kategorideki olguların oranıyla değerlendirin."
+            "Every measurement takes only a few whole-number values (at most 5, or at most 9 between 0 and 12), so the measurements look like an ordinal score (for example HER2 0 to 3+ or an Allred score) or coarsely binned values. The CV, the percentage differences and their grades assume a finely measured continuous scale and are not meaningful here, so no sampling verdict is given. Assess agreement of an ordinal score with weighted kappa or the proportion of cases in the same category; record binned values more finely.": [
+                "Her ölçüm yalnızca birkaç tam sayı değeri alıyor (en çok 5 ya da 0 ile 12 arasında en çok 9); bu nedenle ölçümler sıralı bir skora (örneğin HER2 0-3+ ya da Allred skoru) veya kaba aralıklarla kaydedilmiş değerlere benziyor. CV, yüzde farklar ve bunların dereceleri ince ölçülmüş sürekli bir ölçek varsayar ve burada anlamlı değildir; bu nedenle örnekleme kararı verilmedi. Sıralı bir skorun uyumunu ağırlıklı kappa ya da aynı kategorideki olguların oranıyla değerlendirin; kaba aralıklı değerleri daha ince kaydedin."
             ],
             "Every patient's earliest row is 0%% at time %s rather than time 0. If these rows are baselines, recode the baseline time as 0: rows after time 0 are treated as assessments, so a 0%% baseline row takes part in the best response and hides progression.": [
                 "Her hastanın en erken satırı zaman 0 yerine zaman = %s noktasında %%0 değerindedir. Bu satırlar başlangıç ise başlangıç zamanını 0 olarak yeniden kodlayın: zaman 0 sonrasındaki satırlar değerlendirme olarak ele alınır, bu nedenle %%0 değerindeki başlangıç satırı en iyi yanıta katılır ve progresyonu gizler."
@@ -2335,8 +2365,8 @@
             "Every regional measurement equalled its comparison in every case.": [
                 "Her bölgesel ölçüm, her vakada karşılaştırıldığı değere eşitti."
             ],
-            "Every response value is positive, so no patient shrank at all. If these are raw tumor sizes rather than percent changes, set Data Input Type to Raw measurements and add a time variable.": [
-                "Tüm yanıt değerleri pozitiftir, dolayısıyla hiçbir hastada küçülme olmamıştır. Bunlar yüzde değişimleri değil ham tümör boyutlarıysa, Veri Giriş Türünü Ham ölçümler olarak ayarlayın ve bir zaman değişkeni ekleyin."
+            "Every response value is 0 or above. Read as percent changes, no tumor shrank, so no patient can be a complete or partial response. If 100 means no change (tumor size as a percent of baseline), subtract 100 from every value. If these are raw tumor sizes, set Data input type to Raw measurements with a time variable whose baseline is 0. If they are genuine percent changes, the categories stand.": [
+                "Tüm yanıt değerleri 0 veya üzerinde. Yüzde değişim olarak okunduğunda hiçbir tümör küçülmemiştir; bu nedenle hiçbir hasta tam veya kısmi yanıt olamaz. 100 değişim olmadığı anlamına geliyorsa (tümör boyutu başlangıcın yüzdesi olarak), her değerden 100 çıkarın. Bunlar ham tümör boyutlarıysa, Veri giriş türünü Ham ölçümler olarak ayarlayın ve başlangıcı 0 olan bir zaman değişkeni seçin. Gerçek yüzde değişimlerse kategoriler geçerlidir."
             ],
             "Every response value lies between -1 and 1. Percent change must be entered as -35 for a 35% decrease; these look like proportions (for example from a spreadsheet percent format), which makes every patient stable disease. Multiply the values by 100.": [
                 "Tüm yanıt değerleri -1 ile 1 arasındadır. Yüzde değişim, %35 azalma için -35 olarak girilmelidir; bu değerler oran gibi görünmektedir (örneğin bir elektronik tablo yüzde formatından) ve bu durum her hastayı kararlı hastalık olarak sınıflandırır. Değerleri 100 ile çarpın."
@@ -2503,8 +2533,8 @@
             "For date/time data, ensure correct format is selected": [
                 "Tarih/saat verileri için doğru formatın seçildiğinden emin olun"
             ],
-            "For patients with more than one assessment, best response was the best category recorded up to and including the first progression; responses were not confirmed and no minimum duration was required for stable disease.": [
-                "Birden fazla değerlendirmesi olan hastalarda en iyi yanıt, ilk progresyon dahil o ana kadar kaydedilen en iyi kategoriydi; yanıtlar doğrulanmadı ve stabil hastalık için en kısa süre koşulu aranmadı."
+            "For patients with more than one different response recorded, best response was the best category recorded up to and including the first progression; those responses were not confirmed and no minimum duration was required for stable disease.": [
+                "Birden fazla farklı yanıtı kayıtlı olan hastalarda en iyi yanıt, ilk progresyon dahil o ana kadar kaydedilen en iyi kategoriydi; bu yanıtlar doğrulanmadı ve stabil hastalık için en kısa süre koşulu aranmadı."
             ],
             "For raw measurements, baseline assumed at time = 0": [
                 "Ham ölçümler için zaman = 0 noktasında başlangıç varsayılır"
@@ -2607,6 +2637,9 @@
             ],
             "Group comparison could not be computed": [
                 "Grup karşılaştırması hesaplanamadı"
+            ],
+            "Group comparison skipped": [
+                "Grup karşılaştırması atlandı"
             ],
             "Group Comparison Statistical Test": [
                 "Grup Karşılaştırma İstatistiksel Testi"
@@ -2806,8 +2839,8 @@
             "In this dataset the mean of all regions is systematically offset from the reference, although no single region is materially offset on its own.": [
                 "Bu veri setinde, tek başına önemli ölçüde sapan bir bölge olmamasına rağmen tüm bölgelerin ortalaması referanstan sistematik olarak sapmaktadır."
             ],
-            "In this dataset the measurements were an ordinal score, so their agreement should be judged with weighted kappa or category agreement rather than with the CV.": [
-                "Bu veri setinde ölçümler sıralı bir skordu; bu nedenle uyumları CV ile değil ağırlıklı kappa ya da kategori uyumuyla değerlendirilmelidir."
+            "In this dataset the measurements looked like an ordinal score or coarsely binned values, so their agreement should be judged with weighted kappa or category agreement rather than with the CV.": [
+                "Bu veri setinde ölçümler sıralı bir skora ya da kaba aralıklarla kaydedilmiş değerlere benziyordu; bu nedenle uyumları CV yerine ağırlıklı kappa ya da kategori uyumuyla değerlendirilmelidir."
             ],
             "In this dataset the regional measurements met the correlation and variability thresholds on average, but agreement was not confirmed.": [
                 "Bu veri setinde bölgesel ölçümler korelasyon ve değişkenlik eşiklerini ortalamada karşıladı, ancak uyum doğrulanmadı."
@@ -3046,6 +3079,9 @@
             "Major contributor": [
                 "Ana katkı sağlayıcı"
             ],
+            "Margin finer than the recorded values": [
+                "Sınır kaydedilen değerlerden daha ince"
+            ],
             "Mark censored patients: follow-up ended without the event (alive at the data cutoff, or lost to follow-up)": [
                 "Sansürlü hastaları işaretle: izlem olay olmadan sona erdi (veri kesim tarihinde sağ ya da izlemden çıkmış)"
             ],
@@ -3154,6 +3190,9 @@
             "Median duration of response (naive)": [
                 "Medyan yanıt süresi (ham)"
             ],
+            "Median duration: %s": [
+                "Medyan süre: %s"
+            ],
             "median follow-up (reverse Kaplan-Meier)": [
                 "medyan takip süresi (ters Kaplan-Meier)"
             ],
@@ -3211,9 +3250,6 @@
             "Median: %.1f%%": [
                 "Medyan: %%%.1f"
             ],
-            "Median: %s": [
-                "Medyan: %s"
-            ],
             "Median/Protocol reference lines measure a duration from each patient's own start, so they cannot be placed on an absolute axis where patients begin at different points.": [
                 "Medyan/protokol referans çizgileri her hastanın kendi başlangıcından itibaren süreyi ölçer; hastalar farklı zamanlarda başladığında mutlak eksene yerleştirilemez."
             ],
@@ -3226,8 +3262,8 @@
             "Meta-analysis method": [
                 "Meta-analiz yöntemi"
             ],
-            "Meta-analysis of %d diagnostic accuracy studies shows pooled sensitivity of %.1f%%%s and specificity of %.1f%%%s, at the %d%% confidence level.": [
-                "%d tanısal doğruluk çalışmasının meta-analizinde birleştirilmiş duyarlılık %%%.1f%s, özgüllük %%%.1f%s ve güven düzeyi %%%d olarak bulundu."
+            "Meta-analysis of %d diagnostic accuracy studies shows pooled sensitivity of %s%%%s and specificity of %s%%%s, at the %d%% confidence level.": [
+                "%d tanısal doğruluk çalışmasının meta-analizinde birleştirilmiş duyarlılık %%%s%s, özgüllük %%%s%s ve güven düzeyi %%%d olarak bulundu."
             ],
             "Meta-Analysis Summary": [
                 "Meta-Analiz Özeti"
@@ -3532,9 +3568,6 @@
             "Natural-language summary of heterogeneity analysis results": [
                 "Heterojenlik analizi sonuçlarının doğal dildeki özeti"
             ],
-            "NE": [
-                "NE"
-            ],
             "Near-zero levels inflate the CV": [
                 "Sıfıra yakın düzeyler CV'yi şişiriyor"
             ],
@@ -3576,6 +3609,9 @@
             ],
             "No comparison available": [
                 "Karşılaştırma mevcut değil"
+            ],
+            "No comparison was run: %d patient(s) have different group values on different rows, and a group comparison needs one fixed group per patient. Select a patient-level grouping variable.": [
+                "Karşılaştırma yapılmadı: %d hastanın farklı satırlarında farklı grup değerleri var ve grup karşılaştırması her hasta için tek ve sabit bir grup gerektirir. Hasta düzeyinde bir gruplama değişkeni seçin."
             ],
             "No comparison was run: Fisher's exact test needs at least two groups and the group variable has %d in these data.": [
                 "Karşılaştırma yapılmadı: Fisher kesin testi en az iki grup gerektirir; bu verilerde grup değişkeninin %d grubu vardır."
@@ -3637,9 +3673,6 @@
             "No missing values in TP, FP, FN, TN columns": [
                 "TP, FP, FN, TN sütunlarında eksik değer yok"
             ],
-            "No negative changes": [
-                "Negatif değişim yok"
-            ],
             "No patient had a CR, PR, SD or PD response, so objective response and disease control rates were not calculated.": [
                 "Hiçbir hastada CR, PR, SD veya PD yanıtı yoktu; bu yüzden objektif yanıt ve hastalık kontrol oranları hesaplanmadı."
             ],
@@ -3679,14 +3712,14 @@
             "No reference measurement was supplied: the ICC is the agreement between regions, and the bias rows are not shown.": [
                 "Referans ölçümü sağlanmadı: ICC bölgeler arasındaki uyumu ifade eder ve yanlılık satırları gösterilmez."
             ],
-            "No regions-per-case advice is given for an ordinal score, because it rests on the CV.": [
-                "Sıralı bir skor için olgu başına bölge sayısı önerisi verilmez, çünkü bu öneri CV'ye dayanır."
+            "No regions-per-case advice is given for an ordinal score or binned values, because it rests on the CV.": [
+                "Sıralı bir skor ya da kaba aralıklı değerler için olgu başına bölge sayısı önerisi verilmez, çünkü bu öneri CV'ye dayanır."
             ],
             "No response recorded for %d of %d patients (%.1f%%).": [
                 "%d/%d hastada kayıtlı yanıt yok (%%%.1f)."
             ],
-            "No sampling verdict was given, because the measurements were an ordinal score and the CV and percentage-difference criteria assume a continuous scale.": [
-                "Ölçümler sıralı bir skor olduğu ve CV ile yüzde fark ölçütleri sürekli bir ölçek varsaydığı için örnekleme kararı verilmedi."
+            "No sampling verdict was given, because the measurements looked like an ordinal score or coarsely binned values and the CV and percentage-difference criteria assume a finely measured continuous scale.": [
+                "Ölçümler sıralı bir skora ya da kaba aralıklarla kaydedilmiş değerlere benzediği ve CV ile yüzde fark ölçütleri ince ölçülmüş sürekli bir ölçek varsaydığı için örnekleme kararı verilmedi."
             ],
             "No significant difference in per-case mean biomarker levels detected across compartments; this does not establish that the distributions are the same": [
                 "Kompartmanlar arasında vaka başına ortalama biyobelirteç düzeylerinde anlamlı fark tespit edilmedi; bu dağılımların aynı olduğunu kanıtlamaz"
@@ -3721,11 +3754,17 @@
             "No valid data rows after validation. Check that end times are >= start times and all required data is present.": [
                 "Doğrulamadan sonra geçerli veri satırı kalmadı. Bitiş zamanlarının >= başlangıç zamanları olduğunu ve tüm gerekli verilerin mevcut olduğunu kontrol edin."
             ],
+            "No value below zero": [
+                "Sıfırın altında değer yok"
+            ],
             "No variability in the data: every measurement has the same value, so there is nothing to decompose.": [
                 "Veride değişkenlik yok: her ölçüm aynı değere sahip, bu nedenle ayrıştırılacak bir şey yok."
             ],
             "No verdict is given: %.0f%% of the studies have a zero cell. Above a quarter, the continuity correction the test needs can produce funnel asymmetry by itself - in this module's null simulations up to 42%% of meta-analyses at 80%% zero-cell studies, against a nominal 5%% - so the verdict is withheld as a precaution. Read the statistic as descriptive only.": [
                 "Karar bildirilmez: çalışmaların %%%.0f kadarında sıfır hücre vardır. Dörtte birin üzerinde, testin gerektirdiği süreklilik düzeltmesi kendi başına huni asimetrisi üretebilir - bu modülün sıfır hipotezi simülasyonlarında, sıfır hücreli çalışma oranı %%80 iken meta-analizlerin %%42 kadarında, beklenen %%5'e karşı - bu nedenle karar önlem olarak bildirilmez. İstatistiği yalnızca betimleyici olarak okuyun."
+            ],
+            "Non-CR/Non-PD is the RECIST 1.1 response for patients with non-target disease only; this analysis does not score it, so recode it, for example to SD if your protocol counts it toward disease control.": [
+                "Non-CR/Non-PD, yalnızca hedef dışı hastalığı olan hastalar için RECIST 1.1 yanıtıdır; bu analiz onu puanlamaz, bu yüzden yeniden kodlayın, örneğin protokolünüz onu hastalık kontrolüne sayıyorsa SD olarak."
             ],
             "None": [
                 "Yok"
@@ -3811,14 +3850,17 @@
             "Not estimable: no responder has an assessment after the first response": [
                 "Tahmin edilemiyor: hiçbir yanıt veren hastada ilk yanıttan sonra değerlendirme yok"
             ],
-            "Not every response value was a RECIST category (CR, PR, SD, PD, NE), so objective response and disease control rates were not calculated.": [
-                "Yanıt değerlerinin hepsi RECIST kategorisi (CR, PR, SD, PD, NE) değildi; bu yüzden objektif yanıt ve hastalık kontrol oranları hesaplanmadı."
+            "Not evaluable by supplied category": [
+                "Verilen kategoriye göre değerlendirilemez"
+            ],
+            "Not every response value was one of CR, PR, SD, PD or NE, so objective response and disease control rates were not calculated.": [
+                "Yanıt değerlerinin hepsi CR, PR, SD, PD veya NE değildi; bu yüzden objektif yanıt ve hastalık kontrol oranları hesaplanmadı."
             ],
             "Not graded:": [
                 "Derecelendirilmedi:"
             ],
-            "Not graded: ordinal score": [
-                "Derecelendirilmedi: sıralı skor"
+            "Not graded: ordinal or binned values": [
+                "Derecelendirilmedi: sıralı ya da kaba aralıklı değerler"
             ],
             "Not interpretable: too many zero cells": [
                 "Yorumlanamaz: sıfır hücre sayısı çok fazla"
@@ -3910,7 +3952,7 @@
             "On-Treatment / ongoing (optional)": [
                 "Tedavi devam ediyor (isteğe bağlı)"
             ],
-            "Oncology and pathology analyses from the ClinicoPath project: swimmer plots of patient timelines with response rates and follow-up; waterfall and spider plots of tumour burden response (thresholds adapted from RECIST v1.1, not a lesion-level RECIST assessment); diagnostic test accuracy meta-analysis with bivariate and proportional-hazards SROC models; and regional heterogeneity of an immunohistochemistry marker, against a reference or between regions. For comments, suggestions, feature requests or reporting bugs, please open an issue at <https://github.com/sbalci/OncoPath/issues/>.": [
+            "Oncology and pathology analyses from the ClinicoPath project: swimmer plots of patient timelines with response rates and follow-up; waterfall and spider plots of tumor burden response (thresholds adapted from RECIST v1.1, not a lesion-level RECIST assessment); diagnostic test accuracy meta-analysis with bivariate and proportional-hazards SROC models; and regional heterogeneity of an immunohistochemistry marker, against a reference or between regions. For comments, suggestions, feature requests or reporting bugs, please open an issue at <https://github.com/sbalci/OncoPath/issues/>.": [
                 ""
             ],
             "Oncology clinical trials and treatment response studies": [
@@ -3967,8 +4009,8 @@
             "Optional grouping variable for coloring bars by patient groups (e.g., treatment arms, disease subtypes). Bars are colored by group when Color by is set to Patient groups (jamovi sets it when a group is chosen; from R, set colorBy = \"group\").": [
                 ""
             ],
-            "Optional per-patient RECIST category (CR/PR/SD/PD, or NE for not evaluable). It overrides the computed category, and counts a patient with no measured value (e.g. PD before the first scan). Affects coloring and metrics.": [
-                ""
+            "Optional per-patient RECIST category (CR/PR/SD/PD, or NE for not evaluable). It overrides the computed category, and counts a patient with no measured value (e.g. PD before the first scan). Affects coloring and metrics. Per-visit values are reduced to the best one up to the first PD.": [
+                "İsteğe bağlı hasta başına RECIST kategorisi (CR/PR/SD/PD veya değerlendirilemez için NE). Hesaplanan kategorinin yerine geçer ve ölçülmüş değeri olmayan bir hastayı da sayar (örneğin ilk taramadan önce PD). Renklendirmeyi ve ölçütleri etkiler. Ziyaret bazlı değerler, ilk PD'ye kadarki en iyi değere indirgenir."
             ],
             "Optional variable indicating confirmation status (e.g., Confirmed vs Unconfirmed). A distinct marker is drawn at each bar tip per level; ORR and DCR are not changed (use the category override for that).": [
                 "Doğrulama durumunu belirten isteğe bağlı değişken (örn. Doğrulanmış / Doğrulanmamış). Her düzey için çubuk ucuna ayrı bir işaretçi çizilir; ORR ve DCR değişmez (bunun için kategori geçersiz kılmayı kullanın)."
@@ -3982,8 +4024,8 @@
             "Optionally add a Spatial Region ID: the compartment each case was sampled from, with one row per case.": [
                 "İsteğe bağlı olarak bir Uzamsal Bölge Kimliği ekleyiniz: her vakanın örneklendiği kompartman; her vaka için bir satır."
             ],
-            "Ordinal score": [
-                "Sıralı skor"
+            "Ordinal score or binned values": [
+                "Sıralı skor ya da kaba aralıklı değerler"
             ],
             "ORR": [
                 "ORR"
@@ -4018,8 +4060,8 @@
             "Overall / whole slide / hotspot (optional)": [
                 "Genel / tüm kesit / sıcak nokta (isteğe bağlı)"
             ],
-            "Overall: no verdict, because the measurements are an ordinal score and the thresholds of this analysis assume a continuous scale.": [
-                "Genel: karar yok, çünkü ölçümler sıralı bir skor ve bu analizin eşikleri sürekli bir ölçek varsayar."
+            "Overall: no verdict, because the measurements look like an ordinal score or coarsely binned values and the thresholds of this analysis assume a finely measured continuous scale.": [
+                "Genel: karar yok, çünkü ölçümler sıralı bir skora ya da kaba aralıklarla kaydedilmiş değerlere benziyor ve bu analizin eşikleri ince ölçülmüş sürekli bir ölçek varsayar."
             ],
             "Overall: region '%s' differs systematically from the other regions, so the regions cannot be used interchangeably.": [
                 "Genel: '%s' bölgesi diğer bölgelerden sistematik olarak farklıdır, bu nedenle bölgeler birbirinin yerine kullanılamaz."
@@ -4068,6 +4110,9 @@
             ],
             "Paired t-test of the two regions, with the 95%% CI of the mean difference and Bland-Altman 95%% limits of agreement, the difference expressed as a percentage of the mean of the two. With a margin of %s%%, a difference is ruled out when its 90%% CI lies within the margin (two one-sided tests) and material when that CI lies entirely beyond it; otherwise it is inconclusive. The CI of the percentage difference is a Fieller interval.": [
                 "İki bölgenin eşleştirilmiş t-testi; ortalama farkın %%95 GA'sı ve Bland-Altman %%95 uyum sınırları ile birlikte, fark iki bölgenin ortalamasının yüzdesi olarak ifade edilir. %%%s marj ile, bir farkın %%90 GA'sı marj içinde kaldığında fark dışlanır (iki tek yönlü test), bu GA tamamen marjın ötesinde kaldığında fark önemli kabul edilir; aksi halde sonuç belirsizdir. Yüzde farkın GA'sı bir Fieller aralığıdır."
+            ],
+            "Pairs of regions shown to be below the threshold on their own (upper 95%% limit below it): %s.": [
+                "Tek başına eşiğin altında olduğu gösterilen bölge çiftleri (üst %%95 sınırı eşiğin altında): %s."
             ],
             "Pairs of regions with fewer than %d paired values are not tested: %s.": [
                 "%d eşleştirilmiş değerden az değeri olan bölge çiftleri test edilmez: %s."
@@ -4981,12 +5026,6 @@
             "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone, and LR- is not estimable here.": [
                 "Dışlama gücü yalnızca duyarlılıkla değil negatif olabilirlik oranıyla belirlenir ve NOO burada tahmin edilememektedir."
             ],
-            "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone; here LR- = %.2f, but with no false negatives in most studies this value and its interval are set by the continuity correction rather than by the data, so it is not graded.": [
-                "Dışlama (rule-out) gücünü tek başına duyarlılık değil negatif olabilirlik oranı belirler; burada LR- = %.2f, ancak çalışmaların çoğunda yanlış negatif olmadığından bu değer ve aralığı verilerden çok süreklilik düzeltmesiyle belirleniyor, bu yüzden derecelendirilmedi."
-            ],
-            "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone; here LR- = %.2f, which lowers the post-test odds substantially (the SnNout pattern).": [
-                "Dışlama gücü yalnızca duyarlılıkla değil negatif olabilirlik oranıyla belirlenir; burada NOO = %.2f olup test sonrası odds değerini önemli ölçüde düşürür (SnNout örüntüsü)."
-            ],
             "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone; here LR- = %.2f, which provides minimal evidence against disease after a negative result.": [
                 "Dışlama gücü yalnızca duyarlılıkla değil negatif olabilirlik oranıyla belirlenir; burada NOO = %.2f olup negatif bir sonuçtan sonra hastalık aleyhine asgari kanıt sağlar."
             ],
@@ -4995,6 +5034,12 @@
             ],
             "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone; here LR- = %.2f, which provides weak evidence against disease after a negative result.": [
                 "Dışlama gücü yalnızca duyarlılıkla değil negatif olabilirlik oranıyla belirlenir; burada NOO = %.2f olup negatif bir sonuçtan sonra hastalık aleyhine zayıf kanıt sağlar."
+            ],
+            "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone; here LR- = %s, but with no false negatives in most studies this value and its interval are set by the continuity correction rather than by the data, so it is not graded.": [
+                "Dışlama (rule-out) gücünü tek başına duyarlılık değil negatif olabilirlik oranı belirler; burada LR- = %s, ancak çalışmaların çoğunda yanlış negatif olmadığından bu değer ve aralığı verilerden çok süreklilik düzeltmesiyle belirleniyor, bu yüzden derecelendirilmedi."
+            ],
+            "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone; here LR- = %s, which lowers the post-test odds substantially (the SnNout pattern).": [
+                "Dışlama gücü yalnızca duyarlılıkla değil negatif olabilirlik oranıyla belirlenir; burada NOO = %s olup test sonrası odds değerini önemli ölçüde düşürür (SnNout örüntüsü)."
             ],
             "Run Analysis": [
                 "Analizi Çalıştır"
@@ -5149,6 +5194,9 @@
             "Set the CV and correlation thresholds and the systematic difference margin before looking at the results.": [
                 "Sonuçlara bakmadan önce CV ve korelasyon eşiklerini ve sistematik fark marjını belirleyiniz."
             ],
+            "Several response categories per patient": [
+                "Hasta başına birden fazla yanıt kategorisi"
+            ],
             "Several rows per patient": [
                 "Hasta başına birden fazla satır"
             ],
@@ -5206,8 +5254,8 @@
             "Slope of the difference on the mean of the two measurements (the region and the reference), with heteroscedasticity-robust (HC3) standard errors; p is unadjusted. Measurement error alone tilts a slope on the reference value downwards and a slope on the region value upwards, so a difference is treated as changing with the level only when its slope differs from zero (p below 0.05 divided by the number of comparisons) in the same direction on all three: the reference value, the region value and their mean (Krouwer 2008). Such a difference is judged at the 5th and 95th percentiles of the mean, against the margin at the comparison mean taken as fixed; it can stop a difference from being ruled out but never shows it to be material (Bland & Altman 1995, 1999).": [
                 "Farkın, iki ölçümün (bölge ve referans) ortalaması üzerindeki eğimi; değişen varyansa dayanıklı (HC3) standart hatalarla, p düzeltilmemiştir. Ölçüm hatası tek başına referans değeri üzerindeki eğimi aşağı, bölge değeri üzerindeki eğimi yukarı eğer; bu nedenle bir fark ancak eğimi üçünde de aynı yönde sıfırdan farklı olduğunda (p, 0,05'in karşılaştırma sayısına bölümünden küçük) düzeyle değişiyor kabul edilir: referans değeri, bölge değeri ve ikisinin ortalaması (Krouwer 2008). Böyle bir fark, ortalamanın 5. ve 95. persentillerinde, karşılaştırma ortalamasındaki marj sabit alınarak değerlendirilir; bir farkın dışlanmasını engelleyebilir ama onu hiçbir zaman önemli göstermez (Bland & Altman 1995, 1999)."
             ],
-            "Slope of the difference on the mean of the two regions compared, with heteroscedasticity-robust (HC3) standard errors; p is unadjusted. Unequal measurement error between regions can produce a slope, so here a slope can stop a difference from being ruled out but never shows it to be material. When p is below 0.05 divided by the number of comparisons, the difference is also judged at the 5th and 95th percentiles of that level (Bland & Altman 1999).": [
-                "Farkın karşılaştırılan iki bölgenin ortalamasına göre eğimi, heteroskedastisiteye dayanıklı (HC3) standart hatalarla; p düzeltilmemiştir. Bölgeler arasındaki eşit olmayan ölçüm hatası bir eğim oluşturabilir; bu nedenle burada bir eğim bir farkın dışlanmasını engelleyebilir, ancak farkın önemli olduğunu asla göstermez. p, 0.05'in karşılaştırma sayısına bölümünden küçük olduğunda fark, bu düzeyin 5. ve 95. persentillerinde de değerlendirilir (Bland & Altman 1999)."
+            "Slope of the difference on the mean of the two regions compared, with heteroscedasticity-robust (HC3) standard errors; p is unadjusted. Measurement error alone tilts a slope on the second region of a pair downwards and a slope on the first region upwards, so a difference is treated as changing with the level only when its slope differs from zero (p below 0.05 divided by the number of comparisons) in the same direction on all three: each of the two regions and their mean (Krouwer 2008). Such a difference is judged at the 5th and 95th percentiles of the mean, against the margin at the comparison mean taken as fixed; it can stop a difference from being ruled out but never shows it to be material (Bland & Altman 1999).": [
+                "Farkın, karşılaştırılan iki bölgenin ortalamasına göre eğimi; değişen varyansa dayanıklı (HC3) standart hatalarla, p düzeltilmemiştir. Yalnızca ölçüm hatası, bir çiftin ikinci bölgesine göre eğimi aşağı, birinci bölgesine göre eğimi yukarı eğer; bu nedenle bir fark, eğimi üçünde birden aynı yönde sıfırdan farklı olduğunda (p, 0,05'in karşılaştırma sayısına bölümünden küçük) düzeyle değişiyor kabul edilir: iki bölgenin her biri ve ortalamaları (Krouwer 2008). Böyle bir fark, ortalamanın 5. ve 95. yüzdeliklerinde, karşılaştırma ortalamasındaki sınır sabit alınarak değerlendirilir; bir farkın dışlanmasını engelleyebilir ama onun önemli olduğunu asla göstermez (Bland & Altman 1999)."
             ],
             "Small cell counts in Fisher's exact test": [
                 "Fisher kesin testinde küçük hücre sayıları"
@@ -5233,8 +5281,8 @@
             "Some annotation variables have more than one value for a patient across rows: %s. The track shows the first recorded value.": [
                 "Bazı ek açıklama değişkenlerinin bir hasta için satırlar arasında birden fazla değeri var: %s. İz, ilk kaydedilen değeri gösterir."
             ],
-            "Some response categories have <3 patients. Consider grouping categories for meaningful analysis.": [
-                "Bazı yanıt kategorilerinde <3 hasta var. Anlamlı analiz için kategorileri gruplandırmayı değerlendirin."
+            "Some response categories have fewer than 3 patients, so their percentages are imprecise.": [
+                "Bazı yanıt kategorilerinde 3'ten az hasta var, bu yüzden yüzdeleri kesin değildir."
             ],
             "Some values look like proportions": [
                 "Bazı değerler oran gibi görünüyor"
@@ -5313,6 +5361,9 @@
             ],
             "Spearman correlation:": [
                 "Spearman korelasyonu:"
+            ],
+            "Spearman correlation: %s": [
+                "Spearman korelasyonu: %s"
             ],
             "Spearman correlation: %s vs reference": [
                 "Spearman korelasyonu: %s ve referans"
@@ -5419,8 +5470,8 @@
             "Start Time:": [
                 "Başlangıç Zamanı:"
             ],
-            "Start/End are offsets from the earliest start date ({origin}), in {unit}; Duration is in {unit}.": [
-                "Başlangıç/Bitiş en erken başlangıç tarihinden ({origin}) itibaren kaymalardır ({unit} cinsinden); Süre {unit} cinsindendir."
+            "Start/End are offsets from the earliest start date ({origin}), in {unit}; Duration is in {unit}, measured from the patient's own start, so with calendar units End minus Start can differ slightly from Duration.": [
+                "Başlangıç/Bitiş, en erken başlangıç tarihinden ({origin}) itibaren {unit} cinsinden uzaklıklardır; Süre {unit} cinsindendir ve hastanın kendi başlangıcından ölçülür, bu yüzden takvim birimlerinde Bitiş eksi Başlangıç Süre'den biraz farklı olabilir."
             ],
             "Statistic": [
                 "İstatistik"
@@ -5584,7 +5635,7 @@
             "Synthesizing evidence for clinical guidelines": [
                 "Klinik kılavuzlar için kanıt sentezi"
             ],
-            "Synthetic data, 15 patients: tumour measurements in mm at months 0, 2, 4 and 6. Raw-measurement input, spider plot, time to response and duration of response.": [
+            "Synthetic data, 15 patients: tumor measurements in mm at months 0, 2, 4 and 6. Raw-measurement input, spider plot, time to response and duration of response.": [
                 ""
             ],
             "Synthetic data, 20 patients: best percent change from baseline in two treatment arms. Response categories, ORR and DCR by arm.": [
@@ -5749,6 +5800,9 @@
             "The correlation of the region pair(s) %s is below the %s threshold as a point estimate, although not shown to be below it.": [
                 "%s bölge çiftinin/çiftlerinin korelasyonu nokta tahmini olarak %s eşiğinin altında, ancak altında olduğu gösterilmedi."
             ],
+            "The correlation of the region pair(s) %s was shown to be below the threshold (upper 95%% confidence limit below it).": [
+                "%s bölge çift(ler)inin korelasyonunun eşiğin altında olduğu gösterildi (üst %%95 güven sınırı eşiğin altında)."
+            ],
             "The counts look like proportions: no study has more than one diseased or one non-diseased participant. Enter the number of participants in each cell of the 2x2 table (TP, FP, FN, TN).": [
                 "Sayımlar oran gibi görünmektedir: hiçbir çalışmada birden fazla hastalıklı veya hastalıksız katılımcı yoktur. 2x2 tablonun her hücresine katılımcı sayısını girin (TP, FP, FN, TN)."
             ],
@@ -5878,8 +5932,8 @@
             "The mean Spearman correlation between regional measurements was %s, which meets the %s threshold set for this analysis.": [
                 "Bölgesel ölçümler arasındaki ortalama Spearman korelasyonu %s idi; bu değer, bu analiz için belirlenen %s eşiğini karşılamaktadır."
             ],
-            "The measurements are an ordinal score (5 or fewer whole-number values), so no sampling verdict is given: the CV and the percentage-difference margin assume a continuous scale. Assess agreement of an ordinal score with weighted kappa or the proportion of cases in the same category.": [
-                "Ölçümler sıralı bir skor (en fazla 5 farklı tam sayı değeri); bu nedenle örnekleme kararı verilmedi: CV ve yüzde fark marjı sürekli bir ölçek varsayar. Sıralı bir skorun uyumunu ağırlıklı kappa ya da aynı kategorideki olguların oranıyla değerlendirin."
+            "The measurements look like an ordinal score or coarsely binned values (only a few whole-number values), so no sampling verdict is given: the CV and the percentage-difference margin assume a finely measured continuous scale. Assess agreement of an ordinal score with weighted kappa or the proportion of cases in the same category.": [
+                "Ölçümler sıralı bir skora ya da kaba aralıklarla kaydedilmiş değerlere benziyor (yalnızca birkaç tam sayı değeri); bu nedenle örnekleme kararı verilmedi: CV ve yüzde fark sınırı ince ölçülmüş sürekli bir ölçek varsayar. Sıralı bir skorun uyumunu ağırlıklı kappa ya da aynı kategorideki olguların oranıyla değerlendirin."
             ],
             "The measurements show no variability, so the ICC is not defined.": [
                 "Ölçümler hiç değişkenlik göstermediğinden ICC tanımlı değildir."
@@ -5959,11 +6013,11 @@
             "The Reitsma model did not return the expected coefficient estimates, so pooled sensitivity and specificity are unavailable.": [
                 "Reitsma modeli beklenen katsayı tahminlerini döndürmedi, bu nedenle havuzlanmış duyarlılık ve özgüllük mevcut değildir."
             ],
-            "The response category override contained %d unrecognised label(s): %s. Only CR, PR, SD, PD and Unknown are accepted. Those patients keep their computed category; no patient was dropped.": [
-                "Yanıt kategorisi geçersiz kılma %d tanınmayan etiket içeriyordu: %s. Yalnızca CR, PR, SD, PD ve Bilinmeyen kabul edilir. Bu hastalar hesaplanan kategorilerini korur; hiçbir hasta çıkarılmamıştır."
+            "The response category override contained %d unrecognized label(s): %s. Only CR, PR, SD, PD (or their full names, such as Partial response) and NE or Unknown are accepted. Those patients keep their computed category; no patient was dropped.": [
+                "Yanıt kategorisi geçersiz kılma değişkeni %d tanınmayan etiket içeriyordu: %s. Yalnızca CR, PR, SD, PD (veya Partial response gibi tam adları) ile NE veya Unknown kabul edilir. Bu hastalar hesaplanan kategorilerini korur; hiçbir hasta çıkarılmadı."
             ],
-            "The response variable has values that are not RECIST categories (CR, PR, SD, PD or NE): %s. Objective Response Rate and Disease Control Rate are withheld, because a patient with such a value cannot be counted as a responder or as a non-responder. Recode these values to CR, PR, SD, PD or NE, or leave the cell empty for no recorded response.": [
-                "Yanıt değişkeninde RECIST kategorisi (CR, PR, SD, PD veya NE) olmayan değerler var: %s. Objektif Yanıt Oranı ve Hastalık Kontrol Oranı verilmedi, çünkü böyle bir değeri olan hasta ne yanıt veren ne de yanıt vermeyen olarak sayılabilir. Bu değerleri CR, PR, SD, PD veya NE olarak yeniden kodlayın ya da kayıtlı yanıt yoksa hücreyi boş bırakın."
+            "The response variable has values other than CR, PR, SD, PD or NE: %s. Objective Response Rate and Disease Control Rate are withheld, because a patient with such a value cannot be counted as a responder or as a non-responder. Recode these values to CR, PR, SD, PD or NE, or leave the cell empty for no recorded response.": [
+                "Yanıt değişkeninde CR, PR, SD, PD veya NE dışında değerler var: %s. Objektif Yanıt Oranı ve Hastalık Kontrol Oranı verilmedi, çünkü böyle bir değeri olan hasta ne yanıt veren ne de yanıt vermeyen olarak sayılabilir. Bu değerleri CR, PR, SD, PD veya NE olarak yeniden kodlayın ya da kayıtlı yanıt yoksa hücreyi boş bırakın."
             ],
             "The reversed Kaplan-Meier curve never falls to 50%, so its median is undefined. That depends on WHEN patients were still under observation, not merely how many: a few censored late can make the median estimable while many censored early cannot.": [
                 "Ters Kaplan-Meier eğrisi %50'ye düşmediğinden medyan tanımsızdır. Bu yalnızca kaç hastanın değil, hastaların NE ZAMAN gözlem altında olduğuna bağlıdır: geç sansürlenen birkaç hasta medyanı tahmin edilebilir kılarken erken sansürlenen çok sayıda hasta kılamayabilir."
@@ -6055,6 +6109,9 @@
             "The unit your time variable is recorded in. It labels the spider plot axis and the time to response and duration of response rows; your values are not rescaled.": [
                 ""
             ],
+            "The weakest pair of regions, '%s', correlated %.2f, shown to be below your %.2f threshold; the average was %.2f.": [
+                "En zayıf bölge çifti '%s', %.2f korelasyon gösterdi ve %.2f eşiğinizin altında olduğu gösterildi; ortalama %.2f idi."
+            ],
             "The weakest region, '%s', correlated %.2f with the reference, shown to be below your %.2f threshold; the average was %.2f.": [
                 "En zayıf bölge olan '%s', referansla %.2f korelasyon gösterdi ve bu değerin %.2f eşiğinizin altında olduğu gösterildi; ortalama %.2f idi."
             ],
@@ -6067,8 +6124,8 @@
             "The within-case CV exceeds your threshold, so averaging more than one region per case is worth considering.": [
                 "Vaka içi CV eşiğinizi aşmaktadır; bu nedenle vaka başına birden fazla bölgenin ortalamasının alınması değerlendirilmeye değerdir."
             ],
-            "The within-case CV was %s%%; it was not graded, because the measurements were an ordinal score.": [
-                "Olgu içi CV %%%s idi; ölçümler sıralı bir skor olduğu için derecelendirilmedi."
+            "The within-case CV was %s%%; it was not graded, because the measurements looked like an ordinal score or coarsely binned values.": [
+                "Olgu içi CV %%%s idi; ölçümler sıralı bir skora ya da kaba aralıklarla kaydedilmiş değerlere benzediği için derecelendirilmedi."
             ],
             "There is no residual variation (the measurements of every case differ by exactly the same amounts), so the ICC confidence intervals cannot be estimated.": [
                 "Artık değişkenlik yoktur (her vakanın ölçümleri tam olarak aynı miktarlarda farklıdır), bu nedenle ICC güven aralıkları tahmin edilemez."
@@ -6598,8 +6655,8 @@
             "Warning": [
                 "Uyarı"
             ],
-            "Warning: %d missing response values found. These will be excluded from analysis.": [
-                "Uyarı: %d eksik yanıt değeri bulundu. Bunlar analizden hariç tutulacaktır."
+            "Warning: %d missing response values found. Those rows take no part in best response; a patient with no value at all is excluded unless a response category is supplied for them.": [
+                "Uyarı: %d eksik yanıt değeri bulundu. Bu satırlar en iyi yanıta katılmaz; hiç değeri olmayan bir hasta, kendisi için bir yanıt kategorisi verilmedikçe analiz dışı bırakılır."
             ],
             "Warning: Negative time values detected. Please verify time measurements.": [
                 "Uyarı: Negatif zaman değerleri tespit edildi. Lütfen zaman ölçümlerini doğrulayın."
@@ -6697,8 +6754,8 @@
             "Where the slope was shown, the limits of agreement, which assume a difference that does not change with the level, are too wide in the middle of the range and too narrow at its ends.": [
                 "Eğimin gösterildiği yerlerde, düzeye göre değişmeyen bir fark varsayan uyum sınırları aralığın ortasında fazla geniş, uçlarında ise fazla dardır."
             ],
-            "Whether a difference changed with the level (proportional bias) was assessed by regressing it on the mean of the two regions compared, with heteroscedasticity-robust standard errors (Bland & Altman 1999); where the slope differed from zero (p below 0.05 divided by the number of comparisons), the difference was also judged at the 5th and 95th percentiles of that level, and a difference that changed with the level was not considered ruled out.": [
-                "Farkın düzeye göre değişip değişmediği (orantısal yanlılık), fark karşılaştırılan iki bölgenin ortalamasına göre heteroskedastisiteye dayanıklı standart hatalarla regrese edilerek değerlendirildi (Bland & Altman 1999); eğimin sıfırdan farklı olduğu durumlarda (p, 0.05'in karşılaştırma sayısına bölümünden küçük), fark bu düzeyin 5. ve 95. persentillerinde de değerlendirildi ve düzeye göre değişen bir fark dışlanmış sayılmadı."
+            "Whether a difference changed with the level (proportional bias) was assessed by regressing it on each of the two regions compared and on their mean, with heteroscedasticity-robust standard errors (Bland & Altman 1999); because measurement error alone tilts the slope on one region downwards and on the other upwards, a difference was considered to change with the level only when all three slopes differed from zero in the same direction (p below 0.05 divided by the number of comparisons) (Krouwer 2008). Such a difference was judged at the 5th and 95th percentiles of the mean of the two regions and was considered ruled out only if it lay within the margin at both.": [
+                "Bir farkın düzeyle değişip değişmediği (orantısal yanlılık), fark karşılaştırılan iki bölgenin her birine ve ortalamalarına göre değişen varyansa dayanıklı standart hatalarla regresyona sokularak değerlendirildi (Bland & Altman 1999); yalnızca ölçüm hatası eğimi bir bölgeye göre aşağı, diğerine göre yukarı eğdiği için bir fark, ancak üç eğim de aynı yönde sıfırdan farklı olduğunda (p, 0,05'in karşılaştırma sayısına bölümünden küçük) düzeyle değişiyor kabul edildi (Krouwer 2008). Böyle bir fark, iki bölgenin ortalamasının 5. ve 95. yüzdeliklerinde değerlendirildi ve ancak her ikisinde de sınırın içinde kaldığında dışlanmış kabul edildi."
             ],
             "Whether a difference changed with the level (proportional bias) was assessed by regressing it on the reference value, on the region value and on the mean of the two, with heteroscedasticity-robust standard errors (Bland & Altman 1995, 1999); because measurement error alone tilts the first slope downwards and the second upwards, a difference was considered to change with the level only when all three slopes differed from zero in the same direction (p below 0.05 divided by the number of comparisons) (Krouwer 2008). Such a difference was judged at the 5th and 95th percentiles of the mean of the two measurements and was considered ruled out only if it lay within the margin at both.": [
                 "Farkın düzeyle değişip değişmediği (orantısal yanlılık), fark referans değerine, bölge değerine ve ikisinin ortalamasına karşı değişen varyansa dayanıklı standart hatalarla regresyona sokularak değerlendirildi (Bland & Altman 1995, 1999); ölçüm hatası tek başına ilk eğimi aşağı, ikincisini yukarı eğdiği için bir fark ancak üç eğim de aynı yönde sıfırdan farklı olduğunda (p, 0,05'in karşılaştırma sayısına bölümünden küçük) düzeyle değişiyor kabul edildi (Krouwer 2008). Böyle bir fark, iki ölçümün ortalamasının 5. ve 95. persentillerinde değerlendirildi ve ancak her ikisinde de marjın içindeyse dışlanmış kabul edildi."
@@ -6724,29 +6781,35 @@
             "Width of bars in waterfall plot.": [
                 "Şelale grafiğindeki çubukların genişliği."
             ],
-            "With %.1f%% sensitivity, approximately %.0f out of 100 diseased patients will be correctly identified.": [
-                "%%%.1f duyarlılık ile, hastalıklı 100 hastadan yaklaşık %.0f tanesi doğru olarak tanımlanacaktır."
+            "With %s%% sensitivity, approximately %.0f out of 100 diseased patients will be correctly identified.": [
+                "%%%s duyarlılık ile, hastalıklı 100 hastadan yaklaşık %.0f tanesi doğru olarak tanımlanacaktır."
             ],
-            "With %.1f%% sensitivity, this test will detect %.0f out of 1,000 patients with disease, missing only %.0f.": [
-                "%%%.1f duyarlılıkla bu test, hastalığı olan her 1.000 hastadan %.0f tanesini saptar ve yalnızca %.0f tanesini kaçırır."
+            "With %s%% sensitivity, this test will detect %.0f out of 1,000 patients with disease, missing only %.0f.": [
+                "%%%s duyarlılıkla bu test, hastalığı olan her 1.000 hastadan %.0f tanesini saptar ve yalnızca %.0f tanesini kaçırır."
             ],
-            "With %.1f%% sensitivity, this test will detect %.0f out of 100 patients with disease, missing only %.0f.": [
-                "%%%.1f duyarlılık ile bu test, hastalıklı 100 hastanın %.0f tanesini tespit edecek, yalnızca %.0f tanesini kaçıracaktır."
+            "With %s%% sensitivity, this test will detect %.0f out of 100 patients with disease, missing only %.0f.": [
+                "%%%s duyarlılık ile bu test, hastalıklı 100 hastanın %.0f tanesini tespit edecek, yalnızca %.0f tanesini kaçıracaktır."
             ],
-            "With %.1f%% sensitivity, up to %.0f out of 100 diseased patients may be missed.": [
-                "%%%.1f duyarlılık ile, hastalıklı 100 hastadan %.0f kadarı kaçırılabilir."
+            "With %s%% sensitivity, this test will miss fewer than 1 in 1,000 patients with disease.": [
+                "%%%s duyarlılıkla bu test, hastalığı olan her 1.000 hastadan 1'inden azını kaçıracaktır."
             ],
-            "With %.1f%% specificity, approximately %.0f out of 100 healthy individuals will be correctly classified.": [
-                "%%%.1f özgüllük ile, sağlıklı 100 bireyden yaklaşık %.0f tanesi doğru olarak sınıflandırılacaktır."
+            "With %s%% sensitivity, up to %.0f out of 100 diseased patients may be missed.": [
+                "%%%s duyarlılık ile, hastalıklı 100 hastadan %.0f kadarı kaçırılabilir."
             ],
-            "With %.1f%% specificity, only %.0f out of 1,000 healthy individuals will test positive (false alarms).": [
-                "%%%.1f özgüllükle her 1.000 sağlıklı bireyden yalnızca %.0f tanesinin testi pozitif çıkar (yanlış alarm)."
+            "With %s%% specificity, approximately %.0f out of 100 healthy individuals will be correctly classified.": [
+                "%%%s özgüllük ile, sağlıklı 100 bireyden yaklaşık %.0f tanesi doğru olarak sınıflandırılacaktır."
             ],
-            "With %.1f%% specificity, only %.0f out of 100 healthy individuals will test positive (false alarms).": [
-                "%%%.1f özgüllük ile, sağlıklı 100 bireyden yalnızca %.0f tanesi pozitif test sonucu verecektir (yanlış alarmlar)."
+            "With %s%% specificity, fewer than 1 in 1,000 healthy individuals will test positive (false alarms).": [
+                "%%%s özgüllükle, her 1.000 sağlıklı bireyden 1'inden azı pozitif sonuç verecektir (yanlış alarm)."
             ],
-            "With %.1f%% specificity, up to %.0f out of 100 healthy individuals may test positive.": [
-                "%%%.1f özgüllük ile, sağlıklı 100 bireyden %.0f kadarı pozitif test sonucu verebilir."
+            "With %s%% specificity, only %.0f out of 1,000 healthy individuals will test positive (false alarms).": [
+                "%%%s özgüllükle her 1.000 sağlıklı bireyden yalnızca %.0f tanesinin testi pozitif çıkar (yanlış alarm)."
+            ],
+            "With %s%% specificity, only %.0f out of 100 healthy individuals will test positive (false alarms).": [
+                "%%%s özgüllük ile, sağlıklı 100 bireyden yalnızca %.0f tanesi pozitif test sonucu verecektir (yanlış alarmlar)."
+            ],
+            "With %s%% specificity, up to %.0f out of 100 healthy individuals may test positive.": [
+                "%%%s özgüllük ile, sağlıklı 100 bireyden %.0f kadarı pozitif test sonucu verebilir."
             ],
             "With a margin of %s%% of the comparison mean, a difference is ruled out when its 90%% CI lies within the margin (two one-sided tests) and shown to be material when that CI lies entirely beyond the margin; otherwise it is inconclusive. The p-value tests against zero.": [
                 "Karşılaştırma ortalamasının %%%s kadarı olan bir marj ile, bir farkın %%90 GA'sı marj içinde kaldığında fark dışlanır (iki tek yönlü test), aynı GA tamamen marjın ötesinde kaldığında ise farkın önemli olduğu gösterilmiş olur; aksi halde sonuç belirsizdir. p-değeri sıfıra karşı test eder."
@@ -6772,8 +6835,8 @@
             "Within-case CV (%) - between regions": [
                 "Vaka içi CV (%) - bölgeler arası"
             ],
-            "Within-case CV (%) - region vs reference": [
-                "Vaka içi CV (%) - bölge ve referans"
+            "Within-case CV (%) - reference and regions": [
+                "Olgu içi CV (%) - referans ve bölgeler"
             ],
             "Within-case CV = %s%% (High variability)": [
                 "Vaka içi CV = %%%s (Yüksek değişkenlik)"
@@ -6784,8 +6847,8 @@
             "Within-case CV = %s%% (Moderate variability)": [
                 "Vaka içi CV = %%%s (Orta değişkenlik)"
             ],
-            "Within-case CV = %s%% (not graded: ordinal score)": [
-                "Olgu içi CV = %%%s (derecelendirilmedi: sıralı skor)"
+            "Within-case CV = %s%% (not graded: ordinal or binned values)": [
+                "Olgu içi CV = %%%s (derecelendirilmedi: sıralı ya da kaba aralıklı değerler)"
             ],
             "Within-Case Variance (Sampling)": [
                 "Vaka İçi Varyans (Örnekleme)"

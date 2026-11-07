@@ -156,6 +156,28 @@ msgstr ""
 "bırakıldı."
 
 #: R/swimmerplot.b.R
+msgid ""
+"%d excluded rows had a censoring/event value that is not used: %s. "
+"Follow-up, the reverse Kaplan-Meier estimate and the status arrows for these "
+"patients come from their remaining rows only."
+msgstr ""
+"Hariç tutulan %d satırda kullanılmayan bir sansür/olay değeri vardı: %s. Bu "
+"hastaların takip süresi, ters Kaplan-Meier kestirimi ve durum okları "
+"yalnızca kalan satırlarından elde edilir."
+
+#: R/swimmerplot.b.R
+msgid ""
+"%d excluded rows had a recorded response that is not used: %s. Best "
+"response, ORR and DCR for these patients come from their remaining rows "
+"only. An ongoing line with a blank end time is a common cause: enter the "
+"data cutoff as its end to keep it."
+msgstr ""
+"Hariç tutulan %d satırda kullanılmayan kayıtlı bir yanıt vardı: %s. Bu "
+"hastaların en iyi yanıtı, ORR ve DCR yalnızca kalan satırlarından elde "
+"edilir. Bitiş zamanı boş bırakılmış, devam eden bir tedavi basamağı sık bir "
+"nedendir: korumak için bitişi olarak veri kesim tarihini girin."
+
+#: R/swimmerplot.b.R
 msgid "%d fall after the patient's last end."
 msgstr "%d işaret hastanın son bitişinden sonra."
 
@@ -251,21 +273,23 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"%d of %d patients have more than one response row. Their category, and so "
-"ORR, DCR and every response row, is the best response recorded up to and "
-"including the first PD, in time order: CR and PR are not confirmed, SD has "
-"no minimum duration, and rows after the first PD, later treatment lines "
-"included, are ignored. These are unconfirmed best responses, not a RECIST "
-"1.1 best overall response; supply one adjudicated response per patient when "
-"the endpoint requires it."
+"%d of %d patients have more than one different response recorded across "
+"their rows. Their category, and so ORR, DCR and every response row, is the "
+"best response recorded up to and including the first PD, in time order: CR "
+"and PR are not confirmed, SD has no minimum duration, and rows after the "
+"first PD, later treatment lines included, are ignored. These are unconfirmed "
+"best responses, not a RECIST 1.1 best overall response; supply one "
+"adjudicated response per patient (the same value on each of the patient's "
+"rows is fine) when the endpoint requires it."
 msgstr ""
-"%d/%d hastanın birden fazla yanıt satırı var. Bu hastaların kategorisi, "
-"dolayısıyla ORR, DCR ve her yanıt satırı, zaman sırasına göre ilk PD dahil o "
-"ana kadar kaydedilen en iyi yanıttır: CR ve PR doğrulanmamıştır, SD için en "
-"kısa süre koşulu yoktur ve ilk PD'den sonraki satırlar, sonraki tedavi "
-"basamakları dahil, yok sayılır. Bunlar doğrulanmamış en iyi yanıtlardır, "
-"RECIST 1.1 en iyi genel yanıtı değildir; sonlanım noktası gerektiriyorsa "
-"hasta başına tek ve karara bağlanmış bir yanıt verin."
+"%d/%d hastanın satırlarında birden fazla farklı yanıt kayıtlı. Bu hastaların "
+"kategorisi, dolayısıyla ORR, DCR ve her yanıt satırı, zaman sırasına göre "
+"ilk PD dahil o ana kadar kaydedilen en iyi yanıttır: CR ve PR "
+"doğrulanmamıştır, SD için en kısa süre koşulu yoktur ve ilk PD'den sonraki "
+"satırlar, sonraki tedavi basamakları dahil, yok sayılır. Bunlar "
+"doğrulanmamış en iyi yanıtlardır, RECIST 1.1 en iyi genel yanıtı değildir; "
+"sonlanım noktası gerektiriyorsa hasta başına tek ve karara bağlanmış bir "
+"yanıt verin (hastanın her satırında aynı değerin bulunması sorun değildir)."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -422,6 +446,30 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
+"%d of %d studies have no false negatives. Each of them enters the model only "
+"after a continuity correction, so the pooled sensitivity, its confidence "
+"interval, its between-study variance, LR- and the diagnostic odds ratio are "
+"set largely by the size of that correction rather than by the data: a "
+"smaller correction gives a higher sensitivity and a much smaller LR-. The "
+"interval is not a data-derived precision. If all studies shared one "
+"sensitivity, the raw counts (%s false negatives among %s diseased "
+"participants) would give an exact %s%% confidence interval starting at "
+"%.2f%%. Report the raw counts and that bound alongside the pooled value, and "
+"do not read the LR- grading as established."
+msgstr ""
+"%d / %d çalışmada hiç yanlış negatif yok. Bu çalışmaların her biri modele "
+"ancak bir süreklilik düzeltmesinden sonra giriyor; bu nedenle birleştirilmiş "
+"duyarlılık, güven aralığı, çalışmalar arası varyansı, LR- ve tanısal "
+"olasılık oranı verilerden çok bu düzeltmenin büyüklüğüyle belirleniyor: daha "
+"küçük bir düzeltme daha yüksek bir duyarlılık ve çok daha küçük bir LR- "
+"verir. Aralık verilerden türetilmiş bir kesinlik değildir. Tüm çalışmalar "
+"tek bir duyarlılığı paylaşsaydı, ham sayılar (%s yanlış negatif / %s "
+"hastalıklı katılımcı) %%%s düzeyinde %.2f%% ile başlayan kesin bir güven "
+"aralığı verirdi. Ham sayıları ve bu sınırı birleştirilmiş değerle birlikte "
+"raporlayın ve LR- derecelendirmesini kesinleşmiş saymayın."
+
+#: R/diagnosticmeta.b.R
+msgid ""
 "%d of %d studies have no false positives. Each of them enters the model only "
 "after a continuity correction, so the pooled specificity, its confidence "
 "interval, its between-study variance, LR+ and the diagnostic odds ratio are "
@@ -445,6 +493,30 @@ msgstr ""
 "verirdi ve LR+ için verilerin belirleyebileceği bir üst sınır olmazdı. Ham "
 "sayıları ve bu sınırı birleştirilmiş değerle birlikte raporlayın ve LR+ "
 "derecelendirmesini kesinleşmiş saymayın."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"%d of %d studies have no false positives. Each of them enters the model only "
+"after a continuity correction, so the pooled specificity, its confidence "
+"interval, its between-study variance, LR+ and the diagnostic odds ratio are "
+"set largely by the size of that correction rather than by the data: a "
+"smaller correction gives a higher specificity and a much larger LR+. The "
+"interval is not a data-derived precision. If all studies shared one "
+"specificity, the raw counts (%s false positives among %s non-diseased "
+"participants) would give an exact %s%% confidence interval starting at "
+"%.2f%%. Report the raw counts and that bound alongside the pooled value, and "
+"do not read the LR+ grading as established."
+msgstr ""
+"%d / %d çalışmada hiç yanlış pozitif yok. Bu çalışmaların her biri modele "
+"ancak bir süreklilik düzeltmesinden sonra giriyor; bu nedenle birleştirilmiş "
+"özgüllük, güven aralığı, çalışmalar arası varyansı, LR+ ve tanısal olasılık "
+"oranı verilerden çok bu düzeltmenin büyüklüğüyle belirleniyor: daha küçük "
+"bir düzeltme daha yüksek bir özgüllük ve çok daha büyük bir LR+ verir. "
+"Aralık verilerden türetilmiş bir kesinlik değildir. Tüm çalışmalar tek bir "
+"özgüllüğü paylaşsaydı, ham sayılar (%s yanlış pozitif / %s hastalıksız "
+"katılımcı) %%%s düzeyinde %.2f%% ile başlayan kesin bir güven aralığı "
+"verirdi. Ham sayıları ve bu sınırı birleştirilmiş değerle birlikte "
+"raporlayın ve LR+ derecelendirmesini kesinleşmiş saymayın."
 
 #: R/diagnosticmeta.b.R
 msgid "%d of %d studies were excluded before analysis, leaving %d - too few to pool."
@@ -527,17 +599,27 @@ msgstr ""
 "edilmek yerine \"Bilinmeyen\" olarak raporlanır. Veri girişi hataları için "
 "ölçüm sütununu kontrol edin."
 
+#: R/waterfall.b.R
+msgid ""
+"%d patient(s) have a supplied category of NE or Unknown and are reported as "
+"not evaluable: %s."
+msgstr ""
+"%d hastanın verilen kategorisi NE veya Bilinmiyor; bu hastalar "
+"değerlendirilemez olarak raporlandı: %s."
+
 #: R/swimmerplot.b.R
 msgid ""
-"%d patient(s) have conflicting non-missing group values. Group comparisons "
-"require one fixed group per patient. Select a patient-level grouping "
-"variable or remove the grouping selection; episode-specific groups cannot "
-"define independent patient groups."
+"%d patient(s) have conflicting non-missing group values, so the group "
+"comparison was not run. Group comparisons require one fixed group per "
+"patient. Select a patient-level grouping variable or remove the grouping "
+"selection; episode-specific groups cannot define independent patient groups. "
+"The rest of the analysis is unaffected."
 msgstr ""
-"%d hastanın birbiriyle çelişen, eksik olmayan grup değerleri var. Grup "
-"karşılaştırmaları her hasta için tek ve sabit bir grup gerektirir. Hasta "
-"düzeyinde bir gruplama değişkeni seçin ya da gruplama seçimini kaldırın; "
-"döneme göre değişen gruplar bağımsız hasta grupları tanımlayamaz."
+"%d hastanın birbiriyle çelişen, eksik olmayan grup değerleri var, bu yüzden "
+"grup karşılaştırması yapılmadı. Grup karşılaştırmaları her hasta için tek ve "
+"sabit bir grup gerektirir. Hasta düzeyinde bir gruplama değişkeni seçin ya "
+"da gruplama seçimini kaldırın; döneme göre değişen gruplar bağımsız hasta "
+"grupları tanımlayamaz. Analizin geri kalanı etkilenmez."
 
 #: R/waterfall.b.R
 msgid ""
@@ -561,15 +643,6 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"%d patient(s) have more than one response category override across their "
-"rows: %s. The first recorded value is used. Enter one category per patient."
-msgstr ""
-"%d hastada satırlar arasında birden fazla yanıt kategorisi geçersiz kılma "
-"değeri var: %s. İlk kaydedilen değer kullanılır. Hasta başına bir kategori "
-"girin."
-
-#: R/waterfall.b.R
-msgid ""
 "%d patient(s) have more than one row but no time variable is selected: %s. "
 "The smallest value was used as each patient's best response. If the rows are "
 "visits, a 0%% baseline row takes part in that minimum, so a tumor that only "
@@ -580,6 +653,38 @@ msgstr ""
 "%%0 değerindeki başlangıç satırı bu minimuma katılır, böylece yalnızca "
 "büyüyen bir tümör PD yerine SD olarak sınıflandırılır. Vizit zamanını Zaman "
 "Değişkeni olarak seçin."
+
+#: R/waterfall.b.R
+msgid ""
+"%d patient(s) have more than one supplied response category across their "
+"rows: %s. They were read as per-visit responses in row order (no time "
+"variable is selected): each patient's category is the best one up to and "
+"including the first PD (CR, then PR, then SD, then PD); NE or Unknown visits "
+"do not count, and responses are not confirmed. Select the time variable, or "
+"enter one category per patient."
+msgstr ""
+"%d hastanın satırlarında birden fazla verilmiş yanıt kategorisi var: %s. "
+"Bunlar satır sırasına göre vizit başına yanıtlar olarak okundu (zaman "
+"değişkeni seçilmedi): her hastanın kategorisi, ilk PD dahil o ana kadarki en "
+"iyi kategoridir (önce CR, sonra PR, sonra SD, sonra PD); NE veya Bilinmiyor "
+"vizitleri sayılmaz ve yanıtlar doğrulanmamıştır. Zaman değişkenini seçin "
+"veya her hasta için tek bir kategori girin."
+
+#: R/waterfall.b.R
+msgid ""
+"%d patient(s) have more than one supplied response category across their "
+"rows: %s. They were read as per-visit responses: each patient's category is "
+"the best one in time order up to and including the first PD (CR, then PR, "
+"then SD, then PD); NE or Unknown visits do not count, and responses are not "
+"confirmed. If the values are not per-visit responses, enter one category per "
+"patient."
+msgstr ""
+"%d hastanın satırlarında birden fazla verilmiş yanıt kategorisi var: %s. "
+"Bunlar vizit başına yanıtlar olarak okundu: her hastanın kategorisi, zaman "
+"sırasına göre ilk PD dahil o ana kadarki en iyi kategoridir (önce CR, sonra "
+"PR, sonra SD, sonra PD); NE veya Bilinmiyor vizitleri sayılmaz ve yanıtlar "
+"doğrulanmamıştır. Değerler vizit başına yanıtlar değilse, her hasta için tek "
+"bir kategori girin."
 
 #: R/waterfall.b.R
 msgid ""
@@ -770,11 +875,11 @@ msgstr "%s (referans)"
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"%s A new study is predicted to fall between %.1f%% and %.1f%% for "
-"sensitivity and between %.1f%% and %.1f%% for specificity."
+"%s A new study is predicted to fall between %s%% and %s%% for sensitivity "
+"and between %s%% and %s%% for specificity."
 msgstr ""
-"%s Yeni bir çalışmanın duyarlılığı için %%%.1f ile %%%.1f, özgüllüğü için "
-"%%%.1f ile %%%.1f arasında bir değer öngörülür."
+"%s Yeni bir çalışmanın duyarlılığı için %%%s ile %%%s, özgüllüğü için %%%s "
+"ile %%%s arasında bir değer öngörülür."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -797,8 +902,8 @@ msgstr ""
 "güvenilmez olabilir. Yalnızca keşifsel olarak raporlayın."
 
 #: R/diagnosticmeta.b.R
-msgid "%s Positive LR %.2f%s and negative LR %.2f%s."
-msgstr "%s Pozitif OO %.2f%s ve negatif OO %.2f%s."
+msgid "%s Positive LR %s%s and negative LR %s%s."
+msgstr "%s Pozitif OO %s%s ve negatif OO %s%s."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -967,69 +1072,68 @@ msgstr "Tüm hücrelere +1/N (N = çalışma büyüklüğü)"
 #: R/diagnosticmeta.b.R
 msgid ""
 "<br><br><strong>Overall Summary:</strong> performance is <em>asymmetric</em> "
-"- pooled sensitivity (%.1f%%) and pooled specificity (%.1f%%) fall in "
-"different performance bands."
+"- pooled sensitivity (%s%%) and pooled specificity (%s%%) fall in different "
+"performance bands."
 msgstr ""
 "<br><br><strong>Genel Özet:</strong> performans <em>asimetriktir</em> - "
-"havuzlanmış duyarlılık (%%%.1f) ve havuzlanmış özgüllük (%%%.1f) farklı "
+"havuzlanmış duyarlılık (%%%s) ve havuzlanmış özgüllük (%%%s) farklı "
 "performans aralıklarına düşmektedir."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%) and "
-"pooled specificity (%.1f%%) both fall in the <em>excellent</em> band."
+"<br><br><strong>Overall Summary:</strong> pooled sensitivity (%s%%) and "
+"pooled specificity (%s%%) both fall in the <em>excellent</em> band."
 msgstr ""
-"<br><br><strong>Genel Özet:</strong> havuzlanmış duyarlılık (%%%.1f) ve "
-"havuzlanmış özgüllük (%%%.1f) her ikisi de <em>mükemmel</em> aralığındadır."
+"<br><br><strong>Genel Özet:</strong> havuzlanmış duyarlılık (%%%s) ve "
+"havuzlanmış özgüllük (%%%s) her ikisi de <em>mükemmel</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%) and "
-"pooled specificity (%.1f%%) both fall in the <em>good</em> band or above."
+"<br><br><strong>Overall Summary:</strong> pooled sensitivity (%s%%) and "
+"pooled specificity (%s%%) both fall in the <em>good</em> band or above."
 msgstr ""
-"<br><br><strong>Genel Özet:</strong> havuzlanmış duyarlılık (%%%.1f) ve "
-"havuzlanmış özgüllük (%%%.1f) her ikisi de <em>iyi</em> veya üzeri "
-"aralıktadır."
+"<br><br><strong>Genel Özet:</strong> havuzlanmış duyarlılık (%%%s) ve "
+"havuzlanmış özgüllük (%%%s) her ikisi de <em>iyi</em> veya üzeri aralıktadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%) and "
-"pooled specificity (%.1f%%) do not both reach the <em>good</em> band."
+"<br><br><strong>Overall Summary:</strong> pooled sensitivity (%s%%) and "
+"pooled specificity (%s%%) do not both reach the <em>good</em> band."
 msgstr ""
-"<br><br><strong>Genel Özet:</strong> havuzlanmış duyarlılık (%%%.1f) ve "
-"havuzlanmış özgüllük (%%%.1f) her ikisi birden <em>iyi</em> aralığına "
+"<br><br><strong>Genel Özet:</strong> havuzlanmış duyarlılık (%%%s) ve "
+"havuzlanmış özgüllük (%%%s) her ikisi birden <em>iyi</em> aralığına "
 "ulaşmamaktadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the "
+"<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the "
 "<em>excellent</em> band on the conventional 90/80/70 scale."
 msgstr ""
-"<br><br><strong>Birleştirilmiş özgüllüğünüz %%%.1f%s</strong>, geleneksel "
+"<br><br><strong>Birleştirilmiş özgüllüğünüz %%%s%s</strong>, geleneksel "
 "90/80/70 ölçeğinde <em>mükemmel</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the "
+"<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the "
 "<em>good</em> band on the conventional 90/80/70 scale."
 msgstr ""
-"<br><br><strong>Birleştirilmiş özgüllüğünüz %%%.1f%s</strong>, geleneksel "
+"<br><br><strong>Birleştirilmiş özgüllüğünüz %%%s%s</strong>, geleneksel "
 "90/80/70 ölçeğinde <em>iyi</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the "
+"<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the "
 "<em>limited</em> band on the conventional 90/80/70 scale."
 msgstr ""
-"<br><br><strong>Birleştirilmiş özgüllüğünüz %%%.1f%s</strong>, geleneksel "
+"<br><br><strong>Birleştirilmiş özgüllüğünüz %%%s%s</strong>, geleneksel "
 "90/80/70 ölçeğinde <em>sınırlı</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the "
+"<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the "
 "<em>moderate</em> band on the conventional 90/80/70 scale."
 msgstr ""
-"<br><br><strong>Birleştirilmiş özgüllüğünüz %%%.1f%s</strong>, geleneksel "
+"<br><br><strong>Birleştirilmiş özgüllüğünüz %%%s%s</strong>, geleneksel "
 "90/80/70 ölçeğinde <em>orta</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
@@ -1585,19 +1689,19 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Negative Likelihood Ratio:</strong> %.2f - A negative test is %.1fx "
+"<strong>Negative Likelihood Ratio:</strong> %s - A negative test is %.1fx "
 "more likely in healthy than disease"
 msgstr ""
-"<strong>Negatif Olabilirlik Oranı:</strong> %.2f - Negatif bir test, "
-"sağlıklı bireylerde hastalıklılara göre %.1fx kat daha olasıdır"
+"<strong>Negatif Olabilirlik Oranı:</strong> %s - Negatif bir test, sağlıklı "
+"bireylerde hastalıklılara göre %.1fx kat daha olasıdır"
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Negative Likelihood Ratio:</strong> %.2f - Interpretation unstable "
+"<strong>Negative Likelihood Ratio:</strong> %s - Interpretation unstable "
 "(sensitivity ≈ 100%%)."
 msgstr ""
-"<strong>Negatif Olabilirlik Oranı:</strong> %.2f - Yorum kararsız "
-"(duyarlılık ≈ %%100)."
+"<strong>Negatif Olabilirlik Oranı:</strong> %s - Yorum kararsız (duyarlılık "
+"≈ %%100)."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -1628,13 +1732,13 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Note:</strong> its confidence interval (%.2f-%.2f) spans more than "
-"one evidence category, so this grading is not firmly established by the "
-"pooled data."
+"<strong>Note:</strong> its confidence interval (%s-%s) spans more than one "
+"evidence category, so this grading is not firmly established by the pooled "
+"data."
 msgstr ""
-"<strong>Not:</strong> Güven aralığı (%.2f-%.2f) birden fazla kanıt "
-"kategorisini kapsadığından, bu derecelendirme havuzlanmış verilerle kesin "
-"olarak belirlenememiştir."
+"<strong>Not:</strong> Güven aralığı (%s-%s) birden fazla kanıt kategorisini "
+"kapsadığından, bu derecelendirme havuzlanmış verilerle kesin olarak "
+"belirlenememiştir."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -1764,11 +1868,13 @@ msgstr ""
 msgid ""
 "<strong>Prediction region (dotted):</strong> where the accuracy of a FUTURE "
 "study in a new setting is expected to fall. It includes between-study "
-"heterogeneity and does NOT shrink with more studies."
+"heterogeneity, so more studies narrow it only down to the spread between "
+"studies, never to a single point."
 msgstr ""
 "<strong>Öngörü bölgesi (noktalı):</strong> Yeni bir ortamdaki GELECEK "
 "çalışmanın doğruluğunun bulunmasının beklendiği bölge. Çalışmalar arası "
-"heterojenliği içerir ve daha fazla çalışmayla daralmaz."
+"heterojenliği içerir; bu nedenle daha fazla çalışma onu yalnızca çalışmalar "
+"arasındaki yayılıma kadar daraltır, asla tek bir noktaya indirmez."
 
 #: R/diagnosticmeta.b.R
 msgid ""
@@ -1874,19 +1980,27 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Sensitivity:</strong> %.1f%% - The test correctly identifies %.0f "
-"out of 1,000 patients with disease"
+"<strong>Sensitivity:</strong> %s%% - The test correctly identifies %.0f out "
+"of 1,000 patients with disease"
 msgstr ""
-"<strong>Duyarlılık:</strong> %%%.1f - Test, hastalığı olan her 1.000 "
-"hastadan %.0f tanesini doğru tanımlar"
+"<strong>Duyarlılık:</strong> %%%s - Test, hastalığı olan her 1.000 hastadan "
+"%.0f tanesini doğru tanımlar"
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Sensitivity:</strong> %.1f%% - The test correctly identifies %.0f "
-"out of 100 patients with disease"
+"<strong>Sensitivity:</strong> %s%% - The test correctly identifies %.0f out "
+"of 100 patients with disease"
 msgstr ""
-"<strong>Duyarlılık:</strong> %%%.1f - Test hastalığı olan her 100 hastanın "
+"<strong>Duyarlılık:</strong> %%%s - Test hastalığı olan her 100 hastanın "
 "%.0f'ini doğru tanımlar"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Sensitivity:</strong> %s%% - The test misses fewer than 1 in 1,000 "
+"patients with disease"
+msgstr ""
+"<strong>Duyarlılık:</strong> %%%s - Test, hastalığı olan her 1.000 hastadan "
+"1'inden azını kaçırır"
 
 #: R/diagnosticmeta.b.R
 msgid "<strong>Sensitivity:</strong> Mean %.1f%% (Range: %.1f%% - %.1f%%)"
@@ -1906,18 +2020,26 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Specificity:</strong> %.1f%% - The test correctly identifies %.0f "
-"out of 1,000 healthy individuals"
+"<strong>Specificity:</strong> %s%% - Fewer than 1 in 1,000 healthy "
+"individuals test positive"
 msgstr ""
-"<strong>Özgüllük:</strong> %%%.1f - Test, her 1.000 sağlıklı bireyden %.0f "
+"<strong>Özgüllük:</strong> %%%s - Her 1.000 sağlıklı bireyden 1'inden azı "
+"pozitif sonuç verir"
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Specificity:</strong> %s%% - The test correctly identifies %.0f out "
+"of 1,000 healthy individuals"
+msgstr ""
+"<strong>Özgüllük:</strong> %%%s - Test, her 1.000 sağlıklı bireyden %.0f "
 "tanesini doğru tanımlar"
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Specificity:</strong> %.1f%% - The test correctly identifies %.0f "
-"out of 100 healthy individuals"
+"<strong>Specificity:</strong> %s%% - The test correctly identifies %.0f out "
+"of 100 healthy individuals"
 msgstr ""
-"<strong>Özgüllük:</strong> %%%.1f - Test her 100 sağlıklı bireyin %.0f'ini "
+"<strong>Özgüllük:</strong> %%%s - Test her 100 sağlıklı bireyin %.0f'ini "
 "doğru tanımlar"
 
 #: R/diagnosticmeta.b.R
@@ -2133,14 +2255,6 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Your negative LR of %.2f</strong> provides <em>strong</em> evidence "
-"AGAINST disease when test is negative."
-msgstr ""
-"<strong>Negatif OO değeriniz olan %.2f</strong>, test negatif olduğunda "
-"hastalık ALEYHİNE <em>güçlü</em> kanıt sağlamaktadır."
-
-#: R/diagnosticmeta.b.R
-msgid ""
 "<strong>Your negative LR of %.2f</strong> provides <em>weak</em> evidence "
 "AGAINST disease when test is negative."
 msgstr ""
@@ -2149,34 +2263,42 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the "
+"<strong>Your negative LR of %s</strong> provides <em>strong</em> evidence "
+"AGAINST disease when test is negative."
+msgstr ""
+"<strong>Negatif OO değeriniz olan %s</strong>, test negatif olduğunda "
+"hastalık ALEYHİNE <em>güçlü</em> kanıt sağlamaktadır."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Your pooled sensitivity of %s%%%s</strong> falls in the "
 "<em>excellent</em> band on the conventional 90/80/70 scale."
 msgstr ""
-"<strong>Birleştirilmiş duyarlılığınız %%%.1f%s</strong>, geleneksel 90/80/70 "
+"<strong>Birleştirilmiş duyarlılığınız %%%s%s</strong>, geleneksel 90/80/70 "
 "ölçeğinde <em>mükemmel</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the "
+"<strong>Your pooled sensitivity of %s%%%s</strong> falls in the "
 "<em>good</em> band on the conventional 90/80/70 scale."
 msgstr ""
-"<strong>Birleştirilmiş duyarlılığınız %%%.1f%s</strong>, geleneksel 90/80/70 "
+"<strong>Birleştirilmiş duyarlılığınız %%%s%s</strong>, geleneksel 90/80/70 "
 "ölçeğinde <em>iyi</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the "
+"<strong>Your pooled sensitivity of %s%%%s</strong> falls in the "
 "<em>limited</em> band on the conventional 90/80/70 scale."
 msgstr ""
-"<strong>Birleştirilmiş duyarlılığınız %%%.1f%s</strong>, geleneksel 90/80/70 "
+"<strong>Birleştirilmiş duyarlılığınız %%%s%s</strong>, geleneksel 90/80/70 "
 "ölçeğinde <em>sınırlı</em> aralığındadır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the "
+"<strong>Your pooled sensitivity of %s%%%s</strong> falls in the "
 "<em>moderate</em> band on the conventional 90/80/70 scale."
 msgstr ""
-"<strong>Birleştirilmiş duyarlılığınız %%%.1f%s</strong>, geleneksel 90/80/70 "
+"<strong>Birleştirilmiş duyarlılığınız %%%s%s</strong>, geleneksel 90/80/70 "
 "ölçeğinde <em>orta</em> aralığındadır."
 
 #: R/waterfall.b.R
@@ -2362,19 +2484,19 @@ msgid ""
 "A difference between two measurements that changes with the level of the "
 "marker - for example a biopsy that reads higher than the whole section in "
 "low cases and lower in high cases. A measurement's own error tilts a slope "
-"fitted against it, so with a reference this analysis requires the slopes "
-"against the reference, against the region and against their mean to agree in "
-"direction, and shows the slope against the mean; without a reference it uses "
-"the mean of the two regions. An average difference can hide it, and a fixed "
-"correction cannot remove it."
+"fitted against it, so this analysis requires the slopes against each of the "
+"two measurements compared (a region and the reference, or two regions) and "
+"against their mean to agree in direction, and shows the slope against the "
+"mean. An average difference can hide it, and a fixed correction cannot "
+"remove it."
 msgstr ""
-"İki ölçüm arasındaki, belirtecin düzeyiyle değişen bir fark; örneğin düşük "
-"olgularda tüm kesitten yüksek, yüksek olgularda düşük okuyan bir biyopsi. "
-"Bir ölçümün kendi hatası, ona karşı kurulan eğimi eğer; bu nedenle referans "
-"varken bu analiz referansa, bölgeye ve ikisinin ortalamasına karşı eğimlerin "
-"yön bakımından uyuşmasını ister ve ortalamaya karşı eğimi gösterir; referans "
-"yoksa iki bölgenin ortalamasını kullanır. Ortalama bir fark bunu "
-"gizleyebilir ve sabit bir düzeltme bunu gideremez."
+"Belirteç düzeyiyle değişen iki ölçüm arasındaki fark; örneğin düşük "
+"olgularda tüm kesitten daha yüksek, yüksek olgularda daha düşük okuyan bir "
+"biyopsi. Bir ölçümün kendi hatası, ona karşı çizilen eğimi eğer; bu nedenle "
+"bu analiz, karşılaştırılan iki ölçümün her birine (bir bölge ve referans ya "
+"da iki bölge) ve ortalamalarına karşı eğimlerin aynı yönde olmasını ister ve "
+"ortalamaya karşı eğimi gösterir. Ortalama fark bunu gizleyebilir ve sabit "
+"bir düzeltme onu ortadan kaldıramaz."
 
 #: R/waterfall.b.R
 msgid ""
@@ -2384,6 +2506,21 @@ msgstr ""
 "Her hastanın aynı sınıfa düştüğü durumlarda (örn. hiçbir grupta yanıt veren "
 "olmaması) bir Fisher kesin testi çalıştırılmadı, bu nedenle test edilecek "
 "bir karşıtlık yoktur."
+
+#: R/ihcheterogeneity.b.R
+msgid ""
+"A margin of %s%% of the comparison mean is ±%s in the measurement's own "
+"units, smaller than the smallest non-zero difference recorded between paired "
+"measurements (%s). Ruling out a difference that small needs many cases and "
+"may be finer than matters clinically; check that the systematic difference "
+"margin suits this marker and its level."
+msgstr ""
+"Karşılaştırma ortalamasının %%%s'i olan sınır, ölçümün kendi biriminde "
+"±%s'dir; bu, eşleştirilmiş ölçümler arasında kaydedilen sıfır olmayan en "
+"küçük farktan (%s) küçüktür. Bu kadar küçük bir farkı dışlamak çok sayıda "
+"olgu gerektirir ve klinik açıdan önemli olandan daha ince olabilir; "
+"sistematik fark sınırının bu belirteç ve düzeyi için uygun olup olmadığını "
+"denetleyin."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -2645,13 +2782,13 @@ msgstr "Gerçek tümör ölçümleri (mm, cm, çaplar toplamı)"
 msgid ""
 "Add a dedicated efficacy table with: - Median time to first response (RECIST "
 "PR or better) - Kaplan-Meier median duration of response (censoring-aware) - "
-"Number of responders and events Requires a time variable and raw (per-visit) "
-"input."
+"Number of responders and events Requires a time variable (raw measurements "
+"or per-visit percentage changes)."
 msgstr ""
 "Şunları içeren ayrı bir etkililik tablosu ekler: - İlk yanıta kadar medyan "
 "süre (RECIST PR veya daha iyi) - Kaplan-Meier medyan yanıt süresi "
-"(sansürlemeyi dikkate alır) - Yanıt veren ve olay sayısı Zaman değişkeni ve "
-"ham (ziyaret bazlı) girdi gerektirir."
+"(sansürlemeyi dikkate alır) - Yanıt veren ve olay sayısı Zaman değişkeni "
+"gerektirir (ham ölçümler veya ziyaret bazlı yüzde değişimler)."
 
 #: waterfall/options/showClinicalSignificance.description.jamovi
 msgid ""
@@ -3088,6 +3225,18 @@ msgstr ""
 "doğruluk aralığını kapsar - bu nedenle havuzlanmış bu çift tek bir "
 "popülasyonu veya laboratuvarı tanımlamaz. Havuzlanmış nokta yerine tahmin "
 "bölgesini ve alt grup ya da meta-regresyon sonuçlarını inceleyin."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"Between-study heterogeneity is substantial, so the predictive values in any "
+"one setting can differ markedly from these; the prediction interval in the "
+"bivariate table shows the range of sensitivity and specificity a new setting "
+"may have."
+msgstr ""
+"Çalışmalar arası heterojenlik belirgindir; bu nedenle herhangi bir ortamdaki "
+"prediktif değerler bunlardan belirgin biçimde farklı olabilir. İki "
+"değişkenli tablodaki tahmin aralığı, yeni bir ortamın sahip olabileceği "
+"duyarlılık ve özgüllük aralığını gösterir."
 
 #: R/diagnosticmeta.b.R
 msgid "Between-study variance (tau^2)"
@@ -3889,10 +4038,6 @@ msgid "Conflicting annotation values"
 msgstr "Çelişkili ek açıklama değerleri"
 
 #: R/waterfall.b.R
-msgid "Conflicting category overrides"
-msgstr "Çelişkili kategori geçersiz kılmaları"
-
-#: R/waterfall.b.R
 msgid "Conflicting confirmation values"
 msgstr "Çelişkili doğrulama değerleri"
 
@@ -4140,8 +4285,12 @@ msgid "CV (coefficient of variation):"
 msgstr "CV (varyasyon katsayısı):"
 
 #: R/ihcheterogeneity.b.R
-msgid "CV = %.1f%%, not graded because the measurements are an ordinal score."
-msgstr "CV = %%%.1f; ölçümler sıralı bir skor olduğu için derecelendirilmedi."
+msgid ""
+"CV = %.1f%%, not graded because the measurements look like an ordinal score "
+"or coarsely binned values."
+msgstr ""
+"CV = %%%.1f; ölçümler sıralı bir skora ya da kaba aralıklarla kaydedilmiş "
+"değerlere benzediği için derecelendirilmedi."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -4456,6 +4605,21 @@ msgstr ""
 "vermenin bir sağkalım yararı olarak okunmamalıdır: bir landmark analizi "
 "kullanın ya da yanıtı zamana bağlı bir ortak değişken olarak ele alın."
 
+#: R/swimmerplot.b.R
+msgid ""
+"Descriptive only. Time is split by best recorded response, which a patient "
+"can only achieve by living long enough to be assessed, so responders "
+"accumulate more follow-up by construction (guarantee-time bias). These rows "
+"must not be read as a survival benefit of responding: use a landmark "
+"analysis or treat response as a time-dependent covariate."
+msgstr ""
+"Yalnızca tanımlayıcıdır. Süre, kaydedilen en iyi yanıta göre bölünür; bu "
+"yanıta ancak değerlendirilecek kadar uzun yaşayan bir hasta ulaşabilir, bu "
+"yüzden yanıt verenler yapı gereği daha fazla takip süresi biriktirir "
+"(garanti süresi yanlılığı). Bu satırlar yanıt vermenin bir sağkalım yararı "
+"olarak okunmamalıdır: bir landmark analizi kullanın ya da yanıtı zamana "
+"bağlı bir ortak değişken olarak ele alın."
+
 #: R/ihcheterogeneity.b.R
 msgid "Descriptive, robust to a few extreme cases; not graded"
 msgstr "Tanımlayıcı, az sayıda uç vakaya karşı dayanıklı; derecelendirilmez"
@@ -4734,13 +4898,11 @@ msgstr "Ya başlangıca göre yüzde değişimleri ya da ham tümör ölçümler
 msgid ""
 "Enable guided mode with step-by-step instructions: - Walks through variable "
 "selection and options - Provides contextual help and best practice "
-"recommendations - Includes misuse detection and warnings Recommended for new "
-"users or complex analyses"
+"recommendations Recommended for new users or complex analyses"
 msgstr ""
 "Adım adım yönergelerle rehber kipini açar: - Değişken ve seçenek seçiminde "
-"yol gösterir - Bağlama özgü yardım ve iyi uygulama önerileri verir - Yanlış "
-"kullanım algılama ve uyarıları içerir Yeni kullanıcılar veya karmaşık "
-"analizler için önerilir"
+"yol gösterir - Bağlama özgü yardım ve iyi uygulama önerileri verir Yeni "
+"kullanıcılar veya karmaşık analizler için önerilir"
 
 #: swimmerplot/results/timelineData.columns.title
 msgid "End"
@@ -4923,17 +5085,21 @@ msgstr "Olaylar"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"Every measurement takes 5 or fewer whole-number values, as an ordinal score "
-"does (for example HER2 0 to 3+). The CV, the percentage differences and "
-"their grades assume a continuous scale and are not meaningful here, so no "
-"sampling verdict is given. Assess agreement of an ordinal score with "
-"weighted kappa or the proportion of cases in the same category."
+"Every measurement takes only a few whole-number values (at most 5, or at "
+"most 9 between 0 and 12), so the measurements look like an ordinal score "
+"(for example HER2 0 to 3+ or an Allred score) or coarsely binned values. The "
+"CV, the percentage differences and their grades assume a finely measured "
+"continuous scale and are not meaningful here, so no sampling verdict is "
+"given. Assess agreement of an ordinal score with weighted kappa or the "
+"proportion of cases in the same category; record binned values more finely."
 msgstr ""
-"Her ölçüm, sıralı bir skorda olduğu gibi en fazla 5 farklı tam sayı değeri "
-"alıyor (örneğin HER2 0-3+). CV, yüzde farklar ve dereceleri sürekli bir "
-"ölçek varsayar ve burada anlamlı değildir; bu nedenle örnekleme kararı "
-"verilmedi. Sıralı bir skorun uyumunu ağırlıklı kappa ya da aynı kategorideki "
-"olguların oranıyla değerlendirin."
+"Her ölçüm yalnızca birkaç tam sayı değeri alıyor (en çok 5 ya da 0 ile 12 "
+"arasında en çok 9); bu nedenle ölçümler sıralı bir skora (örneğin HER2 0-3+ "
+"ya da Allred skoru) veya kaba aralıklarla kaydedilmiş değerlere benziyor. "
+"CV, yüzde farklar ve bunların dereceleri ince ölçülmüş sürekli bir ölçek "
+"varsayar ve burada anlamlı değildir; bu nedenle örnekleme kararı verilmedi. "
+"Sıralı bir skorun uyumunu ağırlıklı kappa ya da aynı kategorideki olguların "
+"oranıyla değerlendirin; kaba aralıklı değerleri daha ince kaydedin."
 
 #: R/waterfall.b.R
 msgid ""
@@ -4964,13 +5130,19 @@ msgstr "Her bölgesel ölçüm, her vakada karşılaştırıldığı değere eş
 
 #: R/waterfall.b.R
 msgid ""
-"Every response value is positive, so no patient shrank at all. If these are "
-"raw tumor sizes rather than percent changes, set Data Input Type to Raw "
-"measurements and add a time variable."
+"Every response value is 0 or above. Read as percent changes, no tumor "
+"shrank, so no patient can be a complete or partial response. If 100 means no "
+"change (tumor size as a percent of baseline), subtract 100 from every value. "
+"If these are raw tumor sizes, set Data input type to Raw measurements with a "
+"time variable whose baseline is 0. If they are genuine percent changes, the "
+"categories stand."
 msgstr ""
-"Tüm yanıt değerleri pozitiftir, dolayısıyla hiçbir hastada küçülme "
-"olmamıştır. Bunlar yüzde değişimleri değil ham tümör boyutlarıysa, Veri "
-"Giriş Türünü Ham ölçümler olarak ayarlayın ve bir zaman değişkeni ekleyin."
+"Tüm yanıt değerleri 0 veya üzerinde. Yüzde değişim olarak okunduğunda hiçbir "
+"tümör küçülmemiştir; bu nedenle hiçbir hasta tam veya kısmi yanıt olamaz. "
+"100 değişim olmadığı anlamına geliyorsa (tümör boyutu başlangıcın yüzdesi "
+"olarak), her değerden 100 çıkarın. Bunlar ham tümör boyutlarıysa, Veri giriş "
+"türünü Ham ölçümler olarak ayarlayın ve başlangıcı 0 olan bir zaman "
+"değişkeni seçin. Gerçek yüzde değişimlerse kategoriler geçerlidir."
 
 #: R/waterfall.b.R
 msgid ""
@@ -5275,13 +5447,14 @@ msgstr "Tarih/saat verileri için doğru formatın seçildiğinden emin olun"
 
 #: R/swimmerplot.b.R
 msgid ""
-"For patients with more than one assessment, best response was the best "
-"category recorded up to and including the first progression; responses were "
-"not confirmed and no minimum duration was required for stable disease."
+"For patients with more than one different response recorded, best response "
+"was the best category recorded up to and including the first progression; "
+"those responses were not confirmed and no minimum duration was required for "
+"stable disease."
 msgstr ""
-"Birden fazla değerlendirmesi olan hastalarda en iyi yanıt, ilk progresyon "
-"dahil o ana kadar kaydedilen en iyi kategoriydi; yanıtlar doğrulanmadı ve "
-"stabil hastalık için en kısa süre koşulu aranmadı."
+"Birden fazla farklı yanıtı kayıtlı olan hastalarda en iyi yanıt, ilk "
+"progresyon dahil o ana kadar kaydedilen en iyi kategoriydi; bu yanıtlar "
+"doğrulanmadı ve stabil hastalık için en kısa süre koşulu aranmadı."
 
 #: R/waterfall.b.R
 msgid "For raw measurements, baseline assumed at time = 0"
@@ -5435,6 +5608,10 @@ msgstr "Grup Karşılaştırma Analizi"
 #: R/waterfall.b.R
 msgid "Group comparison could not be computed"
 msgstr "Grup karşılaştırması hesaplanamadı"
+
+#: R/swimmerplot.b.R
+msgid "Group comparison skipped"
+msgstr "Grup karşılaştırması atlandı"
 
 #: waterfall/results/groupComparisonTest.title
 msgid "Group Comparison Statistical Test"
@@ -5793,12 +5970,13 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"In this dataset the measurements were an ordinal score, so their agreement "
-"should be judged with weighted kappa or category agreement rather than with "
-"the CV."
+"In this dataset the measurements looked like an ordinal score or coarsely "
+"binned values, so their agreement should be judged with weighted kappa or "
+"category agreement rather than with the CV."
 msgstr ""
-"Bu veri setinde ölçümler sıralı bir skordu; bu nedenle uyumları CV ile değil "
-"ağırlıklı kappa ya da kategori uyumuyla değerlendirilmelidir."
+"Bu veri setinde ölçümler sıralı bir skora ya da kaba aralıklarla kaydedilmiş "
+"değerlere benziyordu; bu nedenle uyumları CV yerine ağırlıklı kappa ya da "
+"kategori uyumuyla değerlendirilmelidir."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -6210,6 +6388,10 @@ msgstr "Ana Sonuçlar:"
 msgid "Major contributor"
 msgstr "Ana katkı sağlayıcı"
 
+#: R/ihcheterogeneity.b.R
+msgid "Margin finer than the recorded values"
+msgstr "Sınır kaydedilen değerlerden daha ince"
+
 #: R/swimmerplot-html.R
 msgid ""
 "Mark censored patients: follow-up ended without the event (alive at the data "
@@ -6402,6 +6584,10 @@ msgid "Median duration of response (naive)"
 msgstr "Medyan yanıt süresi (ham)"
 
 #: R/swimmerplot.b.R
+msgid "Median duration: %s"
+msgstr "Medyan süre: %s"
+
+#: R/swimmerplot.b.R
 msgid "median follow-up (reverse Kaplan-Meier)"
 msgstr "medyan takip süresi (ters Kaplan-Meier)"
 
@@ -6493,10 +6679,6 @@ msgid "Median: %.1f%%"
 msgstr "Medyan: %%%.1f"
 
 #: R/swimmerplot.b.R
-msgid "Median: %s"
-msgstr "Medyan: %s"
-
-#: R/swimmerplot.b.R
 msgid ""
 "Median/Protocol reference lines measure a duration from each patient's own "
 "start, so they cannot be placed on an absolute axis where patients begin at "
@@ -6522,10 +6704,10 @@ msgstr "Meta-analiz yöntemi"
 #: R/diagnosticmeta.b.R
 msgid ""
 "Meta-analysis of %d diagnostic accuracy studies shows pooled sensitivity of "
-"%.1f%%%s and specificity of %.1f%%%s, at the %d%% confidence level."
+"%s%%%s and specificity of %s%%%s, at the %d%% confidence level."
 msgstr ""
 "%d tanısal doğruluk çalışmasının meta-analizinde birleştirilmiş duyarlılık "
-"%%%.1f%s, özgüllük %%%.1f%s ve güven düzeyi %%%d olarak bulundu."
+"%%%s%s, özgüllük %%%s%s ve güven düzeyi %%%d olarak bulundu."
 
 #: R/diagnosticmeta.b.R
 msgid "Meta-Analysis Summary"
@@ -7004,10 +7186,6 @@ msgstr "N=%d hasta | Medyan süre: %.1f %s | Toplam kişi-zamanı: %.1f %s"
 msgid "Natural-language summary of heterogeneity analysis results"
 msgstr "Heterojenlik analizi sonuçlarının doğal dildeki özeti"
 
-#: R/swimmerplot.b.R
-msgid "NE"
-msgstr "NE"
-
 #: R/ihcheterogeneity.b.R
 msgid "Near-zero levels inflate the CV"
 msgstr "Sıfıra yakın düzeyler CV'yi şişiriyor"
@@ -7080,6 +7258,16 @@ msgstr "Karşılaştırma için GA mevcut değil"
 #: R/ihcheterogeneity.b.R
 msgid "No comparison available"
 msgstr "Karşılaştırma mevcut değil"
+
+#: R/swimmerplot.b.R
+msgid ""
+"No comparison was run: %d patient(s) have different group values on "
+"different rows, and a group comparison needs one fixed group per patient. "
+"Select a patient-level grouping variable."
+msgstr ""
+"Karşılaştırma yapılmadı: %d hastanın farklı satırlarında farklı grup "
+"değerleri var ve grup karşılaştırması her hasta için tek ve sabit bir grup "
+"gerektirir. Hasta düzeyinde bir gruplama değişkeni seçin."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -7234,10 +7422,6 @@ msgstr ""
 msgid "No missing values in TP, FP, FN, TN columns"
 msgstr "TP, FP, FN, TN sütunlarında eksik değer yok"
 
-#: R/waterfall.b.R
-msgid "No negative changes"
-msgstr "Negatif değişim yok"
-
 #: R/swimmerplot.b.R
 msgid ""
 "No patient had a CR, PR, SD or PD response, so objective response and "
@@ -7351,11 +7535,11 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"No regions-per-case advice is given for an ordinal score, because it rests "
-"on the CV."
+"No regions-per-case advice is given for an ordinal score or binned values, "
+"because it rests on the CV."
 msgstr ""
-"Sıralı bir skor için olgu başına bölge sayısı önerisi verilmez, çünkü bu "
-"öneri CV'ye dayanır."
+"Sıralı bir skor ya da kaba aralıklı değerler için olgu başına bölge sayısı "
+"önerisi verilmez, çünkü bu öneri CV'ye dayanır."
 
 #: R/swimmerplot.b.R
 msgid "No response recorded for %d of %d patients (%.1f%%)."
@@ -7363,12 +7547,13 @@ msgstr "%d/%d hastada kayıtlı yanıt yok (%%%.1f)."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"No sampling verdict was given, because the measurements were an ordinal "
-"score and the CV and percentage-difference criteria assume a continuous "
-"scale."
+"No sampling verdict was given, because the measurements looked like an "
+"ordinal score or coarsely binned values and the CV and percentage-difference "
+"criteria assume a finely measured continuous scale."
 msgstr ""
-"Ölçümler sıralı bir skor olduğu ve CV ile yüzde fark ölçütleri sürekli bir "
-"ölçek varsaydığı için örnekleme kararı verilmedi."
+"Ölçümler sıralı bir skora ya da kaba aralıklarla kaydedilmiş değerlere "
+"benzediği ve CV ile yüzde fark ölçütleri ince ölçülmüş sürekli bir ölçek "
+"varsaydığı için örnekleme kararı verilmedi."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -7468,6 +7653,10 @@ msgstr ""
 "başlangıç zamanları olduğunu ve tüm gerekli verilerin mevcut olduğunu "
 "kontrol edin."
 
+#: R/waterfall.b.R
+msgid "No value below zero"
+msgstr "Sıfırın altında değer yok"
+
 #: R/ihcheterogeneity.b.R
 msgid ""
 "No variability in the data: every measurement has the same value, so there "
@@ -7490,6 +7679,16 @@ msgstr ""
 "hücreli çalışma oranı %%80 iken meta-analizlerin %%42 kadarında, beklenen "
 "%%5'e karşı - bu nedenle karar önlem olarak bildirilmez. İstatistiği "
 "yalnızca betimleyici olarak okuyun."
+
+#: R/swimmerplot.b.R
+msgid ""
+"Non-CR/Non-PD is the RECIST 1.1 response for patients with non-target "
+"disease only; this analysis does not score it, so recode it, for example to "
+"SD if your protocol counts it toward disease control."
+msgstr ""
+"Non-CR/Non-PD, yalnızca hedef dışı hastalığı olan hastalar için RECIST 1.1 "
+"yanıtıdır; bu analiz onu puanlamaz, bu yüzden yeniden kodlayın, örneğin "
+"protokolünüz onu hastalık kontrolüne sayıyorsa SD olarak."
 
 #: swimmerplot/options/referenceLines/none.title
 msgid "None"
@@ -7605,6 +7804,7 @@ msgstr "Doğrulama gerektiren RECIST v1.1 'En İyi Genel Yanıt' ile eşdeğer d
 msgid "Not estimable"
 msgstr "Kestirilemiyor"
 
+#: R/swimmerplot.b.R
 #: R/waterfall.b.R
 msgid "not estimable"
 msgstr "tahmin edilemiyor"
@@ -7643,21 +7843,25 @@ msgstr ""
 "Tahmin edilemiyor: hiçbir yanıt veren hastada ilk yanıttan sonra "
 "değerlendirme yok"
 
+#: R/waterfall.b.R
+msgid "Not evaluable by supplied category"
+msgstr "Verilen kategoriye göre değerlendirilemez"
+
 #: R/swimmerplot.b.R
 msgid ""
-"Not every response value was a RECIST category (CR, PR, SD, PD, NE), so "
-"objective response and disease control rates were not calculated."
+"Not every response value was one of CR, PR, SD, PD or NE, so objective "
+"response and disease control rates were not calculated."
 msgstr ""
-"Yanıt değerlerinin hepsi RECIST kategorisi (CR, PR, SD, PD, NE) değildi; bu "
-"yüzden objektif yanıt ve hastalık kontrol oranları hesaplanmadı."
+"Yanıt değerlerinin hepsi CR, PR, SD, PD veya NE değildi; bu yüzden objektif "
+"yanıt ve hastalık kontrol oranları hesaplanmadı."
 
 #: R/ihcheterogeneity.b.R
 msgid "Not graded:"
 msgstr "Derecelendirilmedi:"
 
 #: R/ihcheterogeneity.b.R
-msgid "Not graded: ordinal score"
-msgstr "Derecelendirilmedi: sıralı skor"
+msgid "Not graded: ordinal or binned values"
+msgstr "Derecelendirilmedi: sıralı ya da kaba aralıklı değerler"
 
 #: R/diagnosticmeta.b.R
 msgid "Not interpretable: too many zero cells"
@@ -7834,7 +8038,7 @@ msgstr "Tedavi devam ediyor (isteğe bağlı)"
 msgid ""
 "Oncology and pathology analyses from the ClinicoPath project: swimmer plots "
 "of patient timelines with response rates and follow-up; waterfall and spider "
-"plots of tumour burden response (thresholds adapted from RECIST v1.1, not a "
+"plots of tumor burden response (thresholds adapted from RECIST v1.1, not a "
 "lesion-level RECIST assessment); diagnostic test accuracy meta-analysis with "
 "bivariate and proportional-hazards SROC models; and regional heterogeneity "
 "of an immunohistochemistry marker, against a reference or between regions. "
@@ -7992,8 +8196,14 @@ msgstr ""
 msgid ""
 "Optional per-patient RECIST category (CR/PR/SD/PD, or NE for not evaluable). "
 "It overrides the computed category, and counts a patient with no measured "
-"value (e.g. PD before the first scan). Affects coloring and metrics."
+"value (e.g. PD before the first scan). Affects coloring and metrics. "
+"Per-visit values are reduced to the best one up to the first PD."
 msgstr ""
+"İsteğe bağlı hasta başına RECIST kategorisi (CR/PR/SD/PD veya "
+"değerlendirilemez için NE). Hesaplanan kategorinin yerine geçer ve ölçülmüş "
+"değeri olmayan bir hastayı da sayar (örneğin ilk taramadan önce PD). "
+"Renklendirmeyi ve ölçütleri etkiler. Ziyaret bazlı değerler, ilk PD'ye "
+"kadarki en iyi değere indirgenir."
 
 #: waterfall/options/confirmationVar.description.jamovi
 msgid ""
@@ -8030,8 +8240,8 @@ msgstr ""
 "örneklendiği kompartman; her vaka için bir satır."
 
 #: R/ihcheterogeneity.b.R
-msgid "Ordinal score"
-msgstr "Sıralı skor"
+msgid "Ordinal score or binned values"
+msgstr "Sıralı skor ya da kaba aralıklı değerler"
 
 #: R/waterfall.b.R
 msgid "ORR"
@@ -8101,11 +8311,13 @@ msgstr "Genel / tüm kesit / sıcak nokta (isteğe bağlı)"
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"Overall: no verdict, because the measurements are an ordinal score and the "
-"thresholds of this analysis assume a continuous scale."
+"Overall: no verdict, because the measurements look like an ordinal score or "
+"coarsely binned values and the thresholds of this analysis assume a finely "
+"measured continuous scale."
 msgstr ""
-"Genel: karar yok, çünkü ölçümler sıralı bir skor ve bu analizin eşikleri "
-"sürekli bir ölçek varsayar."
+"Genel: karar yok, çünkü ölçümler sıralı bir skora ya da kaba aralıklarla "
+"kaydedilmiş değerlere benziyor ve bu analizin eşikleri ince ölçülmüş sürekli "
+"bir ölçek varsayar."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -8254,6 +8466,14 @@ msgstr ""
 "GA'sı marj içinde kaldığında fark dışlanır (iki tek yönlü test), bu GA "
 "tamamen marjın ötesinde kaldığında fark önemli kabul edilir; aksi halde "
 "sonuç belirsizdir. Yüzde farkın GA'sı bir Fieller aralığıdır."
+
+#: R/ihcheterogeneity.b.R
+msgid ""
+"Pairs of regions shown to be below the threshold on their own (upper 95%% "
+"limit below it): %s."
+msgstr ""
+"Tek başına eşiğin altında olduğu gösterilen bölge çiftleri (üst %%95 sınırı "
+"eşiğin altında): %s."
 
 #: R/ihcheterogeneity.b.R
 msgid "Pairs of regions with fewer than %d paired values are not tested: %s."
@@ -10003,28 +10223,6 @@ msgstr ""
 #: R/diagnosticmeta.b.R
 msgid ""
 "Rule-out power is governed by the negative likelihood ratio rather than by "
-"sensitivity alone; here LR- = %.2f, but with no false negatives in most "
-"studies this value and its interval are set by the continuity correction "
-"rather than by the data, so it is not graded."
-msgstr ""
-"Dışlama (rule-out) gücünü tek başına duyarlılık değil negatif olabilirlik "
-"oranı belirler; burada LR- = %.2f, ancak çalışmaların çoğunda yanlış negatif "
-"olmadığından bu değer ve aralığı verilerden çok süreklilik düzeltmesiyle "
-"belirleniyor, bu yüzden derecelendirilmedi."
-
-#: R/diagnosticmeta.b.R
-msgid ""
-"Rule-out power is governed by the negative likelihood ratio rather than by "
-"sensitivity alone; here LR- = %.2f, which lowers the post-test odds "
-"substantially (the SnNout pattern)."
-msgstr ""
-"Dışlama gücü yalnızca duyarlılıkla değil negatif olabilirlik oranıyla "
-"belirlenir; burada NOO = %.2f olup test sonrası odds değerini önemli ölçüde "
-"düşürür (SnNout örüntüsü)."
-
-#: R/diagnosticmeta.b.R
-msgid ""
-"Rule-out power is governed by the negative likelihood ratio rather than by "
 "sensitivity alone; here LR- = %.2f, which provides minimal evidence against "
 "disease after a negative result."
 msgstr ""
@@ -10051,6 +10249,28 @@ msgstr ""
 "Dışlama gücü yalnızca duyarlılıkla değil negatif olabilirlik oranıyla "
 "belirlenir; burada NOO = %.2f olup negatif bir sonuçtan sonra hastalık "
 "aleyhine zayıf kanıt sağlar."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"Rule-out power is governed by the negative likelihood ratio rather than by "
+"sensitivity alone; here LR- = %s, but with no false negatives in most "
+"studies this value and its interval are set by the continuity correction "
+"rather than by the data, so it is not graded."
+msgstr ""
+"Dışlama (rule-out) gücünü tek başına duyarlılık değil negatif olabilirlik "
+"oranı belirler; burada LR- = %s, ancak çalışmaların çoğunda yanlış negatif "
+"olmadığından bu değer ve aralığı verilerden çok süreklilik düzeltmesiyle "
+"belirleniyor, bu yüzden derecelendirilmedi."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"Rule-out power is governed by the negative likelihood ratio rather than by "
+"sensitivity alone; here LR- = %s, which lowers the post-test odds "
+"substantially (the SnNout pattern)."
+msgstr ""
+"Dışlama gücü yalnızca duyarlılıkla değil negatif olabilirlik oranıyla "
+"belirlenir; burada NOO = %s olup test sonrası odds değerini önemli ölçüde "
+"düşürür (SnNout örüntüsü)."
 
 #: R/waterfall.b.R
 msgid "Run Analysis"
@@ -10338,6 +10558,10 @@ msgstr ""
 "marjını belirleyiniz."
 
 #: R/waterfall.b.R
+msgid "Several response categories per patient"
+msgstr "Hasta başına birden fazla yanıt kategorisi"
+
+#: R/waterfall.b.R
 msgid "Several rows per patient"
 msgstr "Hasta başına birden fazla satır"
 
@@ -10475,20 +10699,26 @@ msgstr ""
 #: R/ihcheterogeneity.b.R
 msgid ""
 "Slope of the difference on the mean of the two regions compared, with "
-"heteroscedasticity-robust (HC3) standard errors; p is unadjusted. Unequal "
-"measurement error between regions can produce a slope, so here a slope can "
-"stop a difference from being ruled out but never shows it to be material. "
-"When p is below 0.05 divided by the number of comparisons, the difference is "
-"also judged at the 5th and 95th percentiles of that level (Bland & Altman "
-"1999)."
+"heteroscedasticity-robust (HC3) standard errors; p is unadjusted. "
+"Measurement error alone tilts a slope on the second region of a pair "
+"downwards and a slope on the first region upwards, so a difference is "
+"treated as changing with the level only when its slope differs from zero (p "
+"below 0.05 divided by the number of comparisons) in the same direction on "
+"all three: each of the two regions and their mean (Krouwer 2008). Such a "
+"difference is judged at the 5th and 95th percentiles of the mean, against "
+"the margin at the comparison mean taken as fixed; it can stop a difference "
+"from being ruled out but never shows it to be material (Bland & Altman 1999)."
 msgstr ""
-"Farkın karşılaştırılan iki bölgenin ortalamasına göre eğimi, "
-"heteroskedastisiteye dayanıklı (HC3) standart hatalarla; p düzeltilmemiştir. "
-"Bölgeler arasındaki eşit olmayan ölçüm hatası bir eğim oluşturabilir; bu "
-"nedenle burada bir eğim bir farkın dışlanmasını engelleyebilir, ancak farkın "
-"önemli olduğunu asla göstermez. p, 0.05'in karşılaştırma sayısına bölümünden "
-"küçük olduğunda fark, bu düzeyin 5. ve 95. persentillerinde de "
-"değerlendirilir (Bland & Altman 1999)."
+"Farkın, karşılaştırılan iki bölgenin ortalamasına göre eğimi; değişen "
+"varyansa dayanıklı (HC3) standart hatalarla, p düzeltilmemiştir. Yalnızca "
+"ölçüm hatası, bir çiftin ikinci bölgesine göre eğimi aşağı, birinci "
+"bölgesine göre eğimi yukarı eğer; bu nedenle bir fark, eğimi üçünde birden "
+"aynı yönde sıfırdan farklı olduğunda (p, 0,05'in karşılaştırma sayısına "
+"bölümünden küçük) düzeyle değişiyor kabul edilir: iki bölgenin her biri ve "
+"ortalamaları (Krouwer 2008). Böyle bir fark, ortalamanın 5. ve 95. "
+"yüzdeliklerinde, karşılaştırma ortalamasındaki sınır sabit alınarak "
+"değerlendirilir; bir farkın dışlanmasını engelleyebilir ama onun önemli "
+"olduğunu asla göstermez (Bland & Altman 1999)."
 
 #: R/swimmerplot.b.R
 msgid "Small cell counts in Fisher's exact test"
@@ -10533,11 +10763,11 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"Some response categories have <3 patients. Consider grouping categories for "
-"meaningful analysis."
+"Some response categories have fewer than 3 patients, so their percentages "
+"are imprecise."
 msgstr ""
-"Bazı yanıt kategorilerinde <3 hasta var. Anlamlı analiz için kategorileri "
-"gruplandırmayı değerlendirin."
+"Bazı yanıt kategorilerinde 3'ten az hasta var, bu yüzden yüzdeleri kesin "
+"değildir."
 
 #: R/waterfall.b.R
 msgid "Some values look like proportions"
@@ -10657,6 +10887,10 @@ msgstr "Spearman korelasyonu monoton ilişkiyi ölçer ve sistematik sapmalara k
 #: R/ihcheterogeneity.b.R
 msgid "Spearman correlation:"
 msgstr "Spearman korelasyonu:"
+
+#: R/ihcheterogeneity.b.R
+msgid "Spearman correlation: %s"
+msgstr "Spearman korelasyonu: %s"
 
 #: R/ihcheterogeneity.b.R
 msgid "Spearman correlation: %s vs reference"
@@ -10829,10 +11063,13 @@ msgstr "Başlangıç Zamanı:"
 #: R/swimmerplot.b.R
 msgid ""
 "Start/End are offsets from the earliest start date ({origin}), in {unit}; "
-"Duration is in {unit}."
+"Duration is in {unit}, measured from the patient's own start, so with "
+"calendar units End minus Start can differ slightly from Duration."
 msgstr ""
-"Başlangıç/Bitiş en erken başlangıç tarihinden ({origin}) itibaren "
-"kaymalardır ({unit} cinsinden); Süre {unit} cinsindendir."
+"Başlangıç/Bitiş, en erken başlangıç tarihinden ({origin}) itibaren {unit} "
+"cinsinden uzaklıklardır; Süre {unit} cinsindendir ve hastanın kendi "
+"başlangıcından ölçülür, bu yüzden takvim birimlerinde Bitiş eksi Başlangıç "
+"Süre'den biraz farklı olabilir."
 
 #: diagnosticmeta/results/publicationbias.columns.title
 #: ihcheterogeneity/results/compartmentTests.columns.title
@@ -11114,7 +11351,7 @@ msgstr "Klinik kılavuzlar için kanıt sentezi"
 
 #: package/datasets/WaterfallandSpiderPlot.description
 msgid ""
-"Synthetic data, 15 patients: tumour measurements in mm at months 0, 2, 4 and "
+"Synthetic data, 15 patients: tumor measurements in mm at months 0, 2, 4 and "
 "6. Raw-measurement input, spider plot, time to response and duration of "
 "response."
 msgstr ""
@@ -11590,6 +11827,14 @@ msgstr ""
 "%s bölge çiftinin/çiftlerinin korelasyonu nokta tahmini olarak %s eşiğinin "
 "altında, ancak altında olduğu gösterilmedi."
 
+#: R/ihcheterogeneity.b.R
+msgid ""
+"The correlation of the region pair(s) %s was shown to be below the threshold "
+"(upper 95%% confidence limit below it)."
+msgstr ""
+"%s bölge çift(ler)inin korelasyonunun eşiğin altında olduğu gösterildi (üst "
+"%%95 güven sınırı eşiğin altında)."
+
 #: R/diagnosticmeta.b.R
 msgid ""
 "The counts look like proportions: no study has more than one diseased or one "
@@ -12010,15 +12255,17 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"The measurements are an ordinal score (5 or fewer whole-number values), so "
-"no sampling verdict is given: the CV and the percentage-difference margin "
-"assume a continuous scale. Assess agreement of an ordinal score with "
-"weighted kappa or the proportion of cases in the same category."
+"The measurements look like an ordinal score or coarsely binned values (only "
+"a few whole-number values), so no sampling verdict is given: the CV and the "
+"percentage-difference margin assume a finely measured continuous scale. "
+"Assess agreement of an ordinal score with weighted kappa or the proportion "
+"of cases in the same category."
 msgstr ""
-"Ölçümler sıralı bir skor (en fazla 5 farklı tam sayı değeri); bu nedenle "
-"örnekleme kararı verilmedi: CV ve yüzde fark marjı sürekli bir ölçek "
-"varsayar. Sıralı bir skorun uyumunu ağırlıklı kappa ya da aynı kategorideki "
-"olguların oranıyla değerlendirin."
+"Ölçümler sıralı bir skora ya da kaba aralıklarla kaydedilmiş değerlere "
+"benziyor (yalnızca birkaç tam sayı değeri); bu nedenle örnekleme kararı "
+"verilmedi: CV ve yüzde fark sınırı ince ölçülmüş sürekli bir ölçek varsayar. "
+"Sıralı bir skorun uyumunu ağırlıklı kappa ya da aynı kategorideki olguların "
+"oranıyla değerlendirin."
 
 #: R/ihcheterogeneity.b.R
 msgid "The measurements show no variability, so the ICC is not defined."
@@ -12244,27 +12491,29 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"The response category override contained %d unrecognised label(s): %s. Only "
-"CR, PR, SD, PD and Unknown are accepted. Those patients keep their computed "
-"category; no patient was dropped."
+"The response category override contained %d unrecognized label(s): %s. Only "
+"CR, PR, SD, PD (or their full names, such as Partial response) and NE or "
+"Unknown are accepted. Those patients keep their computed category; no "
+"patient was dropped."
 msgstr ""
-"Yanıt kategorisi geçersiz kılma %d tanınmayan etiket içeriyordu: %s. "
-"Yalnızca CR, PR, SD, PD ve Bilinmeyen kabul edilir. Bu hastalar hesaplanan "
-"kategorilerini korur; hiçbir hasta çıkarılmamıştır."
+"Yanıt kategorisi geçersiz kılma değişkeni %d tanınmayan etiket içeriyordu: "
+"%s. Yalnızca CR, PR, SD, PD (veya Partial response gibi tam adları) ile NE "
+"veya Unknown kabul edilir. Bu hastalar hesaplanan kategorilerini korur; "
+"hiçbir hasta çıkarılmadı."
 
 #: R/swimmerplot.b.R
 msgid ""
-"The response variable has values that are not RECIST categories (CR, PR, SD, "
-"PD or NE): %s. Objective Response Rate and Disease Control Rate are "
-"withheld, because a patient with such a value cannot be counted as a "
-"responder or as a non-responder. Recode these values to CR, PR, SD, PD or "
-"NE, or leave the cell empty for no recorded response."
+"The response variable has values other than CR, PR, SD, PD or NE: %s. "
+"Objective Response Rate and Disease Control Rate are withheld, because a "
+"patient with such a value cannot be counted as a responder or as a "
+"non-responder. Recode these values to CR, PR, SD, PD or NE, or leave the "
+"cell empty for no recorded response."
 msgstr ""
-"Yanıt değişkeninde RECIST kategorisi (CR, PR, SD, PD veya NE) olmayan "
-"değerler var: %s. Objektif Yanıt Oranı ve Hastalık Kontrol Oranı verilmedi, "
-"çünkü böyle bir değeri olan hasta ne yanıt veren ne de yanıt vermeyen olarak "
-"sayılabilir. Bu değerleri CR, PR, SD, PD veya NE olarak yeniden kodlayın ya "
-"da kayıtlı yanıt yoksa hücreyi boş bırakın."
+"Yanıt değişkeninde CR, PR, SD, PD veya NE dışında değerler var: %s. Objektif "
+"Yanıt Oranı ve Hastalık Kontrol Oranı verilmedi, çünkü böyle bir değeri olan "
+"hasta ne yanıt veren ne de yanıt vermeyen olarak sayılabilir. Bu değerleri "
+"CR, PR, SD, PD veya NE olarak yeniden kodlayın ya da kayıtlı yanıt yoksa "
+"hücreyi boş bırakın."
 
 #: R/swimmerplot.b.R
 msgid ""
@@ -12524,6 +12773,14 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
+"The weakest pair of regions, '%s', correlated %.2f, shown to be below your "
+"%.2f threshold; the average was %.2f."
+msgstr ""
+"En zayıf bölge çifti '%s', %.2f korelasyon gösterdi ve %.2f eşiğinizin "
+"altında olduğu gösterildi; ortalama %.2f idi."
+
+#: R/ihcheterogeneity.b.R
+msgid ""
 "The weakest region, '%s', correlated %.2f with the reference, shown to be "
 "below your %.2f threshold; the average was %.2f."
 msgstr ""
@@ -12557,10 +12814,10 @@ msgstr ""
 #: R/ihcheterogeneity.b.R
 msgid ""
 "The within-case CV was %s%%; it was not graded, because the measurements "
-"were an ordinal score."
+"looked like an ordinal score or coarsely binned values."
 msgstr ""
-"Olgu içi CV %%%s idi; ölçümler sıralı bir skor olduğu için "
-"derecelendirilmedi."
+"Olgu içi CV %%%s idi; ölçümler sıralı bir skora ya da kaba aralıklarla "
+"kaydedilmiş değerlere benzediği için derecelendirilmedi."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -13618,9 +13875,13 @@ msgstr "Uyarı"
 
 #: R/waterfall.b.R
 msgid ""
-"Warning: %d missing response values found. These will be excluded from "
-"analysis."
-msgstr "Uyarı: %d eksik yanıt değeri bulundu. Bunlar analizden hariç tutulacaktır."
+"Warning: %d missing response values found. Those rows take no part in best "
+"response; a patient with no value at all is excluded unless a response "
+"category is supplied for them."
+msgstr ""
+"Uyarı: %d eksik yanıt değeri bulundu. Bu satırlar en iyi yanıta katılmaz; "
+"hiç değeri olmayan bir hasta, kendisi için bir yanıt kategorisi verilmedikçe "
+"analiz dışı bırakılır."
 
 #: R/waterfall.b.R
 msgid "Warning: Negative time values detected. Please verify time measurements."
@@ -13820,20 +14081,24 @@ msgstr ""
 #: R/ihcheterogeneity.b.R
 msgid ""
 "Whether a difference changed with the level (proportional bias) was assessed "
-"by regressing it on the mean of the two regions compared, with "
-"heteroscedasticity-robust standard errors (Bland & Altman 1999); where the "
-"slope differed from zero (p below 0.05 divided by the number of "
-"comparisons), the difference was also judged at the 5th and 95th percentiles "
-"of that level, and a difference that changed with the level was not "
-"considered ruled out."
+"by regressing it on each of the two regions compared and on their mean, with "
+"heteroscedasticity-robust standard errors (Bland & Altman 1999); because "
+"measurement error alone tilts the slope on one region downwards and on the "
+"other upwards, a difference was considered to change with the level only "
+"when all three slopes differed from zero in the same direction (p below 0.05 "
+"divided by the number of comparisons) (Krouwer 2008). Such a difference was "
+"judged at the 5th and 95th percentiles of the mean of the two regions and "
+"was considered ruled out only if it lay within the margin at both."
 msgstr ""
-"Farkın düzeye göre değişip değişmediği (orantısal yanlılık), fark "
-"karşılaştırılan iki bölgenin ortalamasına göre heteroskedastisiteye "
-"dayanıklı standart hatalarla regrese edilerek değerlendirildi (Bland & "
-"Altman 1999); eğimin sıfırdan farklı olduğu durumlarda (p, 0.05'in "
-"karşılaştırma sayısına bölümünden küçük), fark bu düzeyin 5. ve 95. "
-"persentillerinde de değerlendirildi ve düzeye göre değişen bir fark "
-"dışlanmış sayılmadı."
+"Bir farkın düzeyle değişip değişmediği (orantısal yanlılık), fark "
+"karşılaştırılan iki bölgenin her birine ve ortalamalarına göre değişen "
+"varyansa dayanıklı standart hatalarla regresyona sokularak değerlendirildi "
+"(Bland & Altman 1999); yalnızca ölçüm hatası eğimi bir bölgeye göre aşağı, "
+"diğerine göre yukarı eğdiği için bir fark, ancak üç eğim de aynı yönde "
+"sıfırdan farklı olduğunda (p, 0,05'in karşılaştırma sayısına bölümünden "
+"küçük) düzeyle değişiyor kabul edildi (Krouwer 2008). Böyle bir fark, iki "
+"bölgenin ortalamasının 5. ve 95. yüzdeliklerinde değerlendirildi ve ancak "
+"her ikisinde de sınırın içinde kaldığında dışlanmış kabul edildi."
 
 #: R/ihcheterogeneity.b.R
 msgid ""
@@ -13892,64 +14157,78 @@ msgstr "Şelale grafiğindeki çubukların genişliği."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"With %.1f%% sensitivity, approximately %.0f out of 100 diseased patients "
-"will be correctly identified."
+"With %s%% sensitivity, approximately %.0f out of 100 diseased patients will "
+"be correctly identified."
 msgstr ""
-"%%%.1f duyarlılık ile, hastalıklı 100 hastadan yaklaşık %.0f tanesi doğru "
+"%%%s duyarlılık ile, hastalıklı 100 hastadan yaklaşık %.0f tanesi doğru "
 "olarak tanımlanacaktır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"With %.1f%% sensitivity, this test will detect %.0f out of 1,000 patients "
-"with disease, missing only %.0f."
+"With %s%% sensitivity, this test will detect %.0f out of 1,000 patients with "
+"disease, missing only %.0f."
 msgstr ""
-"%%%.1f duyarlılıkla bu test, hastalığı olan her 1.000 hastadan %.0f tanesini "
+"%%%s duyarlılıkla bu test, hastalığı olan her 1.000 hastadan %.0f tanesini "
 "saptar ve yalnızca %.0f tanesini kaçırır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"With %.1f%% sensitivity, this test will detect %.0f out of 100 patients with "
+"With %s%% sensitivity, this test will detect %.0f out of 100 patients with "
 "disease, missing only %.0f."
 msgstr ""
-"%%%.1f duyarlılık ile bu test, hastalıklı 100 hastanın %.0f tanesini tespit "
+"%%%s duyarlılık ile bu test, hastalıklı 100 hastanın %.0f tanesini tespit "
 "edecek, yalnızca %.0f tanesini kaçıracaktır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"With %.1f%% sensitivity, up to %.0f out of 100 diseased patients may be "
-"missed."
-msgstr "%%%.1f duyarlılık ile, hastalıklı 100 hastadan %.0f kadarı kaçırılabilir."
+"With %s%% sensitivity, this test will miss fewer than 1 in 1,000 patients "
+"with disease."
+msgstr ""
+"%%%s duyarlılıkla bu test, hastalığı olan her 1.000 hastadan 1'inden azını "
+"kaçıracaktır."
+
+#: R/diagnosticmeta.b.R
+msgid "With %s%% sensitivity, up to %.0f out of 100 diseased patients may be missed."
+msgstr "%%%s duyarlılık ile, hastalıklı 100 hastadan %.0f kadarı kaçırılabilir."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"With %.1f%% specificity, approximately %.0f out of 100 healthy individuals "
+"With %s%% specificity, approximately %.0f out of 100 healthy individuals "
 "will be correctly classified."
 msgstr ""
-"%%%.1f özgüllük ile, sağlıklı 100 bireyden yaklaşık %.0f tanesi doğru olarak "
+"%%%s özgüllük ile, sağlıklı 100 bireyden yaklaşık %.0f tanesi doğru olarak "
 "sınıflandırılacaktır."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"With %.1f%% specificity, only %.0f out of 1,000 healthy individuals will "
-"test positive (false alarms)."
+"With %s%% specificity, fewer than 1 in 1,000 healthy individuals will test "
+"positive (false alarms)."
 msgstr ""
-"%%%.1f özgüllükle her 1.000 sağlıklı bireyden yalnızca %.0f tanesinin testi "
+"%%%s özgüllükle, her 1.000 sağlıklı bireyden 1'inden azı pozitif sonuç "
+"verecektir (yanlış alarm)."
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"With %s%% specificity, only %.0f out of 1,000 healthy individuals will test "
+"positive (false alarms)."
+msgstr ""
+"%%%s özgüllükle her 1.000 sağlıklı bireyden yalnızca %.0f tanesinin testi "
 "pozitif çıkar (yanlış alarm)."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"With %.1f%% specificity, only %.0f out of 100 healthy individuals will test "
+"With %s%% specificity, only %.0f out of 100 healthy individuals will test "
 "positive (false alarms)."
 msgstr ""
-"%%%.1f özgüllük ile, sağlıklı 100 bireyden yalnızca %.0f tanesi pozitif test "
+"%%%s özgüllük ile, sağlıklı 100 bireyden yalnızca %.0f tanesi pozitif test "
 "sonucu verecektir (yanlış alarmlar)."
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"With %.1f%% specificity, up to %.0f out of 100 healthy individuals may test "
+"With %s%% specificity, up to %.0f out of 100 healthy individuals may test "
 "positive."
 msgstr ""
-"%%%.1f özgüllük ile, sağlıklı 100 bireyden %.0f kadarı pozitif test sonucu "
+"%%%s özgüllük ile, sağlıklı 100 bireyden %.0f kadarı pozitif test sonucu "
 "verebilir."
 
 #: R/ihcheterogeneity.b.R
@@ -14019,8 +14298,8 @@ msgid "Within-case CV (%) - between regions"
 msgstr "Vaka içi CV (%) - bölgeler arası"
 
 #: R/ihcheterogeneity.b.R
-msgid "Within-case CV (%) - region vs reference"
-msgstr "Vaka içi CV (%) - bölge ve referans"
+msgid "Within-case CV (%) - reference and regions"
+msgstr "Olgu içi CV (%) - referans ve bölgeler"
 
 #: R/ihcheterogeneity.b.R
 msgid "Within-case CV = %s%% (High variability)"
@@ -14035,8 +14314,8 @@ msgid "Within-case CV = %s%% (Moderate variability)"
 msgstr "Vaka içi CV = %%%s (Orta değişkenlik)"
 
 #: R/ihcheterogeneity.b.R
-msgid "Within-case CV = %s%% (not graded: ordinal score)"
-msgstr "Olgu içi CV = %%%s (derecelendirilmedi: sıralı skor)"
+msgid "Within-case CV = %s%% (not graded: ordinal or binned values)"
+msgstr "Olgu içi CV = %%%s (derecelendirilmedi: sıralı ya da kaba aralıklı değerler)"
 
 #: R/ihcheterogeneity.b.R
 msgid "Within-Case Variance (Sampling)"

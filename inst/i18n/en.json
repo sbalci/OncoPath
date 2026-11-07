@@ -94,6 +94,12 @@
             "%d cases without a Spatial Region ID are left out of the compartment analysis.": [
                 ""
             ],
+            "%d excluded rows had a censoring/event value that is not used: %s. Follow-up, the reverse Kaplan-Meier estimate and the status arrows for these patients come from their remaining rows only.": [
+                ""
+            ],
+            "%d excluded rows had a recorded response that is not used: %s. Best response, ORR and DCR for these patients come from their remaining rows only. An ongoing line with a blank end time is a common cause: enter the data cutoff as its end to keep it.": [
+                ""
+            ],
             "%d fall after the patient's last end.": [
                 ""
             ],
@@ -139,7 +145,7 @@
             "%d of %d non-zero response values lie strictly between -1 and 1, while the others look like percentages. If some rows were entered as proportions (-0.35 for -35%%), multiply those rows by 100.": [
                 ""
             ],
-            "%d of %d patients have more than one response row. Their category, and so ORR, DCR and every response row, is the best response recorded up to and including the first PD, in time order: CR and PR are not confirmed, SD has no minimum duration, and rows after the first PD, later treatment lines included, are ignored. These are unconfirmed best responses, not a RECIST 1.1 best overall response; supply one adjudicated response per patient when the endpoint requires it.": [
+            "%d of %d patients have more than one different response recorded across their rows. Their category, and so ORR, DCR and every response row, is the best response recorded up to and including the first PD, in time order: CR and PR are not confirmed, SD has no minimum duration, and rows after the first PD, later treatment lines included, are ignored. These are unconfirmed best responses, not a RECIST 1.1 best overall response; supply one adjudicated response per patient (the same value on each of the patient's rows is fine) when the endpoint requires it.": [
                 ""
             ],
             "%d of %d patients have no censoring/event value. The reverse Kaplan-Meier median follow-up uses only the patients whose status is known; these patients are not counted as either censored or completed. Their timelines are still drawn, without a status arrow.": [
@@ -175,7 +181,13 @@
             "%d of %d studies have no false negatives. Each of them enters the model only after a continuity correction, so the pooled sensitivity, its confidence interval, its between-study variance, LR- and the diagnostic odds ratio are set largely by the size of that correction rather than by the data: a smaller correction gives a higher sensitivity and a much smaller LR-. The interval is not a data-derived precision. If all studies shared one sensitivity, the raw counts (%s false negatives among %s diseased participants) would give an exact %s%% confidence interval starting at %.2f%%, and LR- would have no lower limit above zero the data can set. Report the raw counts and that bound alongside the pooled value, and do not read the LR- grading as established.": [
                 ""
             ],
+            "%d of %d studies have no false negatives. Each of them enters the model only after a continuity correction, so the pooled sensitivity, its confidence interval, its between-study variance, LR- and the diagnostic odds ratio are set largely by the size of that correction rather than by the data: a smaller correction gives a higher sensitivity and a much smaller LR-. The interval is not a data-derived precision. If all studies shared one sensitivity, the raw counts (%s false negatives among %s diseased participants) would give an exact %s%% confidence interval starting at %.2f%%. Report the raw counts and that bound alongside the pooled value, and do not read the LR- grading as established.": [
+                ""
+            ],
             "%d of %d studies have no false positives. Each of them enters the model only after a continuity correction, so the pooled specificity, its confidence interval, its between-study variance, LR+ and the diagnostic odds ratio are set largely by the size of that correction rather than by the data: a smaller correction gives a higher specificity and a much larger LR+. The interval is not a data-derived precision. If all studies shared one specificity, the raw counts (%s false positives among %s non-diseased participants) would give an exact %s%% confidence interval starting at %.2f%%, and LR+ would have no upper limit the data can set. Report the raw counts and that bound alongside the pooled value, and do not read the LR+ grading as established.": [
+                ""
+            ],
+            "%d of %d studies have no false positives. Each of them enters the model only after a continuity correction, so the pooled specificity, its confidence interval, its between-study variance, LR+ and the diagnostic odds ratio are set largely by the size of that correction rather than by the data: a smaller correction gives a higher specificity and a much larger LR+. The interval is not a data-derived precision. If all studies shared one specificity, the raw counts (%s false positives among %s non-diseased participants) would give an exact %s%% confidence interval starting at %.2f%%. Report the raw counts and that bound alongside the pooled value, and do not read the LR+ grading as established.": [
                 ""
             ],
             "%d of %d studies were excluded before analysis, leaving %d - too few to pool.": [
@@ -202,7 +214,10 @@
             "%d patient(s) have a negative raw measurement, which is not a possible tumor size: %s. A negative baseline inverts the sign of the percent change, so a growing tumor would be reported as a response. These patients are reported as \"Unknown\" rather than guessed at. Check the measurement column for data-entry errors.": [
                 ""
             ],
-            "%d patient(s) have conflicting non-missing group values. Group comparisons require one fixed group per patient. Select a patient-level grouping variable or remove the grouping selection; episode-specific groups cannot define independent patient groups.": [
+            "%d patient(s) have a supplied category of NE or Unknown and are reported as not evaluable: %s.": [
+                ""
+            ],
+            "%d patient(s) have conflicting non-missing group values, so the group comparison was not run. Group comparisons require one fixed group per patient. Select a patient-level grouping variable or remove the grouping selection; episode-specific groups cannot define independent patient groups. The rest of the analysis is unaffected.": [
                 ""
             ],
             "%d patient(s) have more than one assessment at the same time point: %s. Rows at one time point are read as one visit, largest value first, so the result does not depend on the row order and a repeated row cannot by itself count as progression. Check for duplicated rows.": [
@@ -211,10 +226,13 @@
             "%d patient(s) have more than one confirmation value across their rows: %s. The first recorded value is used for the marker.": [
                 ""
             ],
-            "%d patient(s) have more than one response category override across their rows: %s. The first recorded value is used. Enter one category per patient.": [
+            "%d patient(s) have more than one row but no time variable is selected: %s. The smallest value was used as each patient's best response. If the rows are visits, a 0%% baseline row takes part in that minimum, so a tumor that only grew is scored SD instead of PD. Select the visit time as the Time Variable.": [
                 ""
             ],
-            "%d patient(s) have more than one row but no time variable is selected: %s. The smallest value was used as each patient's best response. If the rows are visits, a 0%% baseline row takes part in that minimum, so a tumor that only grew is scored SD instead of PD. Select the visit time as the Time Variable.": [
+            "%d patient(s) have more than one supplied response category across their rows: %s. They were read as per-visit responses in row order (no time variable is selected): each patient's category is the best one up to and including the first PD (CR, then PR, then SD, then PD); NE or Unknown visits do not count, and responses are not confirmed. Select the time variable, or enter one category per patient.": [
+                ""
+            ],
+            "%d patient(s) have more than one supplied response category across their rows: %s. They were read as per-visit responses: each patient's category is the best one in time order up to and including the first PD (CR, then PR, then SD, then PD); NE or Unknown visits do not count, and responses are not confirmed. If the values are not per-visit responses, enter one category per patient.": [
                 ""
             ],
             "%d patient(s) have more than one value of the group variable across their rows: %s. Each patient is counted once, in the group of their first recorded value. Check the group column.": [
@@ -280,7 +298,7 @@
             "%s (reference)": [
                 ""
             ],
-            "%s A new study is predicted to fall between %.1f%% and %.1f%% for sensitivity and between %.1f%% and %.1f%% for specificity.": [
+            "%s A new study is predicted to fall between %s%% and %s%% for sensitivity and between %s%% and %s%% for specificity.": [
                 ""
             ],
             "%s is the reference measurement and was also selected as a regional measurement; it is analyzed as the reference only.": [
@@ -289,7 +307,7 @@
             "%s meta-regression on %d studies with a covariate contributing %d model parameter(s) (%d residual degrees of freedom). The usual recommendation is at least 10 studies per covariate, so estimates may be unstable and confidence intervals unreliable. Report this as exploratory only.": [
                 ""
             ],
-            "%s Positive LR %.2f%s and negative LR %.2f%s.": [
+            "%s Positive LR %s%s and negative LR %s%s.": [
                 ""
             ],
             "%s Rows that share a study identifier were pooled as separate studies, so some participants are counted more than once.": [
@@ -379,28 +397,28 @@
             "+1/N to all cells (N = study size)": [
                 ""
             ],
-            "<br><br><strong>Overall Summary:</strong> performance is <em>asymmetric</em> - pooled sensitivity (%.1f%%) and pooled specificity (%.1f%%) fall in different performance bands.": [
+            "<br><br><strong>Overall Summary:</strong> performance is <em>asymmetric</em> - pooled sensitivity (%s%%) and pooled specificity (%s%%) fall in different performance bands.": [
                 ""
             ],
-            "<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%) and pooled specificity (%.1f%%) both fall in the <em>excellent</em> band.": [
+            "<br><br><strong>Overall Summary:</strong> pooled sensitivity (%s%%) and pooled specificity (%s%%) both fall in the <em>excellent</em> band.": [
                 ""
             ],
-            "<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%) and pooled specificity (%.1f%%) both fall in the <em>good</em> band or above.": [
+            "<br><br><strong>Overall Summary:</strong> pooled sensitivity (%s%%) and pooled specificity (%s%%) both fall in the <em>good</em> band or above.": [
                 ""
             ],
-            "<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%) and pooled specificity (%.1f%%) do not both reach the <em>good</em> band.": [
+            "<br><br><strong>Overall Summary:</strong> pooled sensitivity (%s%%) and pooled specificity (%s%%) do not both reach the <em>good</em> band.": [
                 ""
             ],
-            "<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the <em>excellent</em> band on the conventional 90/80/70 scale.": [
+            "<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the <em>excellent</em> band on the conventional 90/80/70 scale.": [
                 ""
             ],
-            "<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the <em>good</em> band on the conventional 90/80/70 scale.": [
+            "<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the <em>good</em> band on the conventional 90/80/70 scale.": [
                 ""
             ],
-            "<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the <em>limited</em> band on the conventional 90/80/70 scale.": [
+            "<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the <em>limited</em> band on the conventional 90/80/70 scale.": [
                 ""
             ],
-            "<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the <em>moderate</em> band on the conventional 90/80/70 scale.": [
+            "<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the <em>moderate</em> band on the conventional 90/80/70 scale.": [
                 ""
             ],
             "<br><br><strong>Your positive LR of %.2f</strong> provides <em>minimal</em> evidence FOR disease when test is positive.": [
@@ -622,10 +640,10 @@
             "<strong>Narrow CIs:</strong> Large studies with precise estimates": [
                 ""
             ],
-            "<strong>Negative Likelihood Ratio:</strong> %.2f - A negative test is %.1fx more likely in healthy than disease": [
+            "<strong>Negative Likelihood Ratio:</strong> %s - A negative test is %.1fx more likely in healthy than disease": [
                 ""
             ],
-            "<strong>Negative Likelihood Ratio:</strong> %.2f - Interpretation unstable (sensitivity ≈ 100%%).": [
+            "<strong>Negative Likelihood Ratio:</strong> %s - Interpretation unstable (sensitivity ≈ 100%%).": [
                 ""
             ],
             "<strong>Negative Likelihood Ratio:</strong> Not estimable with the current data. LR- is (1 - sensitivity) / specificity, so it needs a pooled specificity above zero and finite pooled estimates; here the pooled specificity is 0 or an estimate did not converge. Read the pooled specificity and its confidence interval in the summary above to see which.": [
@@ -634,7 +652,7 @@
             "<strong>Not external validation:</strong> a meta-analysis summarizes existing published evidence and inherits any publication, spectrum or reference-standard bias of the included studies; it is not a prospective evaluation in an intended-use population with a pre-specified threshold": [
                 ""
             ],
-            "<strong>Note:</strong> its confidence interval (%.2f-%.2f) spans more than one evidence category, so this grading is not firmly established by the pooled data.": [
+            "<strong>Note:</strong> its confidence interval (%s-%s) spans more than one evidence category, so this grading is not firmly established by the pooled data.": [
                 ""
             ],
             "<strong>Note:</strong> the confidence interval spans more than one performance category, so this classification is not firmly established by the pooled data.": [
@@ -682,7 +700,7 @@
             "<strong>Positive Likelihood Ratio:</strong> Not estimable with the current data (specificity ≈ 100% or model unstable).": [
                 ""
             ],
-            "<strong>Prediction region (dotted):</strong> where the accuracy of a FUTURE study in a new setting is expected to fall. It includes between-study heterogeneity and does NOT shrink with more studies.": [
+            "<strong>Prediction region (dotted):</strong> where the accuracy of a FUTURE study in a new setting is expected to fall. It includes between-study heterogeneity, so more studies narrow it only down to the spread between studies, never to a single point.": [
                 ""
             ],
             "<strong>Proportional-Hazards SROC Analysis:</strong> Holling model estimated by adjusted profile maximum likelihood": [
@@ -724,10 +742,13 @@
             "<strong>Screening Applications:</strong> Prioritize sensitivity; the level needed depends on prevalence and on the cost of a missed case, not on a fixed band": [
                 ""
             ],
-            "<strong>Sensitivity:</strong> %.1f%% - The test correctly identifies %.0f out of 1,000 patients with disease": [
+            "<strong>Sensitivity:</strong> %s%% - The test correctly identifies %.0f out of 1,000 patients with disease": [
                 ""
             ],
-            "<strong>Sensitivity:</strong> %.1f%% - The test correctly identifies %.0f out of 100 patients with disease": [
+            "<strong>Sensitivity:</strong> %s%% - The test correctly identifies %.0f out of 100 patients with disease": [
+                ""
+            ],
+            "<strong>Sensitivity:</strong> %s%% - The test misses fewer than 1 in 1,000 patients with disease": [
                 ""
             ],
             "<strong>Sensitivity:</strong> Mean %.1f%% (Range: %.1f%% - %.1f%%)": [
@@ -739,10 +760,13 @@
             "<strong>Small Studies Present:</strong> Range of precision levels represented": [
                 ""
             ],
-            "<strong>Specificity:</strong> %.1f%% - The test correctly identifies %.0f out of 1,000 healthy individuals": [
+            "<strong>Specificity:</strong> %s%% - Fewer than 1 in 1,000 healthy individuals test positive": [
                 ""
             ],
-            "<strong>Specificity:</strong> %.1f%% - The test correctly identifies %.0f out of 100 healthy individuals": [
+            "<strong>Specificity:</strong> %s%% - The test correctly identifies %.0f out of 1,000 healthy individuals": [
+                ""
+            ],
+            "<strong>Specificity:</strong> %s%% - The test correctly identifies %.0f out of 100 healthy individuals": [
                 ""
             ],
             "<strong>Specificity:</strong> Mean %.1f%% (Range: %.1f%% - %.1f%%)": [
@@ -838,22 +862,22 @@
             "<strong>Your negative LR of %.2f</strong> provides <em>moderate</em> evidence AGAINST disease when test is negative.": [
                 ""
             ],
-            "<strong>Your negative LR of %.2f</strong> provides <em>strong</em> evidence AGAINST disease when test is negative.": [
-                ""
-            ],
             "<strong>Your negative LR of %.2f</strong> provides <em>weak</em> evidence AGAINST disease when test is negative.": [
                 ""
             ],
-            "<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the <em>excellent</em> band on the conventional 90/80/70 scale.": [
+            "<strong>Your negative LR of %s</strong> provides <em>strong</em> evidence AGAINST disease when test is negative.": [
                 ""
             ],
-            "<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the <em>good</em> band on the conventional 90/80/70 scale.": [
+            "<strong>Your pooled sensitivity of %s%%%s</strong> falls in the <em>excellent</em> band on the conventional 90/80/70 scale.": [
                 ""
             ],
-            "<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the <em>limited</em> band on the conventional 90/80/70 scale.": [
+            "<strong>Your pooled sensitivity of %s%%%s</strong> falls in the <em>good</em> band on the conventional 90/80/70 scale.": [
                 ""
             ],
-            "<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the <em>moderate</em> band on the conventional 90/80/70 scale.": [
+            "<strong>Your pooled sensitivity of %s%%%s</strong> falls in the <em>limited</em> band on the conventional 90/80/70 scale.": [
+                ""
+            ],
+            "<strong>Your pooled sensitivity of %s%%%s</strong> falls in the <em>moderate</em> band on the conventional 90/80/70 scale.": [
                 ""
             ],
             "≤-100% change from baseline (simplified criterion, NOT full RECIST CR which requires disappearance of ALL lesions including non-target)": [
@@ -943,10 +967,13 @@
             "A CV depends on the level, so compartments with different mean levels can differ in CV with the same absolute scatter.": [
                 ""
             ],
-            "A difference between two measurements that changes with the level of the marker - for example a biopsy that reads higher than the whole section in low cases and lower in high cases. A measurement's own error tilts a slope fitted against it, so with a reference this analysis requires the slopes against the reference, against the region and against their mean to agree in direction, and shows the slope against the mean; without a reference it uses the mean of the two regions. An average difference can hide it, and a fixed correction cannot remove it.": [
+            "A difference between two measurements that changes with the level of the marker - for example a biopsy that reads higher than the whole section in low cases and lower in high cases. A measurement's own error tilts a slope fitted against it, so this analysis requires the slopes against each of the two measurements compared (a region and the reference, or two regions) and against their mean to agree in direction, and shows the slope against the mean. An average difference can hide it, and a fixed correction cannot remove it.": [
                 ""
             ],
             "A Fisher's exact test was not run where every patient fell into the same class (e.g. no responders in any group), so there is no contrast to test.": [
+                ""
+            ],
+            "A margin of %s%% of the comparison mean is ±%s in the measurement's own units, smaller than the smallest non-zero difference recorded between paired measurements (%s). Ruling out a difference that small needs many cases and may be finer than matters clinically; check that the systematic difference margin suits this marker and its level.": [
                 ""
             ],
             "A material systematic difference between regions was present, so the regions should not be used interchangeably until it is resolved, whatever the correlation and CV.": [
@@ -1045,7 +1072,7 @@
             "Actual tumor measurements (mm, cm, sum of diameters)": [
                 ""
             ],
-            "Add a dedicated efficacy table with: - Median time to first response (RECIST PR or better) - Kaplan-Meier median duration of response (censoring-aware) - Number of responders and events Requires a time variable and raw (per-visit) input.": [
+            "Add a dedicated efficacy table with: - Median time to first response (RECIST PR or better) - Kaplan-Meier median duration of response (censoring-aware) - Number of responders and events Requires a time variable (raw measurements or per-visit percentage changes).": [
                 ""
             ],
             "Add clinical significance context to results: - The range of response rates compatible with the data (exact confidence interval) - A reminder to compare with the rate expected in your tumour type and setting - Sample size assessment": [
@@ -1307,6 +1334,9 @@
                 ""
             ],
             "Between-study heterogeneity is substantial - the prediction interval spans a wide range of accuracy - so this pooled pair does not describe any single population or laboratory. Read the prediction region and the subgroup or meta-regression results rather than the pooled point.": [
+                ""
+            ],
+            "Between-study heterogeneity is substantial, so the predictive values in any one setting can differ markedly from these; the prediction interval in the bivariate table shows the range of sensitivity and specificity a new setting may have.": [
                 ""
             ],
             "Between-study variance (tau^2)": [
@@ -1768,9 +1798,6 @@
             "Conflicting annotation values": [
                 ""
             ],
-            "Conflicting category overrides": [
-                ""
-            ],
             "Conflicting confirmation values": [
                 ""
             ],
@@ -1909,7 +1936,7 @@
             "CV (coefficient of variation):": [
                 ""
             ],
-            "CV = %.1f%%, not graded because the measurements are an ordinal score.": [
+            "CV = %.1f%%, not graded because the measurements look like an ordinal score or coarsely binned values.": [
                 ""
             ],
             "CV bands follow your CV threshold (low up to half of it, moderate up to it, high above it). For a test of whether heterogeneity differs between compartments, use the Kruskal-Wallis test on per-case CV (Compartment comparison tests).": [
@@ -2074,6 +2101,9 @@
             "Descriptive only. Time is split by best recorded response (unconfirmed; see the notices), which a patient can only achieve by living long enough to be assessed, so responders accumulate more follow-up by construction (guarantee-time bias). These rows must not be read as a survival benefit of responding: use a landmark analysis or treat response as a time-dependent covariate.": [
                 ""
             ],
+            "Descriptive only. Time is split by best recorded response, which a patient can only achieve by living long enough to be assessed, so responders accumulate more follow-up by construction (guarantee-time bias). These rows must not be read as a survival benefit of responding: use a landmark analysis or treat response as a time-dependent covariate.": [
+                ""
+            ],
             "Descriptive, robust to a few extreme cases; not graded": [
                 ""
             ],
@@ -2200,7 +2230,7 @@
             "Either percentage changes from baseline or raw tumor measurements": [
                 ""
             ],
-            "Enable guided mode with step-by-step instructions: - Walks through variable selection and options - Provides contextual help and best practice recommendations - Includes misuse detection and warnings Recommended for new users or complex analyses": [
+            "Enable guided mode with step-by-step instructions: - Walks through variable selection and options - Provides contextual help and best practice recommendations Recommended for new users or complex analyses": [
                 ""
             ],
             "End": [
@@ -2323,7 +2353,7 @@
             "Events": [
                 ""
             ],
-            "Every measurement takes 5 or fewer whole-number values, as an ordinal score does (for example HER2 0 to 3+). The CV, the percentage differences and their grades assume a continuous scale and are not meaningful here, so no sampling verdict is given. Assess agreement of an ordinal score with weighted kappa or the proportion of cases in the same category.": [
+            "Every measurement takes only a few whole-number values (at most 5, or at most 9 between 0 and 12), so the measurements look like an ordinal score (for example HER2 0 to 3+ or an Allred score) or coarsely binned values. The CV, the percentage differences and their grades assume a finely measured continuous scale and are not meaningful here, so no sampling verdict is given. Assess agreement of an ordinal score with weighted kappa or the proportion of cases in the same category; record binned values more finely.": [
                 ""
             ],
             "Every patient's earliest row is 0%% at time %s rather than time 0. If these rows are baselines, recode the baseline time as 0: rows after time 0 are treated as assessments, so a 0%% baseline row takes part in the best response and hides progression.": [
@@ -2335,7 +2365,7 @@
             "Every regional measurement equalled its comparison in every case.": [
                 ""
             ],
-            "Every response value is positive, so no patient shrank at all. If these are raw tumor sizes rather than percent changes, set Data Input Type to Raw measurements and add a time variable.": [
+            "Every response value is 0 or above. Read as percent changes, no tumor shrank, so no patient can be a complete or partial response. If 100 means no change (tumor size as a percent of baseline), subtract 100 from every value. If these are raw tumor sizes, set Data input type to Raw measurements with a time variable whose baseline is 0. If they are genuine percent changes, the categories stand.": [
                 ""
             ],
             "Every response value lies between -1 and 1. Percent change must be entered as -35 for a 35% decrease; these look like proportions (for example from a spreadsheet percent format), which makes every patient stable disease. Multiply the values by 100.": [
@@ -2503,7 +2533,7 @@
             "For date/time data, ensure correct format is selected": [
                 ""
             ],
-            "For patients with more than one assessment, best response was the best category recorded up to and including the first progression; responses were not confirmed and no minimum duration was required for stable disease.": [
+            "For patients with more than one different response recorded, best response was the best category recorded up to and including the first progression; those responses were not confirmed and no minimum duration was required for stable disease.": [
                 ""
             ],
             "For raw measurements, baseline assumed at time = 0": [
@@ -2606,6 +2636,9 @@
                 ""
             ],
             "Group comparison could not be computed": [
+                ""
+            ],
+            "Group comparison skipped": [
                 ""
             ],
             "Group Comparison Statistical Test": [
@@ -2806,7 +2839,7 @@
             "In this dataset the mean of all regions is systematically offset from the reference, although no single region is materially offset on its own.": [
                 ""
             ],
-            "In this dataset the measurements were an ordinal score, so their agreement should be judged with weighted kappa or category agreement rather than with the CV.": [
+            "In this dataset the measurements looked like an ordinal score or coarsely binned values, so their agreement should be judged with weighted kappa or category agreement rather than with the CV.": [
                 ""
             ],
             "In this dataset the regional measurements met the correlation and variability thresholds on average, but agreement was not confirmed.": [
@@ -3046,6 +3079,9 @@
             "Major contributor": [
                 ""
             ],
+            "Margin finer than the recorded values": [
+                ""
+            ],
             "Mark censored patients: follow-up ended without the event (alive at the data cutoff, or lost to follow-up)": [
                 ""
             ],
@@ -3154,6 +3190,9 @@
             "Median duration of response (naive)": [
                 ""
             ],
+            "Median duration: %s": [
+                ""
+            ],
             "median follow-up (reverse Kaplan-Meier)": [
                 ""
             ],
@@ -3211,9 +3250,6 @@
             "Median: %.1f%%": [
                 ""
             ],
-            "Median: %s": [
-                ""
-            ],
             "Median/Protocol reference lines measure a duration from each patient's own start, so they cannot be placed on an absolute axis where patients begin at different points.": [
                 ""
             ],
@@ -3226,7 +3262,7 @@
             "Meta-analysis method": [
                 ""
             ],
-            "Meta-analysis of %d diagnostic accuracy studies shows pooled sensitivity of %.1f%%%s and specificity of %.1f%%%s, at the %d%% confidence level.": [
+            "Meta-analysis of %d diagnostic accuracy studies shows pooled sensitivity of %s%%%s and specificity of %s%%%s, at the %d%% confidence level.": [
                 ""
             ],
             "Meta-Analysis Summary": [
@@ -3532,9 +3568,6 @@
             "Natural-language summary of heterogeneity analysis results": [
                 ""
             ],
-            "NE": [
-                ""
-            ],
             "Near-zero levels inflate the CV": [
                 ""
             ],
@@ -3575,6 +3608,9 @@
                 ""
             ],
             "No comparison available": [
+                ""
+            ],
+            "No comparison was run: %d patient(s) have different group values on different rows, and a group comparison needs one fixed group per patient. Select a patient-level grouping variable.": [
                 ""
             ],
             "No comparison was run: Fisher's exact test needs at least two groups and the group variable has %d in these data.": [
@@ -3637,9 +3673,6 @@
             "No missing values in TP, FP, FN, TN columns": [
                 ""
             ],
-            "No negative changes": [
-                ""
-            ],
             "No patient had a CR, PR, SD or PD response, so objective response and disease control rates were not calculated.": [
                 ""
             ],
@@ -3679,13 +3712,13 @@
             "No reference measurement was supplied: the ICC is the agreement between regions, and the bias rows are not shown.": [
                 ""
             ],
-            "No regions-per-case advice is given for an ordinal score, because it rests on the CV.": [
+            "No regions-per-case advice is given for an ordinal score or binned values, because it rests on the CV.": [
                 ""
             ],
             "No response recorded for %d of %d patients (%.1f%%).": [
                 ""
             ],
-            "No sampling verdict was given, because the measurements were an ordinal score and the CV and percentage-difference criteria assume a continuous scale.": [
+            "No sampling verdict was given, because the measurements looked like an ordinal score or coarsely binned values and the CV and percentage-difference criteria assume a finely measured continuous scale.": [
                 ""
             ],
             "No significant difference in per-case mean biomarker levels detected across compartments; this does not establish that the distributions are the same": [
@@ -3721,10 +3754,16 @@
             "No valid data rows after validation. Check that end times are >= start times and all required data is present.": [
                 ""
             ],
+            "No value below zero": [
+                ""
+            ],
             "No variability in the data: every measurement has the same value, so there is nothing to decompose.": [
                 ""
             ],
             "No verdict is given: %.0f%% of the studies have a zero cell. Above a quarter, the continuity correction the test needs can produce funnel asymmetry by itself - in this module's null simulations up to 42%% of meta-analyses at 80%% zero-cell studies, against a nominal 5%% - so the verdict is withheld as a precaution. Read the statistic as descriptive only.": [
+                ""
+            ],
+            "Non-CR/Non-PD is the RECIST 1.1 response for patients with non-target disease only; this analysis does not score it, so recode it, for example to SD if your protocol counts it toward disease control.": [
                 ""
             ],
             "None": [
@@ -3811,13 +3850,16 @@
             "Not estimable: no responder has an assessment after the first response": [
                 ""
             ],
-            "Not every response value was a RECIST category (CR, PR, SD, PD, NE), so objective response and disease control rates were not calculated.": [
+            "Not evaluable by supplied category": [
+                ""
+            ],
+            "Not every response value was one of CR, PR, SD, PD or NE, so objective response and disease control rates were not calculated.": [
                 ""
             ],
             "Not graded:": [
                 ""
             ],
-            "Not graded: ordinal score": [
+            "Not graded: ordinal or binned values": [
                 ""
             ],
             "Not interpretable: too many zero cells": [
@@ -3910,7 +3952,7 @@
             "On-Treatment / ongoing (optional)": [
                 ""
             ],
-            "Oncology and pathology analyses from the ClinicoPath project: swimmer plots of patient timelines with response rates and follow-up; waterfall and spider plots of tumour burden response (thresholds adapted from RECIST v1.1, not a lesion-level RECIST assessment); diagnostic test accuracy meta-analysis with bivariate and proportional-hazards SROC models; and regional heterogeneity of an immunohistochemistry marker, against a reference or between regions. For comments, suggestions, feature requests or reporting bugs, please open an issue at <https://github.com/sbalci/OncoPath/issues/>.": [
+            "Oncology and pathology analyses from the ClinicoPath project: swimmer plots of patient timelines with response rates and follow-up; waterfall and spider plots of tumor burden response (thresholds adapted from RECIST v1.1, not a lesion-level RECIST assessment); diagnostic test accuracy meta-analysis with bivariate and proportional-hazards SROC models; and regional heterogeneity of an immunohistochemistry marker, against a reference or between regions. For comments, suggestions, feature requests or reporting bugs, please open an issue at <https://github.com/sbalci/OncoPath/issues/>.": [
                 ""
             ],
             "Oncology clinical trials and treatment response studies": [
@@ -3967,7 +4009,7 @@
             "Optional grouping variable for coloring bars by patient groups (e.g., treatment arms, disease subtypes). Bars are colored by group when Color by is set to Patient groups (jamovi sets it when a group is chosen; from R, set colorBy = \"group\").": [
                 ""
             ],
-            "Optional per-patient RECIST category (CR/PR/SD/PD, or NE for not evaluable). It overrides the computed category, and counts a patient with no measured value (e.g. PD before the first scan). Affects coloring and metrics.": [
+            "Optional per-patient RECIST category (CR/PR/SD/PD, or NE for not evaluable). It overrides the computed category, and counts a patient with no measured value (e.g. PD before the first scan). Affects coloring and metrics. Per-visit values are reduced to the best one up to the first PD.": [
                 ""
             ],
             "Optional variable indicating confirmation status (e.g., Confirmed vs Unconfirmed). A distinct marker is drawn at each bar tip per level; ORR and DCR are not changed (use the category override for that).": [
@@ -3982,7 +4024,7 @@
             "Optionally add a Spatial Region ID: the compartment each case was sampled from, with one row per case.": [
                 ""
             ],
-            "Ordinal score": [
+            "Ordinal score or binned values": [
                 ""
             ],
             "ORR": [
@@ -4018,7 +4060,7 @@
             "Overall / whole slide / hotspot (optional)": [
                 ""
             ],
-            "Overall: no verdict, because the measurements are an ordinal score and the thresholds of this analysis assume a continuous scale.": [
+            "Overall: no verdict, because the measurements look like an ordinal score or coarsely binned values and the thresholds of this analysis assume a finely measured continuous scale.": [
                 ""
             ],
             "Overall: region '%s' differs systematically from the other regions, so the regions cannot be used interchangeably.": [
@@ -4067,6 +4109,9 @@
                 ""
             ],
             "Paired t-test of the two regions, with the 95%% CI of the mean difference and Bland-Altman 95%% limits of agreement, the difference expressed as a percentage of the mean of the two. With a margin of %s%%, a difference is ruled out when its 90%% CI lies within the margin (two one-sided tests) and material when that CI lies entirely beyond it; otherwise it is inconclusive. The CI of the percentage difference is a Fieller interval.": [
+                ""
+            ],
+            "Pairs of regions shown to be below the threshold on their own (upper 95%% limit below it): %s.": [
                 ""
             ],
             "Pairs of regions with fewer than %d paired values are not tested: %s.": [
@@ -4981,12 +5026,6 @@
             "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone, and LR- is not estimable here.": [
                 ""
             ],
-            "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone; here LR- = %.2f, but with no false negatives in most studies this value and its interval are set by the continuity correction rather than by the data, so it is not graded.": [
-                ""
-            ],
-            "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone; here LR- = %.2f, which lowers the post-test odds substantially (the SnNout pattern).": [
-                ""
-            ],
             "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone; here LR- = %.2f, which provides minimal evidence against disease after a negative result.": [
                 ""
             ],
@@ -4994,6 +5033,12 @@
                 ""
             ],
             "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone; here LR- = %.2f, which provides weak evidence against disease after a negative result.": [
+                ""
+            ],
+            "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone; here LR- = %s, but with no false negatives in most studies this value and its interval are set by the continuity correction rather than by the data, so it is not graded.": [
+                ""
+            ],
+            "Rule-out power is governed by the negative likelihood ratio rather than by sensitivity alone; here LR- = %s, which lowers the post-test odds substantially (the SnNout pattern).": [
                 ""
             ],
             "Run Analysis": [
@@ -5149,6 +5194,9 @@
             "Set the CV and correlation thresholds and the systematic difference margin before looking at the results.": [
                 ""
             ],
+            "Several response categories per patient": [
+                ""
+            ],
             "Several rows per patient": [
                 ""
             ],
@@ -5206,7 +5254,7 @@
             "Slope of the difference on the mean of the two measurements (the region and the reference), with heteroscedasticity-robust (HC3) standard errors; p is unadjusted. Measurement error alone tilts a slope on the reference value downwards and a slope on the region value upwards, so a difference is treated as changing with the level only when its slope differs from zero (p below 0.05 divided by the number of comparisons) in the same direction on all three: the reference value, the region value and their mean (Krouwer 2008). Such a difference is judged at the 5th and 95th percentiles of the mean, against the margin at the comparison mean taken as fixed; it can stop a difference from being ruled out but never shows it to be material (Bland & Altman 1995, 1999).": [
                 ""
             ],
-            "Slope of the difference on the mean of the two regions compared, with heteroscedasticity-robust (HC3) standard errors; p is unadjusted. Unequal measurement error between regions can produce a slope, so here a slope can stop a difference from being ruled out but never shows it to be material. When p is below 0.05 divided by the number of comparisons, the difference is also judged at the 5th and 95th percentiles of that level (Bland & Altman 1999).": [
+            "Slope of the difference on the mean of the two regions compared, with heteroscedasticity-robust (HC3) standard errors; p is unadjusted. Measurement error alone tilts a slope on the second region of a pair downwards and a slope on the first region upwards, so a difference is treated as changing with the level only when its slope differs from zero (p below 0.05 divided by the number of comparisons) in the same direction on all three: each of the two regions and their mean (Krouwer 2008). Such a difference is judged at the 5th and 95th percentiles of the mean, against the margin at the comparison mean taken as fixed; it can stop a difference from being ruled out but never shows it to be material (Bland & Altman 1999).": [
                 ""
             ],
             "Small cell counts in Fisher's exact test": [
@@ -5233,7 +5281,7 @@
             "Some annotation variables have more than one value for a patient across rows: %s. The track shows the first recorded value.": [
                 ""
             ],
-            "Some response categories have <3 patients. Consider grouping categories for meaningful analysis.": [
+            "Some response categories have fewer than 3 patients, so their percentages are imprecise.": [
                 ""
             ],
             "Some values look like proportions": [
@@ -5312,6 +5360,9 @@
                 ""
             ],
             "Spearman correlation:": [
+                ""
+            ],
+            "Spearman correlation: %s": [
                 ""
             ],
             "Spearman correlation: %s vs reference": [
@@ -5419,7 +5470,7 @@
             "Start Time:": [
                 ""
             ],
-            "Start/End are offsets from the earliest start date ({origin}), in {unit}; Duration is in {unit}.": [
+            "Start/End are offsets from the earliest start date ({origin}), in {unit}; Duration is in {unit}, measured from the patient's own start, so with calendar units End minus Start can differ slightly from Duration.": [
                 ""
             ],
             "Statistic": [
@@ -5584,7 +5635,7 @@
             "Synthesizing evidence for clinical guidelines": [
                 ""
             ],
-            "Synthetic data, 15 patients: tumour measurements in mm at months 0, 2, 4 and 6. Raw-measurement input, spider plot, time to response and duration of response.": [
+            "Synthetic data, 15 patients: tumor measurements in mm at months 0, 2, 4 and 6. Raw-measurement input, spider plot, time to response and duration of response.": [
                 ""
             ],
             "Synthetic data, 20 patients: best percent change from baseline in two treatment arms. Response categories, ORR and DCR by arm.": [
@@ -5749,6 +5800,9 @@
             "The correlation of the region pair(s) %s is below the %s threshold as a point estimate, although not shown to be below it.": [
                 ""
             ],
+            "The correlation of the region pair(s) %s was shown to be below the threshold (upper 95%% confidence limit below it).": [
+                ""
+            ],
             "The counts look like proportions: no study has more than one diseased or one non-diseased participant. Enter the number of participants in each cell of the 2x2 table (TP, FP, FN, TN).": [
                 ""
             ],
@@ -5878,7 +5932,7 @@
             "The mean Spearman correlation between regional measurements was %s, which meets the %s threshold set for this analysis.": [
                 ""
             ],
-            "The measurements are an ordinal score (5 or fewer whole-number values), so no sampling verdict is given: the CV and the percentage-difference margin assume a continuous scale. Assess agreement of an ordinal score with weighted kappa or the proportion of cases in the same category.": [
+            "The measurements look like an ordinal score or coarsely binned values (only a few whole-number values), so no sampling verdict is given: the CV and the percentage-difference margin assume a finely measured continuous scale. Assess agreement of an ordinal score with weighted kappa or the proportion of cases in the same category.": [
                 ""
             ],
             "The measurements show no variability, so the ICC is not defined.": [
@@ -5959,10 +6013,10 @@
             "The Reitsma model did not return the expected coefficient estimates, so pooled sensitivity and specificity are unavailable.": [
                 ""
             ],
-            "The response category override contained %d unrecognised label(s): %s. Only CR, PR, SD, PD and Unknown are accepted. Those patients keep their computed category; no patient was dropped.": [
+            "The response category override contained %d unrecognized label(s): %s. Only CR, PR, SD, PD (or their full names, such as Partial response) and NE or Unknown are accepted. Those patients keep their computed category; no patient was dropped.": [
                 ""
             ],
-            "The response variable has values that are not RECIST categories (CR, PR, SD, PD or NE): %s. Objective Response Rate and Disease Control Rate are withheld, because a patient with such a value cannot be counted as a responder or as a non-responder. Recode these values to CR, PR, SD, PD or NE, or leave the cell empty for no recorded response.": [
+            "The response variable has values other than CR, PR, SD, PD or NE: %s. Objective Response Rate and Disease Control Rate are withheld, because a patient with such a value cannot be counted as a responder or as a non-responder. Recode these values to CR, PR, SD, PD or NE, or leave the cell empty for no recorded response.": [
                 ""
             ],
             "The reversed Kaplan-Meier curve never falls to 50%, so its median is undefined. That depends on WHEN patients were still under observation, not merely how many: a few censored late can make the median estimable while many censored early cannot.": [
@@ -6055,6 +6109,9 @@
             "The unit your time variable is recorded in. It labels the spider plot axis and the time to response and duration of response rows; your values are not rescaled.": [
                 ""
             ],
+            "The weakest pair of regions, '%s', correlated %.2f, shown to be below your %.2f threshold; the average was %.2f.": [
+                ""
+            ],
             "The weakest region, '%s', correlated %.2f with the reference, shown to be below your %.2f threshold; the average was %.2f.": [
                 ""
             ],
@@ -6067,7 +6124,7 @@
             "The within-case CV exceeds your threshold, so averaging more than one region per case is worth considering.": [
                 ""
             ],
-            "The within-case CV was %s%%; it was not graded, because the measurements were an ordinal score.": [
+            "The within-case CV was %s%%; it was not graded, because the measurements looked like an ordinal score or coarsely binned values.": [
                 ""
             ],
             "There is no residual variation (the measurements of every case differ by exactly the same amounts), so the ICC confidence intervals cannot be estimated.": [
@@ -6598,7 +6655,7 @@
             "Warning": [
                 ""
             ],
-            "Warning: %d missing response values found. These will be excluded from analysis.": [
+            "Warning: %d missing response values found. Those rows take no part in best response; a patient with no value at all is excluded unless a response category is supplied for them.": [
                 ""
             ],
             "Warning: Negative time values detected. Please verify time measurements.": [
@@ -6697,7 +6754,7 @@
             "Where the slope was shown, the limits of agreement, which assume a difference that does not change with the level, are too wide in the middle of the range and too narrow at its ends.": [
                 ""
             ],
-            "Whether a difference changed with the level (proportional bias) was assessed by regressing it on the mean of the two regions compared, with heteroscedasticity-robust standard errors (Bland & Altman 1999); where the slope differed from zero (p below 0.05 divided by the number of comparisons), the difference was also judged at the 5th and 95th percentiles of that level, and a difference that changed with the level was not considered ruled out.": [
+            "Whether a difference changed with the level (proportional bias) was assessed by regressing it on each of the two regions compared and on their mean, with heteroscedasticity-robust standard errors (Bland & Altman 1999); because measurement error alone tilts the slope on one region downwards and on the other upwards, a difference was considered to change with the level only when all three slopes differed from zero in the same direction (p below 0.05 divided by the number of comparisons) (Krouwer 2008). Such a difference was judged at the 5th and 95th percentiles of the mean of the two regions and was considered ruled out only if it lay within the margin at both.": [
                 ""
             ],
             "Whether a difference changed with the level (proportional bias) was assessed by regressing it on the reference value, on the region value and on the mean of the two, with heteroscedasticity-robust standard errors (Bland & Altman 1995, 1999); because measurement error alone tilts the first slope downwards and the second upwards, a difference was considered to change with the level only when all three slopes differed from zero in the same direction (p below 0.05 divided by the number of comparisons) (Krouwer 2008). Such a difference was judged at the 5th and 95th percentiles of the mean of the two measurements and was considered ruled out only if it lay within the margin at both.": [
@@ -6724,28 +6781,34 @@
             "Width of bars in waterfall plot.": [
                 ""
             ],
-            "With %.1f%% sensitivity, approximately %.0f out of 100 diseased patients will be correctly identified.": [
+            "With %s%% sensitivity, approximately %.0f out of 100 diseased patients will be correctly identified.": [
                 ""
             ],
-            "With %.1f%% sensitivity, this test will detect %.0f out of 1,000 patients with disease, missing only %.0f.": [
+            "With %s%% sensitivity, this test will detect %.0f out of 1,000 patients with disease, missing only %.0f.": [
                 ""
             ],
-            "With %.1f%% sensitivity, this test will detect %.0f out of 100 patients with disease, missing only %.0f.": [
+            "With %s%% sensitivity, this test will detect %.0f out of 100 patients with disease, missing only %.0f.": [
                 ""
             ],
-            "With %.1f%% sensitivity, up to %.0f out of 100 diseased patients may be missed.": [
+            "With %s%% sensitivity, this test will miss fewer than 1 in 1,000 patients with disease.": [
                 ""
             ],
-            "With %.1f%% specificity, approximately %.0f out of 100 healthy individuals will be correctly classified.": [
+            "With %s%% sensitivity, up to %.0f out of 100 diseased patients may be missed.": [
                 ""
             ],
-            "With %.1f%% specificity, only %.0f out of 1,000 healthy individuals will test positive (false alarms).": [
+            "With %s%% specificity, approximately %.0f out of 100 healthy individuals will be correctly classified.": [
                 ""
             ],
-            "With %.1f%% specificity, only %.0f out of 100 healthy individuals will test positive (false alarms).": [
+            "With %s%% specificity, fewer than 1 in 1,000 healthy individuals will test positive (false alarms).": [
                 ""
             ],
-            "With %.1f%% specificity, up to %.0f out of 100 healthy individuals may test positive.": [
+            "With %s%% specificity, only %.0f out of 1,000 healthy individuals will test positive (false alarms).": [
+                ""
+            ],
+            "With %s%% specificity, only %.0f out of 100 healthy individuals will test positive (false alarms).": [
+                ""
+            ],
+            "With %s%% specificity, up to %.0f out of 100 healthy individuals may test positive.": [
                 ""
             ],
             "With a margin of %s%% of the comparison mean, a difference is ruled out when its 90%% CI lies within the margin (two one-sided tests) and shown to be material when that CI lies entirely beyond the margin; otherwise it is inconclusive. The p-value tests against zero.": [
@@ -6772,7 +6835,7 @@
             "Within-case CV (%) - between regions": [
                 ""
             ],
-            "Within-case CV (%) - region vs reference": [
+            "Within-case CV (%) - reference and regions": [
                 ""
             ],
             "Within-case CV = %s%% (High variability)": [
@@ -6784,7 +6847,7 @@
             "Within-case CV = %s%% (Moderate variability)": [
                 ""
             ],
-            "Within-case CV = %s%% (not graded: ordinal score)": [
+            "Within-case CV = %s%% (not graded: ordinal or binned values)": [
                 ""
             ],
             "Within-Case Variance (Sampling)": [

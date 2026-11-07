@@ -1,7 +1,95 @@
-# OncoPath (development version)
+# OncoPath 1.1.3 (2026-10-30)
 
-Fixes from the jamovi library review of 1.1.2 (2026-10-23). No statistics or options changed, and
-saved analyses open as before.
+**Saved analyses can give different results.** jamovi shows the results stored in a saved file until
+an option is changed. Re-run a saved analysis (change any option and change it back) before you rely
+on it. No option was added, removed or renamed.
+
+## Results change by design
+
+These came from a pre-submission review that checked every displayed statistic against an
+independent calculation (mada, metafor, irr, psych, lme4, survival, binom.test, fisher.test and hand
+calculation of RECIST 1.1). The core estimates were confirmed. What changed are cases that only an
+ordinary but non-default data coding or option reaches.
+
+### Treatment Response: Patient-Level Burden (`waterfall`)
+
+- **Percent-of-baseline values are no longer read as growth without warning.** Some data record tumor
+  size as a percent of baseline, where 100 means no change. Such values made every patient
+  progressive disease, and with a time variable and no time-0 row nothing was said. Now, whenever no
+  value is below zero, a strong warning says that no patient can be a complete or partial response
+  and tells you to subtract 100 if 100 means no change.
+- **Per-visit categories give the best response.** When the response-category variable holds a
+  different category at each visit (SD, then PR, then PR), the patient's category is now the best
+  one in time order up to the first progression, not the earliest one, and a notice says so. That
+  patient is now a partial response.
+- Categories written in full ("Partial response", "Progressive disease") are accepted.
+- A patient you mark NE no longer gets a bar and no longer counts toward the median line, and a
+  notice names those patients.
+- The notices are accurate. Missing values are no longer called "excluded" when you supplied a
+  category for that patient, and very large growth is listed patient by patient.
+
+### Swimmer Plot
+
+- **"Unconfirmed best response" only when it is true.** When the same response was repeated on every
+  row of a patient (a common export of an adjudicated best overall response), the analysis warned
+  that best responses were unconfirmed, and the manuscript text said so. The warning and that
+  sentence now appear only when a patient's rows carry different responses. ORR and DCR were
+  correct and are unchanged.
+- **Rows dropped for a missing start or end time are itemized.** An ongoing treatment line with no
+  end date is often left blank. When such rows are dropped, the notice now lists the responses and
+  censoring values they held, and suggests entering the data cutoff as the end time.
+- **A grouping variable that changes within a patient skips only the group comparison**, with a
+  notice. It used to stop the whole analysis.
+- Text "NA" or "N/A" in the response column counts as no recorded response rather than NE.
+  Response rows are listed in clinical order (CR, PR, SD, PD, NE). "Non-CR/Non-PD" is named as a
+  RECIST 1.1 category that this analysis does not score. Sort by variable uses each patient's first
+  non-missing value, and the median reference line is labeled "Median duration".
+
+### IHC Heterogeneity Analysis
+
+- **Proportional differences between regions.** Without a reference measurement, two regions
+  measured with different precision are no longer reported as differing "with the level". In a
+  simulation with no true difference this happened in 35% of studies with 100 cases and 70% with
+  300; it is now 0% and 1.7%. The pair check is the same as for a region against the reference:
+  the slope of the difference must agree in direction on each region and on their mean (Krouwer
+  2008).
+- **Pair correlations.** Without a reference, each pair of regions now has its own Spearman
+  correlation with a 95% CI. A pair shown to be below your correlation threshold now sets the
+  verdict, as a region does when a reference is supplied. Such a pair used to be described as "not
+  shown to be below it".
+- **Ordinal and binned scores.** Allred-type scores (at most 9 whole-number values between 0 and 12)
+  are no longer graded by their coefficient of variation. They used to be called inadequate despite
+  near-perfect category agreement. Measurements with few values are described as "an ordinal score
+  or coarsely binned values".
+- A note appears when the systematic-difference margin is finer than the steps the values were
+  recorded in. The within-case CV row of the reference design is renamed "reference and regions",
+  which is what it pools.
+
+### Diagnostic Test Meta-Analysis for Pathology
+
+- **The plain-language summary no longer rounds a near-perfect result up to perfection.** A pooled
+  sensitivity of 99.98% read "100.0% ... detects 1000 out of 1,000 patients, missing only 0" even
+  when the studies contained false negatives. It now shows the digits that matter and says the test
+  misses "fewer than 1 in 1,000". Specificity is handled the same way, and very small likelihood
+  ratios print with significant digits instead of "0.00".
+- A value just below a band edge (for example 89.96%) is no longer described as being in the band
+  above.
+- The warning shown when most studies have no false positives (or no false negatives) no longer says
+  the likelihood ratio has no limit when some studies do have such errors.
+- Ordered covariates in the meta-regression are labeled with your variable name, and the
+  predictive-values table notes when between-study heterogeneity is large.
+- The tables, estimates and intervals are unchanged.
+
+## Documentation
+
+- The four vignettes were re-run against this version. Their printed output, option descriptions and
+  interpretation guidance now match what the analyses show. For example, the IHC vignette's own
+  example now reads "Inadequate sampling", and the meta-analysis vignette no longer equates funnel
+  asymmetry with publication bias.
+
+## Fixes from the jamovi library review of 1.1.2 (2026-10-23)
+
+No statistics or options changed, and saved analyses open as before.
 
 - **Notices look the same in all four analyses** and name their severity in words ("Warning: Small
   sample"), so they no longer rely on color alone. They are listed most severe first everywhere.

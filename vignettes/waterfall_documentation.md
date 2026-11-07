@@ -1,9 +1,5 @@
 # Treatment Response Analysis Documentation
 
-> **Not yet released.** This article also refers to `recist`, which
-> is on a development or test menu route and not released in any module yet.
-
-
 This document provides a comprehensive overview of the Treatment Response Analysis module, detailing its features, user interface elements, and the underlying R functions.
 
 ## Feature Summary
@@ -24,31 +20,40 @@ The module's features can be broadly categorized as follows:
 
 The following table provides a detailed mapping of the module's features, from the user interface to the underlying R functions.
 
-| Feature                          | YAML Argument (`.a.yaml`)      | UI Label                               | Results Section (`.r.yaml`)         | R Function (`.b.R`)                  |
-| -------------------------------- | ------------------------------ | -------------------------------------- | ----------------------------------- | ------------------------------------ |
-| **Plotting**                     |                                |                                        |                                     |                                      |
-| Patient ID                       | `patientID`                    | Patient ID                             | `waterfallplot`, `spiderplot`       | `.validateData`, `.processData`      |
-| Response Value                   | `responseVar`                  | Response Value                         | `waterfallplot`, `spiderplot`       | `.validateData`, `.processData`      |
-| Time Variable                    | `timeVar`                      | Time Variable                          | `spiderplot`                        | `.validateData`, `.processData`      |
-| Group Variable                   | `groupVar`                     | Group Variable                         | `waterfallplot`, `spiderplot`       | `.validateData`, `.processData`      |
-| Input Type                       | `inputType`                    | Input Type                             | `waterfallplot`, `spiderplot`       | `.validateData`, `.processData`      |
-| Sort By                          | `sortBy`                       | Sort By                                | `waterfallplot`                     | `.waterfallplot`                     |
-| Show RECIST Thresholds           | `showThresholds`               | Show RECIST Thresholds                 | `waterfallplot`, `spiderplot`       | `.waterfallplot`, `.spiderplot`      |
-| Label Large Changes              | `labelOutliers`                | Label Large Changes                    | `waterfallplot`                     | `.waterfallplot`                     |
-| Show Median Response             | `showMedian`                   | Show Median Response                   | `waterfallplot`, `spiderplot`       | `.waterfallplot`, `.spiderplot`      |
-| Show Confidence Interval         | `showCI`                       | Show Confidence Interval               | `waterfallplot`                     | `.waterfallplot`                     |
-| Minimum Response for Labels (%)  | `minResponseForLabel`          | Minimum Response for Labels (%)        | `waterfallplot`                     | `.waterfallplot`                     |
-| Color By                         | `colorBy`                      | Color By                               | `waterfallplot`                     | `.waterfallplot`                     |
-| Color Scheme                     | `colorScheme`                  | Color Scheme                           | `waterfallplot`                     | `.waterfallplot`, `.generateGroupColors` |
-| Bar Transparency                 | `barAlpha`                     | Bar Transparency                       | `waterfallplot`                     | `.waterfallplot`                     |
-| Bar Width                        | `barWidth`                     | Bar Width                              | `waterfallplot`                     | `.waterfallplot`                     |
-| Show Waterfall Plot              | `showWaterfallPlot`            | Show Waterfall Plot                    | `waterfallplot`                     | `.run`                               |
-| Show Spider Plot                 | `showSpiderPlot`               | Show Spider Plot                       | `spiderplot`                        | `.run`                               |
-| Spider Plot Color By             | `spiderColorBy`                | Spider Plot Color By                   | `spiderplot`                        | `.spiderplot`                        |
-| Spider Plot Color Scheme         | `spiderColorScheme`            | Spider Plot Color Scheme               | `spiderplot`                        | `.spiderplot`, `.generateGroupColors` |
-| **Clinical Metrics**             |                                |                                        |                                     |                                      |
-| Response Categories Table        | `summaryTable`                 | Response Categories Based on RECIST v1.1 Criteria | `summaryTable`                      | `.calculateMetrics`                  |
-| Clinical Response Metrics Table  | `clinicalMetrics`              | Clinical Response Metrics              | `clinicalMetrics`                   | `.calculateMetrics`, `.calculatePersonTimeMetrics` |
-| Person-Time Analysis Table       | `personTimeTable`              | Person-Time Analysis                   | `personTimeTable`                   | `.calculatePersonTimeMetrics`        |
-| **Data Export**                  |                                |                                        |                                     |                                      |
-| Add Response Category to Data    | `addResponseCategory`          | Add Response Category to Data          | `addResponseCategory`               | `.run`                               |
+| Feature | YAML argument (`.a.yaml`) | UI label | Results section (`.r.yaml`) | R function (`.b.R`) |
+| --- | --- | --- | --- | --- |
+| **Data** | | | | |
+| Patient ID | `patientID` | Patient ID variable | all | `.validateData`, `.processData` |
+| Response value | `responseVar` | Response value (raw or percentage) | all | `.validateData`, `.processData` |
+| Time variable | `timeVar` | Time variable (required for raw input and spider plot) | `spiderplot`, `responseDurationTable`, `personTimeTable` | `.processData`, `.calculateTimeToEventMetrics` |
+| Group variable | `groupVar` | Group variable | `groupComparisonTable`, `groupComparisonTest`, plots | `.processData`, `.generateGroupComparison` |
+| Input type | `inputType` | Data input type | all | `.validateData`, `.processData` |
+| Unit of raw measurements (5 mm rule) | `measurementUnit` | Unit of raw measurements | categories, TTR/DoR | `.processData`, `.categorizeRECIST` |
+| Response category override | `responseCategoryVar` | Response category override (optional) | categories, rates, TTR/DoR | `.applyCategoryOverride` |
+| Confirmation markers (display only) | `confirmationVar` | Confirmation status (optional) | `waterfallplot` | `.attachAnnotations` |
+| Ongoing arrows | `ongoingVar` | On-Treatment / ongoing (optional) | `waterfallplot` | `.attachAnnotations` |
+| Annotation tracks | `annotationVars` | Annotation tracks (below the bars) | `waterfallplot` | `.annotationTrack` |
+| **Plotting** | | | | |
+| Sort by | `sortBy` | Sort by | `waterfallplot` | `.waterfallplot` |
+| Sort direction (conventional: worst on the left) | `sortDirection` | Sort direction | `waterfallplot` | `.waterfallplot` |
+| RECIST threshold lines | `showThresholds` | RECIST thresholds | `waterfallplot`, `spiderplot` | `.waterfallplot`, `.spiderplot` |
+| Large-change labels | `labelOutliers` | Large-change labels | `waterfallplot` | `.waterfallplot` |
+| Median best response line | `showMedian` | Median response | `waterfallplot` | `.waterfallplot` |
+| Bootstrap CI of the median | `showCI` | Bootstrap CI of the median | `waterfallplot` | `.waterfallplot` |
+| Minimum response for labels | `minResponseForLabel` | Minimum response for labels (percent) | `waterfallplot` | `.waterfallplot` |
+| Color by | `colorBy` | Color by | `waterfallplot` | `.waterfallplot` |
+| Color scheme | `colorScheme` | Color scheme | `waterfallplot` | `.waterfallplot`, `.generateGroupColors` |
+| Bar transparency | `barAlpha` | Bar transparency | `waterfallplot` | `.waterfallplot` |
+| Bar width | `barWidth` | Bar width | `waterfallplot` | `.waterfallplot` |
+| Waterfall plot | `showWaterfallPlot` | Waterfall plot | `waterfallplot` | `.generateVisualizations` |
+| Spider plot | `showSpiderPlot` | Spider plot | `spiderplot` | `.generateVisualizations`, `.spiderplot` |
+| Spider plot color by | `spiderColorBy` | Spider plot color by | `spiderplot` | `.spiderplot` |
+| Spider plot color scheme | `spiderColorScheme` | Spider plot color scheme | `spiderplot` | `.spiderplot`, `.generateGroupColors` |
+| Time unit (labels only) | `timeUnitLabel` | Time unit | `spiderplot`, `clinicalMetrics`, `responseDurationTable` | `.spiderplot`, `.generateTablesAndResults` |
+| **Clinical metrics** | | | | |
+| Response categories table | `summaryTable` | Response Categories (threshold-based, not full RECIST v1.1) | `summaryTable` | `.calculateMetrics` |
+| Clinical response metrics table | `clinicalMetrics` | Clinical Response Metrics | `clinicalMetrics` | `.calculateMetrics`, `.calculatePersonTimeMetrics` |
+| Time to response and duration of response | `showResponseDuration` | Time-to-response & duration of response (KM) | `responseDurationTable` | `.calculateTimeToEventMetrics` |
+| Person-time table (raw input with a time variable) | — | Person-Time Analysis | `personTimeTable` | `.calculatePersonTimeMetrics` |
+| **Data export** | | | | |
+| Add response category to data | `addResponseCategory` | Response category column | `addResponseCategory` | `.generateReportsAndContent` |

@@ -141,6 +141,21 @@ msgid ""
 msgstr ""
 
 #: R/swimmerplot.b.R
+msgid ""
+"%d excluded rows had a censoring/event value that is not used: %s. "
+"Follow-up, the reverse Kaplan-Meier estimate and the status arrows for these "
+"patients come from their remaining rows only."
+msgstr ""
+
+#: R/swimmerplot.b.R
+msgid ""
+"%d excluded rows had a recorded response that is not used: %s. Best "
+"response, ORR and DCR for these patients come from their remaining rows "
+"only. An ongoing line with a blank end time is a common cause: enter the "
+"data cutoff as its end to keep it."
+msgstr ""
+
+#: R/swimmerplot.b.R
 msgid "%d fall after the patient's last end."
 msgstr ""
 
@@ -219,13 +234,14 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"%d of %d patients have more than one response row. Their category, and so "
-"ORR, DCR and every response row, is the best response recorded up to and "
-"including the first PD, in time order: CR and PR are not confirmed, SD has "
-"no minimum duration, and rows after the first PD, later treatment lines "
-"included, are ignored. These are unconfirmed best responses, not a RECIST "
-"1.1 best overall response; supply one adjudicated response per patient when "
-"the endpoint requires it."
+"%d of %d patients have more than one different response recorded across "
+"their rows. Their category, and so ORR, DCR and every response row, is the "
+"best response recorded up to and including the first PD, in time order: CR "
+"and PR are not confirmed, SD has no minimum duration, and rows after the "
+"first PD, later treatment lines included, are ignored. These are unconfirmed "
+"best responses, not a RECIST 1.1 best overall response; supply one "
+"adjudicated response per patient (the same value on each of the patient's "
+"rows is fine) when the endpoint requires it."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -329,6 +345,20 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
+"%d of %d studies have no false negatives. Each of them enters the model only "
+"after a continuity correction, so the pooled sensitivity, its confidence "
+"interval, its between-study variance, LR- and the diagnostic odds ratio are "
+"set largely by the size of that correction rather than by the data: a "
+"smaller correction gives a higher sensitivity and a much smaller LR-. The "
+"interval is not a data-derived precision. If all studies shared one "
+"sensitivity, the raw counts (%s false negatives among %s diseased "
+"participants) would give an exact %s%% confidence interval starting at "
+"%.2f%%. Report the raw counts and that bound alongside the pooled value, and "
+"do not read the LR- grading as established."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
 "%d of %d studies have no false positives. Each of them enters the model only "
 "after a continuity correction, so the pooled specificity, its confidence "
 "interval, its between-study variance, LR+ and the diagnostic odds ratio are "
@@ -340,6 +370,20 @@ msgid ""
 "%.2f%%, and LR+ would have no upper limit the data can set. Report the raw "
 "counts and that bound alongside the pooled value, and do not read the LR+ "
 "grading as established."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"%d of %d studies have no false positives. Each of them enters the model only "
+"after a continuity correction, so the pooled specificity, its confidence "
+"interval, its between-study variance, LR+ and the diagnostic odds ratio are "
+"set largely by the size of that correction rather than by the data: a "
+"smaller correction gives a higher specificity and a much larger LR+. The "
+"interval is not a data-derived precision. If all studies shared one "
+"specificity, the raw counts (%s false positives among %s non-diseased "
+"participants) would give an exact %s%% confidence interval starting at "
+"%.2f%%. Report the raw counts and that bound alongside the pooled value, and "
+"do not read the LR+ grading as established."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -397,12 +441,19 @@ msgid ""
 "data-entry errors."
 msgstr ""
 
+#: R/waterfall.b.R
+msgid ""
+"%d patient(s) have a supplied category of NE or Unknown and are reported as "
+"not evaluable: %s."
+msgstr ""
+
 #: R/swimmerplot.b.R
 msgid ""
-"%d patient(s) have conflicting non-missing group values. Group comparisons "
-"require one fixed group per patient. Select a patient-level grouping "
-"variable or remove the grouping selection; episode-specific groups cannot "
-"define independent patient groups."
+"%d patient(s) have conflicting non-missing group values, so the group "
+"comparison was not run. Group comparisons require one fixed group per "
+"patient. Select a patient-level grouping variable or remove the grouping "
+"selection; episode-specific groups cannot define independent patient groups. "
+"The rest of the analysis is unaffected."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -421,16 +472,30 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"%d patient(s) have more than one response category override across their "
-"rows: %s. The first recorded value is used. Enter one category per patient."
-msgstr ""
-
-#: R/waterfall.b.R
-msgid ""
 "%d patient(s) have more than one row but no time variable is selected: %s. "
 "The smallest value was used as each patient's best response. If the rows are "
 "visits, a 0%% baseline row takes part in that minimum, so a tumor that only "
 "grew is scored SD instead of PD. Select the visit time as the Time Variable."
+msgstr ""
+
+#: R/waterfall.b.R
+msgid ""
+"%d patient(s) have more than one supplied response category across their "
+"rows: %s. They were read as per-visit responses in row order (no time "
+"variable is selected): each patient's category is the best one up to and "
+"including the first PD (CR, then PR, then SD, then PD); NE or Unknown visits "
+"do not count, and responses are not confirmed. Select the time variable, or "
+"enter one category per patient."
+msgstr ""
+
+#: R/waterfall.b.R
+msgid ""
+"%d patient(s) have more than one supplied response category across their "
+"rows: %s. They were read as per-visit responses: each patient's category is "
+"the best one in time order up to and including the first PD (CR, then PR, "
+"then SD, then PD); NE or Unknown visits do not count, and responses are not "
+"confirmed. If the values are not per-visit responses, enter one category per "
+"patient."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -568,8 +633,8 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"%s A new study is predicted to fall between %.1f%% and %.1f%% for "
-"sensitivity and between %.1f%% and %.1f%% for specificity."
+"%s A new study is predicted to fall between %s%% and %s%% for sensitivity "
+"and between %s%% and %s%% for specificity."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -587,7 +652,7 @@ msgid ""
 msgstr ""
 
 #: R/diagnosticmeta.b.R
-msgid "%s Positive LR %.2f%s and negative LR %.2f%s."
+msgid "%s Positive LR %s%s and negative LR %s%s."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -734,49 +799,49 @@ msgstr ""
 #: R/diagnosticmeta.b.R
 msgid ""
 "<br><br><strong>Overall Summary:</strong> performance is <em>asymmetric</em> "
-"- pooled sensitivity (%.1f%%) and pooled specificity (%.1f%%) fall in "
-"different performance bands."
+"- pooled sensitivity (%s%%) and pooled specificity (%s%%) fall in different "
+"performance bands."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%) and "
-"pooled specificity (%.1f%%) both fall in the <em>excellent</em> band."
+"<br><br><strong>Overall Summary:</strong> pooled sensitivity (%s%%) and "
+"pooled specificity (%s%%) both fall in the <em>excellent</em> band."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%) and "
-"pooled specificity (%.1f%%) both fall in the <em>good</em> band or above."
+"<br><br><strong>Overall Summary:</strong> pooled sensitivity (%s%%) and "
+"pooled specificity (%s%%) both fall in the <em>good</em> band or above."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<br><br><strong>Overall Summary:</strong> pooled sensitivity (%.1f%%) and "
-"pooled specificity (%.1f%%) do not both reach the <em>good</em> band."
+"<br><br><strong>Overall Summary:</strong> pooled sensitivity (%s%%) and "
+"pooled specificity (%s%%) do not both reach the <em>good</em> band."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the "
+"<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the "
 "<em>excellent</em> band on the conventional 90/80/70 scale."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the "
+"<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the "
 "<em>good</em> band on the conventional 90/80/70 scale."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the "
+"<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the "
 "<em>limited</em> band on the conventional 90/80/70 scale."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<br><br><strong>Your pooled specificity of %.1f%%%s</strong> falls in the "
+"<br><br><strong>Your pooled specificity of %s%%%s</strong> falls in the "
 "<em>moderate</em> band on the conventional 90/80/70 scale."
 msgstr ""
 
@@ -1207,13 +1272,13 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Negative Likelihood Ratio:</strong> %.2f - A negative test is %.1fx "
+"<strong>Negative Likelihood Ratio:</strong> %s - A negative test is %.1fx "
 "more likely in healthy than disease"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Negative Likelihood Ratio:</strong> %.2f - Interpretation unstable "
+"<strong>Negative Likelihood Ratio:</strong> %s - Interpretation unstable "
 "(sensitivity ≈ 100%%)."
 msgstr ""
 
@@ -1236,9 +1301,9 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Note:</strong> its confidence interval (%.2f-%.2f) spans more than "
-"one evidence category, so this grading is not firmly established by the "
-"pooled data."
+"<strong>Note:</strong> its confidence interval (%s-%s) spans more than one "
+"evidence category, so this grading is not firmly established by the pooled "
+"data."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -1337,7 +1402,8 @@ msgstr ""
 msgid ""
 "<strong>Prediction region (dotted):</strong> where the accuracy of a FUTURE "
 "study in a new setting is expected to fall. It includes between-study "
-"heterogeneity and does NOT shrink with more studies."
+"heterogeneity, so more studies narrow it only down to the spread between "
+"studies, never to a single point."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -1418,14 +1484,20 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Sensitivity:</strong> %.1f%% - The test correctly identifies %.0f "
-"out of 1,000 patients with disease"
+"<strong>Sensitivity:</strong> %s%% - The test correctly identifies %.0f out "
+"of 1,000 patients with disease"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Sensitivity:</strong> %.1f%% - The test correctly identifies %.0f "
-"out of 100 patients with disease"
+"<strong>Sensitivity:</strong> %s%% - The test correctly identifies %.0f out "
+"of 100 patients with disease"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Sensitivity:</strong> %s%% - The test misses fewer than 1 in 1,000 "
+"patients with disease"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -1442,14 +1514,20 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Specificity:</strong> %.1f%% - The test correctly identifies %.0f "
-"out of 1,000 healthy individuals"
+"<strong>Specificity:</strong> %s%% - Fewer than 1 in 1,000 healthy "
+"individuals test positive"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Specificity:</strong> %.1f%% - The test correctly identifies %.0f "
-"out of 100 healthy individuals"
+"<strong>Specificity:</strong> %s%% - The test correctly identifies %.0f out "
+"of 1,000 healthy individuals"
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Specificity:</strong> %s%% - The test correctly identifies %.0f out "
+"of 100 healthy individuals"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -1616,37 +1694,37 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Your negative LR of %.2f</strong> provides <em>strong</em> evidence "
-"AGAINST disease when test is negative."
-msgstr ""
-
-#: R/diagnosticmeta.b.R
-msgid ""
 "<strong>Your negative LR of %.2f</strong> provides <em>weak</em> evidence "
 "AGAINST disease when test is negative."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the "
+"<strong>Your negative LR of %s</strong> provides <em>strong</em> evidence "
+"AGAINST disease when test is negative."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"<strong>Your pooled sensitivity of %s%%%s</strong> falls in the "
 "<em>excellent</em> band on the conventional 90/80/70 scale."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the "
+"<strong>Your pooled sensitivity of %s%%%s</strong> falls in the "
 "<em>good</em> band on the conventional 90/80/70 scale."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the "
+"<strong>Your pooled sensitivity of %s%%%s</strong> falls in the "
 "<em>limited</em> band on the conventional 90/80/70 scale."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"<strong>Your pooled sensitivity of %.1f%%%s</strong> falls in the "
+"<strong>Your pooled sensitivity of %s%%%s</strong> falls in the "
 "<em>moderate</em> band on the conventional 90/80/70 scale."
 msgstr ""
 
@@ -1806,17 +1884,26 @@ msgid ""
 "A difference between two measurements that changes with the level of the "
 "marker - for example a biopsy that reads higher than the whole section in "
 "low cases and lower in high cases. A measurement's own error tilts a slope "
-"fitted against it, so with a reference this analysis requires the slopes "
-"against the reference, against the region and against their mean to agree in "
-"direction, and shows the slope against the mean; without a reference it uses "
-"the mean of the two regions. An average difference can hide it, and a fixed "
-"correction cannot remove it."
+"fitted against it, so this analysis requires the slopes against each of the "
+"two measurements compared (a region and the reference, or two regions) and "
+"against their mean to agree in direction, and shows the slope against the "
+"mean. An average difference can hide it, and a fixed correction cannot "
+"remove it."
 msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
 "A Fisher's exact test was not run where every patient fell into the same "
 "class (e.g. no responders in any group), so there is no contrast to test."
+msgstr ""
+
+#: R/ihcheterogeneity.b.R
+msgid ""
+"A margin of %s%% of the comparison mean is ±%s in the measurement's own "
+"units, smaller than the smallest non-zero difference recorded between paired "
+"measurements (%s). Ruling out a difference that small needs many cases and "
+"may be finer than matters clinically; check that the systematic difference "
+"margin suits this marker and its level."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -2016,8 +2103,8 @@ msgstr ""
 msgid ""
 "Add a dedicated efficacy table with: - Median time to first response (RECIST "
 "PR or better) - Kaplan-Meier median duration of response (censoring-aware) - "
-"Number of responders and events Requires a time variable and raw (per-visit) "
-"input."
+"Number of responders and events Requires a time variable (raw measurements "
+"or per-visit percentage changes)."
 msgstr ""
 
 #: waterfall/options/showClinicalSignificance.description.jamovi
@@ -2413,6 +2500,14 @@ msgid ""
 "wide range of accuracy - so this pooled pair does not describe any single "
 "population or laboratory. Read the prediction region and the subgroup or "
 "meta-regression results rather than the pooled point."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"Between-study heterogeneity is substantial, so the predictive values in any "
+"one setting can differ markedly from these; the prediction interval in the "
+"bivariate table shows the range of sensitivity and specificity a new setting "
+"may have."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -3133,10 +3228,6 @@ msgid "Conflicting annotation values"
 msgstr ""
 
 #: R/waterfall.b.R
-msgid "Conflicting category overrides"
-msgstr ""
-
-#: R/waterfall.b.R
 msgid "Conflicting confirmation values"
 msgstr ""
 
@@ -3355,7 +3446,9 @@ msgid "CV (coefficient of variation):"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
-msgid "CV = %.1f%%, not graded because the measurements are an ordinal score."
+msgid ""
+"CV = %.1f%%, not graded because the measurements look like an ordinal score "
+"or coarsely binned values."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -3624,6 +3717,15 @@ msgid ""
 "covariate."
 msgstr ""
 
+#: R/swimmerplot.b.R
+msgid ""
+"Descriptive only. Time is split by best recorded response, which a patient "
+"can only achieve by living long enough to be assessed, so responders "
+"accumulate more follow-up by construction (guarantee-time bias). These rows "
+"must not be read as a survival benefit of responding: use a landmark "
+"analysis or treat response as a time-dependent covariate."
+msgstr ""
+
 #: R/ihcheterogeneity.b.R
 msgid "Descriptive, robust to a few extreme cases; not graded"
 msgstr ""
@@ -3854,8 +3956,7 @@ msgstr ""
 msgid ""
 "Enable guided mode with step-by-step instructions: - Walks through variable "
 "selection and options - Provides contextual help and best practice "
-"recommendations - Includes misuse detection and warnings Recommended for new "
-"users or complex analyses"
+"recommendations Recommended for new users or complex analyses"
 msgstr ""
 
 #: swimmerplot/results/timelineData.columns.title
@@ -4032,11 +4133,13 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"Every measurement takes 5 or fewer whole-number values, as an ordinal score "
-"does (for example HER2 0 to 3+). The CV, the percentage differences and "
-"their grades assume a continuous scale and are not meaningful here, so no "
-"sampling verdict is given. Assess agreement of an ordinal score with "
-"weighted kappa or the proportion of cases in the same category."
+"Every measurement takes only a few whole-number values (at most 5, or at "
+"most 9 between 0 and 12), so the measurements look like an ordinal score "
+"(for example HER2 0 to 3+ or an Allred score) or coarsely binned values. The "
+"CV, the percentage differences and their grades assume a finely measured "
+"continuous scale and are not meaningful here, so no sampling verdict is "
+"given. Assess agreement of an ordinal score with weighted kappa or the "
+"proportion of cases in the same category; record binned values more finely."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -4060,9 +4163,12 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"Every response value is positive, so no patient shrank at all. If these are "
-"raw tumor sizes rather than percent changes, set Data Input Type to Raw "
-"measurements and add a time variable."
+"Every response value is 0 or above. Read as percent changes, no tumor "
+"shrank, so no patient can be a complete or partial response. If 100 means no "
+"change (tumor size as a percent of baseline), subtract 100 from every value. "
+"If these are raw tumor sizes, set Data input type to Raw measurements with a "
+"time variable whose baseline is 0. If they are genuine percent changes, the "
+"categories stand."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -4331,9 +4437,10 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"For patients with more than one assessment, best response was the best "
-"category recorded up to and including the first progression; responses were "
-"not confirmed and no minimum duration was required for stable disease."
+"For patients with more than one different response recorded, best response "
+"was the best category recorded up to and including the first progression; "
+"those responses were not confirmed and no minimum duration was required for "
+"stable disease."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -4477,6 +4584,10 @@ msgstr ""
 #: R/swimmerplot.b.R
 #: R/waterfall.b.R
 msgid "Group comparison could not be computed"
+msgstr ""
+
+#: R/swimmerplot.b.R
+msgid "Group comparison skipped"
 msgstr ""
 
 #: waterfall/results/groupComparisonTest.title
@@ -4796,9 +4907,9 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"In this dataset the measurements were an ordinal score, so their agreement "
-"should be judged with weighted kappa or category agreement rather than with "
-"the CV."
+"In this dataset the measurements looked like an ordinal score or coarsely "
+"binned values, so their agreement should be judged with weighted kappa or "
+"category agreement rather than with the CV."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -5168,6 +5279,10 @@ msgstr ""
 msgid "Major contributor"
 msgstr ""
 
+#: R/ihcheterogeneity.b.R
+msgid "Margin finer than the recorded values"
+msgstr ""
+
 #: R/swimmerplot-html.R
 msgid ""
 "Mark censored patients: follow-up ended without the event (alive at the data "
@@ -5337,6 +5452,10 @@ msgid "Median duration of response (naive)"
 msgstr ""
 
 #: R/swimmerplot.b.R
+msgid "Median duration: %s"
+msgstr ""
+
+#: R/swimmerplot.b.R
 msgid "median follow-up (reverse Kaplan-Meier)"
 msgstr ""
 
@@ -5422,10 +5541,6 @@ msgid "Median: %.1f%%"
 msgstr ""
 
 #: R/swimmerplot.b.R
-msgid "Median: %s"
-msgstr ""
-
-#: R/swimmerplot.b.R
 msgid ""
 "Median/Protocol reference lines measure a duration from each patient's own "
 "start, so they cannot be placed on an absolute axis where patients begin at "
@@ -5448,7 +5563,7 @@ msgstr ""
 #: R/diagnosticmeta.b.R
 msgid ""
 "Meta-analysis of %d diagnostic accuracy studies shows pooled sensitivity of "
-"%.1f%%%s and specificity of %.1f%%%s, at the %d%% confidence level."
+"%s%%%s and specificity of %s%%%s, at the %d%% confidence level."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -5900,10 +6015,6 @@ msgstr ""
 msgid "Natural-language summary of heterogeneity analysis results"
 msgstr ""
 
-#: R/swimmerplot.b.R
-msgid "NE"
-msgstr ""
-
 #: R/ihcheterogeneity.b.R
 msgid "Near-zero levels inflate the CV"
 msgstr ""
@@ -5966,6 +6077,13 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid "No comparison available"
+msgstr ""
+
+#: R/swimmerplot.b.R
+msgid ""
+"No comparison was run: %d patient(s) have different group values on "
+"different rows, and a group comparison needs one fixed group per patient. "
+"Select a patient-level grouping variable."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -6084,10 +6202,6 @@ msgstr ""
 msgid "No missing values in TP, FP, FN, TN columns"
 msgstr ""
 
-#: R/waterfall.b.R
-msgid "No negative changes"
-msgstr ""
-
 #: R/swimmerplot.b.R
 msgid ""
 "No patient had a CR, PR, SD or PD response, so objective response and "
@@ -6173,8 +6287,8 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"No regions-per-case advice is given for an ordinal score, because it rests "
-"on the CV."
+"No regions-per-case advice is given for an ordinal score or binned values, "
+"because it rests on the CV."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -6183,9 +6297,9 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"No sampling verdict was given, because the measurements were an ordinal "
-"score and the CV and percentage-difference criteria assume a continuous "
-"scale."
+"No sampling verdict was given, because the measurements looked like an "
+"ordinal score or coarsely binned values and the CV and percentage-difference "
+"criteria assume a finely measured continuous scale."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -6258,6 +6372,10 @@ msgid ""
 "and all required data is present."
 msgstr ""
 
+#: R/waterfall.b.R
+msgid "No value below zero"
+msgstr ""
+
 #: R/ihcheterogeneity.b.R
 msgid ""
 "No variability in the data: every measurement has the same value, so there "
@@ -6271,6 +6389,13 @@ msgid ""
 "asymmetry by itself - in this module's null simulations up to 42%% of "
 "meta-analyses at 80%% zero-cell studies, against a nominal 5%% - so the "
 "verdict is withheld as a precaution. Read the statistic as descriptive only."
+msgstr ""
+
+#: R/swimmerplot.b.R
+msgid ""
+"Non-CR/Non-PD is the RECIST 1.1 response for patients with non-target "
+"disease only; this analysis does not score it, so recode it, for example to "
+"SD if your protocol counts it toward disease control."
 msgstr ""
 
 #: swimmerplot/options/referenceLines/none.title
@@ -6370,6 +6495,7 @@ msgstr ""
 msgid "Not estimable"
 msgstr ""
 
+#: R/swimmerplot.b.R
 #: R/waterfall.b.R
 msgid "not estimable"
 msgstr ""
@@ -6404,10 +6530,14 @@ msgstr ""
 msgid "Not estimable: no responder has an assessment after the first response"
 msgstr ""
 
+#: R/waterfall.b.R
+msgid "Not evaluable by supplied category"
+msgstr ""
+
 #: R/swimmerplot.b.R
 msgid ""
-"Not every response value was a RECIST category (CR, PR, SD, PD, NE), so "
-"objective response and disease control rates were not calculated."
+"Not every response value was one of CR, PR, SD, PD or NE, so objective "
+"response and disease control rates were not calculated."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -6415,7 +6545,7 @@ msgid "Not graded:"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
-msgid "Not graded: ordinal score"
+msgid "Not graded: ordinal or binned values"
 msgstr ""
 
 #: R/diagnosticmeta.b.R
@@ -6567,7 +6697,7 @@ msgstr ""
 msgid ""
 "Oncology and pathology analyses from the ClinicoPath project: swimmer plots "
 "of patient timelines with response rates and follow-up; waterfall and spider "
-"plots of tumour burden response (thresholds adapted from RECIST v1.1, not a "
+"plots of tumor burden response (thresholds adapted from RECIST v1.1, not a "
 "lesion-level RECIST assessment); diagnostic test accuracy meta-analysis with "
 "bivariate and proportional-hazards SROC models; and regional heterogeneity "
 "of an immunohistochemistry marker, against a reference or between regions. "
@@ -6694,7 +6824,8 @@ msgstr ""
 msgid ""
 "Optional per-patient RECIST category (CR/PR/SD/PD, or NE for not evaluable). "
 "It overrides the computed category, and counts a patient with no measured "
-"value (e.g. PD before the first scan). Affects coloring and metrics."
+"value (e.g. PD before the first scan). Affects coloring and metrics. "
+"Per-visit values are reduced to the best one up to the first PD."
 msgstr ""
 
 #: waterfall/options/confirmationVar.description.jamovi
@@ -6723,7 +6854,7 @@ msgid ""
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
-msgid "Ordinal score"
+msgid "Ordinal score or binned values"
 msgstr ""
 
 #: R/waterfall.b.R
@@ -6783,8 +6914,9 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"Overall: no verdict, because the measurements are an ordinal score and the "
-"thresholds of this analysis assume a continuous scale."
+"Overall: no verdict, because the measurements look like an ordinal score or "
+"coarsely binned values and the thresholds of this analysis assume a finely "
+"measured continuous scale."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -6896,6 +7028,12 @@ msgid ""
 "ruled out when its 90%% CI lies within the margin (two one-sided tests) and "
 "material when that CI lies entirely beyond it; otherwise it is inconclusive. "
 "The CI of the percentage difference is a Fieller interval."
+msgstr ""
+
+#: R/ihcheterogeneity.b.R
+msgid ""
+"Pairs of regions shown to be below the threshold on their own (upper 95%% "
+"limit below it): %s."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -8393,21 +8531,6 @@ msgstr ""
 #: R/diagnosticmeta.b.R
 msgid ""
 "Rule-out power is governed by the negative likelihood ratio rather than by "
-"sensitivity alone; here LR- = %.2f, but with no false negatives in most "
-"studies this value and its interval are set by the continuity correction "
-"rather than by the data, so it is not graded."
-msgstr ""
-
-#: R/diagnosticmeta.b.R
-msgid ""
-"Rule-out power is governed by the negative likelihood ratio rather than by "
-"sensitivity alone; here LR- = %.2f, which lowers the post-test odds "
-"substantially (the SnNout pattern)."
-msgstr ""
-
-#: R/diagnosticmeta.b.R
-msgid ""
-"Rule-out power is governed by the negative likelihood ratio rather than by "
 "sensitivity alone; here LR- = %.2f, which provides minimal evidence against "
 "disease after a negative result."
 msgstr ""
@@ -8424,6 +8547,21 @@ msgid ""
 "Rule-out power is governed by the negative likelihood ratio rather than by "
 "sensitivity alone; here LR- = %.2f, which provides weak evidence against "
 "disease after a negative result."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"Rule-out power is governed by the negative likelihood ratio rather than by "
+"sensitivity alone; here LR- = %s, but with no false negatives in most "
+"studies this value and its interval are set by the continuity correction "
+"rather than by the data, so it is not graded."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"Rule-out power is governed by the negative likelihood ratio rather than by "
+"sensitivity alone; here LR- = %s, which lowers the post-test odds "
+"substantially (the SnNout pattern)."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -8672,6 +8810,10 @@ msgid ""
 msgstr ""
 
 #: R/waterfall.b.R
+msgid "Several response categories per patient"
+msgstr ""
+
+#: R/waterfall.b.R
 msgid "Several rows per patient"
 msgstr ""
 
@@ -8782,12 +8924,15 @@ msgstr ""
 #: R/ihcheterogeneity.b.R
 msgid ""
 "Slope of the difference on the mean of the two regions compared, with "
-"heteroscedasticity-robust (HC3) standard errors; p is unadjusted. Unequal "
-"measurement error between regions can produce a slope, so here a slope can "
-"stop a difference from being ruled out but never shows it to be material. "
-"When p is below 0.05 divided by the number of comparisons, the difference is "
-"also judged at the 5th and 95th percentiles of that level (Bland & Altman "
-"1999)."
+"heteroscedasticity-robust (HC3) standard errors; p is unadjusted. "
+"Measurement error alone tilts a slope on the second region of a pair "
+"downwards and a slope on the first region upwards, so a difference is "
+"treated as changing with the level only when its slope differs from zero (p "
+"below 0.05 divided by the number of comparisons) in the same direction on "
+"all three: each of the two regions and their mean (Krouwer 2008). Such a "
+"difference is judged at the 5th and 95th percentiles of the mean, against "
+"the margin at the comparison mean taken as fixed; it can stop a difference "
+"from being ruled out but never shows it to be material (Bland & Altman 1999)."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -8829,8 +8974,8 @@ msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"Some response categories have <3 patients. Consider grouping categories for "
-"meaningful analysis."
+"Some response categories have fewer than 3 patients, so their percentages "
+"are imprecise."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -8945,6 +9090,10 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid "Spearman correlation:"
+msgstr ""
+
+#: R/ihcheterogeneity.b.R
+msgid "Spearman correlation: %s"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -9103,7 +9252,8 @@ msgstr ""
 #: R/swimmerplot.b.R
 msgid ""
 "Start/End are offsets from the earliest start date ({origin}), in {unit}; "
-"Duration is in {unit}."
+"Duration is in {unit}, measured from the patient's own start, so with "
+"calendar units End minus Start can differ slightly from Duration."
 msgstr ""
 
 #: diagnosticmeta/results/publicationbias.columns.title
@@ -9358,7 +9508,7 @@ msgstr ""
 
 #: package/datasets/WaterfallandSpiderPlot.description
 msgid ""
-"Synthetic data, 15 patients: tumour measurements in mm at months 0, 2, 4 and "
+"Synthetic data, 15 patients: tumor measurements in mm at months 0, 2, 4 and "
 "6. Raw-measurement input, spider plot, time to response and duration of "
 "response."
 msgstr ""
@@ -9714,6 +9864,12 @@ msgid ""
 "point estimate, although not shown to be below it."
 msgstr ""
 
+#: R/ihcheterogeneity.b.R
+msgid ""
+"The correlation of the region pair(s) %s was shown to be below the threshold "
+"(upper 95%% confidence limit below it)."
+msgstr ""
+
 #: R/diagnosticmeta.b.R
 msgid ""
 "The counts look like proportions: no study has more than one diseased or one "
@@ -10012,10 +10168,11 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
-"The measurements are an ordinal score (5 or fewer whole-number values), so "
-"no sampling verdict is given: the CV and the percentage-difference margin "
-"assume a continuous scale. Assess agreement of an ordinal score with "
-"weighted kappa or the proportion of cases in the same category."
+"The measurements look like an ordinal score or coarsely binned values (only "
+"a few whole-number values), so no sampling verdict is given: the CV and the "
+"percentage-difference margin assume a finely measured continuous scale. "
+"Assess agreement of an ordinal score with weighted kappa or the proportion "
+"of cases in the same category."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -10183,18 +10340,19 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"The response category override contained %d unrecognised label(s): %s. Only "
-"CR, PR, SD, PD and Unknown are accepted. Those patients keep their computed "
-"category; no patient was dropped."
+"The response category override contained %d unrecognized label(s): %s. Only "
+"CR, PR, SD, PD (or their full names, such as Partial response) and NE or "
+"Unknown are accepted. Those patients keep their computed category; no "
+"patient was dropped."
 msgstr ""
 
 #: R/swimmerplot.b.R
 msgid ""
-"The response variable has values that are not RECIST categories (CR, PR, SD, "
-"PD or NE): %s. Objective Response Rate and Disease Control Rate are "
-"withheld, because a patient with such a value cannot be counted as a "
-"responder or as a non-responder. Recode these values to CR, PR, SD, PD or "
-"NE, or leave the cell empty for no recorded response."
+"The response variable has values other than CR, PR, SD, PD or NE: %s. "
+"Objective Response Rate and Disease Control Rate are withheld, because a "
+"patient with such a value cannot be counted as a responder or as a "
+"non-responder. Recode these values to CR, PR, SD, PD or NE, or leave the "
+"cell empty for no recorded response."
 msgstr ""
 
 #: R/swimmerplot.b.R
@@ -10386,6 +10544,12 @@ msgstr ""
 
 #: R/ihcheterogeneity.b.R
 msgid ""
+"The weakest pair of regions, '%s', correlated %.2f, shown to be below your "
+"%.2f threshold; the average was %.2f."
+msgstr ""
+
+#: R/ihcheterogeneity.b.R
+msgid ""
 "The weakest region, '%s', correlated %.2f with the reference, shown to be "
 "below your %.2f threshold; the average was %.2f."
 msgstr ""
@@ -10411,7 +10575,7 @@ msgstr ""
 #: R/ihcheterogeneity.b.R
 msgid ""
 "The within-case CV was %s%%; it was not graded, because the measurements "
-"were an ordinal score."
+"looked like an ordinal score or coarsely binned values."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -11308,8 +11472,9 @@ msgstr ""
 
 #: R/waterfall.b.R
 msgid ""
-"Warning: %d missing response values found. These will be excluded from "
-"analysis."
+"Warning: %d missing response values found. Those rows take no part in best "
+"response; a patient with no value at all is excluded unless a response "
+"category is supplied for them."
 msgstr ""
 
 #: R/waterfall.b.R
@@ -11477,12 +11642,14 @@ msgstr ""
 #: R/ihcheterogeneity.b.R
 msgid ""
 "Whether a difference changed with the level (proportional bias) was assessed "
-"by regressing it on the mean of the two regions compared, with "
-"heteroscedasticity-robust standard errors (Bland & Altman 1999); where the "
-"slope differed from zero (p below 0.05 divided by the number of "
-"comparisons), the difference was also judged at the 5th and 95th percentiles "
-"of that level, and a difference that changed with the level was not "
-"considered ruled out."
+"by regressing it on each of the two regions compared and on their mean, with "
+"heteroscedasticity-robust standard errors (Bland & Altman 1999); because "
+"measurement error alone tilts the slope on one region downwards and on the "
+"other upwards, a difference was considered to change with the level only "
+"when all three slopes differed from zero in the same direction (p below 0.05 "
+"divided by the number of comparisons) (Krouwer 2008). Such a difference was "
+"judged at the 5th and 95th percentiles of the mean of the two regions and "
+"was considered ruled out only if it lay within the margin at both."
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -11531,49 +11698,59 @@ msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"With %.1f%% sensitivity, approximately %.0f out of 100 diseased patients "
-"will be correctly identified."
+"With %s%% sensitivity, approximately %.0f out of 100 diseased patients will "
+"be correctly identified."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"With %.1f%% sensitivity, this test will detect %.0f out of 1,000 patients "
-"with disease, missing only %.0f."
-msgstr ""
-
-#: R/diagnosticmeta.b.R
-msgid ""
-"With %.1f%% sensitivity, this test will detect %.0f out of 100 patients with "
+"With %s%% sensitivity, this test will detect %.0f out of 1,000 patients with "
 "disease, missing only %.0f."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"With %.1f%% sensitivity, up to %.0f out of 100 diseased patients may be "
-"missed."
+"With %s%% sensitivity, this test will detect %.0f out of 100 patients with "
+"disease, missing only %.0f."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"With %.1f%% specificity, approximately %.0f out of 100 healthy individuals "
+"With %s%% sensitivity, this test will miss fewer than 1 in 1,000 patients "
+"with disease."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid "With %s%% sensitivity, up to %.0f out of 100 diseased patients may be missed."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"With %s%% specificity, approximately %.0f out of 100 healthy individuals "
 "will be correctly classified."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"With %.1f%% specificity, only %.0f out of 1,000 healthy individuals will "
-"test positive (false alarms)."
-msgstr ""
-
-#: R/diagnosticmeta.b.R
-msgid ""
-"With %.1f%% specificity, only %.0f out of 100 healthy individuals will test "
+"With %s%% specificity, fewer than 1 in 1,000 healthy individuals will test "
 "positive (false alarms)."
 msgstr ""
 
 #: R/diagnosticmeta.b.R
 msgid ""
-"With %.1f%% specificity, up to %.0f out of 100 healthy individuals may test "
+"With %s%% specificity, only %.0f out of 1,000 healthy individuals will test "
+"positive (false alarms)."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"With %s%% specificity, only %.0f out of 100 healthy individuals will test "
+"positive (false alarms)."
+msgstr ""
+
+#: R/diagnosticmeta.b.R
+msgid ""
+"With %s%% specificity, up to %.0f out of 100 healthy individuals may test "
 "positive."
 msgstr ""
 
@@ -11627,7 +11804,7 @@ msgid "Within-case CV (%) - between regions"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
-msgid "Within-case CV (%) - region vs reference"
+msgid "Within-case CV (%) - reference and regions"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
@@ -11643,7 +11820,7 @@ msgid "Within-case CV = %s%% (Moderate variability)"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R
-msgid "Within-case CV = %s%% (not graded: ordinal score)"
+msgid "Within-case CV = %s%% (not graded: ordinal or binned values)"
 msgstr ""
 
 #: R/ihcheterogeneity.b.R

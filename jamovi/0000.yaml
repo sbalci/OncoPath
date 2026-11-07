@@ -6,12 +6,12 @@ jms: '1.0'
 authors:
   - Serdar Balci
 maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
-date: '2026-10-29'
+date: '2026-10-30'
 type: R
 description: >-
   Oncology and pathology analyses from the ClinicoPath project: swimmer plots of
   patient timelines with response rates and follow-up; waterfall and spider
-  plots of tumour burden response (thresholds adapted from RECIST v1.1, not a
+  plots of tumor burden response (thresholds adapted from RECIST v1.1, not a
   lesion-level RECIST assessment); diagnostic test accuracy meta-analysis with
   bivariate and proportional-hazards SROC models; and regional heterogeneity of
   an immunohistochemistry marker, against a reference or between regions. For
@@ -114,7 +114,7 @@ datasets:
   - name: Waterfall and Spider Plot
     path: waterfall_raw_longitudinal.omv
     description: >-
-      Synthetic data, 15 patients: tumour measurements in mm at months 0, 2, 4
+      Synthetic data, 15 patients: tumor measurements in mm at months 0, 2, 4
       and 6. Raw-measurement input, spider plot, time to response and duration
       of response.
     tags:
