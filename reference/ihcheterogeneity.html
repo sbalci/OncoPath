@@ -31,7 +31,7 @@ Optional variance components, sample-size planning for ICC precision
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -199,11 +199,12 @@ Choose it for your marker and scoring method before looking at the results.</p><
 
 <dt id="arg-correlation-threshold">correlation_threshold<a class="anchor" aria-label="anchor" href="#arg-correlation-threshold"></a></dt>
 <dd><p>Smallest acceptable Spearman correlation. With
-a reference, the mean correlation of the regions with the reference is
-graded, unless a region is shown to fall below the threshold (its upper 95
-percent limit below it), in which case that region is graded; without a
-reference, the mean correlation between regions is graded. Choose it before
-looking at the results.</p></dd>
+a reference each region is correlated with the reference, and without one
+each pair of regions with each other. Their mean is graded, unless one of
+them is shown to fall below the threshold (its upper 95 percent limit below
+it), in which case the lowest such correlation is graded. One that is below
+the threshold as a point estimate only gives "met, not confirmed" instead
+of "met". Choose it before looking at the results.</p></dd>
 
 
 <dt id="arg-bias-margin">bias_margin<a class="anchor" aria-label="anchor" href="#arg-bias-margin"></a></dt>

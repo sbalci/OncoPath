@@ -16,7 +16,12 @@ itself and can additionally draw a spider plot.
 ## Percentage Input
 
 The bundled `waterfall_percentage_basic` dataset has one row per patient
-with the change already computed.
+with the change already computed. Percent change is entered as `-35` for
+a 35% decrease. A column that holds the tumor size as a percent of
+baseline (`65` for the same patient, `100` for no change) must have 100
+subtracted first; read as percent changes, such values make every
+patient look as if the tumor grew, and the analysis warns when no value
+is below zero.
 
 ``` r
 
@@ -142,20 +147,20 @@ Several of these were undocumented until now.
 
 | Option | Default | What it does |
 |----|----|----|
-| `sortDirection` | `"conventional"` | `"conventional"` puts the best responses on the left, as in published figures. `"reverse"` flips it. (Not `"decreasing"` — that value is rejected.) |
+| `sortDirection` | `"conventional"` | `"conventional"` puts the worst response (largest growth) on the left and the best (deepest shrinkage) on the right, as in most published figures. `"reverse"` flips it. (Not `"decreasing"` — that value is rejected.) |
 | `showBaseline` | `TRUE` | The Y = 0 reference line |
 | `showCategoryLabels` | `FALSE` | Response category above each bar |
-| `confirmationVar` | — | A column marking which responses were confirmed on a later scan. Unconfirmed responses overstate activity |
+| `confirmationVar` | — | A column marking which responses were confirmed on a later scan. It draws a marker on each bar only; ORR and DCR do not change. To count only confirmed responses, supply confirmed categories through `responseCategoryVar` |
 | `ongoingVar` | — | A yes/no column marking patients still on treatment (TRUE, non-zero, or yes/y/true/on/ongoing/1; the last recorded value is used). Any other value counts as not ongoing, so do not put a treatment-arm column here |
-| `responseCategoryVar` | — | Override the computed category with an investigator-assigned CR/PR/SD/PD, for example confirmed responses or PD from clinical progression |
+| `responseCategoryVar` | — | Override the computed category with an investigator-assigned CR/PR/SD/PD (or NE), for example confirmed responses or PD from clinical progression. Give one value per patient; if a patient’s values differ across visits, they are read as per-visit responses and the best one up to the first PD is used |
 | `annotationVars` | — | Extra tracks drawn below the bars (mutation status, prior lines, and so on) |
 | `showResponseDuration` | `FALSE` | Time-to-response and duration-of-response; needs `timeVar` |
 | `showSpiderLabels` | `FALSE` | Patient ID on each spider line |
 | `timeUnitLabel` | `"generic"` | The unit of the time variable, used in labels and in time-to-response results |
-| `showClinicalSignificance` | `FALSE` | Clinical-significance threshold annotations |
+| `showClinicalSignificance` | `FALSE` | A panel stating the range of ORR and DCR compatible with the data and a sample-size note, plus a glossary of terms |
 | `showConfidenceIntervals` | `TRUE` | Confidence intervals on ORR and DCR |
 | `generateCopyReadyReport` | `FALSE` | A paste-ready results paragraph |
-| `showExplanations` | `FALSE` | Notes explaining each output |
+| `showExplanations` | `FALSE` | Shows both the clinical summary and the About panel |
 | `enableGuidedMode` | `FALSE` | Step-by-step prompts for first-time users |
 
 ## A Caveat on Sorting

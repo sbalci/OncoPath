@@ -19,7 +19,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,7 @@
                         <h4 data-toc-skip class="author">Serdar
 Balci</h4>
             
-            <h4 data-toc-skip class="date">2026-10-28</h4>
+            <h4 data-toc-skip class="date">2026-11-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/sbalci/OncoPath/blob/master/vignettes/swimmerplot-unified-comprehensive.Rmd" class="external-link"><code>vignettes/swimmerplot-unified-comprehensive.Rmd</code></a></small>
       <div class="d-none name"><code>swimmerplot-unified-comprehensive.Rmd</code></div>
@@ -124,19 +124,30 @@ patients. Times are in months from the start of treatment.</p>
 <span><span class="va">res</span><span class="op">$</span><span class="va">advancedMetrics</span><span class="op">$</span><span class="va">asDF</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"metric_name"</span>, <span class="st">"metric_value"</span>, <span class="st">"confidence_interval"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <p>With these data the analysis reports 5 CR, 6 PR, 6 SD and 3 PD among
 20 patients:</p>
-<pre><code>                                                         metric_name metric_value confidence_interval
-Median Follow-up Time (observed durations; no censoring information)       19.5
-                            Interquartile Range (observed durations)        7.5
-                                             Total Study Person-Time      391.0
-                                       Objective Response Rate (ORR)       55.0         31.5 - 76.9
-                                          Disease Control Rate (DCR)       85.0         62.1 - 96.8</code></pre>
+<pre><code>                                                                            metric_name
+"median_followup"  Median Follow-up Time (observed durations; no censoring information)
+"iqr"                                          Interquartile Range (observed durations)
+"person_time"                                                   Total Study Person-Time
+"followup_density"                                                    Follow-up Density
+"orr"                                                     Objective Response Rate (ORR)
+"dcr"                                                        Disease Control Rate (DCR)
+                   metric_value confidence_interval
+"median_followup"        19.500                &lt;NA&gt;
+"iqr"                     7.500                &lt;NA&gt;
+"person_time"           391.000                &lt;NA&gt;
+"followup_density"        5.115                &lt;NA&gt;
+"orr"                    55.000         31.5 - 76.9
+"dcr"                    85.000         62.1 - 96.8</code></pre>
 <p>ORR and DCR are shown only when <strong>every</strong> response value
 is a RECIST category (CR, PR, SD, PD or NE; “complete/partial remission”
 are read as CR/PR). A coding such as Response / Stable / Progression
 withholds them, and a notice names the value that could not be read.
-When a patient has several response rows, the category used is the best
-response recorded up to the first PD; it carries no confirmation of
-CR/PR and no minimum duration for SD, and the output says so.</p>
+“NA” or “N/A” written as text counts as no recorded response. When a
+patient has different responses on different rows, the category used is
+the best response recorded up to the first PD; it carries no
+confirmation of CR/PR and no minimum duration for SD, and the output
+says so. A patient-level best response repeated on each of the patient’s
+rows is used as it is.</p>
 </div>
 <div class="section level2">
 <h2 id="milestones-and-events">Milestones and Events<a class="anchor" aria-label="anchor" href="#milestones-and-events"></a>
@@ -200,8 +211,10 @@ method.</p>
 <td>Yes/TRUE = event, or Yes/TRUE = censored</td>
 </tr>
 <tr class="odd">
-<td><code>"one_censored"</code></td>
-<td>0/1 with 1 = censored</td>
+<td>
+<code>"one_event_01"</code> / <code>"one_censored"</code>
+</td>
+<td>0/1 with 1 = event, or 1 = censored</td>
 </tr>
 <tr class="even">
 <td>
@@ -231,7 +244,11 @@ cut-off):</p>
 <span>  responseVar <span class="op">=</span> <span class="st">"Response"</span>,</span>
 <span>  censorVar   <span class="op">=</span> <span class="st">"Status"</span>          <span class="co"># 0/1, read automatically with 1 = event</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co"># Median Follow-up Time (reverse Kaplan-Meier): 23.0 months (95% CI 20.0 - not reached)</span></span></code></pre></div>
+<span><span class="va">res_cens</span><span class="op">$</span><span class="va">advancedMetrics</span><span class="op">$</span><span class="va">asDF</span><span class="op">[</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"metric_name"</span>, <span class="st">"metric_value"</span>, <span class="st">"confidence_interval"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co">#&gt;                                                    metric_name metric_value</span></span>
+<span><span class="co">#&gt; "median_followup" Median Follow-up Time (reverse Kaplan-Meier)           23</span></span>
+<span><span class="co">#&gt;                   confidence_interval</span></span>
+<span><span class="co">#&gt; "median_followup"          20.00 - NR</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="groups-dates-and-display">Groups, Dates and Display<a class="anchor" aria-label="anchor" href="#groups-dates-and-display"></a>
@@ -240,12 +257,16 @@ cut-off):</p>
 <li>
 <code>groupVar</code> names one fixed patient-level grouping
 variable (for example the treatment arm) for between-group comparisons.
-A patient whose episodes carry different groups stops the comparison,
-because episode-specific treatments cannot define independent patient
-groups.</li>
+If any patient’s episodes carry different groups, the comparison is
+skipped with a notice, because episode-specific treatments cannot define
+independent patient groups; the plot, follow-up and response rates are
+still reported.</li>
+<li>Rows without a start or end time are left out, and a notice lists
+the responses and censoring values they carried. An ongoing treatment
+line needs the data cutoff as its end time.</li>
 <li>
-<code>timeType = "datetime"</code> reads start, end and milestone
-columns as dates, using <code>dateFormat</code> (for example
+<code>timeType = "datetime"</code> reads start, end, milestone and
+event-time columns as dates, using <code>dateFormat</code> (for example
 <code>"ymd"</code>); <code>timeUnit</code> then sets the unit the
 durations are shown in.</li>
 <li>
@@ -255,12 +276,14 @@ own start (<code>"relative"</code>) and calendar time
 <li>
 <code>referenceLines</code> adds the median duration, protocol times
 (3/6/9/12/18/24/36 months) or a custom time
-(<code>customReferenceTime</code>).</li>
+(<code>customReferenceTime</code>, or a calendar date in
+<code>customReferenceDate</code> for an absolute date axis).</li>
 <li>
-<code>sortVariable</code> and <code>sortOrder</code> order the
-lanes; <code>laneWidth</code>, <code>markerSize</code>,
-<code>plotTheme</code>, <code>colorPalette</code> and
-<code>showLegend</code> control the look.</li>
+<code>sortVariable</code> (smallest value at the top) and
+<code>sortOrder</code> order the lanes; <code>laneWidth</code>,
+<code>markerSize</code>, <code>plotTheme</code>,
+<code>colorPalette</code> and <code>showLegend</code> control the
+look.</li>
 <li>
 <code>showGlossary</code>, <code>showCopyReady</code> and
 <code>showAbout</code> add a glossary, paste-ready sentences and a

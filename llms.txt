@@ -20,7 +20,7 @@ Module](https://img.shields.io/badge/jamovi-module-brightgreen.svg?logo=jamovi)]
 for oncology and pathology research. It is one of the modules of the
 [ClinicoPath](https://github.com/sbalci/ClinicoPathJamoviModule) project
 and adds four analyses under the **OncoPath** menu in jamovi: patient
-timelines, tumour burden response, diagnostic test accuracy
+timelines, tumor burden response, diagnostic test accuracy
 meta-analysis, and regional heterogeneity of an immunohistochemistry
 (IHC) marker.
 
@@ -34,8 +34,8 @@ judgement.
 
 | Analysis (jamovi menu) | R function | Menu subgroup | What it does |
 |:---|:---|:---|:---|
-| **Swimmer Plot** | `swimmerplot` | Patient Follow-Up Plots | One lane per patient from start and end times (numbers or dates), coloured by response; optional censoring status, up to five milestones, event markers and a grouping variable. Reports ORR and DCR with exact CIs, median follow-up (reverse Kaplan-Meier when a censoring status is given) and person-time by best response. |
-| **Treatment Response: Patient-Level Burden** | `waterfall` | Patient Follow-Up Plots | Waterfall and spider plots from one tumour burden value per patient (a percent change) or per visit (a raw measurement). Assigns CR/PR/SD/PD with thresholds adapted from RECIST v1.1, measures progression against the nadir, and reports ORR and DCR with exact CIs, group comparisons, time to response and duration of response. |
+| **Swimmer Plot** | `swimmerplot` | Patient Follow-Up Plots | One lane per patient from start and end times (numbers or dates), colored by response; optional censoring status, up to five milestones, event markers and a grouping variable. Reports ORR and DCR with exact CIs, median follow-up (reverse Kaplan-Meier when a censoring status is given) and person-time by best response. |
+| **Treatment Response: Patient-Level Burden** | `waterfall` | Patient Follow-Up Plots | Waterfall and spider plots from one tumor burden value per patient (a percent change) or per visit (a raw measurement). Assigns CR/PR/SD/PD with thresholds adapted from RECIST v1.1, measures progression against the nadir, and reports ORR and DCR with exact CIs, group comparisons, time to response and duration of response. |
 | **Diagnostic Test Meta-Analysis for Pathology** | `diagnosticmeta` | Meta-Analysis | Pools 2x2 tables (TP, FP, FN, TN) from independent studies: bivariate random-effects model (Reitsma), proportional-hazards SROC model (Holling), heterogeneity, meta-regression on one study-level covariate, Deeks’ funnel-plot test, and forest, SROC and funnel plots. |
 | **IHC Heterogeneity Analysis** | `ihcheterogeneity` | IHC Analysis | For one continuous IHC measurement (for example percent positive cells or an H-score) taken in several regions of the same case: how well regions (biopsies, cores, fields) agree with a reference measurement or with one another. Spearman correlation, ICC(2,1) and ICC(3,1), per-case CV, Bland-Altman limits of agreement, equivalence-margin judgements, and optional variance components, sample-size planning and spatial-compartment comparisons. |
 
@@ -164,7 +164,7 @@ up:
 |:---|:---|:---|
 | `swimmerplot_sample.omv` | Swimmer Plot | 20 patients: start and end times in months, best response, four milestone times and an event column |
 | `waterfall_percentage_basic.omv` | Treatment Response | 20 patients: best percent change from baseline and treatment arm (Drug A / Drug B) |
-| `waterfall_raw_longitudinal.omv` | Treatment Response | 15 patients: tumour measurements at months 0, 2, 4 and 6 |
+| `waterfall_raw_longitudinal.omv` | Treatment Response | 15 patients: tumor measurements at months 0, 2, 4 and 6 |
 | `diagnosticmeta_test_categorical.omv` | Diagnostic Test Meta-Analysis | 20 studies: 2x2 counts, year, a quality score and imaging modality (CT 5, MRI 9, ultrasound 6) |
 | `ihcheterogeneity_test.omv` | IHC Heterogeneity | 50 cases: whole-section reference, four biopsies and a spatial compartment |
 
@@ -196,7 +196,7 @@ If you use OncoPath in your research or publications, please cite:
   title  = {OncoPath: Oncology and Pathology Analyses for jamovi},
   author = {Serdar Balci},
   year   = {2026},
-  note   = {R package and jamovi module version 1.1.0},
+  note   = {R package and jamovi module version 1.1.3},
   url    = {https://www.serdarbalci.com/OncoPath/}
 }
 ```
@@ -209,7 +209,7 @@ is distributed, is archived on Zenodo as
 
 OncoPath is licensed under GPL (\>= 2); see the [GNU licenses
 page](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html). It
-imports packages under other licences, including `mada` (GPL-2 only),
+imports packages under other licenses, including `mada` (GPL-2 only),
 `ggrepel` (GPL-3), `RColorBrewer` (Apache-2.0) and `ggswim` (MIT). Users
 who redistribute OncoPath together with its dependencies should check
 that the combination meets their licensing needs.
@@ -264,6 +264,6 @@ Bundled example datasets
 - [Diagnostic Test Meta-Analysis for
   Pathology](https://www.serdarbalci.com/OncoPath/articles/diagnosticmeta-comprehensive.md):
 - [IHC Heterogeneity: How Much Does a Biopsy Tell You About the
-  Tumour?](https://www.serdarbalci.com/OncoPath/articles/ihcheterogeneity-comprehensive.md):
+  Tumor?](https://www.serdarbalci.com/OncoPath/articles/ihcheterogeneity-comprehensive.md):
 - [Swimmer Plot: Patient Timelines, Response and
   Follow-up](https://www.serdarbalci.com/OncoPath/articles/swimmerplot-unified-comprehensive.md):

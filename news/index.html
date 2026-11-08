@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,8 +40,58 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="oncopath-development-version">OncoPath (development version)<a class="anchor" aria-label="anchor" href="#oncopath-development-version"></a></h2>
-<p>Fixes from the jamovi library review of 1.1.2 (2026-10-23). No statistics or options changed, and saved analyses open as before.</p>
+<h2 class="pkg-version" data-toc-text="1.1.3" id="oncopath-113-2026-10-30">OncoPath 1.1.3 (2026-10-30)<a class="anchor" aria-label="anchor" href="#oncopath-113-2026-10-30"></a></h2>
+<p><strong>Saved analyses can give different results.</strong> jamovi shows the results stored in a saved file until an option is changed. Re-run a saved analysis (change any option and change it back) before you rely on it. No option was added, removed or renamed.</p>
+<div class="section level3">
+<h3 id="results-change-by-design-1-1-3">Results change by design<a class="anchor" aria-label="anchor" href="#results-change-by-design-1-1-3"></a></h3>
+<p>These came from a pre-submission review that checked every displayed statistic against an independent calculation (mada, metafor, irr, psych, lme4, survival, binom.test, fisher.test and hand calculation of RECIST 1.1). The core estimates were confirmed. What changed are cases that only an ordinary but non-default data coding or option reaches.</p>
+<div class="section level4">
+<h4 id="treatment-response-patient-level-burden-waterfall-1-1-3">Treatment Response: Patient-Level Burden (<code>waterfall</code>)<a class="anchor" aria-label="anchor" href="#treatment-response-patient-level-burden-waterfall-1-1-3"></a></h4>
+<ul><li>
+<strong>Percent-of-baseline values are no longer read as growth without warning.</strong> Some data record tumor size as a percent of baseline, where 100 means no change. Such values made every patient progressive disease, and with a time variable and no time-0 row nothing was said. Now, whenever no value is below zero, a strong warning says that no patient can be a complete or partial response and tells you to subtract 100 if 100 means no change.</li>
+<li>
+<strong>Per-visit categories give the best response.</strong> When the response-category variable holds a different category at each visit (SD, then PR, then PR), the patient’s category is now the best one in time order up to the first progression, not the earliest one, and a notice says so. That patient is now a partial response.</li>
+<li>Categories written in full (“Partial response”, “Progressive disease”) are accepted.</li>
+<li>A patient you mark NE no longer gets a bar and no longer counts toward the median line, and a notice names those patients.</li>
+<li>The notices are accurate. Missing values are no longer called “excluded” when you supplied a category for that patient, and very large growth is listed patient by patient.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="swimmer-plot-1-1-3">Swimmer Plot<a class="anchor" aria-label="anchor" href="#swimmer-plot-1-1-3"></a></h4>
+<ul><li>
+<strong>“Unconfirmed best response” only when it is true.</strong> When the same response was repeated on every row of a patient (a common export of an adjudicated best overall response), the analysis warned that best responses were unconfirmed, and the manuscript text said so. The warning and that sentence now appear only when a patient’s rows carry different responses. ORR and DCR were correct and are unchanged.</li>
+<li>
+<strong>Rows dropped for a missing start or end time are itemized.</strong> An ongoing treatment line with no end date is often left blank. When such rows are dropped, the notice now lists the responses and censoring values they held, and suggests entering the data cutoff as the end time.</li>
+<li>
+<strong>A grouping variable that changes within a patient skips only the group comparison</strong>, with a notice. It used to stop the whole analysis.</li>
+<li>Text “NA” or “N/A” in the response column counts as no recorded response rather than NE. Response rows are listed in clinical order (CR, PR, SD, PD, NE). “Non-CR/Non-PD” is named as a RECIST 1.1 category that this analysis does not score. Sort by variable uses each patient’s first non-missing value, and the median reference line is labeled “Median duration”.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="ihc-heterogeneity-analysis-1-1-3">IHC Heterogeneity Analysis<a class="anchor" aria-label="anchor" href="#ihc-heterogeneity-analysis-1-1-3"></a></h4>
+<ul><li>
+<strong>Proportional differences between regions.</strong> Without a reference measurement, two regions measured with different precision are no longer reported as differing “with the level”. In a simulation with no true difference this happened in 35% of studies with 100 cases and 70% with 300; it is now 0% and 1.7%. The pair check is the same as for a region against the reference: the slope of the difference must agree in direction on each region and on their mean (Krouwer 2008).</li>
+<li>
+<strong>Pair correlations.</strong> Without a reference, each pair of regions now has its own Spearman correlation with a 95% CI. A pair shown to be below your correlation threshold now sets the verdict, as a region does when a reference is supplied. Such a pair used to be described as “not shown to be below it”.</li>
+<li>
+<strong>Ordinal and binned scores.</strong> Allred-type scores (at most 9 whole-number values between 0 and 12) are no longer graded by their coefficient of variation. They used to be called inadequate despite near-perfect category agreement. Measurements with few values are described as “an ordinal score or coarsely binned values”.</li>
+<li>A note appears when the systematic-difference margin is finer than the steps the values were recorded in. The within-case CV row of the reference design is renamed “reference and regions”, which is what it pools.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="diagnostic-test-meta-analysis-for-pathology-1-1-3">Diagnostic Test Meta-Analysis for Pathology<a class="anchor" aria-label="anchor" href="#diagnostic-test-meta-analysis-for-pathology-1-1-3"></a></h4>
+<ul><li>
+<strong>The plain-language summary no longer rounds a near-perfect result up to perfection.</strong> A pooled sensitivity of 99.98% read “100.0% … detects 1000 out of 1,000 patients, missing only 0” even when the studies contained false negatives. It now shows the digits that matter and says the test misses “fewer than 1 in 1,000”. Specificity is handled the same way, and very small likelihood ratios print with significant digits instead of “0.00”.</li>
+<li>A value just below a band edge (for example 89.96%) is no longer described as being in the band above.</li>
+<li>The warning shown when most studies have no false positives (or no false negatives) no longer says the likelihood ratio has no limit when some studies do have such errors.</li>
+<li>Ordered covariates in the meta-regression are labeled with your variable name, and the predictive-values table notes when between-study heterogeneity is large.</li>
+<li>The tables, estimates and intervals are unchanged.</li>
+</ul></div>
+</div>
+<div class="section level3">
+<h3 id="documentation-1-1-3">Documentation<a class="anchor" aria-label="anchor" href="#documentation-1-1-3"></a></h3>
+<ul><li>The four vignettes were re-run against this version. Their printed output, option descriptions and interpretation guidance now match what the analyses show. For example, the IHC vignette’s own example now reads “Inadequate sampling”, and the meta-analysis vignette no longer equates funnel asymmetry with publication bias.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="fixes-from-the-jamovi-library-review-of-1-1-3">Fixes from the jamovi library review of 1.1.2 (2026-10-23)<a class="anchor" aria-label="anchor" href="#fixes-from-the-jamovi-library-review-of-1-1-3"></a></h3>
+<p>No statistics or options changed, and saved analyses open as before.</p>
 <ul><li>
 <strong>Notices look the same in all four analyses</strong> and name their severity in words (“Warning: Small sample”), so they no longer rely on color alone. They are listed most severe first everywhere. Swimmer Plot’s plain-text notice block now uses the same panel as the other three.</li>
 <li>
@@ -55,6 +105,7 @@
 <li>
 <strong>Repository:</strong> test-failure output and a personal settings file are no longer tracked, and the module’s tests check what the analyses say rather than review notes.</li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.2" id="oncopath-112-2026-10-23">OncoPath 1.1.2 (2026-10-23)<a class="anchor" aria-label="anchor" href="#oncopath-112-2026-10-23"></a></h2>
 <p>Versions 1.1.0 (2026-10-19) and 1.1.1 (2026-10-20) were not released to the jamovi library; this entry covers every change since 1.0.9. <strong>Saved analyses can give different results.</strong> jamovi shows the results stored in a saved file until an option is changed, so re-run a saved analysis (change any option and change it back) before you rely on it.</p>

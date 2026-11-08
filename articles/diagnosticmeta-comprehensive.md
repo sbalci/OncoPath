@@ -104,8 +104,8 @@ Before analysis, verify:
 - ✅ No missing values in TP, FP, FN, TN columns
 - ✅ All values are non-negative integers  
 - ✅ Each study has complete 2×2 table data
-- ✅ At least 2 studies with valid data
-- ✅ Study identifiers are unique
+- ✅ At least 3 studies with valid data
+- ✅ Study identifiers are unique, one 2×2 table per independent study
 
 ``` r
 
@@ -150,12 +150,14 @@ Individual Study Performance Metrics {.table}
 
 ### Bivariate Random-Effects Model
 
-The **bivariate random-effects model** (Reitsma et al.) is the gold
-standard:
+The **bivariate random-effects model** (Reitsma et al.) is the
+recommended model for pooling sensitivity and specificity:
 
 - Jointly analyzes sensitivity and specificity
-- Accounts for correlation between measures  
-- Handles threshold effects across studies
+- Accounts for the between-study correlation between them
+- Gives a summary ROC curve; when studies use different positivity
+  thresholds, read the curve and the prediction region rather than the
+  single pooled point
 - Provides pooled estimates with confidence intervals
 
 ### Key Features:
@@ -302,7 +304,7 @@ one.
 ### Presentation Options
 
 `forest_plot`, `sroc_plot` and `funnel_plot` control the three figures;
-`color_palette` sets their colour scheme and `show_plot_explanations`
+`color_palette` sets their color scheme and `show_plot_explanations`
 adds a note under each explaining how to read it.
 `show_individual_studies` adds the per-study sensitivity and specificity
 table, which is worth keeping — a pooled estimate without the studies
@@ -351,23 +353,23 @@ behind it is hard to sanity-check.
 
 ``` r
 
-# Example results interpretation
-# Pooled Sensitivity: 0.891 (95% CI: 0.808-0.941)
-# Pooled Specificity: 0.780 (95% CI: 0.715-0.833)
+# Pooled estimates for diagnostic_data above (bivariate model, REML)
+# Pooled Sensitivity: 85.8% (95% CI: 78.0%-91.1%)
+# Pooled Specificity: 80.8% (95% CI: 74.7%-85.8%)
 ```
 
-**Interpretation**: - **Sensitivity (89.1%)**: Test correctly identifies
-89% of diseased cases - **Specificity (78.0%)**: Test correctly
-identifies 78% of non-diseased cases - **Confidence Intervals**: Range
-of plausible values for true parameters
+**Interpretation**: - **Sensitivity (85.8%)**: Test correctly identifies
+about 86 of every 100 diseased cases - **Specificity (80.8%)**: Test
+correctly identifies about 81 of every 100 non-diseased cases -
+**Confidence Intervals**: Range of plausible values for true parameters
 
 #### Diagnostic Accuracy Measures
 
 ``` r
 
 # Example calculations for interpretation
-pooled_sens <- 0.891
-pooled_spec <- 0.780
+pooled_sens <- 0.858
+pooled_spec <- 0.808
 
 # Likelihood ratios
 positive_lr <- pooled_sens / (1 - pooled_spec)
@@ -395,18 +397,25 @@ knitr::kable(measures, caption = "Diagnostic Accuracy Interpretation")
 
 | Measure                   | Value | Interpretation           |
 |:--------------------------|------:|:-------------------------|
-| Positive Likelihood Ratio |  4.05 | Weak evidence            |
-| Negative Likelihood Ratio |  0.14 | Moderate evidence        |
-| Diagnostic Odds Ratio     | 29.00 | Excellent discrimination |
+| Positive Likelihood Ratio |  4.47 | Weak evidence            |
+| Negative Likelihood Ratio |  0.18 | Moderate evidence        |
+| Diagnostic Odds Ratio     | 25.40 | Excellent discrimination |
 
 Diagnostic Accuracy Interpretation {.table}
 
 ### Heterogeneity Assessment
 
-**I² Statistic Interpretation**: - **I² \< 25%**: Low heterogeneity -
-results can be pooled reliably - **I² 25-50%**: Moderate heterogeneity -
-investigate sources - **I² \> 50%**: Substantial heterogeneity - pooling
-may not be appropriate
+**I² Statistic Interpretation** (Higgins’ conventional bands, borrowed
+from intervention reviews): - **I² \< 25%**: Little heterogeneity on
+that margin. With few studies I² is imprecise, and on its own it does
+not show that pooling is appropriate - **I² 25-50%**: Moderate
+heterogeneity - investigate sources - **I² \> 50%**: Substantial
+heterogeneity - expected whenever studies use different positivity
+thresholds; read the SROC curve and the prediction region rather than
+the pooled point
+
+The analysis reports I² separately for sensitivity and for specificity.
+Neither describes the bivariate model; the prediction interval does.
 
 **Clinical Sources of Heterogeneity**: - Patient population differences
 (disease stage, demographics) - Technical variations (antibody sources,
@@ -415,9 +424,12 @@ standards) - Geographic or temporal factors
 
 ### Publication Bias
 
-**Deeks’ Funnel Plot Test**: - **p \< 0.05**: Significant asymmetry
-suggests publication bias - **p \>= 0.05**: No significant evidence of
-bias
+**Deeks’ Funnel Plot Test**: - **p \< 0.05**: The funnel plot is
+asymmetric. Publication bias is one explanation; heterogeneity, a
+threshold effect and a real relation between study size and accuracy are
+others, and the test cannot tell them apart - **p \>= 0.05**: No
+asymmetry detected. With fewer than 10 studies the test has little
+power, so this does not show that publication bias is absent
 
 ## Clinical Applications
 
@@ -448,25 +460,29 @@ create_clinical_table <- function(sens, spec) {
 }
 
 # Example with pooled estimates
-clinical_table <- create_clinical_table(0.891, 0.780)
+clinical_table <- create_clinical_table(0.858, 0.808)
 knitr::kable(clinical_table, 
              caption = "Predictive Values at Different Disease Prevalences")
 ```
 
 | Prevalence | PPV   | NPV   |
 |:-----------|:------|:------|
-| 5%         | 17.6% | 99.3% |
-| 10%        | 31%   | 98.5% |
-| 20%        | 50.3% | 96.6% |
-| 30%        | 63.4% | 94.3% |
-| 50%        | 80.2% | 87.7% |
+| 5%         | 19%   | 99.1% |
+| 10%        | 33.2% | 98.1% |
+| 20%        | 52.8% | 95.8% |
+| 30%        | 65.7% | 93%   |
+| 50%        | 81.7% | 85.1% |
 
 Predictive Values at Different Disease Prevalences {.table}
 
-**Key Clinical Insights**: - **High Sensitivity (89%)**: Suitable for
-screening applications - **Moderate Specificity (78%)**: Positive
-results may need confirmation - **Prevalence Dependency**: Predictive
-values vary significantly with disease prevalence
+**Key Clinical Insights**: - **Sensitivity (86%) and specificity (81%)**
+describe the test, not its fitness for a role. Whether it suits
+screening or confirmation depends on the prevalence in the population
+you test and on what a missed case or a false positive costs -
+**Prevalence Dependency**: Predictive values vary markedly with disease
+prevalence - **Heterogeneity**: with a wide prediction interval,
+predictive values in your own setting can differ markedly from the table
+above
 
 ### AI Algorithm Meta-Analysis
 
@@ -488,7 +504,9 @@ When investigating covariates:
 # Example meta-regression results
 # Sensitivity ~ Patient Population
 # Advanced vs. Mixed: β = -0.45, p = 0.02
-# Interpretation: Advanced stage patients show 45% lower logit-sensitivity
+# Interpretation: β is a difference in logit sensitivity, so the odds of a
+# positive result in diseased patients are exp(-0.45) = 0.64 times those in
+# the mixed population - about 36% lower ODDS, not 45% lower sensitivity
 ```
 
 **Clinical Translation**: - Significant covariates explain heterogeneity
@@ -519,9 +537,10 @@ Consider sensitivity analysis excluding extreme studies
 analysis instead of pooling - **Investigate**: Sources through
 meta-regression
 
-**Publication Bias Detected**: - **Implication**: Results may be
-overestimated - **Action**: Search for unpublished studies, sensitivity
-analysis
+**Funnel Asymmetry Detected**: - **Implication**: Small and large
+studies report different accuracy; if publication bias is the cause, the
+pooled results may be overestimated - **Action**: Look for a clinical
+explanation first, then search for unpublished studies
 
 ## Sample Results Interpretation
 
@@ -531,52 +550,65 @@ analysis
 
 # Sample results summary
 results_summary <- "
-Bivariate Meta-Analysis Results (n=10 studies, N=5,513 patients):
-- Pooled Sensitivity: 89.1% (95% CI: 80.8%-94.1%)
-- Pooled Specificity: 78.0% (95% CI: 71.5%-83.3%)
-- Positive Likelihood Ratio: 4.05
-- Negative Likelihood Ratio: 0.14
-- Diagnostic Odds Ratio: 29.0
+Bivariate Meta-Analysis Results (n=10 studies, N=7,314 participants):
+- Pooled Sensitivity: 85.8% (95% CI: 78.0%-91.1%)
+- Pooled Specificity: 80.8% (95% CI: 74.7%-85.8%)
+- Positive Likelihood Ratio: 4.48 (3.56-5.63)
+- Negative Likelihood Ratio: 0.18 (0.12-0.26)
+- Diagnostic Odds Ratio: 25.5 (18.9-34.3)
+- 95% prediction interval for a new study: sensitivity 47.2%-97.6%,
+  specificity 51.9%-94.3%
 
-Heterogeneity Assessment:
-- Sensitivity I²: 68% (substantial heterogeneity)
-- Specificity I²: 45% (moderate heterogeneity)
+Heterogeneity Assessment (univariate, per margin):
+- Sensitivity I²: 78.8%
+- Specificity I²: 96.7%
 
 Publication Bias:
-- Deeks' test p-value: 0.23 (no significant bias)
+- Deeks' test: t = 1.71, p = 0.13 (no asymmetry detected; 10 studies give
+  the test little power)
 "
 
 cat(results_summary)
 #> 
-#> Bivariate Meta-Analysis Results (n=10 studies, N=5,513 patients):
-#> - Pooled Sensitivity: 89.1% (95% CI: 80.8%-94.1%)
-#> - Pooled Specificity: 78.0% (95% CI: 71.5%-83.3%)
-#> - Positive Likelihood Ratio: 4.05
-#> - Negative Likelihood Ratio: 0.14
-#> - Diagnostic Odds Ratio: 29.0
+#> Bivariate Meta-Analysis Results (n=10 studies, N=7,314 participants):
+#> - Pooled Sensitivity: 85.8% (95% CI: 78.0%-91.1%)
+#> - Pooled Specificity: 80.8% (95% CI: 74.7%-85.8%)
+#> - Positive Likelihood Ratio: 4.48 (3.56-5.63)
+#> - Negative Likelihood Ratio: 0.18 (0.12-0.26)
+#> - Diagnostic Odds Ratio: 25.5 (18.9-34.3)
+#> - 95% prediction interval for a new study: sensitivity 47.2%-97.6%,
+#>   specificity 51.9%-94.3%
 #> 
-#> Heterogeneity Assessment:
-#> - Sensitivity I²: 68% (substantial heterogeneity)
-#> - Specificity I²: 45% (moderate heterogeneity)
+#> Heterogeneity Assessment (univariate, per margin):
+#> - Sensitivity I²: 78.8%
+#> - Specificity I²: 96.7%
 #> 
 #> Publication Bias:
-#> - Deeks' test p-value: 0.23 (no significant bias)
+#> - Deeks' test: t = 1.71, p = 0.13 (no asymmetry detected; 10 studies give
+#>   the test little power)
 ```
 
 ### Clinical Translation
 
-> **Summary**: The pooled analysis shows the IHC marker has good
-> diagnostic performance with 89% sensitivity and 78% specificity. A
-> positive test increases disease odds ~4-fold, while a negative test
-> reduces odds by ~86%. Substantial heterogeneity in sensitivity
-> suggests performance varies by population or methodology. No
-> significant publication bias was detected.
+> **Summary**: Across 10 studies the IHC marker has a pooled sensitivity
+> of 85.8% and specificity of 80.8%. A positive result multiplies the
+> pre-test odds of disease by about 4.5 (weak evidence on the
+> conventional 2-5-10 scale), and a negative result multiplies them by
+> about 0.18 (moderate evidence against disease). Heterogeneity is
+> substantial: a new laboratory could see a sensitivity anywhere from
+> about 47% to 98% and a specificity from about 52% to 94%. Deeks’ test
+> found no funnel asymmetry, but with 10 studies that does not rule out
+> publication bias.
 
-**Recommendations**: 1. **High sensitivity**: Suitable for screening
-applications 2. **Moderate specificity**: Positive results may need
-confirmation 3. **Strong negative LR**: Negative results effectively
-rule out disease 4. **Investigate heterogeneity**: Consider
-population-specific validation
+**Recommendations**: 1. **Report the prediction interval with the pooled
+pair**: it, not the pooled point, says what a new setting can expect 2.
+**Negative LR of 0.18 is moderate, not strong**: a negative result
+lowers the probability of disease but does not rule it out on its own 3.
+**Choose the role from the clinical context**: screening or confirmation
+depends on prevalence and on the cost of each kind of error, which the
+meta-analysis does not know 4. **Investigate heterogeneity**: patient
+spectrum, staining protocol and thresholds, with meta-regression if
+there are enough studies
 
 ## Best Practices
 

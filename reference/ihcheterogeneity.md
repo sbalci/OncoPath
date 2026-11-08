@@ -131,12 +131,13 @@ ihcheterogeneity(
 
 - correlation_threshold:
 
-  Smallest acceptable Spearman correlation. With a reference, the mean
-  correlation of the regions with the reference is graded, unless a
-  region is shown to fall below the threshold (its upper 95 percent
-  limit below it), in which case that region is graded; without a
-  reference, the mean correlation between regions is graded. Choose it
-  before looking at the results.
+  Smallest acceptable Spearman correlation. With a reference each region
+  is correlated with the reference, and without one each pair of regions
+  with each other. Their mean is graded, unless one of them is shown to
+  fall below the threshold (its upper 95 percent limit below it), in
+  which case the lowest such correlation is graded. One that is below
+  the threshold as a point estimate only gives "met, not confirmed"
+  instead of "met". Choose it before looking at the results.
 
 - bias_margin:
 

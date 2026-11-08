@@ -19,7 +19,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,7 @@
                         <h4 data-toc-skip class="author">Serdar
 Balci</h4>
             
-            <h4 data-toc-skip class="date">2026-10-28</h4>
+            <h4 data-toc-skip class="date">2026-11-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/sbalci/OncoPath/blob/master/vignettes/06-function-waterfall.Rmd" class="external-link"><code>vignettes/06-function-waterfall.Rmd</code></a></small>
       <div class="d-none name"><code>06-function-waterfall.Rmd</code></div>
@@ -88,7 +88,12 @@ plot.</p>
 <h2 id="percentage-input">Percentage Input<a class="anchor" aria-label="anchor" href="#percentage-input"></a>
 </h2>
 <p>The bundled <code>waterfall_percentage_basic</code> dataset has one
-row per patient with the change already computed.</p>
+row per patient with the change already computed. Percent change is
+entered as <code>-35</code> for a 35% decrease. A column that holds the
+tumor size as a percent of baseline (<code>65</code> for the same
+patient, <code>100</code> for no change) must have 100 subtracted first;
+read as percent changes, such values make every patient look as if the
+tumor grew, and the analysis warns when no value is below zero.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.serdarbalci.com/OncoPath/">OncoPath</a></span><span class="op">)</span></span>
 <span></span>
@@ -217,8 +222,9 @@ produce the same waterfall bar.</p>
 <td><code>sortDirection</code></td>
 <td><code>"conventional"</code></td>
 <td>
-<code>"conventional"</code> puts the best responses on the left, as
-in published figures. <code>"reverse"</code> flips it. (Not
+<code>"conventional"</code> puts the worst response (largest growth)
+on the left and the best (deepest shrinkage) on the right, as in most
+published figures. <code>"reverse"</code> flips it. (Not
 <code>"decreasing"</code> — that value is rejected.)</td>
 </tr>
 <tr class="even">
@@ -234,8 +240,11 @@ in published figures. <code>"reverse"</code> flips it. (Not
 <tr class="even">
 <td><code>confirmationVar</code></td>
 <td>—</td>
-<td>A column marking which responses were confirmed on a later scan.
-Unconfirmed responses overstate activity</td>
+<td>A column marking which responses were confirmed on a later scan. It
+draws a marker on each bar only; ORR and DCR do not change. To count
+only confirmed responses, supply confirmed categories through
+<code>responseCategoryVar</code>
+</td>
 </tr>
 <tr class="odd">
 <td><code>ongoingVar</code></td>
@@ -249,8 +258,10 @@ here</td>
 <td><code>responseCategoryVar</code></td>
 <td>—</td>
 <td>Override the computed category with an investigator-assigned
-CR/PR/SD/PD, for example confirmed responses or PD from clinical
-progression</td>
+CR/PR/SD/PD (or NE), for example confirmed responses or PD from clinical
+progression. Give one value per patient; if a patient’s values differ
+across visits, they are read as per-visit responses and the best one up
+to the first PD is used</td>
 </tr>
 <tr class="odd">
 <td><code>annotationVars</code></td>
@@ -279,7 +290,8 @@ time-to-response results</td>
 <tr class="odd">
 <td><code>showClinicalSignificance</code></td>
 <td><code>FALSE</code></td>
-<td>Clinical-significance threshold annotations</td>
+<td>A panel stating the range of ORR and DCR compatible with the data
+and a sample-size note, plus a glossary of terms</td>
 </tr>
 <tr class="even">
 <td><code>showConfidenceIntervals</code></td>
@@ -294,7 +306,7 @@ time-to-response results</td>
 <tr class="even">
 <td><code>showExplanations</code></td>
 <td><code>FALSE</code></td>
-<td>Notes explaining each output</td>
+<td>Shows both the clinical summary and the About panel</td>
 </tr>
 <tr class="odd">
 <td><code>enableGuidedMode</code></td>
