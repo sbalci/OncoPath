@@ -19,7 +19,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,17 +101,19 @@ sizes and may not be generalizable. Meta-analysis provides:</p>
 <strong>Increased Statistical Power</strong>: Combining multiple
 studies increases precision</li>
 <li>
-<strong>Robust Estimates</strong>: More reliable pooled sensitivity
-and specificity</li>
+<strong>Pooled Estimates</strong>: Sensitivity and specificity with
+model-based uncertainty; bias in the source studies is not removed by
+pooling</li>
 <li>
 <strong>Heterogeneity Assessment</strong>: Identifies variations
 between studies</li>
 <li>
-<strong>Publication Bias Detection</strong>: Assesses potential
-literature bias</li>
+<strong>Small-Study Effects</strong>: Deeks’ test assesses funnel
+asymmetry, which does not establish publication bias</li>
 <li>
-<strong>Clinical Translation</strong>: Overall evidence for
-implementation decisions</li>
+<strong>Clinical Interpretation</strong>: Describes accuracy
+evidence for a specified population and threshold; implementation needs
+setting-specific validation</li>
 </ol>
 </div>
 <div class="section level2">
@@ -156,6 +158,31 @@ level</li>
 <strong>Publication Year</strong>: Temporal trends</li>
 </ul>
 </div>
+</div>
+<div class="section level2">
+<h2 id="study-independence-and-transportability">Study independence and transportability<a class="anchor" aria-label="anchor" href="#study-independence-and-transportability"></a>
+</h2>
+<p>Use one prespecified 2×2 table per independent cohort at a clinically
+interpretable threshold. Renaming overlapping cohorts does not make them
+independent. Multiple readers, algorithms, thresholds or specimen
+samples from the same patients need a method that models that
+dependence; this module does not do so. Meta-regression is an
+exploratory comparison of study-level covariates, not an adjusted
+patient-level or causal comparison of tests.</p>
+<p>The Reitsma analysis uses normal approximations on logit-transformed
+study proportions. Sparse counts and continuity corrections can
+materially affect its estimates and coverage; compare with a binomial
+bivariate model when errors are rare. A confidence interval describes
+the pooled mean, while a prediction interval includes estimated
+between-study spread and assumes a similar future study. Neither
+validates a new laboratory. PPV and NPV are plug-in calculations at the
+specified prevalence, with no propagated uncertainty or local
+calibration. A sensitivity or specificity p-value tests 50% for that
+margin; it does not test overall chance discrimination or a clinically
+acceptable threshold.</p>
+<p>See the <a href="https://training.cochrane.org/sites/training.cochrane.org/files/public/uploads/resources/downloadable_resources/English/DTA_Handbook_v1/DTA%20Handbook%20Chapter%2011%20201312.pdf" class="external-link">Cochrane
+DTA Handbook, chapter 11</a> for interpretation of pooled accuracy and
+predictive values.</p>
 </div>
 <div class="section level2">
 <h2 id="example-dataset">Example Dataset<a class="anchor" aria-label="anchor" href="#example-dataset"></a>
@@ -469,8 +496,8 @@ parameterization.</p>
 </h2>
 <p>The call below uses the bundled
 <code>diagnosticmeta_test_categorical</code> dataset (20 synthetic
-studies, the same data as the jamovi example) and shows the numbers
-OncoPath 1.1.0 returns for it.</p>
+studies, also available as a jamovi example) and shows the numbers
+OncoPath 1.1.3 returns for it.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.serdarbalci.com/OncoPath/">OncoPath</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">diagnosticmeta_test_categorical</span>, package <span class="op">=</span> <span class="st">"OncoPath"</span><span class="op">)</span></span>

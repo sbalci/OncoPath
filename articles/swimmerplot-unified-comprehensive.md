@@ -124,7 +124,13 @@ looks the same as one that ends because the event occurred, and median
 follow-up can only be the median of the observed durations, which
 understates follow-up when events are common. Supply a status column
 with `censorVar` to draw status arrows on the patients still at risk and
-to estimate follow-up by the reverse Kaplan-Meier method.
+to estimate follow-up by the reverse Kaplan-Meier method. This assumes
+censoring is independent of the terminal event. Use a status whose event
+definition matches the end of follow-up; progression or treatment
+completion is not interchangeable with death in an overall-survival
+follow-up analysis. For multiple rows, patient duration spans the
+earliest start to the latest end, including gaps; it is not necessarily
+cumulative time on treatment.
 
 How the status column is read is set with `censorCoding`:
 

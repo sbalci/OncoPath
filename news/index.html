@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,8 +40,36 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.1.3" id="oncopath-113-2026-10-30">OncoPath 1.1.3 (2026-10-30)<a class="anchor" aria-label="anchor" href="#oncopath-113-2026-10-30"></a></h2>
-<p><strong>Saved analyses can give different results.</strong> jamovi shows the results stored in a saved file until an option is changed. Re-run a saved analysis (change any option and change it back) before you rely on it. No option was added, removed or renamed.</p>
+<h2 class="pkg-version" data-toc-text="1.1.4" id="oncopath-114-2026-11-08">OncoPath 1.1.4 (2026-11-08)<a class="anchor" aria-label="anchor" href="#oncopath-114-2026-11-08"></a></h2>
+<div class="section level3">
+<h3 id="correct-patient-identity-in-treatment-response-analyses-1-1-4">Correct patient identity in treatment-response analyses<a class="anchor" aria-label="anchor" href="#correct-patient-identity-in-treatment-response-analyses-1-1-4"></a></h3>
+<ul><li>Fixed an internal-column collision in waterfall and spider analyses. A patient-ID column named <code>response</code> could silently collapse unrelated patients and corrupt counts and confidence intervals. Source columns now remain separate from calculated fields throughout response, group, duration, annotation, plot and exported-category processing. The repair also covers time, measurement and optional columns whose names coincide with internal fields.</li>
+<li>Added regression coverage for raw and percentage input, all selected-column roles, conflicting internal names, row reordering, repeated visits, missing measurements and filtered rows.</li>
+<li>Re-run saved analyses before using their results. The repair changes results affected by column collisions; statistical methods, response thresholds and defaults are unchanged.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="interpretation-and-release-documentation-1-1-4">Interpretation and release documentation<a class="anchor" aria-label="anchor" href="#interpretation-and-release-documentation-1-1-4"></a></h3>
+<ul><li>Diagnostic sensitivity/specificity p-values are described as tests of 50% for the individual margin, without equating that null with overall chance discrimination.</li>
+<li>Fixed-effect guidance no longer claims its confidence intervals are always narrower than random-effects intervals. A non-significant heterogeneity test does not justify the common-effect assumption; REML remains the default.</li>
+<li>Updated the corresponding Turkish translations and removed the IHC source literal that caused the R package portability warning.</li>
+<li>Retained the clinical and endpoint limitations added in the preceding documentation review.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.1.3" id="oncopath-113-2026-11-08">OncoPath 1.1.3 (2026-11-08)<a class="anchor" aria-label="anchor" href="#oncopath-113-2026-11-08"></a></h2>
+<div class="section level3">
+<h3 id="known-release-blocker-1-1-3">Known release blocker<a class="anchor" aria-label="anchor" href="#known-release-blocker-1-1-3"></a></h3>
+<ul><li>The raw waterfall analysis can corrupt patient identities when the selected patient-ID column is named <code>response</code>: a six-patient reproduction yields one responder and one not-evaluable entry. This candidate must not be submitted until the internal-column collision is repaired and verified in both source and compiled module. See <code>docs/audit/RELEASE_REVIEW_1.1.3_20261108.md</code>.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="release-documentation-review-1-1-3">Release documentation review<a class="anchor" aria-label="anchor" href="#release-documentation-review-1-1-3"></a></h3>
+<ul><li>Clarified that IHC regional variation includes measurement error as well as biology, and that similar consistency and absolute-agreement ICCs do not rule out clinically important bias.</li>
+<li>Explained that spatial-compartment tests compare independent case groups, not paired locations within a tumor, and that a non-significant test does not establish absence of a difference.</li>
+<li>Documented response-rate denominators, responder-only time to response, progression-based duration, last-assessment censoring, and the absence of a separate death input. DCR is based on best response and has no minimum stable-disease duration.</li>
+<li>Added guidance on study independence, sparse-count approximation, diagnostic prediction intervals and the uncertainty omitted from plug-in predictive values.</li>
+<li>Distinguished R teaching datasets from the separately saved jamovi examples. Numerical methods, defaults and clinical cutoffs are unchanged by this documentation review.</li>
+</ul><p><strong>Saved analyses can give different results.</strong> jamovi shows the results stored in a saved file until an option is changed. Re-run a saved analysis (change any option and change it back) before you rely on it. No option was added, removed or renamed.</p>
+</div>
 <div class="section level3">
 <h3 id="results-change-by-design-1-1-3">Results change by design<a class="anchor" aria-label="anchor" href="#results-change-by-design-1-1-3"></a></h3>
 <p>These came from a pre-submission review that checked every displayed statistic against an independent calculation (mada, metafor, irr, psych, lme4, survival, binom.test, fisher.test and hand calculation of RECIST 1.1). The core estimates were confirmed. What changed are cases that only an ordinary but non-default data coding or option reaches.</p>

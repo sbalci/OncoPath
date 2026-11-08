@@ -19,7 +19,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -185,8 +185,13 @@ looks the same as one that ends because the event occurred, and median
 follow-up can only be the median of the observed durations, which
 understates follow-up when events are common. Supply a status column
 with <code>censorVar</code> to draw status arrows on the patients still
-at risk and to estimate follow-up by the reverse Kaplan-Meier
-method.</p>
+at risk and to estimate follow-up by the reverse Kaplan-Meier method.
+This assumes censoring is independent of the terminal event. Use a
+status whose event definition matches the end of follow-up; progression
+or treatment completion is not interchangeable with death in an
+overall-survival follow-up analysis. For multiple rows, patient duration
+spans the earliest start to the latest end, including gaps; it is not
+necessarily cumulative time on treatment.</p>
 <p>How the status column is read is set with
 <code>censorCoding</code>:</p>
 <table class="table">

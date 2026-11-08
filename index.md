@@ -57,6 +57,27 @@ judgement.
 
 ------------------------------------------------------------------------
 
+## Interpreting results
+
+- Report the analysis denominator: swimmer response rates include all
+  analyzed patients; waterfall reports evaluable-patient rates and also
+  identifies not-evaluable patients. Neither denominator automatically
+  represents a randomized intention-to-treat population.
+- Waterfall DCR is based on best response, with no minimum
+  stable-disease duration. Its response duration is progression-based,
+  censoring at the last measured assessment; there is no separate death
+  input. Time to response is summarized among responders.
+- Regional IHC differences include biological and technical variation. A
+  high correlation, an ICC band or a small average bias does not
+  validate interchangeability at a clinical cutoff.
+- Diagnostic pooling does not remove bias, cohort overlap or differences
+  in threshold and case mix. Predictive values use pooled point
+  estimates at an assumed prevalence, without uncertainty propagation.
+
+Version 1.1.4 fixes a patient-identity defect caused by column names
+that matched internal waterfall fields. Re-run saved analyses before
+using their results. See NEWS.md for details.
+
 ## Installation
 
 ### In jamovi
@@ -168,7 +189,9 @@ up:
 | `diagnosticmeta_test_categorical.omv` | Diagnostic Test Meta-Analysis | 20 studies: 2x2 counts, year, a quality score and imaging modality (CT 5, MRI 9, ultrasound 6) |
 | `ihcheterogeneity_test.omv` | IHC Heterogeneity | 50 cases: whole-section reference, four biopsies and a spatial compartment |
 
-In R, the same data are available with
+The R datasets and saved jamovi examples are separate teaching fixtures
+and may contain different values and analysis setups; use the output
+belonging to the fixture you ran. In R, datasets are available with
 [`data()`](https://rdrr.io/r/utils/data.html), together with
 `diagnostic_studies` (five 2x2 tables) and `histopathology` (a
 general-purpose clinicopathological data frame from the ClinicoPath
@@ -196,7 +219,7 @@ If you use OncoPath in your research or publications, please cite:
   title  = {OncoPath: Oncology and Pathology Analyses for jamovi},
   author = {Serdar Balci},
   year   = {2026},
-  note   = {R package and jamovi module version 1.1.3},
+  note   = {R package and jamovi module version 1.1.4},
   url    = {https://www.serdarbalci.com/OncoPath/}
 }
 ```
