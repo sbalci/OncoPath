@@ -31,6 +31,8 @@
   source literal that caused the R package portability warning.
 - Retained the clinical and endpoint limitations added in the preceding
   documentation review.
+- Wrapped and left-aligned the spider-plot progression caption so its
+  first letter is not clipped in the results pane or PDF/HTML exports.
 
 ## OncoPath 1.1.3 (2026-11-08)
 
