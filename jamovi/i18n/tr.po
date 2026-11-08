@@ -13316,7 +13316,7 @@ msgstr "Çalışmadaki tüm hastalar genelinde toplam gözlem süresi"
 
 #: R/swimmerplot.b.R
 msgid "Total Observations"
-msgstr "Toplam Gözlem"
+msgstr "Toplam gözlem"
 
 #: R/swimmerplot.b.R
 msgid "Total Person-Time"
