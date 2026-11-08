@@ -1,21 +1,23 @@
 # Treatment Response: Patient-Level Burden
 
-Use this when you have one tumour burden number per patient: either a
+Use this when you have one tumor burden number per patient: either a
 percent change from baseline you have already calculated (one row per
 patient), or a single measurement recorded at each visit (one row per
 patient per visit). It draws waterfall and spider plots, assigns each
-patient a best response from their largest shrinkage from baseline, and
-reports ORR and DCR with exact binomial confidence intervals, group
-comparison, time to response and duration of response. When a time
-variable is supplied, progression is measured against the patient's
-smallest recorded burden (nadir), not against baseline. Categories are
-named CR, PR, SD and PD and the thresholds are adapted from RECIST v1.1,
-but this is NOT a RECIST v1.1 implementation: because it never sees
-individual lesions it cannot sum target lesions, detect a new lesion, or
-judge non-target progression, and it cannot apply the 4-week
-confirmation rule itself (you may supply your own confirmation column).
-If your data list each lesion separately, use the lesion-level RECIST
-v1.1 analysis. It will be available in upcoming releases.
+patient a best response from their largest shrinkage from baseline (with
+a time variable, up to the first progression), and reports ORR and DCR
+with exact binomial confidence intervals, group comparison, time to
+response and duration of response. When a time variable is supplied,
+progression is measured against the patient's smallest recorded burden
+(nadir), not against baseline. Categories are named CR, PR, SD and PD
+and the thresholds are adapted from RECIST v1.1, but this is NOT a
+RECIST v1.1 implementation: because it never sees individual lesions it
+cannot sum target lesions, detect a new lesion, or judge non-target
+progression, and it cannot apply the 4-week confirmation rule (a
+confirmation column only adds markers to the plot; to count confirmed
+responses, supply confirmed categories through the category override).
+If your data list each lesion separately, sum the target lesions per
+patient and visit first.
 
 ## Usage
 
@@ -27,6 +29,7 @@ waterfall(
   timeVar = NULL,
   groupVar = NULL,
   inputType = "percentage",
+  measurementUnit = "unspecified",
   sortBy = "response",
   sortDirection = "conventional",
   showBaseline = TRUE,
@@ -42,7 +45,7 @@ waterfall(
   showCI = FALSE,
   minResponseForLabel = 50,
   colorBy = "recist",
-  colorScheme = "jamovi",
+  colorScheme = "recist",
   barAlpha = 1,
   barWidth = 0.7,
   showWaterfallPlot = TRUE,
@@ -54,6 +57,8 @@ waterfall(
   showClinicalSignificance = FALSE,
   showConfidenceIntervals = TRUE,
   enableGuidedMode = FALSE,
+  showClinicalSummary = FALSE,
+  showAboutAnalysis = FALSE,
   showExplanations = FALSE,
   showResponseDuration = FALSE,
   seed = 123
@@ -90,14 +95,24 @@ waterfall(
 - groupVar:
 
   Optional grouping variable for coloring bars by patient groups (e.g.,
-  treatment arms, disease subtypes). When specified, overrides RECIST
-  category coloring to show group-based colors.
+  treatment arms, disease subtypes). Bars are colored by group when
+  Color by is set to Patient groups (jamovi sets it when a group is
+  chosen; from R, set colorBy = "group").
 
 - inputType:
 
   Specify data format: 'raw' for actual tumor measurements (requires
   time variable) or 'percentage' for pre-calculated percentage changes
   from baseline
+
+- measurementUnit:
+
+  Unit of the raw tumor measurements (raw input only). When stated,
+  progression also requires the RECIST v1.1 absolute increase of at
+  least 5 mm over the nadir, for the PD category and for progression in
+  time to response and duration of response. Without it a small sum can
+  be called progression on the 20 percent rule alone. Percentage input
+  carries no size, so the rule cannot apply there.
 
 - sortBy:
 
@@ -118,27 +133,41 @@ waterfall(
 
   Optional categorical variable indicating response confirmation status
   (e.g., Confirmed vs Unconfirmed CR/PR). A distinct marker is drawn at
-  each bar tip according to the level of this variable.
+  each bar tip according to the level of this variable. The markers are
+  display only: ORR and DCR are not changed. To count only confirmed
+  responses, give the categories through Response category override. One
+  value per patient (the first non-missing value is used).
 
 - ongoingVar:
 
   Optional variable flagging patients still on treatment / with an
   ongoing response. Truthy values (TRUE, non-zero, or text matching
-  yes/y/true/on/ongoing/1) draw an upward arrow at the bar tip.
+  yes/y/true/on/ongoing/1) draw an arrow pointing away from the bar tip.
+  One value per patient: the latest recorded value (status at the last
+  assessment) is used.
 
 - responseCategoryVar:
 
   Optional per-patient RECIST category (CR/PR/SD/PD). When supplied it
   overrides the category computed from the percentage value, so a
   patient with target-lesion shrinkage can still be classified PD (e.g.,
-  a new lesion). Affects both bar coloring and response metrics
-  (ORR/DCR).
+  a new lesion). Affects bar coloring, response metrics (ORR/DCR), time
+  to response and duration of response. A patient with no measured value
+  but a supplied category (e.g. PD for clinical progression or death
+  before the first scan) is counted with that category. NE, "not
+  evaluable" and UNK are read as Unknown (not evaluable), and the full
+  names (e.g. "Partial response") are accepted. Give one value per
+  patient. When a patient's values differ across rows they are read as
+  per-visit responses: the category is the best one in time order (row
+  order without a time variable) up to and including the first PD (CR,
+  then PR, then SD, then PD; NE visits do not count), and a notice names
+  those patients.
 
 - showCategoryLabels:
 
   Print the response category (CR, PR, SD, PD) above each waterfall bar,
   so the category can be read directly instead of being mapped back from
-  the bar colour.
+  the bar color.
 
 - showSpiderLabels:
 
@@ -148,7 +177,7 @@ waterfall(
 
 - annotationVars:
 
-  Optional patient-level variables drawn as coloured tracks beneath the
+  Optional patient-level variables drawn as colored tracks beneath the
   waterfall bars, aligned to the same patient ordering. One row of tiles
   per variable. Use for biomarker status, mutation, prior therapy,
   treatment arm or any covariate you want read off against each
@@ -157,8 +186,8 @@ waterfall(
 - showThresholds:
 
   Show +20 percent and -30 percent RECIST v1.1 thresholds as dashed
-  lines. Helps identify Progressive Disease (PD) and Partial Response
-  (PR) cutoffs.
+  lines on the waterfall and spider plots. Helps identify Progressive
+  Disease (PD) and Partial Response (PR) cutoffs.
 
 - labelOutliers:
 
@@ -166,11 +195,13 @@ waterfall(
 
 - showMedian:
 
-  Show median response as a horizontal line.
+  Show the median best response as a horizontal line on the waterfall
+  plot.
 
 - showCI:
 
-  Show confidence interval around median response.
+  Show a bootstrap confidence interval around the median best response
+  on the waterfall plot.
 
 - minResponseForLabel:
 
@@ -184,7 +215,11 @@ waterfall(
 - colorScheme:
 
   Color scheme for waterfall plot. 'Colorful' provides distinct colors
-  for group-based coloring.
+  for group-based coloring; 'jamovi (follow global)' takes its colors
+  from the palette set in jamovi's preferences, so the figure matches
+  every other plot in the document. The former 'jamovi' choice drew the
+  RECIST colors and was identical to 'RECIST'; it was removed in favor
+  of that name.
 
 - barAlpha:
 
@@ -205,8 +240,9 @@ waterfall(
 
 - spiderColorBy:
 
-  Coloring method for spider plot: Response status or patient groups.
-  For backward compatibility, defaults to response status coloring.
+  Coloring for the spider plot: each point by its own change from
+  baseline (-30 percent or less vs above -30 percent), or each patient
+  by group.
 
 - spiderColorScheme:
 
@@ -214,8 +250,9 @@ waterfall(
 
 - timeUnitLabel:
 
-  Label to use for the spider plot time axis. Does not rescale data;
-  only affects axis labeling.
+  The unit the time variable is recorded in. It labels the spider plot
+  axis and the time to response and duration of response rows; values
+  are not rescaled.
 
 - generateCopyReadyReport:
 
@@ -223,21 +260,34 @@ waterfall(
 
 - showClinicalSignificance:
 
-  Display clinical significance interpretations for ORR and DCR
+  Display clinical significance context for ORR and DCR: the range of
+  rates compatible with the data (exact confidence interval) and a
+  sample-size note.
 
 - showConfidenceIntervals:
 
-  Calculate and display exact binomial confidence intervals for ORR and
-  DCR
+  Show a table of ORR and DCR with exact binomial confidence intervals.
+  The intervals in Clinical Response Metrics and the very-wide-interval
+  warning do not depend on it.
 
 - enableGuidedMode:
 
   Enable step-by-step guidance for new users
 
+- showClinicalSummary:
+
+  Show a plain-language summary of the response results (ORR, DCR and
+  the category counts).
+
+- showAboutAnalysis:
+
+  Show what the analysis does, when to use it, the data it needs and its
+  key assumptions.
+
 - showExplanations:
 
-  Display comprehensive explanation of what this analysis does, when to
-  use it, data requirements, and key assumptions/limitations
+  Show both the clinical summary and the About panel (the same panels as
+  Clinical summary and About this analysis).
 
 - showResponseDuration:
 
@@ -249,9 +299,9 @@ waterfall(
 - seed:
 
   Random seed for the reproducible bootstrap confidence interval of the
-  median response (used when 'Show Confidence Interval' is enabled).
+  median response (used when 'Bootstrap CI of the median' is enabled).
   Change it to draw a different bootstrap sample; the default (123)
-  reproduces the previous fixed behaviour.
+  reproduces the previous fixed behavior.
 
 ## Value
 
@@ -262,6 +312,7 @@ A results object containing:
 | `results$guidedAnalysis`          |     |     |     |     | a html    |
 | `results$todo`                    |     |     |     |     | a html    |
 | `results$todo2`                   |     |     |     |     | a html    |
+| `results$notices`                 |     |     |     |     | a html    |
 | `results$clinicalSummary`         |     |     |     |     | a html    |
 | `results$aboutAnalysis`           |     |     |     |     | a html    |
 | `results$summaryTable`            |     |     |     |     | a table   |
@@ -275,11 +326,8 @@ A results object containing:
 | `results$groupComparisonTable`    |     |     |     |     | a table   |
 | `results$groupComparisonTest`     |     |     |     |     | a table   |
 | `results$spiderplot`              |     |     |     |     | an image  |
-| `results$naturalLanguageSummary`  |     |     |     |     | a html    |
-| `results$explanations`            |     |     |     |     | a html    |
 | `results$responseDurationTable`   |     |     |     |     | a table   |
 | `results$addResponseCategory`     |     |     |     |     | an output |
-| `results$notices`                 |     |     |     |     | a html    |
 
 Tables can be converted to data frames with `asDF` or
 [`as.data.frame`](https://rdrr.io/r/base/as.data.frame.html). For

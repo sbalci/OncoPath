@@ -34,10 +34,10 @@ Diagnostic test meta-analysis is essential for synthesizing evidence from multip
 Individual diagnostic accuracy studies often have limited sample sizes and may not be generalizable. Meta-analysis provides:
 
 1. **Increased Statistical Power**: Combining multiple studies increases precision
-2. **Robust Estimates**: More reliable pooled sensitivity and specificity
+2. **Pooled Estimates**: Sensitivity and specificity with model-based uncertainty; bias in the source studies is not removed by pooling
 3. **Heterogeneity Assessment**: Identifies variations between studies
-4. **Publication Bias Detection**: Assesses potential literature bias
-5. **Clinical Translation**: Overall evidence for implementation decisions
+4. **Small-Study Effects**: Deeks' test assesses funnel asymmetry, which does not establish publication bias
+5. **Clinical Interpretation**: Describes accuracy evidence for a specified population and threshold; implementation needs setting-specific validation
 
 ## Data Requirements
 
@@ -57,6 +57,26 @@ Your dataset must contain these core variables:
 - **Technical Method**: Staining protocol, automation level
 - **Geographic Region**: Population-specific factors
 - **Publication Year**: Temporal trends
+
+## Study independence and transportability
+
+Use one prespecified 2×2 table per independent cohort at a clinically interpretable threshold.
+Renaming overlapping cohorts does not make them independent. Multiple readers, algorithms,
+thresholds or specimen samples from the same patients need a method that models that dependence;
+this module does not do so. Meta-regression is an exploratory comparison of study-level
+covariates, not an adjusted patient-level or causal comparison of tests.
+
+The Reitsma analysis uses normal approximations on logit-transformed study proportions. Sparse
+counts and continuity corrections can materially affect its estimates and coverage; compare
+with a binomial bivariate model when errors are rare. A confidence interval describes the pooled
+mean, while a prediction interval includes estimated between-study spread and assumes a similar
+future study. Neither validates a new laboratory. PPV and NPV are plug-in calculations at the
+specified prevalence, with no propagated uncertainty or local calibration. A sensitivity or
+specificity p-value tests 50% for that margin; it does not test overall chance discrimination
+or a clinically acceptable threshold.
+
+See the [Cochrane DTA Handbook, chapter 11](https://training.cochrane.org/sites/training.cochrane.org/files/public/uploads/resources/downloadable_resources/English/DTA_Handbook_v1/DTA%20Handbook%20Chapter%2011%20201312.pdf)
+for interpretation of pooled accuracy and predictive values.
 
 ## Example Dataset
 
@@ -171,7 +191,7 @@ Investigates heterogeneity sources:
 ## Running It From R
 
 The call below uses the bundled `diagnosticmeta_test_categorical` dataset (20 synthetic studies,
-the same data as the jamovi example) and shows the numbers OncoPath 1.1.0 returns for it.
+also available as a jamovi example) and shows the numbers OncoPath 1.1.3 returns for it.
 
 ```{r worked-example, eval=FALSE}
 library(OncoPath)

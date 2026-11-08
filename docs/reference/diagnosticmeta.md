@@ -89,19 +89,54 @@ diagnosticmeta(
 
 - confidence_level:
 
-  Confidence level for meta-analysis results
+  Confidence level for all intervals: the pooled estimates and
+  likelihood ratios, the prediction interval for a future study, the
+  per-study Wilson intervals, and the confidence and prediction regions
+  on the SROC plot.
 
 - method:
 
-  Method for meta-analysis estimation (Note DerSimonian-Laird is not
-  appropriate for bivariate diagnostic meta-analysis)
+  Estimator for the between-study variance. REML is recommended. The
+  bivariate model uses this method directly; the univariate
+  heterogeneity and meta-regression models map it to the metafor
+  equivalent, so 'Method of Moments' gives DerSimonian-Laird and
+  'Variance components' gives the Hedges estimator in those two tables.
+  'Method of Moments' is the multivariate extension of DerSimonian-Laird
+  (via mvmeta), so choosing it gives a DerSimonian-Laird-type estimator
+  in the bivariate model as well; REML is preferred for diagnostic
+  accuracy data because the moment estimators are non-iterative and
+  truncate negative variance components to zero.
 
 - zero_cell_correction:
 
-  Method for handling zero cells in 2x2 tables. 'none' relies on
-  bivariate model (recommended). 'constant' adds 0.5 to all cells of
-  affected studies. 'treatment_arm' adds correction only to zero cells.
-  'empirical' uses study-specific corrections.
+  Method for handling zero cells in 2x2 tables, applied to the pooled
+  models (bivariate, proportional-hazards SROC, heterogeneity and
+  meta-regression) and to the forest and SROC plots. 'none'
+  (recommended) applies no correction to the data itself; every model
+  adds 0.5 to all four cells of studies with a zero cell at fitting time
+  (mada's 'single' correction), so every model uses every study.
+  'constant' adds 0.5 to all four cells of affected studies before the
+  pooled models are fitted; 'none' and 'constant' therefore fit the same
+  models and give the same pooled results (only the study points of the
+  forest and SROC plots differ), so 'zero_cells' is the alternative to
+  compare when checking how sensitive a result is to the correction.
+  'zero_cells' adds 0.5 only to the zero cells themselves.
+  'reciprocal_n' adds 1/N to all cells of affected studies, where N is
+  the study's total sample size; a cell of 1/N gives that study a logit
+  variance of about N, so the zero-cell studies (the 100 percent
+  sensitivity or specificity studies) get almost no weight and the
+  pooled accuracy is biased downward. In simulations of high-accuracy
+  tests its 95 percent confidence interval for pooled sensitivity
+  covered the true value in only 31-55 percent of meta-analyses, against
+  58-69 percent under the default; it is not a published correction, so
+  prefer the default. Deeks' test and the funnel plot always use the raw
+  counts, whatever this setting: when any study has a zero cell they add
+  0.5 to EVERY study (correcting only the affected studies would build a
+  size-related trend into the test's own outcome variable), and no
+  asymmetry verdict is reported when more than a quarter of the studies
+  have a zero cell. (The former option keys 'treatment_arm' and
+  'empirical' were renamed: they did not implement the procedures those
+  names denote in Sweeting et al. 2004.)
 
 - forest_plot:
 
@@ -148,6 +183,7 @@ A results object containing:
 |                                  |     |     |     |     |          |
 |----------------------------------|-----|-----|-----|-----|----------|
 | `results$instructions`           |     |     |     |     | a html   |
+| `results$notices`                |     |     |     |     | a html   |
 | `results$summary`                |     |     |     |     | a html   |
 | `results$about`                  |     |     |     |     | a html   |
 | `results$bivariateresults`       |     |     |     |     | a table  |
@@ -160,6 +196,8 @@ A results object containing:
 | `results$srocplot`               |     |     |     |     | an image |
 | `results$funnelplot`             |     |     |     |     | an image |
 | `results$interpretation`         |     |     |     |     | a html   |
+| `results$likelihoodRatioGuide`   |     |     |     |     | a table  |
+| `results$predictiveValues`       |     |     |     |     | a table  |
 | `results$forestplot_explanation` |     |     |     |     | a html   |
 | `results$srocplot_explanation`   |     |     |     |     | a html   |
 | `results$funnelplot_explanation` |     |     |     |     | a html   |

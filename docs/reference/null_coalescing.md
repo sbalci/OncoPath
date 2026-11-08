@@ -20,4 +20,4 @@ x %||% y
 
 ## Value
 
-\`x\` if it is not \`NULL\`, otherwise \`y\`.
+`x` if it is not `NULL`, otherwise `y`.

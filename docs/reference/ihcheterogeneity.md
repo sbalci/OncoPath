@@ -1,6 +1,18 @@
 # IHC Heterogeneity Analysis
 
-IHC Heterogeneity Analysis
+Quantifies how well regional IHC measurements (biopsies, cores, fields)
+represent a case. With a reference measurement (whole section, hotspot
+or overall score) it reports the Spearman correlation of each region
+with the reference, the absolute-agreement ICC(2,1), the per-case
+coefficient of variation, and, for each region, the mean difference from
+the reference with its 95 percent CI and Bland-Altman limits of
+agreement. Without a reference it compares the regions with one another.
+Each difference is judged against a margin set by the user (bias_margin,
+default 5 percent of the comparison mean): ruled out when its 90 percent
+CI lies inside the margin (two one-sided tests), shown to be material
+when a Bonferroni-adjusted CI lies entirely beyond it, and inconclusive
+otherwise. Optional variance components, sample-size planning for ICC
+precision (Bonett 2002) and comparisons between spatial compartments.
 
 ## Usage
 
@@ -20,12 +32,16 @@ ihcheterogeneity(
   sampling_strategy = "unknown",
   cv_threshold = 20,
   correlation_threshold = 0.8,
+  bias_margin = 5,
   show_variability_plots = FALSE,
   variance_components = FALSE,
-  power_analysis = FALSE,
+  sample_size_planning = FALSE,
   generate_recommendations = FALSE,
+  showInterpretation = FALSE,
   showSummary = FALSE,
-  showGlossary = FALSE
+  showGlossary = FALSE,
+  showReportSentences = FALSE,
+  showAssumptions = FALSE
 )
 ```
 
@@ -64,64 +80,116 @@ ihcheterogeneity(
 
 - biopsies:
 
-  additional simulated biopsy measurements
+  Further regional measurements, any number, analyzed like Regional
+  Measurements 1 to 4.
 
 - spatial_id:
 
-  identifier for spatial regions or tissue areas (e.g.,
-  Central/Invasive, Preinvasive/Invasive)
+  The compartment each case was sampled from (e.g., Central/Invasive,
+  Preinvasive/Invasive): one row per case, one compartment per case.
+  Data with one row per case and compartment count each case once per
+  row, as if they were different patients, which overstates the sample
+  and narrows every interval. Compartments are listed in the level order
+  of the variable; cases without an identifier are left out of the
+  compartment tables. In R, convert a haven-labeled code column with
+  haven::as_factor() first, or the codes are shown instead of the
+  labels.
 
 - compareCompartments:
 
-  Perform statistical comparison of heterogeneity patterns between
-  spatial compartments. Requires spatial_id variable. Compares ICC, CV,
-  and bias across compartments.
+  Compares the ICC, the within-case CV and, when a reference is
+  supplied, the mean bias between spatial compartments. Requires the
+  Spatial Region ID variable; compartments need at least 3 cases.
 
 - compartmentTests:
 
-  Perform statistical tests to determine if heterogeneity differs
-  significantly between compartments. Uses Levene's test for variance
-  equality and Kruskal-Wallis for distributional differences.
+  Tests whether heterogeneity differs between compartments:
+  Kruskal-Wallis test on the per-case CV (is one compartment more
+  heterogeneous?), Brown-Forsythe test on the spread of per-case CVs,
+  and Kruskal-Wallis test on the per-case mean biomarker level.
+  Compartments need at least 3 cases.
 
 - analysis_type:
 
-  primary focus of biopsy simulation analysis
+  Primary focus of the heterogeneity analysis. (The former 'bias' level
+  was merged into 'reproducibility': the two were computationally
+  identical - the bias table is always computed when a reference is
+  supplied.)
 
 - sampling_strategy:
 
-  biopsy sampling strategy used
+  How the regions were chosen. Recorded for reporting only: it changes
+  no computation. Random, systematic or stratified sampling adds a
+  notice on how to read the estimates; 'Not specified' adds nothing.
 
 - cv_threshold:
 
-  Coefficient of variation threshold for acceptable sampling
-  variability. Typical clinical values: 15-25 percent for
-  immunohistochemistry (Ki67, ER, PR), 10-20 percent for molecular
-  assays, 20-30 percent for heterogeneous markers (HER2, PD-L1). Lower
-  values indicate more stringent quality requirements.
+  Largest acceptable within-case coefficient of variation (the root mean
+  square of the per-case CVs), in percent. The CV is graded low at or
+  below half of this value, moderate up to it and high above it. Choose
+  it for your marker and scoring method before looking at the results.
 
 - correlation_threshold:
 
-  Minimum Spearman correlation between biopsy and whole section
-  measurements. Clinical guidelines: \>=0.80 excellent agreement,
-  \>=0.70 good agreement, \>=0.60 moderate agreement, \<0.60 poor
-  agreement. Higher values indicate better representativeness of biopsy
-  samples.
+  Smallest acceptable Spearman correlation. With a reference each region
+  is correlated with the reference, and without one each pair of regions
+  with each other. Their mean is graded, unless one of them is shown to
+  fall below the threshold (its upper 95 percent limit below it), in
+  which case the lowest such correlation is graded. One that is below
+  the threshold as a point estimate only gives "met, not confirmed"
+  instead of "met". Choose it before looking at the results.
+
+- bias_margin:
+
+  Largest systematic difference, as a percentage of the comparison mean
+  (the reference, or without one the mean of the two regions of each
+  pair), that is still clinically acceptable. A difference is ruled out
+  when its 90 percent CI (a Fieller interval for the ratio) lies inside
+  the margin (two one-sided tests), and shown to be material when a
+  Bonferroni-adjusted CI lies entirely beyond it; otherwise it is
+  inconclusive. Without a reference every pair of regions is compared,
+  and the regions agree only when every pair is ruled out. A difference
+  shown to change with the level (proportional bias) is also judged at
+  the 5th and 95th percentiles of the level, and is ruled out only when
+  both ends lie inside the margin. Choose it before looking at the
+  results.
 
 - show_variability_plots:
 
-  display plots showing sampling variability
+  Show the regional-measurement, per-case CV and spatial plots. They are
+  always shown under the Variance and Comprehensive focuses
+  (Comprehensive is the default), so this option adds them under the
+  Reproducibility focus.
 
 - variance_components:
 
-  perform variance component decomposition
+  Two-way random-effects decomposition into between-case, within-case
+  and method variance. Always shown under the Variance and Comprehensive
+  focuses (Comprehensive is the default), so this option adds it under
+  the Reproducibility focus.
 
-- power_analysis:
+- sample_size_planning:
 
-  perform power analysis for sample size recommendations
+  Number of cases needed to estimate the ICC with a 95 percent CI of
+  width 0.20 or 0.10 at planning ICCs of 0.75 and 0.90 and at the
+  observed consistency ICC, for the number of measurements per case in
+  this analysis. Refines the Bonett (2002) approximation by integrating
+  the exact F-interval width under a balanced normal ANOVA model.
+  Controls expected width, not assurance that every interval meets the
+  target. Always shown under the Comprehensive focus.
 
 - generate_recommendations:
 
-  provide recommendations for optimal heterogeneity assessment strategy
+  Recommendations on regions per case, calibration of systematic
+  differences and quality control, derived from the results of this
+  analysis. They are shown inside the clinical interpretation, so they
+  need showInterpretation = TRUE.
+
+- showInterpretation:
+
+  Display the clinical interpretation report: study design, key findings
+  and the overall verdict (and the recommendations, when
+  generate_recommendations is TRUE).
 
 - showSummary:
 
@@ -131,6 +199,16 @@ ihcheterogeneity(
 
   Display definitions of statistical terms (ICC, CV, correlation)
 
+- showReportSentences:
+
+  Display pre-formatted sentences ready for clinical reports and
+  publications
+
+- showAssumptions:
+
+  Display analysis assumptions, data requirements, and methodological
+  considerations
+
 ## Value
 
 A results object containing:
@@ -138,6 +216,7 @@ A results object containing:
 |  |  |  |  |  |  |
 |----|----|----|----|----|----|
 | `results$welcome` |  |  |  |  | Welcome screen shown when no variables selected |
+| `results$notices` |  |  |  |  | a html |
 | `results$interpretation` |  |  |  |  | a html |
 | `results$report_sentences` |  |  |  |  | Pre-formatted sentences ready for clinical reports and publications |
 | `results$assumptions` |  |  |  |  | Analysis assumptions, data requirements, and methodological considerations |
@@ -146,7 +225,7 @@ A results object containing:
 | `results$reproducibilitytable` |  |  |  |  | Correlation and reliability metrics |
 | `results$samplingbiastable` |  |  |  |  | Systematic bias assessment between methods |
 | `results$variancetable` |  |  |  |  | Sources of measurement variability |
-| `results$poweranalysistable` |  |  |  |  | Sample size recommendations and power calculations |
+| `results$samplesizetable` |  |  |  |  | Cases needed to estimate the ICC with a chosen 95 percent CI width (Bonett 2002) |
 | `results$spatialanalysistable` |  |  |  |  | Variability across spatial regions |
 | `results$compartmentComparison` |  |  |  |  | Statistical comparison of heterogeneity metrics between compartments |
 | `results$compartmentTests` |  |  |  |  | Formal statistical tests comparing heterogeneity across compartments |
@@ -161,3 +240,20 @@ example:
 `results$reproducibilitytable$asDF`
 
 `as.data.frame(results$reproducibilitytable)`
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+data('ihcheterogeneity_test', package = 'OncoPath')
+
+# Three regional Ki67 scores against the whole-section score
+ihcheterogeneity(
+    data = ihcheterogeneity_test,
+    wholesection = 'wholesection',
+    biopsy1 = 'biopsy1',
+    biopsy2 = 'biopsy2',
+    biopsy3 = 'biopsy3',
+    bias_margin = 5)
+} # }
+```

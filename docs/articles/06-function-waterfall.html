@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.53.01</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,16 +33,10 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><h6 class="dropdown-header" data-toc-skip>Getting Started</h6></li>
-    <li><a class="dropdown-item" href="../articles/swimmerplot-unified-comprehensive.html">Swimmer Plot Guide</a></li>
-    <li><a class="dropdown-item" href="../articles/06-function-waterfall.html">Waterfall Plot Guide</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><h6 class="dropdown-header" data-toc-skip>Advanced Topics</h6></li>
-    <li><a class="dropdown-item" href="../articles/diagnosticmeta-comprehensive.html">Diagnostic Meta-Analysis</a></li>
-    <li><a class="dropdown-item" href="../articles/clinicalheatmap_comprehensive.html">Clinical Heatmap</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><h6 class="dropdown-header" data-toc-skip>Legacy Documentation</h6></li>
-    <li><a class="dropdown-item" href="../articles/09-waterfall-legacy.html">Waterfall Legacy</a></li>
+<li><a class="dropdown-item" href="../articles/swimmerplot-unified-comprehensive.html">Swimmer Plot</a></li>
+    <li><a class="dropdown-item" href="../articles/06-function-waterfall.html">Treatment Response (Waterfall)</a></li>
+    <li><a class="dropdown-item" href="../articles/diagnosticmeta-comprehensive.html">Diagnostic Test Meta-Analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/ihcheterogeneity-comprehensive.html">IHC Heterogeneity</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">News</a></li>
@@ -66,10 +60,10 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Vignette: Creating Waterfall Plots</h1>
-                        <h4 data-toc-skip class="author">ClinicoPath
-Development Team</h4>
+                        <h4 data-toc-skip class="author">Serdar
+Balci</h4>
             
-            <h4 data-toc-skip class="date">2026-08-14</h4>
+            <h4 data-toc-skip class="date">2026-11-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/sbalci/OncoPath/blob/HEAD/vignettes/06-function-waterfall.Rmd" class="external-link"><code>vignettes/06-function-waterfall.Rmd</code></a></small>
       <div class="d-none name"><code>06-function-waterfall.Rmd</code></div>
@@ -95,7 +89,12 @@ plot.</p>
 <h2 id="percentage-input">Percentage Input<a class="anchor" aria-label="anchor" href="#percentage-input"></a>
 </h2>
 <p>The bundled <code>waterfall_percentage_basic</code> dataset has one
-row per patient with the change already computed.</p>
+row per patient with the change already computed. Percent change is
+entered as <code>-35</code> for a 35% decrease. A column that holds the
+tumor size as a percent of baseline (<code>65</code> for the same
+patient, <code>100</code> for no change) must have 100 subtracted first;
+read as percent changes, such values make every patient look as if the
+tumor grew, and the analysis warns when no value is below zero.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.serdarbalci.com/OncoPath/">OncoPath</a></span><span class="op">)</span></span>
 <span></span>
@@ -114,7 +113,8 @@ row per patient with the change already computed.</p>
 <span>  inputType   <span class="op">=</span> <span class="st">"percentage"</span>,</span>
 <span>  sortBy      <span class="op">=</span> <span class="st">"response"</span>,</span>
 <span></span>
-<span>  showThresholds           <span class="op">=</span> <span class="cn">TRUE</span>,   <span class="co"># the -30% and +20% RECIST lines</span></span>
+<span>  groupVar                 <span class="op">=</span> <span class="st">"Treatment"</span>,  <span class="co"># ORR/DCR by arm, with Fisher's exact test</span></span>
+<span>  showThresholds           <span class="op">=</span> <span class="cn">TRUE</span>,   <span class="co"># the -30% and +20% threshold lines</span></span>
 <span>  showMedian               <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  labelOutliers            <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  showCategoryLabels       <span class="op">=</span> <span class="cn">TRUE</span>,   <span class="co"># CR/PR/SD/PD above each bar</span></span>
@@ -122,7 +122,7 @@ row per patient with the change already computed.</p>
 <span>  showConfidenceIntervals  <span class="op">=</span> <span class="cn">TRUE</span>    <span class="co"># CIs on ORR and DCR</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
-<h3 id="recist-categories">RECIST Categories<a class="anchor" aria-label="anchor" href="#recist-categories"></a>
+<h3 id="response-categories-thresholds-adapted-from-recist-v1-1">Response Categories (thresholds adapted from RECIST v1.1)<a class="anchor" aria-label="anchor" href="#response-categories-thresholds-adapted-from-recist-v1-1"></a>
 </h3>
 <pre><code> category n percent
        CR 1    0.05
@@ -142,10 +142,20 @@ leaving on. An ORR of 35% in 20 patients has a 95% interval running from
 not support, and this is exactly the figure that ends up in a slide
 deck.</p>
 <p>The interpretation text that accompanies these figures is
-deliberately hedged (“general benchmark; verify against tumor-specific
-thresholds”). A 35% ORR means something different in pancreatic cancer
-than in melanoma, and the analysis has no way to know which you are
-looking at.</p>
+deliberately hedged (“There is no universal benchmark: compare them with
+the response rate expected in your tumour type and treatment setting”).
+A 35% ORR means something different in pancreatic cancer than in
+melanoma, and the analysis has no way to know which you are looking
+at.</p>
+<p>With <code>groupVar = "Treatment"</code> the rates are also given per
+arm: Drug A ORR 70% (95% CI 34.8-93.3%) and DCR 100%, Drug B ORR 0%
+(0.0-30.8%) and DCR 60%; Fisher’s exact test gives p = 0.003 for ORR and
+p = 0.087 for DCR. Ten patients per arm is small, and the odds ratio is
+not estimable when one arm has no responder.</p>
+<p>These categories come from one percent change per patient. They are
+not a RECIST v1.1 assessment: there is no target-lesion summation,
+new-lesion or non-target assessment, or confirmation of response, so ORR
+and DCR here are unconfirmed and exploratory.</p>
 </div>
 </div>
 <div class="section level2">
@@ -157,8 +167,12 @@ the change from baseline itself and can draw a spider plot of the
 individual trajectories alongside the waterfall.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">waterfall_raw_longitudinal</span>, package <span class="op">=</span> <span class="st">"OncoPath"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">waterfall_raw_longitudinal</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">waterfall_raw_longitudinal</span>, <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   PatientID Time Measurement</span></span>
+<span><span class="co">#&gt; 1      PT01    0          50</span></span>
+<span><span class="co">#&gt; 2      PT01    2          30</span></span>
+<span><span class="co">#&gt; 3      PT01    4          25</span></span>
+<span><span class="co">#&gt; 4      PT01    6          20</span></span>
 <span></span>
 <span><span class="va">res_spider</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/waterfall.html">waterfall</a></span><span class="op">(</span></span>
 <span>  data        <span class="op">=</span> <span class="va">waterfall_raw_longitudinal</span>,</span>
@@ -166,6 +180,7 @@ individual trajectories alongside the waterfall.</p>
 <span>  responseVar <span class="op">=</span> <span class="st">"Measurement"</span>,</span>
 <span>  timeVar     <span class="op">=</span> <span class="st">"Time"</span>,</span>
 <span>  inputType   <span class="op">=</span> <span class="st">"raw"</span>,</span>
+<span>  measurementUnit <span class="op">=</span> <span class="st">"mm"</span>,           <span class="co"># unspecified | mm | cm; enables the 5 mm rule</span></span>
 <span></span>
 <span>  showWaterfallPlot    <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  showSpiderPlot       <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -173,11 +188,33 @@ individual trajectories alongside the waterfall.</p>
 <span>  showSpiderLabels     <span class="op">=</span> <span class="cn">TRUE</span>,      <span class="co"># label each line with its patient ID</span></span>
 <span>  showResponseDuration <span class="op">=</span> <span class="cn">TRUE</span>       <span class="co"># time-to-response and duration-of-response table</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><code>showResponseDuration</code> needs the time variable, so it is
-only available on raw input. Duration of response is often the more
-clinically meaningful endpoint of the two: a 40% shrinkage that lasts
-three months and one that lasts two years produce the same waterfall
-bar.</p>
+<p>With these data: CR 1, PR 10, SD 4, PD 0, so ORR 73.3% (95% CI
+44.9-92.2%) and DCR 100% (78.2-100%); median time to first response 4
+months; the Kaplan-Meier median duration of response is not reached (no
+responder progressed by month 6).</p>
+<p>With a time variable, best response is the smallest change up to and
+including the first progression, and progression is measured against the
+nadir (the smallest burden so far). Stating <code>measurementUnit</code>
+adds the RECIST v1.1 requirement of an absolute increase of at least 5
+mm over the nadir; without a unit, small tumours are called progressive
+more often than RECIST would.</p>
+<p><code>showResponseDuration</code> needs the time variable. Time to
+first response is the median among responders with an identifiable
+response time, not a time-to-response estimate for all treated patients.
+Duration starts at the first qualifying response and ends at measured
+progression (or a time-varying supplied PD category); otherwise it is
+censored at the last measured assessment. There is no separate
+death-time/status input, so deaths are not automatically counted as
+events. This is an exploratory progression-based duration, not a
+protocol-defined progression-or-death endpoint. A static best-response
+override cannot supply an event time. Kaplan-Meier estimation assumes
+non-informative censoring, which missing scans or treatment
+discontinuation may violate. “Not reached” means the estimated curve
+does not reach 50%, not that response is permanent.</p>
+<p>DCR uses each patient’s best category and imposes no minimum duration
+of stable disease; it is not disease control at a fixed landmark. The
+adapted thresholds are described in the <a href="https://recist.eortc.org/recist-1-1/" class="external-link">RECIST Working Group
+guidance</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="options-worth-knowing-about">Options Worth Knowing About<a class="anchor" aria-label="anchor" href="#options-worth-knowing-about"></a>
@@ -199,8 +236,9 @@ bar.</p>
 <td><code>sortDirection</code></td>
 <td><code>"conventional"</code></td>
 <td>
-<code>"conventional"</code> puts the best responses on the left, as
-in published figures. <code>"reverse"</code> flips it. (Not
+<code>"conventional"</code> puts the worst response (largest growth)
+on the left and the best (deepest shrinkage) on the right, as in most
+published figures. <code>"reverse"</code> flips it. (Not
 <code>"decreasing"</code> — that value is rejected.)</td>
 </tr>
 <tr class="even">
@@ -211,25 +249,33 @@ in published figures. <code>"reverse"</code> flips it. (Not
 <tr class="odd">
 <td><code>showCategoryLabels</code></td>
 <td><code>FALSE</code></td>
-<td>RECIST category above each bar</td>
+<td>Response category above each bar</td>
 </tr>
 <tr class="even">
 <td><code>confirmationVar</code></td>
 <td>—</td>
-<td>A column marking which responses were confirmed on a later scan.
-Unconfirmed responses overstate activity</td>
+<td>A column marking which responses were confirmed on a later scan. It
+draws a marker on each bar only; ORR and DCR do not change. To count
+only confirmed responses, supply confirmed categories through
+<code>responseCategoryVar</code>
+</td>
 </tr>
 <tr class="odd">
 <td><code>ongoingVar</code></td>
 <td>—</td>
-<td>A column marking patients still on treatment, whose responses may
-deepen</td>
+<td>A yes/no column marking patients still on treatment (TRUE, non-zero,
+or yes/y/true/on/ongoing/1; the last recorded value is used). Any other
+value counts as not ongoing, so do not put a treatment-arm column
+here</td>
 </tr>
 <tr class="even">
 <td><code>responseCategoryVar</code></td>
 <td>—</td>
-<td>Override the computed RECIST category with an investigator-assigned
-one</td>
+<td>Override the computed category with an investigator-assigned
+CR/PR/SD/PD (or NE), for example confirmed responses or PD from clinical
+progression. Give one value per patient; if a patient’s values differ
+across visits, they are read as per-visit responses and the best one up
+to the first PD is used</td>
 </tr>
 <tr class="odd">
 <td><code>annotationVars</code></td>
@@ -252,12 +298,14 @@ so on)</td>
 <tr class="even">
 <td><code>timeUnitLabel</code></td>
 <td><code>"generic"</code></td>
-<td>Axis label for the spider plot</td>
+<td>The unit of the time variable, used in labels and in
+time-to-response results</td>
 </tr>
 <tr class="odd">
 <td><code>showClinicalSignificance</code></td>
 <td><code>FALSE</code></td>
-<td>Clinical-significance threshold annotations</td>
+<td>A panel stating the range of ORR and DCR compatible with the data
+and a sample-size note, plus a glossary of terms</td>
 </tr>
 <tr class="even">
 <td><code>showConfidenceIntervals</code></td>
@@ -272,7 +320,7 @@ so on)</td>
 <tr class="even">
 <td><code>showExplanations</code></td>
 <td><code>FALSE</code></td>
-<td>Notes explaining each output</td>
+<td>Shows both the clinical summary and the About panel</td>
 </tr>
 <tr class="odd">
 <td><code>enableGuidedMode</code></td>

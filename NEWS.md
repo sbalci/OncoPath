@@ -1,4 +1,51 @@
-# OncoPath 1.1.3 (2026-10-30)
+# OncoPath 1.1.4 (2026-11-08)
+
+## Correct patient identity in treatment-response analyses
+
+- Fixed an internal-column collision in waterfall and spider analyses. A patient-ID column named
+  `response` could silently collapse unrelated patients and corrupt counts and confidence intervals.
+  Source columns now remain separate from calculated fields throughout response, group, duration,
+  annotation, plot and exported-category processing. The repair also covers time, measurement and
+  optional columns whose names coincide with internal fields.
+- Added regression coverage for raw and percentage input, all selected-column roles, conflicting
+  internal names, row reordering, repeated visits, missing measurements and filtered rows.
+- Re-run saved analyses before using their results. The repair changes results affected by column
+  collisions; statistical methods, response thresholds and defaults are unchanged.
+
+## Interpretation and release documentation
+
+- Diagnostic sensitivity/specificity p-values are described as tests of 50% for the individual
+  margin, without equating that null with overall chance discrimination.
+- Fixed-effect guidance no longer claims its confidence intervals are always narrower than
+  random-effects intervals. A non-significant heterogeneity test does not justify the common-effect
+  assumption; REML remains the default.
+- Updated the corresponding Turkish translations and removed the IHC source literal that caused
+  the R package portability warning.
+- Retained the clinical and endpoint limitations added in the preceding documentation review.
+
+# OncoPath 1.1.3 (2026-11-08)
+
+## Known release blocker
+
+- The raw waterfall analysis can corrupt patient identities when the selected patient-ID column
+  is named `response`: a six-patient reproduction yields one responder and one not-evaluable
+  entry. This candidate must not be submitted until the internal-column collision is repaired
+  and verified in both source and compiled module. See `docs/audit/RELEASE_REVIEW_1.1.3_20261108.md`.
+
+## Release documentation review
+
+- Clarified that IHC regional variation includes measurement error as well as biology, and that
+  similar consistency and absolute-agreement ICCs do not rule out clinically important bias.
+- Explained that spatial-compartment tests compare independent case groups, not paired locations
+  within a tumor, and that a non-significant test does not establish absence of a difference.
+- Documented response-rate denominators, responder-only time to response, progression-based
+  duration, last-assessment censoring, and the absence of a separate death input. DCR is based
+  on best response and has no minimum stable-disease duration.
+- Added guidance on study independence, sparse-count approximation, diagnostic prediction
+  intervals and the uncertainty omitted from plug-in predictive values.
+- Distinguished R teaching datasets from the separately saved jamovi examples. Numerical
+  methods, defaults and clinical cutoffs are unchanged by this documentation review.
+
 
 **Saved analyses can give different results.** jamovi shows the results stored in a saved file until
 an option is changed. Re-run a saved analysis (change any option and change it back) before you rely

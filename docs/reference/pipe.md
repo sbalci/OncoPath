@@ -16,8 +16,8 @@ lhs %>% rhs
 
 - rhs:
 
-  A function call to which \`lhs\` is supplied as the first argument.
+  A function call to which `lhs` is supplied as the first argument.
 
 ## Value
 
-The result of calling \`rhs\` with \`lhs\` as its first argument.
+The result of calling `rhs` with `lhs` as its first argument.

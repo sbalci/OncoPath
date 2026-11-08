@@ -16,6 +16,8 @@ used internally by the jamovi analysis wrapper and not called directly.
 
 ### Public methods
 
+- [`diagnosticmetaClass$asSource()`](#method-diagnosticmetaClass-asSource)
+
 - [`diagnosticmetaClass$clone()`](#method-diagnosticmetaClass-clone)
 
 Inherited methods
@@ -36,7 +38,6 @@ Inherited methods
 - [`jmvcore::Analysis$.setStatePathSource()`](https://rdrr.io/pkg/jmvcore/man/Analysis.html#method-.setStatePathSource)
 - [`jmvcore::Analysis$addAddon()`](https://rdrr.io/pkg/jmvcore/man/Analysis.html#method-addAddon)
 - [`jmvcore::Analysis$asProtoBuf()`](https://rdrr.io/pkg/jmvcore/man/Analysis.html#method-asProtoBuf)
-- [`jmvcore::Analysis$asSource()`](https://rdrr.io/pkg/jmvcore/man/Analysis.html#method-asSource)
 - [`jmvcore::Analysis$check()`](https://rdrr.io/pkg/jmvcore/man/Analysis.html#method-check)
 - [`jmvcore::Analysis$init()`](https://rdrr.io/pkg/jmvcore/man/Analysis.html#method-init)
 - [`jmvcore::Analysis$optionsChangedHandler()`](https://rdrr.io/pkg/jmvcore/man/Analysis.html#method-optionsChangedHandler)
@@ -49,6 +50,20 @@ Inherited methods
 - [`jmvcore::Analysis$setStatus()`](https://rdrr.io/pkg/jmvcore/man/Analysis.html#method-setStatus)
 - [`jmvcore::Analysis$translate()`](https://rdrr.io/pkg/jmvcore/man/Analysis.html#method-translate)
 - `diagnosticmetaBase$initialize()`
+
+------------------------------------------------------------------------
+
+### `diagnosticmetaClass$asSource()`
+
+Generate R source code for diagnostic test meta-analysis
+
+#### Usage
+
+    diagnosticmetaClass$asSource()
+
+#### Returns
+
+Character string with reproducible R syntax
 
 ------------------------------------------------------------------------
 

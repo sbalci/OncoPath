@@ -9,7 +9,7 @@ diagnostic test accuracy studies, specifically designed for:
 
 - **Immunohistochemistry (IHC) marker validation** across multiple
   studies
-- **AI algorithm performance** meta-analysis  
+- **AI algorithm performance** meta-analysis\
 - **Biomarker diagnostic accuracy** synthesis
 - **Cross-study comparison** with heterogeneity analysis
 
@@ -20,12 +20,14 @@ and may not be generalizable. Meta-analysis provides:
 
 1.  **Increased Statistical Power**: Combining multiple studies
     increases precision
-2.  **Robust Estimates**: More reliable pooled sensitivity and
-    specificity
+2.  **Pooled Estimates**: Sensitivity and specificity with model-based
+    uncertainty; bias in the source studies is not removed by pooling
 3.  **Heterogeneity Assessment**: Identifies variations between studies
-4.  **Publication Bias Detection**: Assesses potential literature bias
-5.  **Clinical Translation**: Overall evidence for implementation
-    decisions
+4.  **Small-Study Effects**: Deeks’ test assesses funnel asymmetry,
+    which does not establish publication bias
+5.  **Clinical Interpretation**: Describes accuracy evidence for a
+    specified population and threshold; implementation needs
+    setting-specific validation
 
 ## Data Requirements
 
@@ -36,7 +38,7 @@ Your dataset must contain these core variables:
 1.  **Study Identifier**: Unique name or ID for each study
 2.  **True Positives (TP)**: Cases correctly identified as positive
 3.  **False Positives (FP)**: Cases incorrectly identified as positive
-4.  **False Negatives (FN)**: Cases incorrectly identified as negative  
+4.  **False Negatives (FN)**: Cases incorrectly identified as negative\
 5.  **True Negatives (TN)**: Cases correctly identified as negative
 
 ### Optional Variables for Meta-Regression
@@ -46,41 +48,65 @@ Your dataset must contain these core variables:
 - **Geographic Region**: Population-specific factors
 - **Publication Year**: Temporal trends
 
+## Study independence and transportability
+
+Use one prespecified 2×2 table per independent cohort at a clinically
+interpretable threshold. Renaming overlapping cohorts does not make them
+independent. Multiple readers, algorithms, thresholds or specimen
+samples from the same patients need a method that models that
+dependence; this module does not do so. Meta-regression is an
+exploratory comparison of study-level covariates, not an adjusted
+patient-level or causal comparison of tests.
+
+The Reitsma analysis uses normal approximations on logit-transformed
+study proportions. Sparse counts and continuity corrections can
+materially affect its estimates and coverage; compare with a binomial
+bivariate model when errors are rare. A confidence interval describes
+the pooled mean, while a prediction interval includes estimated
+between-study spread and assumes a similar future study. Neither
+validates a new laboratory. PPV and NPV are plug-in calculations at the
+specified prevalence, with no propagated uncertainty or local
+calibration. A sensitivity or specificity p-value tests 50% for that
+margin; it does not test overall chance discrimination or a clinically
+acceptable threshold.
+
+See the [Cochrane DTA Handbook, chapter
+11](https://training.cochrane.org/sites/training.cochrane.org/files/public/uploads/resources/downloadable_resources/English/DTA_Handbook_v1/DTA%20Handbook%20Chapter%2011%20201312.pdf)
+for interpretation of pooled accuracy and predictive values.
+
 ## Example Dataset
 
-``` r
-
-# Example diagnostic meta-analysis dataset
-diagnostic_data <- data.frame(
-  study_name = c(
-    "Smith_2020", "Johnson_2021", "Zhang_2019", "Mueller_2020",
-    "Rodriguez_2021", "Tanaka_2020", "Brown_2019", "Lee_2021",
-    "Patel_2020", "Wilson_2021"
-  ),
-  author = c(
-    "Smith et al.", "Johnson et al.", "Zhang et al.", "Mueller et al.",
-    "Rodriguez et al.", "Tanaka et al.", "Brown et al.", "Lee et al.",
-    "Patel et al.", "Wilson et al."
-  ),
-  year = c(2020, 2021, 2019, 2020, 2021, 2020, 2019, 2021, 2020, 2021),
-  true_positives = c(47, 126, 19, 36, 130, 84, 58, 91, 42, 103),
-  false_positives = c(101, 272, 12, 78, 211, 68, 89, 134, 56, 142),
-  false_negatives = c(9, 51, 10, 3, 19, 2, 12, 8, 7, 15),
-  true_negatives = c(738, 1543, 192, 276, 959, 89, 328, 421, 237, 496),
-  patient_population = c(
-    "mixed", "early_stage", "advanced", "mixed", "early_stage", 
-    "advanced", "mixed", "early_stage", "advanced", "mixed"
-  ),
-  staining_method = c(
-    "automated", "manual", "automated", "manual", "automated",
-    "manual", "automated", "manual", "automated", "manual"
-  )
-)
-
-# Display the dataset
-knitr::kable(diagnostic_data[, 1:7], 
-             caption = "Example Diagnostic Test Meta-Analysis Dataset")
-```
+\
+`# Example diagnostic meta-analysis dataset`\
+`diagnostic_data`` ``<-`` `[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(`\
+`  study_name ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`\
+`    ``"Smith_2020"``, ``"Johnson_2021"``, ``"Zhang_2019"``, ``"Mueller_2020"``,`\
+`    ``"Rodriguez_2021"``, ``"Tanaka_2020"``, ``"Brown_2019"``, ``"Lee_2021"``,`\
+`    ``"Patel_2020"``, ``"Wilson_2021"`\
+`  ``)``,`\
+`  author ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`\
+`    ``"Smith et al."``, ``"Johnson et al."``, ``"Zhang et al."``, ``"Mueller et al."``,`\
+`    ``"Rodriguez et al."``, ``"Tanaka et al."``, ``"Brown et al."``, ``"Lee et al."``,`\
+`    ``"Patel et al."``, ``"Wilson et al."`\
+`  ``)``,`\
+`  year ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``2020``, ``2021``, ``2019``, ``2020``, ``2021``, ``2020``, ``2019``, ``2021``, ``2020``, ``2021``)``,`\
+`  true_positives ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``47``, ``126``, ``19``, ``36``, ``130``, ``84``, ``58``, ``91``, ``42``, ``103``)``,`\
+`  false_positives ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``101``, ``272``, ``12``, ``78``, ``211``, ``68``, ``89``, ``134``, ``56``, ``142``)``,`\
+`  false_negatives ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``9``, ``51``, ``10``, ``3``, ``19``, ``2``, ``12``, ``8``, ``7``, ``15``)``,`\
+`  true_negatives ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``738``, ``1543``, ``192``, ``276``, ``959``, ``89``, ``328``, ``421``, ``237``, ``496``)``,`\
+`  patient_population ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`\
+`    ``"mixed"``, ``"early_stage"``, ``"advanced"``, ``"mixed"``, ``"early_stage"``, `\
+`    ``"advanced"``, ``"mixed"``, ``"early_stage"``, ``"advanced"``, ``"mixed"`\
+`  ``)``,`\
+`  staining_method ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`\
+`    ``"automated"``, ``"manual"``, ``"automated"``, ``"manual"``, ``"automated"``,`\
+`    ``"manual"``, ``"automated"``, ``"manual"``, ``"automated"``, ``"manual"`\
+`  ``)`\
+`)`\
+\
+`# Display the dataset`\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``diagnostic_data``[``, ``1``:``7``]``, `\
+`             caption ``=`` ``"Example Diagnostic Test Meta-Analysis Dataset"``)`
 
 | study_name | author | year | true_positives | false_positives | false_negatives | true_negatives |
 |:---|:---|---:|---:|---:|---:|---:|
@@ -102,34 +128,32 @@ Example Diagnostic Test Meta-Analysis Dataset {.table}
 Before analysis, verify:
 
 - ✅ No missing values in TP, FP, FN, TN columns
-- ✅ All values are non-negative integers  
+- ✅ All values are non-negative integers\
 - ✅ Each study has complete 2×2 table data
-- ✅ At least 2 studies with valid data
-- ✅ Study identifiers are unique
+- ✅ At least 3 studies with valid data
+- ✅ Study identifiers are unique, one 2×2 table per independent study
 
-``` r
-
-# Calculate basic statistics for validation
-diagnostic_data$sample_size <- with(diagnostic_data, 
-  true_positives + false_positives + false_negatives + true_negatives)
-
-diagnostic_data$sensitivity <- with(diagnostic_data,
-  true_positives / (true_positives + false_negatives))
-
-diagnostic_data$specificity <- with(diagnostic_data,
-  true_negatives / (true_negatives + false_positives))
-
-# Summary statistics
-summary_stats <- data.frame(
-  Study = diagnostic_data$study_name,
-  N = diagnostic_data$sample_size,
-  Sensitivity = round(diagnostic_data$sensitivity, 3),
-  Specificity = round(diagnostic_data$specificity, 3)
-)
-
-knitr::kable(summary_stats, 
-             caption = "Individual Study Performance Metrics")
-```
+\
+`# Calculate basic statistics for validation`\
+`diagnostic_data``$``sample_size`` ``<-`` `[`with`](https://rdrr.io/r/base/with.html)`(``diagnostic_data``, `\
+`  ``true_positives`` ``+`` ``false_positives`` ``+`` ``false_negatives`` ``+`` ``true_negatives``)`\
+\
+`diagnostic_data``$``sensitivity`` ``<-`` `[`with`](https://rdrr.io/r/base/with.html)`(``diagnostic_data``,`\
+`  ``true_positives`` ``/`` ``(``true_positives`` ``+`` ``false_negatives``)``)`\
+\
+`diagnostic_data``$``specificity`` ``<-`` `[`with`](https://rdrr.io/r/base/with.html)`(``diagnostic_data``,`\
+`  ``true_negatives`` ``/`` ``(``true_negatives`` ``+`` ``false_positives``)``)`\
+\
+`# Summary statistics`\
+`summary_stats`` ``<-`` `[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(`\
+`  Study ``=`` ``diagnostic_data``$``study_name``,`\
+`  N ``=`` ``diagnostic_data``$``sample_size``,`\
+`  Sensitivity ``=`` `[`round`](https://rdrr.io/r/base/Round.html)`(``diagnostic_data``$``sensitivity``, ``3``)``,`\
+`  Specificity ``=`` `[`round`](https://rdrr.io/r/base/Round.html)`(``diagnostic_data``$``specificity``, ``3``)`\
+`)`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``summary_stats``, `\
+`             caption ``=`` ``"Individual Study Performance Metrics"``)`
 
 | Study          |    N | Sensitivity | Specificity |
 |:---------------|-----:|------------:|------------:|
@@ -150,23 +174,23 @@ Individual Study Performance Metrics {.table}
 
 ### Bivariate Random-Effects Model
 
-The **bivariate random-effects model** (Reitsma et al.) is the gold
-standard:
+The **bivariate random-effects model** (Reitsma et al.) is the
+recommended model for pooling sensitivity and specificity:
 
 - Jointly analyzes sensitivity and specificity
-- Accounts for correlation between measures  
-- Handles threshold effects across studies
+- Accounts for the between-study correlation between them
+- Gives a summary ROC curve; when studies use different positivity
+  thresholds, read the curve and the prediction region rather than the
+  single pooled point
 - Provides pooled estimates with confidence intervals
 
 ### Key Features:
 
-``` r
-
-# Conceptual framework (not executable)
-# logit(sensitivity_i) ~ N(μ_sens, τ²_sens)
-# logit(specificity_i) ~ N(μ_spec, τ²_spec)
-# Correlation between sensitivity and specificity accounted for
-```
+\
+`# Conceptual framework (not executable)`\
+`# logit(sensitivity_i) ~ N(μ_sens, τ²_sens)`\
+`# logit(specificity_i) ~ N(μ_spec, τ²_spec)`\
+`# Correlation between sensitivity and specificity accounted for`
 
 ### Holling Proportional-Hazards Summary ROC
 
@@ -185,118 +209,120 @@ parameterization.
 
 Investigates heterogeneity sources:
 
-``` r
-
-# logit(sensitivity_i) = β₀ + β₁ × covariate_i + ε_i
-# Common covariates: population, methodology, geography
-```
+\
+`# logit(sensitivity_i) = β₀ + β₁ × covariate_i + ε_i`\
+`# Common covariates: population, methodology, geography`
 
 ## Running It From R
 
-Everything above describes the method; this section runs it. The article
-previously never called
-[`diagnosticmeta()`](https://www.serdarbalci.com/OncoPath/reference/diagnosticmeta.md)
-at all, so the argument names and the scales they use were nowhere to be
-found. The call below was executed against the bundled
-`diagnostic_studies` dataset and the numbers shown are the ones it
-returned.
+The call below uses the bundled `diagnosticmeta_test_categorical`
+dataset (20 synthetic studies, also available as a jamovi example) and
+shows the numbers OncoPath 1.1.3 returns for it.
 
-``` r
-
-data(diagnostic_studies, package = "OncoPath")
-head(diagnostic_studies)
-#>   study_name tp fp fn tn
-
-res <- diagnosticmeta(
-  data            = diagnostic_studies,
-  study           = "study_name",
-  true_positives  = "tp",
-  false_positives = "fp",
-  false_negatives = "fn",
-  true_negatives  = "tn",
-
-  bivariate_analysis      = TRUE,   # Reitsma bivariate random-effects model
-  hsroc_analysis          = TRUE,   # Holling proportional-hazards SROC
-  heterogeneity_analysis  = TRUE,   # Q, I-squared, tau-squared
-  publication_bias        = TRUE,   # Deeks' funnel plot asymmetry test
-  meta_regression         = FALSE,  # needs `covariate` to be set
-  confidence_level        = 95,     # PERCENT, 50-99. Not 0.95 - that is rejected.
-  zero_cell_correction    = "constant",  # none | constant | treatment_arm | empirical
-  forest_plot             = TRUE,
-  sroc_plot               = TRUE,
-  funnel_plot             = TRUE,
-  show_individual_studies = TRUE,
-  show_methodology        = TRUE,
-  show_analysis_summary   = TRUE
-)
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`OncoPath`](https://www.serdarbalci.com/OncoPath/)`)`\
+[`data`](https://rdrr.io/r/utils/data.html)`(``diagnosticmeta_test_categorical``, package ``=`` ``"OncoPath"``)`\
+[`head`](https://rdrr.io/r/utils/head.html)`(``diagnosticmeta_test_categorical``, ``3``)`\
+`#>     study true_positives false_positives false_negatives true_negatives year quality_score imaging_modality`\
+`#> 1 Study_1             81              10              30            153 2015             5               CT`\
+`#> 2 Study_2             56               6               6            120 2019             7       Ultrasound`\
+`#> 3 Study_3             84               4              11            100 2015             7               CT`\
+\
+`res`` ``<-`` `[`diagnosticmeta`](https://www.serdarbalci.com/OncoPath/reference/diagnosticmeta.md)`(`\
+`  data            ``=`` ``diagnosticmeta_test_categorical``,`\
+`  study           ``=`` ``"study"``,`\
+`  true_positives  ``=`` ``"true_positives"``,`\
+`  false_positives ``=`` ``"false_positives"``,`\
+`  false_negatives ``=`` ``"false_negatives"``,`\
+`  true_negatives  ``=`` ``"true_negatives"``,`\
+`  covariate       ``=`` ``"imaging_modality"``,   ``# CT 5, MRI 9, ultrasound 6 studies`\
+\
+`  bivariate_analysis      ``=`` ``TRUE``,   ``# Reitsma bivariate random-effects model`\
+`  hsroc_analysis          ``=`` ``TRUE``,   ``# Holling proportional-hazards SROC`\
+`  heterogeneity_analysis  ``=`` ``TRUE``,   ``# Q, I-squared, tau-squared`\
+`  meta_regression         ``=`` ``TRUE``,   ``` # needs `covariate` ``\
+`  publication_bias        ``=`` ``TRUE``,   ``# Deeks' funnel plot asymmetry test`\
+`  confidence_level        ``=`` ``95``,     ``# PERCENT, 50-99. Not 0.95 - that is rejected.`\
+`  zero_cell_correction    ``=`` ``"none"``, ``# none | constant | zero_cells | reciprocal_n`\
+`  forest_plot             ``=`` ``TRUE``,`\
+`  sroc_plot               ``=`` ``TRUE`\
+`)`
 
 Two argument details are easy to get wrong and both raise an error
 rather than silently misbehaving:
 
 - **`confidence_level` is a percentage on a 50-99 scale.** Passing the
-  more usual `0.95` fails with
-  `confidence_level must be between 50 and 99 (is 0.95)`.
-- **`zero_cell_correction` does not have a level called `continuity`.**
-  The four accepted values are `none`, `constant`, `treatment_arm` and
-  `empirical`.
+  more usual `0.95` fails.
+- **`zero_cell_correction` accepts `none`, `constant`, `zero_cells` and
+  `reciprocal_n`.** Under the default `none` every model adds 0.5 to all
+  four cells of a study with a zero cell when it is fitted, so every
+  model uses every study. The former keys `treatment_arm` and
+  `empirical` were renamed and are rejected. Deeks’ test always uses the
+  raw counts, whatever this setting.
 
 ### What Comes Back
 
     bivariateresults
-                     parameter estimate ci_lower ci_upper      p_value
-            Pooled Sensitivity    75.50    69.10    80.94    6.09e-12
-            Pooled Specificity    89.77    85.66    92.81    0.00e+00
-     Positive Likelihood Ratio     7.38     5.18    10.52          NA
+                     parameter estimate ci_lower ci_upper
+            Pooled Sensitivity    81.67    76.63    85.83
+            Pooled Specificity    89.19    85.73    91.90
+     Positive Likelihood Ratio     7.56     5.60    10.21
+     Negative Likelihood Ratio     0.21     0.16     0.27
+         Diagnostic Odds Ratio    36.77    22.59    59.85
 
-    hsrocresults
-                                  parameter  estimate std_error z_value  p_value
-      Diagnostic accuracy parameter (theta)  1.08e-01  2.19e-02   4.924 8.50e-07
-             Between-study variance (tau^2)  2.48e-05  1.70e-03   0.015 9.88e-01
+    hsrocresults (proportional-hazards SROC)
+                                  parameter estimate std_error z_value p_value
+      Diagnostic accuracy parameter (theta)   0.0897    0.0163  -56.00  <0.001
+             Between-study variance (tau^2)   0.0027    0.0018
+                                        AUC   0.918     0.014
 
     heterogeneity
-         measure q_statistic df p_value i_squared tau_squared
-     Sensitivity        3.49  4   0.480         0           0
-     Specificity        1.86  4   0.762         0           0
+         measure q_statistic df  p_value i_squared tau_squared
+     Sensitivity       88.37 19   <0.001      79.1        0.36
+     Specificity       95.33 19   <0.001      81.0        0.39
 
     publicationbias
-                                  test statistic p_value                  interpretation
-     Deeks' Funnel Plot Asymmetry Test    -3.993  0.0281  Significant asymmetry detected
+                                  test statistic p_value interpretation
+     Deeks' Funnel Plot Asymmetry Test    -0.49    0.63 No asymmetry detected (p >= 0.05)
+
+The theta test is against theta = 1, the value at which the SROC curve
+is the chance diagonal, so a large negative z means accuracy well above
+chance. It does not test a clinical threshold.
 
 Read these together rather than in isolation. Heterogeneity is
-negligible here (I-squared 0 for both measures, tau-squared essentially
-zero in the HSROC fit), so the pooled estimates are describing a
-consistent set of studies. But Deeks’ test flags significant funnel
-asymmetry (p = 0.028) — on five studies, which is below the ten that
-Deeks’ test is generally considered to need. That is a caveat to state,
-not a finding to report: with this few studies the asymmetry test is
-underpowered *and* prone to false positives, and the honest reading is
-that publication bias cannot be assessed here.
+substantial (I-squared about 80% for both measures), and the analysis
+warns that the 95% prediction interval for a new study is wide
+(sensitivity 55%-94%, specificity 68%-97%). The pooled pair is therefore
+an average over studies that differ more than sampling error explains;
+the SROC curve and the prediction region describe this body of evidence
+better than the pooled point. A non-significant Deeks’ test is not
+evidence of absent publication bias.
 
 ### Meta-Regression
 
 `meta_regression = TRUE` requires a `covariate` column naming a
-study-level characteristic:
+study-level characteristic. With `imaging_modality` the model estimates
+two contrasts (MRI and ultrasound against CT) for each of sensitivity
+and specificity, on the logit scale:
 
-``` r
+                  parameter estimate    SE p_value
+    Sensitivity   Intercept     1.62  0.32  <0.001
+                  MRI          -0.04  0.41   0.93
+                  Ultrasound   -0.32  0.45   0.48
+    Specificity   Intercept     2.54  0.32  <0.001
+                  MRI          -0.40  0.40   0.33
+                  Ultrasound   -0.84  0.42   0.059
 
-res_mr <- diagnosticmeta(
-  data = diagnostic_studies,
-  study = "study_name", true_positives = "tp", false_positives = "fp",
-  false_negatives = "fn", true_negatives = "tn",
-  meta_regression = TRUE,
-  covariate = "population_type"    # a column in your data
-)
-```
-
-With five studies a meta-regression is fitting a slope through five
-points; it will produce a number, and that number will not mean much.
-Ten studies per covariate is a common minimum.
+No contrast reaches p \< 0.05. Twenty studies for two parameters is the
+minimum the Cochrane DTA Handbook suggests (about ten studies per
+covariate parameter), so treat a meta-regression of this size as
+exploratory: it can suggest a source of heterogeneity, not establish
+one.
 
 ### Presentation Options
 
 `forest_plot`, `sroc_plot` and `funnel_plot` control the three figures;
-`color_palette` sets their colour scheme and `show_plot_explanations`
+`color_palette` sets their color scheme and `show_plot_explanations`
 adds a note under each explaining how to read it.
 `show_individual_studies` adds the per-study sensitivity and specificity
 table, which is worth keeping — a pooled estimate without the studies
@@ -310,15 +336,15 @@ behind it is hard to sanity-check.
 
 2.  **Access Function**:
 
-    - Navigate to **Analyses → ClinicoPath → Diagnostic Test
-      Meta-Analysis for Pathology**
+    - Navigate to **Analyses → OncoPath → Meta-Analysis → Diagnostic
+      Test Meta-Analysis for Pathology**
 
 3.  **Variable Assignment**:
 
     - **Study Identifier**: Select study name/ID variable
     - **True Positives**: Select TP column
     - **False Positives**: Select FP column
-    - **False Negatives**: Select FN column  
+    - **False Negatives**: Select FN column\
     - **True Negatives**: Select TN column
     - **Covariate** (optional): Variable for meta-regression
 
@@ -343,64 +369,67 @@ behind it is hard to sanity-check.
 
 #### Pooled Sensitivity and Specificity
 
-``` r
+\
+`# Pooled estimates for diagnostic_data above (bivariate model, REML)`\
+`# Pooled Sensitivity: 85.8% (95% CI: 78.0%-91.1%)`\
+`# Pooled Specificity: 80.8% (95% CI: 74.7%-85.8%)`
 
-# Example results interpretation
-# Pooled Sensitivity: 0.891 (95% CI: 0.808-0.941)
-# Pooled Specificity: 0.780 (95% CI: 0.715-0.833)
-```
-
-**Interpretation**: - **Sensitivity (89.1%)**: Test correctly identifies
-89% of diseased cases - **Specificity (78.0%)**: Test correctly
-identifies 78% of non-diseased cases - **Confidence Intervals**: Range
-of plausible values for true parameters
+**Interpretation**: - **Sensitivity (85.8%)**: Test correctly identifies
+about 86 of every 100 diseased cases - **Specificity (80.8%)**: Test
+correctly identifies about 81 of every 100 non-diseased cases -
+**Confidence Intervals**: Range of plausible values for true parameters
 
 #### Diagnostic Accuracy Measures
 
-``` r
-
-# Example calculations for interpretation
-pooled_sens <- 0.891
-pooled_spec <- 0.780
-
-# Likelihood ratios
-positive_lr <- pooled_sens / (1 - pooled_spec)
-negative_lr <- (1 - pooled_sens) / pooled_spec
-diagnostic_or <- positive_lr / negative_lr
-
-# Create interpretation table
-measures <- data.frame(
-  Measure = c("Positive Likelihood Ratio", "Negative Likelihood Ratio", 
-              "Diagnostic Odds Ratio"),
-  Value = c(round(positive_lr, 2), round(negative_lr, 2), 
-            round(diagnostic_or, 1)),
-  Interpretation = c(
-    ifelse(positive_lr > 10, "Strong evidence for disease",
-           ifelse(positive_lr > 5, "Moderate evidence", "Weak evidence")),
-    ifelse(negative_lr < 0.1, "Strong evidence against disease",
-           ifelse(negative_lr < 0.2, "Moderate evidence", "Weak evidence")),
-    ifelse(diagnostic_or > 25, "Excellent discrimination",
-           ifelse(diagnostic_or > 10, "Good discrimination", "Limited discrimination"))
-  )
-)
-
-knitr::kable(measures, caption = "Diagnostic Accuracy Interpretation")
-```
+\
+`# Example calculations for interpretation`\
+`pooled_sens`` ``<-`` ``0.858`\
+`pooled_spec`` ``<-`` ``0.808`\
+\
+`# Likelihood ratios`\
+`positive_lr`` ``<-`` ``pooled_sens`` ``/`` ``(``1`` ``-`` ``pooled_spec``)`\
+`negative_lr`` ``<-`` ``(``1`` ``-`` ``pooled_sens``)`` ``/`` ``pooled_spec`\
+`diagnostic_or`` ``<-`` ``positive_lr`` ``/`` ``negative_lr`\
+\
+`# Create interpretation table`\
+`measures`` ``<-`` `[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(`\
+`  Measure ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"Positive Likelihood Ratio"``, ``"Negative Likelihood Ratio"``, `\
+`              ``"Diagnostic Odds Ratio"``)``,`\
+`  Value ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`[`round`](https://rdrr.io/r/base/Round.html)`(``positive_lr``, ``2``)``, `[`round`](https://rdrr.io/r/base/Round.html)`(``negative_lr``, ``2``)``, `\
+`            `[`round`](https://rdrr.io/r/base/Round.html)`(``diagnostic_or``, ``1``)``)``,`\
+`  Interpretation ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`\
+`    `[`ifelse`](https://rdrr.io/r/base/ifelse.html)`(``positive_lr`` ``>`` ``10``, ``"Strong evidence for disease"``,`\
+`           `[`ifelse`](https://rdrr.io/r/base/ifelse.html)`(``positive_lr`` ``>`` ``5``, ``"Moderate evidence"``, ``"Weak evidence"``)``)``,`\
+`    `[`ifelse`](https://rdrr.io/r/base/ifelse.html)`(``negative_lr`` ``<`` ``0.1``, ``"Strong evidence against disease"``,`\
+`           `[`ifelse`](https://rdrr.io/r/base/ifelse.html)`(``negative_lr`` ``<`` ``0.2``, ``"Moderate evidence"``, ``"Weak evidence"``)``)``,`\
+`    `[`ifelse`](https://rdrr.io/r/base/ifelse.html)`(``diagnostic_or`` ``>`` ``25``, ``"Excellent discrimination"``,`\
+`           `[`ifelse`](https://rdrr.io/r/base/ifelse.html)`(``diagnostic_or`` ``>`` ``10``, ``"Good discrimination"``, ``"Limited discrimination"``)``)`\
+`  ``)`\
+`)`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``measures``, caption ``=`` ``"Diagnostic Accuracy Interpretation"``)`
 
 | Measure                   | Value | Interpretation           |
 |:--------------------------|------:|:-------------------------|
-| Positive Likelihood Ratio |  4.05 | Weak evidence            |
-| Negative Likelihood Ratio |  0.14 | Moderate evidence        |
-| Diagnostic Odds Ratio     | 29.00 | Excellent discrimination |
+| Positive Likelihood Ratio |  4.47 | Weak evidence            |
+| Negative Likelihood Ratio |  0.18 | Moderate evidence        |
+| Diagnostic Odds Ratio     | 25.40 | Excellent discrimination |
 
 Diagnostic Accuracy Interpretation {.table}
 
 ### Heterogeneity Assessment
 
-**I² Statistic Interpretation**: - **I² \< 25%**: Low heterogeneity -
-results can be pooled reliably - **I² 25-50%**: Moderate heterogeneity -
-investigate sources - **I² \> 50%**: Substantial heterogeneity - pooling
-may not be appropriate
+**I² Statistic Interpretation** (Higgins’ conventional bands, borrowed
+from intervention reviews): - **I² \< 25%**: Little heterogeneity on
+that margin. With few studies I² is imprecise, and on its own it does
+not show that pooling is appropriate - **I² 25-50%**: Moderate
+heterogeneity - investigate sources - **I² \> 50%**: Substantial
+heterogeneity - expected whenever studies use different positivity
+thresholds; read the SROC curve and the prediction region rather than
+the pooled point
+
+The analysis reports I² separately for sensitivity and for specificity.
+Neither describes the bivariate model; the prediction interval does.
 
 **Clinical Sources of Heterogeneity**: - Patient population differences
 (disease stage, demographics) - Technical variations (antibody sources,
@@ -409,9 +438,12 @@ standards) - Geographic or temporal factors
 
 ### Publication Bias
 
-**Deeks’ Funnel Plot Test**: - **p \< 0.05**: Significant asymmetry
-suggests publication bias - **p \>= 0.05**: No significant evidence of
-bias
+**Deeks’ Funnel Plot Test**: - **p \< 0.05**: The funnel plot is
+asymmetric. Publication bias is one explanation; heterogeneity, a
+threshold effect and a real relation between study size and accuracy are
+others, and the test cannot tell them apart - **p \>= 0.05**: No
+asymmetry detected. With fewer than 10 studies the test has little
+power, so this does not show that publication bias is absent
 
 ## Clinical Applications
 
@@ -419,48 +451,50 @@ bias
 
 When validating immunohistochemistry markers:
 
-``` r
-
-# Clinical decision framework
-create_clinical_table <- function(sens, spec) {
-  # Calculate predictive values at different prevalences
-  prevalences <- c(0.05, 0.10, 0.20, 0.30, 0.50)
-  
-  ppv <- sapply(prevalences, function(prev) {
-    (sens * prev) / (sens * prev + (1-spec) * (1-prev))
-  })
-  
-  npv <- sapply(prevalences, function(prev) {
-    (spec * (1-prev)) / ((1-sens) * prev + spec * (1-prev))
-  })
-  
-  data.frame(
-    Prevalence = paste0(prevalences * 100, "%"),
-    PPV = paste0(round(ppv * 100, 1), "%"),
-    NPV = paste0(round(npv * 100, 1), "%")
-  )
-}
-
-# Example with pooled estimates
-clinical_table <- create_clinical_table(0.891, 0.780)
-knitr::kable(clinical_table, 
-             caption = "Predictive Values at Different Disease Prevalences")
-```
+\
+`# Clinical decision framework`\
+`create_clinical_table`` ``<-`` ``function``(``sens``, ``spec``)`` ``{`\
+`  ``# Calculate predictive values at different prevalences`\
+`  ``prevalences`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``0.05``, ``0.10``, ``0.20``, ``0.30``, ``0.50``)`\
+`  `\
+`  ``ppv`` ``<-`` `[`sapply`](https://rdrr.io/r/base/lapply.html)`(``prevalences``, ``function``(``prev``)`` ``{`\
+`    ``(``sens`` ``*`` ``prev``)`` ``/`` ``(``sens`` ``*`` ``prev`` ``+`` ``(``1``-``spec``)`` ``*`` ``(``1``-``prev``)``)`\
+`  ``}``)`\
+`  `\
+`  ``npv`` ``<-`` `[`sapply`](https://rdrr.io/r/base/lapply.html)`(``prevalences``, ``function``(``prev``)`` ``{`\
+`    ``(``spec`` ``*`` ``(``1``-``prev``)``)`` ``/`` ``(``(``1``-``sens``)`` ``*`` ``prev`` ``+`` ``spec`` ``*`` ``(``1``-``prev``)``)`\
+`  ``}``)`\
+`  `\
+`  `[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(`\
+`    Prevalence ``=`` `[`paste0`](https://rdrr.io/r/base/paste.html)`(``prevalences`` ``*`` ``100``, ``"%"``)``,`\
+`    PPV ``=`` `[`paste0`](https://rdrr.io/r/base/paste.html)`(`[`round`](https://rdrr.io/r/base/Round.html)`(``ppv`` ``*`` ``100``, ``1``)``, ``"%"``)``,`\
+`    NPV ``=`` `[`paste0`](https://rdrr.io/r/base/paste.html)`(`[`round`](https://rdrr.io/r/base/Round.html)`(``npv`` ``*`` ``100``, ``1``)``, ``"%"``)`\
+`  ``)`\
+`}`\
+\
+`# Example with pooled estimates`\
+`clinical_table`` ``<-`` ``create_clinical_table``(``0.858``, ``0.808``)`\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``clinical_table``, `\
+`             caption ``=`` ``"Predictive Values at Different Disease Prevalences"``)`
 
 | Prevalence | PPV   | NPV   |
 |:-----------|:------|:------|
-| 5%         | 17.6% | 99.3% |
-| 10%        | 31%   | 98.5% |
-| 20%        | 50.3% | 96.6% |
-| 30%        | 63.4% | 94.3% |
-| 50%        | 80.2% | 87.7% |
+| 5%         | 19%   | 99.1% |
+| 10%        | 33.2% | 98.1% |
+| 20%        | 52.8% | 95.8% |
+| 30%        | 65.7% | 93%   |
+| 50%        | 81.7% | 85.1% |
 
 Predictive Values at Different Disease Prevalences {.table}
 
-**Key Clinical Insights**: - **High Sensitivity (89%)**: Suitable for
-screening applications - **Moderate Specificity (78%)**: Positive
-results may need confirmation - **Prevalence Dependency**: Predictive
-values vary significantly with disease prevalence
+**Key Clinical Insights**: - **Sensitivity (86%) and specificity (81%)**
+describe the test, not its fitness for a role. Whether it suits
+screening or confirmation depends on the prevalence in the population
+you test and on what a missed case or a false positive costs -
+**Prevalence Dependency**: Predictive values vary markedly with disease
+prevalence - **Heterogeneity**: with a wide prediction interval,
+predictive values in your own setting can differ markedly from the table
+above
 
 ### AI Algorithm Meta-Analysis
 
@@ -477,13 +511,13 @@ Special considerations for AI/ML algorithms:
 
 When investigating covariates:
 
-``` r
-
-# Example meta-regression results
-# Sensitivity ~ Patient Population
-# Advanced vs. Mixed: β = -0.45, p = 0.02
-# Interpretation: Advanced stage patients show 45% lower logit-sensitivity
-```
+\
+`# Example meta-regression results`\
+`# Sensitivity ~ Patient Population`\
+`# Advanced vs. Mixed: β = -0.45, p = 0.02`\
+`# Interpretation: β is a difference in logit sensitivity, so the odds of a`\
+`# positive result in diseased patients are exp(-0.45) = 0.64 times those in`\
+`# the mixed population - about 36% lower ODDS, not 45% lower sensitivity`
 
 **Clinical Translation**: - Significant covariates explain heterogeneity
 sources - Adjust expectations based on population characteristics -
@@ -513,64 +547,76 @@ Consider sensitivity analysis excluding extreme studies
 analysis instead of pooling - **Investigate**: Sources through
 meta-regression
 
-**Publication Bias Detected**: - **Implication**: Results may be
-overestimated - **Action**: Search for unpublished studies, sensitivity
-analysis
+**Funnel Asymmetry Detected**: - **Implication**: Small and large
+studies report different accuracy; if publication bias is the cause, the
+pooled results may be overestimated - **Action**: Look for a clinical
+explanation first, then search for unpublished studies
 
 ## Sample Results Interpretation
 
 ### Complete Example Output
 
-``` r
-
-# Sample results summary
-results_summary <- "
-Bivariate Meta-Analysis Results (n=10 studies, N=5,513 patients):
-- Pooled Sensitivity: 89.1% (95% CI: 80.8%-94.1%)
-- Pooled Specificity: 78.0% (95% CI: 71.5%-83.3%)
-- Positive Likelihood Ratio: 4.05
-- Negative Likelihood Ratio: 0.14
-- Diagnostic Odds Ratio: 29.0
-
-Heterogeneity Assessment:
-- Sensitivity I²: 68% (substantial heterogeneity)
-- Specificity I²: 45% (moderate heterogeneity)
-
-Publication Bias:
-- Deeks' test p-value: 0.23 (no significant bias)
-"
-
-cat(results_summary)
-#> 
-#> Bivariate Meta-Analysis Results (n=10 studies, N=5,513 patients):
-#> - Pooled Sensitivity: 89.1% (95% CI: 80.8%-94.1%)
-#> - Pooled Specificity: 78.0% (95% CI: 71.5%-83.3%)
-#> - Positive Likelihood Ratio: 4.05
-#> - Negative Likelihood Ratio: 0.14
-#> - Diagnostic Odds Ratio: 29.0
-#> 
-#> Heterogeneity Assessment:
-#> - Sensitivity I²: 68% (substantial heterogeneity)
-#> - Specificity I²: 45% (moderate heterogeneity)
-#> 
-#> Publication Bias:
-#> - Deeks' test p-value: 0.23 (no significant bias)
-```
+\
+`# Sample results summary`\
+`results_summary`` ``<-`` ``"`\
+`Bivariate Meta-Analysis Results (n=10 studies, N=7,314 participants):`\
+`- Pooled Sensitivity: 85.8% (95% CI: 78.0%-91.1%)`\
+`- Pooled Specificity: 80.8% (95% CI: 74.7%-85.8%)`\
+`- Positive Likelihood Ratio: 4.48 (3.56-5.63)`\
+`- Negative Likelihood Ratio: 0.18 (0.12-0.26)`\
+`- Diagnostic Odds Ratio: 25.5 (18.9-34.3)`\
+`- 95% prediction interval for a new study: sensitivity 47.2%-97.6%,`\
+`  specificity 51.9%-94.3%`\
+\
+`Heterogeneity Assessment (univariate, per margin):`\
+`- Sensitivity I²: 78.8%`\
+`- Specificity I²: 96.7%`\
+\
+`Publication Bias:`\
+`- Deeks' test: t = 1.71, p = 0.13 (no asymmetry detected; 10 studies give`\
+`  the test little power)`\
+`"`\
+\
+[`cat`](https://rdrr.io/r/base/cat.html)`(``results_summary``)`\
+`#> `\
+`#> Bivariate Meta-Analysis Results (n=10 studies, N=7,314 participants):`\
+`#> - Pooled Sensitivity: 85.8% (95% CI: 78.0%-91.1%)`\
+`#> - Pooled Specificity: 80.8% (95% CI: 74.7%-85.8%)`\
+`#> - Positive Likelihood Ratio: 4.48 (3.56-5.63)`\
+`#> - Negative Likelihood Ratio: 0.18 (0.12-0.26)`\
+`#> - Diagnostic Odds Ratio: 25.5 (18.9-34.3)`\
+`#> - 95% prediction interval for a new study: sensitivity 47.2%-97.6%,`\
+`#>   specificity 51.9%-94.3%`\
+`#> `\
+`#> Heterogeneity Assessment (univariate, per margin):`\
+`#> - Sensitivity I²: 78.8%`\
+`#> - Specificity I²: 96.7%`\
+`#> `\
+`#> Publication Bias:`\
+`#> - Deeks' test: t = 1.71, p = 0.13 (no asymmetry detected; 10 studies give`\
+`#>   the test little power)`
 
 ### Clinical Translation
 
-> **Summary**: The pooled analysis shows the IHC marker has good
-> diagnostic performance with 89% sensitivity and 78% specificity. A
-> positive test increases disease odds ~4-fold, while a negative test
-> reduces odds by ~86%. Substantial heterogeneity in sensitivity
-> suggests performance varies by population or methodology. No
-> significant publication bias was detected.
+> **Summary**: Across 10 studies the IHC marker has a pooled sensitivity
+> of 85.8% and specificity of 80.8%. A positive result multiplies the
+> pre-test odds of disease by about 4.5 (weak evidence on the
+> conventional 2-5-10 scale), and a negative result multiplies them by
+> about 0.18 (moderate evidence against disease). Heterogeneity is
+> substantial: a new laboratory could see a sensitivity anywhere from
+> about 47% to 98% and a specificity from about 52% to 94%. Deeks’ test
+> found no funnel asymmetry, but with 10 studies that does not rule out
+> publication bias.
 
-**Recommendations**: 1. **High sensitivity**: Suitable for screening
-applications 2. **Moderate specificity**: Positive results may need
-confirmation 3. **Strong negative LR**: Negative results effectively
-rule out disease 4. **Investigate heterogeneity**: Consider
-population-specific validation
+**Recommendations**: 1. **Report the prediction interval with the pooled
+pair**: it, not the pooled point, says what a new setting can expect 2.
+**Negative LR of 0.18 is moderate, not strong**: a negative result
+lowers the probability of disease but does not rule it out on its own 3.
+**Choose the role from the clinical context**: screening or confirmation
+depends on prevalence and on the cost of each kind of error, which the
+meta-analysis does not know 4. **Investigate heterogeneity**: patient
+spectrum, staining protocol and thresholds, with meta-regression if
+there are enough studies
 
 ## Best Practices
 
@@ -592,8 +638,8 @@ population-specific validation
 ### Reporting Standards
 
 Follow **PRISMA-DTA** guidelines: - ✅ Structured abstract with key
-results - ✅ Study selection flow diagram  
-- ✅ Included studies characteristics table - ✅ Forest plots for
+results - ✅ Study selection flow diagram\
+\- ✅ Included studies characteristics table - ✅ Forest plots for
 sensitivity and specificity - ✅ Summary ROC plot with confidence
 region - ✅ Heterogeneity assessment and exploration - ✅ Publication
 bias assessment - ✅ Clinical implications discussion
@@ -605,13 +651,13 @@ clinical decision-making. Key takeaways:
 
 1.  **Use bivariate models** for sensitivity and specificity analysis
 2.  **Investigate heterogeneity** through meta-regression and subgroups
-3.  **Assess publication bias** for unbiased estimates  
+3.  **Assess publication bias** for unbiased estimates\
 4.  **Consider clinical context** when interpreting pooled results
 5.  **Follow reporting guidelines** for transparent communication
 
-The ClinicoPath implementation follows current methodological standards
-and provides comprehensive analysis capabilities for pathology research
-applications.
+The pooled estimates are only as good as the studies behind them: assess
+each study’s risk of bias (QUADAS-2) and report the review following
+PRISMA-DTA.
 
 ## References
 

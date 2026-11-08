@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">OncoPath</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.53.01</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,16 +33,10 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><h6 class="dropdown-header" data-toc-skip>Getting Started</h6></li>
-    <li><a class="dropdown-item" href="../articles/swimmerplot-unified-comprehensive.html">Swimmer Plot Guide</a></li>
-    <li><a class="dropdown-item" href="../articles/06-function-waterfall.html">Waterfall Plot Guide</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><h6 class="dropdown-header" data-toc-skip>Advanced Topics</h6></li>
-    <li><a class="dropdown-item" href="../articles/diagnosticmeta-comprehensive.html">Diagnostic Meta-Analysis</a></li>
-    <li><a class="dropdown-item" href="../articles/clinicalheatmap_comprehensive.html">Clinical Heatmap</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><h6 class="dropdown-header" data-toc-skip>Legacy Documentation</h6></li>
-    <li><a class="dropdown-item" href="../articles/09-waterfall-legacy.html">Waterfall Legacy</a></li>
+<li><a class="dropdown-item" href="../articles/swimmerplot-unified-comprehensive.html">Swimmer Plot</a></li>
+    <li><a class="dropdown-item" href="../articles/06-function-waterfall.html">Treatment Response (Waterfall)</a></li>
+    <li><a class="dropdown-item" href="../articles/diagnosticmeta-comprehensive.html">Diagnostic Test Meta-Analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/ihcheterogeneity-comprehensive.html">IHC Heterogeneity</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">News</a></li>
@@ -69,7 +63,7 @@
                         <h4 data-toc-skip class="author">ClinicoPath
 Team</h4>
             
-            <h4 data-toc-skip class="date">2026-08-14</h4>
+            <h4 data-toc-skip class="date">2026-11-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/sbalci/OncoPath/blob/HEAD/vignettes/diagnosticmeta-comprehensive.Rmd" class="external-link"><code>vignettes/diagnosticmeta-comprehensive.Rmd</code></a></small>
       <div class="d-none name"><code>diagnosticmeta-comprehensive.Rmd</code></div>
@@ -108,17 +102,19 @@ sizes and may not be generalizable. Meta-analysis provides:</p>
 <strong>Increased Statistical Power</strong>: Combining multiple
 studies increases precision</li>
 <li>
-<strong>Robust Estimates</strong>: More reliable pooled sensitivity
-and specificity</li>
+<strong>Pooled Estimates</strong>: Sensitivity and specificity with
+model-based uncertainty; bias in the source studies is not removed by
+pooling</li>
 <li>
 <strong>Heterogeneity Assessment</strong>: Identifies variations
 between studies</li>
 <li>
-<strong>Publication Bias Detection</strong>: Assesses potential
-literature bias</li>
+<strong>Small-Study Effects</strong>: Deeks’ test assesses funnel
+asymmetry, which does not establish publication bias</li>
 <li>
-<strong>Clinical Translation</strong>: Overall evidence for
-implementation decisions</li>
+<strong>Clinical Interpretation</strong>: Describes accuracy
+evidence for a specified population and threshold; implementation needs
+setting-specific validation</li>
 </ol>
 </div>
 <div class="section level2">
@@ -163,6 +159,31 @@ level</li>
 <strong>Publication Year</strong>: Temporal trends</li>
 </ul>
 </div>
+</div>
+<div class="section level2">
+<h2 id="study-independence-and-transportability">Study independence and transportability<a class="anchor" aria-label="anchor" href="#study-independence-and-transportability"></a>
+</h2>
+<p>Use one prespecified 2×2 table per independent cohort at a clinically
+interpretable threshold. Renaming overlapping cohorts does not make them
+independent. Multiple readers, algorithms, thresholds or specimen
+samples from the same patients need a method that models that
+dependence; this module does not do so. Meta-regression is an
+exploratory comparison of study-level covariates, not an adjusted
+patient-level or causal comparison of tests.</p>
+<p>The Reitsma analysis uses normal approximations on logit-transformed
+study proportions. Sparse counts and continuity corrections can
+materially affect its estimates and coverage; compare with a binomial
+bivariate model when errors are rare. A confidence interval describes
+the pooled mean, while a prediction interval includes estimated
+between-study spread and assumes a similar future study. Neither
+validates a new laboratory. PPV and NPV are plug-in calculations at the
+specified prevalence, with no propagated uncertainty or local
+calibration. A sensitivity or specificity p-value tests 50% for that
+margin; it does not test overall chance discrimination or a clinically
+acceptable threshold.</p>
+<p>See the <a href="https://training.cochrane.org/sites/training.cochrane.org/files/public/uploads/resources/downloadable_resources/English/DTA_Handbook_v1/DTA%20Handbook%20Chapter%2011%20201312.pdf" class="external-link">Cochrane
+DTA Handbook, chapter 11</a> for interpretation of pooled accuracy and
+predictive values.</p>
 </div>
 <div class="section level2">
 <h2 id="example-dataset">Example Dataset<a class="anchor" aria-label="anchor" href="#example-dataset"></a>
@@ -320,8 +341,9 @@ level</li>
 <li>✅ All values are non-negative integers<br>
 </li>
 <li>✅ Each study has complete 2×2 table data</li>
-<li>✅ At least 2 studies with valid data</li>
-<li>✅ Study identifiers are unique</li>
+<li>✅ At least 3 studies with valid data</li>
+<li>✅ Study identifiers are unique, one 2×2 table per independent
+study</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calculate basic statistics for validation</span></span>
@@ -424,12 +446,13 @@ level</li>
 <h3 id="bivariate-random-effects-model">Bivariate Random-Effects Model<a class="anchor" aria-label="anchor" href="#bivariate-random-effects-model"></a>
 </h3>
 <p>The <strong>bivariate random-effects model</strong> (Reitsma et al.)
-is the gold standard:</p>
+is the recommended model for pooling sensitivity and specificity:</p>
 <ul>
 <li>Jointly analyzes sensitivity and specificity</li>
-<li>Accounts for correlation between measures<br>
-</li>
-<li>Handles threshold effects across studies</li>
+<li>Accounts for the between-study correlation between them</li>
+<li>Gives a summary ROC curve; when studies use different positivity
+thresholds, read the curve and the prediction region rather than the
+single pooled point</li>
 <li>Provides pooled estimates with confidence intervals</li>
 </ul>
 </div>
@@ -472,107 +495,118 @@ parameterization.</p>
 <div class="section level2">
 <h2 id="running-it-from-r">Running It From R<a class="anchor" aria-label="anchor" href="#running-it-from-r"></a>
 </h2>
-<p>Everything above describes the method; this section runs it. The
-article previously never called <code><a href="../reference/diagnosticmeta.html">diagnosticmeta()</a></code> at all, so
-the argument names and the scales they use were nowhere to be found. The
-call below was executed against the bundled
-<code>diagnostic_studies</code> dataset and the numbers shown are the
-ones it returned.</p>
+<p>The call below uses the bundled
+<code>diagnosticmeta_test_categorical</code> dataset (20 synthetic
+studies, also available as a jamovi example) and shows the numbers
+OncoPath 1.1.3 returns for it.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">diagnostic_studies</span>, package <span class="op">=</span> <span class="st">"OncoPath"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">diagnostic_studies</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   study_name tp fp fn tn</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.serdarbalci.com/OncoPath/">OncoPath</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">diagnosticmeta_test_categorical</span>, package <span class="op">=</span> <span class="st">"OncoPath"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">diagnosticmeta_test_categorical</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     study true_positives false_positives false_negatives true_negatives year quality_score imaging_modality</span></span>
+<span><span class="co">#&gt; 1 Study_1             81              10              30            153 2015             5               CT</span></span>
+<span><span class="co">#&gt; 2 Study_2             56               6               6            120 2019             7       Ultrasound</span></span>
+<span><span class="co">#&gt; 3 Study_3             84               4              11            100 2015             7               CT</span></span>
 <span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/diagnosticmeta.html">diagnosticmeta</a></span><span class="op">(</span></span>
-<span>  data            <span class="op">=</span> <span class="va">diagnostic_studies</span>,</span>
-<span>  study           <span class="op">=</span> <span class="st">"study_name"</span>,</span>
-<span>  true_positives  <span class="op">=</span> <span class="st">"tp"</span>,</span>
-<span>  false_positives <span class="op">=</span> <span class="st">"fp"</span>,</span>
-<span>  false_negatives <span class="op">=</span> <span class="st">"fn"</span>,</span>
-<span>  true_negatives  <span class="op">=</span> <span class="st">"tn"</span>,</span>
+<span>  data            <span class="op">=</span> <span class="va">diagnosticmeta_test_categorical</span>,</span>
+<span>  study           <span class="op">=</span> <span class="st">"study"</span>,</span>
+<span>  true_positives  <span class="op">=</span> <span class="st">"true_positives"</span>,</span>
+<span>  false_positives <span class="op">=</span> <span class="st">"false_positives"</span>,</span>
+<span>  false_negatives <span class="op">=</span> <span class="st">"false_negatives"</span>,</span>
+<span>  true_negatives  <span class="op">=</span> <span class="st">"true_negatives"</span>,</span>
+<span>  covariate       <span class="op">=</span> <span class="st">"imaging_modality"</span>,   <span class="co"># CT 5, MRI 9, ultrasound 6 studies</span></span>
 <span></span>
 <span>  bivariate_analysis      <span class="op">=</span> <span class="cn">TRUE</span>,   <span class="co"># Reitsma bivariate random-effects model</span></span>
 <span>  hsroc_analysis          <span class="op">=</span> <span class="cn">TRUE</span>,   <span class="co"># Holling proportional-hazards SROC</span></span>
 <span>  heterogeneity_analysis  <span class="op">=</span> <span class="cn">TRUE</span>,   <span class="co"># Q, I-squared, tau-squared</span></span>
+<span>  meta_regression         <span class="op">=</span> <span class="cn">TRUE</span>,   <span class="co"># needs `covariate`</span></span>
 <span>  publication_bias        <span class="op">=</span> <span class="cn">TRUE</span>,   <span class="co"># Deeks' funnel plot asymmetry test</span></span>
-<span>  meta_regression         <span class="op">=</span> <span class="cn">FALSE</span>,  <span class="co"># needs `covariate` to be set</span></span>
 <span>  confidence_level        <span class="op">=</span> <span class="fl">95</span>,     <span class="co"># PERCENT, 50-99. Not 0.95 - that is rejected.</span></span>
-<span>  zero_cell_correction    <span class="op">=</span> <span class="st">"constant"</span>,  <span class="co"># none | constant | treatment_arm | empirical</span></span>
+<span>  zero_cell_correction    <span class="op">=</span> <span class="st">"none"</span>, <span class="co"># none | constant | zero_cells | reciprocal_n</span></span>
 <span>  forest_plot             <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  sroc_plot               <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  funnel_plot             <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  show_individual_studies <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  show_methodology        <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  show_analysis_summary   <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  sroc_plot               <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Two argument details are easy to get wrong and both raise an error
 rather than silently misbehaving:</p>
 <ul>
 <li>
 <strong><code>confidence_level</code> is a percentage on a 50-99
-scale.</strong> Passing the more usual <code>0.95</code> fails with
-<code>confidence_level must be between 50 and 99 (is 0.95)</code>.</li>
+scale.</strong> Passing the more usual <code>0.95</code> fails.</li>
 <li>
-<strong><code>zero_cell_correction</code> does not have a level
-called <code>continuity</code>.</strong> The four accepted values are
-<code>none</code>, <code>constant</code>, <code>treatment_arm</code> and
-<code>empirical</code>.</li>
+<strong><code>zero_cell_correction</code> accepts <code>none</code>,
+<code>constant</code>, <code>zero_cells</code> and
+<code>reciprocal_n</code>.</strong> Under the default <code>none</code>
+every model adds 0.5 to all four cells of a study with a zero cell when
+it is fitted, so every model uses every study. The former keys
+<code>treatment_arm</code> and <code>empirical</code> were renamed and
+are rejected. Deeks’ test always uses the raw counts, whatever this
+setting.</li>
 </ul>
 <div class="section level3">
 <h3 id="what-comes-back">What Comes Back<a class="anchor" aria-label="anchor" href="#what-comes-back"></a>
 </h3>
 <pre><code>bivariateresults
-                 parameter estimate ci_lower ci_upper      p_value
-        Pooled Sensitivity    75.50    69.10    80.94    6.09e-12
-        Pooled Specificity    89.77    85.66    92.81    0.00e+00
- Positive Likelihood Ratio     7.38     5.18    10.52          NA
+                 parameter estimate ci_lower ci_upper
+        Pooled Sensitivity    81.67    76.63    85.83
+        Pooled Specificity    89.19    85.73    91.90
+ Positive Likelihood Ratio     7.56     5.60    10.21
+ Negative Likelihood Ratio     0.21     0.16     0.27
+     Diagnostic Odds Ratio    36.77    22.59    59.85
 
-hsrocresults
-                              parameter  estimate std_error z_value  p_value
-  Diagnostic accuracy parameter (theta)  1.08e-01  2.19e-02   4.924 8.50e-07
-         Between-study variance (tau^2)  2.48e-05  1.70e-03   0.015 9.88e-01
+hsrocresults (proportional-hazards SROC)
+                              parameter estimate std_error z_value p_value
+  Diagnostic accuracy parameter (theta)   0.0897    0.0163  -56.00  &lt;0.001
+         Between-study variance (tau^2)   0.0027    0.0018
+                                    AUC   0.918     0.014
 
 heterogeneity
-     measure q_statistic df p_value i_squared tau_squared
- Sensitivity        3.49  4   0.480         0           0
- Specificity        1.86  4   0.762         0           0
+     measure q_statistic df  p_value i_squared tau_squared
+ Sensitivity       88.37 19   &lt;0.001      79.1        0.36
+ Specificity       95.33 19   &lt;0.001      81.0        0.39
 
 publicationbias
-                              test statistic p_value                  interpretation
- Deeks' Funnel Plot Asymmetry Test    -3.993  0.0281  Significant asymmetry detected</code></pre>
+                              test statistic p_value interpretation
+ Deeks' Funnel Plot Asymmetry Test    -0.49    0.63 No asymmetry detected (p &gt;= 0.05)</code></pre>
+<p>The theta test is against theta = 1, the value at which the SROC
+curve is the chance diagonal, so a large negative z means accuracy well
+above chance. It does not test a clinical threshold.</p>
 <p>Read these together rather than in isolation. Heterogeneity is
-negligible here (I-squared 0 for both measures, tau-squared essentially
-zero in the HSROC fit), so the pooled estimates are describing a
-consistent set of studies. But Deeks’ test flags significant funnel
-asymmetry (p = 0.028) — on five studies, which is below the ten that
-Deeks’ test is generally considered to need. That is a caveat to state,
-not a finding to report: with this few studies the asymmetry test is
-underpowered <em>and</em> prone to false positives, and the honest
-reading is that publication bias cannot be assessed here.</p>
+substantial (I-squared about 80% for both measures), and the analysis
+warns that the 95% prediction interval for a new study is wide
+(sensitivity 55%-94%, specificity 68%-97%). The pooled pair is therefore
+an average over studies that differ more than sampling error explains;
+the SROC curve and the prediction region describe this body of evidence
+better than the pooled point. A non-significant Deeks’ test is not
+evidence of absent publication bias.</p>
 </div>
 <div class="section level3">
 <h3 id="meta-regression-1">Meta-Regression<a class="anchor" aria-label="anchor" href="#meta-regression-1"></a>
 </h3>
 <p><code>meta_regression = TRUE</code> requires a <code>covariate</code>
-column naming a study-level characteristic:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res_mr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/diagnosticmeta.html">diagnosticmeta</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">diagnostic_studies</span>,</span>
-<span>  study <span class="op">=</span> <span class="st">"study_name"</span>, true_positives <span class="op">=</span> <span class="st">"tp"</span>, false_positives <span class="op">=</span> <span class="st">"fp"</span>,</span>
-<span>  false_negatives <span class="op">=</span> <span class="st">"fn"</span>, true_negatives <span class="op">=</span> <span class="st">"tn"</span>,</span>
-<span>  meta_regression <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  covariate <span class="op">=</span> <span class="st">"population_type"</span>    <span class="co"># a column in your data</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p>With five studies a meta-regression is fitting a slope through five
-points; it will produce a number, and that number will not mean much.
-Ten studies per covariate is a common minimum.</p>
+column naming a study-level characteristic. With
+<code>imaging_modality</code> the model estimates two contrasts (MRI and
+ultrasound against CT) for each of sensitivity and specificity, on the
+logit scale:</p>
+<pre><code>              parameter estimate    SE p_value
+Sensitivity   Intercept     1.62  0.32  &lt;0.001
+              MRI          -0.04  0.41   0.93
+              Ultrasound   -0.32  0.45   0.48
+Specificity   Intercept     2.54  0.32  &lt;0.001
+              MRI          -0.40  0.40   0.33
+              Ultrasound   -0.84  0.42   0.059</code></pre>
+<p>No contrast reaches p &lt; 0.05. Twenty studies for two parameters is
+the minimum the Cochrane DTA Handbook suggests (about ten studies per
+covariate parameter), so treat a meta-regression of this size as
+exploratory: it can suggest a source of heterogeneity, not establish
+one.</p>
 </div>
 <div class="section level3">
 <h3 id="presentation-options">Presentation Options<a class="anchor" aria-label="anchor" href="#presentation-options"></a>
 </h3>
 <p><code>forest_plot</code>, <code>sroc_plot</code> and
 <code>funnel_plot</code> control the three figures;
-<code>color_palette</code> sets their colour scheme and
+<code>color_palette</code> sets their color scheme and
 <code>show_plot_explanations</code> adds a note under each explaining
 how to read it. <code>show_individual_studies</code> adds the per-study
 sensitivity and specificity table, which is worth keeping — a pooled
@@ -591,8 +625,8 @@ into jamovi</p></li>
 <li>
 <p><strong>Access Function</strong>:</p>
 <ul>
-<li>Navigate to <strong>Analyses → ClinicoPath → Diagnostic Test
-Meta-Analysis for Pathology</strong>
+<li>Navigate to <strong>Analyses → OncoPath → Meta-Analysis → Diagnostic
+Test Meta-Analysis for Pathology</strong>
 </li>
 </ul>
 </li>
@@ -655,22 +689,22 @@ performance</li>
 <h4 id="pooled-sensitivity-and-specificity">Pooled Sensitivity and Specificity<a class="anchor" aria-label="anchor" href="#pooled-sensitivity-and-specificity"></a>
 </h4>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Example results interpretation</span></span>
-<span><span class="co"># Pooled Sensitivity: 0.891 (95% CI: 0.808-0.941)</span></span>
-<span><span class="co"># Pooled Specificity: 0.780 (95% CI: 0.715-0.833)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Pooled estimates for diagnostic_data above (bivariate model, REML)</span></span>
+<span><span class="co"># Pooled Sensitivity: 85.8% (95% CI: 78.0%-91.1%)</span></span>
+<span><span class="co"># Pooled Specificity: 80.8% (95% CI: 74.7%-85.8%)</span></span></code></pre></div>
 <p><strong>Interpretation</strong>: - <strong>Sensitivity
-(89.1%)</strong>: Test correctly identifies 89% of diseased cases -
-<strong>Specificity (78.0%)</strong>: Test correctly identifies 78% of
-non-diseased cases - <strong>Confidence Intervals</strong>: Range of
-plausible values for true parameters</p>
+(85.8%)</strong>: Test correctly identifies about 86 of every 100
+diseased cases - <strong>Specificity (80.8%)</strong>: Test correctly
+identifies about 81 of every 100 non-diseased cases - <strong>Confidence
+Intervals</strong>: Range of plausible values for true parameters</p>
 </div>
 <div class="section level4">
 <h4 id="diagnostic-accuracy-measures">Diagnostic Accuracy Measures<a class="anchor" aria-label="anchor" href="#diagnostic-accuracy-measures"></a>
 </h4>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example calculations for interpretation</span></span>
-<span><span class="va">pooled_sens</span> <span class="op">&lt;-</span> <span class="fl">0.891</span></span>
-<span><span class="va">pooled_spec</span> <span class="op">&lt;-</span> <span class="fl">0.780</span></span>
+<span><span class="va">pooled_sens</span> <span class="op">&lt;-</span> <span class="fl">0.858</span></span>
+<span><span class="va">pooled_spec</span> <span class="op">&lt;-</span> <span class="fl">0.808</span></span>
 <span></span>
 <span><span class="co"># Likelihood ratios</span></span>
 <span><span class="va">positive_lr</span> <span class="op">&lt;-</span> <span class="va">pooled_sens</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">pooled_spec</span><span class="op">)</span></span>
@@ -704,17 +738,17 @@ plausible values for true parameters</p>
 <tbody>
 <tr class="odd">
 <td align="left">Positive Likelihood Ratio</td>
-<td align="right">4.05</td>
+<td align="right">4.47</td>
 <td align="left">Weak evidence</td>
 </tr>
 <tr class="even">
 <td align="left">Negative Likelihood Ratio</td>
-<td align="right">0.14</td>
+<td align="right">0.18</td>
 <td align="left">Moderate evidence</td>
 </tr>
 <tr class="odd">
 <td align="left">Diagnostic Odds Ratio</td>
-<td align="right">29.00</td>
+<td align="right">25.40</td>
 <td align="left">Excellent discrimination</td>
 </tr>
 </tbody>
@@ -724,11 +758,18 @@ plausible values for true parameters</p>
 <div class="section level3">
 <h3 id="heterogeneity-assessment">Heterogeneity Assessment<a class="anchor" aria-label="anchor" href="#heterogeneity-assessment"></a>
 </h3>
-<p><strong>I² Statistic Interpretation</strong>: - <strong>I² &lt;
-25%</strong>: Low heterogeneity - results can be pooled reliably -
-<strong>I² 25-50%</strong>: Moderate heterogeneity - investigate sources
-- <strong>I² &gt; 50%</strong>: Substantial heterogeneity - pooling may
-not be appropriate</p>
+<p><strong>I² Statistic Interpretation</strong> (Higgins’ conventional
+bands, borrowed from intervention reviews): - <strong>I² &lt;
+25%</strong>: Little heterogeneity on that margin. With few studies I²
+is imprecise, and on its own it does not show that pooling is
+appropriate - <strong>I² 25-50%</strong>: Moderate heterogeneity -
+investigate sources - <strong>I² &gt; 50%</strong>: Substantial
+heterogeneity - expected whenever studies use different positivity
+thresholds; read the SROC curve and the prediction region rather than
+the pooled point</p>
+<p>The analysis reports I² separately for sensitivity and for
+specificity. Neither describes the bivariate model; the prediction
+interval does.</p>
 <p><strong>Clinical Sources of Heterogeneity</strong>: - Patient
 population differences (disease stage, demographics) - Technical
 variations (antibody sources, protocols) - Methodological differences
@@ -738,8 +779,12 @@ variations (antibody sources, protocols) - Methodological differences
 <h3 id="publication-bias">Publication Bias<a class="anchor" aria-label="anchor" href="#publication-bias"></a>
 </h3>
 <p><strong>Deeks’ Funnel Plot Test</strong>: - <strong>p &lt;
-0.05</strong>: Significant asymmetry suggests publication bias -
-<strong>p &gt;= 0.05</strong>: No significant evidence of bias</p>
+0.05</strong>: The funnel plot is asymmetric. Publication bias is one
+explanation; heterogeneity, a threshold effect and a real relation
+between study size and accuracy are others, and the test cannot tell
+them apart - <strong>p &gt;= 0.05</strong>: No asymmetry detected. With
+fewer than 10 studies the test has little power, so this does not show
+that publication bias is absent</p>
 </div>
 </div>
 <div class="section level2">
@@ -771,7 +816,7 @@ variations (antibody sources, protocols) - Methodological differences
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="co"># Example with pooled estimates</span></span>
-<span><span class="va">clinical_table</span> <span class="op">&lt;-</span> <span class="fu">create_clinical_table</span><span class="op">(</span><span class="fl">0.891</span>, <span class="fl">0.780</span><span class="op">)</span></span>
+<span><span class="va">clinical_table</span> <span class="op">&lt;-</span> <span class="fu">create_clinical_table</span><span class="op">(</span><span class="fl">0.858</span>, <span class="fl">0.808</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">clinical_table</span>, </span>
 <span>             caption <span class="op">=</span> <span class="st">"Predictive Values at Different Disease Prevalences"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -784,36 +829,40 @@ variations (antibody sources, protocols) - Methodological differences
 <tbody>
 <tr class="odd">
 <td align="left">5%</td>
-<td align="left">17.6%</td>
-<td align="left">99.3%</td>
+<td align="left">19%</td>
+<td align="left">99.1%</td>
 </tr>
 <tr class="even">
 <td align="left">10%</td>
-<td align="left">31%</td>
-<td align="left">98.5%</td>
+<td align="left">33.2%</td>
+<td align="left">98.1%</td>
 </tr>
 <tr class="odd">
 <td align="left">20%</td>
-<td align="left">50.3%</td>
-<td align="left">96.6%</td>
+<td align="left">52.8%</td>
+<td align="left">95.8%</td>
 </tr>
 <tr class="even">
 <td align="left">30%</td>
-<td align="left">63.4%</td>
-<td align="left">94.3%</td>
+<td align="left">65.7%</td>
+<td align="left">93%</td>
 </tr>
 <tr class="odd">
 <td align="left">50%</td>
-<td align="left">80.2%</td>
-<td align="left">87.7%</td>
+<td align="left">81.7%</td>
+<td align="left">85.1%</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Key Clinical Insights</strong>: - <strong>High Sensitivity
-(89%)</strong>: Suitable for screening applications - <strong>Moderate
-Specificity (78%)</strong>: Positive results may need confirmation -
-<strong>Prevalence Dependency</strong>: Predictive values vary
-significantly with disease prevalence</p>
+<p><strong>Key Clinical Insights</strong>: - <strong>Sensitivity (86%)
+and specificity (81%)</strong> describe the test, not its fitness for a
+role. Whether it suits screening or confirmation depends on the
+prevalence in the population you test and on what a missed case or a
+false positive costs - <strong>Prevalence Dependency</strong>:
+Predictive values vary markedly with disease prevalence -
+<strong>Heterogeneity</strong>: with a wide prediction interval,
+predictive values in your own setting can differ markedly from the table
+above</p>
 </div>
 <div class="section level3">
 <h3 id="ai-algorithm-meta-analysis">AI Algorithm Meta-Analysis<a class="anchor" aria-label="anchor" href="#ai-algorithm-meta-analysis"></a>
@@ -846,7 +895,9 @@ indicate reliability</li>
 <code class="sourceCode R"><span><span class="co"># Example meta-regression results</span></span>
 <span><span class="co"># Sensitivity ~ Patient Population</span></span>
 <span><span class="co"># Advanced vs. Mixed: β = -0.45, p = 0.02</span></span>
-<span><span class="co"># Interpretation: Advanced stage patients show 45% lower logit-sensitivity</span></span></code></pre></div>
+<span><span class="co"># Interpretation: β is a difference in logit sensitivity, so the odds of a</span></span>
+<span><span class="co"># positive result in diseased patients are exp(-0.45) = 0.64 times those in</span></span>
+<span><span class="co"># the mixed population - about 36% lower ODDS, not 45% lower sensitivity</span></span></code></pre></div>
 <p><strong>Clinical Translation</strong>: - Significant covariates
 explain heterogeneity sources - Adjust expectations based on population
 characteristics - Consider population-specific validation</p>
@@ -881,10 +932,11 @@ sensitivity analysis excluding extreme studies</p>
 <p><strong>High Heterogeneity</strong> (I² &gt; 75%): -
 <strong>Action</strong>: Consider subgroup analysis instead of pooling -
 <strong>Investigate</strong>: Sources through meta-regression</p>
-<p><strong>Publication Bias Detected</strong>: -
-<strong>Implication</strong>: Results may be overestimated -
-<strong>Action</strong>: Search for unpublished studies, sensitivity
-analysis</p>
+<p><strong>Funnel Asymmetry Detected</strong>: -
+<strong>Implication</strong>: Small and large studies report different
+accuracy; if publication bias is the cause, the pooled results may be
+overestimated - <strong>Action</strong>: Look for a clinical explanation
+first, then search for unpublished studies</p>
 </div>
 </div>
 <div class="section level2">
@@ -896,54 +948,67 @@ analysis</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Sample results summary</span></span>
 <span><span class="va">results_summary</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
-<span><span class="st">Bivariate Meta-Analysis Results (n=10 studies, N=5,513 patients):</span></span>
-<span><span class="st">- Pooled Sensitivity: 89.1% (95% CI: 80.8%-94.1%)</span></span>
-<span><span class="st">- Pooled Specificity: 78.0% (95% CI: 71.5%-83.3%)</span></span>
-<span><span class="st">- Positive Likelihood Ratio: 4.05</span></span>
-<span><span class="st">- Negative Likelihood Ratio: 0.14</span></span>
-<span><span class="st">- Diagnostic Odds Ratio: 29.0</span></span>
+<span><span class="st">Bivariate Meta-Analysis Results (n=10 studies, N=7,314 participants):</span></span>
+<span><span class="st">- Pooled Sensitivity: 85.8% (95% CI: 78.0%-91.1%)</span></span>
+<span><span class="st">- Pooled Specificity: 80.8% (95% CI: 74.7%-85.8%)</span></span>
+<span><span class="st">- Positive Likelihood Ratio: 4.48 (3.56-5.63)</span></span>
+<span><span class="st">- Negative Likelihood Ratio: 0.18 (0.12-0.26)</span></span>
+<span><span class="st">- Diagnostic Odds Ratio: 25.5 (18.9-34.3)</span></span>
+<span><span class="st">- 95% prediction interval for a new study: sensitivity 47.2%-97.6%,</span></span>
+<span><span class="st">  specificity 51.9%-94.3%</span></span>
 <span><span class="st"></span></span>
-<span><span class="st">Heterogeneity Assessment:</span></span>
-<span><span class="st">- Sensitivity I²: 68% (substantial heterogeneity)</span></span>
-<span><span class="st">- Specificity I²: 45% (moderate heterogeneity)</span></span>
+<span><span class="st">Heterogeneity Assessment (univariate, per margin):</span></span>
+<span><span class="st">- Sensitivity I²: 78.8%</span></span>
+<span><span class="st">- Specificity I²: 96.7%</span></span>
 <span><span class="st"></span></span>
 <span><span class="st">Publication Bias:</span></span>
-<span><span class="st">- Deeks' test p-value: 0.23 (no significant bias)</span></span>
+<span><span class="st">- Deeks' test: t = 1.71, p = 0.13 (no asymmetry detected; 10 studies give</span></span>
+<span><span class="st">  the test little power)</span></span>
 <span><span class="st">"</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">results_summary</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Bivariate Meta-Analysis Results (n=10 studies, N=5,513 patients):</span></span>
-<span><span class="co">#&gt; - Pooled Sensitivity: 89.1% (95% CI: 80.8%-94.1%)</span></span>
-<span><span class="co">#&gt; - Pooled Specificity: 78.0% (95% CI: 71.5%-83.3%)</span></span>
-<span><span class="co">#&gt; - Positive Likelihood Ratio: 4.05</span></span>
-<span><span class="co">#&gt; - Negative Likelihood Ratio: 0.14</span></span>
-<span><span class="co">#&gt; - Diagnostic Odds Ratio: 29.0</span></span>
+<span><span class="co">#&gt; Bivariate Meta-Analysis Results (n=10 studies, N=7,314 participants):</span></span>
+<span><span class="co">#&gt; - Pooled Sensitivity: 85.8% (95% CI: 78.0%-91.1%)</span></span>
+<span><span class="co">#&gt; - Pooled Specificity: 80.8% (95% CI: 74.7%-85.8%)</span></span>
+<span><span class="co">#&gt; - Positive Likelihood Ratio: 4.48 (3.56-5.63)</span></span>
+<span><span class="co">#&gt; - Negative Likelihood Ratio: 0.18 (0.12-0.26)</span></span>
+<span><span class="co">#&gt; - Diagnostic Odds Ratio: 25.5 (18.9-34.3)</span></span>
+<span><span class="co">#&gt; - 95% prediction interval for a new study: sensitivity 47.2%-97.6%,</span></span>
+<span><span class="co">#&gt;   specificity 51.9%-94.3%</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Heterogeneity Assessment:</span></span>
-<span><span class="co">#&gt; - Sensitivity I²: 68% (substantial heterogeneity)</span></span>
-<span><span class="co">#&gt; - Specificity I²: 45% (moderate heterogeneity)</span></span>
+<span><span class="co">#&gt; Heterogeneity Assessment (univariate, per margin):</span></span>
+<span><span class="co">#&gt; - Sensitivity I²: 78.8%</span></span>
+<span><span class="co">#&gt; - Specificity I²: 96.7%</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Publication Bias:</span></span>
-<span><span class="co">#&gt; - Deeks' test p-value: 0.23 (no significant bias)</span></span></code></pre></div>
+<span><span class="co">#&gt; - Deeks' test: t = 1.71, p = 0.13 (no asymmetry detected; 10 studies give</span></span>
+<span><span class="co">#&gt;   the test little power)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="clinical-translation">Clinical Translation<a class="anchor" aria-label="anchor" href="#clinical-translation"></a>
 </h3>
 <blockquote>
-<p><strong>Summary</strong>: The pooled analysis shows the IHC marker
-has good diagnostic performance with 89% sensitivity and 78%
-specificity. A positive test increases disease odds ~4-fold, while a
-negative test reduces odds by ~86%. Substantial heterogeneity in
-sensitivity suggests performance varies by population or methodology. No
-significant publication bias was detected.</p>
+<p><strong>Summary</strong>: Across 10 studies the IHC marker has a
+pooled sensitivity of 85.8% and specificity of 80.8%. A positive result
+multiplies the pre-test odds of disease by about 4.5 (weak evidence on
+the conventional 2-5-10 scale), and a negative result multiplies them by
+about 0.18 (moderate evidence against disease). Heterogeneity is
+substantial: a new laboratory could see a sensitivity anywhere from
+about 47% to 98% and a specificity from about 52% to 94%. Deeks’ test
+found no funnel asymmetry, but with 10 studies that does not rule out
+publication bias.</p>
 </blockquote>
-<p><strong>Recommendations</strong>: 1. <strong>High
-sensitivity</strong>: Suitable for screening applications 2.
-<strong>Moderate specificity</strong>: Positive results may need
-confirmation 3. <strong>Strong negative LR</strong>: Negative results
-effectively rule out disease 4. <strong>Investigate
-heterogeneity</strong>: Consider population-specific validation</p>
+<p><strong>Recommendations</strong>: 1. <strong>Report the prediction
+interval with the pooled pair</strong>: it, not the pooled point, says
+what a new setting can expect 2. <strong>Negative LR of 0.18 is
+moderate, not strong</strong>: a negative result lowers the probability
+of disease but does not rule it out on its own 3. <strong>Choose the
+role from the clinical context</strong>: screening or confirmation
+depends on prevalence and on the cost of each kind of error, which the
+meta-analysis does not know 4. <strong>Investigate
+heterogeneity</strong>: patient spectrum, staining protocol and
+thresholds, with meta-regression if there are enough studies</p>
 </div>
 </div>
 <div class="section level2">
@@ -1018,9 +1083,9 @@ results</li>
 <strong>Follow reporting guidelines</strong> for transparent
 communication</li>
 </ol>
-<p>The ClinicoPath implementation follows current methodological
-standards and provides comprehensive analysis capabilities for pathology
-research applications.</p>
+<p>The pooled estimates are only as good as the studies behind them:
+assess each study’s risk of bias (QUADAS-2) and report the review
+following PRISMA-DTA.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>

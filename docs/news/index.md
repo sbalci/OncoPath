@@ -1,5 +1,930 @@
 # Changelog
 
+## OncoPath 1.1.4 (2026-11-08)
+
+### Correct patient identity in treatment-response analyses
+
+- Fixed an internal-column collision in waterfall and spider analyses. A
+  patient-ID column named `response` could silently collapse unrelated
+  patients and corrupt counts and confidence intervals. Source columns
+  now remain separate from calculated fields throughout response, group,
+  duration, annotation, plot and exported-category processing. The
+  repair also covers time, measurement and optional columns whose names
+  coincide with internal fields.
+- Added regression coverage for raw and percentage input, all
+  selected-column roles, conflicting internal names, row reordering,
+  repeated visits, missing measurements and filtered rows.
+- Re-run saved analyses before using their results. The repair changes
+  results affected by column collisions; statistical methods, response
+  thresholds and defaults are unchanged.
+
+### Interpretation and release documentation
+
+- Diagnostic sensitivity/specificity p-values are described as tests of
+  50% for the individual margin, without equating that null with overall
+  chance discrimination.
+- Fixed-effect guidance no longer claims its confidence intervals are
+  always narrower than random-effects intervals. A non-significant
+  heterogeneity test does not justify the common-effect assumption; REML
+  remains the default.
+- Updated the corresponding Turkish translations and removed the IHC
+  source literal that caused the R package portability warning.
+- Retained the clinical and endpoint limitations added in the preceding
+  documentation review.
+
+## OncoPath 1.1.3 (2026-11-08)
+
+### Known release blocker
+
+- The raw waterfall analysis can corrupt patient identities when the
+  selected patient-ID column is named `response`: a six-patient
+  reproduction yields one responder and one not-evaluable entry. This
+  candidate must not be submitted until the internal-column collision is
+  repaired and verified in both source and compiled module. See
+  `docs/audit/RELEASE_REVIEW_1.1.3_20261108.md`.
+
+### Release documentation review
+
+- Clarified that IHC regional variation includes measurement error as
+  well as biology, and that similar consistency and absolute-agreement
+  ICCs do not rule out clinically important bias.
+- Explained that spatial-compartment tests compare independent case
+  groups, not paired locations within a tumor, and that a
+  non-significant test does not establish absence of a difference.
+- Documented response-rate denominators, responder-only time to
+  response, progression-based duration, last-assessment censoring, and
+  the absence of a separate death input. DCR is based on best response
+  and has no minimum stable-disease duration.
+- Added guidance on study independence, sparse-count approximation,
+  diagnostic prediction intervals and the uncertainty omitted from
+  plug-in predictive values.
+- Distinguished R teaching datasets from the separately saved jamovi
+  examples. Numerical methods, defaults and clinical cutoffs are
+  unchanged by this documentation review.
+
+**Saved analyses can give different results.** jamovi shows the results
+stored in a saved file until an option is changed. Re-run a saved
+analysis (change any option and change it back) before you rely on it.
+No option was added, removed or renamed.
+
+### Results change by design
+
+These came from a pre-submission review that checked every displayed
+statistic against an independent calculation (mada, metafor, irr, psych,
+lme4, survival, binom.test, fisher.test and hand calculation of RECIST
+1.1). The core estimates were confirmed. What changed are cases that
+only an ordinary but non-default data coding or option reaches.
+
+#### Treatment Response: Patient-Level Burden (`waterfall`)
+
+- **Percent-of-baseline values are no longer read as growth without
+  warning.** Some data record tumor size as a percent of baseline, where
+  100 means no change. Such values made every patient progressive
+  disease, and with a time variable and no time-0 row nothing was said.
+  Now, whenever no value is below zero, a strong warning says that no
+  patient can be a complete or partial response and tells you to
+  subtract 100 if 100 means no change.
+- **Per-visit categories give the best response.** When the
+  response-category variable holds a different category at each visit
+  (SD, then PR, then PR), the patient’s category is now the best one in
+  time order up to the first progression, not the earliest one, and a
+  notice says so. That patient is now a partial response.
+- Categories written in full (“Partial response”, “Progressive disease”)
+  are accepted.
+- A patient you mark NE no longer gets a bar and no longer counts toward
+  the median line, and a notice names those patients.
+- The notices are accurate. Missing values are no longer called
+  “excluded” when you supplied a category for that patient, and very
+  large growth is listed patient by patient.
+
+#### Swimmer Plot
+
+- **“Unconfirmed best response” only when it is true.** When the same
+  response was repeated on every row of a patient (a common export of an
+  adjudicated best overall response), the analysis warned that best
+  responses were unconfirmed, and the manuscript text said so. The
+  warning and that sentence now appear only when a patient’s rows carry
+  different responses. ORR and DCR were correct and are unchanged.
+- **Rows dropped for a missing start or end time are itemized.** An
+  ongoing treatment line with no end date is often left blank. When such
+  rows are dropped, the notice now lists the responses and censoring
+  values they held, and suggests entering the data cutoff as the end
+  time.
+- **A grouping variable that changes within a patient skips only the
+  group comparison**, with a notice. It used to stop the whole analysis.
+- Text “NA” or “N/A” in the response column counts as no recorded
+  response rather than NE. Response rows are listed in clinical order
+  (CR, PR, SD, PD, NE). “Non-CR/Non-PD” is named as a RECIST 1.1
+  category that this analysis does not score. Sort by variable uses each
+  patient’s first non-missing value, and the median reference line is
+  labeled “Median duration”.
+
+#### IHC Heterogeneity Analysis
+
+- **Proportional differences between regions.** Without a reference
+  measurement, two regions measured with different precision are no
+  longer reported as differing “with the level”. In a simulation with no
+  true difference this happened in 35% of studies with 100 cases and 70%
+  with 300; it is now 0% and 1.7%. The pair check is the same as for a
+  region against the reference: the slope of the difference must agree
+  in direction on each region and on their mean (Krouwer 2008).
+- **Pair correlations.** Without a reference, each pair of regions now
+  has its own Spearman correlation with a 95% CI. A pair shown to be
+  below your correlation threshold now sets the verdict, as a region
+  does when a reference is supplied. Such a pair used to be described as
+  “not shown to be below it”.
+- **Ordinal and binned scores.** Allred-type scores (at most 9
+  whole-number values between 0 and 12) are no longer graded by their
+  coefficient of variation. They used to be called inadequate despite
+  near-perfect category agreement. Measurements with few values are
+  described as “an ordinal score or coarsely binned values”.
+- A note appears when the systematic-difference margin is finer than the
+  steps the values were recorded in. The within-case CV row of the
+  reference design is renamed “reference and regions”, which is what it
+  pools.
+
+#### Diagnostic Test Meta-Analysis for Pathology
+
+- **The plain-language summary no longer rounds a near-perfect result up
+  to perfection.** A pooled sensitivity of 99.98% read “100.0% … detects
+  1000 out of 1,000 patients, missing only 0” even when the studies
+  contained false negatives. It now shows the digits that matter and
+  says the test misses “fewer than 1 in 1,000”. Specificity is handled
+  the same way, and very small likelihood ratios print with significant
+  digits instead of “0.00”.
+- A value just below a band edge (for example 89.96%) is no longer
+  described as being in the band above.
+- The warning shown when most studies have no false positives (or no
+  false negatives) no longer says the likelihood ratio has no limit when
+  some studies do have such errors.
+- Ordered covariates in the meta-regression are labeled with your
+  variable name, and the predictive-values table notes when
+  between-study heterogeneity is large.
+- The tables, estimates and intervals are unchanged.
+
+### Documentation
+
+- The four vignettes were re-run against this version. Their printed
+  output, option descriptions and interpretation guidance now match what
+  the analyses show. For example, the IHC vignette’s own example now
+  reads “Inadequate sampling”, and the meta-analysis vignette no longer
+  equates funnel asymmetry with publication bias.
+
+### Fixes from the jamovi library review of 1.1.2 (2026-10-23)
+
+No statistics or options changed, and saved analyses open as before.
+
+- **Notices look the same in all four analyses** and name their severity
+  in words (“Warning: Small sample”), so they no longer rely on color
+  alone. They are listed most severe first everywhere. Swimmer Plot’s
+  plain-text notice block now uses the same panel as the other three.
+- **Treatment Response no longer keeps the previous run’s notices on
+  screen.** When a run had nothing to report, the old notices stayed
+  visible.
+- **Sentence case and American spelling.** Notice titles and status
+  labels are no longer in capitals (“Percent change looks like
+  proportions”), choices read in sentence case (“Duration (longest
+  first)”), and the text uses American spelling throughout (tumor,
+  analyzed, color). The color-blind-safe palette has one name in every
+  analysis, “Color-blind safe”, with the palette (Okabe-Ito, viridis) in
+  parentheses where it differs. The Turkish translations follow.
+- **Diagnostic Test Meta-Analysis options are grouped:** Analysis
+  Options stays open, and Advanced, Visualization and Reporting options
+  are collapsible sections, as in the other analyses.
+- **The Treatment Response description no longer points to a
+  lesion-level analysis that has not been released.** It says to sum the
+  target lesions per patient and visit first.
+- **Repository:** test-failure output and a personal settings file are
+  no longer tracked, and the module’s tests check what the analyses say
+  rather than review notes.
+
+## OncoPath 1.1.2 (2026-10-23)
+
+Versions 1.1.0 (2026-10-19) and 1.1.1 (2026-10-20) were not released to
+the jamovi library; this entry covers every change since 1.0.9. **Saved
+analyses can give different results.** jamovi shows the results stored
+in a saved file until an option is changed, so re-run a saved analysis
+(change any option and change it back) before you rely on it.
+
+### Results change by design
+
+#### Swimmer Plot
+
+- **Censoring columns are read only the way you say.** A new **Censoring
+  coding** option sets how a Yes/No, TRUE/FALSE or 1/2 status column is
+  read. These columns used to be read in a fixed, unstated direction, so
+  a “Censored: Yes/No” column put the status arrows on the patients who
+  had stopped and halved the reverse Kaplan-Meier follow-up. Numeric 0/1
+  (1 = event) and the words alive/censored/dead/event are still read
+  automatically, and every reading is stated in a notice. Words such as
+  “Completed”, “Progressed” or “Active” describe treatment, not
+  follow-up status; the analysis asks for such a column to be recoded.
+  Two explicit 0/1 codings are offered: “1 = event, 0 = censored” and “1
+  = censored, 0 = event” (a column named “Censored” is usually coded the
+  second way, and a 0/1 column whose name contains “cens”, “alive” or
+  “ongoing” now raises a warning to check). A column with a single value
+  (all 0 or all 1) is no longer classified under Automatic: it can mean
+  all events or all censored, so the analysis asks.
+- **ORR and DCR need every response value to be a RECIST category** (CR,
+  PR, SD, PD or NE; “complete/partial remission” are read as CR/PR). A
+  coding such as Response / Stable / Progression used to give ORR 0.0%
+  beside a “Response Rate 41.7%”; now the rates are withheld and a
+  notice names the value.
+- **Best response over several rows is called unconfirmed.** With more
+  than one response row per patient, the category behind ORR and DCR is
+  the best response up to the first PD, without confirmation of CR/PR or
+  a minimum duration for SD; a warning, a table note and the copy-ready
+  text say so. Rows sharing a start time are ordered by end time, so row
+  order no longer matters.
+- The observed-median follow-up fallback uses every patient. When the
+  reverse Kaplan-Meier median cannot be estimated, the copy-ready text
+  calls the fallback “median observed time” and says it is not the
+  length of follow-up.
+- **Sort by response ranks a patient by best response**, not by
+  whichever row comes first; a PD row after a CR no longer sends the
+  patient to the bottom.
+- **Reference lines on an absolute time axis** with a common non-zero
+  start are no longer drawn at bare durations, off the patient lanes.
+- Duplicated episode rows no longer add up to a false “follow-up exceeds
+  10 years” warning.
+
+#### Treatment Response: Patient-Level Burden (`waterfall`)
+
+- **New option: Unit of raw measurements (mm or cm).** With a unit,
+  progression also requires the RECIST v1.1 absolute increase of at
+  least 5 mm over the nadir. The default, “Not stated”, keeps the
+  earlier results; the notices say that without the rule progression is
+  called more often than RECIST would.
+- **With a time variable, best response stops at the first
+  progression.**
+- **A scan with a measurement but no time is reported**, not dropped in
+  silence: a warning counts these scans and names the patients.
+- **Rows at the same visit give the same answer in any row order.**
+- **A patient with no measured value but a supplied CR/PR/SD/PD category
+  is evaluable** (for example PD for clinical progression or death
+  before the first scan). Such patients used to be dropped: six patients
+  gave DCR 100% (4/4) with one row per patient and 66.7% (4/6) in long
+  format. They have no bar, and the plot caption counts them.
+- **A supplied “NE” (or “Not evaluable”, “UNK”) category makes the
+  patient not evaluable**; it used to be rejected, so the patient kept
+  the category computed from the measurement.
+- **Raw measurements entered as percentage changes stop the run** with
+  the reason (the time = 0 values are not 0%). A warning beside ORR 0%
+  was not enough.
+- When some patients could not be analysed, the metrics table adds a
+  Disease Control Rate over all patients (not evaluable counted as
+  without disease control), and the summary table says how many patients
+  are in none of its rows.
+
+#### IHC Heterogeneity Analysis
+
+- **Without a reference, every pair of regions is compared.** Each
+  region used to be compared with the mean of the others, which spread
+  one region’s offset onto the rest.
+- **Percentage CIs allow for the uncertainty in the comparison mean**
+  (Fieller intervals). The old interval treated that mean as known and
+  ruled out differences too often.
+- **Proportional bias is flagged only when the slope of the difference
+  is significant in the same direction on the reference value, the
+  region value and their mean** (Krouwer 2008). Measurement error alone
+  tilts a slope on any single one of them, so an unbiased region could
+  read “changes with the level”. A small proportional bias (about 10%)
+  cannot be told apart from error in a noisy reference with one reading
+  per case; such a region still fails the margin, so the verdict still
+  blocks it.
+- **A region whose correlation with the reference is below your
+  threshold as a point estimate** (or, without a reference, such a pair
+  of regions) now gives “met, not confirmed” and is named. “Agreement
+  thresholds met” used to be reported beside r = 0.74.
+- **Ordinal scores are not graded.** When every measurement takes at
+  most 5 whole-number values (HER2 0-3+, for example), the CV verdicts
+  are replaced by “Not graded: ordinal score” with advice to use
+  weighted kappa; a CV of 93% used to give “INADEQUATE” for scores with
+  weighted kappa 0.88.
+- A warning says when near-zero cases (low Ki-67, for example) carry
+  most of the within-case CV. When compartments differ in mean level as
+  well as CV, the CV comparison says the difference may reflect the
+  level.
+- **Identical differences in every case are never ruled out** (binned
+  scores used to get a zero-width CI and “agreement thresholds met”).
+- **The compartment CV tests use complete cases only**, so lost cores no
+  longer make a compartment look less heterogeneous.
+- Precision planning for the ICC integrates the exact F-interval width
+  (two measurements, ICC 0.90, target width 0.20: 21 cases instead of
+  15).
+
+#### Diagnostic Test Meta-Analysis for Pathology
+
+- **Zero-cell studies are kept everywhere under the default setting.**
+  Heterogeneity and meta-regression now add 0.5 to all four cells of a
+  study with a zero cell, as the bivariate and proportional-hazards
+  models always did; they used to drop those studies.
+- **Deeks’ funnel-plot test always uses the raw counts**, whatever the
+  Zero-cell correction, and gives no verdict when more than a quarter of
+  the studies have a zero cell.
+- **A model that does not converge reports no numbers.** The bivariate
+  model is refitted with up to 5000 iterations; an unconverged fit is no
+  longer shown as final.
+- Meta-regression interpretation uses the actual fitted design for each
+  outcome (see the corrections below).
+- **Small cells are disclosed.** When a quarter or more of the studies
+  have a cell smaller than 5, a warning says the confidence interval of
+  the pooled value is too narrow (about 80% coverage in simulations;
+  about 70% or less when the cells are 0 or 1).
+- **When three quarters or more of the studies have no false positives
+  (or no false negatives)**, a strong warning says specificity (or
+  sensitivity), its interval, LR+ (or LR-) and the DOR are set by the
+  continuity correction, and gives the raw counts with an exact
+  confidence bound. That likelihood ratio is shown but not graded.
+- The “+1/N” zero-cell correction carries a warning: it gives zero-cell
+  studies almost no weight and covered the true sensitivity in only
+  31-55% of simulated meta-analyses.
+- Values above 99% are explained per 1,000 (“995 out of 1,000”, not “100
+  out of 100”), and between-study variances print with significant
+  digits instead of 0.000.
+
+### Other fixes
+
+- **Swimmer Plot:** unreadable milestone values are counted and named;
+  milestone names default to the variable’s own name; compact
+  dates (20230115) are read under Date/Time; numeric patient IDs stay
+  distinct; follow-up over 10 years is a warning; syntax mode quotes
+  milestone names and the censoring coding.
+- **Treatment Response:** the notices sit at the top, ordered by
+  severity; the Annotation tracks box accepts variables; not-evaluable
+  patients no longer leave empty bars; the spider plot labels each point
+  by its own change; group colours match between plots; a run with no
+  evaluable patient stops with the reason; patient keys stay distinct
+  when printed numeric IDs coincide.
+- **IHC Heterogeneity:** an always-visible scope note; the variance
+  table grades shares of the total variance; ICCs state the complete
+  cases they rest on; the pooled-value outlier warning that flagged
+  ER-negative cases is removed.
+- **Diagnostic Test Meta-Analysis:** repeated study identifiers raise a
+  strong warning; the participant total counts people, not correction
+  pseudo-counts; a meta-regression that fits the data exactly shows
+  blank cells instead of SE 0 and z = Inf; study names such as “Smith
+  \[2020\]” no longer cut a note short.
+- **All analyses:** a value that cannot be computed shows an empty cell,
+  never “NaN”; a dataset with no rows (for example after a filter) says
+  so; infinite inputs are rejected with the variable and row.
+
+### Example data and documentation
+
+- **`waterfall_raw_longitudinal` in R now holds the same values as the
+  jamovi example** (PT01: 50, 30, 25, 20 mm). The R copy used to be a
+  different random draw, so R and jamovi users got different categories
+  from “the same” example. With raw input and mm it gives CR 1, PR 10,
+  SD 4, PD 0 (ORR 73.3%).
+- The five bundled example analyses were re-run and saved with this
+  version. The raw longitudinal example now uses Raw measurements in mm
+  (it was saved as percentage input, which showed ORR 0%); the
+  percentage example compares Drug A and Drug B; the meta-analysis
+  example uses imaging modality as its covariate.
+- README, vignettes and dataset descriptions were rewritten to describe
+  only what the four analyses do, with Quick Start code that runs. The
+  example data are synthetic.
+
+### Since 1.1.0
+
+- **Swimmer Plot notices wrap long text** to the width of the results
+  and show user-supplied text (variable names, values) literally.
+- **Example data refreshed** for all four analyses.
+- **Unused citations removed** from Swimmer Plot (data.table,
+  lubridate).
+- **Examples are not run during package checks**, because the example
+  datasets are not part of the R package.
+
+### Release-review corrections (2026-10-18)
+
+- Diagnostic meta-regression interpretation uses the actual fitted
+  design for each outcome. Sensitivity and specificity may retain
+  different reference levels after study exclusions. Ordered and other
+  contrast codings are described by their fitted design columns rather
+  than incorrectly interpreted as comparisons with a reference category.
+  The numerical models are unchanged for default coding. Explicit
+  per-factor contrasts are now retained when all factor levels are
+  observed; previously they were discarded. If exclusions remove levels,
+  the output explicitly discloses contrast regeneration and describes
+  the resulting fitted coding.
+- Swimmer analyses reject conflicting non-missing groups within a
+  patient. Select one fixed patient-level grouping variable for
+  between-patient comparisons; episode-specific treatment groups cannot
+  define independent patient groups. Missing groups may be filled by
+  another episode with the same patient’s single observed group.
+- Raw-measurement waterfall analyses calculate baselines without a
+  helper-column join, so a selected or unrelated column named `baseline`
+  no longer crashes the analysis.
+- Unavailable IHC statistics and confidence limits use native empty
+  cells, including the descriptive CV and mean inter-regional
+  correlation rows.
+- Unavailable diagnostic LR/DOR and proportional-hazards SROC test
+  statistics use native empty cells rather than displaying `NaN`;
+  existing estimates and uncertainty remain unchanged.
+- Version 1.1.0 sorts above both 1.0.9 and the earlier 1.0.83
+  development builds, restoring monotonic upgrade ordering.
+
+## OncoPath 1.0.9 (2026-10-17)
+
+This release also includes the changes listed under 1.0.83.05 and
+1.0.83.02 below. Neither was released on its own; the previous release
+was 1.0.83.
+
+### Behaviour changes – saved analyses may produce different results
+
+- **`waterfall`: a patient with only a baseline scan who is coded PD in
+  the response-category variable now counts as evaluable PD.** This
+  covers clinical progression, new lesions, or death before the first
+  follow-up scan. Before, the patient was first listed in the “not
+  response-evaluable” warning as Unknown, and the override was applied
+  afterwards. The warning now names only patients who stay Unknown.
+- **`waterfall`: the evaluable count in the notices is the ORR/DCR
+  denominator.** The dropped-patients notice and the small-sample
+  warning now count patients classed CR, PR, SD or PD after category
+  overrides. Before, they counted patients with a measured response, so
+  the overrides were left out.
+- **`waterfall`: assessments dated before baseline (negative times) no
+  longer count when finding the first progression or the best
+  response.**
+- **`waterfall`: a patient with a negative raw tumour measurement stays
+  Unknown.** A category override no longer reclassifies such a patient,
+  and their line is removed from the spider plot.
+- **`diagnosticmeta`: the meta-regression note names the reference level
+  the model actually uses.** For a categorical covariate the note took
+  the alphabetically first level. When the factor’s own order differed,
+  the note named the wrong comparator, for example “Automated” instead
+  of “Manual”. Levels absent from the analysed studies are also dropped
+  before the model’s degrees of freedom are counted.
+
+### Fixed
+
+- **`waterfall`:** confirmation markers and “ongoing” arrows are no
+  longer drawn for patients without a bar. A stale “Unknown” row in the
+  summary table is removed when a re-run has no Unknown patients.
+- **`diagnosticmeta`:** the predictive-values note gives pooled
+  sensitivity and specificity to one decimal place (e.g. “85.7%”).
+  Before, it printed every digit.
+- **`ihcheterogeneity`:** the sentence “The regions are offset in
+  opposite directions, so each needs its own calibration” appears only
+  when a reference measurement is present.
+- **All four analyses:** a table emptied on a re-run (for example after
+  removing a variable) now clears completely. Before, it could keep
+  hidden row labels, and the table then failed when read back, for
+  example from R or when reopening a saved `.omv`.
+
+### Package
+
+- **Citation metadata uses the license identifier GPL-2.0-or-later,**
+  matching DESCRIPTION.
+
+### Development build 1.0.83.05 (2026-09-30), released in 1.0.9
+
+#### Package
+
+- **Installable again:** `swimmerplot`, `waterfall`, `diagnosticmeta`
+  and `ihcheterogeneity` are back in the module. 1.0.83.04 had removed
+  their sources while `NAMESPACE` still exported `swimmerplot` and
+  `waterfall`, so the package could not be installed (“undefined
+  exports”).
+- **Continuous validation:** every pull request and push to master now
+  runs R CMD check and the source-tree tests on Ubuntu (R release).
+
+### Development build 1.0.83.02 (2026-09-22), released in 1.0.9
+
+Fixes and quality improvements from the 2026-09-22 jamovi library and
+module audit.
+
+#### Package
+
+- **Pruned unused dependencies:** Removed unused `psych` and `stringr`
+  packages from Imports.
+- **Unified bug-report and issue URLs:** Standardized issue tracking
+  links to point consistently to `sbalci/OncoPath/issues`.
+- **Differentiated example dataset descriptions:** Clarified
+  `waterfall_raw_longitudinal` dataset description to distinguish it
+  from the basic percentage dataset in jamovi data picker.
+
+#### `diagnosticmeta`
+
+- **Single-paragraph analysis description:** Folded analysis description
+  into a single paragraph to prevent truncation in jamovi library
+  listings.
+- **Preserved state in forest plot:** Annotated state fallback
+  properties for pooled sensitivity and specificity during legacy state
+  restorations and image exports.
+- **Robust YAML encoding:** Escaped non-ASCII Greek and superscript
+  characters in table titles to avoid locale-dependent parsing warnings.
+
+#### `waterfall`
+
+- **Correct table column format:** Changed percentage format token from
+  `percent` to valid jamovi format specifier `pc`.
+- **Cleaned internal variable naming:** Renamed stable-disease count
+  variable in explanations to avoid collision with standard-deviation
+  heuristics.
+
+## OncoPath 1.0.83 (2026-09-21)
+
+Fixes from the 2026-09-16 jamovi library review. No statistics or
+options changed.
+
+### Package
+
+- **`waterfall` runs again, and the person-time, milestone and
+  event-marker tables in `swimmerplot` are back.** `magrittr` is back in
+  Imports, and its `%>%` pipe is imported into the package namespace.
+  This fixes the 1.0.81 regression.
+- **R callers can use `%>%` and `%||%` from OncoPath again,** as in
+  1.0.6.
+- **The translation catalogs now hold only OncoPath’s own strings.**
+  1.0.81 shipped the catalogs of the whole ClinicoPath project: 31,690
+  entries and 7.3 MB of runtime files for a module that uses about 1,500
+  strings. They now carry 1,510 entries (about 440 KB), and every
+  Turkish translation is kept.
+- **Five plots redraw and export without re-reading the dataset:** the
+  `diagnosticmeta` forest, SROC and funnel plots, the swimmer plot, and
+  the `waterfall` spider plot. The waterfall plot still reads the data
+  when it redraws, because its annotation tracks come from it.
+- **The References panels now cite the packages each analysis uses:**
+  `swimmerplot` adds data.table and lubridate, and `waterfall` adds
+  ggrepel, patchwork and survival.
+- **Notice titles are readable in the dark theme.** In `diagnosticmeta`,
+  `ihcheterogeneity` and `waterfall` the error and information titles
+  used fixed colours that fell below 3:1 contrast on a dark background;
+  titles now take the theme’s text colour, and the coloured border still
+  shows the severity. The Copy-Ready Report card in `swimmerplot` no
+  longer paints a white background.
+
+### `diagnosticmeta`
+
+- **Summaries in Turkish (or any language other than English) no longer
+  print “Inf”, or stop, when a likelihood ratio cannot be estimated.**
+  The text chose its paragraphs by comparing a translated word with
+  English. Each performance band is now a complete translatable
+  sentence. In English, the final “do not both reach the good band”
+  summary no longer repeats the two band names given above it.
+- **The likelihood-ratio notes for a pooled specificity or sensitivity
+  near 100% are no longer cut short.** In languages without a
+  translation they ended at “(specificity”; in Turkish the unstable
+  negative-LR note stopped the summary with a formatting error.
+
+### `ihcheterogeneity`
+
+- **Copy-ready report sentences read correctly in Turkish.** The
+  correlation sentence repeated a postposition (“ile ile”) because a
+  phrase was spliced into it. Each grade now has its own sentence.
+  Without a reference measurement, the English sentence reads
+  “correlation with one another” instead of “correlation between
+  regional measurements”.
+- **The note shown when the psych package is unavailable prints its
+  confidence interval as “95% CI 0.62 to 0.91”** instead of in square
+  brackets, which could cut the sentence short.
+
+## OncoPath 1.0.81 (2026-09-09)
+
+### Known issue
+
+- **`waterfall` did not run in this release, and three `swimmerplot`
+  tables failed.** `magrittr` was dropped from Imports while both
+  analyses still use its `%>%` pipe. jamovi stopped with
+  `could not find function "%>%"`, which affected all of `waterfall` and
+  the person-time, milestone and event-marker tables in `swimmerplot`.
+  Fixed in 1.0.82.02.
+
+### `diagnosticmeta`
+
+- **The proportional-hazards SROC table now reports the area under the
+  curve.** A new row gives AUC = 1/(1 + theta) with a delta-method
+  standard error. Before, the note quoted the formula but the value
+  never appeared. An AUC below 0.70 raises a strong warning. Below 0.50
+  it raises an error asking you to check the TP/FP/FN/TN column
+  assignment.
+- **I-squared in the Heterogeneity Assessment table now agrees with its
+  tau-squared column.** It is taken from metafor’s fitted model instead
+  of Higgins’ (Q - df)/Q, so it matches a refit in metafor. Values can
+  differ from 1.0.6.
+- **The SROC plot now uses the same zero-cell-corrected counts as the
+  forest plot and the bivariate model,** so a zero-cell study no longer
+  sits in a different place on the two figures.
+- **Fixed-effects fits no longer break the SROC plot.** When mada cannot
+  summarise the model, the pooled point comes from the fitted
+  coefficients, and a caption explains that fixed effects give no SROC
+  curve (choose REML to get one).
+- **More problems now reach the Notices panel, and the panel refreshes
+  when options change.** New notices cover a failed bivariate (Reitsma)
+  model, zero cells when no correction is selected (mada then applies
+  its default 0.5 inside the models), and missing required variables.
+  Deeks’ test with fewer than 10 studies is now a warning that states k.
+
+### `ihcheterogeneity`
+
+- **Power analysis now uses the correlation shown in the Reproducibility
+  table,** the mean of the per-region Spearman correlations, instead of
+  a second, different r. The Spearman variance inflation (1.06) now
+  applies to every row, so power for the small, medium and large-effect
+  scenarios is slightly lower and required sample sizes are about 6%
+  higher.
+- **Two statistics no longer mislead at the extremes.** A constant
+  non-zero paired difference now shows no p-value instead of p = 0,
+  because the t statistic is undefined. Per-case CVs above 500% are no
+  longer dropped from the mean CV, which biased it towards
+  “homogeneous”.
+- **The compartment variability test is named for what it tests:**
+  “Brown-Forsythe test (spread of per-case CV)” replaces “Levene’s Test
+  (CV Variance)”. Its interpretation says it compares how spread out the
+  CVs are between compartments, not which compartment is more
+  heterogeneous on average.
+- **A new Notices panel gives strong warnings when the ICC cannot be
+  estimated or when there are fewer than 10 cases.** Without an ICC the
+  table shows a mean Spearman correlation, which is not a reliability
+  coefficient, and the ICC(3,1) consistency row no longer appears next
+  to an ICC marked “not estimable”.
+- **Measurement columns set as nominal with a numeric data type are now
+  accepted** instead of stopping with “non-numeric argument to binary
+  operator”.
+
+### `swimmerplot`
+
+- **Median follow-up now shows its confidence interval and names the
+  method used.** In Advanced Clinical Metrics the reverse Kaplan-Meier
+  median (Schemper & Smith 1996) carries its CI, and the interpretation
+  says whether that estimate is shown or the plain median of observed
+  durations, which understates follow-up.
+- **Outputs no longer go stale.** The export tables and copy-ready text
+  refresh when Date format, Time input type or Time display changes, and
+  the Important Information panel clears when grouping, event or
+  analysis options change. A notice states that raw start and end values
+  are used as-is in the selected time unit. The exported summary drops
+  `mean_follow_up`, a copy of `mean_duration`.
+
+### `waterfall`
+
+- **Tables no longer double their rows** when jamovi re-runs the
+  analysis without clearing results (Clinical Response Metrics,
+  Time-to-Response & Duration of Response, Person-Time Analysis, both
+  group-comparison tables, and the “Unknown / not evaluable”
+  response-category row).
+- **One patient whose measurements are all missing no longer empties the
+  time-to-response and duration-of-response table for the whole
+  cohort.**
+- **The Clinical Significance panel counts only evaluable patients
+  (CR/PR/SD/PD),** matching the response-rate denominators; it
+  previously also counted patients in the unknown category.
+- **Interface changes:** the regulatory-use disclaimer is a strong
+  warning instead of a red error; choosing a time variable no longer
+  ticks Spider plot automatically; “Time-to-response & duration of
+  response (KM)” moved to Clinical Reporting Options; two Person-Time
+  columns are renamed “Median time to best response” and “Median time in
+  response”.
+
+### `swimmerplot` and `waterfall`
+
+- **Comparing three or more groups no longer prints “OR = NA”.**
+  Fisher’s exact test gives an odds ratio only for 2x2 tables, so these
+  rows read “Fisher’s exact test”, and a note says the ORR and DCR
+  p-values are not adjusted for multiple testing. `waterfall` also
+  explains when a test was skipped.
+
+### Package
+
+- **English and Turkish translation catalogs ship with the module, and
+  more of the output can be translated:** translatable strings rose from
+  1 to 212 in `diagnosticmeta` and from 10 to 291 in `ihcheterogeneity`,
+  with smaller gains in `swimmerplot` and `waterfall`. Option labels use
+  sentence case, and panel headings take the theme colour so they stay
+  readable in dark mode.
+- **Unused dependencies and helpers were removed:** `cluster` and
+  `tidyr` are no longer in Imports, and the exported helpers
+  `raw_to_prob()`, `bootstrapIDI()` and `clinicopath_startup_message()`,
+  which no OncoPath analysis used, are gone. The re-exports of `%>%` and
+  `%||%` were also dropped; they return in 1.0.82.02.
+
+## OncoPath 1.0.6.04 (2026-08-23)
+
+All four analyses went through a full audit, fix, review and
+release-review cycle this week, each closed by an adversarial
+verification pass that re-derived every changed statistic against an
+independent implementation. Two analyses carry breaking option changes;
+they are listed first.
+
+### Breaking changes
+
+- **`diagnosticmeta`: two zero-cell correction keys were
+  renamed.**`treatment_arm` is now `zero_cells` and `empirical` is now
+  `reciprocal_n`. The old names are the literature’s terms (Sweeting et
+  al. 2004) for procedures this analysis never implemented –
+  “treatment-arm” adds 0.5 to every cell of the affected study, and
+  “empirical” uses the reciprocal of the opposite-arm size – whereas the
+  code adds 0.5 to the zero cells only, or 1/N to all cells. The options
+  now say what they do. R callers passing the old keys get a clear “must
+  be one of” error; the jamovi GUI is unaffected.
+- **`ihcheterogeneity`: the `bias` analysis focus was removed.** It was
+  computationally identical to `reproducibility` (one sentence of prose
+  apart; the bias table is computed whenever a reference is supplied
+  regardless of focus). The `reproducibility` level is retitled
+  “Reproducibility & Bias Assessment”. R callers passing
+  `analysis_type = "bias"` get a clear error.
+- **`ihcheterogeneity`: the report-sentences and methodology panels are
+  now opt-in.** Two new options, “Copy-ready report sentences” and
+  “Methodology & assumptions” (both off by default), gate roughly 7 KB
+  of explanatory HTML that previously rendered on every run.
+
+### `diagnosticmeta` – Fixed, statistical
+
+- **The proportional-hazards SROC table tested the wrong null
+  hypotheses.** Both parameters were tested against zero. For theta the
+  no-accuracy null is theta = 1 (the chance diagonal; theta near 0 is a
+  near-perfect test), so the printed p-value rewarded good tests for the
+  wrong reason. The between-study variance cannot be Wald-tested against
+  zero at all (it sits on the boundary of its parameter space). Theta is
+  now tested against 1, the variance carries no p-value, and a table
+  note explains both.
+- **The bivariate and SROC sections were fitted to different data.**
+  Under the default zero-cell setting the bivariate model received
+  mada’s “single” continuity correction (0.5 added only to zero-cell
+  studies) while [`mada::phm`](https://rdrr.io/pkg/mada/man/phm.html)
+  ran on its library default, which corrects every study when any zero
+  cell exists. Both now use the same policy.
+- **Prediction intervals use t on k-2 degrees of freedom,** not a normal
+  quantile, per Riley et al. 2011. With the small study counts typical
+  of diagnostic meta-analysis the normal interval was materially too
+  narrow – understating exactly the between-study uncertainty the
+  interval exists to show. The table note names the distribution and
+  degrees of freedom used.
+- **Meta-regression gained the Knapp-Hartung adjustment and an omnibus
+  test.** Inference is t-based (z for fixed-effect models, where the
+  adjustment is undefined), an omnibus QM/F test is reported per model
+  so a multi-level factor covariate can be judged as a whole, and the
+  output now says plainly that two separate univariate models (logit
+  sensitivity, logit specificity) are fitted – not a joint bivariate
+  meta-regression. The statistic column is retitled accordingly.
+- **The fitted between-study variance components are reported:**
+  tau-squared for logit sensitivity and logit false-positive rate, and
+  the correlation between logit sensitivity and logit specificity (the
+  threshold-effect indicator), sign-corrected for mada’s
+  parameterisation and flagged when it is estimated at the +/-1
+  boundary.
+- **The Deeks funnel plot and Deeks’ test now describe the same
+  studies.** The test applied a 0.5 correction to zero-cell studies so
+  their odds ratio was finite; the plot computed the odds ratio on raw
+  counts, so those same studies became infinite and were silently
+  dropped from the figure. The plot now applies the identical correction
+  and says so in its subtitle.
+- **Per-study Wilson score confidence intervals were added to the
+  Individual Study Results table,** the same intervals the forest plot
+  draws, honouring the chosen confidence level.
+
+### `diagnosticmeta` – Fixed, behaviour and presentation
+
+- **Warnings have a home.** Every runtime warning – excluded studies,
+  substantial heterogeneity, meta-regression failures, the small-k Deeks
+  caution, zero-cell corrections – used to be appended to the end of the
+  ninety-line “Getting Started” panel, with Bootstrap alert classes
+  jamovi does not style, and nothing reset them between runs, so the
+  same banner accumulated once per option change. They now render in a
+  dedicated Notices panel at the top of the results, rebuilt on every
+  run.
+- **The meta-regression checkbox’s enable rule was written in R
+  syntax**and never engaged; the checkbox was always enabled. It now
+  enables only when a covariate is assigned.
+- **Two display checkboxes were dead until every variable was
+  assigned**(Analysis Summary, Clinical Interpretation) and Clinical
+  Interpretation stayed hidden after a too-few-studies rejection,
+  because `.init()` hid the panels imperatively and the restore sat on
+  an unreachable path. The declarative visibility rules now govern.
+- The “high contrast” palette drew white points on the white plot
+  background; the instructions said “at least 2 studies” while the
+  analysis requires 3 and documented a “DerSimonian-Laird” method that
+  is not in the menu; stale summary and SROC content survived method and
+  model-toggle changes; the zero-cell correction control sat outside
+  every section; table notes were HTML-escaped (apostrophes showed as
+  `&#39;`); internal method keys (“reml”) appeared in notes; mada’s “non
+  zero decimal places” warning fired on every corrected run. All
+  corrected.
+
+### `ihcheterogeneity` – Fixed, statistical
+
+- **The spatial plot measured the wrong thing.** It pooled every
+  measurement of every case in a compartment into one coefficient of
+  variation – between-patient biological spread – while the spatial
+  table beside it (correctly) averaged per-case CVs. The two could rank
+  compartments in opposite orders on one screen. The plot now uses the
+  table’s per-case computation.
+- **The Kruskal-Wallis compartment test treated 4-5 measurements per
+  patient as independent observations,** inflating its sample size
+  roughly k-fold and biasing the p-value anticonservatively. It now
+  compares one per-case summary value per patient and says so in a note.
+- **One biopsy against the whole section is allowed again.** The
+  reference + single-region design – the classic agreement question –
+  was rejected by a gate written for inter-regional studies, and the ICC
+  gate counted regions rather than measurement columns, so even when
+  allowed it would have fallen back to a correlation. ICC(2,1) for this
+  design now matches
+  [`psych::ICC`](https://rdrr.io/pkg/psych/man/ICC.html) exactly.
+- **Every panel grades variability and correlation against the
+  thresholds you set.** The Key Findings line, the spatial table and
+  plot, the plain-language summary and the variability plot’s reference
+  lines each carried their own hard-coded bands (15/30, 0.80/0.60), so
+  one run could call the same CV “Low” in one place and “Moderate” or
+  “High” in another – including at the default threshold. All now use
+  the configured CV and correlation thresholds, with the bands stated in
+  a note.
+- The required sample size for the observed-effect power row omitted the
+  Spearman variance inflation its own power calculation applied (about
+  6% understated); the “stratified” sampling note falsely claimed
+  “results are adjusted for sampling design effects” when no adjustment
+  exists anywhere in the analysis.
+
+### `ihcheterogeneity` – Fixed, behaviour and presentation
+
+- **Tables no longer duplicate their rows**when jamovi re-runs the
+  analysis after a data-cell edit, which does not trigger the
+  clear-on-change rules.
+- Empty data, a spatial variable with fewer than two usable regions,
+  regions with a single case, and a power-analysis request without a
+  reference measurement each produced a blank or silently-empty output;
+  each now explains itself. A latent crash in the psych-missing fallback
+  (a note written to a panel type that has none) is fixed. Six white
+  panels were unreadable in jamovi’s dark theme.
+
+### `swimmerplot` and `waterfall`
+
+- **Response rates use the RECIST-evaluable population**(CR, PR, SD, PD)
+  as the denominator in both analyses, disclosed in the output, with
+  confidence intervals computed on that denominator.
+- **`swimmerplot`:** datetime event markers were shifted twice;
+  milestones on an epoch date are refused with a message rather than
+  plotted at zero; median follow-up uses the reverse Kaplan-Meier method
+  (Schemper & Smith); progression is referenced to the nadir;
+  ISO-formatted date strings are detected; the HTML builders moved to
+  `R/swimmerplot_html.R` and the static explanatory blocks were wrapped
+  for translation.
+- **`waterfall`:** warnings are guaranteed to render even when the
+  analysis stops early; fixed-row tables are built once rather than
+  rebuilt every run; nadir-related wording corrected.
+
+### Testing
+
+Each analysis ships with a release-review test file that pins the
+defects above against independent references
+([`mada::reitsma`](https://rdrr.io/pkg/mada/man/reitsma.html),
+[`mada::phm`](https://rdrr.io/pkg/mada/man/phm.html),
+[`metafor::rma`](https://wviechtb.github.io/metafor/reference/rma.uni.html),
+[`psych::ICC`](https://rdrr.io/pkg/psych/man/ICC.html),
+[`irr::icc`](https://rdrr.io/pkg/irr/man/icc.html),
+[`stats::kruskal.test`](https://rdrr.io/r/stats/kruskal.test.html),
+hand-coded Deeks 2005 and Fisher-z formulas). Combined suites at
+release: `diagnosticmeta` 266, `ihcheterogeneity` 215 assertions, 0
+failures, 0 errors. Every option panel was rendered headlessly in
+jamovi’s own client with no swallowed exception.
+
+## OncoPath 1.0.6.03 (2026-08-22)
+
+This release corrects interpretation text that overstated what the
+statistics support, removes clinical advice from results, and stops
+third-party package notices appearing in the results pane.
+
+### Fixed – statements that were not true
+
+- **`diagnosticmeta`: a non-significant Deeks’ test no longer means low
+  publication-bias risk.** The Clinical Interpretation panel read a
+  non-significant result as evidence that publication bias is unlikely.
+  Deeks’ funnel-plot asymmetry test is recommended only when at least
+  ten studies are available and has low power below that, so a
+  non-significant result there is uninformative rather than reassuring.
+  The panel now reports what was tested, states how many studies entered
+  it, and explains that failing to detect asymmetry does not establish
+  its absence.
+
+- **`ihcheterogeneity`: the sampling verdict is named for what it
+  measures.** A verdict reading “ADEQUATE SAMPLING” was issued from
+  correlation and coefficient-of-variation thresholds alone. It is
+  renamed to state that the agreement thresholds were met, which is what
+  the computation actually shows, and the accompanying text no longer
+  implies the sampling strategy is validated for use.
+
+### Changed – results no longer give clinical advice
+
+- Verdicts on fitness for clinical use and instructions about patient
+  management have been replaced by descriptions of what was measured and
+  how to read it. Methodological guidance about running the analysis is
+  unchanged.
+
+### Fixed – output hygiene
+
+- **R package chatter no longer appears in Analysis Notes.** jamovi
+  surfaces [`message()`](https://rdrr.io/r/base/message.html) and
+  [`warning()`](https://rdrr.io/r/base/warning.html) conditions to the
+  user, so third-party notices leaked into results. Package chatter and
+  deprecation notices are now suppressed at the call sites, while
+  substantive warnings still reach you.
+
+- **A malformed reference no longer prevents results from rendering.** A
+  citation with an empty publication year caused a serialization failure
+  that produced no output at all, with an error mentioning `serialize`
+  rather than anything about the analysis. All references now carry a
+  year.
+
 ## OncoPath 1.0.4 (2026-08-07)
 
 No statistical changes. Two runtime dependencies were added to
@@ -7,8 +932,8 @@ No statistical changes. Two runtime dependencies were added to
 
 ### Fixed
 
-- **`ggrepel` and `patchwork` were used at runtime but not declared.**
-  `R/waterfall.b.R` calls
+- **`ggrepel` and `patchwork` were used at runtime but not
+  declared.**`R/waterfall.b.R` calls
   [`patchwork::wrap_plots`](https://patchwork.data-imaginist.com/reference/wrap_plots.html)
   when assembling multi-panel figures and
   [`ggrepel::geom_text_repel`](https://ggrepel.slowkow.com/reference/geom_text_repel.html)
@@ -22,7 +947,7 @@ No statistical changes. Two runtime dependencies were added to
 ### Note
 
 - Apart from the dependency fix above, this is a version and date bump:
-  1.0.3 → 1.0.4 across `DESCRIPTION`, `jamovi/0000.yaml` and the four
+  1.0.3 -\> 1.0.4 across `DESCRIPTION`, `jamovi/0000.yaml` and the four
   analysis definitions, plus `temp/` and `backups/` added to
   `.Rbuildignore` and `.gitignore`. No statistical method and no output
   definition changed between 1.0.3 and this release. Everything
@@ -41,7 +966,7 @@ against the bundled datasets before being written down.
 - **Option coverage went from 56% to 100%.** Of the 120 options across
   the four shipped analyses, 53 were not mentioned anywhere in the
   documentation; none remain.
-- **`ihcheterogeneity` had no documentation whatsoever** — 18 of its 19
+- **`ihcheterogeneity` had no documentation whatsoever** – 18 of its 19
   options were unmentioned and no article referred to it.
   `ihcheterogeneity-comprehensive.Rmd` is new: what the analysis is for
   (a biopsy score describes the core, not the tumour), the data layout,
@@ -58,12 +983,12 @@ against the bundled datasets before being written down.
   CI 69.1-80.9), specificity (89.8%, CI 85.7-92.8), HSROC parameters,
   heterogeneity and Deeks’ test. Two argument traps are called out:
   `confidence_level` is a **percentage on a 50-99 scale** (passing
-  `0.95` errors), and `zero_cell_correction` has no `continuity` level —
+  `0.95` errors), and `zero_cell_correction` has no `continuity` level –
   the four accepted values are `none`, `constant`, `treatment_arm` and
   `empirical`. The Deeks’ result on five studies is presented as a
   caveat rather than a finding, since the test needs roughly ten.
-- **The waterfall article demonstrated nothing.**
-  `06-function-waterfall.Rmd` pulled a dataset from
+- **The waterfall article demonstrated
+  nothing.**`06-function-waterfall.Rmd` pulled a dataset from
   `ClinicoPathDescriptives`, called
   [`library(ClinicoPath)`](https://rdrr.io/r/base/library.html) rather
   than [`library(OncoPath)`](https://www.serdarbalci.com/OncoPath/), and
@@ -93,8 +1018,8 @@ against the bundled datasets before being written down.
 
 ## OncoPath 1.0.3 (2026-08-05)
 
-An end-to-end pre-release review of all four shipped analyses —
-`waterfall`, `swimmerplot`, `diagnosticmeta` and `ihcheterogeneity` —
+An end-to-end pre-release review of all four shipped analyses –
+`waterfall`, `swimmerplot`, `diagnosticmeta` and `ihcheterogeneity` –
 reading each chain from the user interface through the backend to the
 rendered output, and checking every statistic against an independent
 implementation. Several of the defects below changed reported response
@@ -109,10 +1034,10 @@ should be re-run.
 - **Progression was measured from baseline instead of from the patient’s
   nadir.** RECIST v1.1 defines progressive disease relative to the
   smallest tumour burden recorded so far, not relative to the first
-  scan. A patient going 100 → 60 → 78 mm is +30% over their nadir —
-  progression — but still −22% from baseline, so they were counted as
+  scan. A patient going 100 -\> 60 -\> 78 mm is +30% over their nadir –
+  progression – but still -22% from baseline, so they were counted as
   censored and their duration of response ran on to last follow-up.
-  Every duration-of-response summary and the Kaplan–Meier curve built
+  Every duration-of-response summary and the Kaplan-Meier curve built
   from it were inflated. `.progressionTimes()` now carries the running
   [`cummin()`](https://rdrr.io/r/base/cumsum.html) of the burden.
 - **A response-category override outside CR/PR/SD/PD was silently
@@ -131,8 +1056,8 @@ should be re-run.
   rows no longer inflate the denominator.
 - **Physical limits on tumour measurements were never enforced.** The
   Response Value option text had always promised that shrinkage would be
-  capped at −100%, and the code never applied the cap. Worse, a negative
-  raw measurement flips the sign of `((current − baseline) / baseline)`,
+  capped at -100%, and the code never applied the cap. Worse, a negative
+  raw measurement flips the sign of `((current - baseline) / baseline)`,
   so a growing tumour was reported as a response. Both are now handled
   at a single convergence point (`.enforceMeasurementLimits()`), and the
   cap is announced in the always-visible notices panel rather than the
@@ -140,29 +1065,29 @@ should be re-run.
 - **Patients dropped for a missing or zero baseline simply vanished from
   the cohort, and patients with only a baseline scan were scored SD.**
   With a time variable, a baseline-only patient produced
-  `((baseline − baseline) / baseline) × 100` = 0% change and was
+  `((baseline - baseline) / baseline) x 100` = 0% change and was
   categorised as stable disease, although a patient with no
   post-baseline assessment is not response-evaluable at all. Both groups
   are now reconciled against the input and reported.
 - **The exported response-category column was written against the wrong
   patients.** The path without a time variable took
   [`rownames()`](https://rdrr.io/r/base/colnames.html) of a dplyr tibble
-  — always `"1"`…`"k"`, never the source row numbers — after that frame
+  – always `"1"`…`"k"`, never the source row numbers – after that frame
   had been collapsed to one row per patient and re-sorted into
   patient-ID order. Rows are now matched back by patient ID.
 - **The ORR/DCR confidence intervals used a different denominator from
   the rates themselves.** The interval was computed on
   [`nrow()`](https://rdrr.io/r/base/nrow.html), which includes Unknown
   and unevaluable patients, while the point estimate counted only
-  CR/PR/SD/PD — so the printed rate could fall outside its own interval,
-  for example ORR 50.0% displayed with a 95% CI of 28.8–46.8%. The
+  CR/PR/SD/PD – so the printed rate could fall outside its own interval,
+  for example ORR 50.0% displayed with a 95% CI of 28.8-46.8%. The
   copy-ready report sentences shared the same defect and the same fix.
 - **The copy-ready “Main Results” paragraph rendered as nothing whenever
-  a response category had no patients.**
-  [`dplyr::count()`](https://dplyr.tidyverse.org/reference/count.html)
+  a response category had no
+  patients.**[`dplyr::count()`](https://dplyr.tidyverse.org/reference/count.html)
   drops unobserved factor levels, so subsetting for an absent category
-  returned `integer(0)` — not `NULL`, so the `%||% 0` fallback never
-  fired — and [`sprintf()`](https://rdrr.io/r/base/sprintf.html) with a
+  returned `integer(0)` – not `NULL`, so the `%||% 0` fallback never
+  fired – and [`sprintf()`](https://rdrr.io/r/base/sprintf.html) with a
   zero-length argument returns `character(0)`, which
   [`paste0()`](https://rdrr.io/r/base/paste.html) then collapses away.
 - **The to-do, validation and clinical-summary panels ignored guided
@@ -181,7 +1106,7 @@ should be re-run.
   each patient.** A swimmer plot is multi-row per patient by
   construction, so row-wise rebasing stacked every episode of a patient
   back onto t = 0, corrupting total person-time, mean and median
-  duration, follow-up density and the reverse Kaplan–Meier median — in
+  duration, follow-up density and the reverse Kaplan-Meier median – in
   the default configuration, and invisibly in any fixture with one row
   per patient. Lanes, milestones and events are now all measured from
   the patient’s earliest start.
@@ -197,7 +1122,7 @@ should be re-run.
   realigned by patient ID.
 - **Ongoing-treatment arrows were inferred from the longest follow-up.**
   Treating “largest end time” as evidence of still being on treatment at
-  data cutoff is wrong in the common case — the patient with the longest
+  data cutoff is wrong in the common case – the patient with the longest
   follow-up is often the one who died last. Arrows are now drawn only
   from an explicit censoring variable, using the same helper as the
   median-follow-up calculation, and no arrows are drawn when there is
@@ -207,10 +1132,10 @@ should be re-run.
   deleted rather than escaped during a non-ASCII sweep, and
   [`ggswim::scale_marker_discrete()`](https://chop-cgtinformatics.github.io/ggswim/reference/scale_marker_discrete.html)
   therefore drew nothing for every labelled event. Restored as
-  print-safe geometric symbols (● ■ ▲ ▼ ◆ ★ ✚ ✖ ◑ ◎) that survive PDF
-  and Word export. Glyph pattern matching was tightened at the same time
-  so that short patterns match as whole words — a bare “ct” had been
-  matching “Infarction” and “Reaction”.
+  print-safe geometric symbols ( ) that survive PDF and Word export.
+  Glyph pattern matching was tightened at the same time so that short
+  patterns match as whole words – a bare “ct” had been matching
+  “Infarction” and “Reaction”.
 - **Adding a milestone wiped the CR/PR/SD/PD colouring from the whole
   figure.** Mapping milestones to `color` added a second
   `scale_color_manual()` containing only milestone names; ggplot2
@@ -220,7 +1145,7 @@ should be re-run.
 - **A custom reference line crashed the plot on an absolute date
   scale.** lubridate does not export
   [`months()`](https://rdrr.io/r/base/weekday.POSIXt.html) (`months` is
-  a base generic), so `lubridate::months()` threw — and months is the
+  a base generic), so `lubridate::months()` threw – and months is the
   default time unit, so this killed the plot out of the box. The Period
   constructors also reject fractional amounts while
   `customReferenceTime` is an unconstrained number, so 12.5 crashed too.
@@ -235,13 +1160,13 @@ should be re-run.
   one place only; both now go through one shared helper.
 - **The summary table could show a median follow-up outside its own
   range.** The observed range was printed beside the reverse
-  Kaplan–Meier median rather than the observed one. The estimator is now
+  Kaplan-Meier median rather than the observed one. The estimator is now
   named, and the range stays attached to the observed median.
-- **Rows excluded before validation were never disclosed.**
-  `.validateClinicalData()` ran on the already-filtered frame, so its
-  “these will be excluded” warnings could not fire for the rows an
-  earlier filter had dropped; those patients disappeared from the figure
-  and from every denominator with nothing said.
+- **Rows excluded before validation were never
+  disclosed.**`.validateClinicalData()` ran on the already-filtered
+  frame, so its “these will be excluded” warnings could not fire for the
+  rows an earlier filter had dropped; those patients disappeared from
+  the figure and from every denominator with nothing said.
 - **The plot and milestone table did not clear on `maxMilestones` or the
   milestone name options, and the export tables did not clear on
   `timeDisplay` or `timeUnit`.**
@@ -255,26 +1180,26 @@ should be re-run.
 
 - **Deeks’ funnel-plot asymmetry test was specified incorrectly and
   could report “no asymmetry” where Deeks’ own specification finds it.**
-  The effective sample size must be `4·n1·n0/(n1+n0)`, the regression of
+  The effective sample size must be `4.n1.n0/(n1+n0)`, the regression of
   log diagnostic odds ratio on `1/sqrt(ESS)` must be weighted by ESS,
-  and the slope referred to a *t* distribution on *k* − 2 degrees of
+  and the slope referred to a *t* distribution on *k* - 2 degrees of
   freedom; the code used inverse-variance weights and a normal
   reference. The accompanying funnel plot has been switched to log DOR
-  against `1/sqrt(ESS)` so that plot and test show the same thing — it
+  against `1/sqrt(ESS)` so that plot and test show the same thing – it
   previously drew the conventional Egger-style precision axis, which
   Deeks et al. showed is misleading for diagnostic accuracy data because
   log DOR and its standard error are intrinsically correlated, so a
   visibly symmetric funnel could sit beside a significant asymmetry
-  p-value (Deeks, Macaskill & Irwig 2005, *J Clin Epidemiol* 58:882–93).
+  p-value (Deeks, Macaskill & Irwig 2005, *J Clin Epidemiol* 58:882-93).
 - **A single missing cell count aborted the entire analysis, and
   negative counts were dropped in silence.** The pre-exclusion study
   count was computed but never used, so the reported number of studies
   was the post-exclusion count with no indication that anything had been
-  removed. Unusable studies — missing or negative cells, or no diseased
-  or no non-diseased participants — are now excluded explicitly and
+  removed. Unusable studies – missing or negative cells, or no diseased
+  or no non-diseased participants – are now excluded explicitly and
   listed.
 - **The zero-cell option “None” applied a heavier correction than either
-  option that advertises one.** `mada`’s default
+  option that advertises one.**`mada`’s default
   `correction.control = "all"` adds 0.5 to all four cells of *every*
   study as soon as one zero cell appears anywhere; “None” now sets
   `correction.control = "single"`, so only the affected studies are
@@ -285,7 +1210,7 @@ should be re-run.
   residual degrees of freedom.** A four-level covariate on five studies
   leaves none: `metafor` silently drops redundant predictors and the
   table then looks normal while describing a different model. Rows are
-  also labelled with the user’s covariate name — the model is fitted on
+  also labelled with the user’s covariate name – the model is fitted on
   an internal column literally named `covariate`, so they had read
   “covariate”, “covariateB”, and so on.
 - **Warnings were written into a panel that `.run()` had already
@@ -293,7 +1218,7 @@ should be re-run.
   produced a completely blank analysis with no explanation anywhere on
   screen.
 - **Study-level sensitivity and specificity were shown as proportions
-  while the pooled table showed percentages** — 0.82 next to 81.59 for
+  while the pooled table showed percentages** – 0.82 next to 81.59 for
   the same quantity on one screen. Per-study values are now percentages
   to one decimal place.
 - **The forest and SROC plots did not clear on `method`,
@@ -309,16 +1234,16 @@ should be re-run.
   components of a common total.** On a 20-case example the between-case
   row read 102.3% of total and the three percentages summed to 107.5%,
   under a row explicitly labelled “Sum of all variance components”.
-  Replaced with a balanced two-way random-effects model — σ²case =
-  (MScase − MSerror)/k, σ²method = (MSmethod − MSerror)/n, σ²error =
-  MSerror — fitted on the cases measured by every method, with that
-  number reported and any negative estimate truncated at zero and
-  disclosed.
+  Replaced with a balanced two-way random-effects model – sigma^2case =
+  (MScase - MSerror)/k, sigma^2method = (MSmethod - MSerror)/n,
+  sigma^2error = MSerror – fitted on the cases measured by every method,
+  with that number reported and any negative estimate truncated at zero
+  and disclosed.
 - **The intraclass correlation was not computed by the route the output
   claimed.** The table reported ICC(2,1) absolute agreement; the
   calculation did not match that definition. Now computed with
   [`psych::ICC`](https://rdrr.io/pkg/psych/man/ICC.html), with the
-  consistency form reported alongside absolute agreement — the two
+  consistency form reported alongside absolute agreement – the two
   differ exactly when there is a systematic offset between methods,
   which is the case worth seeing.
 - **Reliability rows were labelled with a statistic that had not
@@ -342,18 +1267,18 @@ should be re-run.
   unguarded in four places.
 - **The correlation power calculation counted rows with a missing
   reference measurement.** Using the length of the reference column
-  rather than the number of complete pairs made `se_z = 1/sqrt(n − 3)`
+  rather than the number of complete pairs made `se_z = 1/sqrt(n - 3)`
   too small, so every reported power was inflated and every required
   sample size understated.
 
 ### Added
 
-- **`waterfall`: three new display options.** `showCategoryLabels`
-  prints the response category above each bar, `showSpiderLabels` puts
-  the patient ID at the end of each spider line, and `annotationVars`
-  draws covariate tracks beneath the bars. The annotation-track figure
-  design is credited in code to Jamovi-TrialPlots by highwindmx (LGPL);
-  this is an independent implementation.
+- **`waterfall`: three new display options.**`showCategoryLabels` prints
+  the response category above each bar, `showSpiderLabels` puts the
+  patient ID at the end of each spider line, and `annotationVars` draws
+  covariate tracks beneath the bars. The annotation-track figure design
+  is credited in code to Jamovi-TrialPlots by highwindmx (LGPL); this is
+  an independent implementation.
 - **`diagnosticmeta`: a prediction interval for a future study**, shown
   as a note on the bivariate table with a matching prediction region on
   the SROC plot. The pooled estimate and its confidence interval
@@ -385,22 +1310,22 @@ should be re-run.
 - **`swimmerplot`: “Export Timeline Data” and “Export Summary
   Statistics” changed from `type: Output` to `type: Table`.** An
   `Output` result item writes a single computed column back into the
-  dataset and must be bound to a matching `type: Output` option — there
+  dataset and must be bound to a matching `type: Output` option – there
   was none, and the backend called `setState()` rather than
   `setRowNums()`/`setValues()`. Neither payload is a per-row column
   anyway: one is a multi-column frame, the other is one row per metric.
 - **`diagnosticmeta`: performance claims in the interpretation text are
   now qualified by the confidence interval.** A pooled sensitivity of
-  90.4% with a 95% CI of 71–97% had been reported as “excellent … will
+  90.4% with a 95% CI of 71-97% had been reported as “excellent … will
   detect 90 out of 100 patients”. The previously unlabelled p-value
   column on the sensitivity and specificity rows is now named for what
-  it tests — the Wald test of the logit intercepts (H₀: sensitivity =
-  50%, H₀: false-positive rate = 50%), which is trivially significant
+  it tests – the Wald test of the logit intercepts (H0: sensitivity =
+  50%, H0: false-positive rate = 50%), which is trivially significant
   for any usable test.
 - **`ihcheterogeneity`: multiplicity is disclosed** for the up to five
   unadjusted paired comparisons, and a statistically significant
   sampling bias must now also exceed 5% of the reference mean before it
-  vetoes the adequacy verdict — 5% being the “Minimal (\<5%)” band the
+  vetoes the adequacy verdict – 5% being the “Minimal (\<5%)” band the
   sampling-bias table already uses for clinical impact.
 
 ### Removed
@@ -439,7 +1364,7 @@ should be re-run.
   survival-family and diagnostic-decision analyses (`jsurvival`,
   `meddecide`) and a package-wide
   [`format()`](https://rdrr.io/r/base/format.html) namespace fix in the
-  umbrella package. **No analysis shipped here was changed** — none of
+  umbrella package. **No analysis shipped here was changed** – none of
   the affected files is distributed to this module.
 
 ### Added
@@ -447,7 +1372,7 @@ should be re-run.
 - **Automated GitHub release (`.github/workflows/release.yaml`).** A
   push to the default branch touching `DESCRIPTION` or
   `jamovi/0000.yaml` cross-checks the two version strings, refuses to
-  proceed if they disagree, and — if the tag does not already exist —
+  proceed if they disagree, and – if the tag does not already exist –
   tags `v<version>` and publishes a release whose notes are the matching
   section of this file.
 
@@ -547,7 +1472,7 @@ upgrade of the module’s minimum jamovi app and tooling requirements.
 
 ### Enhanced Existing Modules
 
-#### Swimmer Plot (`swimmerplot`) — Notices Migration
+#### Swimmer Plot (`swimmerplot`) – Notices Migration
 
 - **NEW output** `notices` (type `Preformatted`, title “Important
   Information”) with `clearWith` on `patientID`, `startTime`, `endTime`,
@@ -589,8 +1514,7 @@ survival**: `stagemigration_competingRisksAnalysis`,
   [`jmvcore::asFormula`](https://rdrr.io/pkg/jmvcore/man/asFormula.html)
   with an extended function allow-list for survival/Cox/Fine-Gray
   formula paths under jamovi 2.7.27’s hardened parser
-- Added `.buildSurvivalFormula()`,
-  [`.escapeVariableNames()`](https://www.serdarbalci.com/OncoPath/reference/dot-escapeVariableNames.md),
+- Added `.buildSurvivalFormula()`, `.escapeVariableNames()`,
   `load_required_package()`, the `%notin%` / `%!in%` operators, and a
   `print.sensSpecTable` S3 method
 
@@ -615,7 +1539,7 @@ survival**: `stagemigration_competingRisksAnalysis`,
 
 ### Package Infrastructure
 
-- Bumped version 0.0.33 → 0.0.46 (rolling up 0.0.38.1, 0.0.43, 0.0.45)
+- Bumped version 0.0.33 -\> 0.0.46 (rolling up 0.0.38.1, 0.0.43, 0.0.45)
 - Raised `minApp` from 1.6.0 to 2.7.27 to align with jamovi’s hardened
   `as.formula` allow-list
 - Migrated roxygen configuration from `RoxygenNote: 7.3.3` to
@@ -679,14 +1603,14 @@ survival**: `stagemigration_competingRisksAnalysis`,
   - Automatic handling of categorical and ordinal stage variables
   - Separate trend tests for old and new staging systems
 
-#### Pseudo R² Measures
+#### Pseudo R^2 Measures
 
-- **Multiple Pseudo R² Variants**:
-  - **McFadden R²**: Log-likelihood ratio measure
-  - **Adjusted McFadden R²**: Penalized for model complexity
-  - **Cox-Snell R²**: Exponential transformation approach
-  - **Nagelkerke R²**: Normalized Cox-Snell (0-1 range)
-  - **Royston R²**: Placeholder for future implementation
+- **Multiple Pseudo R^2 Variants**:
+  - **McFadden R^2**: Log-likelihood ratio measure
+  - **Adjusted McFadden R^2**: Penalized for model complexity
+  - **Cox-Snell R^2**: Exponential transformation approach
+  - **Nagelkerke R^2**: Normalized Cox-Snell (0-1 range)
+  - **Royston R^2**: Placeholder for future implementation
 - All measures calculated for both staging systems with improvement
   deltas
 - Robust handling of edge cases (zero log-likelihoods, division by zero)
@@ -813,18 +1737,16 @@ clinical impact
 
 #### Patient Follow-Up Plots
 
-- 🏊‍♂️ **Swimmer Plot Analysis**: Timeline visualization with ggswim
+- **Swimmer Plot Analysis**: Timeline visualization with ggswim
   integration
-- 🌊 **Waterfall Plot Analysis**: RECIST criteria treatment response
+- **Waterfall Plot Analysis**: RECIST criteria treatment response
   analysis
 - Complete support for clinical trial reporting and oncological research
 
 #### Pathology Analysis Tools
 
-- 🔬 **IHC Heterogeneity Analysis**: Immunohistochemistry marker
-  analysis
-- 📊 **Diagnostic Test Meta-Analysis**: Bivariate meta-analysis with
-  HSROC
+- **IHC Heterogeneity Analysis**: Immunohistochemistry marker analysis
+- **Diagnostic Test Meta-Analysis**: Bivariate meta-analysis with HSROC
 
 ------------------------------------------------------------------------
 

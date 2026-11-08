@@ -15,21 +15,22 @@ swimmerplot(
   endTime,
   responseVar = NULL,
   censorVar = NULL,
+  censorCoding = "auto",
   groupVar = NULL,
   timeType = "raw",
   dateFormat = "ymd",
   timeUnit = "months",
   timeDisplay = "relative",
   maxMilestones = 5,
-  milestone1Name = "Surgery",
+  milestone1Name = "",
   milestone1Date = NULL,
-  milestone2Name = "Treatment Start",
+  milestone2Name = "",
   milestone2Date = NULL,
-  milestone3Name = "Response Assessment",
+  milestone3Name = "",
   milestone3Date = NULL,
-  milestone4Name = "Progression",
+  milestone4Name = "",
   milestone4Date = NULL,
-  milestone5Name = "Death/Last Follow-up",
+  milestone5Name = "",
   milestone5Date = NULL,
   showEventMarkers = FALSE,
   eventVar = NULL,
@@ -80,18 +81,33 @@ swimmerplot(
 
 - censorVar:
 
-  Optional variable indicating censoring status for ongoing treatment
-  arrows. Use 0/FALSE/"censored"/"alive" for ongoing patients (shows
-  arrow), or 1/TRUE/"event"/"dead" for completed follow-up (no arrow).
-  If not provided, arrows are drawn for patients at the latest time
-  point.
+  Optional variable giving each patient's status. A censored /
+  still-at-risk value draws a status arrow at the end of that patient's
+  lane and is also what the reverse Kaplan-Meier median follow-up uses.
+  Numeric 0/1 is read as 0 = censored (arrow), 1 = event (follow-up
+  completed), and the words "censored"/"alive"/"ongoing" and
+  "event"/"dead"/"died"/"death" are read as named. Any other coding,
+  such as Yes/No, TRUE/FALSE or 1/2, is not guessed: choose it in
+  censorCoding. Without a censoring variable no arrows are drawn and an
+  information notice says so.
+
+- censorCoding:
+
+  How the censoring variable is read. Automatic reads numeric 0/1 as 0 =
+  censored, 1 = event (choose "0/1: 1 = censored" for a column such as
+  Censored = 1), and the words censored/alive/ongoing and
+  event/dead/died/death as named. Yes/No, TRUE/FALSE, 1/2 and a column
+  with a single value (all 0 or all 1) are never guessed: choose the
+  coding that matches the data. While a column cannot be read, no status
+  arrows are drawn and median follow-up is the plain median of observed
+  durations.
 
 - groupVar:
 
   Optional grouping variable for comparing response rates between
   patient groups (e.g., treatment arms, disease subtypes). When
   specified, Fisher's exact tests compare ORR and DCR between groups.
-  Groups are also shown in separate colors.
+  Lane colors reflect the response variable, not the group.
 
 - timeType:
 
@@ -100,11 +116,13 @@ swimmerplot(
 - dateFormat:
 
   Select the date/time format in your data (only used when Time Input
-  Type is Date/Time).
+  Type is Date/time).
 
 - timeUnit:
 
-  Time unit to use for display and calculations.
+  With Raw values input, the unit your start and end times are already
+  recorded in; the values are not rescaled. With Date/time input, the
+  unit durations are calculated in.
 
 - timeDisplay:
 
@@ -119,6 +137,7 @@ swimmerplot(
 - milestone1Name:
 
   Name for the first milestone event (e.g., Surgery, Treatment Start).
+  Leave blank to use the variable's name.
 
 - milestone1Date:
 
@@ -126,7 +145,8 @@ swimmerplot(
 
 - milestone2Name:
 
-  Name for the second milestone event.
+  Name for the second milestone event. Leave blank to use the variable's
+  name.
 
 - milestone2Date:
 
@@ -134,7 +154,8 @@ swimmerplot(
 
 - milestone3Name:
 
-  Name for the third milestone event.
+  Name for the third milestone event. Leave blank to use the variable's
+  name.
 
 - milestone3Date:
 
@@ -142,7 +163,8 @@ swimmerplot(
 
 - milestone4Name:
 
-  Name for the fourth milestone event.
+  Name for the fourth milestone event. Leave blank to use the variable's
+  name.
 
 - milestone4Date:
 
@@ -150,7 +172,8 @@ swimmerplot(
 
 - milestone5Name:
 
-  Name for the fifth milestone event.
+  Name for the fifth milestone event. Leave blank to use the variable's
+  name.
 
 - milestone5Date:
 
@@ -179,14 +202,20 @@ swimmerplot(
 
 - plotTheme:
 
-  Visual theme for the swimmer plot.
+  Visual theme for the swimmer plot. "jamovi (follow global)" uses the
+  plot theme selected in jamovi's preferences, so the figure matches
+  every other plot in the document; the ggswim themes are a deliberate
+  swimmer-plot look and remain the default.
 
 - colorPalette:
 
-  Select color palette for response categories and groups. Colorblind
-  Safe uses perceptually uniform colors distinguishable by all color
-  vision types. High Contrast is optimized for projectors and printing.
-  Monochrome ensures clarity in grayscale publications.
+  Select the color palette for the response categories that color the
+  lanes; it has no effect unless a Response/Status variable is selected,
+  and the grouping variable is never used for color. Colorblind Safe
+  uses perceptually uniform colors distinguishable by all color vision
+  types. High contrast is optimized for projectors and printing, and
+  gives way to Colorblind Safe above its eight colors. Monochrome
+  ensures clarity in grayscale publications.
 
 - showLegend:
 
@@ -194,7 +223,11 @@ swimmerplot(
 
 - referenceLines:
 
-  Add reference time lines to the plot for clinical context.
+  Add reference time lines to the plot for clinical context. Median and
+  Protocol lines measure a duration from each patient's own start, so
+  they are drawn only where the axis measures duration: with Time
+  display set to Absolute and patients starting at different times they
+  are omitted and a note explains why.
 
 - customReferenceTime:
 
@@ -203,19 +236,24 @@ swimmerplot(
 
 - customReferenceDate:
 
-  When using Date/Time with Absolute display, provide a calendar date
+  When using Date/time with Absolute display, provide a calendar date
   (e.g., 2023-06-01) to draw a custom reference line. If left blank, the
   Custom Reference Time is used as an offset from the earliest start
   date.
 
 - sortVariable:
 
-  Optional variable to sort patient timelines (defaults to
-  duration-based sorting).
+  Optional variable to sort patient timelines, smallest value (or first
+  level) at the top; each patient takes their first non-missing value.
+  When one is selected it overrides the Sort order setting; leave it
+  empty to sort by duration, patient ID or response.
 
 - sortOrder:
 
-  How to order patients in the visualization.
+  How to order patients in the visualization, read from the top of the
+  plot down. Ignored while a Sort by variable is selected. Response type
+  falls back to duration order when no Response/Status variable is
+  supplied.
 
 - showInterpretation:
 
@@ -248,7 +286,10 @@ swimmerplot(
 
 - exportTimeline:
 
-  Export processed timeline data for external analysis.
+  Export processed timeline data for external analysis. The on-screen
+  table shows at most the first 500 patients, because building it is
+  slow for large cohorts; the plot, the statistics and every other table
+  continue to use the whole cohort.
 
 - exportSummary:
 
@@ -258,26 +299,24 @@ swimmerplot(
 
 A results object containing:
 
-|                               |     |     |     |     |                |
-|-------------------------------|-----|-----|-----|-----|----------------|
-| `results$notices`             |     |     |     |     | a preformatted |
-| `results$warningNotice`       |     |     |     |     | a html         |
-| `results$instructions`        |     |     |     |     | a html         |
-| `results$plot`                |     |     |     |     | an image       |
-| `results$summary`             |     |     |     |     | a table        |
-| `results$interpretation`      |     |     |     |     | a html         |
-| `results$personTimeTable`     |     |     |     |     | a table        |
-| `results$milestoneTable`      |     |     |     |     | a table        |
-| `results$eventMarkerTable`    |     |     |     |     | a table        |
-| `results$timelineData`        |     |     |     |     | a table        |
-| `results$summaryData`         |     |     |     |     | a table        |
-| `results$exportInfo`          |     |     |     |     | a html         |
-| `results$validationReport`    |     |     |     |     | a html         |
-| `results$advancedMetrics`     |     |     |     |     | a table        |
-| `results$groupComparisonTest` |     |     |     |     | a table        |
-| `results$clinicalGlossary`    |     |     |     |     | a html         |
-| `results$copyReadyReport`     |     |     |     |     | a html         |
-| `results$aboutAnalysis`       |     |     |     |     | a html         |
+|                               |     |     |     |     |          |
+|-------------------------------|-----|-----|-----|-----|----------|
+| `results$notices`             |     |     |     |     | a html   |
+| `results$instructions`        |     |     |     |     | a html   |
+| `results$plot`                |     |     |     |     | an image |
+| `results$summary`             |     |     |     |     | a table  |
+| `results$interpretation`      |     |     |     |     | a html   |
+| `results$personTimeTable`     |     |     |     |     | a table  |
+| `results$milestoneTable`      |     |     |     |     | a table  |
+| `results$eventMarkerTable`    |     |     |     |     | a table  |
+| `results$timelineData`        |     |     |     |     | a table  |
+| `results$summaryData`         |     |     |     |     | a table  |
+| `results$exportInfo`          |     |     |     |     | a html   |
+| `results$advancedMetrics`     |     |     |     |     | a table  |
+| `results$groupComparisonTest` |     |     |     |     | a table  |
+| `results$clinicalGlossary`    |     |     |     |     | a html   |
+| `results$copyReadyReport`     |     |     |     |     | a html   |
+| `results$aboutAnalysis`       |     |     |     |     | a html   |
 
 Tables can be converted to data frames with `asDF` or
 [`as.data.frame`](https://rdrr.io/r/base/as.data.frame.html). For
